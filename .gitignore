@@ -25,6 +25,10 @@ working/
 raw/
 full_scenes/
 
+# AOI COGs are local in v1 until authenticated Git LFS quota is verified
+data/satellite/**/*.tif
+data/satellite/**/*.tiff
+
 # Secrets
 *.pem
 *.key

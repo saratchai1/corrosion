@@ -14,4 +14,4 @@ Reproducible geospatial data workflow for coastal erosion and mangrove analysis 
 - AOI files in EPSG:4326; analysis rasters/distances in EPSG:32647
 
 ## Important status
-The repository initially contained no verified SEG030/project AOI, so `data/aoi/samut_songkhram_aoi.geojson` is **provisional**. No large raster is committed until Git LFS runtime/quota is verified. See `docs/DOWNLOAD_AND_REPRODUCE.md` and `docs/DATA_LIMITATIONS.md`.
+The repository initially contained no verified SEG030/project AOI, so `data/aoi/samut_songkhram_aoi.geojson` is **provisional**. The live STAC workflow, catalogs, previews and QA have been tested; local raster COGs are intentionally not committed because authenticated Git LFS upload/quota could not be confirmed. See `docs/DOWNLOAD_AND_REPRODUCE.md` and `docs/DATA_LIMITATIONS.md`.

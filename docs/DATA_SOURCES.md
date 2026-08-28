@@ -14,13 +14,13 @@ This project uses only free/open satellite sources and records the upstream prov
 - Product: Collection 2 Level-2 Surface Reflectance.
 - Target period: 1984-present using Landsat 5 TM, Landsat 7 ETM+, Landsat 8 OLI and Landsat 9 OLI-2 as available.
 - Analysis role: long-term 30 m coastal/mangrove trend; not confirmation of small planting plots.
-- Provider/API used by scripts: Earth Search STAC collection `landsat-c2-l2`; original dataset is USGS Landsat Collection 2 Level-2.
+- Provider/API used by scripts: Microsoft Planetary Computer STAC v1 (`https://planetarycomputer.microsoft.com/api/stac/v1`), collection `landsat-c2-l2`. Earth Search exposes the collection, but its Landsat assets are requester-pays for anonymous reads; Planetary Computer provides free signed cloud-native assets for this workflow. The original dataset is USGS Landsat Collection 2 Level-2.
 - Licence: Landsat products are public domain/no restrictions on use; dataset citation should still be retained.
 
 ## Sentinel-1 GRD
 - Product: GRD, VV and VH.
 - Target period: 2015-present.
-- Provider/API used by scripts: Earth Search STAC collection `sentinel-1-grd`.
+- Provider/API used by scripts: Microsoft Planetary Computer STAC v1 (`https://planetarycomputer.microsoft.com/api/stac/v1`), collection `sentinel-1-grd`. Sentinel-1 GRD measurement TIFFs may use EPSG:4326 GCPs rather than a dataset-level affine CRS; the downloader warps from those GCPs explicitly.
 - Original dataset/licence: Copernicus Sentinel Data; free, full and open access.
 - Analysis role: supplemental evidence during cloudy periods and for water/mudflat characterization. It is not used as the sole shoreline evidence.
 

@@ -27,11 +27,13 @@ pip install -r requirements.txt
 
 ## 5. Build candidate catalogs
 ```bash
-python scripts/download_satellite_data.py sentinel2 --per-year 4
-python scripts/download_satellite_data.py landsat --per-year 6
-python scripts/download_satellite_data.py sentinel1 --per-year 20
+python scripts/download_satellite_data.py sentinel2 --per-year 4 --dry-run
+python scripts/download_satellite_data.py landsat --per-year 6 --dry-run
+python scripts/download_satellite_data.py sentinel1 --per-year 20 --dry-run
 ```
-These commands discover candidates through STAC and write catalogs. They do not claim scene cloud percentage equals cloud percentage over the AOI. AOI cloud must be evaluated from SCL/QA after reading the AOI pixels.
+The commands search one year at a time, follow STAC pagination, check the live collection IDs, and write candidate catalogs. The script is safe by default: omitting both `--dry-run` and `--download` also performs a dry-run. The full-range catalog run used `--quality-pool-multiplier 1` to keep remote QA reads bounded; increase it to 3 when doing a deeper candidate review. Scene cloud percentage is only a ranking hint, not AOI cloud percentage.
+
+The verified providers are Element 84 Earth Search `sentinel-2-l2a` for Sentinel-2 and Microsoft Planetary Computer `landsat-c2-l2` / `sentinel-1-grd` for Landsat and Sentinel-1. The request diagnostic prints endpoint, body, status, response body, dataset, and date range when an API call fails.
 
 ## 6. Selection rules
 - Sentinel-2: retain about 2-4 acquisition dates per year after AOI-cloud review, with similar season and, when verified tide data exist, comparable tide conditions.
@@ -39,14 +41,21 @@ These commands discover candidates through STAC and write catalogs. They do not 
 - Sentinel-1: build quarterly median composites by default. Monthly composites are acceptable only if the total working set remains under 15 GB.
 - Never discard a useful candidate only because tide data are missing; keep it as `tide_status=unverified`.
 
-## 7. AOI clipping / COG
-The downloader includes `clip_asset()` for remote COG range/window reading. Extend the selected item/asset loop only after asset keys have been reviewed. Outputs must be AOI-only, compressed COGs in EPSG:32647. Sentinel-2 10 m and 20 m native-resolution products should remain separate unless an explicitly documented resampling step is required.
+## 7. Download one acquisition per dataset
+```bash
+python scripts/download_satellite_data.py sentinel2 --start 2025-01-01 --end 2025-12-31 --per-year 1 --download --max-downloads 1
+python scripts/download_satellite_data.py landsat --start 2025-01-01 --end 2025-12-31 --per-year 1 --download --max-downloads 1
+python scripts/download_satellite_data.py sentinel1 --start 2025-01-01 --end 2025-12-31 --per-year 1 --download --max-downloads 1
+```
+Use `--overwrite` to recreate existing local COGs; otherwise completed files are reused. The downloader reads remote COG windows and writes AOI-only compressed COGs in EPSG:32647. Sentinel-1 GCPs are passed explicitly to reprojection. Sentinel-2 10 m and 20 m native-resolution products remain separate; visualization previews may be resized but do not change the stored native data.
 
 ## 8. Composites
 ```bash
-python scripts/build_composites.py data/satellite/landsat/2020/*.tif --output data/satellite/landsat/2020/landsat_2020_median.tif
+python scripts/build_composites.py \
+  data/satellite/landsat/2020/LC08_*/RED_30m.tif \
+  --output data/satellite/landsat/2020/landsat_2020_median_RED.tif
 ```
-Inputs must already have identical grid geometry; the script refuses silent grid harmonization.
+Pass one spectral/quality band across multiple same-season acquisitions, not all bands from one scene. Inputs must already have identical grid geometry; the script refuses silent grid harmonization. The output COG, JSON sidecar and SHA-256 are added to the local manifest automatically.
 
 ## 9. Validation and checksums
 ```bash

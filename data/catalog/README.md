@@ -1,2 +1,2 @@
 # catalogs
-Scene catalogs are populated by the STAC discovery workflow. Header-only CSVs are committed so the schema is fixed before acquisition.
+Scene catalogs are populated by live yearly paginated STAC searches. They retain selected candidates, AOI quality fields, provenance and local-download metadata when a sample is acquired.

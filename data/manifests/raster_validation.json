@@ -1,2 +1,866 @@
-# File generated after raster QA.
-[]
+[
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/BLUE_30m.tif",
+    "sha256": "8f93d7ade264964d5c56b736019438e0038c805006aa38ba92bae3e20d72ec4a",
+    "size": 674352,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "BLUE",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/GREEN_30m.tif",
+    "sha256": "b45b0e6cafaeb1e89d65e7ddfe222cbcecb0ef58b2365093c95e315130b451e7",
+    "size": 681557,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "GREEN",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/NIR_30m.tif",
+    "sha256": "42f2e1b34252b7219744fe83a05cfe98354228f0d528b4978b5039aa53f3c7f6",
+    "size": 697795,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "NIR",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/QA_PIXEL_30m.tif",
+    "sha256": "0130ead37693350b3533ca588accfa0406b3d302bd39ec56c04d473034d4a17f",
+    "size": 34687,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [
+      "quality mask retained"
+    ],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "QA_PIXEL",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/RED_30m.tif",
+    "sha256": "03112e38b995dec44a85973caf6e185089766b82fa31ba68a572a20ebe966432",
+    "size": 691591,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "RED",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/SWIR1_30m.tif",
+    "sha256": "28e6e535203b7f9784bc0abbbdba4c196517d7450d51c3ba4e51ffd1803ed188",
+    "size": 674260,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "SWIR1",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/SWIR2_30m.tif",
+    "sha256": "5bc979ee7d819cc77679ea1149f73a7f553cc8ff08a1510609f2fb4fd5d08985",
+    "size": 647156,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469370.0,
+      617010.0,
+      1488270.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "width": 545,
+    "height": 630,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-02-16T03:38:09.367469Z",
+      "band": "SWIR2",
+      "dataset": "landsat",
+      "native_resolution_m": "30",
+      "scene_id": "LC08_L2SP_129051_20250216_02_T1",
+      "source_license": "USGS Landsat - Public Domain / no restrictions on use",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_129051_20250216_02_T1",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159/VH_10m.tif",
+    "sha256": "2a741711a0af04c0387449037667f9dca71507e91d6a46e88483b61e53cfc54c",
+    "size": 3942854,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469390.0,
+      616990.0,
+      1488270.0
+    ],
+    "resolution": [
+      10.0,
+      10.0
+    ],
+    "width": 1633,
+    "height": 1888,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-07-19T23:09:59.832163Z",
+      "band": "VH",
+      "dataset": "sentinel1",
+      "native_resolution_m": "10",
+      "scene_id": "S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159/VV_10m.tif",
+    "sha256": "e776726a2be5b5ff418166a72e3f5c99bd5aa36c8709e13443f57c2797b1993f",
+    "size": 4778144,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469390.0,
+      616990.0,
+      1488270.0
+    ],
+    "resolution": [
+      10.0,
+      10.0
+    ],
+    "width": 1633,
+    "height": 1888,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-07-19T23:09:59.832163Z",
+      "band": "VV",
+      "dataset": "sentinel1",
+      "native_resolution_m": "10",
+      "scene_id": "S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-grd/items/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B11_20m.tif",
+    "sha256": "acac8ca8f21d711c190f56dbd3cde2b0879e2a4e69a2530f1f7fece59b6dd925",
+    "size": 1278352,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B11",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B12_20m.tif",
+    "sha256": "b43a3e7fd2767e0a9df401668154f1734c678421a49999b1bd95eb91aac7102b",
+    "size": 1258868,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B12",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B2_10m.tif",
+    "sha256": "c07256662eb926d354e470712700cd5fcae9b6136b2a1134496cdf948671f3a4",
+    "size": 5358319,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469390.0,
+      616990.0,
+      1488270.0
+    ],
+    "resolution": [
+      10.0,
+      10.0
+    ],
+    "width": 1633,
+    "height": 1888,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B2",
+      "dataset": "sentinel2",
+      "native_resolution_m": "10",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B3_10m.tif",
+    "sha256": "220d1378065d2fe932d651e1746c90daeb36b45d50074be7ea221bb417e55d8f",
+    "size": 5510687,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469390.0,
+      616990.0,
+      1488270.0
+    ],
+    "resolution": [
+      10.0,
+      10.0
+    ],
+    "width": 1633,
+    "height": 1888,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B3",
+      "dataset": "sentinel2",
+      "native_resolution_m": "10",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B4_10m.tif",
+    "sha256": "93382d79806530f115250c9badfc74d1668647460ae3f0e99d5a8ac7d8203abb",
+    "size": 5391994,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469390.0,
+      616990.0,
+      1488270.0
+    ],
+    "resolution": [
+      10.0,
+      10.0
+    ],
+    "width": 1633,
+    "height": 1888,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B4",
+      "dataset": "sentinel2",
+      "native_resolution_m": "10",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B5_20m.tif",
+    "sha256": "9ff4ba3b6f61745de16b99409922bf5e692180378248618b04e973019e5244e7",
+    "size": 1339530,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B5",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B6_20m.tif",
+    "sha256": "5c02bb9f07772f3220a296c7001932f4ae3c9b7d826151b612e38e3cfeca1c28",
+    "size": 1301865,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B6",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B7_20m.tif",
+    "sha256": "feb90e05f530b8b28b37358681d55aa6177550ee0963de99cf0c2b64c9116d3c",
+    "size": 1311046,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B7",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B8A_20m.tif",
+    "sha256": "16557684ff8c248ce8a5e6ce7347f5853679d302156ef7e32f42d12447143ad4",
+    "size": 1312194,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B8A",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B8_10m.tif",
+    "sha256": "3ee7b4f4a2d55fe5b7e3b0f7e27702b856fed2b0ab095b50c51ba0a603eb2cd5",
+    "size": 5133796,
+    "errors": [],
+    "warnings": [],
+    "flags": [],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469390.0,
+      616990.0,
+      1488270.0
+    ],
+    "resolution": [
+      10.0,
+      10.0
+    ],
+    "width": 1633,
+    "height": 1888,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint16"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "B8",
+      "dataset": "sentinel2",
+      "native_resolution_m": "10",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "pass"
+  },
+  {
+    "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/SCL_20m.tif",
+    "sha256": "d367a5de6194bfa8742b6dea0d67a9fb22f80b976d608404c08e3bf4ecc3af64",
+    "size": 87932,
+    "errors": [],
+    "warnings": [
+      "scene preview exists but does not reference this raster"
+    ],
+    "flags": [
+      "SCL retained for cloud/shadow/cirrus review"
+    ],
+    "driver": "GTiff",
+    "crs": "EPSG:32647",
+    "bounds": [
+      600660.0,
+      1469380.0,
+      617000.0,
+      1488280.0
+    ],
+    "resolution": [
+      20.0,
+      20.0
+    ],
+    "width": 817,
+    "height": 945,
+    "band_count": 1,
+    "nodata": 0.0,
+    "dtype": [
+      "uint8"
+    ],
+    "tiled": true,
+    "tags": {
+      "acquisition_datetime_utc": "2025-12-01T03:54:48.731000Z",
+      "band": "SCL",
+      "dataset": "sentinel2",
+      "native_resolution_m": "20",
+      "scene_id": "S2C_47PPQ_20251201_0_L2A",
+      "source_license": "Copernicus Sentinel Data Legal Notice - free, full and open access",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_47PPQ_20251201_0_L2A",
+      "tide_status": "unverified",
+      "AREA_OR_POINT": "Area"
+    },
+    "aoi_overlap_fraction": 1.0000000000000002,
+    "cog_valid": true,
+    "qa_status": "review"
+  }
+]
