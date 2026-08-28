@@ -29,7 +29,7 @@
   },
   "tide_policy": "No tide level is inferred without a sourced station record. Missing tide information is tide_status=unverified.",
   "shoreline_policy": "Image-derived water-land boundaries are observations/proxies, not 'true shoreline', until tide effects and field/independent evidence are controlled.",
-  "git_lfs_status": "git-lfs/3.8.0 installed; repository tracking rules verified; auth=none; no authenticated upload/quota confirmation; no raster committed",
+  "git_lfs_status": "git-lfs/3.8.0 installed; repository tracking rules verified; endpoint auth=basic; no-cost upload/quota confirmation unavailable; no raster committed",
   "files": [
     {
       "path": "data/previews/landsat/2025/LC08_L2SP_129051_20250216_02_T1_false_color_nir.png",

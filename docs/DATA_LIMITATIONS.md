@@ -8,7 +8,7 @@
 6. **Sentinel-1 is supporting evidence.** VV/VH can help during cloud cover and with water/mudflat context, but is not used alone to assert shoreline position.
 7. **Landsat 7 SLC-off.** ETM+ acquisitions after the 2003 Scan Line Corrector failure contain systematic data gaps; composites/QA must account for them rather than treating gaps as change.
 8. **Mixed sensor history.** Landsat TM/ETM+/OLI/OLI-2 spectral responses differ; long-term indices/trends should use sensor-aware harmonization or uncertainty treatment.
-9. **COG/LFS delivery status.** Git LFS 3.8.0 is installed locally and the repository patterns are configured, but this account has no authenticated LFS upload access in the current runtime and no-cost quota cannot be confirmed confidently. Therefore v1 pushes scripts, catalogs, manifests, previews and QA only; downloaded raster COGs remain local.
+9. **COG/LFS delivery status.** Git LFS 3.8.0 is installed locally and the repository patterns are configured; the current endpoint reports basic auth, but no-cost quota cannot be confirmed confidently. Therefore v1 pushes scripts, catalogs, manifests, previews and QA only; downloaded raster COGs remain local.
 10. **Provider coverage.** Sentinel-2 search returned no AOI-intersecting Level-2A item in 2016 from the verified Earth Search collection; usable records begin in 2017. Landsat search likewise returned no intersecting Level-2 records for 1984–1986 in the selected WRS path/row/AOI. These are recorded as observed provider results, not backfilled with invented data.
 11. **Sentinel-1 geolocation.** The Planetary Computer GRD measurement assets use GCP geolocation. The downloader uses explicit GCP reprojection and visual QA is required for every new orbit/processing variant.
 
