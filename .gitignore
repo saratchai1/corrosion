@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Geospatial working files
+.cache/
+cache/
+tmp/
+temp/
+working/
+*.aux.xml
+*.ovr
+*.vrt
+
+# Full-scene/raw downloads must never be committed
+raw/
+full_scenes/
+
+# Secrets
+*.pem
+*.key
+credentials*
+tokens*

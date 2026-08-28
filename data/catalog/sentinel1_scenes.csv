@@ -1,0 +1,1 @@
+dataset,scene_id,sensor,acquisition_datetime_utc,acquisition_datetime_bangkok,cloud_cover_scene,cloud_cover_aoi,tide_station,tide_level,tide_datum,tide_status,source_url,source_license,crs,resolution_m,bands,local_path,file_size_bytes,sha256,selection_reason,qa_status

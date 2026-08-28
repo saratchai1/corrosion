@@ -1,0 +1,26 @@
+{
+  "dataset_name": "Samut Songkhram coastal erosion and mangrove satellite dataset",
+  "version": "v1-provisional",
+  "created_utc": "2026-08-28T11:00:00Z",
+  "aoi": {
+    "path": "data/aoi/samut_songkhram_aoi.geojson",
+    "crs": "EPSG:4326",
+    "status": "provisional",
+    "official_project_boundary": false
+  },
+  "analysis_crs": "EPSG:32647",
+  "target_max_working_bytes": 16106127360,
+  "datasets": {
+    "sentinel2": {"period": "2016-present", "product": "Level-2A surface reflectance", "catalog": "data/catalog/sentinel2_scenes.csv"},
+    "landsat": {"period": "1984-present", "product": "Collection 2 Level-2 surface reflectance", "catalog": "data/catalog/landsat_scenes.csv"},
+    "sentinel1": {"period": "2015-present", "product": "GRD VV/VH", "catalog": "data/catalog/sentinel1_scenes.csv"}
+  },
+  "tide_policy": "No tide level is inferred without a sourced station record. Missing tide information is tide_status=unverified.",
+  "shoreline_policy": "Image-derived water-land boundaries are observations/proxies, not 'true shoreline', until tide effects and field/independent evidence are controlled.",
+  "git_lfs_status": "tracking rules prepared; runtime git lfs env/quota not verifiable through GitHub API; no raster committed",
+  "files": [],
+  "notes": [
+    "Scene catalogs are intentionally header-only until STAC acquisition is executed in a network-enabled runtime.",
+    "Large rasters must not be committed unless Git LFS availability and quota are verified first."
+  ]
+}
