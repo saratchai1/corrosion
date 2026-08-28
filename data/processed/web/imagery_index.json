@@ -1,0 +1,316 @@
+{
+  "epochs": [
+    {
+      "targetYear": 1985,
+      "actualYear": 1987,
+      "dataset": "landsat",
+      "sensor": "landsat-5",
+      "dates": [
+        "1987-12-09",
+        "1987-12-25"
+      ],
+      "sceneCount": 2,
+      "resolutionM": 30,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.17578,
+      "validFraction": 0.9878,
+      "oceanFraction": 0.4728,
+      "vegetationAreaHa": 2293.05,
+      "image": "imagery/1985.webp",
+      "imageCoordinates": [
+        [
+          99.92995210160437,
+          13.460664928065844
+        ],
+        [
+          100.08098466455267,
+          13.460061039200907
+        ],
+        [
+          100.08022319137878,
+          13.289189256313717
+        ],
+        [
+          99.92929697925602,
+          13.289785205826163
+        ]
+      ],
+      "boundary": "boundaries/1985_water_land_boundary.geojson",
+      "vegetation": "vegetation/1985_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 1990,
+      "actualYear": 1990,
+      "dataset": "landsat",
+      "sensor": "landsat-5",
+      "dates": [
+        "1990-01-15",
+        "1990-01-31",
+        "1990-12-17"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 30,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.25,
+      "validFraction": 0.9885,
+      "oceanFraction": 0.435,
+      "vegetationAreaHa": 1613.28,
+      "image": "imagery/1990.webp",
+      "imageCoordinates": [
+        [
+          99.92995210160437,
+          13.460664928065844
+        ],
+        [
+          100.08098466455267,
+          13.460061039200907
+        ],
+        [
+          100.08022319137878,
+          13.289189256313717
+        ],
+        [
+          99.92929697925602,
+          13.289785205826163
+        ]
+      ],
+      "boundary": "boundaries/1990_water_land_boundary.geojson",
+      "vegetation": "vegetation/1990_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2000,
+      "actualYear": 2000,
+      "dataset": "landsat",
+      "sensor": "landsat-5",
+      "dates": [
+        "2000-01-11",
+        "2000-02-12",
+        "2000-02-28"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 30,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.25,
+      "validFraction": 0.9886,
+      "oceanFraction": 0.401,
+      "vegetationAreaHa": 2288.81,
+      "image": "imagery/2000.webp",
+      "imageCoordinates": [
+        [
+          99.92995210160437,
+          13.460664928065844
+        ],
+        [
+          100.08098466455267,
+          13.460061039200907
+        ],
+        [
+          100.08022319137878,
+          13.289189256313717
+        ],
+        [
+          99.92929697925602,
+          13.289785205826163
+        ]
+      ],
+      "boundary": "boundaries/2000_water_land_boundary.geojson",
+      "vegetation": "vegetation/2000_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2010,
+      "actualYear": 2009,
+      "dataset": "landsat",
+      "sensor": "landsat-5",
+      "dates": [
+        "2009-01-03",
+        "2009-02-20",
+        "2009-04-25"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 30,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.25,
+      "validFraction": 0.9886,
+      "oceanFraction": 0.3805,
+      "vegetationAreaHa": 2474.74,
+      "image": "imagery/2010.webp",
+      "imageCoordinates": [
+        [
+          99.92995210160437,
+          13.460664928065844
+        ],
+        [
+          100.08098466455267,
+          13.460061039200907
+        ],
+        [
+          100.08022319137878,
+          13.289189256313717
+        ],
+        [
+          99.92929697925602,
+          13.289785205826163
+        ]
+      ],
+      "boundary": "boundaries/2010_water_land_boundary.geojson",
+      "vegetation": "vegetation/2010_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2018,
+      "actualYear": 2018,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2018-02-06",
+        "2018-03-03",
+        "2018-03-08"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 20,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.20703,
+      "validFraction": 0.9877,
+      "oceanFraction": 0.3798,
+      "vegetationAreaHa": 2412.02,
+      "image": "imagery/2018.webp",
+      "imageCoordinates": [
+        [
+          99.9299524506507,
+          13.46075533999782
+        ],
+        [
+          100.08089269789198,
+          13.460151843994444
+        ],
+        [
+          100.08013128413592,
+          13.289280057128611
+        ],
+        [
+          99.92929732346614,
+          13.289875618993994
+        ]
+      ],
+      "boundary": "boundaries/2018_water_land_boundary.geojson",
+      "vegetation": "vegetation/2018_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2020,
+      "actualYear": 2020,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2020-01-07",
+        "2020-01-27",
+        "2020-02-21"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 20,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.23828,
+      "validFraction": 0.9871,
+      "oceanFraction": 0.3712,
+      "vegetationAreaHa": 2740.65,
+      "image": "imagery/2020.webp",
+      "imageCoordinates": [
+        [
+          99.9299524506507,
+          13.46075533999782
+        ],
+        [
+          100.08089269789198,
+          13.460151843994444
+        ],
+        [
+          100.08013128413592,
+          13.289280057128611
+        ],
+        [
+          99.92929732346614,
+          13.289875618993994
+        ]
+      ],
+      "boundary": "boundaries/2020_water_land_boundary.geojson",
+      "vegetation": "vegetation/2020_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2025,
+      "actualYear": 2025,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2A, Sentinel-2C",
+      "dates": [
+        "2025-01-15",
+        "2025-12-01",
+        "2025-12-03"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 20,
+      "tideStatus": "unverified",
+      "mndwiThreshold": 0.0,
+      "validFraction": 0.9884,
+      "oceanFraction": 0.4467,
+      "vegetationAreaHa": 1978.69,
+      "image": "imagery/2025.webp",
+      "imageCoordinates": [
+        [
+          99.9299524506507,
+          13.46075533999782
+        ],
+        [
+          100.08089269789198,
+          13.460151843994444
+        ],
+        [
+          100.08013128413592,
+          13.289280057128611
+        ],
+        [
+          99.92929732346614,
+          13.289875618993994
+        ]
+      ],
+      "boundary": "boundaries/2025_water_land_boundary.geojson",
+      "vegetation": "vegetation/2025_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2026,
+      "actualYear": 2026,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2026-01-12",
+        "2026-04-05",
+        "2026-04-12"
+      ],
+      "sceneCount": 3,
+      "resolutionM": 20,
+      "tideStatus": "unverified",
+      "mndwiThreshold": -0.01172,
+      "validFraction": 0.9884,
+      "oceanFraction": 0.4436,
+      "vegetationAreaHa": 1890.17,
+      "image": "imagery/2026.webp",
+      "imageCoordinates": [
+        [
+          99.9299524506507,
+          13.46075533999782
+        ],
+        [
+          100.08089269789198,
+          13.460151843994444
+        ],
+        [
+          100.08013128413592,
+          13.289280057128611
+        ],
+        [
+          99.92929732346614,
+          13.289875618993994
+        ]
+      ],
+      "boundary": "boundaries/2026_water_land_boundary.geojson",
+      "vegetation": "vegetation/2026_coastal_vegetation_proxy.geojson"
+    }
+  ],
+  "tide_status": "unverified"
+}

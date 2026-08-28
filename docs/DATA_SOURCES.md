@@ -6,7 +6,7 @@ This project uses only free/open satellite sources and records the upstream prov
 - Product: atmospherically corrected Surface Reflectance (Level-2A).
 - Target period: 2016-present.
 - Required assets: B2, B3, B4, B8 (10 m); B5, B6, B7, B8A, B11, B12 and SCL (20 m/native quality semantics).
-- Provider/API used by the scripts: Element 84 Earth Search STAC v1 (`https://earth-search.aws.element84.com/v1`), collection `sentinel-2-l2a`.
+- Provider/API used by the scripts: Microsoft Planetary Computer STAC v1 (`https://planetarycomputer.microsoft.com/api/stac/v1`), collection `sentinel-2-l2a`, using signed cloud-native assets.
 - Original dataset/licence: Copernicus Sentinel Data; free, full and open access under the Copernicus Sentinel Data Legal Notice.
 - Important: resampling a 20 m band to a 10 m grid does not create true 10 m information. Native resolution must remain recorded in metadata.
 

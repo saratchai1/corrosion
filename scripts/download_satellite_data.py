@@ -47,7 +47,9 @@ class Provider:
 
 
 PROVIDERS = {
-    "sentinel2": Provider("Element 84 Earth Search", EARTH_SEARCH, "sentinel-2-l2a"),
+    "sentinel2": Provider(
+        "Microsoft Planetary Computer", PLANETARY_COMPUTER, "sentinel-2-l2a", True
+    ),
     "landsat": Provider(
         "Microsoft Planetary Computer", PLANETARY_COMPUTER, "landsat-c2-l2", True
     ),
@@ -65,12 +67,12 @@ LICENSES = {
 # Output band, STAC asset key, output/native pixel size, categorical.
 ASSETS: dict[str, list[tuple[str, str, float, bool]]] = {
     "sentinel2": [
-        ("B2", "blue", 10, False), ("B3", "green", 10, False),
-        ("B4", "red", 10, False), ("B8", "nir", 10, False),
-        ("B5", "rededge1", 20, False), ("B6", "rededge2", 20, False),
-        ("B7", "rededge3", 20, False), ("B8A", "nir08", 20, False),
-        ("B11", "swir16", 20, False), ("B12", "swir22", 20, False),
-        ("SCL", "scl", 20, True),
+        ("B2", "B02", 10, False), ("B3", "B03", 10, False),
+        ("B4", "B04", 10, False), ("B8", "B08", 10, False),
+        ("B5", "B05", 20, False), ("B6", "B06", 20, False),
+        ("B7", "B07", 20, False), ("B8A", "B8A", 20, False),
+        ("B11", "B11", 20, False), ("B12", "B12", 20, False),
+        ("SCL", "SCL", 20, True),
     ],
     "landsat": [
         ("BLUE", "blue", 30, False), ("GREEN", "green", 30, False),
@@ -93,6 +95,7 @@ class Candidate:
     local_paths: list[str] = field(default_factory=list)
     file_bytes: int = 0
     checksums: list[str] = field(default_factory=list)
+    selected_band_names: list[str] = field(default_factory=list)
     qa_status: str = "candidate-unverified"
 
 
@@ -353,10 +356,16 @@ def has_required_assets(dataset: str, item: dict[str, Any]) -> bool:
     return required <= available
 
 
-def prefilter_item(dataset: str, item: dict[str, Any]) -> bool:
+def prefilter_item(
+    dataset: str, item: dict[str, Any], platforms: set[str] | None = None
+) -> bool:
     if not has_required_assets(dataset, item):
         return False
     props = item.get("properties", {})
+    if platforms:
+        platform = str(props.get("platform", "")).lower()
+        if platform not in platforms:
+            return False
     if dataset == "landsat":
         category = str(props.get("landsat:collection_category", ""))
         if category not in {"", "T1"}:
@@ -406,7 +415,12 @@ def quality_counts(
     from rasterio.mask import mask
     from rasterio.warp import transform_geom
 
-    key = "scl" if dataset == "sentinel2" else "qa_pixel"
+    quality_band = "SCL" if dataset == "sentinel2" else "QA_PIXEL"
+    key = next(
+        asset_key
+        for band_name, asset_key, _, _ in ASSETS[dataset]
+        if band_name == quality_band
+    )
     signed = sign_item(candidate.item, dataset)
     asset = signed.get("assets", {}).get(key)
     if not asset:
@@ -509,9 +523,11 @@ def select_year(
     geom4326: dict[str, Any],
     per_year: int,
     quality_pool_multiplier: int,
+    platforms: set[str] | None,
 ) -> list[Acquisition]:
-    filtered = [item for item in items if prefilter_item(dataset, item)]
+    filtered = [item for item in items if prefilter_item(dataset, item, platforms)]
     groups = group_acquisitions(filtered, aoi_shape)
+    groups = [group for group in groups if group.coverage_fraction >= 0.95]
     if dataset == "sentinel1":
         return choose_with_spacing(dataset, groups, per_year)
     pool_size = max(per_year * quality_pool_multiplier, per_year)
@@ -529,6 +545,7 @@ def discovery(
     per_year: int,
     page_size: int,
     quality_pool_multiplier: int,
+    platforms: set[str] | None,
 ) -> tuple[list[Acquisition], int]:
     check_collection(dataset)
     selected: list[Acquisition] = []
@@ -541,7 +558,13 @@ def discovery(
         items = search_year(dataset, geom4326, year_start, year_end, page_size)
         total_items += len(items)
         year_selected = select_year(
-            dataset, items, aoi_shape, geom4326, per_year, quality_pool_multiplier
+            dataset,
+            items,
+            aoi_shape,
+            geom4326,
+            per_year,
+            quality_pool_multiplier,
+            platforms,
         )
         selected.extend(year_selected)
         print(
@@ -619,7 +642,9 @@ def candidate_row(dataset: str, candidate: Candidate) -> dict[str, Any]:
             if dataset == "sentinel2"
             else ("30" if dataset == "landsat" else "10 pixel spacing (GRD)")
         ),
-        "bands": ";".join(x[0] for x in ASSETS[dataset]),
+        "bands": ";".join(
+            candidate.selected_band_names or [x[0] for x in ASSETS[dataset]]
+        ),
         "local_path": ";".join(candidate.local_paths),
         "file_size_bytes": candidate.file_bytes or "",
         "sha256": ";".join(candidate.checksums),
@@ -833,7 +858,9 @@ def download_acquisitions(
     acquisitions: list[Acquisition],
     geom4326: dict[str, Any],
     max_downloads: int | None,
+    asset_specs: list[tuple[str, str, float, bool]],
     overwrite: bool = False,
+    make_previews: bool = True,
 ) -> list[Path]:
     selected = acquisitions[:max_downloads] if max_downloads else acquisitions
     downloaded: list[Path] = []
@@ -843,6 +870,7 @@ def download_acquisitions(
             f"date={acq.day} scenes={len(acq.candidates)}"
         )
         for candidate in acq.candidates:
+            candidate.selected_band_names = [spec[0] for spec in asset_specs]
             item = sign_item(candidate.item, dataset)
             props = item.get("properties", {})
             value = props.get("datetime") or props.get("start_datetime")
@@ -850,7 +878,7 @@ def download_acquisitions(
             year = str(item_datetime(item).year)
             scene_dir = Path("data/satellite") / dataset / year / item["id"]
             band_paths: dict[str, Path] = {}
-            for band_name, asset_key, resolution, categorical in ASSETS[dataset]:
+            for band_name, asset_key, resolution, categorical in asset_specs:
                 asset = item.get("assets", {}).get(asset_key)
                 if not asset:
                     raise KeyError(f"Missing asset {asset_key!r} in {item.get('id')}")
@@ -882,13 +910,19 @@ def download_acquisitions(
                 candidate.file_bytes += outpath.stat().st_size
                 band_paths[band_name] = outpath
                 downloaded.append(outpath)
-            downloaded.extend(preview_outputs(dataset, candidate, band_paths))
+            if make_previews:
+                try:
+                    downloaded.extend(preview_outputs(dataset, candidate, band_paths))
+                except KeyError as exc:
+                    print(f"  preview skipped; required display band missing: {exc}")
             candidate.qa_status = "downloaded-pending-raster-validation"
     return downloaded
 
 
 def estimate_bytes(
-    dataset: str, acquisitions: list[Acquisition], aoi_shape: Any
+    acquisitions: list[Acquisition],
+    aoi_shape: Any,
+    asset_specs: list[tuple[str, str, float, bool]],
 ) -> int:
     from pyproj import Transformer
     from shapely.ops import transform
@@ -899,7 +933,7 @@ def estimate_bytes(
     area_m2 = transform(project, aoi_shape).area
     per_acquisition = sum(
         area_m2 / (resolution * resolution) * 2
-        for _, _, resolution, _ in ASSETS[dataset]
+        for _, _, resolution, _ in asset_specs
     )
     factor = sum(
         max(1.0, sum(c.coverage_fraction for c in acq.candidates))
@@ -959,6 +993,23 @@ def default_start(dataset: str) -> date:
     }[dataset]
 
 
+def select_asset_specs(
+    dataset: str, requested: str | None
+) -> list[tuple[str, str, float, bool]]:
+    specs = ASSETS[dataset]
+    if not requested:
+        return specs
+    names = [value.strip().upper() for value in requested.split(",") if value.strip()]
+    available = {spec[0].upper(): spec for spec in specs}
+    unknown = [name for name in names if name not in available]
+    if unknown:
+        raise ValueError(
+            f"Unknown band(s) for {dataset}: {unknown}; available={list(available)}"
+        )
+    requested_names = set(names)
+    return [spec for spec in specs if spec[0].upper() in requested_names]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Yearly paginated STAC discovery and AOI-only COG acquisition"
@@ -973,6 +1024,14 @@ def main() -> None:
     parser.add_argument("--catalog")
     parser.add_argument("--page-size", type=int, default=DEFAULT_PAGE_SIZE)
     parser.add_argument("--quality-pool-multiplier", type=int, default=3)
+    parser.add_argument(
+        "--bands",
+        help="Comma-separated output band names; default downloads all required bands",
+    )
+    parser.add_argument(
+        "--platforms",
+        help="Optional comma-separated platform filter, for example landsat-5",
+    )
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--dry-run", action="store_true", help="Search/rank/catalog only")
     mode.add_argument("--download", action="store_true", help="Download selected AOI bands")
@@ -986,6 +1045,11 @@ def main() -> None:
         action="store_true",
         help="Recreate existing AOI COGs instead of resuming from them",
     )
+    parser.add_argument(
+        "--skip-previews",
+        action="store_true",
+        help="Do not create per-acquisition PNG previews",
+    )
     args = parser.parse_args()
     if args.per_year < 1:
         parser.error("--per-year must be >= 1")
@@ -995,8 +1059,17 @@ def main() -> None:
         parser.error("--quality-pool-multiplier must be >= 1")
     if args.max_downloads is not None and args.max_downloads < 1:
         parser.error("--max-downloads must be >= 1")
+    try:
+        asset_specs = select_asset_specs(args.dataset, args.bands)
+    except ValueError as exc:
+        parser.error(str(exc))
 
     dry_run = args.dry_run or not args.download
+    platforms = (
+        {value.strip().lower() for value in args.platforms.split(",") if value.strip()}
+        if args.platforms
+        else None
+    )
     start = args.start or default_start(args.dataset)
     end = args.end
     if start > end:
@@ -1017,8 +1090,9 @@ def main() -> None:
         args.per_year,
         args.page_size,
         args.quality_pool_multiplier,
+        platforms,
     )
-    estimate = estimate_bytes(args.dataset, acquisitions, aoi_shape)
+    estimate = estimate_bytes(acquisitions, aoi_shape, asset_specs)
     print(
         f"estimated_uncompressed_AOI_bytes={estimate} "
         f"({estimate / 1024**3:.2f} GiB) "
@@ -1035,7 +1109,9 @@ def main() -> None:
             acquisitions,
             geom4326,
             args.max_downloads,
+            asset_specs,
             overwrite=args.overwrite,
+            make_previews=not args.skip_previews,
         )
         update_manifests()
 

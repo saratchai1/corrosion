@@ -33,7 +33,7 @@ python scripts/download_satellite_data.py sentinel1 --per-year 20 --dry-run
 ```
 The commands search one year at a time, follow STAC pagination, check the live collection IDs, and write candidate catalogs. The script is safe by default: omitting both `--dry-run` and `--download` also performs a dry-run. The full-range catalog run used `--quality-pool-multiplier 1` to keep remote QA reads bounded; increase it to 3 when doing a deeper candidate review. Scene cloud percentage is only a ranking hint, not AOI cloud percentage.
 
-The verified providers are Element 84 Earth Search `sentinel-2-l2a` for Sentinel-2 and Microsoft Planetary Computer `landsat-c2-l2` / `sentinel-1-grd` for Landsat and Sentinel-1. The request diagnostic prints endpoint, body, status, response body, dataset, and date range when an API call fails.
+The verified provider used for all three datasets is Microsoft Planetary Computer: `sentinel-2-l2a`, `landsat-c2-l2`, and `sentinel-1-grd`. Sentinel-2 and Landsat assets are signed before window reads. The request diagnostic prints endpoint, body, status, response body, dataset, and date range when an API call fails.
 
 ## 6. Selection rules
 - Sentinel-2: retain about 2-4 acquisition dates per year after AOI-cloud review, with similar season and, when verified tide data exist, comparable tide conditions.
@@ -68,3 +68,17 @@ Generate RGB and false-color previews only from validated AOI rasters. Recommend
 
 ## 11. Size control
 Before retaining a new year/date, check total working size. Target <=15 GB. If exceeded, reduce dates while preserving year/season distribution. If raster Git/LFS storage cannot be used safely, leave rasters local/object-storage and push only catalogs/manifests/scripts/previews.
+
+## 12. Coastal-change MVP
+
+Download only the eight tested epochs and build every derived product plus static web asset:
+
+```bash
+python scripts/download_mvp_epochs.py
+python scripts/build_coastal_change_mvp.py
+cd web
+npm install
+npm run build
+```
+
+See `docs/COASTAL_CHANGE_MVP.md` for epoch substitutions, methods, current preliminary results, output schemas, and limitations.
