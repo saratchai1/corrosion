@@ -1,0 +1,4 @@
+plot_code,event,drop_month,drop_qa,ndvi_before,ndvi_drop,recovery_month,recovery_qa,ndvi_recovery,note
+100-VSD,TEMPORARY_NDVI_DIP,2025-09,PARTIAL,0.4544,0.3373,2025-12,GOOD,0.5086,"screening flag only; may reflect season, water, cloud residual, or vegetation stress"
+97-VSD,TEMPORARY_NDVI_DIP,2025-06,GOOD,0.5179,0.3494,2025-12,GOOD,0.5518,"screening flag only; may reflect season, water, cloud residual, or vegetation stress"
+99-VSD,TEMPORARY_NDVI_DIP,2025-09,LOW_QA,0.4641,0.3203,2025-12,GOOD,0.5669,"screening flag only; may reflect season, water, cloud residual, or vegetation stress"
