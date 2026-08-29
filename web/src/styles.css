@@ -131,7 +131,7 @@ footer span { display: block; margin-top: 9px; color: #ff9c88; font-size: 9px; }
 .map-pane.label-right .map-label { right: 70px; left: auto; text-align: right; }
 .swipe-compare, .swipe-layer, .swipe-layer .map-pane { position: absolute; inset: 0; width: 100%; height: 100%; }
 .swipe-layer { contain: strict; }
-.swipe-after { z-index: 2; overflow: hidden; pointer-events: none; will-change: clip; }
+.swipe-after { z-index: 2; overflow: hidden; pointer-events: auto; will-change: clip; }
 .swipe-after .maplibregl-control-container, .swipe-after .maplibregl-ctrl { pointer-events: auto; }
 .swipe-toolbar { position: absolute; z-index: 7; top: 20px; left: 50%; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 8px; width: min(510px, calc(100% - 36px)); padding: 8px; border: 1px solid rgba(255,255,255,.24); background: rgba(7,27,29,.9); box-shadow: 0 5px 25px rgba(4,20,21,.3); transform: translateX(-50%); backdrop-filter: blur(10px); }
 .swipe-toolbar label { display: grid; gap: 4px; min-width: 0; }

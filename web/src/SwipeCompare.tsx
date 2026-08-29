@@ -102,7 +102,7 @@ export default function SwipeCompare({ epochs, beforeIndex, afterIndex, before, 
           sharedView={sharedView}
           onView={onView}
           onTransect={onTransect}
-          interactive={false}
+          interactive
           labelSide="right"
         />
       </div>
