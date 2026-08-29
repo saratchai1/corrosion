@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  inventory-osf:
+  import-published-data:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests pyshp pyproj shapely
 
       - name: Inventory ThaiCoast OSF project, registrations, and storage
         run: |
@@ -48,6 +48,9 @@ jobs:
           p = json.loads(Path('regions/krabi/data/published/thaicoast_osf_inventory.json').read_text())
           assert p['resource_count'] >= 1
           assert p['file_count'] >= 1, json.dumps(p['providers'], indent=2)
+          required = {'Krabi_Points.shp', 'Krabi_Points.dbf', 'Krabi_Points.shx', 'Krabi_Points.prj'}
+          names = {x['name'] for x in p['files']}
+          assert required <= names, sorted(required - names)
           print(json.dumps({
               'resources': p['resource_count'],
               'providers': len(p['providers']),
@@ -58,24 +61,56 @@ jobs:
           }, ensure_ascii=False, indent=2))
           PY
 
-      - name: Upload inventory artifact
+      - name: Download and convert published Krabi DSAS points
+        run: |
+          rm -rf .tmp/thaicoast_krabi regions/krabi/web/assets/published
+          python scripts/import_thaicoast_krabi.py \
+            --inventory regions/krabi/data/published/thaicoast_osf_inventory.json \
+            --work .tmp/thaicoast_krabi \
+            --out regions/krabi/web/assets/published
+
+      - name: Validate web-ready published dataset
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('regions/krabi/web/assets/published')
+          summary = json.loads((root / 'krabi_published_dsas_summary.json').read_text())
+          data = json.loads((root / 'krabi_published_dsas_points.geojson').read_text())
+          schema = json.loads((root / 'krabi_published_dsas_schema.json').read_text())
+          assert summary['status'] == 'PUBLISHED_HISTORICAL_DSAS_POINTS_IMPORTED'
+          assert summary['feature_count'] == len(data['features'])
+          assert summary['feature_count'] >= 100
+          assert summary['primary_rate_field'], schema['field_definitions']
+          assert summary['rate_count'] >= summary['feature_count'] * 0.8
+          minx, miny, maxx, maxy = summary['bounds_wgs84']
+          assert 97.5 < minx < 100.5 and 97.5 < maxx < 100.5
+          assert 6.0 < miny < 10.0 and 6.0 < maxy < 10.0
+          assert summary['rate_minimum'] < 0 < summary['rate_maximum']
+          print(json.dumps(summary, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload inventory and converted GIS artifact
         uses: actions/upload-artifact@v4
         with:
-          name: thaicoast-osf-inventory
-          path: regions/krabi/data/published/thaicoast_osf_inventory.*
+          name: krabi-published-dsas-1990-2019
+          path: |
+            regions/krabi/data/published/thaicoast_osf_inventory.*
+            regions/krabi/web/assets/published/**
           if-no-files-found: error
           retention-days: 90
 
-      - name: Commit inventory
+      - name: Commit inventory and web assets
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add regions/krabi/data/published/thaicoast_osf_inventory.json \
-                  regions/krabi/data/published/thaicoast_osf_inventory.md
+                  regions/krabi/data/published/thaicoast_osf_inventory.md \
+                  regions/krabi/web/assets/published
           if git diff --cached --quiet; then
-            echo 'No inventory changes to commit.'
+            echo 'No published-data changes to commit.'
             exit 0
           fi
-          git commit -m 'data: inventory published ThaiCoast OSF files'
+          git commit -m 'data: add published Krabi DSAS points for 1990-2019'
           git pull --rebase origin main
           git push origin HEAD:main
