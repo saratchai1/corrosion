@@ -6,24 +6,36 @@
   "source_crs": "EPSG:4326",
   "aoi": "data/aoi/krabi_pdd_plots.geojson",
   "plot_codes": ["97-VSD", "98-VSD", "99-VSD", "100-VSD"],
+  "existing_data_reuse": {
+    "priority": "reuse_first",
+    "repository": "saratchai1/prasae",
+    "branch": "pdd22-satellite-refetch",
+    "coverage_report": "data/pdd22_satellite/coverage_report.csv",
+    "plot_root": "data/pdd22_satellite/plots",
+    "local_summary": "data/reuse/pdd22_krabi_coverage.csv",
+    "coverage": "48 Sentinel-2 observations across 4 plots from 2023-09 through 2026-08"
+  },
   "satellite_targets": {
     "sentinel2": {
       "provider": "Element 84 Earth Search",
       "collection": "sentinel-2-l2a",
       "start": "2016-01-01",
-      "per_year": 4
+      "per_year": 4,
+      "policy": "reuse existing PDD22 products for overlapping periods; query STAC for older history, future refreshes, or missing periods"
     },
     "landsat": {
       "provider": "Microsoft Planetary Computer",
       "collection": "landsat-c2-l2",
       "start": "1984-01-01",
-      "per_year": 6
+      "per_year": 6,
+      "policy": "query STAC"
     },
     "sentinel1": {
       "provider": "Microsoft Planetary Computer",
       "collection": "sentinel-1-grd",
       "start": "2015-01-01",
-      "per_year": 20
+      "per_year": 20,
+      "policy": "query STAC"
     }
   },
   "analysis_intent": [
@@ -36,6 +48,7 @@
   "notes": [
     "AOI geometry comes from existing project KML-derived plot boundaries, not an invented province polygon.",
     "The 4-plot AOI is a Krabi project pilot, not the administrative boundary of Krabi Province.",
-    "Monsoon cloud gaps must remain NO_DATA/LOW_QA rather than being silently substituted with another month."
+    "Monsoon cloud gaps must remain NO_DATA/LOW_QA rather than being silently substituted with another month.",
+    "Do not duplicate existing PDD22 PNG assets into corrosion unless a self-contained deployment requires them."
   ]
 }
