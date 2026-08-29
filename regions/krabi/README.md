@@ -4,7 +4,15 @@ This branch reuses the tested STAC workflow from `data/samut-songkhram-satellite
 
 ## AOI
 
+Canonical analysis geometry:
+
 `regions/krabi/data/aoi/krabi_pdd_plots.geojson`
+
+Google Earth / field-review copy:
+
+`regions/krabi/data/aoi/krabi_pdd_plots.kmz`
+
+Both contain the same four WGS84 plot polygons.
 
 Current pilot plots:
 
@@ -13,7 +21,7 @@ Current pilot plots:
 - `99-VSD` — Khlong Thom / Khlong Thom Tai
 - `100-VSD` — Khlong Thom / Phela
 
-The polygons are taken from existing project KML-derived geometry and retain the original `source_file` path in feature properties. They are not a fabricated Krabi province boundary.
+The polygons are taken from existing project KML-derived geometry and retain the original `source_file` path in GeoJSON feature properties. They are not a fabricated Krabi province boundary.
 
 ## Why a wrapper exists
 
