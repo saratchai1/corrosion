@@ -6,7 +6,9 @@ This wrapper deliberately reuses scripts/download_satellite_data.py. It only:
 2) replaces the Samut Songkhram-only AOI guard with a Krabi working envelope;
 3) changes the working directory so catalogs/rasters/previews/manifests are written
    under regions/krabi/data instead of the inherited Samut Songkhram data tree;
-4) records source GeoTIFF band scale/offset in AOI-clipped COG tags so spectral
+4) uses Earth Search Sentinel-2 Collection 1 L2A for a consistently reprocessed
+   multi-year optical record instead of mixing pre/post processing baselines;
+5) records source GeoTIFF band scale/offset in AOI-clipped COG tags so spectral
    indices can use scene-specific radiometric calibration without rewriting COGs.
 """
 from __future__ import annotations
@@ -25,6 +27,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
 REGION_ROOT = REPO_ROOT / "regions" / "krabi"
 DEFAULT_AOI = REGION_ROOT / "data" / "aoi" / "krabi_pdd_plots.geojson"
+KRABI_SENTINEL2_COLLECTION = "sentinel-2-c1-l2a"
 
 # Keep sibling imports (build_previews, etc.) working after chdir(REGION_ROOT).
 if str(SCRIPT_DIR) not in sys.path:
@@ -105,6 +108,9 @@ def clip_asset_with_calibration_tags(
         "source_band_scale": str(scale),
         "source_band_offset": str(offset),
         "calibration_source": "source_geotiff_band_metadata",
+        "stac_collection": KRABI_SENTINEL2_COLLECTION
+        if tags.get("dataset") == "sentinel2"
+        else core.PROVIDERS[tags.get("dataset", "sentinel2")].collection,
     }
     return ORIGINAL_CLIP_ASSET(
         href,
@@ -117,8 +123,18 @@ def clip_asset_with_calibration_tags(
     )
 
 
+def configure_krabi_providers() -> None:
+    """Use the harmonized Collection 1 archive only for the Krabi wrapper."""
+    core.PROVIDERS["sentinel2"] = core.Provider(
+        "Element 84 Earth Search — Sentinel-2 Collection 1",
+        core.EARTH_SEARCH,
+        KRABI_SENTINEL2_COLLECTION,
+    )
+
+
 def main() -> None:
     REGION_ROOT.mkdir(parents=True, exist_ok=True)
+    configure_krabi_providers()
     core.load_aoi = load_krabi_aoi
     core.clip_asset = clip_asset_with_calibration_tags
 
