@@ -1,0 +1,94 @@
+name: Krabi annual water-edge screening
+
+on:
+  push:
+    branches:
+      - data/krabi-satellite-v1
+    paths:
+      - '.github/workflows/krabi-history-screening.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sentinel2-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/krabi-satellite-v1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build shoreline analysis corridor
+        run: |
+          python scripts/build_analysis_corridor.py \
+            --input regions/krabi/data/aoi/krabi_pdd_plots.geojson \
+            --output regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --buffer-m 500
+
+      - name: Download one selected Sentinel-2 acquisition per year
+        run: |
+          python scripts/download_krabi_satellite_data.py sentinel2 \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --start 2016-01-01 --end 2026-08-29 --per-year 1 --download
+
+      - name: Validate annual Sentinel-2 COGs
+        working-directory: regions/krabi
+        run: |
+          mapfile -t RASTERS < <(find data/satellite/sentinel2 -type f -name '*.tif' | sort)
+          test "${#RASTERS[@]}" -gt 0
+          python ../../scripts/validate_rasters.py "${RASTERS[@]}" \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --json data/manifests/sentinel2_history_raster_validation.json
+
+      - name: Build cloud-masked annual water history
+        working-directory: regions/krabi
+        run: |
+          python ../../scripts/process_sentinel2_water_history.py \
+            --catalog data/catalog/sentinel2_scenes.csv \
+            --satellite-root data/satellite/sentinel2 \
+            --out-root data/analysis/water_history \
+            --tide-status unverified
+          python ../../scripts/summarize_water_history.py \
+            --root data/analysis/water_history \
+            --csv analysis/water_history.csv \
+            --json analysis/water_history_summary.json
+
+      - name: Compare earliest and latest water polygons
+        working-directory: regions/krabi
+        run: |
+          BASE=$(find data/analysis/water_history -mindepth 1 -maxdepth 1 -type d | sort | head -1)
+          LATEST=$(find data/analysis/water_history -mindepth 1 -maxdepth 1 -type d | sort | tail -1)
+          test -n "$BASE" && test -n "$LATEST" && test "$BASE" != "$LATEST"
+          python ../../scripts/compare_water_change.py \
+            --baseline "$BASE/water_polygons.geojson" \
+            --latest "$LATEST/water_polygons.geojson" \
+            --out analysis/water_change_first_last \
+            --allow-unverified-tide \
+            --min-change-m2 100
+
+      - name: Upload annual screening outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-sentinel2-water-history-2016-2026
+          path: |
+            regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
+            regions/krabi/data/catalog/sentinel2_scenes.csv
+            regions/krabi/data/analysis/water_history/**
+            regions/krabi/analysis/water_history.csv
+            regions/krabi/analysis/water_history_summary.json
+            regions/krabi/analysis/water_change_first_last/**
+            regions/krabi/data/manifests/sentinel2_history_raster_validation.json
+          if-no-files-found: error
+          retention-days: 30
