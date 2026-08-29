@@ -1,0 +1,4 @@
+scene_id,date,footprint_status,ndwi_threshold,mndwi_threshold,shoreline_status,visual_qa,qa_image,notes
+S2B_47PQQ_20180206_0_L2A,2018-02-06,RAYONG_CONFIRMED,otsu,otsu,PASS,PASS,data/analysis/rayong/qa/shoreline_2018-02-06.png,Clean extraction
+S2B_47PQQ_20211227_0_L2A,2021-12-27,RAYONG_CONFIRMED,otsu,otsu,PASS,PASS,data/analysis/rayong/qa/shoreline_2021-12-27.png,Clean extraction
+S2C_47PQQ_20251221_0_L2A,2025-12-21,RAYONG_CONFIRMED,otsu,otsu,PASS,PASS,data/analysis/rayong/qa/shoreline_2025-12-21.png,Clean extraction

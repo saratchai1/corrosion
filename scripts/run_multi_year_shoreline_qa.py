@@ -6,9 +6,35 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 import subprocess
+from shapely.geometry import box
+from rasterio.warp import transform_bounds
+
+def assert_raster_intersects_aoi(raster_path, aoi_path="data/aoi/rayong_coastal_analysis_aoi.geojson"):
+    import warnings
+    warnings.filterwarnings("ignore", category=DeprecationWarning) 
+    
+    rayong_aoi = gpd.read_file(aoi_path).to_crs("EPSG:4326")
+    # use union_all() if available, else unary_union
+    if hasattr(rayong_aoi.geometry, 'union_all'):
+        rayong_geom = rayong_aoi.geometry.union_all()
+    else:
+        rayong_geom = rayong_aoi.geometry.unary_union
+    
+    with rasterio.open(raster_path) as src:
+        crs = src.crs
+        if crs.to_string() != "EPSG:4326":
+            minx, miny, maxx, maxy = transform_bounds(crs, "EPSG:4326", *src.bounds)
+        else:
+            minx, miny, maxx, maxy = src.bounds
+            
+    geom = box(minx, miny, maxx, maxy)
+    r_frac = geom.intersection(rayong_geom).area / rayong_geom.area
+    
+    if r_frac < 0.1:
+        return False
+    return True
 
 def normalize(array):
-    # Avoid nan/inf issues
     valid = array[np.isfinite(array)]
     if len(valid) == 0:
         return array
@@ -20,8 +46,21 @@ def run_qa(scene_dir: Path):
     date_str = scene_id.split("_")[2][:8]
     date_formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
     
+    # Read RGB paths
+    red_path = scene_dir / "B4_10m.tif"
+    green_path = scene_dir / "B3_10m.tif"
+    blue_path = scene_dir / "B2_10m.tif"
+    
+    if not red_path.exists():
+        return
+        
     print(f"\nProcessing {date_formatted} ({scene_id})")
     
+    # HARD GEOGRAPHIC SAFETY CHECK
+    if not assert_raster_intersects_aoi(red_path):
+        print(f"SKIP: scene footprint does not intersect Rayong AOI ({scene_id})")
+        return
+        
     # Run the extraction script
     subprocess.run([
         "python", "scripts/extract_rayong_shoreline.py",
@@ -29,15 +68,6 @@ def run_qa(scene_dir: Path):
         "--date", date_formatted
     ])
     
-    # Read RGB
-    red_path = scene_dir / "B4_10m.tif"
-    green_path = scene_dir / "B3_10m.tif"
-    blue_path = scene_dir / "B2_10m.tif"
-    
-    if not red_path.exists():
-        print(f"Skipping {date_formatted} - RGB not found")
-        return
-        
     red = rasterio.open(red_path)
     green = rasterio.open(green_path)
     blue = rasterio.open(blue_path)
@@ -60,8 +90,13 @@ def run_qa(scene_dir: Path):
     plots_proj = plots.to_crs(red.crs)
     aoi_proj = aoi.to_crs(red.crs)
     
+    # Add an automatic assertion that planting/AOI geometry overlaps the displayed raster bounds.
+    raster_box = box(*red.bounds)
+    if not raster_box.intersects(aoi_proj.geometry.unary_union):
+        print(f"QA FAIL: Rayong AOI falls outside the raster extent for {scene_id}")
+        return
+        
     fig, ax = plt.subplots(figsize=(12, 10))
-    
     show(np.moveaxis(rgb, 2, 0), ax=ax, transform=red.transform)
     
     aoi_proj.plot(ax=ax, facecolor="none", edgecolor="yellow", linestyle="--", linewidth=2)
