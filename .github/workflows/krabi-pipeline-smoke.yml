@@ -9,6 +9,7 @@ on:
       - 'scripts/analyze_krabi_trends.py'
       - 'scripts/download_krabi_satellite_data.py'
       - 'scripts/download_satellite_data.py'
+      - 'scripts/validate_rasters.py'
       - 'scripts/extract_water_mask.py'
       - 'scripts/compare_water_change.py'
       - 'regions/krabi/data/aoi/**'
@@ -22,6 +23,7 @@ on:
       - 'scripts/analyze_krabi_trends.py'
       - 'scripts/download_krabi_satellite_data.py'
       - 'scripts/download_satellite_data.py'
+      - 'scripts/validate_rasters.py'
       - 'scripts/extract_water_mask.py'
       - 'scripts/compare_water_change.py'
       - 'regions/krabi/**'
@@ -82,3 +84,76 @@ jobs:
           name: krabi-smoke-catalogs
           path: regions/krabi/data/catalog/*.csv
           if-no-files-found: error
+
+  download-smoke:
+    needs: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/krabi-satellite-v1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download one AOI acquisition per sensor
+        run: |
+          python scripts/download_krabi_satellite_data.py sentinel2 \
+            --start 2026-01-01 --end 2026-08-29 --per-year 1 \
+            --download --max-downloads 1
+          python scripts/download_krabi_satellite_data.py landsat \
+            --start 2026-01-01 --end 2026-08-29 --per-year 1 \
+            --download --max-downloads 1
+          python scripts/download_krabi_satellite_data.py sentinel1 \
+            --start 2026-01-01 --end 2026-08-29 --per-year 1 \
+            --download --max-downloads 1
+
+      - name: Validate downloaded COGs
+        working-directory: regions/krabi
+        run: |
+          mapfile -t RASTERS < <(find data/satellite -type f -name '*.tif' | sort)
+          test "${#RASTERS[@]}" -gt 0
+          python ../../scripts/validate_rasters.py "${RASTERS[@]}" \
+            --aoi data/aoi/krabi_pdd_plots.geojson \
+            --json data/manifests/raster_validation.json \
+            --checksums data/manifests/checksums.sha256
+
+      - name: Extract georeferenced water masks
+        working-directory: regions/krabi
+        run: |
+          S2_GREEN=$(find data/satellite/sentinel2 -type f -name 'B3_10m.tif' | head -1)
+          S2_SWIR=$(find data/satellite/sentinel2 -type f -name 'B11_20m.tif' | head -1)
+          LS_GREEN=$(find data/satellite/landsat -type f -name 'GREEN_30m.tif' | head -1)
+          LS_SWIR=$(find data/satellite/landsat -type f -name 'SWIR1_30m.tif' | head -1)
+          S2_DATE=$(python -c "import csv; print(next(csv.DictReader(open('data/catalog/sentinel2_scenes.csv')))['acquisition_datetime_utc'][:10])")
+          LS_DATE=$(python -c "import csv; print(next(csv.DictReader(open('data/catalog/landsat_scenes.csv')))['acquisition_datetime_utc'][:10])")
+          test -n "$S2_GREEN" && test -n "$S2_SWIR" && test -n "$LS_GREEN" && test -n "$LS_SWIR"
+          python ../../scripts/extract_water_mask.py \
+            --green "$S2_GREEN" --swir "$S2_SWIR" --sensor sentinel2 \
+            --date "$S2_DATE" --out-dir data/analysis/water/sentinel2 \
+            --tide-status unverified
+          python ../../scripts/extract_water_mask.py \
+            --green "$LS_GREEN" --swir "$LS_SWIR" --sensor landsat \
+            --date "$LS_DATE" --out-dir data/analysis/water/landsat \
+            --tide-status unverified
+
+      - name: Upload validated AOI rasters and water masks
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-aoi-raster-smoke
+          path: |
+            regions/krabi/data/catalog/*.csv
+            regions/krabi/data/satellite/**
+            regions/krabi/data/previews/**
+            regions/krabi/data/manifests/**
+            regions/krabi/data/analysis/water/**
+          if-no-files-found: error
+          retention-days: 30
