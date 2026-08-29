@@ -52,7 +52,7 @@ jobs:
             --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --json data/manifests/sentinel2_history_raster_validation.json
 
-      - name: Build cloud-masked annual water history
+      - name: Build STAC-calibrated cloud-masked annual water history
         working-directory: regions/krabi
         run: |
           python ../../scripts/process_sentinel2_water_history.py \
@@ -85,6 +85,7 @@ jobs:
           path: |
             regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
             regions/krabi/data/catalog/sentinel2_scenes.csv
+            regions/krabi/data/analysis/sentinel2_calibration_audit.json
             regions/krabi/data/analysis/water_history/**
             regions/krabi/analysis/water_history.csv
             regions/krabi/analysis/water_history_summary.json
