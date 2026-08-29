@@ -1,0 +1,704 @@
+{
+  "type": "FeatureCollection",
+  "name": "samut_songkhram_verified_project_plots",
+  "metadata": {
+    "status": "verified plot selection; geometry inherited from generated dashboard source",
+    "plot_count": 9,
+    "plot_ids": [
+      "91-STC",
+      "92-STC",
+      "93-STC",
+      "94-STC",
+      "95-STC",
+      "96-STC",
+      "97-STC",
+      "98-STC",
+      "87-VSD"
+    ],
+    "province": "สมุทรสงคราม",
+    "official_participating_area_rai": 628.585314,
+    "geometry_area_rai": 638.702762,
+    "geometry_area_difference_rai": 10.117448,
+    "source_repository": "https://github.com/saratchai1/mangrove-drone-dashboard",
+    "source_commit": "825d91b8d6d9f3c0e224e71266d7d2ced7cf4dc9",
+    "area_source": "https://github.com/saratchai1/mangrove-drone-dashboard/blob/825d91b8d6d9f3c0e224e71266d7d2ced7cf4dc9/areaTable.csv",
+    "geometry_source": "https://github.com/saratchai1/mangrove-drone-dashboard/blob/825d91b8d6d9f3c0e224e71266d7d2ced7cf4dc9/web/src/data/plotBoundaries.ts",
+    "source_access": {
+      "area_table": "https://raw.githubusercontent.com/saratchai1/mangrove-drone-dashboard/825d91b8d6d9f3c0e224e71266d7d2ced7cf4dc9/areaTable.csv",
+      "plot_boundaries": "https://raw.githubusercontent.com/saratchai1/mangrove-drone-dashboard/825d91b8d6d9f3c0e224e71266d7d2ced7cf4dc9/web/src/data/plotBoundaries.ts"
+    },
+    "upstream_original": "kmz/STC_VSD_EVR.kmz",
+    "generated_at_utc": "2026-08-29T01:20:09.121348Z"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 1,
+        "plot_id": "91-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 279.433438,
+        "geometry_area_rai": 279.436522,
+        "area_difference_rai": 0.003084,
+        "area_difference_percent": 0.0011,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9567358,
+              13.3048007
+            ],
+            [
+              99.9661105,
+              13.3129024
+            ],
+            [
+              99.9675366,
+              13.3116584
+            ],
+            [
+              99.9649789,
+              13.3068852
+            ],
+            [
+              99.961766,
+              13.3044924
+            ],
+            [
+              99.9612122,
+              13.3045306
+            ],
+            [
+              99.9590209,
+              13.30368
+            ],
+            [
+              99.9567358,
+              13.3048007
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 2,
+        "plot_id": "92-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 98.94,
+        "geometry_area_rai": 100.357299,
+        "area_difference_rai": 1.417299,
+        "area_difference_percent": 1.4325,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 3,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9710611,
+              13.3153227
+            ],
+            [
+              99.97106110142445,
+              13.315322696069353
+            ],
+            [
+              99.97117030591869,
+              13.315363182636636
+            ],
+            [
+              99.9711703,
+              13.3153632
+            ],
+            [
+              99.9738423,
+              13.3163538
+            ],
+            [
+              99.9748239,
+              13.3147859
+            ],
+            [
+              99.9736672,
+              13.3141213
+            ],
+            [
+              99.9736574,
+              13.3139586
+            ],
+            [
+              99.9718452,
+              13.3132874
+            ],
+            [
+              99.9715699,
+              13.3137044
+            ],
+            [
+              99.97131459710732,
+              13.313634253902123
+            ],
+            [
+              99.9713146,
+              13.3136342
+            ],
+            [
+              99.9687787,
+              13.3129375
+            ],
+            [
+              99.968012,
+              13.3128138
+            ],
+            [
+              99.9676715,
+              13.3130954
+            ],
+            [
+              99.9672919,
+              13.3128256
+            ],
+            [
+              99.9662146,
+              13.3135259
+            ],
+            [
+              99.9710611,
+              13.3153227
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 3,
+        "plot_id": "93-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 79.018438,
+        "geometry_area_rai": 79.016015,
+        "area_difference_rai": -0.002423,
+        "area_difference_percent": -0.0031,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9744399,
+              13.3157186
+            ],
+            [
+              99.9804932,
+              13.3195469
+            ],
+            [
+              99.9807009,
+              13.3184069
+            ],
+            [
+              99.977966,
+              13.3155695
+            ],
+            [
+              99.9764313,
+              13.3150419
+            ],
+            [
+              99.9754246,
+              13.3149283
+            ],
+            [
+              99.9744399,
+              13.3157186
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 4,
+        "plot_id": "94-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 30.660625,
+        "geometry_area_rai": 30.659719,
+        "area_difference_rai": -0.000906,
+        "area_difference_percent": -0.003,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9789822,
+              13.3226268
+            ],
+            [
+              99.9824474,
+              13.3233819
+            ],
+            [
+              99.9828882,
+              13.3228016
+            ],
+            [
+              99.9823317,
+              13.3221618
+            ],
+            [
+              99.9818413,
+              13.3219015
+            ],
+            [
+              99.9816555,
+              13.3216129
+            ],
+            [
+              99.9813602,
+              13.3216502
+            ],
+            [
+              99.9809169,
+              13.3215977
+            ],
+            [
+              99.980161,
+              13.3218899
+            ],
+            [
+              99.9795518,
+              13.3219194
+            ],
+            [
+              99.9789822,
+              13.3226268
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 5,
+        "plot_id": "95-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 22.914375,
+        "geometry_area_rai": 22.913876,
+        "area_difference_rai": -0.000499,
+        "area_difference_percent": -0.0022,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9831289,
+              13.3229453
+            ],
+            [
+              99.9849585,
+              13.3233451
+            ],
+            [
+              99.9853429,
+              13.3225208
+            ],
+            [
+              99.9847688,
+              13.3221072
+            ],
+            [
+              99.9844175,
+              13.321982
+            ],
+            [
+              99.9842689,
+              13.3217655
+            ],
+            [
+              99.9833266,
+              13.3216155
+            ],
+            [
+              99.9824599,
+              13.3219082
+            ],
+            [
+              99.9831289,
+              13.3229453
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 6,
+        "plot_id": "96-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 5.149375,
+        "geometry_area_rai": 5.14965,
+        "area_difference_rai": 0.000275,
+        "area_difference_percent": 0.0053,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9849132,
+              13.3235713
+            ],
+            [
+              99.985663,
+              13.3240385
+            ],
+            [
+              99.9860383,
+              13.3232414
+            ],
+            [
+              99.9855935,
+              13.3228363
+            ],
+            [
+              99.9849132,
+              13.3235713
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 7,
+        "plot_id": "97-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 15.959063,
+        "geometry_area_rai": 15.958228,
+        "area_difference_rai": -0.000835,
+        "area_difference_percent": -0.0052,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9857277,
+              13.3240654
+            ],
+            [
+              99.9875234,
+              13.3251976
+            ],
+            [
+              99.9878086,
+              13.3249524
+            ],
+            [
+              99.9880471,
+              13.3245808
+            ],
+            [
+              99.9878052,
+              13.3241116
+            ],
+            [
+              99.9871296,
+              13.3237164
+            ],
+            [
+              99.986242,
+              13.3233944
+            ],
+            [
+              99.9857277,
+              13.3240654
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 8,
+        "plot_id": "98-STC",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 3.59,
+        "geometry_area_rai": 3.590606,
+        "area_difference_rai": 0.000606,
+        "area_difference_percent": 0.0169,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 1,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.9882046,
+              13.3246977
+            ],
+            [
+              99.9874855,
+              13.3253325
+            ],
+            [
+              99.987544,
+              13.3254243
+            ],
+            [
+              99.9880155,
+              13.3249303
+            ],
+            [
+              99.9892977,
+              13.3260559
+            ],
+            [
+              99.9893008,
+              13.3259249
+            ],
+            [
+              99.9888346,
+              13.3252377
+            ],
+            [
+              99.9882046,
+              13.3246977
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "sequence": 9,
+        "plot_id": "87-VSD",
+        "province": "สมุทรสงคราม",
+        "official_participating_area_rai": 92.92,
+        "geometry_area_rai": 101.620847,
+        "area_difference_rai": 8.700847,
+        "area_difference_percent": 9.3638,
+        "source_crs": "EPSG:4326",
+        "analysis_crs": "EPSG:32647",
+        "source_ring_count": 7,
+        "geometry_operation": "valid polygon rings unioned to remove overlap",
+        "geometry_source": "web/src/data/plotBoundaries.ts",
+        "upstream_original": "kmz/STC_VSD_EVR.kmz"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.8614347,
+              13.2617066
+            ],
+            [
+              99.860417,
+              13.261737
+            ],
+            [
+              99.8604246,
+              13.2617815
+            ],
+            [
+              99.86042461707079,
+              13.261781501801169
+            ],
+            [
+              99.86043161749105,
+              13.261822400897294
+            ],
+            [
+              99.8604316,
+              13.2618224
+            ],
+            [
+              99.8604557,
+              13.2619631
+            ],
+            [
+              99.8610987,
+              13.2619909
+            ],
+            [
+              99.8613784,
+              13.2619309
+            ],
+            [
+              99.8618356,
+              13.2624576
+            ],
+            [
+              99.8621336,
+              13.2627919
+            ],
+            [
+              99.8622384,
+              13.2628532
+            ],
+            [
+              99.8624925,
+              13.2627452
+            ],
+            [
+              99.8626121,
+              13.263183
+            ],
+            [
+              99.8623564,
+              13.2637567
+            ],
+            [
+              99.8621861,
+              13.2636878
+            ],
+            [
+              99.8621082,
+              13.2639462
+            ],
+            [
+              99.8630586,
+              13.2647442
+            ],
+            [
+              99.8642551,
+              13.264464
+            ],
+            [
+              99.8651021,
+              13.2643375
+            ],
+            [
+              99.8664139,
+              13.2637245
+            ],
+            [
+              99.8667406,
+              13.2646359
+            ],
+            [
+              99.8675577,
+              13.2645664
+            ],
+            [
+              99.867574,
+              13.2642924
+            ],
+            [
+              99.8680064,
+              13.2642954
+            ],
+            [
+              99.86798809559023,
+              13.264015600066065
+            ],
+            [
+              99.8679881,
+              13.2640156
+            ],
+            [
+              99.8678742,
+              13.2622746
+            ],
+            [
+              99.8671627,
+              13.261871
+            ],
+            [
+              99.86716269108518,
+              13.261871050994573
+            ],
+            [
+              99.86707726168127,
+              13.261822597700084
+            ],
+            [
+              99.867057,
+              13.2618111
+            ],
+            [
+              99.86705699287609,
+              13.261811101770796
+            ],
+            [
+              99.866914,
+              13.26173
+            ],
+            [
+              99.8644011,
+              13.2623364
+            ],
+            [
+              99.8622456,
+              13.2619753
+            ],
+            [
+              99.8614347,
+              13.2617066
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

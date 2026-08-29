@@ -859,6 +859,7 @@ def download_acquisitions(
     geom4326: dict[str, Any],
     max_downloads: int | None,
     asset_specs: list[tuple[str, str, float, bool]],
+    output_root: Path = Path("data/satellite"),
     overwrite: bool = False,
     make_previews: bool = True,
 ) -> list[Path]:
@@ -876,7 +877,7 @@ def download_acquisitions(
             value = props.get("datetime") or props.get("start_datetime")
             utc, _ = dtpair(value)
             year = str(item_datetime(item).year)
-            scene_dir = Path("data/satellite") / dataset / year / item["id"]
+            scene_dir = output_root / dataset / year / item["id"]
             band_paths: dict[str, Path] = {}
             for band_name, asset_key, resolution, categorical in asset_specs:
                 asset = item.get("assets", {}).get(asset_key)
@@ -1022,6 +1023,11 @@ def main() -> None:
     )
     parser.add_argument("--per-year", type=int, default=4)
     parser.add_argument("--catalog")
+    parser.add_argument(
+        "--output-root",
+        default="data/satellite",
+        help="Raster output root; use a separate root for a different AOI",
+    )
     parser.add_argument("--page-size", type=int, default=DEFAULT_PAGE_SIZE)
     parser.add_argument("--quality-pool-multiplier", type=int, default=3)
     parser.add_argument(
@@ -1110,6 +1116,7 @@ def main() -> None:
             geom4326,
             args.max_downloads,
             asset_specs,
+            output_root=Path(args.output_root),
             overwrite=args.overwrite,
             make_previews=not args.skip_previews,
         )

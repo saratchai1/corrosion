@@ -41,6 +41,27 @@ export type Summary = {
   vegetation_proxy: Array<{ target_year: number; actual_year: number; area_ha: number }>
 }
 
+export type ProjectImpactSummary = {
+  plot_count: number
+  official_participating_area_rai: number
+  erosion_effect_conclusion: string
+  conclusion_th: string
+  confidence: string
+  difference_in_differences: Array<{
+    post_year: number
+    ndvi_difference_in_differences: number
+    vegetation_fraction_difference_in_differences: number
+    water_fraction_difference_in_differences: number
+  }>
+  post_boundary_evidence: {
+    status: string
+    transect_count: number
+    within_20m_count: number
+    median_movement_m: number | null
+    confidence: string
+  }
+}
+
 export type ViewState = {
   center: [number, number]
   zoom: number

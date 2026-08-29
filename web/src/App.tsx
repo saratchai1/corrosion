@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import MapPane from './MapPane'
 import TransectChart from './TransectChart'
-import type { DataIndex, Summary, TransectSelection, ViewState } from './types'
+import type { DataIndex, ProjectImpactSummary, Summary, TransectSelection, ViewState } from './types'
 
 const initialView: ViewState = { center: [100.005, 13.345], zoom: 10.7, bearing: 0, pitch: 0 }
 
 export default function App() {
   const [index, setIndex] = useState<DataIndex | null>(null)
   const [summary, setSummary] = useState<Summary | null>(null)
+  const [projectSummary, setProjectSummary] = useState<ProjectImpactSummary | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [yearIndex, setYearIndex] = useState(0)
   const [compare, setCompare] = useState(false)
@@ -15,16 +16,18 @@ export default function App() {
   const [view, setView] = useState<ViewState>(initialView)
   const [opacity, setOpacity] = useState(0.82)
   const [selection, setSelection] = useState<TransectSelection | null>(null)
-  const [layers, setLayers] = useState({ imagery: true, boundary: true, vegetation: false, transects: true })
+  const [layers, setLayers] = useState({ imagery: true, boundary: true, vegetation: false, transects: true, plots: true })
 
   useEffect(() => {
     Promise.all([
       fetch('data/index.json').then((response) => response.json()),
       fetch('data/summary.json').then((response) => response.json()),
+      fetch('data/project/summary.json').then((response) => response.json()),
     ])
-      .then(([indexData, summaryData]) => {
+      .then(([indexData, summaryData, projectSummaryData]) => {
         setIndex(indexData as DataIndex)
         setSummary(summaryData as Summary)
+        setProjectSummary(projectSummaryData as ProjectImpactSummary)
         setYearIndex((indexData as DataIndex).epochs.length - 1)
       })
       .catch((reason: unknown) => setError(reason instanceof Error ? reason.message : String(reason)))
@@ -38,6 +41,7 @@ export default function App() {
     ['boundary', 'ขอบเขตน้ำ–แผ่นดิน', 'Water–land'],
     ['vegetation', 'พืชชายฝั่ง (proxy)', 'Vegetation proxy'],
     ['transects', 'แนววัดการเปลี่ยนแปลง', 'Transects'],
+    ['plots', 'แปลงปลูกปี 2024', '9 verified project plots'],
   ] as const, [])
 
   if (error) return <main className="loading">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>
@@ -75,6 +79,19 @@ export default function App() {
           <div className="layer-list">{layerOptions.map(([key, thai, english]) => <label key={key}><input type="checkbox" checked={layers[key]} onChange={(event) => setLayers((current) => ({ ...current, [key]: event.target.checked }))} /><i className={`swatch ${key}`} /><span><strong>{thai}</strong><small>{english}</small></span></label>)}</div>
           <label className="opacity">ความทึบภาพ / Imagery opacity <strong>{Math.round(opacity * 100)}%</strong><input type="range" min="0" max="1" step="0.05" value={opacity} onChange={(event) => setOpacity(Number(event.target.value))} /></label>
         </section>
+
+        {projectSummary && <section className="project-result">
+          <span className="eyebrow">2024 PLANTING ASSESSMENT · LOW CONFIDENCE</span>
+          <h2>ผลเฉพาะ 9 แปลง</h2>
+          <strong>ยังไม่พิสูจน์ว่าลดการกัดเซาะ</strong>
+          <p>{projectSummary.conclusion_th}</p>
+          <dl>
+            <div><dt>แปลง</dt><dd>{projectSummary.plot_count}</dd></div>
+            <div><dt>พื้นที่ทางการ</dt><dd>{projectSummary.official_participating_area_rai.toFixed(1)} ไร่</dd></div>
+            <div><dt>NDVI DiD ปี 2026</dt><dd>{projectSummary.difference_in_differences.find((item) => item.post_year === 2026)?.ndvi_difference_in_differences.toFixed(3) ?? '—'}</dd></div>
+            <div><dt>ขอบเขตใน ±20 ม.</dt><dd>{projectSummary.post_boundary_evidence.within_20m_count}/{projectSummary.post_boundary_evidence.transect_count}</dd></div>
+          </dl>
+        </section>}
 
         {selection ? <TransectChart selection={selection} /> : <section className="empty-chart"><span>03</span><p>คลิกแนว transect บนแผนที่เพื่อดูกราฟตำแหน่งขอบเขตตามเวลา</p><small>Click a transect for its time series.</small></section>}
 

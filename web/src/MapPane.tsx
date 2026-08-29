@@ -9,7 +9,7 @@ maplibregl.setWorkerUrl(workerUrl)
 type Props = {
   epoch: Epoch
   label: string
-  layers: { imagery: boolean; boundary: boolean; vegetation: boolean; transects: boolean }
+  layers: { imagery: boolean; boundary: boolean; vegetation: boolean; transects: boolean; plots: boolean }
   opacity: number
   sharedView: ViewState
   onView: (value: ViewState) => void
@@ -97,10 +97,10 @@ export default function MapPane({ epoch, label, layers, opacity, sharedView, onV
         map.once('load', update)
         return
       }
-      for (const id of ['transect-hit', 'transects', 'boundary', 'vegetation', 'imagery']) {
+      for (const id of ['transect-hit', 'transects', 'plots-line', 'plots-fill', 'boundary', 'vegetation', 'imagery']) {
         if (map.getLayer(id)) map.removeLayer(id)
       }
-      for (const id of ['transects', 'boundary', 'vegetation', 'imagery']) {
+      for (const id of ['transects', 'plots', 'boundary', 'vegetation', 'imagery']) {
         if (map.getSource(id)) map.removeSource(id)
       }
       map.addSource('imagery', { type: 'image', url: `data/${epoch.image}`, coordinates: epoch.imageCoordinates })
@@ -109,6 +109,9 @@ export default function MapPane({ epoch, label, layers, opacity, sharedView, onV
       map.addLayer({ id: 'vegetation', type: 'fill', source: 'vegetation', layout: { visibility: layers.vegetation ? 'visible' : 'none' }, paint: { 'fill-color': '#64d17a', 'fill-opacity': 0.32, 'fill-outline-color': '#176b44' } })
       map.addSource('boundary', { type: 'geojson', data: `data/${epoch.boundary}` })
       map.addLayer({ id: 'boundary', type: 'line', source: 'boundary', layout: { visibility: layers.boundary ? 'visible' : 'none', 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ff553f', 'line-width': ['interpolate', ['linear'], ['zoom'], 9, 2, 13, 4] } })
+      map.addSource('plots', { type: 'geojson', data: 'data/project/plots.geojson' })
+      map.addLayer({ id: 'plots-fill', type: 'fill', source: 'plots', layout: { visibility: layers.plots ? 'visible' : 'none' }, paint: { 'fill-color': '#bd72ff', 'fill-opacity': 0.18 } })
+      map.addLayer({ id: 'plots-line', type: 'line', source: 'plots', layout: { visibility: layers.plots ? 'visible' : 'none' }, paint: { 'line-color': '#9c4ce0', 'line-width': ['interpolate', ['linear'], ['zoom'], 9, 1.5, 13, 3] } })
       map.addSource('transects', { type: 'geojson', data: 'data/transects.geojson' })
       map.addLayer({ id: 'transects', type: 'line', source: 'transects', layout: { visibility: layers.transects ? 'visible' : 'none' }, paint: { 'line-color': ['match', ['get', 'classification'], 'apparent_erosion', '#e74b3c', 'apparent_accretion', '#16a36a', 'stable', '#f0ad33', '#9babb1'], 'line-width': 1.1, 'line-opacity': 0.75 } })
       map.addLayer({ id: 'transect-hit', type: 'line', source: 'transects', layout: { visibility: layers.transects ? 'visible' : 'none' }, paint: { 'line-color': '#000000', 'line-width': 12, 'line-opacity': 0 } })
