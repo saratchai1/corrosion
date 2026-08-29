@@ -1,0 +1,72 @@
+name: Krabi pipeline smoke
+
+on:
+  push:
+    branches:
+      - data/krabi-satellite-v1
+    paths:
+      - '.github/workflows/krabi-pipeline-smoke.yml'
+      - 'scripts/analyze_krabi_trends.py'
+      - 'scripts/download_krabi_satellite_data.py'
+      - 'scripts/download_satellite_data.py'
+      - 'scripts/extract_water_mask.py'
+      - 'scripts/compare_water_change.py'
+      - 'regions/krabi/data/aoi/**'
+      - 'regions/krabi/data/reuse/**'
+      - 'tests/test_krabi_aoi.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/krabi-satellite-v1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pytest
+
+      - name: Validate Krabi AOI/KMZ
+        run: pytest -q tests/test_krabi_aoi.py
+
+      - name: Reproduce spectral trend outputs
+        run: |
+          cp regions/krabi/analysis/vegetation_trends.csv /tmp/vegetation_trends.expected.csv
+          cp regions/krabi/analysis/events.csv /tmp/events.expected.csv
+          python scripts/analyze_krabi_trends.py
+          diff -u /tmp/vegetation_trends.expected.csv regions/krabi/analysis/vegetation_trends.csv
+          diff -u /tmp/events.expected.csv regions/krabi/analysis/events.csv
+
+      - name: Sentinel-2 STAC smoke
+        run: |
+          python scripts/download_krabi_satellite_data.py sentinel2 \
+            --start 2026-01-01 --end 2026-08-29 --per-year 1 --dry-run
+
+      - name: Landsat STAC smoke
+        run: |
+          python scripts/download_krabi_satellite_data.py landsat \
+            --start 2026-01-01 --end 2026-08-29 --per-year 1 --dry-run
+
+      - name: Sentinel-1 STAC smoke
+        run: |
+          python scripts/download_krabi_satellite_data.py sentinel1 \
+            --start 2026-01-01 --end 2026-08-29 --per-year 1 --dry-run
+
+      - name: Upload smoke catalogs
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-smoke-catalogs
+          path: regions/krabi/data/catalog/*.csv
+          if-no-files-found: error
