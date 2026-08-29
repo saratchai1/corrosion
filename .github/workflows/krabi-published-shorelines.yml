@@ -37,7 +37,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Inventory ThaiCoast OSF project and components
+      - name: Inventory ThaiCoast OSF project, registrations, and storage
         run: |
           python scripts/discover_thaicoast_osf.py \
             --out regions/krabi/data/published/thaicoast_osf_inventory.json \
@@ -46,14 +46,15 @@ jobs:
           import json
           from pathlib import Path
           p = json.loads(Path('regions/krabi/data/published/thaicoast_osf_inventory.json').read_text())
-          assert p['node_count'] >= 1
-          assert p['file_count'] >= 1
+          assert p['resource_count'] >= 1
+          assert p['file_count'] >= 1, json.dumps(p['providers'], indent=2)
           print(json.dumps({
-              'nodes': p['node_count'],
+              'resources': p['resource_count'],
+              'providers': len(p['providers']),
               'files': p['file_count'],
               'candidates': p['candidate_count'],
               'errors': p['errors'],
-              'candidate_paths': [x['materialized_path'] for x in p['candidates'][:30]],
+              'candidate_paths': [x['materialized_path'] for x in p['candidates'][:50]],
           }, ensure_ascii=False, indent=2))
           PY
 
