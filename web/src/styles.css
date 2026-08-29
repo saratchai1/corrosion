@@ -133,7 +133,7 @@ footer span { display: block; margin-top: 9px; color: #ff9c88; font-size: 9px; }
 .swipe-layer { will-change: clip-path; }
 .swipe-after { z-index: 2; pointer-events: none; }
 .swipe-after .maplibregl-control-container, .swipe-after .maplibregl-ctrl { pointer-events: auto; }
-.swipe-divider { position: absolute; z-index: 6; top: 0; bottom: 0; width: 42px; border: 0; outline: 0; cursor: ew-resize; touch-action: none; transform: translateX(-50%); }
+.swipe-divider { position: absolute; z-index: 6; top: 0; bottom: 0; width: 42px; border: 0; outline: 0; cursor: ew-resize; touch-action: none; user-select: none; transform: translateX(-50%); }
 .swipe-divider::before { position: absolute; top: 0; bottom: 0; left: 20px; width: 2px; content: ''; background: white; box-shadow: 0 0 0 1px rgba(5, 24, 25, .35), 0 0 18px rgba(5, 24, 25, .42); }
 .swipe-divider span { position: absolute; top: 50%; left: 50%; display: grid; width: 42px; height: 42px; border: 2px solid white; border-radius: 50%; place-items: center; color: #0c2c2d; background: #f4f0e7; box-shadow: 0 5px 20px rgba(5, 24, 25, .38); font-size: 19px; font-weight: 600; transform: translate(-50%, -50%); }
 .swipe-divider:focus-visible span { outline: 3px solid #ffc75f; outline-offset: 3px; }

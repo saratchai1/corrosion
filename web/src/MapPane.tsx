@@ -93,7 +93,13 @@ export default function MapPane({
     const map = mapRef.current
     if (!map || !map.loaded()) return
     const center = map.getCenter()
-    if (Math.abs(center.lng - sharedView.center[0]) < 1e-7 && Math.abs(center.lat - sharedView.center[1]) < 1e-7 && Math.abs(map.getZoom() - sharedView.zoom) < 1e-4) return
+    if (
+      Math.abs(center.lng - sharedView.center[0]) < 1e-7
+      && Math.abs(center.lat - sharedView.center[1]) < 1e-7
+      && Math.abs(map.getZoom() - sharedView.zoom) < 1e-4
+      && Math.abs(map.getBearing() - sharedView.bearing) < 1e-4
+      && Math.abs(map.getPitch() - sharedView.pitch) < 1e-4
+    ) return
     internalMove.current = true
     map.jumpTo(sharedView)
     internalMove.current = false

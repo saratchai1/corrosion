@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import MapPane, { type LayerVisibility } from './MapPane'
 import type { Epoch, TransectSelection, ViewState } from './types'
 
@@ -16,12 +16,27 @@ const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
 export default function SwipeCompare({ before, after, layers, opacity, sharedView, onView, onTransect }: Props) {
   const container = useRef<HTMLDivElement>(null)
+  const pendingPosition = useRef<number | null>(null)
+  const frame = useRef<number | null>(null)
   const [position, setPosition] = useState(50)
+
+  useEffect(() => () => {
+    if (frame.current !== null) cancelAnimationFrame(frame.current)
+  }, [])
+
+  const schedulePosition = (value: number) => {
+    pendingPosition.current = clamp(value)
+    if (frame.current !== null) return
+    frame.current = requestAnimationFrame(() => {
+      if (pendingPosition.current !== null) setPosition(pendingPosition.current)
+      frame.current = null
+    })
+  }
 
   const updateFromPointer = (clientX: number) => {
     const bounds = container.current?.getBoundingClientRect()
     if (!bounds || bounds.width === 0) return
-    setPosition(clamp(((clientX - bounds.left) / bounds.width) * 100))
+    schedulePosition(((clientX - bounds.left) / bounds.width) * 100)
   }
 
   return (
@@ -78,10 +93,11 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
         onKeyDown={(event) => {
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
           event.preventDefault()
-          if (event.key === 'ArrowLeft') setPosition((current) => clamp(current - 2))
-          if (event.key === 'ArrowRight') setPosition((current) => clamp(current + 2))
-          if (event.key === 'Home') setPosition(0)
-          if (event.key === 'End') setPosition(100)
+          const currentPosition = pendingPosition.current ?? position
+          if (event.key === 'ArrowLeft') schedulePosition(currentPosition - 2)
+          if (event.key === 'ArrowRight') schedulePosition(currentPosition + 2)
+          if (event.key === 'Home') schedulePosition(0)
+          if (event.key === 'End') schedulePosition(100)
         }}
       >
         <span aria-hidden="true">↔</span>
