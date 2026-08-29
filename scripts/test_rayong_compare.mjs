@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
@@ -75,10 +75,11 @@ try {
   assert.deepEqual(consoleErrors, [], `console errors: ${consoleErrors.join(' | ')}`);
 
   const finalState = await page.evaluate(() => window.__RAYONG_COMPARE_TEST__);
-  await Bun?.write?.(
+  await writeFile(
     path.join(outputDir, 'state.json'),
     JSON.stringify(finalState, null, 2),
-  ).catch?.(() => undefined);
+    'utf8',
+  );
 
   console.log(JSON.stringify({
     url: baseUrl,
