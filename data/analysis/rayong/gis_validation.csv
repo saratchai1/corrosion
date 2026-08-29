@@ -1,0 +1,15 @@
+plotId,geometry_type,original_validity,validation_error,repair_method,original_area_rai,repaired_area_rai,absolute_area_difference,percentage_area_difference,centroid_shift_m,original_vertex_count,repaired_vertex_count,original_polygon_count,repaired_polygon_count,status
+14(1)-STC,Polygon,True,Valid Geometry,None,12.47308661846875,12.47308661846875,0.0,0.0,0.0,5,5,1,1,PASS
+14-STC,MultiPolygon,True,Valid Geometry,None,4.485832327905593,4.485832327905593,0.0,0.0,0.0,11,11,2,2,PASS
+14-VSD,MultiPolygon,True,Valid Geometry,None,38.9359381373479,38.9359381373479,0.0,0.0,0.0,33,33,3,3,PASS
+15-STC,Polygon,True,Valid Geometry,None,5.305146054814487,5.305146054814487,0.0,0.0,0.0,12,12,1,1,PASS
+15-VSD,Polygon,True,Valid Geometry,None,46.56322237177993,46.56322237177993,0.0,0.0,0.0,35,35,1,1,PASS
+16-VSD,MultiPolygon,True,Valid Geometry,None,11.569092941325884,11.569092941325884,0.0,0.0,0.0,19,19,3,3,PASS
+17-VSD,MultiPolygon,True,Valid Geometry,None,24.36709230477475,24.36709230477475,0.0,0.0,0.0,28,28,5,5,PASS
+18(1)-STC,Polygon,True,Valid Geometry,None,21.86129679877572,21.86129679877572,0.0,0.0,0.0,16,16,1,1,PASS
+19-STC,Polygon,True,Valid Geometry,None,15.315861295514726,15.315861295514726,0.0,0.0,0.0,11,11,1,1,PASS
+20-STC,Polygon,True,Valid Geometry,None,25.924665558111965,25.924665558111965,0.0,0.0,0.0,21,21,1,1,PASS
+22(1)-STC,Polygon,True,Valid Geometry,None,13.030060189064908,13.030060189064908,0.0,0.0,0.0,15,15,1,1,PASS
+22-STC,MultiPolygon,False,Nested shells[101.8014413 12.756543],make_valid + extract_polygons,36.192894819721936,25.823308406678624,10.369586413043312,28.650889807777414,38.99185816753844,18,18,2,1,FAIL
+23(1)-STC,Polygon,True,Valid Geometry,None,7.463789094249217,7.463789094249217,0.0,0.0,0.0,8,8,1,1,PASS
+23-STC,Polygon,True,Valid Geometry,None,44.66909615147728,44.66909615147728,0.0,0.0,0.0,14,14,1,1,PASS

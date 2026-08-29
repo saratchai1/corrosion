@@ -1,0 +1,11 @@
+{
+  "dataset": "sentinel2",
+  "scene_id": "S2B_47PQQ_20250209_0_L2A",
+  "acquisition_datetime_utc": "2025-02-09T03:54:39.827000Z",
+  "source_rasters": [
+    "data/satellite/sentinel2/2025/S2B_47PQQ_20250209_0_L2A/B4_10m.tif",
+    "data/satellite/sentinel2/2025/S2B_47PQQ_20250209_0_L2A/B3_10m.tif",
+    "data/satellite/sentinel2/2025/S2B_47PQQ_20250209_0_L2A/B2_10m.tif"
+  ],
+  "preview": "data/previews/sentinel2/2025/S2B_47PQQ_20250209_0_L2A_rgb.png"
+}

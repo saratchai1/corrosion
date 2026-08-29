@@ -35,3 +35,4 @@ data/satellite/**/*.tiff
 credentials*
 tokens*
 *.log
+data/satellite/

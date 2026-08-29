@@ -1,0 +1,11 @@
+{
+  "dataset": "landsat",
+  "scene_id": "LE07_L2SP_129051_20101114_02_T1",
+  "acquisition_datetime_utc": "2010-11-14T03:30:52.765783Z",
+  "source_rasters": [
+    "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/NIR_30m.tif",
+    "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/RED_30m.tif",
+    "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/GREEN_30m.tif"
+  ],
+  "preview": "data/previews/landsat/2010/LE07_L2SP_129051_20101114_02_T1_false_color_nir.png"
+}

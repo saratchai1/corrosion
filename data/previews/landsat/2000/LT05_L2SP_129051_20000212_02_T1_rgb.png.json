@@ -1,0 +1,11 @@
+{
+  "dataset": "landsat",
+  "scene_id": "LT05_L2SP_129051_20000212_02_T1",
+  "acquisition_datetime_utc": "2000-02-12T03:12:11.324069Z",
+  "source_rasters": [
+    "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/RED_30m.tif",
+    "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/GREEN_30m.tif",
+    "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/BLUE_30m.tif"
+  ],
+  "preview": "data/previews/landsat/2000/LT05_L2SP_129051_20000212_02_T1_rgb.png"
+}

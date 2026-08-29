@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "station_name": "Map Ta Phut",
+        "source": "Hydrographic Department, Royal Thai Navy",
+        "datum": "LLW",
+        "status": "active"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.1333, 12.6500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_name": "Ko Samet",
+        "source": "Hydrographic Department, Royal Thai Navy",
+        "datum": "LLW",
+        "status": "active"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.4500, 12.5667]
+      }
+    }
+  ]
+}

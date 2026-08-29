@@ -1,0 +1,11 @@
+{
+  "dataset": "landsat",
+  "scene_id": "LC09_L2SP_128051_20250116_02_T1",
+  "acquisition_datetime_utc": "2025-01-16T03:32:11.042977Z",
+  "source_rasters": [
+    "data/satellite/landsat/2025/LC09_L2SP_128051_20250116_02_T1/NIR_30m.tif",
+    "data/satellite/landsat/2025/LC09_L2SP_128051_20250116_02_T1/RED_30m.tif",
+    "data/satellite/landsat/2025/LC09_L2SP_128051_20250116_02_T1/GREEN_30m.tif"
+  ],
+  "preview": "data/previews/landsat/2025/LC09_L2SP_128051_20250116_02_T1_false_color_nir.png"
+}

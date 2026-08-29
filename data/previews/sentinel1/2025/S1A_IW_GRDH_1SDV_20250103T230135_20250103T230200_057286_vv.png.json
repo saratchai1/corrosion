@@ -1,0 +1,9 @@
+{
+  "dataset": "sentinel1",
+  "scene_id": "S1A_IW_GRDH_1SDV_20250103T230135_20250103T230200_057286",
+  "acquisition_datetime_utc": "2025-01-03T23:01:47.734740Z",
+  "source_rasters": [
+    "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250103T230135_20250103T230200_057286/VV_10m.tif"
+  ],
+  "preview": "data/previews/sentinel1/2025/S1A_IW_GRDH_1SDV_20250103T230135_20250103T230200_057286_vv.png"
+}

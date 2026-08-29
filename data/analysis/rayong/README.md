@@ -33,3 +33,15 @@
   - Spatially explicit mangrove expansion.
   - Shoreline movement (accretion/erosion signal) immediately seaward of the plot.
 - **Causality Note:** Do NOT claim causal impact merely because planting and shoreline change correlate. Many environmental factors (sediment supply, wave energy, bathymetry) influence erosion rates regardless of planting efforts.
+
+## Execution Details
+- **Raw GIS Source:** The original features were separated into `rayong_planting_plots_raw.geojson` to preserve integrity.
+- **Geometry Repair:** We used `shapely.make_valid` and extracted polygonal features to fix invalid geometries safely, keeping area deviations < 0.5%.
+- **AOI Derivation:** Validated at ~154 sq km enclosing Rayong coastline and plots.
+- **Satellite Sources:** Element 84 Earth Search (Sentinel-2), Microsoft Planetary Computer (Landsat, Sentinel-1).
+- **Scene-Selection Logic:** Extracted scenes meeting maximum coverage and minimal cloud-cover thresholds, filtering through temporal constraints (e.g., max 4 Sentinel-2 per year).
+- **Tide Source:** Map Ta Phut / Ko Samet (Hydrographic Department, Royal Thai Navy) identified. Due to no live API, tide matching is currently BLOCKED pending real-time access.
+- **Shoreline Extraction:** NDWI applied to Sentinel-2 imagery (B3 and B8), Otsu thresholding approach, vectorized to line features.
+- **Transect Generation:** Extracted convex-hull-simplified shoreline as baseline, projected perpendiculars spaced at 100m intervals.
+- **NSM/EPR Calculation:** Script implemented but populated with 0s because only a single test observation exists pending tide unblocking.
+- **Limitations:** Cannot confidently proceed to full historical download and trend calculation until a programmatic tide data source is established to match timestamps with tidal heights.
