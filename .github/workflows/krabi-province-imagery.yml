@@ -1,0 +1,93 @@
+name: Krabi province-wide satellite imagery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/krabi-province-imagery.yml'
+      - 'scripts/build_krabi_province_assets.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: krabi-province-imagery
+  cancel-in-progress: false
+
+jobs:
+  build-province-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate and validate province-wide imagery
+        run: |
+          rm -rf regions/krabi/web/assets/province
+          python scripts/build_krabi_province_assets.py \
+            --out regions/krabi/web/assets/province
+
+      - name: Assert slider inputs are real and different
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageChops, ImageStat
+
+          root = Path('regions/krabi/web/assets/province')
+          manifest = json.loads((root / 'province_imagery_manifest.json').read_text())
+          before = Image.open(root / 'krabi_province_s2cloudless_2018.jpg').convert('RGB')
+          after = Image.open(root / 'krabi_province_s2cloudless_2024.jpg').convert('RGB')
+          assert before.size == after.size
+          assert before.width >= 1600 and before.height >= 1100
+          diff = ImageChops.difference(before.resize((512, 512)), after.resize((512, 512)))
+          stat = ImageStat.Stat(diff)
+          mean_abs = sum(stat.mean) / 3
+          assert mean_abs > 1.0, mean_abs
+          check = manifest['before_after_validation']
+          assert check['before_year'] == 2018
+          assert check['after_year'] == 2024
+          assert check['fraction_pixels_luma_difference_gte_12'] > 0.01
+          assert manifest['asset_status'] == 'VALIDATED_STATIC_PROVINCE_IMAGERY'
+          print(json.dumps({
+              'dimensions': before.size,
+              'mean_abs_difference': mean_abs,
+              'manifest_validation': check,
+          }, indent=2))
+          PY
+
+      - name: Upload QA package
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-province-imagery-2018-2024
+          path: regions/krabi/web/assets/province/**
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit generated static assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add regions/krabi/web/assets/province
+          if git diff --cached --quiet; then
+            echo 'No province imagery changes to commit.'
+            exit 0
+          fi
+          git commit -m 'data: add validated Krabi province satellite mosaics'
+          git pull --rebase origin main
+          git push origin HEAD:main
