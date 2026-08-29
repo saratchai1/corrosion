@@ -19,7 +19,7 @@ concurrency:
 jobs:
   chromium:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -44,10 +44,16 @@ jobs:
           cat /tmp/krabi-web.log
           exit 1
 
-      - name: Run browser assertions and screenshots
+      - name: Test repository build
         env:
           KRABI_WEB_URL: http://127.0.0.1:4173
-          KRABI_E2E_OUT: artifacts/krabi-web-e2e
+          KRABI_E2E_OUT: artifacts/local
+        run: node scripts/test_krabi_province_web.mjs
+
+      - name: Test public production alias
+        env:
+          KRABI_WEB_URL: https://krabi-coastal-mangrove-pilot.vercel.app
+          KRABI_E2E_OUT: artifacts/production
         run: node scripts/test_krabi_province_web.mjs
 
       - name: Upload browser evidence
@@ -55,6 +61,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: krabi-province-web-e2e
-          path: artifacts/krabi-web-e2e/**
+          path: artifacts/**
           if-no-files-found: error
           retention-days: 30
