@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krabi Mangrove Change Screening</title>
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">CORROSION / KRABI PILOT</p>
+      <h1>ติดตามการเปลี่ยนแปลงป่าชายเลน จ.กระบี่</h1>
+      <p class="subtitle">Sentinel-2 screening • 97–100 VSD • 2023-09 ถึง 2026-08</p>
+    </div>
+    <div class="status">Screening — ไม่ใช่ข้อสรุปการกัดเซาะ</div>
+  </header>
+
+  <main>
+    <section class="kpis" aria-label="summary metrics">
+      <article class="kpi"><span>แปลงนำร่อง</span><strong>4</strong></article>
+      <article class="kpi"><span>Observations</span><strong>48</strong></article>
+      <article class="kpi"><span>GOOD QA</span><strong>29</strong></article>
+      <article class="kpi"><span>Temporary dip flags</span><strong>3</strong></article>
+    </section>
+
+    <section class="grid map-grid">
+      <article class="panel map-panel">
+        <div class="panel-head">
+          <div><h2>ขอบเขตแปลงจริง</h2><p>KML/KMZ-derived WGS84 polygons</p></div>
+          <button id="fitAll" type="button">ดูทุกแปลง</button>
+        </div>
+        <div id="map" role="img" aria-label="Krabi pilot plot map"></div>
+      </article>
+
+      <aside class="panel controls-panel">
+        <h2>เลือกข้อมูล</h2>
+        <label>แปลง
+          <select id="plotSelect"></select>
+        </label>
+        <label>ช่วงเวลา
+          <select id="periodSelect"></select>
+        </label>
+        <div id="plotMeta" class="meta"></div>
+        <div class="legend">
+          <span><i class="dot good"></i>GOOD</span>
+          <span><i class="dot partial"></i>PARTIAL</span>
+          <span><i class="dot low"></i>LOW_QA</span>
+          <span><i class="dot nodata"></i>NO_DATA</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid chart-grid">
+      <article class="panel chart-panel">
+        <div class="panel-head">
+          <div><h2>Vegetation signal</h2><p>Median NDVI / NDRE พร้อม QA coverage</p></div>
+        </div>
+        <div class="chart-wrap"><canvas id="spectralChart"></canvas></div>
+      </article>
+      <article class="panel finding-panel">
+        <h2>สรุปแปลงที่เลือก</h2>
+        <div id="finding"></div>
+      </article>
+    </section>
+
+    <section class="panel imagery-panel">
+      <div class="panel-head">
+        <div><h2>ภาพที่ประมวลผลไว้แล้ว</h2><p>Reuse จาก saratchai1/prasae — ไม่ duplicate ไฟล์ใน corrosion</p></div>
+        <a id="sourceLink" target="_blank" rel="noopener">เปิด source folder ↗</a>
+      </div>
+      <div class="images">
+        <figure><img id="rgbImage" alt="RGB satellite preview" /><figcaption>RGB</figcaption></figure>
+        <figure><img id="ndviImage" alt="NDVI satellite preview" /><figcaption>NDVI</figcaption></figure>
+      </div>
+      <p id="imageNote" class="image-note"></p>
+    </section>
+
+    <section class="panel method-panel">
+      <h2>ขอบเขตการตีความ</h2>
+      <div class="method-cols">
+        <p><strong>ทำได้ตอนนี้:</strong> ดู vegetation/water spectral signal, QA, temporal dip/recovery และเปรียบเทียบระหว่างแปลง</p>
+        <p><strong>ยังไม่ควรเรียกว่า shoreline change:</strong> PNG เดิมไม่มี georeference สำหรับวัดการถอย/รุกเป็นเมตร ต้องใช้ COG/GeoTIFF + tide matching ก่อน</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
