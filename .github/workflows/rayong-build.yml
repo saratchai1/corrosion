@@ -1,4 +1,4 @@
-name: Rayong web build
+name: Rayong web build and browser test
 
 on:
   push:
@@ -10,13 +10,39 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm ci --prefix web
-      - run: npm run build --prefix web
+      - name: Install web dependencies
+        run: npm ci --prefix web
+      - name: Build production website
+        run: npm run build --prefix web
+      - name: Install browser test dependency
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Serve build and test comparison controls
+        env:
+          RAYONG_WEB_URL: http://127.0.0.1:4173
+          RAYONG_E2E_OUT: artifacts/rayong-compare-e2e
+        run: |
+          python3 -m http.server 4173 --directory web/dist > /tmp/rayong-web.log 2>&1 &
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:4173/ >/dev/null && break
+            sleep 1
+          done
+          node scripts/test_rayong_compare.mjs
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rayong-before-after-e2e
+          path: artifacts/rayong-compare-e2e/**
+          if-no-files-found: error
+          retention-days: 30
