@@ -155,19 +155,22 @@ jobs:
         run: |
           S2_GREEN=$(find data/satellite/sentinel2 -type f -name 'B3_10m.tif' | head -1)
           S2_SWIR=$(find data/satellite/sentinel2 -type f -name 'B11_20m.tif' | head -1)
+          S2_QUALITY=$(find data/satellite/sentinel2 -type f -name 'SCL_20m.tif' | head -1)
           LS_GREEN=$(find data/satellite/landsat -type f -name 'GREEN_30m.tif' | head -1)
           LS_SWIR=$(find data/satellite/landsat -type f -name 'SWIR1_30m.tif' | head -1)
+          LS_QUALITY=$(find data/satellite/landsat -type f -name 'QA_PIXEL_30m.tif' | head -1)
           S2_DATE=$(python -c "import csv; print(next(csv.DictReader(open('data/catalog/sentinel2_scenes.csv')))['acquisition_datetime_utc'][:10])")
           LS_DATE=$(python -c "import csv; print(next(csv.DictReader(open('data/catalog/landsat_scenes.csv')))['acquisition_datetime_utc'][:10])")
-          test -n "$S2_GREEN" && test -n "$S2_SWIR" && test -n "$LS_GREEN" && test -n "$LS_SWIR"
+          test -n "$S2_GREEN" && test -n "$S2_SWIR" && test -n "$S2_QUALITY"
+          test -n "$LS_GREEN" && test -n "$LS_SWIR" && test -n "$LS_QUALITY"
           python ../../scripts/extract_water_mask.py \
-            --green "$S2_GREEN" --swir "$S2_SWIR" --sensor sentinel2 \
-            --date "$S2_DATE" --out-dir data/analysis/water/sentinel2 \
-            --tide-status unverified
+            --green "$S2_GREEN" --swir "$S2_SWIR" --quality-mask "$S2_QUALITY" \
+            --sensor sentinel2 --date "$S2_DATE" \
+            --out-dir data/analysis/water/sentinel2 --tide-status unverified
           python ../../scripts/extract_water_mask.py \
-            --green "$LS_GREEN" --swir "$LS_SWIR" --sensor landsat \
-            --date "$LS_DATE" --out-dir data/analysis/water/landsat \
-            --tide-status unverified
+            --green "$LS_GREEN" --swir "$LS_SWIR" --quality-mask "$LS_QUALITY" \
+            --sensor landsat --date "$LS_DATE" \
+            --out-dir data/analysis/water/landsat --tide-status unverified
 
       - name: Upload validated AOI rasters and water masks
         uses: actions/upload-artifact@v4
