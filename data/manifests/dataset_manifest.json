@@ -1,0 +1,201 @@
+{
+  "dataset_name": "Samut Songkhram coastal erosion and mangrove satellite dataset",
+  "version": "v1-provisional",
+  "created_utc": "2026-08-28T11:00:00Z",
+  "aoi": {
+    "path": "data/aoi/samut_songkhram_aoi.geojson",
+    "crs": "EPSG:4326",
+    "status": "provisional",
+    "official_project_boundary": false
+  },
+  "analysis_crs": "EPSG:32647",
+  "target_max_working_bytes": 16106127360,
+  "datasets": {
+    "sentinel2": {
+      "period": "2016-present",
+      "product": "Level-2A surface reflectance",
+      "catalog": "data/catalog/sentinel2_scenes.csv"
+    },
+    "landsat": {
+      "period": "1984-present",
+      "product": "Collection 2 Level-2 surface reflectance",
+      "catalog": "data/catalog/landsat_scenes.csv"
+    },
+    "sentinel1": {
+      "period": "2015-present",
+      "product": "GRD VV/VH",
+      "catalog": "data/catalog/sentinel1_scenes.csv"
+    }
+  },
+  "tide_policy": "No tide level is inferred without a sourced station record. Missing tide information is tide_status=unverified.",
+  "shoreline_policy": "Image-derived water-land boundaries are observations/proxies, not 'true shoreline', until tide effects and field/independent evidence are controlled.",
+  "git_lfs_status": "git-lfs/3.8.0 installed; repository tracking rules verified; endpoint auth=basic; no-cost upload/quota confirmation unavailable; no raster committed",
+  "files": [
+    {
+      "path": "data/previews/landsat/2025/LC08_L2SP_129051_20250216_02_T1_false_color_nir.png",
+      "size_bytes": 559196,
+      "sha256": "f66a49ed09972f4abb6aaa2d34764005195102fd797309e4012cbd0436d65a47"
+    },
+    {
+      "path": "data/previews/landsat/2025/LC08_L2SP_129051_20250216_02_T1_false_color_nir.png.json",
+      "size_bytes": 496,
+      "sha256": "8d0223dd61e8273eaccf473cb5bc9c17c3280c95a1fba7cecad23a4693ef1c08"
+    },
+    {
+      "path": "data/previews/landsat/2025/LC08_L2SP_129051_20250216_02_T1_rgb.png",
+      "size_bytes": 558047,
+      "sha256": "3e2a98c90986a50db8a2c79c92d12954a5e0b41859499e0e26f544a6ee7fa51a"
+    },
+    {
+      "path": "data/previews/landsat/2025/LC08_L2SP_129051_20250216_02_T1_rgb.png.json",
+      "size_bytes": 485,
+      "sha256": "86363378d4402dfef0c138c6419c604ec356a6f8010d9ea1050b68ab57c8ba7f"
+    },
+    {
+      "path": "data/previews/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159_vh.png",
+      "size_bytes": 1302230,
+      "sha256": "5026ec3da622f995e02118fa1722e92628f916848a2a2004c96559b03345927b"
+    },
+    {
+      "path": "data/previews/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159_vh.png.json",
+      "size_bytes": 400,
+      "sha256": "cb7fce218c540cb4b65d1002871dffc72772c564d1d20a41122e4879fe250a51"
+    },
+    {
+      "path": "data/previews/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159_vv.png",
+      "size_bytes": 1280157,
+      "sha256": "a1262a8ee352f6c67beeb7c0083b34de11269963dfa8821e47c755820e81c798"
+    },
+    {
+      "path": "data/previews/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159_vv.png.json",
+      "size_bytes": 400,
+      "sha256": "5f958d191f47f596977bb18004fb5d2f2c972fb688d3d5095bfe8b5b4dc0d0de"
+    },
+    {
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251201_0_L2A_false_color_nir.png",
+      "size_bytes": 3217927,
+      "sha256": "95dadc110429f7258f21d5beb2f555b5c9c2a92172ae0cb9a5a13515bfae9dd9"
+    },
+    {
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251201_0_L2A_false_color_nir.png.json",
+      "size_bytes": 466,
+      "sha256": "cd181c9745f6f03ad8551ee125378b238a467e99f7510ae123c767988dc50c4c"
+    },
+    {
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251201_0_L2A_rgb.png",
+      "size_bytes": 3289346,
+      "sha256": "0d3c44771a36ff57d8e715b7a7db46e29ce72adff3626085ec6a851673d8110a"
+    },
+    {
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251201_0_L2A_rgb.png.json",
+      "size_bytes": 454,
+      "sha256": "bc4543ca8d69765b1b47565d59a7fe7c6701111878e0dfefff670faa574d9b71"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/BLUE_30m.tif",
+      "size_bytes": 674352,
+      "sha256": "8f93d7ade264964d5c56b736019438e0038c805006aa38ba92bae3e20d72ec4a"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/GREEN_30m.tif",
+      "size_bytes": 681557,
+      "sha256": "b45b0e6cafaeb1e89d65e7ddfe222cbcecb0ef58b2365093c95e315130b451e7"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/NIR_30m.tif",
+      "size_bytes": 697795,
+      "sha256": "42f2e1b34252b7219744fe83a05cfe98354228f0d528b4978b5039aa53f3c7f6"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/QA_PIXEL_30m.tif",
+      "size_bytes": 34687,
+      "sha256": "0130ead37693350b3533ca588accfa0406b3d302bd39ec56c04d473034d4a17f"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/RED_30m.tif",
+      "size_bytes": 691591,
+      "sha256": "03112e38b995dec44a85973caf6e185089766b82fa31ba68a572a20ebe966432"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/SWIR1_30m.tif",
+      "size_bytes": 674260,
+      "sha256": "28e6e535203b7f9784bc0abbbdba4c196517d7450d51c3ba4e51ffd1803ed188"
+    },
+    {
+      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/SWIR2_30m.tif",
+      "size_bytes": 647156,
+      "sha256": "5bc979ee7d819cc77679ea1149f73a7f553cc8ff08a1510609f2fb4fd5d08985"
+    },
+    {
+      "path": "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159/VH_10m.tif",
+      "size_bytes": 3942854,
+      "sha256": "2a741711a0af04c0387449037667f9dca71507e91d6a46e88483b61e53cfc54c"
+    },
+    {
+      "path": "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159/VV_10m.tif",
+      "size_bytes": 4778144,
+      "sha256": "e776726a2be5b5ff418166a72e3f5c99bd5aa36c8709e13443f57c2797b1993f"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B11_20m.tif",
+      "size_bytes": 1278352,
+      "sha256": "acac8ca8f21d711c190f56dbd3cde2b0879e2a4e69a2530f1f7fece59b6dd925"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B12_20m.tif",
+      "size_bytes": 1258868,
+      "sha256": "b43a3e7fd2767e0a9df401668154f1734c678421a49999b1bd95eb91aac7102b"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B2_10m.tif",
+      "size_bytes": 5358319,
+      "sha256": "c07256662eb926d354e470712700cd5fcae9b6136b2a1134496cdf948671f3a4"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B3_10m.tif",
+      "size_bytes": 5510687,
+      "sha256": "220d1378065d2fe932d651e1746c90daeb36b45d50074be7ea221bb417e55d8f"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B4_10m.tif",
+      "size_bytes": 5391994,
+      "sha256": "93382d79806530f115250c9badfc74d1668647460ae3f0e99d5a8ac7d8203abb"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B5_20m.tif",
+      "size_bytes": 1339530,
+      "sha256": "9ff4ba3b6f61745de16b99409922bf5e692180378248618b04e973019e5244e7"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B6_20m.tif",
+      "size_bytes": 1301865,
+      "sha256": "5c02bb9f07772f3220a296c7001932f4ae3c9b7d826151b612e38e3cfeca1c28"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B7_20m.tif",
+      "size_bytes": 1311046,
+      "sha256": "feb90e05f530b8b28b37358681d55aa6177550ee0963de99cf0c2b64c9116d3c"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B8A_20m.tif",
+      "size_bytes": 1312194,
+      "sha256": "16557684ff8c248ce8a5e6ce7347f5853679d302156ef7e32f42d12447143ad4"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B8_10m.tif",
+      "size_bytes": 5133796,
+      "sha256": "3ee7b4f4a2d55fe5b7e3b0f7e27702b856fed2b0ab095b50c51ba0a603eb2cd5"
+    },
+    {
+      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/SCL_20m.tif",
+      "size_bytes": 87932,
+      "sha256": "d367a5de6194bfa8742b6dea0d67a9fb22f80b976d608404c08e3bf4ecc3af64"
+    }
+  ],
+  "notes": [
+    "Catalogs were populated by live yearly paginated STAC searches; local sample rasters are listed here but are intentionally not committed.",
+    "Large rasters must not be committed unless authenticated Git LFS upload and no-cost quota are verified first."
+  ],
+  "updated_utc": "2026-08-28T14:51:04.612362Z",
+  "local_dataset_bytes": 52316583
+}

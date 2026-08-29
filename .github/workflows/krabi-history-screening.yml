@@ -1,0 +1,164 @@
+name: Krabi multi-scene water-edge screening
+
+on:
+  push:
+    branches:
+      - data/krabi-satellite-v1
+    paths:
+      - '.github/workflows/krabi-history-screening.yml'
+      - 'scripts/download_krabi_satellite_data.py'
+      - 'scripts/process_sentinel2_water_history.py'
+      - 'scripts/extract_water_mask.py'
+      - 'scripts/summarize_water_history.py'
+      - 'scripts/build_water_consensus.py'
+      - 'scripts/audit_sentinel2_water.py'
+      - 'scripts/build_krabi_pilot_summary.py'
+      - 'scripts/prepare_krabi_site.py'
+      - 'scripts/build_analysis_corridor.py'
+      - 'regions/krabi/data/aoi/**'
+      - 'regions/krabi/data/reuse/**'
+      - 'regions/krabi/analysis/vegetation_trends.csv'
+      - 'regions/krabi/analysis/events.csv'
+      - 'regions/krabi/web/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sentinel2-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data/krabi-satellite-v1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build shoreline analysis corridor
+        run: |
+          python scripts/build_analysis_corridor.py \
+            --input regions/krabi/data/aoi/krabi_pdd_plots.geojson \
+            --output regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --buffer-m 500
+
+      - name: Download three Collection 1 Sentinel-2 acquisitions per year
+        run: |
+          python scripts/download_krabi_satellite_data.py sentinel2 \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --start 2016-01-01 --end 2026-08-29 --per-year 3 --download
+
+      - name: Validate annual Sentinel-2 COGs
+        working-directory: regions/krabi
+        run: |
+          mapfile -t RASTERS < <(find data/satellite/sentinel2 -type f -name '*.tif' | sort)
+          test "${#RASTERS[@]}" -gt 0
+          python ../../scripts/validate_rasters.py "${RASTERS[@]}" \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --json data/manifests/sentinel2_history_raster_validation.json
+
+      - name: Build calibrated cloud-masked scene history
+        working-directory: regions/krabi
+        run: |
+          python ../../scripts/process_sentinel2_water_history.py \
+            --catalog data/catalog/sentinel2_scenes.csv \
+            --satellite-root data/satellite/sentinel2 \
+            --out-root data/analysis/water_history \
+            --tide-status unverified
+          python ../../scripts/summarize_water_history.py \
+            --root data/analysis/water_history \
+            --csv analysis/water_history.csv \
+            --json analysis/water_history_summary.json \
+            --min-valid-fraction-grid 0.10
+
+      - name: Cross-check MNDWI water against Sentinel-2 SCL
+        working-directory: regions/krabi
+        run: |
+          python ../../scripts/audit_sentinel2_water.py \
+            --catalog data/catalog/sentinel2_scenes.csv \
+            --satellite-root data/satellite/sentinel2 \
+            --water-root data/analysis/water_history \
+            --csv analysis/scl_water_audit.csv \
+            --json analysis/scl_water_audit.json \
+            --min-valid-fraction-grid 0.10
+
+      - name: Build annual and epoch consensus
+        working-directory: regions/krabi
+        run: |
+          python ../../scripts/build_water_consensus.py \
+            --root data/analysis/water_history \
+            --out analysis/water_consensus \
+            --plots data/aoi/krabi_pdd_plots.geojson \
+            --threshold 0.5 \
+            --min-valid-fraction 0.66 \
+            --min-scene-valid-fraction 0.10 \
+            --min-scenes-per-year 2 \
+            --min-area-m2 100
+
+      - name: Build executive summary
+        run: |
+          python scripts/build_krabi_pilot_summary.py \
+            --vegetation regions/krabi/analysis/vegetation_trends.csv \
+            --events regions/krabi/analysis/events.csv \
+            --water-scene-summary regions/krabi/analysis/water_history_summary.json \
+            --water-consensus regions/krabi/analysis/water_consensus/summary.json \
+            --scl-audit regions/krabi/analysis/scl_water_audit.json \
+            --out-json regions/krabi/analysis/pilot_summary.json \
+            --out-md regions/krabi/analysis/pilot_summary.md
+
+      - name: Package static dashboard
+        run: |
+          python scripts/prepare_krabi_site.py \
+            --region regions/krabi \
+            --out regions/krabi/site
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          site = Path('regions/krabi/site')
+          manifest = json.loads((site / 'data/site_manifest.json').read_text())
+          summary = json.loads((site / 'data/pilot_summary.json').read_text())
+          assert summary['pilot']['plot_count'] == 4
+          assert summary['pilot']['scene_count'] >= 18
+          assert summary['executive']['engineering_erosion_rate_status'] == 'NOT_ESTIMATED_TIDE_UNVERIFIED'
+          assert len(manifest['downloads']) >= 10
+          assert (site / 'data/water_change.geojson').stat().st_size > 0
+          print(json.dumps({
+              'plot_count': summary['pilot']['plot_count'],
+              'scene_count': summary['pilot']['scene_count'],
+              'downloads': len(manifest['downloads']),
+              'previews': len(manifest['previews']),
+          }, indent=2))
+          PY
+
+      - name: Upload final pilot package
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-final-pilot-package-2018-2026
+          path: |
+            regions/krabi/site/**
+            regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
+            regions/krabi/data/catalog/sentinel2_scenes.csv
+            regions/krabi/data/analysis/sentinel2_calibration_audit.json
+            regions/krabi/data/analysis/water_history/**
+            regions/krabi/analysis/pilot_summary.json
+            regions/krabi/analysis/pilot_summary.md
+            regions/krabi/analysis/vegetation_trends.csv
+            regions/krabi/analysis/events.csv
+            regions/krabi/analysis/water_history.csv
+            regions/krabi/analysis/water_history_summary.json
+            regions/krabi/analysis/scl_water_audit.csv
+            regions/krabi/analysis/scl_water_audit.json
+            regions/krabi/analysis/water_consensus/**
+            regions/krabi/data/manifests/sentinel2_history_raster_validation.json
+          if-no-files-found: error
+          retention-days: 90

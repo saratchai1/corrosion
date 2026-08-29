@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Geospatial working files
+.cache/
+cache/
+tmp/
+temp/
+working/
+*.aux.xml
+*.ovr
+*.vrt
+
+# Full-scene/raw downloads must never be committed
+raw/
+full_scenes/
+
+# AOI COGs are local in v1 until authenticated Git LFS quota is verified
+data/satellite/**/*.tif
+data/satellite/**/*.tiff
+
+# Secrets
+*.pem
+*.key
+credentials*
+tokens*
