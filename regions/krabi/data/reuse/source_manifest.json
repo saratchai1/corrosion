@@ -1,0 +1,28 @@
+{
+  "source_repository": "saratchai1/prasae",
+  "source_branch": "pdd22-satellite-refetch",
+  "source_coverage_report": "data/pdd22_satellite/coverage_report.csv",
+  "source_plot_root": "data/pdd22_satellite/plots",
+  "source_manifest": "data/pdd22_satellite/manifest.json",
+  "reuse_policy": "reference_existing_outputs_do_not_duplicate_png_assets",
+  "copied_summary_file": "pdd22_krabi_coverage.csv",
+  "plot_codes": ["97-VSD", "98-VSD", "99-VSD", "100-VSD"],
+  "observation_count": 48,
+  "periods_per_plot": 12,
+  "period_start": "2023-09",
+  "period_end": "2026-08",
+  "available_metrics": [
+    "coverage_pct",
+    "qa",
+    "mean_ndvi",
+    "median_ndvi",
+    "median_ndre",
+    "median_mndwi",
+    "median_mfi"
+  ],
+  "notes": [
+    "Use existing Sentinel-2 products first for overlapping PDD22 periods.",
+    "Do not copy the PNG plot products into corrosion unless a deployment requires self-contained assets.",
+    "Use the corrosion STAC wrapper for Landsat/Sentinel-1 history, future refreshes, or periods not covered by the reused dataset."
+  ]
+}
