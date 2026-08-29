@@ -332,6 +332,86 @@
       "sha256": "5f958d191f47f596977bb18004fb5d2f2c972fb688d3d5095bfe8b5b4dc0d0de"
     },
     {
+      "path": "data/previews/sentinel2/2018/S2B_47PPQ_20180206_0_L2A_false_color_nir.png",
+      "size_bytes": 3350806,
+      "sha256": "cd4e7be4e624fafbd0796160f36b482fd7241a49b1372434a3b0bdcda6164b76"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PPQ_20180206_0_L2A_false_color_nir.png.json",
+      "size_bytes": 466,
+      "sha256": "0d140841b5261fffcaf428f65d1a80d3f15b717124d0999d15dd46fbe3f99a2b"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PPQ_20180206_0_L2A_rgb.png",
+      "size_bytes": 3401421,
+      "sha256": "484e87292e004077de3d0c87b0b3f15e42fcec3ab51dac121a40e31f4420849d"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PPQ_20180206_0_L2A_rgb.png.json",
+      "size_bytes": 454,
+      "sha256": "b3cb373d8187b4b188c6f9d49a1e969e5204a78febd059133567688245c47f96"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PQQ_20180206_0_L2A_false_color_nir.png",
+      "size_bytes": 1710097,
+      "sha256": "32041da7a1071036ce1392b6df37cb5ff0c0e5abc508d4a0dff1accdd04df4ef"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PQQ_20180206_0_L2A_false_color_nir.png.json",
+      "size_bytes": 466,
+      "sha256": "1cd07b4e2a01f64d20c6b045d7cd13a1a2d08cecc1c2c496cc9952b3ad9dfc83"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PQQ_20180206_0_L2A_rgb.png",
+      "size_bytes": 1714861,
+      "sha256": "5daf070b90721152d57f68d7102e9bd677aa2dee2b6f8752f9a3cc2e32a5912b"
+    },
+    {
+      "path": "data/previews/sentinel2/2018/S2B_47PQQ_20180206_0_L2A_rgb.png.json",
+      "size_bytes": 454,
+      "sha256": "14e980c1ad853566872baa37c64d16e79773f7a5f8a4a0a792db9c59e31d428a"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PPQ_20211227_0_L2A_false_color_nir.png",
+      "size_bytes": 2198517,
+      "sha256": "b9be0120dc40d7253d77fc0d558b5f50b3f49d011a0d486df37b344c3a8d2304"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PPQ_20211227_0_L2A_false_color_nir.png.json",
+      "size_bytes": 466,
+      "sha256": "e2749412ef0af62ab39a88f38f612abad6f95bd4b7fc622345797e077c18682b"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PPQ_20211227_0_L2A_rgb.png",
+      "size_bytes": 2032946,
+      "sha256": "53ed333768563907b70eacc97c7281713dfe11903a33089ca37394cb2803ea42"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PPQ_20211227_0_L2A_rgb.png.json",
+      "size_bytes": 454,
+      "sha256": "aba522928a43fe44667fdc5888371e8c044d04af4f95e1ab7a625df19822e1b8"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PQQ_20211227_0_L2A_false_color_nir.png",
+      "size_bytes": 1740756,
+      "sha256": "6371dbdbc4618228a3e04c04725613ff58d143da85ced2428331ad9244f79976"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PQQ_20211227_0_L2A_false_color_nir.png.json",
+      "size_bytes": 466,
+      "sha256": "83c8a15d0f828113cfd90fd2218313fb835a77ab37e56034fc5c1be00f35211c"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PQQ_20211227_0_L2A_rgb.png",
+      "size_bytes": 1721167,
+      "sha256": "3204f4d2e1e47b5ad59c3ec8949b18f658b19dca6eda4ed07c55b0413825ed6d"
+    },
+    {
+      "path": "data/previews/sentinel2/2021/S2B_47PQQ_20211227_0_L2A_rgb.png.json",
+      "size_bytes": 454,
+      "sha256": "730dba48ef36c508019b5c4a815b01d5fce4221c78dbfcf9d27e582f92aa87e6"
+    },
+    {
       "path": "data/previews/sentinel2/2025/S2B_47PQQ_20250209_0_L2A_false_color_nir.png",
       "size_bytes": 1738979,
       "sha256": "8e073a833adf5ee1ba13c6cea0460d3240db0b33a4dfbb4b125452da42a441d3"
@@ -372,604 +452,44 @@
       "sha256": "bc4543ca8d69765b1b47565d59a7fe7c6701111878e0dfefff670faa574d9b71"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/BLUE_30m.tif",
-      "size_bytes": 586539,
-      "sha256": "fb24d6c61bb4cdcf575d0311d926441a06d34049817e4428e52d0d7f0c079cc5"
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251221_0_L2A_false_color_nir.png",
+      "size_bytes": 3222618,
+      "sha256": "c860c14213b335fb483cfeb382bfeaafd655c5be1f0ee8f5dafe8702a9e478f9"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/GREEN_30m.tif",
-      "size_bytes": 498310,
-      "sha256": "27ed6ac4d219878ada82da6e01aadeed73e078e38282bc6474ff02f0a6cf5a38"
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251221_0_L2A_false_color_nir.png.json",
+      "size_bytes": 459,
+      "sha256": "54ae1d6401023a00933e1c5cf96d6360fdeb9237d20eb3108d26711fbf583d2c"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/NIR_30m.tif",
-      "size_bytes": 605052,
-      "sha256": "5919ac0680ab08904b06370da208c8cb6de74ceb2a2572c2af37af702c7c4734"
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251221_0_L2A_rgb.png",
+      "size_bytes": 3295243,
+      "sha256": "d41e0067a93f727fcb9dd5ac3cf21fba0ffb39d412cf14a643c733529c37ce1d"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 70105,
-      "sha256": "d71135055c4092bbaa88c16f332311d946a2e41785562928fb2475ce445e8d4a"
+      "path": "data/previews/sentinel2/2025/S2C_47PPQ_20251221_0_L2A_rgb.png.json",
+      "size_bytes": 447,
+      "sha256": "f28acbee66f41dc460340bfbb984adc6c8c9adb4603c969b6dbe0a4e16fb9c59"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/RED_30m.tif",
-      "size_bytes": 528224,
-      "sha256": "6e7fba63c447db5ba577b7326202122881ff518947c72a32b061821e5703e20e"
+      "path": "data/previews/sentinel2/2025/S2C_47PQQ_20251221_0_L2A_false_color_nir.png",
+      "size_bytes": 1750062,
+      "sha256": "c1acca10b05330b7a8ee5945d3da005eb6c3e40482fc0fe09b190d8efa6fe020"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/SWIR1_30m.tif",
-      "size_bytes": 567224,
-      "sha256": "0ab129297b29acb9ff987f5ef2dc77d250228ecc36d89f09061f562648ee8e68"
+      "path": "data/previews/sentinel2/2025/S2C_47PQQ_20251221_0_L2A_false_color_nir.png.json",
+      "size_bytes": 466,
+      "sha256": "d66faaf5468502f0647e0b39306d167bdc47fadeee44668294d4d0e11338de4e"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871209_02_T1/SWIR2_30m.tif",
-      "size_bytes": 504462,
-      "sha256": "582338d25a0e1505c211953c0bd4bbc7d7b2876bb721cbfafc7f7ba725e30588"
+      "path": "data/previews/sentinel2/2025/S2C_47PQQ_20251221_0_L2A_rgb.png",
+      "size_bytes": 1728140,
+      "sha256": "f53e7e4557bf7ff230589a7141aac7d7c892e96a8a6b2d2819d7273468eec55c"
     },
     {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/BLUE_30m.tif",
-      "size_bytes": 590563,
-      "sha256": "2c9e0a9b928e6dbbd4c6abfd7c52bdd284ce6f720497f19314a40f995afc16cb"
-    },
-    {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/GREEN_30m.tif",
-      "size_bytes": 541192,
-      "sha256": "33677cbd32f9d8ed3591bab4142bd3d59ff4e27cee0adda6dd9136d2d675ee22"
-    },
-    {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/NIR_30m.tif",
-      "size_bytes": 607632,
-      "sha256": "129db3b6f7c02ba503fb3f85d209e4cdf73bc459dc8fc4dd34962d31f73c6aa0"
-    },
-    {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 33692,
-      "sha256": "e37853eaa8b2a35f6253fb8bf821f964e8cb42fc5a669348b46bc6a076078850"
-    },
-    {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/RED_30m.tif",
-      "size_bytes": 559842,
-      "sha256": "579424812dd27f6cc5c67aae865a7d26a8e5910d4f1e650ddf39fb65339c72b3"
-    },
-    {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/SWIR1_30m.tif",
-      "size_bytes": 577285,
-      "sha256": "68bf13d6d8e5b86bdbe4c41967ff7a13e6397cd1107c60df1546c3df60d484be"
-    },
-    {
-      "path": "data/satellite/landsat/1987/LT05_L2SP_129051_19871225_02_T1/SWIR2_30m.tif",
-      "size_bytes": 516958,
-      "sha256": "3e48eba89b6bca78c632ed6fc08a1c30026234891bc30fee1aca41c0dbff8690"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/BLUE_30m.tif",
-      "size_bytes": 575939,
-      "sha256": "c210c6a6bae910e05fb50ff01c26a1e13bbff0878118a678dfe4c6e252486f32"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/GREEN_30m.tif",
-      "size_bytes": 508098,
-      "sha256": "7e6baeacf3d1b25ccddcbc0f1abc4997323371cbee8d196433f1d0d598f0877d"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/NIR_30m.tif",
-      "size_bytes": 582968,
-      "sha256": "29151d27e688965f303109f35d796679d62f5f53b345d3552b0ffb2478ecde23"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 52460,
-      "sha256": "26cd1f9faf30e7fa0797f7109b38ea3918a7767da6910ce449aa8664213e0967"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/RED_30m.tif",
-      "size_bytes": 533438,
-      "sha256": "79207c790b857127fdba63ac69263b461e6d73abb6ef1f1850cf426d5bf63a1b"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/SWIR1_30m.tif",
-      "size_bytes": 565817,
-      "sha256": "a355f4f335c7ae662ec2fe334298c2cc1978f872f031129ad13c5de087abdfef"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900115_02_T1/SWIR2_30m.tif",
-      "size_bytes": 501068,
-      "sha256": "0e7bee01be2b82849f86562c1ea6aa8628d9ad765a8d4cc7a1493c294ef37beb"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/BLUE_30m.tif",
-      "size_bytes": 562960,
-      "sha256": "4deaa2c03b26abab0c5568a63fb4bcfc94ce0b0b29cb2ceb88f8c9bc4c759128"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/GREEN_30m.tif",
-      "size_bytes": 516309,
-      "sha256": "88348ba77db8f39a8b19e702ce88007648c4dc7a7cce7cce3b1c33ea59be8601"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/NIR_30m.tif",
-      "size_bytes": 591822,
-      "sha256": "4b8e3368aa42b6d7d7752d0072b55950b638daab9fcb7712465ae606eda67508"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 38215,
-      "sha256": "a274c2d40416d178fa9dd40b425bb1d33a75922b0e369338ecdc14d5ed0dcea1"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/RED_30m.tif",
-      "size_bytes": 543185,
-      "sha256": "5ff293cc4144603996a492b5a2f8288ca6f98d4fbf059e37254ef91936155557"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/SWIR1_30m.tif",
-      "size_bytes": 585879,
-      "sha256": "ba98a5ed71fbfa2a57915d9a890d2a9db1d95a6888cbf64fabdbb1fcc4d86f26"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19900131_02_T1/SWIR2_30m.tif",
-      "size_bytes": 519661,
-      "sha256": "6835b7ce3b1af0ad3955e350b2e9adaafaa821b8e68820eb88c21acf6acec0a1"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/BLUE_30m.tif",
-      "size_bytes": 651144,
-      "sha256": "515a62838e334f477c114297c2f1e8d82c6d9bcf0bb07483c53113a3ad37cf85"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/GREEN_30m.tif",
-      "size_bytes": 577845,
-      "sha256": "00ca6b49c3bf57d8ebb7c496512bd178023bc53a0769806b0c3b126043bbedfc"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/NIR_30m.tif",
-      "size_bytes": 629478,
-      "sha256": "2ed65181bcaf5871a398cb0d0c28bd48757c4ef129adfc07e5d582617a90253f"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 12863,
-      "sha256": "fe28e7a48b51f523aa0e218343bc34e9d7c8fba5e566a266fe26764bd4b4f405"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/RED_30m.tif",
-      "size_bytes": 587846,
-      "sha256": "bc08fd08663974088db280dd9b1083081eb7f12fde271ff58c1ebab9f8a0893a"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/SWIR1_30m.tif",
-      "size_bytes": 604616,
-      "sha256": "33dfc4f02620bce795ca4bac939a16dba9539838b94f79b8d31e2c61c37e7cd8"
-    },
-    {
-      "path": "data/satellite/landsat/1990/LT05_L2SP_129051_19901217_02_T1/SWIR2_30m.tif",
-      "size_bytes": 549490,
-      "sha256": "8094f92a8e11525f0e413b494ce3ca208a2cc42af6dc9e451cfbc27a26a5b233"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/BLUE_30m.tif",
-      "size_bytes": 590895,
-      "sha256": "ec7cb76ae1fe5932212fa6add192e343c20969e32ab957d696c1cd299d218088"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/GREEN_30m.tif",
-      "size_bytes": 543596,
-      "sha256": "d6a2c6182416e2c2063ea8313d1aa90ff14122f0a60388357cbfec159be248bd"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/NIR_30m.tif",
-      "size_bytes": 613121,
-      "sha256": "a602bef65d1ee39619831a6935719afd018d309b817f9b8e655f3a448361dbaf"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 39744,
-      "sha256": "7608214830d5f95dfa86b59e87fd5fee7ee3ce6c20745cf64b5e4dfe06c92d0c"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/RED_30m.tif",
-      "size_bytes": 575052,
-      "sha256": "b3f22462d722a593042d776f6eb9f36e50647804d968838f3cf6448de9e38719"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/SWIR1_30m.tif",
-      "size_bytes": 625074,
-      "sha256": "87352b40a84213d0ffe393af84132131c684ff034f06288120e39ffd7f621d1d"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000111_02_T1/SWIR2_30m.tif",
-      "size_bytes": 546525,
-      "sha256": "eac126ddd05446b2abbee32f5cbc12557bf04efd6e84a223e91a0d2d8a2bd50d"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/BLUE_30m.tif",
-      "size_bytes": 556647,
-      "sha256": "d18691de578ea05adf02a99e5dc38f161e4c826551d98d1672678f8b3e056c25"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/GREEN_30m.tif",
-      "size_bytes": 492801,
-      "sha256": "3162b427d6bbee2b1d6f265f058a297e7ffb73b3761f7a03651797336d751fb8"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/NIR_30m.tif",
-      "size_bytes": 574416,
-      "sha256": "db5ebab2312dbe6e2abf3210dabe1315871c97aa1f70fc8cdd9b3dcae0ed406d"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 53555,
-      "sha256": "effee78848b3974d46f824c40e26e0738169ef9aedcfd293b4795a0d5582c92a"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/RED_30m.tif",
-      "size_bytes": 537203,
-      "sha256": "ce7d055752c6e37b7de53654ead7837ca26adbdb06b96b395027179fcaf69502"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/SWIR1_30m.tif",
-      "size_bytes": 598596,
-      "sha256": "0e742f2d02f08e3a0a0f2544f086a38f25d6ed4ac0582dfcf81de6c8d203e114"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000212_02_T1/SWIR2_30m.tif",
-      "size_bytes": 533117,
-      "sha256": "03e93b554052971aa88189ef8a04f492ee984b947ec6e851ed63fe871392c470"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/BLUE_30m.tif",
-      "size_bytes": 598720,
-      "sha256": "63389138f47399a037260f7c5e98a6ae4a553990b2efb10eba542c7dcabe2b55"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/GREEN_30m.tif",
-      "size_bytes": 553839,
-      "sha256": "776cf54622fe404399e91aa075d6c5d24f4f0d2e8cf2593a875e7c3edb93054d"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/NIR_30m.tif",
-      "size_bytes": 625173,
-      "sha256": "c07cbe7bc3c9856db2072c8bc06f3ae2d018dedde0053444936b1e62d4c98f8d"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 34394,
-      "sha256": "c247b990b230978b94f8cabdd13048a25f2441cdb72bcf18ee56b935ea315824"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/RED_30m.tif",
-      "size_bytes": 587902,
-      "sha256": "5f6790b1b91b1cc7465caa4b1d89f55ada238e76c1b264371128ca3e8b09abd7"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/SWIR1_30m.tif",
-      "size_bytes": 623266,
-      "sha256": "1a2903811e1888d09403071578bf813599971ebb02946902e732073b84fd4bc7"
-    },
-    {
-      "path": "data/satellite/landsat/2000/LT05_L2SP_129051_20000228_02_T1/SWIR2_30m.tif",
-      "size_bytes": 544333,
-      "sha256": "708a5b6982956397bdc6b9f9f50dc798776bc2288d4924089533e947d257cd89"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LE07_L2SP_129051_20090417_02_T1/BLUE_30m.tif",
-      "size_bytes": 480552,
-      "sha256": "c22ba3ad5e2ac94f0cbbfa5ab7cf04ce0b9b07e9c248b1ce89042758c0a9c5ae"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LE07_L2SP_129051_20090417_02_T1/GREEN_30m.tif",
-      "size_bytes": 478610,
-      "sha256": "0b4e509d37ab54ef8d24f2c956f1b46be230c6bb2315d272a827896c99e83122"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LE07_L2SP_129051_20090417_02_T1/NIR_30m.tif",
-      "size_bytes": 490929,
-      "sha256": "3891756c43c3746e86e6575687d8718f517b4c764c7543d432443f4b6ad90054"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LE07_L2SP_129051_20090417_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 33684,
-      "sha256": "79679e6de73c00efc2ba6b057e2fff0d675557e4134209f019793db2dcf43762"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LE07_L2SP_129051_20090417_02_T1/RED_30m.tif",
-      "size_bytes": 501766,
-      "sha256": "385e91f90baa8ce71e35d569dc5c71f71f09e347757b0ffeb26b4d242348bb3f"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LE07_L2SP_129051_20090417_02_T1/SWIR1_30m.tif",
-      "size_bytes": 489861,
-      "sha256": "294b869e1b72092e5246164ecb1b59fdbc773f2d92da6bdd75e28d6d19e81b44"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090103_02_T1/BLUE_30m.tif",
-      "size_bytes": 600934,
-      "sha256": "1d6de95e471d3372b973984a1c60aabcff414a7362aa14055c327d83bfe40680"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090103_02_T1/GREEN_30m.tif",
-      "size_bytes": 550801,
-      "sha256": "83e93d12a18362b3971ff2856c44bbc0db7619ad211bb6808f0d5275c08d8647"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090103_02_T1/NIR_30m.tif",
-      "size_bytes": 618790,
-      "sha256": "2ceb0fd02ea89d3d30e8d235aef3ad7901e8920bb592ac9c3b85687a2ad516f9"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090103_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 34364,
-      "sha256": "3757241a3b6d8b52426f81f1ef0b0145e83384b3dd5b1016adeeeb8a814bf3a0"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090103_02_T1/RED_30m.tif",
-      "size_bytes": 576508,
-      "sha256": "0d17e7a3cf8837d1671df296dd48d80bd1376af0674b85df2d9fee4212f977ec"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090103_02_T1/SWIR1_30m.tif",
-      "size_bytes": 613280,
-      "sha256": "8752465b94b52a2e16ae238e5912ab6c5bb22773c4e18102019a5fbb3d051881"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090220_02_T1/BLUE_30m.tif",
-      "size_bytes": 563130,
-      "sha256": "13887e40d4ec1597aa44a55c75c5bc17278c5b788c47739bfeeaeb29038cbc5d"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090220_02_T1/GREEN_30m.tif",
-      "size_bytes": 502411,
-      "sha256": "c7d8ca9b6b796edc4fb3ae24b991b31be20b1d8d5a876c5b7eaa393f2a336175"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090220_02_T1/NIR_30m.tif",
-      "size_bytes": 584744,
-      "sha256": "4590d3015c9719176389f8f0615d689374467679a098b2c1149c436d3ae9771f"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090220_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 33702,
-      "sha256": "87305ac97805f6bbf9e7f584340358ca214dccc7e296dbe852d836d72e05e176"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090220_02_T1/RED_30m.tif",
-      "size_bytes": 540023,
-      "sha256": "a064a354f2b285adce17d044b1d952432993c4f9f6175ad422fe7427bd54c0ad"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090220_02_T1/SWIR1_30m.tif",
-      "size_bytes": 605633,
-      "sha256": "32c0bb2131a35234a0d5d6824f8cbaa9813c29866945abcf0b02728765760b02"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090425_02_T1/BLUE_30m.tif",
-      "size_bytes": 589110,
-      "sha256": "1b57d04428150fab77654a4f5cd4cc4aff5041b2e1a96a6d82861d8e4587070e"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090425_02_T1/GREEN_30m.tif",
-      "size_bytes": 521675,
-      "sha256": "719b466b6dfd3825b3953938ca39888911a58002a4241bc96a8da33944c65682"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090425_02_T1/NIR_30m.tif",
-      "size_bytes": 650741,
-      "sha256": "8fe103d6fbf8aaf9b57d2f7f48ff8c4b670df096568d5d0181c3f4a8b6a6b252"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090425_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 28235,
-      "sha256": "40435c047d66e74dab09e321c5c07d8947ac82f041b811404d68ce5a824cea05"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090425_02_T1/RED_30m.tif",
-      "size_bytes": 572875,
-      "sha256": "82ba93aa54f6051384282a75de3d00c9e19f361575f3ba466a0a09847126b488"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_129051_20090425_02_T1/SWIR1_30m.tif",
-      "size_bytes": 650828,
-      "sha256": "3178de1de9846ecfe15fd12c2a31ffe40472b4849a205fee5a89686f99fd24f4"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090110_02_T1/BLUE_30m.tif",
-      "size_bytes": 6542,
-      "sha256": "38f35091e75b060041699bb4ea51fc44f53c2b5e134218dd426cd6e189f8d81d"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090110_02_T1/GREEN_30m.tif",
-      "size_bytes": 6405,
-      "sha256": "b7eb199182008d139e5dff4f2cb91e238bc64c72f08053e038c25f60ede0e29c"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090110_02_T1/NIR_30m.tif",
-      "size_bytes": 6744,
-      "sha256": "327cebb6e963b09d94d467bdb22c10e2e338e7a38692e6eb03c7a68aaffa2863"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090110_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 7869,
-      "sha256": "3f57d6e158182bb90737ccb0eddca50cf0a0a4c0b089ce1c327a5e2af875642c"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090110_02_T1/RED_30m.tif",
-      "size_bytes": 6520,
-      "sha256": "88d5766434f19b41bf17ecf7b45398d5a80ddceb74c705a4c8cc703a01198f49"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090110_02_T1/SWIR1_30m.tif",
-      "size_bytes": 6588,
-      "sha256": "669c49575d04adfe837c99ef28f345e683262e404562037d5d2dcc4051886137"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090126_02_T1/BLUE_30m.tif",
-      "size_bytes": 5002,
-      "sha256": "3e2560d52c3e9e9911fdca4faa709715f0a7fbbfdf89912f4dcc86537ec235fb"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090126_02_T1/GREEN_30m.tif",
-      "size_bytes": 4988,
-      "sha256": "c166c9601cb23d3b16ec95b921fb42fe8eae4d61f8b37781fcca2cc596698837"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090126_02_T1/NIR_30m.tif",
-      "size_bytes": 5128,
-      "sha256": "17c073e98e5c3c6317d3669f8935964a35d63cab231dbc6d2dd955343e8b2caf"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090126_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 8042,
-      "sha256": "6290eba7e4cba6a64ccb5e36665d12b0cec59ac09b7cbc66fa21b6203785aaef"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090126_02_T1/RED_30m.tif",
-      "size_bytes": 5021,
-      "sha256": "1dda4fd07f4b6d14bf1ed92cfa07e92639f655a708cfa99ef333aafa85a98ab9"
-    },
-    {
-      "path": "data/satellite/landsat/2009/LT05_L2SP_130051_20090126_02_T1/SWIR1_30m.tif",
-      "size_bytes": 5090,
-      "sha256": "0012d846583f3eff24f62d8a468843cb25d1ff12dc7cd030ba7bc75aede6ddd2"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/BLUE_30m.tif",
-      "size_bytes": 464428,
-      "sha256": "755ce6db4d64cc07e00582cfe28da6ee8f5e90e150da9fc3b6f3b51220121a9c"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/GREEN_30m.tif",
-      "size_bytes": 453199,
-      "sha256": "c5cd153af690faad388f88085666917ad63bb26110d7ac2ff18df9d66c08b846"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/NIR_30m.tif",
-      "size_bytes": 478861,
-      "sha256": "60f8be8b9f76a52e6a52c19b7e6faeb3f00bb32a8de235f262398032326b2f56"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 38138,
-      "sha256": "abf9c90f279f0082c6141240d711851d911e8da17b3931725a14156b47c69763"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/RED_30m.tif",
-      "size_bytes": 488464,
-      "sha256": "c1bd2be47ef0e3df49cdc0f8182760fcb07ff2ae9f61055c4e727a8a8aa2eb19"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/SWIR1_30m.tif",
-      "size_bytes": 475766,
-      "sha256": "e5b8198008ea4848031969d110fa2882f3de8dfa8bbcc2879277fb27e83b2c3d"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100215_02_T1/SWIR2_30m.tif",
-      "size_bytes": 451598,
-      "sha256": "5d42e6d85870e7fc2c6f31dc5e1c73558a48f70b3407d2e07fc48cd01e869b14"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/BLUE_30m.tif",
-      "size_bytes": 456286,
-      "sha256": "e57189ef177146794167786411e07d2b42058ab9a5f74878fc61d569b39fb2f1"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/GREEN_30m.tif",
-      "size_bytes": 452756,
-      "sha256": "3f57013734576080bd0c8734bf073b4e630f4bf2b255155e9c65e0655c4cde4d"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/NIR_30m.tif",
-      "size_bytes": 484009,
-      "sha256": "8fe9d9dd68071bb6306062bc057f3352b47f03aaa5f45b98dbf7faf990215475"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 33499,
-      "sha256": "ebe7bd66c5c46bcec7a0a737c776240d85b1639236489c488007401f7ee0e3f7"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/RED_30m.tif",
-      "size_bytes": 483792,
-      "sha256": "1d674667bd958953705c26eb5d717f2668408c15207f280b4d8f3bad7ca4c50a"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/SWIR1_30m.tif",
-      "size_bytes": 478809,
-      "sha256": "3ada40522f797c5779cd9d9e3911bc05cb58fc650505b2da59e2ce33506ddba9"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20100420_02_T1/SWIR2_30m.tif",
-      "size_bytes": 456032,
-      "sha256": "ed4f60cf4dac3de0a11e36a5bc2783b1513ae8faa990ec0b1d75e33b81a73399"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/BLUE_30m.tif",
-      "size_bytes": 466769,
-      "sha256": "8e7393174773d5e57d64d0577959b6d8c7d37db1f218ffd3877fcc20e87a24e7"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/GREEN_30m.tif",
-      "size_bytes": 466332,
-      "sha256": "200ac878609b25ddf22da170512861207d54a242dbccad9eeeaeb6cb5303d145"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/NIR_30m.tif",
-      "size_bytes": 480225,
-      "sha256": "9ff1e394a1c871652870e72ffaf5d68ccf6bbfdce1b67951d1a11f804ec92244"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 35162,
-      "sha256": "d3e34e706a1838fd8eccfbfa6421fbc7f5499e0b3fc20fe75177712fd30bb84e"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/RED_30m.tif",
-      "size_bytes": 481257,
-      "sha256": "e7f5bb2bb5ce5fa0e211c8e9f35d2e935c663b23a6ccd1a28551dc4390bf57ed"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/SWIR1_30m.tif",
-      "size_bytes": 474047,
-      "sha256": "fe2f38b04aa749c86977a8aae9eb6155f896a142e0c4af9e767c5befcba87667"
-    },
-    {
-      "path": "data/satellite/landsat/2010/LE07_L2SP_129051_20101114_02_T1/SWIR2_30m.tif",
-      "size_bytes": 445983,
-      "sha256": "d81e2c118997077be04301f34af03c113d3e9245b01ed1844cfc4d6e3b90ec37"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/BLUE_30m.tif",
-      "size_bytes": 674352,
-      "sha256": "8f93d7ade264964d5c56b736019438e0038c805006aa38ba92bae3e20d72ec4a"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/GREEN_30m.tif",
-      "size_bytes": 681557,
-      "sha256": "b45b0e6cafaeb1e89d65e7ddfe222cbcecb0ef58b2365093c95e315130b451e7"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/NIR_30m.tif",
-      "size_bytes": 697795,
-      "sha256": "42f2e1b34252b7219744fe83a05cfe98354228f0d528b4978b5039aa53f3c7f6"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/QA_PIXEL_30m.tif",
-      "size_bytes": 34687,
-      "sha256": "0130ead37693350b3533ca588accfa0406b3d302bd39ec56c04d473034d4a17f"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/RED_30m.tif",
-      "size_bytes": 691591,
-      "sha256": "03112e38b995dec44a85973caf6e185089766b82fa31ba68a572a20ebe966432"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/SWIR1_30m.tif",
-      "size_bytes": 674260,
-      "sha256": "28e6e535203b7f9784bc0abbbdba4c196517d7450d51c3ba4e51ffd1803ed188"
-    },
-    {
-      "path": "data/satellite/landsat/2025/LC08_L2SP_129051_20250216_02_T1/SWIR2_30m.tif",
-      "size_bytes": 647156,
-      "sha256": "5bc979ee7d819cc77679ea1149f73a7f553cc8ff08a1510609f2fb4fd5d08985"
+      "path": "data/previews/sentinel2/2025/S2C_47PQQ_20251221_0_L2A_rgb.png.json",
+      "size_bytes": 454,
+      "sha256": "4533227c548e3f4e614cfec764160e8e69230b0c616016b3cc843e4e793d9de1"
     },
     {
       "path": "data/satellite/landsat/2025/LC09_L2SP_128051_20250116_02_T1/BLUE_30m.tif",
@@ -1377,799 +897,114 @@
       "sha256": "7c77e9e1b029b851ae59c6a98ec78962e2795d90005ccc6c61836fee9e4064f1"
     },
     {
-      "path": "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159/VH_10m.tif",
-      "size_bytes": 3942854,
-      "sha256": "2a741711a0af04c0387449037667f9dca71507e91d6a46e88483b61e53cfc54c"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B11_20m.tif",
+      "size_bytes": 771241,
+      "sha256": "acf0661c343acead5a09b39f030ec4925f7524298a04a228cc9d89618de123bf"
     },
     {
-      "path": "data/satellite/sentinel1/2025/S1A_IW_GRDH_1SDV_20250719T230947_20250719T231012_060159/VV_10m.tif",
-      "size_bytes": 4778144,
-      "sha256": "e776726a2be5b5ff418166a72e3f5c99bd5aa36c8709e13443f57c2797b1993f"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B12_20m.tif",
+      "size_bytes": 750752,
+      "sha256": "a57562799d819acfc309e344ace95acec12a1622ce5541c7d812cdc73abe9ef1"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817/B11_20m.tif",
-      "size_bytes": 1273138,
-      "sha256": "0508e1f78e4f55c290232e7e284bd73e1fb27ed66d82f9315c38c803f5d64c5d"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B2_10m.tif",
+      "size_bytes": 2709771,
+      "sha256": "875244f1a04df32d0596979e3cefd8ea0365614f140a5405e23e2df36035d003"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817/B2_10m.tif",
-      "size_bytes": 5293131,
-      "sha256": "7b197baa22493f7f0246a3cbf3a4830cb392f35d6874c7aab97a493f690fc5f0"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B3_10m.tif",
+      "size_bytes": 2801284,
+      "sha256": "123edb66dbd5f40010bc19c4af0461dfb5261d456a5d12269b0719981ad97e86"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817/B3_10m.tif",
-      "size_bytes": 5328449,
-      "sha256": "ff909e3c35cc5d2d5427d35a47d2b52b36bb041606d59df15c4f3dfb6a593728"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B4_10m.tif",
+      "size_bytes": 2899911,
+      "sha256": "bccd18d396510352f58572ece3317791fce9be2626885855c8e07211b14f2de0"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817/B4_10m.tif",
-      "size_bytes": 5292431,
-      "sha256": "97c88951b9a76893e8a6b0253f74734203c22a4db0ed9d308130799190ebd06e"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B5_20m.tif",
+      "size_bytes": 734231,
+      "sha256": "f6a2d6575a44ba5017d0b663ce94b4998a70a5375ccb9b8ec899547b48c856ee"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817/B8_10m.tif",
-      "size_bytes": 5464148,
-      "sha256": "e06dcf8ff5a6db745bb89e324acfb4aca15afe08051144efb9a997f0f6add5e6"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B6_20m.tif",
+      "size_bytes": 766080,
+      "sha256": "021b2e9810393642f3fd2245d54e06037c558468b12fed2de22a9b3f9b2e7975"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817/SCL_20m.tif",
-      "size_bytes": 94826,
-      "sha256": "55f494c395eeb7265954499b67f0d4cf1f72a18af52e688852116a2cc39dce04"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B7_20m.tif",
+      "size_bytes": 777987,
+      "sha256": "f6da0526ae1e860acf2bc9067a0d6cb5b5e595706bb73b34ac4103b34f94c6b6"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170226T033711_R061_T47PPQ_20210208T171545/B11_20m.tif",
-      "size_bytes": 1297351,
-      "sha256": "3432eff25912be7458b33a3ff293ed40caae0649d2f5ce236acff62b09d6c2d8"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B8A_20m.tif",
+      "size_bytes": 781581,
+      "sha256": "d9c40cf7fc98b2e300f1bf60a27aab3475528e331b3288d2c2f519e3d932992f"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170226T033711_R061_T47PPQ_20210208T171545/B2_10m.tif",
-      "size_bytes": 5129987,
-      "sha256": "31a4b35cb97434c54d74fb5f62a4d4e4329d8ea9d052eee47da3c46d48c768ad"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/B8_10m.tif",
+      "size_bytes": 3086069,
+      "sha256": "a43f52ed48ee44ee2639c0030c77b5994c728ee12602d17a560b69af62977b3a"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170226T033711_R061_T47PPQ_20210208T171545/B3_10m.tif",
-      "size_bytes": 5169639,
-      "sha256": "cb999feae5d5c46f4b045dc18bb6427c6784fb89edc9d4a3558ded9f498e219c"
+      "path": "data/satellite/sentinel2/2018/S2B_47PQQ_20180206_0_L2A/SCL_20m.tif",
+      "size_bytes": 83438,
+      "sha256": "0e4c710569a151f2e647314a2267622326bc068ec38ebbf2362d07323a008522"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170226T033711_R061_T47PPQ_20210208T171545/B4_10m.tif",
-      "size_bytes": 5347625,
-      "sha256": "7fd8e5fef78151c16183aec7ae1c91bdc86afff7fd3cd4b66157ec0a3e7ad9f7"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B11_20m.tif",
+      "size_bytes": 766760,
+      "sha256": "a53896e95f3d51bfce5aa079164f032eb7277ff448462abdcad0cc3d5eacbe8e"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170226T033711_R061_T47PPQ_20210208T171545/B8_10m.tif",
-      "size_bytes": 5498304,
-      "sha256": "4a8f0bae51807ea3beaa557c19d002dc09a7623ee3e0a22e17a37fe0e3d76669"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B12_20m.tif",
+      "size_bytes": 746088,
+      "sha256": "c6ff374dcb11b2cc82d889540f438b183498de393b26ddb6fcd9ba18aa13f8d1"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170226T033711_R061_T47PPQ_20210208T171545/SCL_20m.tif",
-      "size_bytes": 101150,
-      "sha256": "6db66ef288fcc48bec0826e2e9cd9a1f6d16948fdb1f3249dfc3fc855b07e4ee"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B2_10m.tif",
+      "size_bytes": 2827148,
+      "sha256": "dbc5cc0a1e41df792328cae85a60c4b378879b981c6d9476c03a9cf1398ff892"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170427T033541_R061_T47PPQ_20210209T105931/B11_20m.tif",
-      "size_bytes": 1420450,
-      "sha256": "cadef5bdaa513ee2ebd2d3ae4b21a17cc5851527d0577fba98d50a56b8e134d8"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B3_10m.tif",
+      "size_bytes": 2921473,
+      "sha256": "aaeae4a1e1040da9a1f2c89f36a6e7ed07c5752539c0e8435c22f7c5e6ed9b82"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170427T033541_R061_T47PPQ_20210209T105931/B2_10m.tif",
-      "size_bytes": 4994116,
-      "sha256": "71f7ab854c202526a46b1e82374ca5bc296995d06a8e5d92162bbdc95ec7bcf5"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B4_10m.tif",
+      "size_bytes": 2965570,
+      "sha256": "f00ff8f6c283a7d816f34cdd6b4ff612b2601b7579f6b7bb36ef3b9b70f268d7"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170427T033541_R061_T47PPQ_20210209T105931/B3_10m.tif",
-      "size_bytes": 4838792,
-      "sha256": "930e54731ef040cae6d8982f570fc89845f3ff9b86d5528669a8885a3f1ddbb5"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B5_20m.tif",
+      "size_bytes": 747346,
+      "sha256": "fafd2aa07c96ac50a794a1d1dc35142d725e83bdb599b6a3b34ac9bdaf4a5112"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170427T033541_R061_T47PPQ_20210209T105931/B4_10m.tif",
-      "size_bytes": 5329098,
-      "sha256": "17365f70d5cc107688be447ee8c56ac32043a69f17912bc7110a099da77535bf"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B6_20m.tif",
+      "size_bytes": 760417,
+      "sha256": "677a044aec21a44ddc03545c345a1d4308ca4088a9c525e5bcd97fea2a3e58ae"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170427T033541_R061_T47PPQ_20210209T105931/B8_10m.tif",
-      "size_bytes": 5723235,
-      "sha256": "c612493c5273b7b1a0fccd5f9db600340fce0d0c0db8fb160cb9496872c551e3"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B7_20m.tif",
+      "size_bytes": 771168,
+      "sha256": "dbacdb0652e0f934873a5e3e3c6742c781b3a7c3f69849655e14e7989338e48a"
     },
     {
-      "path": "data/satellite/sentinel2/2017/S2A_MSIL2A_20170427T033541_R061_T47PPQ_20210209T105931/SCL_20m.tif",
-      "size_bytes": 95936,
-      "sha256": "87680206beae785a984255e9dda38970adbec57fbed73ee59b0cc68f621d8835"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B8A_20m.tif",
+      "size_bytes": 775396,
+      "sha256": "6972981fd126fcd1d82c6daa7b0d379e9b41634b37a125ceeea55ec8e7b0deb8"
     },
     {
-      "path": "data/satellite/sentinel2/2018/S2A_MSIL2A_20180303T033641_R061_T47PPQ_20201013T055010/B11_20m.tif",
-      "size_bytes": 1314048,
-      "sha256": "d707c2abb87f04f549f765850bc32e24e09646d1c14b43dcfc4fdcd8becf9759"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/B8_10m.tif",
+      "size_bytes": 3059016,
+      "sha256": "9b31a0943eae4eeadf0e87a38e2c240c1dc98f6321ceabb86bd255a843552447"
     },
     {
-      "path": "data/satellite/sentinel2/2018/S2A_MSIL2A_20180303T033641_R061_T47PPQ_20201013T055010/B2_10m.tif",
-      "size_bytes": 5174897,
-      "sha256": "71576a2f6fb39fe4a406fae5348fe939b6e08b463c8e3d3d0c58962cff82a2b3"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2A_MSIL2A_20180303T033641_R061_T47PPQ_20201013T055010/B3_10m.tif",
-      "size_bytes": 5181871,
-      "sha256": "01caf1c14f62a7e9e215e9d30531ac0631498f0cb435f44a163f33ce104f7d31"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2A_MSIL2A_20180303T033641_R061_T47PPQ_20201013T055010/B4_10m.tif",
-      "size_bytes": 5416448,
-      "sha256": "0065e2b127cf475109c2c27a65a7b69bd68e439c27ae2e994bc43e7fa18eaf73"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2A_MSIL2A_20180303T033641_R061_T47PPQ_20201013T055010/B8_10m.tif",
-      "size_bytes": 5552906,
-      "sha256": "2af3df8f9cfec029d751fc779526fdd3e90ceeda040afc8e447f849046d05ed2"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2A_MSIL2A_20180303T033641_R061_T47PPQ_20201013T055010/SCL_20m.tif",
-      "size_bytes": 96548,
-      "sha256": "241f3ee491376780899937b889f7b1e26489541716c79887043d86fbdb2289f1"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_47PPQ_20180206_0_L2A/B2_10m.tif",
-      "size_bytes": 4889153,
-      "sha256": "9358f0bf4399823068941b3e9a2d4516e1a71cb6149130f0f16d8b460d216d09"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310/B11_20m.tif",
-      "size_bytes": 1267170,
-      "sha256": "c46b7c9c4facf2525f7bc7e3db06cc8f86286121d21f539aa625eb144ff5506d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310/B2_10m.tif",
-      "size_bytes": 4940264,
-      "sha256": "d936c3963400fc6edf7a840d191cdbd3dd8004cebc2f0d18a88e7b164c12e6ab"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310/B3_10m.tif",
-      "size_bytes": 5010235,
-      "sha256": "c085624dd27918f740d78c8e7c65b8f28cb2d4931b5cad29932f56a93a6daa3d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310/B4_10m.tif",
-      "size_bytes": 5249692,
-      "sha256": "830e4757933ae9c7dfe60513788b76480c76177037ff7b349aa9295a43f20215"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310/B8_10m.tif",
-      "size_bytes": 5463669,
-      "sha256": "4709c0d73d09773762d1dcf20083736486e1a2657bb468766fd612a6535baa41"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310/SCL_20m.tif",
-      "size_bytes": 96628,
-      "sha256": "683030f4a98cbf621ecb4e1d655f25520b0fb05e807993b151049407fd589de0"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180308T033559_R061_T47PPQ_20201013T080519/B11_20m.tif",
-      "size_bytes": 1280616,
-      "sha256": "32fb671ae473d4be5a9a116ec571f07c08180e8ab7c542708d589af28a684846"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180308T033559_R061_T47PPQ_20201013T080519/B2_10m.tif",
-      "size_bytes": 5214170,
-      "sha256": "615f12aeeaeea9ea518129e523c5f8378329ef6cdaeeb39d531841592f517695"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180308T033559_R061_T47PPQ_20201013T080519/B3_10m.tif",
-      "size_bytes": 5274116,
-      "sha256": "52f7300db8613df59c74f16881a2d979f65395bac442f3625812fb8bebaf6a34"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180308T033559_R061_T47PPQ_20201013T080519/B4_10m.tif",
-      "size_bytes": 5384247,
-      "sha256": "e197650c9467c4a83fe578bdf3970595783eeac29f4a2bf10d6ec427ee07e631"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180308T033559_R061_T47PPQ_20201013T080519/B8_10m.tif",
-      "size_bytes": 5410270,
-      "sha256": "816e6b38aaa5f5c0df565c2de1bb1031568f24616744408f9fad492173101452"
-    },
-    {
-      "path": "data/satellite/sentinel2/2018/S2B_MSIL2A_20180308T033559_R061_T47PPQ_20201013T080519/SCL_20m.tif",
-      "size_bytes": 101496,
-      "sha256": "03762b21e4230b0814e588ca7bcf41491dc28de1ec408c88c8b07ffb072a12b9"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2A_MSIL2A_20190417T033541_R061_T47PPQ_20201007T030428/B11_20m.tif",
-      "size_bytes": 1390443,
-      "sha256": "45451bed99b44eca3cad00e32e7855c1f63b30b8b2315814ecafa6b10e970264"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2A_MSIL2A_20190417T033541_R061_T47PPQ_20201007T030428/B2_10m.tif",
-      "size_bytes": 5423597,
-      "sha256": "56234696e8ed40d62e83477f0937c958e60148144a18160065a88f395e599a86"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2A_MSIL2A_20190417T033541_R061_T47PPQ_20201007T030428/B3_10m.tif",
-      "size_bytes": 5445081,
-      "sha256": "1daf85a51caff6041ed933a9f1b8daa66416a34484d99afcd92d9fc56d1aaff3"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2A_MSIL2A_20190417T033541_R061_T47PPQ_20201007T030428/B4_10m.tif",
-      "size_bytes": 5666132,
-      "sha256": "92e220d5edcd2b6bebc9d8a2319f44dacefc213eaebf7a738ceecddc11c4e5fb"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2A_MSIL2A_20190417T033541_R061_T47PPQ_20201007T030428/B8_10m.tif",
-      "size_bytes": 5756081,
-      "sha256": "e581d874a9123f4985e1f0353d717c426a05a73928323cb5ad7b9f5c17dce947"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2A_MSIL2A_20190417T033541_R061_T47PPQ_20201007T030428/SCL_20m.tif",
-      "size_bytes": 96777,
-      "sha256": "c2ba417c8c9f2b80e75563457e9918105466cc78752d348cd59b758e443d13b7"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190221T033749_R061_T47PPQ_20201007T191151/B11_20m.tif",
-      "size_bytes": 1273597,
-      "sha256": "05629fef097ad9befa5bef85314969ab21d8253d1f6975f6dd67f81c97845244"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190221T033749_R061_T47PPQ_20201007T191151/B2_10m.tif",
-      "size_bytes": 5221538,
-      "sha256": "dbda2b64864d8491a0fb49603291695742cc82aa95a4440b1b638f5b039a02bc"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190221T033749_R061_T47PPQ_20201007T191151/B3_10m.tif",
-      "size_bytes": 5169204,
-      "sha256": "9b47df46ce88e5ee3554f89bf140ceaebe609b2cb56763737fc5bbc87dad579f"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190221T033749_R061_T47PPQ_20201007T191151/B4_10m.tif",
-      "size_bytes": 5360520,
-      "sha256": "4da28a5b40717f052754e76fde2cfcac54b1ec762a67a7670a52b4e1d1696c99"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190221T033749_R061_T47PPQ_20201007T191151/B8_10m.tif",
-      "size_bytes": 5454370,
-      "sha256": "05ef54e96329c6464390cb09c30cf34d1f6bead978d7f3f5a0b35240b3160d02"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190221T033749_R061_T47PPQ_20201007T191151/SCL_20m.tif",
-      "size_bytes": 99154,
-      "sha256": "66f18f7810728649ef05ee7acadb6f1c26b22d3746fa6548f7f5451569cf7206"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741/B11_20m.tif",
-      "size_bytes": 1339091,
-      "sha256": "64541c73cd77f9a7e57418b2f0f61c861bf280de9e90b717ba7532ab8778b4d0"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741/B2_10m.tif",
-      "size_bytes": 5097862,
-      "sha256": "86b11476c46b38c072e5bcfcec3e0b8e3a67d5b2ce203d78fbac0c1d41b30594"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741/B3_10m.tif",
-      "size_bytes": 5042932,
-      "sha256": "1e9d9629d05cfc6c788f591a607ed89d4ba65493cde3c47e1f38eb50953d8716"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741/B4_10m.tif",
-      "size_bytes": 5389581,
-      "sha256": "cb29ee28799d7a5f909651623d32d855b40af3af0ea004356f1d39c937b5a4e6"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741/B8_10m.tif",
-      "size_bytes": 5621394,
-      "sha256": "5ac3cc8ec21cbbfc8e0dfa551151e9f4b9b281f73ab640f226f5e1eaf9b64c67"
-    },
-    {
-      "path": "data/satellite/sentinel2/2019/S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741/SCL_20m.tif",
-      "size_bytes": 95860,
-      "sha256": "e5dd7ebf6036489d03e721f88527fc3bf89142201f7841d4fd1c1de62f988229"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2A_MSIL2A_20200221T033751_R061_T47PPQ_20200927T123229/B11_20m.tif",
-      "size_bytes": 1324238,
-      "sha256": "bb6ab4f9d276541dcf85460fd9483a3fc7241a0dce2adccd1707ba8c07f6183a"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2A_MSIL2A_20200221T033751_R061_T47PPQ_20200927T123229/B2_10m.tif",
-      "size_bytes": 4584941,
-      "sha256": "0120e5c4743753f83f76339cea93ac8568691a0b60566a38cc6cd59e75e00f38"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2A_MSIL2A_20200221T033751_R061_T47PPQ_20200927T123229/B3_10m.tif",
-      "size_bytes": 4634409,
-      "sha256": "e43ded7878a437f7628f18c4bee1b3593c12c410c40d0ad90059c5148b836ce8"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2A_MSIL2A_20200221T033751_R061_T47PPQ_20200927T123229/B4_10m.tif",
-      "size_bytes": 5106281,
-      "sha256": "ad1bd217e8c5b43a9b247ba683db3ebcfbecc58fc0d8a33e790ddc667c1dc87d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2A_MSIL2A_20200221T033751_R061_T47PPQ_20200927T123229/B8_10m.tif",
-      "size_bytes": 5689238,
-      "sha256": "76eed935ed864ed06690246807469a927287e6a81b7e62ca00473bd97e9f165b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2A_MSIL2A_20200221T033751_R061_T47PPQ_20200927T123229/SCL_20m.tif",
-      "size_bytes": 92654,
-      "sha256": "94b67f2b0a95092347ded58dc3ae248ac9b3a55eab916478e132b1d657e53142"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200107T034129_R061_T47PPQ_20201029T120132/B11_20m.tif",
-      "size_bytes": 1258816,
-      "sha256": "6566b0f66a6ed4d5a110811ead4cdb8f982e5a0976f5613ad7425e08b1ba6cce"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200107T034129_R061_T47PPQ_20201029T120132/B2_10m.tif",
-      "size_bytes": 5376945,
-      "sha256": "607db229b32c38600273f7a8047b659dc2522764b1feeb8cea25573f1b375917"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200107T034129_R061_T47PPQ_20201029T120132/B3_10m.tif",
-      "size_bytes": 5471507,
-      "sha256": "aaac7023b98e52d6fbb2113d773cb69d0e340f5753bbfee4e9814d5049e88d89"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200107T034129_R061_T47PPQ_20201029T120132/B4_10m.tif",
-      "size_bytes": 5376273,
-      "sha256": "30c1056fc251a88c00bcb51798112cf990194a960cd23b9736f37870224e8cb7"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200107T034129_R061_T47PPQ_20201029T120132/B8_10m.tif",
-      "size_bytes": 5297945,
-      "sha256": "da744ea888f5713bfc0854cce95a74fdda7c30d7afa5b2349320576a7f9bdb24"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200107T034129_R061_T47PPQ_20201029T120132/SCL_20m.tif",
-      "size_bytes": 100974,
-      "sha256": "a1b51005718ad049ee7fd1df845502a84d8e6f5dbb0fe0d9b3461626710b4392"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351/B11_20m.tif",
-      "size_bytes": 1118909,
-      "sha256": "7ac4fda3bd286f4d9e7124cf90e8abd66a384fe8aafc50d3431c6a3a21aa7fb9"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351/B2_10m.tif",
-      "size_bytes": 5459506,
-      "sha256": "4a1281ccb2c37bfaa7eda6b54008e0e864c94311a817004b977d03d44084f701"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351/B3_10m.tif",
-      "size_bytes": 5509115,
-      "sha256": "0a0e73cfd5615d46b3a343bc98422fb4df0fde6d90e2c93c9b400059c0f7cb4a"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351/B4_10m.tif",
-      "size_bytes": 5533960,
-      "sha256": "08a2714eee1bb77ec19b6bc36fbc9a28e145b5ae4fb601a53ba7e6e2c7c50c7d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351/B8_10m.tif",
-      "size_bytes": 4888613,
-      "sha256": "cbea21cc6305633a4cec2851ef8c8b9ef1733e642c9a9876c2f396ba88dc94b2"
-    },
-    {
-      "path": "data/satellite/sentinel2/2020/S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351/SCL_20m.tif",
-      "size_bytes": 101430,
-      "sha256": "6944b3e93892e159a2e36fb76fb57715360e82a78938404d7a8a1034b23b3134"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210101T034139_R061_T47PPQ_20210101T215221/B11_20m.tif",
-      "size_bytes": 1344615,
-      "sha256": "a873ed43f72203b7a9d2b8a711869f1ba0b8e3cb2328ef5ddd65d9d01f14b64c"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210101T034139_R061_T47PPQ_20210101T215221/B2_10m.tif",
-      "size_bytes": 5278474,
-      "sha256": "2f12c0f59f64e55e260c07416f3758ded92e98450ce7299428e0e66d80d24d7a"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210101T034139_R061_T47PPQ_20210101T215221/B3_10m.tif",
-      "size_bytes": 5256148,
-      "sha256": "353dc7a6192fc41ff93807683a95e4572c41a0351a3bc6de86581f4610da3819"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210101T034139_R061_T47PPQ_20210101T215221/B4_10m.tif",
-      "size_bytes": 5439339,
-      "sha256": "9144da27c77805937aa0c9ea18b42a987acf70b1a2edd25d39e89c309f262a2a"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210101T034139_R061_T47PPQ_20210101T215221/B8_10m.tif",
-      "size_bytes": 5613231,
-      "sha256": "36032fe23f529d5a69baa230aaf25a6fbdf2db3b771473abbdad60d1a03103db"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210101T034139_R061_T47PPQ_20210101T215221/SCL_20m.tif",
-      "size_bytes": 101182,
-      "sha256": "14d1d9ae3a841f4e95df679362dc0b1b70a2f960d9c39d14c446b1b7bcdb22f8"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414/B11_20m.tif",
-      "size_bytes": 1277559,
-      "sha256": "c4e20e18aa3e7da4e5ed98c1a4b32c9b218ba2af3458565db23c1ffe86e02708"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414/B2_10m.tif",
-      "size_bytes": 5030004,
-      "sha256": "360b5fc503927a4acaf59971dba9ef7f5dcb877a8fec0d321f3559586eef3bbd"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414/B3_10m.tif",
-      "size_bytes": 5019816,
-      "sha256": "90dd86db68b6e7bf335acc0758657d8db2b40ff80008cff2f283ee891bd81126"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414/B4_10m.tif",
-      "size_bytes": 5257939,
-      "sha256": "947746b8993d6ad013707663a963e61ca390b14b2e6f306781a645e91b57920c"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414/B8_10m.tif",
-      "size_bytes": 5372511,
-      "sha256": "0534038775fcc316bddb2fc41b511f48b3311ef1fd2f5455c9b96f59f250ab3c"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414/SCL_20m.tif",
-      "size_bytes": 107692,
-      "sha256": "142f44cb80e91374b7a0d2df315161c2e0efce98f1ab928c78e9ba39f256ffd8"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210220T033759_R061_T47PPQ_20210220T142342/B11_20m.tif",
-      "size_bytes": 1287103,
-      "sha256": "d8cea82ecb9c63b8f0292eb71522217207091b70a4e7c1e7d5c1667e9afeb0c9"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210220T033759_R061_T47PPQ_20210220T142342/B2_10m.tif",
-      "size_bytes": 5155509,
-      "sha256": "83d70f7fba7fa4335a6cb72be1733ca3a47c1f235fd61f4c123ff2191bbae2d3"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210220T033759_R061_T47PPQ_20210220T142342/B3_10m.tif",
-      "size_bytes": 5211101,
-      "sha256": "05ba1506c9de64e341f5aecb364e6f613ef7933b08523526f8bc3b0bf094c181"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210220T033759_R061_T47PPQ_20210220T142342/B4_10m.tif",
-      "size_bytes": 5373912,
-      "sha256": "b0bbbff905b10c2bb50e0c82095eefbd53d92afe3092f9f4a9384dfe39bc47a5"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210220T033759_R061_T47PPQ_20210220T142342/B8_10m.tif",
-      "size_bytes": 5439060,
-      "sha256": "fdf00494344f16f6a02310e0928f195f731284aca98d8580af81c3e44eabc6f5"
-    },
-    {
-      "path": "data/satellite/sentinel2/2021/S2B_MSIL2A_20210220T033759_R061_T47PPQ_20210220T142342/SCL_20m.tif",
-      "size_bytes": 104193,
-      "sha256": "478305e012f59aae4b3af55c2cbc80a0157eb8a7244a63b0afb5e275b76f7418"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220131T034001_R061_T47PPQ_20220216T134036/B11_20m.tif",
-      "size_bytes": 1264201,
-      "sha256": "a1ce65b37f981f9df26a87d5f884739ee502597bb9d0bf59600a8c1c229f058e"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220131T034001_R061_T47PPQ_20220216T134036/B2_10m.tif",
-      "size_bytes": 5505196,
-      "sha256": "a7351b52c0c211212e05f50ebfb80cdb69711a3691d7de1f7a0e28581743b241"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220131T034001_R061_T47PPQ_20220216T134036/B3_10m.tif",
-      "size_bytes": 5510407,
-      "sha256": "dbe8d144fede17e13bb0b5fbe5e44d1f96008702dcfabcab433084508c460373"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220131T034001_R061_T47PPQ_20220216T134036/B4_10m.tif",
-      "size_bytes": 5490965,
-      "sha256": "7345b31c82da39bba8985319b8bd1662dd0e342068a14e6b640f69a7ba1191c7"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220131T034001_R061_T47PPQ_20220216T134036/B8_10m.tif",
-      "size_bytes": 5407148,
-      "sha256": "39163c0412ef3d48f6c97b9655b0c4bb896a0ae3adfcba49ab8e1f31eda2ba94"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220131T034001_R061_T47PPQ_20220216T134036/SCL_20m.tif",
-      "size_bytes": 90271,
-      "sha256": "705ede7e7feaa66bcd0c9b0189f63032879a30e68b973ae3486674a279948700"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220421T033541_R061_T47PPQ_20220421T223928/B11_20m.tif",
-      "size_bytes": 1335557,
-      "sha256": "b8c0044e714b66998af206f983b3a62250f37c7d47f3a1c5ec44e893cfb38ca8"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220421T033541_R061_T47PPQ_20220421T223928/B2_10m.tif",
-      "size_bytes": 5749293,
-      "sha256": "0a071a8d1e4d325d0fa90d621538931a8d2807be8e4a3c712b088ba72c04031b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220421T033541_R061_T47PPQ_20220421T223928/B3_10m.tif",
-      "size_bytes": 5652545,
-      "sha256": "70f6e2a9cc5e54890373f07e65c8a022bf87c986524687e86ec4bbad753d9134"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220421T033541_R061_T47PPQ_20220421T223928/B4_10m.tif",
-      "size_bytes": 5788431,
-      "sha256": "147114d8eecada066c02ccf19fa7df5addf85de4d7a464c5c862dda96ecd1bf0"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220421T033541_R061_T47PPQ_20220421T223928/B8_10m.tif",
-      "size_bytes": 5818608,
-      "sha256": "d62381266126a809d348bb26f954d978793e8e2ad8b07c18c4ba6b1ab4267fe7"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2A_MSIL2A_20220421T033541_R061_T47PPQ_20220421T223928/SCL_20m.tif",
-      "size_bytes": 85667,
-      "sha256": "0a9ddd28ad584c1f00da93551d586394da452dbb5cbdbf412d28c82c51c7e1cc"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715/B11_20m.tif",
-      "size_bytes": 1263623,
-      "sha256": "d95be434ecc8ef9ff5ad38d2d6c25c51d4bd625659eb1f113cf81be0d79d484d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715/B2_10m.tif",
-      "size_bytes": 5464131,
-      "sha256": "1ba6e35be8334c977a2eb01cacbd658889dd5342fd592bbfa2869f48c50189f9"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715/B3_10m.tif",
-      "size_bytes": 5469062,
-      "sha256": "352c1b9c499ad55d436679d77df86d6af4c6a9d1dc92e0b9423b21e98e20a3a4"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715/B4_10m.tif",
-      "size_bytes": 5401967,
-      "sha256": "e8a61defca9d84468732ac2d8badeb05fc6a985e6051a58e189e773fdd51edb9"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715/B8_10m.tif",
-      "size_bytes": 5286171,
-      "sha256": "65749c5791a40738bbab21e1a9c86b5a0ebd2a47ad09dfabe9b0eb04ae390e74"
-    },
-    {
-      "path": "data/satellite/sentinel2/2022/S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715/SCL_20m.tif",
-      "size_bytes": 103294,
-      "sha256": "afb044a65de1719b5fc6bb8c4c40ff3caae53c3e565c2068a7fcb4bb2ec84bf0"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230116T034101_R061_T47PPQ_20230116T130750/B11_20m.tif",
-      "size_bytes": 1270458,
-      "sha256": "f44b3775fa39aa8431497fa05d9f8d797aecd986a4cd84dfa2227beb6f0d9847"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230116T034101_R061_T47PPQ_20230116T130750/B2_10m.tif",
-      "size_bytes": 5437397,
-      "sha256": "5147b985c38181292a75ad75a27df3804ec0e2c8c2c313712fe71923914a6993"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230116T034101_R061_T47PPQ_20230116T130750/B3_10m.tif",
-      "size_bytes": 5455959,
-      "sha256": "395d8cbc95de801fdacac5e162856f4bb378df6a0dbcd5dc204aa43b4191b2f6"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230116T034101_R061_T47PPQ_20230116T130750/B4_10m.tif",
-      "size_bytes": 5381931,
-      "sha256": "5448cab6737d2dd0242b9d4a6bebc9ad967df899190c60107a4c0c470178a614"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230116T034101_R061_T47PPQ_20230116T130750/B8_10m.tif",
-      "size_bytes": 5419022,
-      "sha256": "5acd4b7d3ebedeeea88b99e1536b2b097d65a859cc2aa784d67f933bbcaba505"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230116T034101_R061_T47PPQ_20230116T130750/SCL_20m.tif",
-      "size_bytes": 88641,
-      "sha256": "eb1fc0c3b6b40bd8bfb538e1171d85e485d0c750ef67ba62faa23f78be913eb2"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230307T033611_R061_T47PPQ_20230307T092426/B11_20m.tif",
-      "size_bytes": 1312051,
-      "sha256": "a17fbb10e423c955c4c05235bce121f1a2a6bbe5a9bdb846ec06be92865a7adb"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230307T033611_R061_T47PPQ_20230307T092426/B2_10m.tif",
-      "size_bytes": 5687977,
-      "sha256": "e7e8117b3de54207b8ebf32c4477cf4d44e0d3a04e9e377f090b60857a4aa4d8"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230307T033611_R061_T47PPQ_20230307T092426/B3_10m.tif",
-      "size_bytes": 5610309,
-      "sha256": "63ad44e2624a6a441e9c07f3efc0285d87f70c96cbb1c206091c348694fb0b78"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230307T033611_R061_T47PPQ_20230307T092426/B4_10m.tif",
-      "size_bytes": 5665672,
-      "sha256": "fff0294d893880b2868a14fad557cff2ae40d8d12944f222c6b0a3e354c4f00f"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230307T033611_R061_T47PPQ_20230307T092426/B8_10m.tif",
-      "size_bytes": 5711904,
-      "sha256": "52398fab145451fe429e3c65ad9aca10d3a12123a541ff89755c5d7028afa869"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2A_MSIL2A_20230307T033611_R061_T47PPQ_20230307T092426/SCL_20m.tif",
-      "size_bytes": 75758,
-      "sha256": "c01f1858175067bfd4b16ae7e38453fb1d20af54b54d532bfe051d2a70256442"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2B_MSIL2A_20230421T033539_R061_T47PPQ_20230421T214437/B11_20m.tif",
-      "size_bytes": 1440947,
-      "sha256": "b046048faa0c42974fb084f520a4a47f1224003e2dad686725094bd576578e74"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2B_MSIL2A_20230421T033539_R061_T47PPQ_20230421T214437/B2_10m.tif",
-      "size_bytes": 5495101,
-      "sha256": "daeca5d26027b12c511bd1ffd3f499faf507e1c39ce0e151bb6d8b29caf08a8b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2B_MSIL2A_20230421T033539_R061_T47PPQ_20230421T214437/B3_10m.tif",
-      "size_bytes": 5484493,
-      "sha256": "9e735088d93cc161640ef11afbbc862668ab67e6d0dcbb9c81fcec31f409e1ed"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2B_MSIL2A_20230421T033539_R061_T47PPQ_20230421T214437/B4_10m.tif",
-      "size_bytes": 5709525,
-      "sha256": "ec5ce51a4c43505176d8749004084eabc8d0d3bf71bdbfe7b06cf0c25f46689c"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2B_MSIL2A_20230421T033539_R061_T47PPQ_20230421T214437/B8_10m.tif",
-      "size_bytes": 5922408,
-      "sha256": "eccc6037fcc0cad5091034703aeaef4a48179e8bdaf282315d02a8c88d88fc2b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2023/S2B_MSIL2A_20230421T033539_R061_T47PPQ_20230421T214437/SCL_20m.tif",
-      "size_bytes": 80291,
-      "sha256": "9387955b3f5b9ff95092a286377771acf507531104a8a7733cd46674c592ab69"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240101T034141_R061_T47PPQ_20240101T071808/B11_20m.tif",
-      "size_bytes": 1286776,
-      "sha256": "e55059cdb01f03a8f100e664ec772182b40363075dbe10123a530effd4c62465"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240101T034141_R061_T47PPQ_20240101T071808/B2_10m.tif",
-      "size_bytes": 5490649,
-      "sha256": "adf524f64a462bca67891a09f1ad86ff54782552872bffc5fe77619b19dc09cd"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240101T034141_R061_T47PPQ_20240101T071808/B3_10m.tif",
-      "size_bytes": 5491221,
-      "sha256": "d8a16852b3b85a1c5b389123c62d8fba2339885ed216421b88d487a9c69dabf3"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240101T034141_R061_T47PPQ_20240101T071808/B4_10m.tif",
-      "size_bytes": 5414362,
-      "sha256": "5980b9b41279258ce0a69fc70b206473ea26ba905ee72514f2a10d031730ce15"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240101T034141_R061_T47PPQ_20240101T071808/B8_10m.tif",
-      "size_bytes": 5442744,
-      "sha256": "db32705254fc4858ab2cdaf329ab1348a2f2ee33ae71bd98b202bbd7d9d460ad"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240101T034141_R061_T47PPQ_20240101T071808/SCL_20m.tif",
-      "size_bytes": 89297,
-      "sha256": "70af6b1ed5c8e3ab2e6972eb5d521f8f9083b3bfb5e95fae9b66586faa527991"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240420T033541_R061_T47PPQ_20240420T101520/B11_20m.tif",
-      "size_bytes": 1440404,
-      "sha256": "a14443d3d8a0d46d6c7bbe8566c2ce8b0b0d7ac8ff5596b552e25fe93f0cc7c2"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240420T033541_R061_T47PPQ_20240420T101520/B2_10m.tif",
-      "size_bytes": 5543472,
-      "sha256": "09b4057c47358aea9cdd1a513f47a263f012dbb7393f67e0a493308367bacb54"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240420T033541_R061_T47PPQ_20240420T101520/B3_10m.tif",
-      "size_bytes": 5498456,
-      "sha256": "7444e9c22222788c14e4bcce8888165044d3d92c898ddc1ee8fb8f99f2e22021"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240420T033541_R061_T47PPQ_20240420T101520/B4_10m.tif",
-      "size_bytes": 5726520,
-      "sha256": "6d43b4db2c8846b134fc313c983dd23345faa5e18837a48539000c507b77be42"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240420T033541_R061_T47PPQ_20240420T101520/B8_10m.tif",
-      "size_bytes": 5859010,
-      "sha256": "31b474ceddda2f8e5fe8a9b2756f00525071550884beea5a4145f0cc85fbe823"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2A_MSIL2A_20240420T033541_R061_T47PPQ_20240420T101520/SCL_20m.tif",
-      "size_bytes": 83686,
-      "sha256": "e03f830f6cd9eb0344e1a5a3fbd63a4f329d2893128a4039cba10e1a9815af62"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2B_MSIL2A_20240215T033839_R061_T47PPQ_20240215T081416/B11_20m.tif",
-      "size_bytes": 1291602,
-      "sha256": "7a765141e14ca2d01790d7643f1bbc21ade676d06993b3959800ce460fafa820"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2B_MSIL2A_20240215T033839_R061_T47PPQ_20240215T081416/B2_10m.tif",
-      "size_bytes": 5589305,
-      "sha256": "e4a114a6e87274feb57dbe6417731f54228163b0ef2a704fcdfed9c5385b7420"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2B_MSIL2A_20240215T033839_R061_T47PPQ_20240215T081416/B3_10m.tif",
-      "size_bytes": 5490079,
-      "sha256": "ab4e4c5d1e6dabb7ea01802db9f670c9ac781cee645ddca4a1f0a44446a21915"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2B_MSIL2A_20240215T033839_R061_T47PPQ_20240215T081416/B4_10m.tif",
-      "size_bytes": 5642328,
-      "sha256": "f67ef9d3d4ec0272b658db568c37e33d1b9cf0acbf52192518d3ce9225cb4f50"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2B_MSIL2A_20240215T033839_R061_T47PPQ_20240215T081416/B8_10m.tif",
-      "size_bytes": 5676017,
-      "sha256": "9e831899b3066ccf3d018ff96a347922c91547d2a2cf6faa45425cdd25edee7f"
-    },
-    {
-      "path": "data/satellite/sentinel2/2024/S2B_MSIL2A_20240215T033839_R061_T47PPQ_20240215T081416/SCL_20m.tif",
-      "size_bytes": 85682,
-      "sha256": "9d14bb8ee14225fdbb19702040f92940e57dc2acae564e8fbe057fb448a9937e"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20250115T034111_R061_T47PPQ_20250115T065649/B11_20m.tif",
-      "size_bytes": 1339012,
-      "sha256": "d39ea8a5ab8907a31c73428d7ae6f4f8e7ea04d8ab856d5edaea28bc892254d3"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20250115T034111_R061_T47PPQ_20250115T065649/B2_10m.tif",
-      "size_bytes": 5552088,
-      "sha256": "19b8dab7a10b356df6a9322fd12e59ef60ea60e30a9bd0f26122732f85ae04cc"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20250115T034111_R061_T47PPQ_20250115T065649/B3_10m.tif",
-      "size_bytes": 5532737,
-      "sha256": "e4bea48c701db10809786e9bb136c551bd04a04a8eafb9015ca346c4c44e0a10"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20250115T034111_R061_T47PPQ_20250115T065649/B4_10m.tif",
-      "size_bytes": 5519367,
-      "sha256": "4087d155ac094cdd5415059b9aae3608aaf3bbc29278f3b6f576437848326286"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20250115T034111_R061_T47PPQ_20250115T065649/B8_10m.tif",
-      "size_bytes": 5646655,
-      "sha256": "e9e8208490cf6a2eef90ed9f4991404053eb2a93d4c41c3fda453d42c372615e"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20250115T034111_R061_T47PPQ_20250115T065649/SCL_20m.tif",
-      "size_bytes": 89428,
-      "sha256": "addb690ae4f28eeda13c42265f9d766b9258be73757dd7069bc7b97cd656231d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20251203T034201_R061_T47PPQ_20251203T073813/B11_20m.tif",
-      "size_bytes": 1283203,
-      "sha256": "d826d37cfd7c9ac732586073fe6732011de98757ac605d5d15d7d8edc2345c2b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20251203T034201_R061_T47PPQ_20251203T073813/B2_10m.tif",
-      "size_bytes": 5524541,
-      "sha256": "3b149eae1c1e1636f661cd1e424857c77d5d13e10fe13a23c4645a561f9235a4"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20251203T034201_R061_T47PPQ_20251203T073813/B3_10m.tif",
-      "size_bytes": 5532779,
-      "sha256": "c106dfd0082615001befe53d0158fa6dc51637376a984e7af2cf0cf2fc7b4b91"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20251203T034201_R061_T47PPQ_20251203T073813/B4_10m.tif",
-      "size_bytes": 5469095,
-      "sha256": "e8b1403586a39684ae183f8727022ec8c0b96a8d544bfd141d37df2d4915fdd1"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20251203T034201_R061_T47PPQ_20251203T073813/B8_10m.tif",
-      "size_bytes": 5472854,
-      "sha256": "f1cc393d0001f3ed0fd8bafe5d917fbaca88460b75a2d1072411a59bf9bf394b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2A_MSIL2A_20251203T034201_R061_T47PPQ_20251203T073813/SCL_20m.tif",
-      "size_bytes": 87479,
-      "sha256": "da834eaccc33265c557f0e8b2db016aad250623b7fe8afac57b0bcc1365ca529"
+      "path": "data/satellite/sentinel2/2021/S2B_47PQQ_20211227_0_L2A/SCL_20m.tif",
+      "size_bytes": 80898,
+      "sha256": "6b861f4a0d44d39c97a9fab7298c415d09ca19e55010c5fe35c873c9dc7aa68b"
     },
     {
       "path": "data/satellite/sentinel2/2025/S2B_47PQQ_20250209_0_L2A/B11_20m.tif",
@@ -2227,275 +1062,65 @@
       "sha256": "04f186f3b9b7ca239d458766098ba1c124833d1b7b262b4dd4dc4b352da53b7d"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250301T033559_R061_T47PPQ_20250301T061709/B11_20m.tif",
-      "size_bytes": 1311667,
-      "sha256": "780a67b4c5a6aeac936d17b391e754d8cd2b294200efb786c45673044e67294a"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B11_20m.tif",
+      "size_bytes": 769868,
+      "sha256": "8b82528758e858e56eae678f0e09f92ed6c3529ecf9e17a91017843c72042520"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250301T033559_R061_T47PPQ_20250301T061709/B2_10m.tif",
-      "size_bytes": 5455402,
-      "sha256": "7baddea9af2bf01dcad9756435f912fdf0080f95f2f0df2c1ce37aa2682fb1ff"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B12_20m.tif",
+      "size_bytes": 742271,
+      "sha256": "dc7a2674a664a94f22aa01b00f42c98453a0614c350a43488637d617ce35ea1e"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250301T033559_R061_T47PPQ_20250301T061709/B3_10m.tif",
-      "size_bytes": 5446072,
-      "sha256": "7711165b6479af3dc157e1565c32bed261e01ceb6dcf5e9e299653be2d83fa1d"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B2_10m.tif",
+      "size_bytes": 2816305,
+      "sha256": "2fb3a58485cb6e3f546d9828e0bfbcaeb76770f12a2ccff9798d8baeb79499e9"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250301T033559_R061_T47PPQ_20250301T061709/B4_10m.tif",
-      "size_bytes": 5587353,
-      "sha256": "fe5d4ebee596c7891356193cfbf4e220a8f923833095943ea7efd1401e9c5882"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B3_10m.tif",
+      "size_bytes": 2905047,
+      "sha256": "ab2b4f2e095d711afa0ae5ad302ab33ff9c92c320eaec5e072c9011610c60f2b"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250301T033559_R061_T47PPQ_20250301T061709/B8_10m.tif",
-      "size_bytes": 5589745,
-      "sha256": "78fbd9e9bd93138d659a2492420e137188a0a55589c00dee8f8ef4d14ff932c5"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B4_10m.tif",
+      "size_bytes": 2924140,
+      "sha256": "08d3ba74da1a0ef2eabfb36509274a7068cb17f6449c324d29267ffc36ca0f78"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250301T033559_R061_T47PPQ_20250301T061709/SCL_20m.tif",
-      "size_bytes": 88263,
-      "sha256": "26d96e523486a44111e65dd2eb112e1cdd75e99b91b48fff110bab66c70a9446"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B5_20m.tif",
+      "size_bytes": 745144,
+      "sha256": "7f21a6dadd99877d696d28d28f03af7a67b939e63aeb482df4e52774f7acffbc"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250420T033539_R061_T47PPQ_20250420T071841/B11_20m.tif",
-      "size_bytes": 1430422,
-      "sha256": "f5548615b86c4cf3a6f220b18964e2206e4dcc3874b30aa9db72ea566c12d010"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B6_20m.tif",
+      "size_bytes": 764022,
+      "sha256": "eee0796f0e5c22cb967d8128816cb97cec19cdb3945a01f4c6c45734e734fe58"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250420T033539_R061_T47PPQ_20250420T071841/B2_10m.tif",
-      "size_bytes": 5696756,
-      "sha256": "e3e9d9ac2c56da9a1ca302d9733efc5621b97cce2e2bc3b06e7bb6c82968c151"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B7_20m.tif",
+      "size_bytes": 774669,
+      "sha256": "a8b5bff518b14d66511ff5a064ad985db954d70e1f2cc1a5dee5457df3acc02f"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250420T033539_R061_T47PPQ_20250420T071841/B3_10m.tif",
-      "size_bytes": 5673634,
-      "sha256": "c61d5fbd3cb73730261cd1ea7a457fa103b39e06c32357d24dcb62201fea209e"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B8A_20m.tif",
+      "size_bytes": 778190,
+      "sha256": "a481ee4e00ce779e2ef33fe1b6a3b04cf64e0337c760d39da8f1affc675af68c"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250420T033539_R061_T47PPQ_20250420T071841/B4_10m.tif",
-      "size_bytes": 5790957,
-      "sha256": "ec67242d5eac9d26a8e83387eca155855b319e1bfe02700b4424ff8351db23f3"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/B8_10m.tif",
+      "size_bytes": 3074637,
+      "sha256": "bfdf698ec40d6a805c8e405af3a14a23ef776492cfc2aad5b6b3e173cf58db05"
     },
     {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250420T033539_R061_T47PPQ_20250420T071841/B8_10m.tif",
-      "size_bytes": 5806347,
-      "sha256": "a2719fb5cd2cb832f3270cf00ccb543fc12910734cde10fbae341aad05b22985"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2B_MSIL2A_20250420T033539_R061_T47PPQ_20250420T071841/SCL_20m.tif",
-      "size_bytes": 89540,
-      "sha256": "ad4046405ebfe417ad1b2083c12aa95d45a0d35f5a22376c05e930adc15b0416"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B11_20m.tif",
-      "size_bytes": 1278352,
-      "sha256": "acac8ca8f21d711c190f56dbd3cde2b0879e2a4e69a2530f1f7fece59b6dd925"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B12_20m.tif",
-      "size_bytes": 1258868,
-      "sha256": "b43a3e7fd2767e0a9df401668154f1734c678421a49999b1bd95eb91aac7102b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B2_10m.tif",
-      "size_bytes": 5358319,
-      "sha256": "c07256662eb926d354e470712700cd5fcae9b6136b2a1134496cdf948671f3a4"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B3_10m.tif",
-      "size_bytes": 5510687,
-      "sha256": "220d1378065d2fe932d651e1746c90daeb36b45d50074be7ea221bb417e55d8f"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B4_10m.tif",
-      "size_bytes": 5391994,
-      "sha256": "93382d79806530f115250c9badfc74d1668647460ae3f0e99d5a8ac7d8203abb"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B5_20m.tif",
-      "size_bytes": 1339530,
-      "sha256": "9ff4ba3b6f61745de16b99409922bf5e692180378248618b04e973019e5244e7"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B6_20m.tif",
-      "size_bytes": 1301865,
-      "sha256": "5c02bb9f07772f3220a296c7001932f4ae3c9b7d826151b612e38e3cfeca1c28"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B7_20m.tif",
-      "size_bytes": 1311046,
-      "sha256": "feb90e05f530b8b28b37358681d55aa6177550ee0963de99cf0c2b64c9116d3c"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B8A_20m.tif",
-      "size_bytes": 1312194,
-      "sha256": "16557684ff8c248ce8a5e6ce7347f5853679d302156ef7e32f42d12447143ad4"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/B8_10m.tif",
-      "size_bytes": 5133796,
-      "sha256": "3ee7b4f4a2d55fe5b7e3b0f7e27702b856fed2b0ab095b50c51ba0a603eb2cd5"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_47PPQ_20251201_0_L2A/SCL_20m.tif",
-      "size_bytes": 87932,
-      "sha256": "d367a5de6194bfa8742b6dea0d67a9fb22f80b976d608404c08e3bf4ecc3af64"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20250326T033601_R061_T47PPQ_20250326T085914/B11_20m.tif",
-      "size_bytes": 1363249,
-      "sha256": "f85dd7ab48c45fbe9ea7baf185d025416a3f6d1009cf6d8aac6330a98f580386"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20250326T033601_R061_T47PPQ_20250326T085914/B2_10m.tif",
-      "size_bytes": 5545848,
-      "sha256": "9bb6ef51ff060d926d51982b0cc830432f75745714f86416b34d8ef1aa5e059e"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20250326T033601_R061_T47PPQ_20250326T085914/B3_10m.tif",
-      "size_bytes": 5540632,
-      "sha256": "73b8b03fe406b8c92070b3fbe7320cdf5de8855a00f3e9691283450d6c035af9"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20250326T033601_R061_T47PPQ_20250326T085914/B4_10m.tif",
-      "size_bytes": 5626618,
-      "sha256": "ccb85c761a8aa19dffa05a23cfde7d06c0f68815b9f78c9afd2bceec4a975938"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20250326T033601_R061_T47PPQ_20250326T085914/B8_10m.tif",
-      "size_bytes": 5661639,
-      "sha256": "b311fe640e1247033eea05dcec68fb46c56abd91965e90fd9457037bb6619b2b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20250326T033601_R061_T47PPQ_20250326T085914/SCL_20m.tif",
-      "size_bytes": 80879,
-      "sha256": "54319a38c4fbc92ca4c810736e28cb696236a8040824dc40f8eba0ca6b09ef2b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20251201T034131_R061_T47PPQ_20251201T063318/B11_20m.tif",
-      "size_bytes": 1275067,
-      "sha256": "898eece0d78e8f11dc57885cbbd79ecb83b9626f53c42c815d93157660a9d310"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20251201T034131_R061_T47PPQ_20251201T063318/B2_10m.tif",
-      "size_bytes": 5475823,
-      "sha256": "8b5f7482811164f50873402dea6aa44c62565d84657781721ea9dc6146aae49e"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20251201T034131_R061_T47PPQ_20251201T063318/B3_10m.tif",
-      "size_bytes": 5512355,
-      "sha256": "d318080f7f7e4def2a753259037c7a0eb8f5f34a8eb832de42195f4974ccba42"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20251201T034131_R061_T47PPQ_20251201T063318/B4_10m.tif",
-      "size_bytes": 5396099,
-      "sha256": "6cf3a04b133ba4d322e40b8eef70c1985ab188bdfc0ae57ecaaf6eaa67bddf93"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20251201T034131_R061_T47PPQ_20251201T063318/B8_10m.tif",
-      "size_bytes": 5480497,
-      "sha256": "38b5781fc724cb5543825a179229d17dfc67ebb57c809dc12cf8787b6d304db4"
-    },
-    {
-      "path": "data/satellite/sentinel2/2025/S2C_MSIL2A_20251201T034131_R061_T47PPQ_20251201T063318/SCL_20m.tif",
-      "size_bytes": 88002,
-      "sha256": "13e7421c1b00bc5cbb5e667630d617e68fae3e6172b09baf6a046113f1252376"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260112T034201_R061_T47PPQ_20260112T073809/B11_20m.tif",
-      "size_bytes": 1290679,
-      "sha256": "7e7021df57c934fefeb27cd7bf010b55507f137fe9f193388cf9301d3a698efb"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260112T034201_R061_T47PPQ_20260112T073809/B2_10m.tif",
-      "size_bytes": 5500341,
-      "sha256": "0cc0f0192c6148e25be2955b4a5a6ffa4feb328cd4dc0427280e70799df289aa"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260112T034201_R061_T47PPQ_20260112T073809/B3_10m.tif",
-      "size_bytes": 5495856,
-      "sha256": "58f03ab25dc4ca6b97be3b6a278b22206daa25b494f47c1196de9bcf4ce7a70d"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260112T034201_R061_T47PPQ_20260112T073809/B4_10m.tif",
-      "size_bytes": 5449753,
-      "sha256": "4695212a99c727f2a68289a68996c7099665a07fc8d01bf463fd454606d00bbd"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260112T034201_R061_T47PPQ_20260112T073809/B8_10m.tif",
-      "size_bytes": 5516632,
-      "sha256": "f211706b77126e8bddc9fb1f2bdedcfe4be6bbe2c4dec3507713b5761e8a8728"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260112T034201_R061_T47PPQ_20260112T073809/SCL_20m.tif",
-      "size_bytes": 87775,
-      "sha256": "5adf13b39e37aec9212549cf75503cadc55bcb34dfb145fb72d18eee9370c3e1"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260412T034201_R061_T47PPQ_20260412T083214/B11_20m.tif",
-      "size_bytes": 1398225,
-      "sha256": "0d6da46ea5c0e3d084e0f220a8c2edc21d97310484e6f19538f39d179fe2e24c"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260412T034201_R061_T47PPQ_20260412T083214/B2_10m.tif",
-      "size_bytes": 5697238,
-      "sha256": "e5d023763d121e05001c6c45f35701795279225b71a72a9d36805894574dc90b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260412T034201_R061_T47PPQ_20260412T083214/B3_10m.tif",
-      "size_bytes": 5725434,
-      "sha256": "c6d12b5da3a5b7d4fce330c9ee22cf4d7c0341b330bc4401ba44e30dc127e629"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260412T034201_R061_T47PPQ_20260412T083214/B4_10m.tif",
-      "size_bytes": 5826793,
-      "sha256": "825595182e039900dd51779de26edc15f713bfeadc818180cf81e7b5d5695f1b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260412T034201_R061_T47PPQ_20260412T083214/B8_10m.tif",
-      "size_bytes": 5956849,
-      "sha256": "76a5ce3b7fb694ce134e5969e5e5565ca1c23e786cd70e3ba7bcf5f52bb04f2b"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2A_MSIL2A_20260412T034201_R061_T47PPQ_20260412T083214/SCL_20m.tif",
-      "size_bytes": 84813,
-      "sha256": "fe34dff40e3277c716ab6cc5c602d230711fb18508ef73c05cbfbc8af2f732fd"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2B_MSIL2A_20260405T033539_R061_T47PPQ_20260405T072236/B11_20m.tif",
-      "size_bytes": 1417546,
-      "sha256": "dbc6ec21bd4c09397e407048ae3bc7742b063db6b9d5944de0aecb5b0863c9c1"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2B_MSIL2A_20260405T033539_R061_T47PPQ_20260405T072236/B2_10m.tif",
-      "size_bytes": 5654893,
-      "sha256": "0a9fa484ec51a28a871a57d14011ee5b8f574bdefc5fafa4223c527b9f0b04fb"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2B_MSIL2A_20260405T033539_R061_T47PPQ_20260405T072236/B3_10m.tif",
-      "size_bytes": 5656669,
-      "sha256": "76db95026294ee5cc598667a0ca9a91b74f2cb7feaba7f040159949b600a0e89"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2B_MSIL2A_20260405T033539_R061_T47PPQ_20260405T072236/B4_10m.tif",
-      "size_bytes": 5839016,
-      "sha256": "1677b41c0a45c1f50b22c30a5d99c26a4121f22da41d826f823d7bd8425c7dae"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2B_MSIL2A_20260405T033539_R061_T47PPQ_20260405T072236/B8_10m.tif",
-      "size_bytes": 6132783,
-      "sha256": "28d5ae6137120bb009b2508556a10d19a372542320509c53c8ff88fd5b5ca198"
-    },
-    {
-      "path": "data/satellite/sentinel2/2026/S2B_MSIL2A_20260405T033539_R061_T47PPQ_20260405T072236/SCL_20m.tif",
-      "size_bytes": 85180,
-      "sha256": "4261b0b392998ca44a331d23fe84b8272065423b2e5d0933384e7998acd9d5f7"
+      "path": "data/satellite/sentinel2/2025/S2C_47PQQ_20251221_0_L2A/SCL_20m.tif",
+      "size_bytes": 76515,
+      "sha256": "0e1c725235c709e2a8663eb495ddfb7899dc0cbf05d311acc912e0a5f355c0a2"
     }
   ],
   "notes": [
     "Catalogs were populated by live yearly paginated STAC searches; local sample rasters are listed here but are intentionally not committed.",
     "Large rasters must not be committed unless authenticated Git LFS upload and no-cost quota are verified first."
   ],
-  "updated_utc": "2026-08-29T05:27:38.628679Z",
-  "local_dataset_bytes": 976985640
+  "updated_utc": "2026-08-29T09:34:05.429657Z",
+  "local_dataset_bytes": 192741371
 }
