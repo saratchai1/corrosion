@@ -22,6 +22,22 @@ jobs:
         run: npm ci --prefix web
       - name: Build production website
         run: npm run build --prefix web
+      - name: Validate packaged comparison data
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('web/dist/data')
+          for name in (
+              'rayong_planting_plots_validated.geojson',
+              'apparent_change_by_transect.json',
+          ):
+              path = root / name
+              payload = json.loads(path.read_text(encoding='utf-8'))
+              count = len(payload.get('features', [])) if isinstance(payload, dict) else len(payload)
+              print(f'{name}: {count} records')
+          PY
       - name: Install browser test dependency
         run: |
           npm init -y
@@ -37,6 +53,8 @@ jobs:
             curl -fsS http://127.0.0.1:4173/ >/dev/null && break
             sleep 1
           done
+          curl -fsS http://127.0.0.1:4173/data/rayong_planting_plots_validated.geojson >/dev/null
+          curl -fsS http://127.0.0.1:4173/data/apparent_change_by_transect.json >/dev/null
           node scripts/test_rayong_compare.mjs
       - name: Upload browser evidence
         if: always()
