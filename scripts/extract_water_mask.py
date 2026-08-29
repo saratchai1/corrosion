@@ -5,9 +5,10 @@ The output is suitable for *screening* water-edge change. It does not by itself
 prove coastal erosion because tide, turbidity, waves and classification error can
 move the apparent water line.
 
-Radiometric scale/offset are read from each clipped GeoTIFF when available. A
-sensor fallback is used only when the raster carries the default 1/0 calibration.
-Optional Sentinel-2 SCL or Landsat QA_PIXEL masks can remove cloud/shadow pixels.
+Radiometric scale/offset are read from source-calibration tags persisted by the
+Krabi downloader. Raster band metadata is the next fallback, followed by a
+sensor default. Optional Sentinel-2 SCL or Landsat QA_PIXEL masks remove
+cloud/shadow pixels.
 """
 from __future__ import annotations
 
@@ -40,12 +41,24 @@ def masked_to_float(raw: np.ma.MaskedArray) -> np.ndarray:
 
 
 def dataset_calibration(src: rasterio.io.DatasetReader, sensor: str) -> tuple[float, float, str]:
+    tags = src.tags()
+    if "source_band_scale" in tags and "source_band_offset" in tags:
+        try:
+            return (
+                float(tags["source_band_scale"]),
+                float(tags["source_band_offset"]),
+                tags.get("calibration_source", "source_calibration_tags"),
+            )
+        except ValueError:
+            pass
+
     scale = float(src.scales[0]) if src.scales and src.scales[0] is not None else 1.0
     offset = float(src.offsets[0]) if src.offsets and src.offsets[0] is not None else 0.0
-    if scale == 1.0 and offset == 0.0:
-        fallback = SENSOR_FALLBACK[sensor]
-        return float(fallback["scale"]), float(fallback["offset"]), "sensor_fallback"
-    return scale, offset, "raster_band_metadata"
+    if scale != 1.0 or offset != 0.0:
+        return scale, offset, "raster_band_metadata"
+
+    fallback = SENSOR_FALLBACK[sensor]
+    return float(fallback["scale"]), float(fallback["offset"]), "sensor_fallback"
 
 
 def regrid_band(
@@ -272,6 +285,8 @@ def main() -> None:
         "green_offset": g_offset,
         "swir_scale": s_scale,
         "swir_offset": s_offset,
+        "green_calibration_source": green_cal_source if args.green_scale is None and args.green_offset is None else "cli_override",
+        "swir_calibration_source": swir_cal_source if args.swir_scale is None and args.swir_offset is None else "cli_override",
         "quality_mask_used": args.quality_mask is not None,
         "tide_status": args.tide_status,
         "analysis_status": "SCREENING" if args.tide_status == "verified" else "TIDE_UNVERIFIED_SCREENING",
