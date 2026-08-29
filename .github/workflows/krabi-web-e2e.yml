@@ -1,0 +1,60 @@
+name: Krabi province web E2E
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/krabi-web-e2e.yml'
+      - 'scripts/test_krabi_province_web.mjs'
+      - 'regions/krabi/web/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: krabi-web-e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Serve static website
+        run: |
+          python3 -m http.server 4173 --directory regions/krabi/web > /tmp/krabi-web.log 2>&1 &
+          echo $! > /tmp/krabi-web.pid
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:4173/index.html >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/krabi-web.log
+          exit 1
+
+      - name: Run browser assertions and screenshots
+        env:
+          KRABI_WEB_URL: http://127.0.0.1:4173
+          KRABI_E2E_OUT: artifacts/krabi-web-e2e
+        run: node scripts/test_krabi_province_web.mjs
+
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-province-web-e2e
+          path: artifacts/krabi-web-e2e/**
+          if-no-files-found: error
+          retention-days: 30
