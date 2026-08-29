@@ -14,6 +14,18 @@ on:
       - 'regions/krabi/data/aoi/**'
       - 'regions/krabi/data/reuse/**'
       - 'tests/test_krabi_aoi.py'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/krabi-pipeline-smoke.yml'
+      - 'scripts/analyze_krabi_trends.py'
+      - 'scripts/download_krabi_satellite_data.py'
+      - 'scripts/download_satellite_data.py'
+      - 'scripts/extract_water_mask.py'
+      - 'scripts/compare_water_change.py'
+      - 'regions/krabi/**'
+      - 'tests/test_krabi_aoi.py'
   workflow_dispatch:
 
 permissions:
