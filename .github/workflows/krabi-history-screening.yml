@@ -1,4 +1,4 @@
-name: Krabi annual water-edge screening
+name: Krabi multi-scene water-edge screening
 
 on:
   push:
@@ -10,7 +10,8 @@ on:
       - 'scripts/process_sentinel2_water_history.py'
       - 'scripts/extract_water_mask.py'
       - 'scripts/summarize_water_history.py'
-      - 'scripts/compare_water_change.py'
+      - 'scripts/build_water_consensus.py'
+      - 'scripts/audit_sentinel2_water.py'
       - 'scripts/build_analysis_corridor.py'
       - 'regions/krabi/data/aoi/**'
   workflow_dispatch:
@@ -21,7 +22,7 @@ permissions:
 jobs:
   sentinel2-history:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,11 +45,11 @@ jobs:
             --output regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson \
             --buffer-m 500
 
-      - name: Download one Collection 1 Sentinel-2 acquisition per year
+      - name: Download three Collection 1 Sentinel-2 acquisitions per year
         run: |
           python scripts/download_krabi_satellite_data.py sentinel2 \
             --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
-            --start 2016-01-01 --end 2026-08-29 --per-year 1 --download
+            --start 2016-01-01 --end 2026-08-29 --per-year 3 --download
 
       - name: Validate annual Sentinel-2 COGs
         working-directory: regions/krabi
@@ -59,7 +60,7 @@ jobs:
             --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --json data/manifests/sentinel2_history_raster_validation.json
 
-      - name: Build Collection 1 cloud-masked annual water history
+      - name: Build calibrated cloud-masked scene history
         working-directory: regions/krabi
         run: |
           python ../../scripts/process_sentinel2_water_history.py \
@@ -72,23 +73,31 @@ jobs:
             --csv analysis/water_history.csv \
             --json analysis/water_history_summary.json
 
-      - name: Compare earliest and latest water polygons
+      - name: Cross-check MNDWI water against Sentinel-2 SCL
         working-directory: regions/krabi
         run: |
-          BASE=$(find data/analysis/water_history -mindepth 1 -maxdepth 1 -type d | sort | head -1)
-          LATEST=$(find data/analysis/water_history -mindepth 1 -maxdepth 1 -type d | sort | tail -1)
-          test -n "$BASE" && test -n "$LATEST" && test "$BASE" != "$LATEST"
-          python ../../scripts/compare_water_change.py \
-            --baseline "$BASE/water_polygons.geojson" \
-            --latest "$LATEST/water_polygons.geojson" \
-            --out analysis/water_change_first_last \
-            --allow-unverified-tide \
-            --min-change-m2 100
+          python ../../scripts/audit_sentinel2_water.py \
+            --catalog data/catalog/sentinel2_scenes.csv \
+            --satellite-root data/satellite/sentinel2 \
+            --water-root data/analysis/water_history \
+            --csv analysis/scl_water_audit.csv \
+            --json analysis/scl_water_audit.json
 
-      - name: Upload annual screening outputs
+      - name: Build annual and epoch consensus
+        working-directory: regions/krabi
+        run: |
+          python ../../scripts/build_water_consensus.py \
+            --root data/analysis/water_history \
+            --out analysis/water_consensus \
+            --plots data/aoi/krabi_pdd_plots.geojson \
+            --threshold 0.5 \
+            --min-valid-fraction 0.66 \
+            --min-area-m2 400
+
+      - name: Upload final screening outputs
         uses: actions/upload-artifact@v4
         with:
-          name: krabi-sentinel2-c1-water-history-2016-2026
+          name: krabi-final-multiscene-screening-2018-2026
           path: |
             regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
             regions/krabi/data/catalog/sentinel2_scenes.csv
@@ -96,7 +105,9 @@ jobs:
             regions/krabi/data/analysis/water_history/**
             regions/krabi/analysis/water_history.csv
             regions/krabi/analysis/water_history_summary.json
-            regions/krabi/analysis/water_change_first_last/**
+            regions/krabi/analysis/scl_water_audit.csv
+            regions/krabi/analysis/scl_water_audit.json
+            regions/krabi/analysis/water_consensus/**
             regions/krabi/data/manifests/sentinel2_history_raster_validation.json
           if-no-files-found: error
           retention-days: 30
