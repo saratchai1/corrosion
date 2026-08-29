@@ -14,7 +14,7 @@ page.on('console', (message) => {
 });
 page.on('pageerror', (error) => consoleErrors.push(error.message));
 
-const report = { baseUrl, dashboard: {}, dsas: {}, consoleErrors };
+const report = { baseUrl, dashboard: {}, beforeAfter: {}, dsas: {}, consoleErrors };
 
 try {
   await page.goto(`${baseUrl}/index.html`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
@@ -30,10 +30,12 @@ try {
       before: { src: before.currentSrc || before.src, width: before.naturalWidth, height: before.naturalHeight },
       after: { src: after.currentSrc || after.src, width: after.naturalWidth, height: after.naturalHeight },
       split: getComputedStyle(stage).getPropertyValue('--split').trim(),
-      clipPath: getComputedStyle(after).clipPath
+      clipPath: getComputedStyle(after).clipPath,
+      mapLink: document.querySelector('a[href="before-after-map.html"]')?.textContent?.trim()
     };
   });
 
+  if (!dashboard.mapLink) throw new Error('Province dashboard has no link to the before-after map');
   if (dashboard.before.src === dashboard.after.src) throw new Error('Before and after image URLs are identical');
   if (dashboard.before.width !== 1900 || dashboard.before.height !== 2350) throw new Error(`Unexpected before dimensions: ${dashboard.before.width}x${dashboard.before.height}`);
   if (dashboard.after.width !== 1900 || dashboard.after.height !== 2350) throw new Error(`Unexpected after dimensions: ${dashboard.after.width}x${dashboard.after.height}`);
@@ -50,6 +52,67 @@ try {
   if (sliderResult.split !== '18%') throw new Error(`Slider CSS split is ${sliderResult.split}, expected 18%`);
   report.dashboard = { ...dashboard, sliderResult };
   await page.screenshot({ path: path.join(outDir, 'province-dashboard.png'), fullPage: true });
+
+  await page.goto(`${baseUrl}/before-after-map.html`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+  await page.waitForFunction(() => window.__KRABI_BEFORE_AFTER_TEST__?.ready === true, null, { timeout: 90_000 });
+
+  const mapInitial = await page.evaluate(() => {
+    const state = window.__KRABI_BEFORE_AFTER_TEST__;
+    const viewport = document.getElementById('afterViewport');
+    return {
+      state: JSON.parse(JSON.stringify(state)),
+      clipPath: getComputedStyle(viewport).clipPath,
+      beforeLabel: document.getElementById('beforeLabel').textContent,
+      afterLabel: document.getElementById('afterLabel').textContent,
+      leafletMaps: document.querySelectorAll('.leaflet-container').length
+    };
+  });
+
+  if (mapInitial.state.beforeYear !== 2018 || mapInitial.state.afterYear !== 2024) {
+    throw new Error(`Unexpected initial map pair: ${mapInitial.state.beforeYear}-${mapInitial.state.afterYear}`);
+  }
+  if (mapInitial.state.imageDimensions?.[0] !== 1900 || mapInitial.state.imageDimensions?.[1] !== 2350) {
+    throw new Error(`Unexpected swipe-map image dimensions: ${mapInitial.state.imageDimensions}`);
+  }
+  if (mapInitial.leafletMaps !== 2) throw new Error(`Expected two synchronized Leaflet maps, found ${mapInitial.leafletMaps}`);
+  if (!(mapInitial.state.mapSync?.delta <= 1e-7)) throw new Error(`Initial maps are not synchronized: ${mapInitial.state.mapSync?.delta}`);
+
+  const initialClip = mapInitial.clipPath;
+  await page.locator('#compareRange').fill('23');
+  await page.waitForTimeout(250);
+  const splitResult = await page.evaluate(() => ({
+    split: window.__KRABI_BEFORE_AFTER_TEST__.split,
+    clipPath: getComputedStyle(document.getElementById('afterViewport')).clipPath,
+    readout: document.getElementById('splitReadout').textContent
+  }));
+  if (splitResult.split !== 23) throw new Error(`Swipe map split is ${splitResult.split}, expected 23`);
+  if (splitResult.clipPath === initialClip) throw new Error('Swipe map clip-path did not change');
+
+  await page.locator('[data-pair="2020-2024"]').click();
+  await page.waitForFunction(() => {
+    const state = window.__KRABI_BEFORE_AFTER_TEST__;
+    return state?.ready === true && state.beforeYear === 2020 && state.afterYear === 2024;
+  }, null, { timeout: 90_000 });
+
+  await page.locator('#viewKhlongThom').click();
+  await page.waitForTimeout(800);
+  const viewResult = await page.evaluate(() => JSON.parse(JSON.stringify(window.__KRABI_BEFORE_AFTER_TEST__)));
+  if (viewResult.view !== 'khlong-thom') throw new Error(`View button did not switch to Khlong Thom: ${viewResult.view}`);
+  if (!(viewResult.mapSync?.delta <= 1e-7)) throw new Error(`Maps diverged after fitBounds: ${viewResult.mapSync?.delta}`);
+
+  await page.locator('#showDsas').check();
+  await page.waitForFunction(() => {
+    const state = window.__KRABI_BEFORE_AFTER_TEST__;
+    return state?.dsasLoaded === true && state.dsasVisible === true;
+  }, null, { timeout: 90_000 });
+  const dsasOverlayResult = await page.evaluate(() => ({
+    count: window.__KRABI_BEFORE_AFTER_TEST__.dsasCount,
+    visible: window.__KRABI_BEFORE_AFTER_TEST__.dsasVisible
+  }));
+  if (dsasOverlayResult.count !== 666) throw new Error(`Swipe-map DSAS layer has ${dsasOverlayResult.count} points`);
+
+  report.beforeAfter = { mapInitial, splitResult, viewResult, dsasOverlayResult };
+  await page.screenshot({ path: path.join(outDir, 'before-after-map.png'), fullPage: true });
 
   await page.goto(`${baseUrl}/published-dsas.html`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
   await page.waitForFunction(() => window.__KRABI_DSAS_TEST__?.ready === true, null, { timeout: 60_000 });
@@ -90,7 +153,10 @@ try {
   report.dsas = { ...dsas, retreatFilterCount: retreatCount, selectedAfterClick };
   await page.screenshot({ path: path.join(outDir, 'published-dsas.png'), fullPage: true });
 
-  const fatalErrors = consoleErrors.filter((value) => !value.includes('favicon.ico'));
+  const fatalErrors = consoleErrors.filter((value) =>
+    !value.includes('favicon.ico') &&
+    !value.includes('Failed to load resource: net::ERR_BLOCKED_BY_CLIENT')
+  );
   if (fatalErrors.length) throw new Error(`Browser console errors: ${fatalErrors.join(' | ')}`);
   report.status = 'PASS';
 } catch (error) {
