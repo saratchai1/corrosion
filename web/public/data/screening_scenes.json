@@ -1,0 +1,59 @@
+[
+  {
+    "date": "2018-02-06",
+    "scene_id": "S2B_47PQQ_20180206_0_L2A",
+    "bounds": [
+      [
+        12.650781002824594,
+        101.63962754434515
+      ],
+      [
+        12.778649590887627,
+        101.82185961897238
+      ]
+    ],
+    "rgb": "layers/2018-02-06_rgb.png",
+    "nir": "layers/2018-02-06_nir.png",
+    "ndwi": "layers/2018-02-06_ndwi.png",
+    "mndwi": "layers/2018-02-06_mndwi.png",
+    "water_edge": "2018-02-06_water_edge.geojson"
+  },
+  {
+    "date": "2021-12-27",
+    "scene_id": "S2B_47PQQ_20211227_0_L2A",
+    "bounds": [
+      [
+        12.650781002824594,
+        101.63962754434515
+      ],
+      [
+        12.778649590887627,
+        101.82185961897238
+      ]
+    ],
+    "rgb": "layers/2021-12-27_rgb.png",
+    "nir": "layers/2021-12-27_nir.png",
+    "ndwi": "layers/2021-12-27_ndwi.png",
+    "mndwi": "layers/2021-12-27_mndwi.png",
+    "water_edge": "2021-12-27_water_edge.geojson"
+  },
+  {
+    "date": "2025-12-21",
+    "scene_id": "S2C_47PQQ_20251221_0_L2A",
+    "bounds": [
+      [
+        12.650781002824594,
+        101.63962754434515
+      ],
+      [
+        12.778649590887627,
+        101.82185961897238
+      ]
+    ],
+    "rgb": "layers/2025-12-21_rgb.png",
+    "nir": "layers/2025-12-21_nir.png",
+    "ndwi": "layers/2025-12-21_ndwi.png",
+    "mndwi": "layers/2025-12-21_mndwi.png",
+    "water_edge": "2025-12-21_water_edge.geojson"
+  }
+]
