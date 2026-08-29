@@ -1,54 +1,84 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Krabi Mangrove Change Screening</title>
-  <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ผลคัดกรองการเปลี่ยนแปลงป่าชายเลนและขอบน้ำจากข้อมูลดาวเทียม จังหวัดกระบี่">
+  <title>Krabi Coastal & Mangrove Screening Pilot</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynhWPtwBRyT5MZL0jMZVYF1B5H4k=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
     <div>
-      <p class="eyebrow">CORROSION / KRABI PILOT</p>
-      <h1>ติดตามการเปลี่ยนแปลงป่าชายเลน จ.กระบี่</h1>
-      <p class="subtitle">Sentinel-2 screening • 97–100 VSD • 2023-09 ถึง 2026-08</p>
+      <p class="eyebrow">SATELLITE SCREENING · KRABI PILOT</p>
+      <h1>ติดตามป่าชายเลนและขอบน้ำ จังหวัดกระบี่</h1>
+      <p class="subtitle">แปลง 97–100 VSD · Sentinel‑2 Collection 1 · วิเคราะห์หลายภาพต่อปี</p>
     </div>
-    <div class="status">Screening — ไม่ใช่ข้อสรุปการกัดเซาะ</div>
+    <div class="header-status">
+      <span id="statusPill" class="status status-loading">กำลังโหลดผลวิเคราะห์</span>
+      <small id="buildInfo">—</small>
+    </div>
   </header>
 
   <main>
-    <section class="kpis" aria-label="summary metrics">
-      <article class="kpi"><span>แปลงนำร่อง</span><strong>4</strong></article>
-      <article class="kpi"><span>Observations</span><strong>48</strong></article>
-      <article class="kpi"><span>GOOD QA</span><strong>29</strong></article>
-      <article class="kpi"><span>Temporary dip flags</span><strong>3</strong></article>
+    <section id="screeningNotice" class="notice" aria-live="polite">
+      <strong>ขอบเขตการใช้งาน:</strong>
+      ผลนี้เป็นการคัดกรองจากดาวเทียม ยังไม่ใช่อัตราการกัดเซาะเชิงวิศวกรรม เพราะยังไม่ได้ปรับระดับน้ำขึ้นลงให้เป็นฐานเดียวกัน
+    </section>
+
+    <section class="kpis" aria-label="ตัวชี้วัดหลัก">
+      <article class="kpi"><span>แปลงที่วิเคราะห์</span><strong id="kpiPlots">—</strong><small>97–100 VSD</small></article>
+      <article class="kpi"><span>ภาพที่ผ่าน QA</span><strong id="kpiScenes">—</strong><small id="kpiScenesNote">Collection 1</small></article>
+      <article class="kpi"><span>ช่วงข้อมูล</span><strong id="kpiPeriod">—</strong><small>multi-scene consensus</small></article>
+      <article class="kpi kpi-gain"><span>Candidate water gain</span><strong id="kpiGain">—</strong><small id="kpiGainPct">ยังไม่ตีความเป็นการกัดเซาะ</small></article>
+      <article class="kpi kpi-loss"><span>Candidate water loss</span><strong id="kpiLoss">—</strong><small id="kpiLossPct">อาจเป็นตะกอน/น้ำลง/การจำแนก</small></article>
+      <article class="kpi"><span>ลำดับตรวจภาคสนาม</span><strong id="kpiPriority">—</strong><small>จาก vegetation QA</small></article>
+    </section>
+
+    <section class="panel executive-panel">
+      <div>
+        <p class="section-kicker">EXECUTIVE FINDING</p>
+        <h2 id="executiveHeadline">กำลังประมวลผลสรุป</h2>
+        <p id="executiveDetail">—</p>
+      </div>
+      <div class="method-badges" aria-label="สถานะวิธีวิเคราะห์">
+        <span>Collection 1 calibrated</span>
+        <span>Cloud / shadow masked</span>
+        <span>Multi-scene consensus</span>
+        <span class="warning-badge">Tide unverified</span>
+      </div>
     </section>
 
     <section class="grid map-grid">
       <article class="panel map-panel">
         <div class="panel-head">
-          <div><h2>ขอบเขตแปลงจริง</h2><p>KML/KMZ-derived WGS84 polygons</p></div>
-          <button id="fitAll" type="button">ดูทุกแปลง</button>
+          <div>
+            <p class="section-kicker">SPATIAL SCREENING</p>
+            <h2>แผนที่แปลงและ candidate water change</h2>
+            <p>คลิกแปลงหรือ polygon เพื่อดูรายละเอียด</p>
+          </div>
+          <div class="layer-controls" role="group" aria-label="ชั้นข้อมูล">
+            <label><input id="togglePlots" type="checkbox" checked> ขอบเขตแปลง</label>
+            <label><input id="toggleGain" type="checkbox" checked> น้ำเพิ่ม</label>
+            <label><input id="toggleLoss" type="checkbox" checked> น้ำลด</label>
+          </div>
         </div>
-        <div id="map" role="img" aria-label="Krabi pilot plot map"></div>
+        <div id="map" aria-label="แผนที่จังหวัดกระบี่"></div>
+        <div class="map-legend">
+          <span><i class="swatch swatch-plot"></i> แปลงโครงการ</span>
+          <span><i class="swatch swatch-gain"></i> candidate water gain</span>
+          <span><i class="swatch swatch-loss"></i> candidate water loss</span>
+        </div>
       </article>
 
-      <aside class="panel controls-panel">
-        <h2>เลือกข้อมูล</h2>
-        <label>แปลง
-          <select id="plotSelect"></select>
-        </label>
-        <label>ช่วงเวลา
-          <select id="periodSelect"></select>
-        </label>
-        <div id="plotMeta" class="meta"></div>
-        <div class="legend">
-          <span><i class="dot good"></i>GOOD</span>
-          <span><i class="dot partial"></i>PARTIAL</span>
-          <span><i class="dot low"></i>LOW_QA</span>
-          <span><i class="dot nodata"></i>NO_DATA</span>
+      <aside class="panel detail-panel">
+        <p class="section-kicker">SELECTED FEATURE</p>
+        <h2 id="featureTitle">เลือกแปลงบนแผนที่</h2>
+        <div id="featureDetail" class="detail-body">
+          <p>รายละเอียดพื้นที่ การเปลี่ยนแปลง และสถานะคัดกรองจะแสดงที่นี่</p>
         </div>
       </aside>
     </section>
@@ -56,38 +86,122 @@
     <section class="grid chart-grid">
       <article class="panel chart-panel">
         <div class="panel-head">
-          <div><h2>Vegetation signal</h2><p>Median NDVI / NDRE พร้อม QA coverage</p></div>
+          <div>
+            <p class="section-kicker">WATER CONSENSUS</p>
+            <h2>พื้นที่น้ำแบบฉันทามติรายปี</h2>
+            <p>ใช้ภาพที่ผ่าน QA อย่างน้อย 2 ภาพต่อปี</p>
+          </div>
         </div>
-        <div class="chart-wrap"><canvas id="spectralChart"></canvas></div>
+        <div class="chart-wrap"><canvas id="waterChart"></canvas></div>
       </article>
-      <article class="panel finding-panel">
-        <h2>สรุปแปลงที่เลือก</h2>
-        <div id="finding"></div>
+
+      <article class="panel chart-panel">
+        <div class="panel-head chart-head-select">
+          <div>
+            <p class="section-kicker">VEGETATION SIGNAL</p>
+            <h2>NDVI รายแปลง</h2>
+            <p>แสดง QA ของแต่ละช่วงเวลา</p>
+          </div>
+          <label class="compact-select">แปลง
+            <select id="plotSelect" aria-label="เลือกแปลงสำหรับกราฟ NDVI"></select>
+          </label>
+        </div>
+        <div class="chart-wrap"><canvas id="vegetationChart"></canvas></div>
+      </article>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="panel-head">
+        <div>
+          <p class="section-kicker">PLOT SCREENING</p>
+          <h2>ผลคัดกรองรายแปลง</h2>
+          <p>พื้นที่ 1 pixel = 100 ตร.ม.; ตัวเลขต่ำกว่าความละเอียดเชิงพื้นที่ควรอ่านอย่างระมัดระวัง</p>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>แปลง</th>
+              <th>พื้นที่เทียบได้</th>
+              <th>น้ำเพิ่ม</th>
+              <th>น้ำลด</th>
+              <th>สุทธิ</th>
+              <th>NDVI trend</th>
+              <th>สถานะ</th>
+            </tr>
+          </thead>
+          <tbody id="plotTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid evidence-grid">
+      <article class="panel qa-panel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">QUALITY ASSURANCE</p>
+            <h2>หลักฐานและข้อจำกัด</h2>
+          </div>
+        </div>
+        <div id="qaCards" class="qa-cards"></div>
+      </article>
+
+      <article class="panel action-panel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">FIELD ACTION</p>
+            <h2>งานที่ควรทำต่อในพื้นที่</h2>
+          </div>
+        </div>
+        <ol id="fieldActions" class="action-list"></ol>
       </article>
     </section>
 
     <section class="panel imagery-panel">
       <div class="panel-head">
-        <div><h2>ภาพที่ประมวลผลไว้แล้ว</h2><p>Reuse จาก saratchai1/prasae — ไม่ duplicate ไฟล์ใน corrosion</p></div>
-        <a id="sourceLink" target="_blank" rel="noopener">เปิด source folder ↗</a>
+        <div>
+          <p class="section-kicker">SATELLITE EVIDENCE</p>
+          <h2>ภาพตัวอย่างต้นช่วงและปลายช่วง</h2>
+          <p>ใช้ตรวจสอบความสมเหตุสมผลของ classification ไม่ใช่ภาพยืนยันสาเหตุ</p>
+        </div>
       </div>
-      <div class="images">
-        <figure><img id="rgbImage" alt="RGB satellite preview" /><figcaption>RGB</figcaption></figure>
-        <figure><img id="ndviImage" alt="NDVI satellite preview" /><figcaption>NDVI</figcaption></figure>
-      </div>
-      <p id="imageNote" class="image-note"></p>
+      <div id="previewGrid" class="preview-grid"></div>
     </section>
 
-    <section class="panel method-panel">
-      <h2>ขอบเขตการตีความ</h2>
-      <div class="method-cols">
-        <p><strong>ทำได้ตอนนี้:</strong> ดู vegetation/water spectral signal, QA, temporal dip/recovery และเปรียบเทียบระหว่างแปลง</p>
-        <p><strong>ยังไม่ควรเรียกว่า shoreline change:</strong> PNG เดิมไม่มี georeference สำหรับวัดการถอย/รุกเป็นเมตร ต้องใช้ COG/GeoTIFF + tide matching ก่อน</p>
+    <section class="panel downloads-panel">
+      <div class="panel-head">
+        <div>
+          <p class="section-kicker">REPRODUCIBLE OUTPUTS</p>
+          <h2>ดาวน์โหลดผลวิเคราะห์</h2>
+          <p>CSV, JSON และ GeoJSON ที่สร้างจาก workflow เดียวกับหน้าเว็บนี้</p>
+        </div>
+      </div>
+      <div id="downloadGrid" class="download-grid"></div>
+    </section>
+
+    <section class="panel methodology-panel">
+      <div class="methodology-grid">
+        <div>
+          <h3>สิ่งที่ระบบทำแล้ว</h3>
+          <p>ใช้ Sentinel‑2 Collection 1, ตรวจ scale/offset ราย scene, ตัดเมฆและเงาเมฆ, ตัดภาพที่ coverage ต่ำ, สร้าง consensus หลายภาพ และตรวจเทียบกับ SCL class 6</p>
+        </div>
+        <div>
+          <h3>สิ่งที่ยังห้ามสรุป</h3>
+          <p>ห้ามเรียก candidate water gain ว่า “การกัดเซาะ” หรือแปลงเป็นเมตร/ปี จนกว่าจะควบคุมระดับน้ำ ตรวจแนวชายฝั่งภาคสนาม และประเมิน uncertainty เชิงตำแหน่ง</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <footer>
+    <span>Krabi pilot · generated by the corrosion satellite pipeline</span>
+    <span id="footerBuild">—</span>
+  </footer>
+
+  <div id="errorBanner" class="error-banner" hidden></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="app.js"></script>
 </body>
