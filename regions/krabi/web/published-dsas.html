@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="แผนที่ DSAS แนวชายฝั่งจังหวัดกระบี่ 666 จุด ช่วง 1990–2019">
+  <title>Krabi Published DSAS Map · 1990–2019</title>
+  <link rel="stylesheet" href="published-dsas.css">
+</head>
+<body>
+  <main class="page">
+    <header class="head">
+      <div>
+        <p class="eyebrow">PUBLISHED HISTORICAL SHORELINE RATE · 1990–2019</p>
+        <h1>แนวชายฝั่งกระบี่ 666 จุด</h1>
+      </div>
+      <p>แสดงค่า Linear Regression Rate (LRR) จากชุดข้อมูล shoreline/DSAS ที่เผยแพร่ ครอบคลุมแนวชายฝั่งกระบี่ในระดับจังหวัด ใช้เพื่อค้นหา hotspot เชิงประวัติ ไม่ใช่การประกาศสถานะปัจจุบันปี 2026</p>
+    </header>
+
+    <section class="metrics" aria-label="ตัวชี้วัดหลัก">
+      <article class="metric"><span>จุดที่นำเข้า</span><strong id="metricCount">—</strong><small>valid geometry</small></article>
+      <article class="metric"><span>ช่วงข้อมูล</span><strong>1990–2019</strong><small>published historical context</small></article>
+      <article class="metric"><span>LRR ต่ำสุด</span><strong id="metricMin" style="color:var(--red)">—</strong><small>เมตร/ปี</small></article>
+      <article class="metric"><span>LRR สูงสุด</span><strong id="metricMax" style="color:var(--green)">—</strong><small>เมตร/ปี</small></article>
+      <article class="metric"><span>ค่ามัธยฐาน</span><strong id="metricMedian">—</strong><small>เมตร/ปี</small></article>
+    </section>
+
+    <section class="layout">
+      <article class="map-card">
+        <div class="map-head">
+          <div>
+            <b>Krabi Province · Published DSAS points</b>
+            <small>คลิกจุดเพื่อดู LRR / EPR / NSM / SCE และ uncertainty</small>
+          </div>
+          <div class="actions">
+            <button id="showAll" class="action active" type="button">ทั้งหมด</button>
+            <button id="showRetreat" class="action" type="button">เฉพาะถอยร่น</button>
+            <button id="showAccretion" class="action" type="button">เฉพาะงอกเพิ่ม</button>
+            <a class="action" href="index.html">กลับภาพก่อน–หลัง</a>
+          </div>
+        </div>
+        <div id="mapStage" class="stage">
+          <img id="provinceImage" alt="Sentinel-2 cloudless จังหวัดกระบี่ ปี 2024">
+          <svg id="provinceBoundary" class="boundary" viewBox="0 0 1900 2350" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <canvas id="mapCanvas" aria-label="แผนที่จุด DSAS จังหวัดกระบี่"></canvas>
+          <div class="period">PUBLISHED DSAS · 1990–2019<small>background: Sentinel‑2 cloudless 2024</small></div>
+          <div id="tooltip" class="tooltip" hidden></div>
+          <div id="loading" class="loading">กำลังตรวจและวาด 666 จุด…</div>
+        </div>
+        <div class="legend">
+          <div class="legend-title"><span><b>ตัวกรองสี</b> · convention สำหรับ dashboard เท่านั้น</span><span id="visibleCount">— จุดแสดงอยู่</span></div>
+          <div class="legend-items">
+            <button class="filter" type="button" data-class="STRONG_RETREAT" style="--c:#ff5c57"><i></i><span><b>ถอยร่นสูง</b>LRR &lt; −2</span></button>
+            <button class="filter" type="button" data-class="RETREAT" style="--c:#ff9e43"><i></i><span><b>ถอยร่น</b>−2 ถึง −0.5</span></button>
+            <button class="filter" type="button" data-class="RELATIVELY_STABLE" style="--c:#d4ddd8"><i></i><span><b>ค่อนข้างคงที่</b>−0.5 ถึง 0.5</span></button>
+            <button class="filter" type="button" data-class="ACCRETION" style="--c:#23b888"><i></i><span><b>งอกเพิ่ม</b>0.5 ถึง 2</span></button>
+            <button class="filter" type="button" data-class="STRONG_ACCRETION" style="--c:#66d69a"><i></i><span><b>งอกเพิ่มสูง</b>LRR &gt; 2</span></button>
+          </div>
+          <label class="opacity">ความทึบจุด <input id="pointOpacity" type="range" min="20" max="100" value="88"><span id="opacityValue">88%</span></label>
+        </div>
+      </article>
+
+      <aside class="detail-card">
+        <div class="detail-head"><span>SELECTED TRANSECT</span><h2 id="selectedTitle">คลิกจุดบนแผนที่</h2></div>
+        <div class="selected-rate">
+          <div><strong id="selectedRate">—</strong><small>LRR · เมตร/ปี</small></div>
+          <span id="selectedClass" class="rate-class">ยังไม่เลือก</span>
+        </div>
+        <div class="detail-grid">
+          <div class="stat"><span>EPR</span><b id="selectedEpr">—</b></div>
+          <div class="stat"><span>NSM</span><b id="selectedNsm">—</b></div>
+          <div class="stat"><span>SCE</span><b id="selectedSce">—</b></div>
+          <div class="stat"><span>LRR R²</span><b id="selectedR2">—</b></div>
+          <div class="stat"><span>LCI90</span><b id="selectedCi">—</b></div>
+          <div class="stat"><span>Shoreline count</span><b id="selectedCount">—</b></div>
+          <div class="stat"><span>Azimuth</span><b id="selectedAzimuth">—</b></div>
+          <div class="stat"><span>Coordinates</span><b id="selectedCoords">—</b></div>
+        </div>
+        <p class="note">LRR เป็นแนวโน้มเชิงเส้นของตำแหน่ง shoreline ตามเวลา ค่าเป็นลบหมายถึงถอยร่นใน convention นี้ ค่าเป็นบวกหมายถึงงอกเพิ่ม ต้องอ่านร่วมกับ confidence interval, จำนวน shoreline และบริบทพื้นที่</p>
+        <div class="distribution"><h3>การกระจายทั้งจังหวัด</h3><div id="distribution" class="dist-list"></div></div>
+      </aside>
+    </section>
+
+    <section class="hotspots">
+      <article class="hotspot-card"><h3>จุดถอยร่นสูงสุด</h3><p>เรียงจาก LRR ติดลบมากที่สุดในชุดข้อมูล</p><div id="retreatHotspots" class="hotspot-list"></div></article>
+      <article class="hotspot-card"><h3>จุดงอกเพิ่มสูงสุด</h3><p>เรียงจาก LRR บวกมากที่สุดในชุดข้อมูล</p><div id="accretionHotspots" class="hotspot-list"></div></article>
+    </section>
+
+    <div class="warning"><b>ขอบเขตการใช้:</b> ชุดข้อมูลนี้เหมาะสำหรับ published historical hotspot screening ช่วง 1990–2019 เท่านั้น ไม่ใช้แทน shoreline monitoring ที่ควบคุมระดับน้ำ หรือสรุปว่าสถานะปี 2026 ยังเท่าเดิม จุดสีและชื่อชั้นเป็น convention ของ dashboard ไม่ใช่ชั้นสถานะอย่างเป็นทางการของ DMCR</div>
+
+    <footer class="footer">
+      <span>Source project: <a href="https://osf.io/mxjhk/" target="_blank" rel="noreferrer">Shoreline ThaiCoast / OSF</a></span>
+      <span><a href="index.html">Province before–after</a> · <a href="https://github.com/saratchai1/corrosion/tree/main/regions/krabi" target="_blank" rel="noreferrer">Pipeline and provenance</a></span>
+    </footer>
+  </main>
+
+  <div id="error" class="error" hidden></div>
+  <script src="published-dsas.js"></script>
+</body>
+</html>
