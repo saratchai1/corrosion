@@ -131,13 +131,23 @@ def row_coverage(row: dict[str, str]) -> float:
 
 
 def scene_rows(
-    catalog: list[dict[str, str]], dataset: str, actual_year: int
+    catalog: list[dict[str, str]],
+    dataset: str,
+    actual_year: int,
+    start: str | None = None,
+    end: str | None = None,
+    count: int | None = None,
 ) -> list[dict[str, str]]:
     selected = []
     for row in catalog:
         if row.get("dataset") != dataset or not row.get("local_path"):
             continue
         if not row.get("acquisition_datetime_utc", "").startswith(str(actual_year)):
+            continue
+        acquisition_date = row.get("acquisition_datetime_utc", "")[:10]
+        if start and acquisition_date < start:
+            continue
+        if end and acquisition_date > end:
             continue
         if row_coverage(row) < 0.95:
             continue
@@ -150,6 +160,8 @@ def scene_rows(
         if len(landsat5) >= 2:
             selected = landsat5
     selected.sort(key=lambda row: row["acquisition_datetime_utc"])
+    if count is not None:
+        selected = selected[:count]
     return selected
 
 
@@ -522,7 +534,14 @@ def process_epoch(
     target_year = int(entry["target_year"])
     actual_year = int(entry["actual_year"])
     dataset = str(entry["dataset"])
-    rows = scene_rows(catalog, dataset, actual_year)
+    rows = scene_rows(
+        catalog,
+        dataset,
+        actual_year,
+        start=entry.get("start"),
+        end=entry.get("end"),
+        count=int(entry["count"]) if entry.get("count") is not None else None,
+    )
     if len(rows) < 2:
         raise RuntimeError(
             f"epoch {target_year} has only {len(rows)} usable full-coverage scenes"

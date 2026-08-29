@@ -12,12 +12,18 @@ This project maps an **image-derived water-land boundary**. It is not a true, le
 | 1990 | 1990 | Landsat 5 TM | 3 | 30 m |
 | 2000 | 2000 | Landsat 5 TM | 3 | 30 m |
 | 2010 | 2009 | Landsat 5 TM | 3 | 30 m |
+| 2017 | 2017 | Sentinel-2A | 3 | 20 m |
 | 2018 | 2018 | Sentinel-2A/2B | 3 | 20 m |
+| 2019 | 2019 | Sentinel-2A/2B | 3 | 20 m |
 | 2020 | 2020 | Sentinel-2A/2B | 3 | 20 m |
-| 2025 | 2025 | Sentinel-2A/2C | 3 | 20 m |
+| 2021 | 2021 | Sentinel-2B | 3 | 20 m |
+| 2022 | 2022 | Sentinel-2A/2B | 3 | 20 m |
+| 2023 | 2023 | Sentinel-2A/2B | 3 | 20 m |
+| 2024 | 2024 | Sentinel-2A/2B | 3 | 20 m |
+| 2025 | 2025 | Sentinel-2A/2B/2C | 3 | 20 m |
 | 2026 | 2026 | Sentinel-2A/2B | 3 | 20 m |
 
-The target 1985 epoch uses the nearest usable provider imagery from 1987. The target 2010 epoch uses full-coverage Landsat 5 scenes from 2009; post-2003 Landsat 7 SLC-off scenes were excluded from that composite. Exact scene IDs, dates, AOI cloud metrics, source URLs, licences, paths, sizes, and checksums are recorded in `data/catalog/mvp_optical_scenes.csv`.
+The target 1985 epoch uses the nearest usable provider imagery from 1987. The target 2010 epoch uses full-coverage Landsat 5 scenes from 2009; post-2003 Landsat 7 SLC-off scenes were excluded from that composite. The annual Sentinel-2 sequence uses January–April acquisitions for every year from 2017–2026. Exact scene IDs, dates, AOI cloud metrics, source URLs, licences, paths, sizes, and checksums are recorded in `data/catalog/mvp_optical_scenes.csv`.
 
 ## Processing method
 

@@ -3,1151 +3,2015 @@ T001,1985,1985,1987,-208.4,-208.4,landsat-5,30,unverified,LOW
 T001,1990,1990,1990,-226.31,-226.31,landsat-5,30,unverified,LOW
 T001,2000,2000,2000,,,landsat-5,30,unverified,LOW
 T001,2010,2010,2009,,,landsat-5,30,unverified,LOW
+T001,2017,2017,2017,,,Sentinel-2A,20,unverified,LOW
 T001,2018,2018,2018,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T001,2019,2019,2019,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T001,2020,2020,2020,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T001,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T001,2021,2021,2021,,,Sentinel-2B,20,unverified,LOW
+T001,2022,2022,2022,-13.69,-13.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T001,2023,2023,2023,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T001,2024,2024,2024,-254.6,-254.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T001,2025,2025,2025,-14.14,-14.14,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T001,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T002,1985,1985,1987,-194.48,-194.48,landsat-5,30,unverified,LOW
 T002,1990,1990,1990,-203.23,-203.23,landsat-5,30,unverified,LOW
 T002,2000,2000,2000,,,landsat-5,30,unverified,LOW
 T002,2010,2010,2009,,,landsat-5,30,unverified,LOW
+T002,2017,2017,2017,,,Sentinel-2A,20,unverified,LOW
 T002,2018,2018,2018,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T002,2019,2019,2019,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T002,2020,2020,2020,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T002,2025,2025,2025,-3.01,-3.01,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T002,2021,2021,2021,,,Sentinel-2B,20,unverified,LOW
+T002,2022,2022,2022,-10.44,-10.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T002,2023,2023,2023,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T002,2024,2024,2024,-210.83,-210.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T002,2025,2025,2025,-14.13,-14.13,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T002,2026,2026,2026,-3.01,-3.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T003,1985,1985,1987,-180.57,-180.57,landsat-5,30,unverified,LOW
 T003,1990,1990,1990,-207.05,-207.05,landsat-5,30,unverified,LOW
 T003,2000,2000,2000,,,landsat-5,30,unverified,LOW
 T003,2010,2010,2009,,,landsat-5,30,unverified,LOW
+T003,2017,2017,2017,,,Sentinel-2A,20,unverified,LOW
 T003,2018,2018,2018,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T003,2019,2019,2019,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T003,2020,2020,2020,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T003,2025,2025,2025,-6.03,-6.03,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T003,2021,2021,2021,,,Sentinel-2B,20,unverified,LOW
+T003,2022,2022,2022,-7.2,-7.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T003,2023,2023,2023,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T003,2024,2024,2024,-204.63,-204.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T003,2025,2025,2025,-14.11,-14.11,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T003,2026,2026,2026,-6.03,-6.03,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T004,1985,1985,1987,-166.65,-166.65,landsat-5,30,unverified,LOW
 T004,1990,1990,1990,-210.86,-210.86,landsat-5,30,unverified,LOW
 T004,2000,2000,2000,,,landsat-5,30,unverified,LOW
 T004,2010,2010,2009,,,landsat-5,30,unverified,LOW
+T004,2017,2017,2017,,,Sentinel-2A,20,unverified,LOW
 T004,2018,2018,2018,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T004,2019,2019,2019,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T004,2020,2020,2020,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T004,2025,2025,2025,-9.04,-9.04,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T004,2021,2021,2021,,,Sentinel-2B,20,unverified,LOW
+T004,2022,2022,2022,-3.96,-3.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T004,2023,2023,2023,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T004,2024,2024,2024,-198.43,-198.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T004,2025,2025,2025,-14.09,-14.09,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T004,2026,2026,2026,-9.04,-9.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T005,1985,1985,1987,-152.73,-152.73,landsat-5,30,unverified,LOW
 T005,1990,1990,1990,-214.68,-214.68,landsat-5,30,unverified,LOW
 T005,2000,2000,2000,,,landsat-5,30,unverified,LOW
 T005,2010,2010,2009,,,landsat-5,30,unverified,LOW
+T005,2017,2017,2017,,,Sentinel-2A,20,unverified,LOW
 T005,2018,2018,2018,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T005,2019,2019,2019,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T005,2020,2020,2020,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T005,2025,2025,2025,-12.05,-12.05,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T005,2021,2021,2021,,,Sentinel-2B,20,unverified,LOW
+T005,2022,2022,2022,-0.71,-0.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T005,2023,2023,2023,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T005,2024,2024,2024,-192.24,-192.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T005,2025,2025,2025,-14.07,-14.07,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T005,2026,2026,2026,-12.05,-12.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T006,1985,1985,1987,-21.21,-21.21,landsat-5,30,unverified,LOW
 T006,1990,1990,1990,-83.83,-83.83,landsat-5,30,unverified,LOW
 T006,2000,2000,2000,,,landsat-5,30,unverified,LOW
 T006,2010,2010,2009,,,landsat-5,30,unverified,LOW
+T006,2017,2017,2017,,,Sentinel-2A,20,unverified,LOW
 T006,2018,2018,2018,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T006,2019,2019,2019,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T006,2020,2020,2020,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T006,2025,2025,2025,-1.9,-1.9,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T006,2021,2021,2021,,,Sentinel-2B,20,unverified,LOW
+T006,2022,2022,2022,-1.01,-1.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T006,2023,2023,2023,,,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T006,2024,2024,2024,-1.01,-1.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T006,2025,2025,2025,-1.9,-1.9,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T006,2026,2026,2026,-1.9,-1.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T007,1985,1985,1987,3.94,3.94,landsat-5,30,unverified,LOW
 T007,1990,1990,1990,21.5,21.5,landsat-5,30,unverified,LOW
 T007,2000,2000,2000,154.73,154.73,landsat-5,30,unverified,LOW
 T007,2010,2010,2009,193.32,193.32,landsat-5,30,unverified,LOW
+T007,2017,2017,2017,143.64,143.64,Sentinel-2A,20,unverified,LOW
 T007,2018,2018,2018,143.64,143.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T007,2019,2019,2019,149.79,149.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T007,2020,2020,2020,143.64,143.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T007,2025,2025,2025,16.41,16.41,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T007,2021,2021,2021,143.64,143.64,Sentinel-2B,20,unverified,LOW
+T007,2022,2022,2022,37.6,37.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T007,2023,2023,2023,122.6,122.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T007,2024,2024,2024,29.1,29.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T007,2025,2025,2025,16.41,16.41,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T007,2026,2026,2026,0.51,0.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T008,1985,1985,1987,17.32,17.32,landsat-5,30,unverified,LOW
 T008,1990,1990,1990,49.08,49.08,landsat-5,30,unverified,LOW
 T008,2000,2000,2000,376.73,376.73,landsat-5,30,unverified,LOW
 T008,2010,2010,2009,450.22,450.22,landsat-5,30,unverified,LOW
+T008,2017,2017,2017,451.41,451.41,Sentinel-2A,20,unverified,LOW
 T008,2018,2018,2018,451.41,451.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T008,2019,2019,2019,291.84,291.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T008,2020,2020,2020,445.19,445.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T008,2025,2025,2025,97.89,97.89,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T008,2021,2021,2021,451.94,451.94,Sentinel-2B,20,unverified,LOW
+T008,2022,2022,2022,114.56,114.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T008,2023,2023,2023,445.19,445.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T008,2024,2024,2024,67.72,67.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T008,2025,2025,2025,101.49,101.49,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T008,2026,2026,2026,-8.58,-8.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T009,1985,1985,1987,-6.4,-6.4,landsat-5,30,unverified,LOW
 T009,1990,1990,1990,-27.26,-27.26,landsat-5,30,unverified,LOW
 T009,2000,2000,2000,-255.38,-255.38,landsat-5,30,unverified,LOW
 T009,2010,2010,2009,-290.91,-290.91,landsat-5,30,unverified,LOW
+T009,2017,2017,2017,-297.27,-297.27,Sentinel-2A,20,unverified,LOW
 T009,2018,2018,2018,-297.27,-297.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T009,2019,2019,2019,-275.38,-275.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T009,2020,2020,2020,-306.1,-306.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T009,2025,2025,2025,-97.84,-97.84,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T009,2021,2021,2021,-297.27,-297.27,Sentinel-2B,20,unverified,LOW
+T009,2022,2022,2022,-106.43,-106.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T009,2023,2023,2023,-306.81,-306.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T009,2024,2024,2024,-83.14,-83.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T009,2025,2025,2025,-103.17,-103.17,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T009,2026,2026,2026,5.27,5.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T010,1985,1985,1987,-3.58,-3.58,landsat-5,30,unverified,LOW
 T010,1990,1990,1990,9.23,9.23,landsat-5,30,unverified,LOW
 T010,2000,2000,2000,-321.16,-321.16,landsat-5,30,unverified,LOW
 T010,2010,2010,2009,-367.58,-367.58,landsat-5,30,unverified,LOW
+T010,2017,2017,2017,-383.17,-383.17,Sentinel-2A,20,unverified,LOW
 T010,2018,2018,2018,-383.17,-383.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T010,2019,2019,2019,-244.83,-244.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T010,2020,2020,2020,-400.63,-400.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T010,2025,2025,2025,-85.1,-85.1,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T010,2021,2021,2021,-383.17,-383.17,Sentinel-2B,20,unverified,LOW
+T010,2022,2022,2022,-87.04,-87.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T010,2023,2023,2023,-400.65,-400.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T010,2024,2024,2024,-89.28,-89.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T010,2025,2025,2025,-67.2,-67.2,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T010,2026,2026,2026,-12.67,-12.67,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T011,1985,1985,1987,70.88,70.88,landsat-5,30,unverified,LOW
 T011,1990,1990,1990,92.34,92.34,landsat-5,30,unverified,LOW
 T011,2000,2000,2000,-366.32,-366.32,landsat-5,30,unverified,LOW
 T011,2010,2010,2009,-377.07,-377.07,landsat-5,30,unverified,LOW
+T011,2017,2017,2017,-365.43,-365.43,Sentinel-2A,20,unverified,LOW
 T011,2018,2018,2018,-365.43,-365.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T011,2019,2019,2019,-214.28,-214.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T011,2020,2020,2020,-361.46,-361.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T011,2025,2025,2025,-30.1,-30.1,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T011,2021,2021,2021,-367.09,-367.09,Sentinel-2B,20,unverified,LOW
+T011,2022,2022,2022,-36.53,-36.53,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T011,2023,2023,2023,-361.46,-361.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T011,2024,2024,2024,-46.05,-46.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T011,2025,2025,2025,-20.68,-20.68,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T011,2026,2026,2026,-20.19,-20.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T012,1985,1985,1987,-99.95,-99.95,landsat-5,30,unverified,LOW
 T012,1990,1990,1990,-110.22,-110.22,landsat-5,30,unverified,LOW
 T012,2000,2000,2000,538.31,538.31,landsat-5,30,unverified,LOW
 T012,2010,2010,2009,410.55,410.55,landsat-5,30,unverified,LOW
+T012,2017,2017,2017,322.03,322.03,Sentinel-2A,20,unverified,LOW
 T012,2018,2018,2018,322.03,322.03,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T012,2019,2019,2019,221.39,221.39,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T012,2020,2020,2020,332.69,332.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T012,2025,2025,2025,10.72,10.72,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T012,2021,2021,2021,329.19,329.19,Sentinel-2B,20,unverified,LOW
+T012,2022,2022,2022,8.93,8.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T012,2023,2023,2023,332.69,332.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T012,2024,2024,2024,23.56,23.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T012,2025,2025,2025,8.93,8.93,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T012,2026,2026,2026,8.48,8.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T013,1985,1985,1987,-113.67,-113.67,landsat-5,30,unverified,LOW
 T013,1990,1990,1990,-123.61,-123.61,landsat-5,30,unverified,LOW
 T013,2000,2000,2000,571.14,571.14,landsat-5,30,unverified,LOW
 T013,2010,2010,2009,453.58,453.58,landsat-5,30,unverified,LOW
+T013,2017,2017,2017,340.32,340.32,Sentinel-2A,20,unverified,LOW
 T013,2018,2018,2018,340.32,340.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T013,2019,2019,2019,256.8,256.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T013,2020,2020,2020,355.66,355.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T013,2025,2025,2025,24.19,24.19,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T013,2021,2021,2021,349.3,349.3,Sentinel-2B,20,unverified,LOW
+T013,2022,2022,2022,15.76,15.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T013,2023,2023,2023,355.66,355.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T013,2024,2024,2024,34.54,34.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T013,2025,2025,2025,15.76,15.76,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T013,2026,2026,2026,8.22,8.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T014,1985,1985,1987,-97.75,-97.75,landsat-5,30,unverified,LOW
 T014,1990,1990,1990,-151.94,-151.94,landsat-5,30,unverified,LOW
 T014,2000,2000,2000,675.57,675.57,landsat-5,30,unverified,LOW
 T014,2010,2010,2009,625.37,625.37,landsat-5,30,unverified,LOW
+T014,2017,2017,2017,413.91,413.91,Sentinel-2A,20,unverified,LOW
 T014,2018,2018,2018,413.91,413.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T014,2019,2019,2019,361.28,361.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T014,2020,2020,2020,443.95,443.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T014,2025,2025,2025,11.22,11.22,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T014,2021,2021,2021,428.91,428.91,Sentinel-2B,20,unverified,LOW
+T014,2022,2022,2022,4.72,4.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T014,2023,2023,2023,443.95,443.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T014,2024,2024,2024,18.93,18.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T014,2025,2025,2025,4.72,4.72,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T014,2026,2026,2026,3.57,3.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T015,1985,1985,1987,-56.57,-56.57,landsat-5,30,unverified,LOW
 T015,1990,1990,1990,65.74,65.74,landsat-5,30,unverified,LOW
 T015,2000,2000,2000,673.57,673.57,landsat-5,30,unverified,LOW
 T015,2010,2010,2009,615.25,615.25,landsat-5,30,unverified,LOW
+T015,2017,2017,2017,427.78,427.78,Sentinel-2A,20,unverified,LOW
 T015,2018,2018,2018,427.78,427.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T015,2019,2019,2019,384.67,384.67,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T015,2020,2020,2020,455.92,455.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T015,2025,2025,2025,-0.01,-0.01,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T015,2021,2021,2021,441.83,441.83,Sentinel-2B,20,unverified,LOW
+T015,2022,2022,2022,1.0,1.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T015,2023,2023,2023,455.92,455.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T015,2024,2024,2024,-0.01,-0.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T015,2025,2025,2025,-0.01,-0.01,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T015,2026,2026,2026,-5.14,-5.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T016,1985,1985,1987,1.16,1.16,landsat-5,30,unverified,LOW
 T016,1990,1990,1990,209.77,209.77,landsat-5,30,unverified,LOW
 T016,2000,2000,2000,683.77,683.77,landsat-5,30,unverified,LOW
 T016,2010,2010,2009,662.01,662.01,landsat-5,30,unverified,LOW
+T016,2017,2017,2017,453.76,453.76,Sentinel-2A,20,unverified,LOW
 T016,2018,2018,2018,453.76,453.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T016,2019,2019,2019,427.46,427.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T016,2020,2020,2020,486.01,486.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T016,2025,2025,2025,-0.08,-0.08,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T016,2021,2021,2021,469.39,469.39,Sentinel-2B,20,unverified,LOW
+T016,2022,2022,2022,5.26,5.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T016,2023,2023,2023,486.01,486.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T016,2024,2024,2024,-0.08,-0.08,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T016,2025,2025,2025,-0.08,-0.08,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T016,2026,2026,2026,4.37,4.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T017,1985,1985,1987,139.76,139.76,landsat-5,30,unverified,LOW
 T017,1990,1990,1990,246.26,246.26,landsat-5,30,unverified,LOW
 T017,2000,2000,2000,660.43,660.43,landsat-5,30,unverified,LOW
 T017,2010,2010,2009,718.26,718.26,landsat-5,30,unverified,LOW
+T017,2017,2017,2017,483.27,483.27,Sentinel-2A,20,unverified,LOW
 T017,2018,2018,2018,483.27,483.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T017,2019,2019,2019,475.31,475.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T017,2020,2020,2020,520.46,520.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T017,2025,2025,2025,11.51,11.51,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T017,2021,2021,2021,500.82,500.82,Sentinel-2B,20,unverified,LOW
+T017,2022,2022,2022,9.52,9.52,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T017,2023,2023,2023,520.46,520.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T017,2024,2024,2024,17.95,17.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T017,2025,2025,2025,11.62,11.62,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T017,2026,2026,2026,7.65,7.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T018,1985,1985,1987,167.13,167.13,landsat-5,30,unverified,LOW
 T018,1990,1990,1990,217.58,217.58,landsat-5,30,unverified,LOW
 T018,2000,2000,2000,626.8,626.8,landsat-5,30,unverified,LOW
 T018,2010,2010,2009,774.5,774.5,landsat-5,30,unverified,LOW
+T018,2017,2017,2017,512.77,512.77,Sentinel-2A,20,unverified,LOW
 T018,2018,2018,2018,512.77,512.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T018,2019,2019,2019,523.16,523.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T018,2020,2020,2020,554.91,554.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T018,2025,2025,2025,4.96,4.96,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T018,2021,2021,2021,532.25,532.25,Sentinel-2B,20,unverified,LOW
+T018,2022,2022,2022,13.78,13.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T018,2023,2023,2023,554.91,554.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T018,2024,2024,2024,17.64,17.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T018,2025,2025,2025,12.86,12.86,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T018,2026,2026,2026,0.56,0.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T019,1985,1985,1987,132.4,132.4,landsat-5,30,unverified,LOW
 T019,1990,1990,1990,137.53,137.53,landsat-5,30,unverified,LOW
 T019,2000,2000,2000,593.17,593.17,landsat-5,30,unverified,LOW
 T019,2010,2010,2009,779.09,779.09,landsat-5,30,unverified,LOW
+T019,2017,2017,2017,542.28,542.28,Sentinel-2A,20,unverified,LOW
 T019,2018,2018,2018,542.28,542.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T019,2019,2019,2019,571.01,571.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T019,2020,2020,2020,589.36,589.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T019,2025,2025,2025,-6.52,-6.52,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T019,2021,2021,2021,563.68,563.68,Sentinel-2B,20,unverified,LOW
+T019,2022,2022,2022,-2.65,-2.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T019,2023,2023,2023,589.36,589.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T019,2024,2024,2024,7.65,7.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T019,2025,2025,2025,14.1,14.1,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T019,2026,2026,2026,-6.52,-6.52,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T020,1985,1985,1987,94.18,94.18,landsat-5,30,unverified,LOW
 T020,1990,1990,1990,130.24,130.24,landsat-5,30,unverified,LOW
 T020,2000,2000,2000,608.53,608.53,landsat-5,30,unverified,LOW
 T020,2010,2010,2009,805.89,805.89,landsat-5,30,unverified,LOW
+T020,2017,2017,2017,544.83,544.83,Sentinel-2A,20,unverified,LOW
 T020,2018,2018,2018,544.83,544.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T020,2019,2019,2019,569.59,569.59,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T020,2020,2020,2020,589.17,589.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T020,2025,2025,2025,2.15,2.15,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T020,2021,2021,2021,565.14,565.14,Sentinel-2B,20,unverified,LOW
+T020,2022,2022,2022,2.15,2.15,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T020,2023,2023,2023,589.17,589.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T020,2024,2024,2024,8.37,8.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T020,2025,2025,2025,10.86,10.86,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T020,2026,2026,2026,-0.23,-0.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T021,1985,1985,1987,84.63,84.63,landsat-5,30,unverified,LOW
 T021,1990,1990,1990,111.16,111.16,landsat-5,30,unverified,LOW
 T021,2000,2000,2000,554.72,554.72,landsat-5,30,unverified,LOW
 T021,2010,2010,2009,761.2,761.2,landsat-5,30,unverified,LOW
+T021,2017,2017,2017,550.26,550.26,Sentinel-2A,20,unverified,LOW
 T021,2018,2018,2018,550.26,550.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T021,2019,2019,2019,589.42,589.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T021,2020,2020,2020,598.51,598.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T021,2025,2025,2025,4.77,4.77,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T021,2021,2021,2021,572.11,572.11,Sentinel-2B,20,unverified,LOW
+T021,2022,2022,2022,4.77,4.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T021,2023,2023,2023,598.51,598.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T021,2024,2024,2024,5.45,5.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T021,2025,2025,2025,7.94,7.94,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T021,2026,2026,2026,-1.17,-1.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T022,1985,1985,1987,119.87,119.87,landsat-5,30,unverified,LOW
 T022,1990,1990,1990,135.54,135.54,landsat-5,30,unverified,LOW
 T022,2000,2000,2000,493.53,493.53,landsat-5,30,unverified,LOW
 T022,2010,2010,2009,699.5,699.5,landsat-5,30,unverified,LOW
+T022,2017,2017,2017,556.49,556.49,Sentinel-2A,20,unverified,LOW
 T022,2018,2018,2018,556.49,556.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T022,2019,2019,2019,611.94,611.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T022,2020,2020,2020,609.26,609.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T022,2025,2025,2025,-1.77,-1.77,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T022,2021,2021,2021,580.11,580.11,Sentinel-2B,20,unverified,LOW
+T022,2022,2022,2022,-6.4,-6.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T022,2023,2023,2023,609.26,609.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T022,2024,2024,2024,-6.4,-6.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T022,2025,2025,2025,-1.77,-1.77,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T022,2026,2026,2026,-4.43,-4.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T023,1985,1985,1987,159.65,159.65,landsat-5,30,unverified,LOW
 T023,1990,1990,1990,167.42,167.42,landsat-5,30,unverified,LOW
 T023,2000,2000,2000,445.2,445.2,landsat-5,30,unverified,LOW
 T023,2010,2010,2009,637.81,637.81,landsat-5,30,unverified,LOW
+T023,2017,2017,2017,562.71,562.71,Sentinel-2A,20,unverified,LOW
 T023,2018,2018,2018,562.71,562.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T023,2019,2019,2019,634.47,634.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T023,2020,2020,2020,620.0,620.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T023,2025,2025,2025,-16.81,-16.81,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T023,2021,2021,2021,588.11,588.11,Sentinel-2B,20,unverified,LOW
+T023,2022,2022,2022,-16.48,-16.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T023,2023,2023,2023,620.0,620.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T023,2024,2024,2024,-16.48,-16.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T023,2025,2025,2025,-16.96,-16.96,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T023,2026,2026,2026,-16.48,-16.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T024,1985,1985,1987,162.67,162.67,landsat-5,30,unverified,LOW
 T024,1990,1990,1990,199.3,199.3,landsat-5,30,unverified,LOW
 T024,2000,2000,2000,491.94,491.94,landsat-5,30,unverified,LOW
 T024,2010,2010,2009,600.52,600.52,landsat-5,30,unverified,LOW
+T024,2017,2017,2017,586.21,586.21,Sentinel-2A,20,unverified,LOW
 T024,2018,2018,2018,584.19,584.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T024,2019,2019,2019,657.06,657.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T024,2020,2020,2020,633.01,633.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T024,2025,2025,2025,-14.18,-14.18,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T024,2021,2021,2021,611.86,611.86,Sentinel-2B,20,unverified,LOW
+T024,2022,2022,2022,-11.93,-11.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T024,2023,2023,2023,633.33,633.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T024,2024,2024,2024,-11.93,-11.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T024,2025,2025,2025,-15.22,-15.22,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T024,2026,2026,2026,-11.93,-11.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T025,1985,1985,1987,165.7,165.7,landsat-5,30,unverified,LOW
 T025,1990,1990,1990,195.49,195.49,landsat-5,30,unverified,LOW
 T025,2000,2000,2000,524.55,524.55,landsat-5,30,unverified,LOW
 T025,2010,2010,2009,653.85,653.85,landsat-5,30,unverified,LOW
+T025,2017,2017,2017,632.61,632.61,Sentinel-2A,20,unverified,LOW
 T025,2018,2018,2018,625.88,625.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T025,2019,2019,2019,689.1,689.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T025,2020,2020,2020,669.29,669.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T025,2025,2025,2025,-11.55,-11.55,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T025,2021,2021,2021,649.1,649.1,Sentinel-2B,20,unverified,LOW
+T025,2022,2022,2022,-7.37,-7.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T025,2023,2023,2023,673.19,673.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T025,2024,2024,2024,-7.37,-7.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T025,2025,2025,2025,-13.48,-13.48,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T025,2026,2026,2026,-7.37,-7.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T026,1985,1985,1987,162.33,162.33,landsat-5,30,unverified,LOW
 T026,1990,1990,1990,188.0,188.0,landsat-5,30,unverified,LOW
 T026,2000,2000,2000,557.16,557.16,landsat-5,30,unverified,LOW
 T026,2010,2010,2009,675.74,675.74,landsat-5,30,unverified,LOW
+T026,2017,2017,2017,679.01,679.01,Sentinel-2A,20,unverified,LOW
 T026,2018,2018,2018,667.56,667.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T026,2019,2019,2019,721.14,721.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T026,2020,2020,2020,705.57,705.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T026,2025,2025,2025,-8.33,-8.33,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T026,2021,2021,2021,682.77,682.77,Sentinel-2B,20,unverified,LOW
+T026,2022,2022,2022,-2.82,-2.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T026,2023,2023,2023,703.75,703.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T026,2024,2024,2024,-2.82,-2.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T026,2025,2025,2025,-11.73,-11.73,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T026,2026,2026,2026,-2.82,-2.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T027,1985,1985,1987,157.84,157.84,landsat-5,30,unverified,LOW
 T027,1990,1990,1990,201.67,201.67,landsat-5,30,unverified,LOW
 T027,2000,2000,2000,589.77,589.77,landsat-5,30,unverified,LOW
 T027,2010,2010,2009,696.73,696.73,landsat-5,30,unverified,LOW
+T027,2017,2017,2017,719.45,719.45,Sentinel-2A,20,unverified,LOW
 T027,2018,2018,2018,709.25,709.25,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T027,2019,2019,2019,734.71,734.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T027,2020,2020,2020,733.71,733.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T027,2025,2025,2025,0.61,0.61,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T027,2021,2021,2021,716.44,716.44,Sentinel-2B,20,unverified,LOW
+T027,2022,2022,2022,1.73,1.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T027,2023,2023,2023,720.72,720.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T027,2024,2024,2024,1.73,1.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T027,2025,2025,2025,-9.99,-9.99,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T027,2026,2026,2026,1.73,1.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T028,1985,1985,1987,128.13,128.13,landsat-5,30,unverified,LOW
 T028,1990,1990,1990,178.78,178.78,landsat-5,30,unverified,LOW
 T028,2000,2000,2000,622.39,622.39,landsat-5,30,unverified,LOW
 T028,2010,2010,2009,717.73,717.73,landsat-5,30,unverified,LOW
+T028,2017,2017,2017,728.45,728.45,Sentinel-2A,20,unverified,LOW
 T028,2018,2018,2018,733.72,733.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T028,2019,2019,2019,779.84,779.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T028,2020,2020,2020,749.81,749.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T028,2025,2025,2025,-1.64,-1.64,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T028,2021,2021,2021,742.24,742.24,Sentinel-2B,20,unverified,LOW
+T028,2022,2022,2022,2.37,2.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T028,2023,2023,2023,749.81,749.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T028,2024,2024,2024,-2.46,-2.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T028,2025,2025,2025,-8.25,-8.25,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T028,2026,2026,2026,1.9,1.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T029,1985,1985,1987,107.81,107.81,landsat-5,30,unverified,LOW
 T029,1990,1990,1990,135.02,135.02,landsat-5,30,unverified,LOW
 T029,2000,2000,2000,646.47,646.47,landsat-5,30,unverified,LOW
 T029,2010,2010,2009,726.26,726.26,landsat-5,30,unverified,LOW
+T029,2017,2017,2017,737.44,737.44,Sentinel-2A,20,unverified,LOW
 T029,2018,2018,2018,743.26,743.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T029,2019,2019,2019,801.34,801.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T029,2020,2020,2020,759.89,759.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T029,2025,2025,2025,-3.88,-3.88,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T029,2021,2021,2021,753.99,753.99,Sentinel-2B,20,unverified,LOW
+T029,2022,2022,2022,-0.55,-0.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T029,2023,2023,2023,759.89,759.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T029,2024,2024,2024,-14.6,-14.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T029,2025,2025,2025,-6.5,-6.5,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T029,2026,2026,2026,-1.92,-1.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T030,1985,1985,1987,93.23,93.23,landsat-5,30,unverified,LOW
 T030,1990,1990,1990,142.34,142.34,landsat-5,30,unverified,LOW
 T030,2000,2000,2000,657.45,657.45,landsat-5,30,unverified,LOW
 T030,2010,2010,2009,732.01,732.01,landsat-5,30,unverified,LOW
+T030,2017,2017,2017,746.43,746.43,Sentinel-2A,20,unverified,LOW
 T030,2018,2018,2018,752.8,752.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T030,2019,2019,2019,817.81,817.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T030,2020,2020,2020,769.97,769.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T030,2025,2025,2025,-6.13,-6.13,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T030,2021,2021,2021,765.73,765.73,Sentinel-2B,20,unverified,LOW
+T030,2022,2022,2022,-24.77,-24.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T030,2023,2023,2023,769.97,769.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T030,2024,2024,2024,-23.81,-23.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T030,2025,2025,2025,-4.76,-4.76,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T030,2026,2026,2026,-5.73,-5.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T031,1985,1985,1987,82.83,82.83,landsat-5,30,unverified,LOW
 T031,1990,1990,1990,145.79,145.79,landsat-5,30,unverified,LOW
 T031,2000,2000,2000,652.02,652.02,landsat-5,30,unverified,LOW
 T031,2010,2010,2009,737.77,737.77,landsat-5,30,unverified,LOW
+T031,2017,2017,2017,755.42,755.42,Sentinel-2A,20,unverified,LOW
 T031,2018,2018,2018,762.35,762.35,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T031,2019,2019,2019,834.28,834.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T031,2020,2020,2020,780.06,780.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T031,2025,2025,2025,-1.96,-1.96,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T031,2021,2021,2021,777.48,777.48,Sentinel-2B,20,unverified,LOW
+T031,2022,2022,2022,-17.29,-17.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T031,2023,2023,2023,780.06,780.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T031,2024,2024,2024,-6.83,-6.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T031,2025,2025,2025,-3.02,-3.02,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T031,2026,2026,2026,-4.73,-4.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T032,1985,1985,1987,72.43,72.43,landsat-5,30,unverified,LOW
 T032,1990,1990,1990,131.41,131.41,landsat-5,30,unverified,LOW
 T032,2000,2000,2000,642.18,642.18,landsat-5,30,unverified,LOW
 T032,2010,2010,2009,743.53,743.53,landsat-5,30,unverified,LOW
+T032,2017,2017,2017,764.42,764.42,Sentinel-2A,20,unverified,LOW
 T032,2018,2018,2018,771.89,771.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T032,2019,2019,2019,850.75,850.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T032,2020,2020,2020,790.14,790.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T032,2025,2025,2025,4.38,4.38,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T032,2021,2021,2021,789.23,789.23,Sentinel-2B,20,unverified,LOW
+T032,2022,2022,2022,-4.16,-4.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T032,2023,2023,2023,790.14,790.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T032,2024,2024,2024,10.15,10.15,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T032,2025,2025,2025,-1.27,-1.27,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T032,2026,2026,2026,-2.1,-2.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T033,1985,1985,1987,77.78,77.78,landsat-5,30,unverified,LOW
 T033,1990,1990,1990,148.57,148.57,landsat-5,30,unverified,LOW
 T033,2000,2000,2000,568.4,568.4,landsat-5,30,unverified,LOW
 T033,2010,2010,2009,694.65,694.65,landsat-5,30,unverified,LOW
+T033,2017,2017,2017,692.83,692.83,Sentinel-2A,20,unverified,LOW
 T033,2018,2018,2018,706.39,706.39,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T033,2019,2019,2019,764.56,764.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T033,2020,2020,2020,721.98,721.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T033,2025,2025,2025,5.28,5.28,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T033,2021,2021,2021,715.33,715.33,Sentinel-2B,20,unverified,LOW
+T033,2022,2022,2022,6.81,6.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T033,2023,2023,2023,715.33,715.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T033,2024,2024,2024,11.56,11.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T033,2025,2025,2025,3.11,3.11,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T033,2026,2026,2026,3.21,3.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T034,1985,1985,1987,100.48,100.48,landsat-5,30,unverified,LOW
 T034,1990,1990,1990,169.93,169.93,landsat-5,30,unverified,LOW
 T034,2000,2000,2000,535.84,535.84,landsat-5,30,unverified,LOW
 T034,2010,2010,2009,674.85,674.85,landsat-5,30,unverified,LOW
+T034,2017,2017,2017,658.14,658.14,Sentinel-2A,20,unverified,LOW
 T034,2018,2018,2018,668.9,668.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T034,2019,2019,2019,722.94,722.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T034,2020,2020,2020,686.99,686.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T034,2025,2025,2025,4.42,4.42,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T034,2021,2021,2021,676.0,676.0,Sentinel-2B,20,unverified,LOW
+T034,2022,2022,2022,4.93,4.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T034,2023,2023,2023,676.0,676.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T034,2024,2024,2024,8.22,8.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T034,2025,2025,2025,2.25,2.25,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T034,2026,2026,2026,3.74,3.74,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T035,1985,1985,1987,89.75,89.75,landsat-5,30,unverified,LOW
 T035,1990,1990,1990,172.51,172.51,landsat-5,30,unverified,LOW
 T035,2000,2000,2000,639.56,639.56,landsat-5,30,unverified,LOW
 T035,2010,2010,2009,782.2,782.2,landsat-5,30,unverified,LOW
+T035,2017,2017,2017,800.21,800.21,Sentinel-2A,20,unverified,LOW
 T035,2018,2018,2018,821.73,821.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T035,2019,2019,2019,904.04,904.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T035,2020,2020,2020,837.68,837.68,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T035,2025,2025,2025,-30.95,-30.95,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T035,2021,2021,2021,836.2,836.2,Sentinel-2B,20,unverified,LOW
+T035,2022,2022,2022,-29.45,-29.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T035,2023,2023,2023,836.2,836.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T035,2024,2024,2024,-25.34,-25.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T035,2025,2025,2025,2.44,2.44,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T035,2026,2026,2026,-29.45,-29.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T036,1985,1985,1987,28.39,28.39,landsat-5,30,unverified,LOW
 T036,1990,1990,1990,120.52,120.52,landsat-5,30,unverified,LOW
 T036,2000,2000,2000,550.44,550.44,landsat-5,30,unverified,LOW
 T036,2010,2010,2009,710.81,710.81,landsat-5,30,unverified,LOW
+T036,2017,2017,2017,709.87,709.87,Sentinel-2A,20,unverified,LOW
 T036,2018,2018,2018,727.75,727.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T036,2019,2019,2019,805.2,805.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T036,2020,2020,2020,747.34,747.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T036,2025,2025,2025,-119.55,-119.55,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T036,2021,2021,2021,739.77,739.77,Sentinel-2B,20,unverified,LOW
+T036,2022,2022,2022,-114.88,-114.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T036,2023,2023,2023,739.77,739.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T036,2024,2024,2024,-118.08,-118.08,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T036,2025,2025,2025,30.06,30.06,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T036,2026,2026,2026,-114.88,-114.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T037,1985,1985,1987,-7.73,-7.73,landsat-5,30,unverified,LOW
 T037,1990,1990,1990,107.92,107.92,landsat-5,30,unverified,LOW
 T037,2000,2000,2000,461.32,461.32,landsat-5,30,unverified,LOW
 T037,2010,2010,2009,639.42,639.42,landsat-5,30,unverified,LOW
+T037,2017,2017,2017,619.53,619.53,Sentinel-2A,20,unverified,LOW
 T037,2018,2018,2018,633.77,633.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T037,2019,2019,2019,706.35,706.35,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T037,2020,2020,2020,657.0,657.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T037,2025,2025,2025,-101.71,-101.71,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T037,2021,2021,2021,643.34,643.34,Sentinel-2B,20,unverified,LOW
+T037,2022,2022,2022,-131.94,-131.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T037,2023,2023,2023,643.34,643.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T037,2024,2024,2024,-101.71,-101.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T037,2025,2025,2025,57.68,57.68,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T037,2026,2026,2026,-131.94,-131.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T038,1985,1985,1987,-44.55,-44.55,landsat-5,30,unverified,LOW
 T038,1990,1990,1990,94.0,94.0,landsat-5,30,unverified,LOW
 T038,2000,2000,2000,372.19,372.19,landsat-5,30,unverified,LOW
 T038,2010,2010,2009,568.03,568.03,landsat-5,30,unverified,LOW
+T038,2017,2017,2017,529.19,529.19,Sentinel-2A,20,unverified,LOW
 T038,2018,2018,2018,539.79,539.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T038,2019,2019,2019,607.51,607.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T038,2020,2020,2020,566.67,566.67,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T038,2025,2025,2025,-25.17,-25.17,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T038,2021,2021,2021,546.91,546.91,Sentinel-2B,20,unverified,LOW
+T038,2022,2022,2022,-47.93,-47.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T038,2023,2023,2023,546.91,546.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T038,2024,2024,2024,-25.17,-25.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T038,2025,2025,2025,85.31,85.31,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T038,2026,2026,2026,-47.93,-47.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T039,1985,1985,1987,-425.76,-425.76,landsat-5,30,unverified,LOW
 T039,1990,1990,1990,83.47,83.47,landsat-5,30,unverified,LOW
 T039,2000,2000,2000,966.24,966.24,landsat-5,30,unverified,LOW
 T039,2010,2010,2009,1097.62,1097.62,landsat-5,30,unverified,LOW
+T039,2017,2017,2017,1118.24,1118.24,Sentinel-2A,20,unverified,LOW
 T039,2018,2018,2018,1127.55,1127.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T039,2019,2019,2019,1213.45,1213.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T039,2020,2020,2020,1153.09,1153.09,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T039,2025,2025,2025,12.76,12.76,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T039,2021,2021,2021,1144.95,1144.95,Sentinel-2B,20,unverified,LOW
+T039,2022,2022,2022,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T039,2023,2023,2023,1153.09,1153.09,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T039,2024,2024,2024,12.76,12.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T039,2025,2025,2025,87.49,87.49,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T039,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T040,1985,1985,1987,-381.32,-381.32,landsat-5,30,unverified,LOW
 T040,1990,1990,1990,-120.24,-120.24,landsat-5,30,unverified,LOW
 T040,2000,2000,2000,184.06,184.06,landsat-5,30,unverified,LOW
 T040,2010,2010,2009,466.86,466.86,landsat-5,30,unverified,LOW
+T040,2017,2017,2017,402.27,402.27,Sentinel-2A,20,unverified,LOW
 T040,2018,2018,2018,414.44,414.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T040,2019,2019,2019,508.93,508.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T040,2020,2020,2020,454.82,454.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T040,2025,2025,2025,8.81,8.81,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T040,2021,2021,2021,422.83,422.83,Sentinel-2B,20,unverified,LOW
+T040,2022,2022,2022,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T040,2023,2023,2023,422.83,422.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T040,2024,2024,2024,8.81,8.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T040,2025,2025,2025,37.94,37.94,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T040,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T041,1985,1985,1987,-334.37,-334.37,landsat-5,30,unverified,LOW
 T041,1990,1990,1990,-115.8,-115.8,landsat-5,30,unverified,LOW
 T041,2000,2000,2000,4.19,4.19,landsat-5,30,unverified,LOW
 T041,2010,2010,2009,271.93,271.93,landsat-5,30,unverified,LOW
+T041,2017,2017,2017,163.63,163.63,Sentinel-2A,20,unverified,LOW
 T041,2018,2018,2018,163.63,163.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T041,2019,2019,2019,209.31,209.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T041,2020,2020,2020,209.31,209.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T041,2025,2025,2025,128.7,128.7,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T041,2021,2021,2021,163.63,163.63,Sentinel-2B,20,unverified,LOW
+T041,2022,2022,2022,127.45,127.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T041,2023,2023,2023,163.63,163.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T041,2024,2024,2024,128.7,128.7,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T041,2025,2025,2025,25.03,25.03,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T041,2026,2026,2026,127.45,127.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T042,1985,1985,1987,-337.64,-337.64,landsat-5,30,unverified,LOW
 T042,1990,1990,1990,-126.48,-126.48,landsat-5,30,unverified,LOW
 T042,2000,2000,2000,42.89,42.89,landsat-5,30,unverified,LOW
 T042,2010,2010,2009,241.05,241.05,landsat-5,30,unverified,LOW
+T042,2017,2017,2017,184.97,184.97,Sentinel-2A,20,unverified,LOW
 T042,2018,2018,2018,184.97,184.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T042,2019,2019,2019,221.38,221.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T042,2020,2020,2020,207.22,207.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T042,2025,2025,2025,70.08,70.08,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T042,2021,2021,2021,191.27,191.27,Sentinel-2B,20,unverified,LOW
+T042,2022,2022,2022,124.04,124.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T042,2023,2023,2023,119.54,119.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T042,2024,2024,2024,79.95,79.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T042,2025,2025,2025,-39.08,-39.08,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T042,2026,2026,2026,95.35,95.35,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T043,1985,1985,1987,-359.91,-359.91,landsat-5,30,unverified,LOW
 T043,1990,1990,1990,-164.44,-164.44,landsat-5,30,unverified,LOW
 T043,2000,2000,2000,552.71,552.71,landsat-5,30,unverified,LOW
 T043,2010,2010,2009,845.28,845.28,landsat-5,30,unverified,LOW
+T043,2017,2017,2017,810.28,810.28,Sentinel-2A,20,unverified,LOW
 T043,2018,2018,2018,769.69,769.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T043,2019,2019,2019,871.69,871.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T043,2020,2020,2020,774.05,774.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T043,2025,2025,2025,-25.73,-25.73,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T043,2021,2021,2021,769.69,769.69,Sentinel-2B,20,unverified,LOW
+T043,2022,2022,2022,15.19,15.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T043,2023,2023,2023,6.91,6.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T043,2024,2024,2024,-17.16,-17.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T043,2025,2025,2025,-50.79,-50.79,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T043,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T044,1985,1985,1987,-341.22,-341.22,landsat-5,30,unverified,LOW
 T044,1990,1990,1990,141.84,141.84,landsat-5,30,unverified,LOW
 T044,2000,2000,2000,574.09,574.09,landsat-5,30,unverified,LOW
 T044,2010,2010,2009,818.84,818.84,landsat-5,30,unverified,LOW
+T044,2017,2017,2017,790.05,790.05,Sentinel-2A,20,unverified,LOW
 T044,2018,2018,2018,767.32,767.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T044,2019,2019,2019,842.19,842.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T044,2020,2020,2020,770.64,770.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T044,2025,2025,2025,-37.49,-37.49,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T044,2021,2021,2021,767.32,767.32,Sentinel-2B,20,unverified,LOW
+T044,2022,2022,2022,16.76,16.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T044,2023,2023,2023,4.95,4.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T044,2024,2024,2024,-24.85,-24.85,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T044,2025,2025,2025,-29.37,-29.37,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T044,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T045,1985,1985,1987,-169.63,-169.63,landsat-5,30,unverified,LOW
 T045,1990,1990,1990,138.95,138.95,landsat-5,30,unverified,LOW
 T045,2000,2000,2000,420.42,420.42,landsat-5,30,unverified,LOW
 T045,2010,2010,2009,566.9,566.9,landsat-5,30,unverified,LOW
+T045,2017,2017,2017,565.1,565.1,Sentinel-2A,20,unverified,LOW
 T045,2018,2018,2018,561.55,561.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T045,2019,2019,2019,644.71,644.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T045,2020,2020,2020,592.45,592.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T045,2025,2025,2025,-139.02,-139.02,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T045,2021,2021,2021,592.49,592.49,Sentinel-2B,20,unverified,LOW
+T045,2022,2022,2022,-45.06,-45.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T045,2023,2023,2023,-65.44,-65.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T045,2024,2024,2024,-114.06,-114.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T045,2025,2025,2025,-72.97,-72.97,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T045,2026,2026,2026,-68.52,-68.52,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T046,1985,1985,1987,-127.46,-127.46,landsat-5,30,unverified,LOW
 T046,1990,1990,1990,208.14,208.14,landsat-5,30,unverified,LOW
 T046,2000,2000,2000,472.51,472.51,landsat-5,30,unverified,LOW
 T046,2010,2010,2009,635.17,635.17,landsat-5,30,unverified,LOW
+T046,2017,2017,2017,627.47,627.47,Sentinel-2A,20,unverified,LOW
 T046,2018,2018,2018,622.65,622.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T046,2019,2019,2019,676.76,676.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T046,2020,2020,2020,656.17,656.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T046,2025,2025,2025,-130.85,-130.85,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T046,2021,2021,2021,656.17,656.17,Sentinel-2B,20,unverified,LOW
+T046,2022,2022,2022,-124.53,-124.53,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T046,2023,2023,2023,-131.12,-131.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T046,2024,2024,2024,-119.79,-119.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T046,2025,2025,2025,-125.07,-125.07,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T046,2026,2026,2026,-130.85,-130.85,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T047,1985,1985,1987,-85.28,-85.28,landsat-5,30,unverified,LOW
 T047,1990,1990,1990,243.31,243.31,landsat-5,30,unverified,LOW
 T047,2000,2000,2000,505.19,505.19,landsat-5,30,unverified,LOW
 T047,2010,2010,2009,678.39,678.39,landsat-5,30,unverified,LOW
+T047,2017,2017,2017,658.09,658.09,Sentinel-2A,20,unverified,LOW
 T047,2018,2018,2018,678.21,678.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T047,2019,2019,2019,698.12,698.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T047,2020,2020,2020,678.44,678.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T047,2025,2025,2025,-30.84,-30.84,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T047,2021,2021,2021,678.21,678.21,Sentinel-2B,20,unverified,LOW
+T047,2022,2022,2022,-37.82,-37.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T047,2023,2023,2023,-33.69,-33.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T047,2024,2024,2024,-37.82,-37.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T047,2025,2025,2025,-37.82,-37.82,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T047,2026,2026,2026,-30.84,-30.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T048,1985,1985,1987,-72.0,-72.0,landsat-5,30,unverified,LOW
 T048,1990,1990,1990,233.13,233.13,landsat-5,30,unverified,LOW
 T048,2000,2000,2000,479.93,479.93,landsat-5,30,unverified,LOW
 T048,2010,2010,2009,611.7,611.7,landsat-5,30,unverified,LOW
+T048,2017,2017,2017,609.61,609.61,Sentinel-2A,20,unverified,LOW
 T048,2018,2018,2018,606.33,606.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T048,2019,2019,2019,675.61,675.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T048,2020,2020,2020,632.9,632.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T048,2025,2025,2025,0.12,0.12,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T048,2021,2021,2021,632.93,632.93,Sentinel-2B,20,unverified,LOW
+T048,2022,2022,2022,0.12,0.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T048,2023,2023,2023,-5.84,-5.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T048,2024,2024,2024,5.26,5.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T048,2025,2025,2025,0.12,0.12,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T048,2026,2026,2026,0.12,0.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T049,1985,1985,1987,-90.25,-90.25,landsat-5,30,unverified,LOW
 T049,1990,1990,1990,228.68,228.68,landsat-5,30,unverified,LOW
 T049,2000,2000,2000,485.52,485.52,landsat-5,30,unverified,LOW
 T049,2010,2010,2009,615.72,615.72,landsat-5,30,unverified,LOW
+T049,2017,2017,2017,615.08,615.08,Sentinel-2A,20,unverified,LOW
 T049,2018,2018,2018,612.36,612.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T049,2019,2019,2019,677.19,677.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T049,2020,2020,2020,637.63,637.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T049,2025,2025,2025,-7.14,-7.14,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T049,2021,2021,2021,637.67,637.67,Sentinel-2B,20,unverified,LOW
+T049,2022,2022,2022,-7.14,-7.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T049,2023,2023,2023,-9.34,-9.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T049,2024,2024,2024,-5.92,-5.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T049,2025,2025,2025,-7.14,-7.14,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T049,2026,2026,2026,-7.14,-7.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T050,1985,1985,1987,-117.63,-117.63,landsat-5,30,unverified,LOW
 T050,1990,1990,1990,145.58,145.58,landsat-5,30,unverified,LOW
 T050,2000,2000,2000,428.25,428.25,landsat-5,30,unverified,LOW
 T050,2010,2010,2009,598.09,598.09,landsat-5,30,unverified,LOW
+T050,2017,2017,2017,583.4,583.4,Sentinel-2A,20,unverified,LOW
 T050,2018,2018,2018,589.89,589.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T050,2019,2019,2019,630.54,630.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T050,2020,2020,2020,610.3,610.3,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T050,2025,2025,2025,-1.04,-1.04,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T050,2021,2021,2021,610.3,610.3,Sentinel-2B,20,unverified,LOW
+T050,2022,2022,2022,-1.04,-1.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T050,2023,2023,2023,-1.04,-1.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T050,2024,2024,2024,-1.04,-1.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T050,2025,2025,2025,-1.04,-1.04,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T050,2026,2026,2026,-1.04,-1.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T051,1985,1985,1987,-114.86,-114.86,landsat-5,30,unverified,LOW
 T051,1990,1990,1990,33.83,33.83,landsat-5,30,unverified,LOW
 T051,2000,2000,2000,378.91,378.91,landsat-5,30,unverified,LOW
 T051,2010,2010,2009,574.33,574.33,landsat-5,30,unverified,LOW
+T051,2017,2017,2017,554.87,554.87,Sentinel-2A,20,unverified,LOW
 T051,2018,2018,2018,515.17,515.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T051,2019,2019,2019,590.09,590.09,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T051,2020,2020,2020,520.47,520.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T051,2025,2025,2025,39.49,39.49,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T051,2021,2021,2021,515.17,515.17,Sentinel-2B,20,unverified,LOW
+T051,2022,2022,2022,38.44,38.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T051,2023,2023,2023,-13.73,-13.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T051,2024,2024,2024,39.49,39.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T051,2025,2025,2025,39.49,39.49,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T051,2026,2026,2026,-6.85,-6.85,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T052,1985,1985,1987,-82.08,-82.08,landsat-5,30,unverified,LOW
 T052,1990,1990,1990,74.36,74.36,landsat-5,30,unverified,LOW
 T052,2000,2000,2000,394.24,394.24,landsat-5,30,unverified,LOW
 T052,2010,2010,2009,600.82,600.82,landsat-5,30,unverified,LOW
+T052,2017,2017,2017,579.97,579.97,Sentinel-2A,20,unverified,LOW
 T052,2018,2018,2018,567.93,567.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T052,2019,2019,2019,619.8,619.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T052,2020,2020,2020,571.41,571.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T052,2025,2025,2025,90.69,90.69,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T052,2021,2021,2021,567.93,567.93,Sentinel-2B,20,unverified,LOW
+T052,2022,2022,2022,88.5,88.5,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T052,2023,2023,2023,-10.7,-10.7,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T052,2024,2024,2024,90.69,90.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T052,2025,2025,2025,90.69,90.69,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T052,2026,2026,2026,-1.42,-1.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T053,1985,1985,1987,-71.79,-71.79,landsat-5,30,unverified,LOW
 T053,1990,1990,1990,13.21,13.21,landsat-5,30,unverified,LOW
 T053,2000,2000,2000,277.05,277.05,landsat-5,30,unverified,LOW
 T053,2010,2010,2009,401.69,401.69,landsat-5,30,unverified,LOW
+T053,2017,2017,2017,410.86,410.86,Sentinel-2A,20,unverified,LOW
 T053,2018,2018,2018,368.46,368.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T053,2019,2019,2019,418.34,418.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T053,2020,2020,2020,381.67,381.67,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T053,2025,2025,2025,23.97,23.97,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T053,2021,2021,2021,368.46,368.46,Sentinel-2B,20,unverified,LOW
+T053,2022,2022,2022,23.97,23.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T053,2023,2023,2023,16.3,16.3,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T053,2024,2024,2024,23.97,23.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T053,2025,2025,2025,45.87,45.87,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T053,2026,2026,2026,16.34,16.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T054,1985,1985,1987,21.06,21.06,landsat-5,30,unverified,LOW
 T054,1990,1990,1990,63.74,63.74,landsat-5,30,unverified,LOW
 T054,2000,2000,2000,307.6,307.6,landsat-5,30,unverified,LOW
 T054,2010,2010,2009,356.22,356.22,landsat-5,30,unverified,LOW
+T054,2017,2017,2017,364.29,364.29,Sentinel-2A,20,unverified,LOW
 T054,2018,2018,2018,361.32,361.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T054,2019,2019,2019,367.23,367.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T054,2020,2020,2020,367.23,367.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T054,2025,2025,2025,69.77,69.77,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T054,2021,2021,2021,361.32,361.32,Sentinel-2B,20,unverified,LOW
+T054,2022,2022,2022,6.43,6.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T054,2023,2023,2023,52.39,52.39,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T054,2024,2024,2024,52.85,52.85,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T054,2025,2025,2025,57.32,57.32,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T054,2026,2026,2026,-10.87,-10.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T055,1985,1985,1987,87.9,87.9,landsat-5,30,unverified,LOW
 T055,1990,1990,1990,-10.11,-10.11,landsat-5,30,unverified,LOW
 T055,2000,2000,2000,297.77,297.77,landsat-5,30,unverified,LOW
 T055,2010,2010,2009,449.66,449.66,landsat-5,30,unverified,LOW
+T055,2017,2017,2017,462.77,462.77,Sentinel-2A,20,unverified,LOW
 T055,2018,2018,2018,407.54,407.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T055,2019,2019,2019,474.21,474.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T055,2020,2020,2020,425.16,425.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T055,2025,2025,2025,67.82,67.82,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T055,2021,2021,2021,407.54,407.54,Sentinel-2B,20,unverified,LOW
+T055,2022,2022,2022,70.82,70.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T055,2023,2023,2023,69.9,69.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T055,2024,2024,2024,32.22,32.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T055,2025,2025,2025,48.03,48.03,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T055,2026,2026,2026,-13.84,-13.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T056,1985,1985,1987,166.08,166.08,landsat-5,30,unverified,LOW
 T056,1990,1990,1990,-167.98,-167.98,landsat-5,30,unverified,LOW
 T056,2000,2000,2000,316.55,316.55,landsat-5,30,unverified,LOW
 T056,2010,2010,2009,336.58,336.58,landsat-5,30,unverified,LOW
+T056,2017,2017,2017,334.2,334.2,Sentinel-2A,20,unverified,LOW
 T056,2018,2018,2018,346.99,346.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T056,2019,2019,2019,348.18,348.18,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T056,2020,2020,2020,348.18,348.18,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T056,2025,2025,2025,63.92,63.92,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T056,2021,2021,2021,346.99,346.99,Sentinel-2B,20,unverified,LOW
+T056,2022,2022,2022,83.49,83.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T056,2023,2023,2023,63.92,63.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T056,2024,2024,2024,90.45,90.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T056,2025,2025,2025,65.28,65.28,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T056,2026,2026,2026,-1.72,-1.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T057,1985,1985,1987,241.83,241.83,landsat-5,30,unverified,LOW
 T057,1990,1990,1990,-168.12,-168.12,landsat-5,30,unverified,LOW
 T057,2000,2000,2000,370.53,370.53,landsat-5,30,unverified,LOW
 T057,2010,2010,2009,384.08,384.08,landsat-5,30,unverified,LOW
+T057,2017,2017,2017,381.19,381.19,Sentinel-2A,20,unverified,LOW
 T057,2018,2018,2018,404.19,404.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T057,2019,2019,2019,404.19,404.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T057,2020,2020,2020,403.5,403.5,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T057,2025,2025,2025,33.8,33.8,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T057,2021,2021,2021,404.19,404.19,Sentinel-2B,20,unverified,LOW
+T057,2022,2022,2022,33.8,33.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T057,2023,2023,2023,26.78,26.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T057,2024,2024,2024,73.86,73.86,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T057,2025,2025,2025,72.69,72.69,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T057,2026,2026,2026,-15.34,-15.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T058,1985,1985,1987,258.71,258.71,landsat-5,30,unverified,LOW
 T058,1990,1990,1990,13.89,13.89,landsat-5,30,unverified,LOW
 T058,2000,2000,2000,374.11,374.11,landsat-5,30,unverified,LOW
 T058,2010,2010,2009,387.4,387.4,landsat-5,30,unverified,LOW
+T058,2017,2017,2017,384.95,384.95,Sentinel-2A,20,unverified,LOW
 T058,2018,2018,2018,406.4,406.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T058,2019,2019,2019,406.4,406.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T058,2020,2020,2020,403.66,403.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T058,2025,2025,2025,51.69,51.69,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T058,2021,2021,2021,406.4,406.4,Sentinel-2B,20,unverified,LOW
+T058,2022,2022,2022,69.1,69.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T058,2023,2023,2023,49.58,49.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T058,2024,2024,2024,104.26,104.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T058,2025,2025,2025,104.26,104.26,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T058,2026,2026,2026,-32.13,-32.13,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T059,1985,1985,1987,279.64,279.64,landsat-5,30,unverified,LOW
 T059,1990,1990,1990,114.16,114.16,landsat-5,30,unverified,LOW
 T059,2000,2000,2000,381.98,381.98,landsat-5,30,unverified,LOW
 T059,2010,2010,2009,390.89,390.89,landsat-5,30,unverified,LOW
+T059,2017,2017,2017,386.83,386.83,Sentinel-2A,20,unverified,LOW
 T059,2018,2018,2018,409.32,409.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T059,2019,2019,2019,409.32,409.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T059,2020,2020,2020,415.33,415.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T059,2025,2025,2025,16.36,16.36,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T059,2021,2021,2021,409.32,409.32,Sentinel-2B,20,unverified,LOW
+T059,2022,2022,2022,120.63,120.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T059,2023,2023,2023,117.7,117.7,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T059,2024,2024,2024,125.97,125.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T059,2025,2025,2025,125.97,125.97,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T059,2026,2026,2026,40.34,40.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T060,1985,1985,1987,297.03,297.03,landsat-5,30,unverified,LOW
 T060,1990,1990,1990,240.75,240.75,landsat-5,30,unverified,LOW
 T060,2000,2000,2000,379.94,379.94,landsat-5,30,unverified,LOW
 T060,2010,2010,2009,390.21,390.21,landsat-5,30,unverified,LOW
+T060,2017,2017,2017,391.89,391.89,Sentinel-2A,20,unverified,LOW
 T060,2018,2018,2018,405.99,405.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T060,2019,2019,2019,405.99,405.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T060,2020,2020,2020,412.95,412.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T060,2025,2025,2025,-18.77,-18.77,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T060,2021,2021,2021,405.99,405.99,Sentinel-2B,20,unverified,LOW
+T060,2022,2022,2022,71.11,71.11,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T060,2023,2023,2023,137.21,137.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T060,2024,2024,2024,152.49,152.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T060,2025,2025,2025,141.79,141.79,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T060,2026,2026,2026,0.25,0.25,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T061,1985,1985,1987,316.22,316.22,landsat-5,30,unverified,LOW
 T061,1990,1990,1990,343.81,343.81,landsat-5,30,unverified,LOW
 T061,2000,2000,2000,384.28,384.28,landsat-5,30,unverified,LOW
 T061,2010,2010,2009,391.09,391.09,landsat-5,30,unverified,LOW
+T061,2017,2017,2017,402.87,402.87,Sentinel-2A,20,unverified,LOW
 T061,2018,2018,2018,410.31,410.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T061,2019,2019,2019,410.31,410.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T061,2020,2020,2020,415.21,415.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T061,2025,2025,2025,-32.03,-32.03,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T061,2021,2021,2021,347.18,347.18,Sentinel-2B,20,unverified,LOW
+T061,2022,2022,2022,28.19,28.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T061,2023,2023,2023,110.47,110.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T061,2024,2024,2024,187.29,187.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T061,2025,2025,2025,116.7,116.7,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T061,2026,2026,2026,28.61,28.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T062,1985,1985,1987,320.29,320.29,landsat-5,30,unverified,LOW
 T062,1990,1990,1990,348.03,348.03,landsat-5,30,unverified,LOW
 T062,2000,2000,2000,374.52,374.52,landsat-5,30,unverified,LOW
 T062,2010,2010,2009,340.76,340.76,landsat-5,30,unverified,LOW
+T062,2017,2017,2017,320.71,320.71,Sentinel-2A,20,unverified,LOW
 T062,2018,2018,2018,336.57,336.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T062,2019,2019,2019,336.57,336.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T062,2020,2020,2020,379.93,379.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T062,2025,2025,2025,-45.2,-45.2,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T062,2021,2021,2021,265.6,265.6,Sentinel-2B,20,unverified,LOW
+T062,2022,2022,2022,-10.92,-10.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T062,2023,2023,2023,63.05,63.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T062,2024,2024,2024,165.14,165.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T062,2025,2025,2025,52.06,52.06,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T062,2026,2026,2026,3.49,3.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T063,1985,1985,1987,335.58,335.58,landsat-5,30,unverified,LOW
 T063,1990,1990,1990,214.06,214.06,landsat-5,30,unverified,LOW
 T063,2000,2000,2000,243.97,243.97,landsat-5,30,unverified,LOW
 T063,2010,2010,2009,272.71,272.71,landsat-5,30,unverified,LOW
+T063,2017,2017,2017,255.53,255.53,Sentinel-2A,20,unverified,LOW
 T063,2018,2018,2018,265.2,265.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T063,2019,2019,2019,265.2,265.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T063,2020,2020,2020,290.92,290.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T063,2025,2025,2025,-34.15,-34.15,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T063,2021,2021,2021,204.68,204.68,Sentinel-2B,20,unverified,LOW
+T063,2022,2022,2022,-61.97,-61.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T063,2023,2023,2023,42.69,42.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T063,2024,2024,2024,148.78,148.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T063,2025,2025,2025,17.23,17.23,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T063,2026,2026,2026,-0.0,-0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T064,1985,1985,1987,377.11,377.11,landsat-5,30,unverified,LOW
 T064,1990,1990,1990,134.33,134.33,landsat-5,30,unverified,LOW
 T064,2000,2000,2000,192.55,192.55,landsat-5,30,unverified,LOW
 T064,2010,2010,2009,258.25,258.25,landsat-5,30,unverified,LOW
+T064,2017,2017,2017,242.1,242.1,Sentinel-2A,20,unverified,LOW
 T064,2018,2018,2018,248.22,248.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T064,2019,2019,2019,248.22,248.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T064,2020,2020,2020,264.27,264.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T064,2025,2025,2025,3.5,3.5,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T064,2021,2021,2021,191.47,191.47,Sentinel-2B,20,unverified,LOW
+T064,2022,2022,2022,-46.81,-46.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T064,2023,2023,2023,49.99,49.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T064,2024,2024,2024,166.46,166.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T064,2025,2025,2025,12.3,12.3,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T064,2026,2026,2026,22.48,22.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T065,1985,1985,1987,360.98,360.98,landsat-5,30,unverified,LOW
 T065,1990,1990,1990,80.36,80.36,landsat-5,30,unverified,LOW
 T065,2000,2000,2000,160.83,160.83,landsat-5,30,unverified,LOW
 T065,2010,2010,2009,253.12,253.12,landsat-5,30,unverified,LOW
+T065,2017,2017,2017,237.39,237.39,Sentinel-2A,20,unverified,LOW
 T065,2018,2018,2018,241.23,241.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T065,2019,2019,2019,241.23,241.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T065,2020,2020,2020,251.29,251.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T065,2025,2025,2025,21.56,21.56,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T065,2021,2021,2021,151.04,151.04,Sentinel-2B,20,unverified,LOW
+T065,2022,2022,2022,-4.84,-4.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T065,2023,2023,2023,1.73,1.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T065,2024,2024,2024,110.21,110.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T065,2025,2025,2025,-12.76,-12.76,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T065,2026,2026,2026,0.92,0.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T066,1985,1985,1987,316.29,316.29,landsat-5,30,unverified,LOW
 T066,1990,1990,1990,26.38,26.38,landsat-5,30,unverified,LOW
 T066,2000,2000,2000,129.12,129.12,landsat-5,30,unverified,LOW
 T066,2010,2010,2009,247.98,247.98,landsat-5,30,unverified,LOW
+T066,2017,2017,2017,232.69,232.69,Sentinel-2A,20,unverified,LOW
 T066,2018,2018,2018,234.24,234.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T066,2019,2019,2019,234.24,234.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T066,2020,2020,2020,238.3,238.3,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T066,2025,2025,2025,16.46,16.46,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T066,2021,2021,2021,141.69,141.69,Sentinel-2B,20,unverified,LOW
+T066,2022,2022,2022,-16.26,-16.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T066,2023,2023,2023,-27.44,-27.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T066,2024,2024,2024,49.28,49.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T066,2025,2025,2025,299.81,299.81,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T066,2026,2026,2026,20.14,20.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T067,1985,1985,1987,271.61,271.61,landsat-5,30,unverified,LOW
 T067,1990,1990,1990,-27.59,-27.59,landsat-5,30,unverified,LOW
 T067,2000,2000,2000,97.41,97.41,landsat-5,30,unverified,LOW
 T067,2010,2010,2009,242.85,242.85,landsat-5,30,unverified,LOW
+T067,2017,2017,2017,207.17,207.17,Sentinel-2A,20,unverified,LOW
 T067,2018,2018,2018,207.17,207.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T067,2019,2019,2019,207.17,207.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T067,2020,2020,2020,207.17,207.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T067,2025,2025,2025,63.21,63.21,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T067,2021,2021,2021,139.67,139.67,Sentinel-2B,20,unverified,LOW
+T067,2022,2022,2022,63.21,63.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T067,2023,2023,2023,63.73,63.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T067,2024,2024,2024,63.21,63.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T067,2025,2025,2025,200.84,200.84,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T067,2026,2026,2026,-11.77,-11.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T068,1985,1985,1987,425.22,425.22,landsat-5,30,unverified,LOW
 T068,1990,1990,1990,-93.48,-93.48,landsat-5,30,unverified,LOW
 T068,2000,2000,2000,49.82,49.82,landsat-5,30,unverified,LOW
 T068,2010,2010,2009,272.63,272.63,landsat-5,30,unverified,LOW
+T068,2017,2017,2017,251.21,251.21,Sentinel-2A,20,unverified,LOW
 T068,2018,2018,2018,252.96,252.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T068,2019,2019,2019,252.96,252.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T068,2020,2020,2020,257.91,257.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T068,2025,2025,2025,48.35,48.35,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T068,2021,2021,2021,127.37,127.37,Sentinel-2B,20,unverified,LOW
+T068,2022,2022,2022,48.35,48.35,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T068,2023,2023,2023,60.48,60.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T068,2024,2024,2024,48.35,48.35,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T068,2025,2025,2025,291.31,291.31,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T068,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T069,1985,1985,1987,131.15,131.15,landsat-5,30,unverified,LOW
 T069,1990,1990,1990,-48.34,-48.34,landsat-5,30,unverified,LOW
 T069,2000,2000,2000,-56.57,-56.57,landsat-5,30,unverified,LOW
 T069,2010,2010,2009,54.45,54.45,landsat-5,30,unverified,LOW
+T069,2017,2017,2017,63.05,63.05,Sentinel-2A,20,unverified,LOW
 T069,2018,2018,2018,63.05,63.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T069,2019,2019,2019,63.05,63.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T069,2020,2020,2020,63.05,63.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T069,2025,2025,2025,39.76,39.76,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T069,2021,2021,2021,39.76,39.76,Sentinel-2B,20,unverified,LOW
+T069,2022,2022,2022,39.76,39.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T069,2023,2023,2023,54.3,54.3,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T069,2024,2024,2024,39.76,39.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T069,2025,2025,2025,-64.35,-64.35,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T069,2026,2026,2026,39.76,39.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T070,1985,1985,1987,-44.3,-44.3,landsat-5,30,unverified,LOW
 T070,1990,1990,1990,-58.18,-58.18,landsat-5,30,unverified,LOW
 T070,2000,2000,2000,44.01,44.01,landsat-5,30,unverified,LOW
 T070,2010,2010,2009,-14.24,-14.24,landsat-5,30,unverified,LOW
+T070,2017,2017,2017,-24.26,-24.26,Sentinel-2A,20,unverified,LOW
 T070,2018,2018,2018,-24.26,-24.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T070,2019,2019,2019,-24.26,-24.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T070,2020,2020,2020,-24.26,-24.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T070,2025,2025,2025,-4.21,-4.21,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T070,2021,2021,2021,-24.26,-24.26,Sentinel-2B,20,unverified,LOW
+T070,2022,2022,2022,-24.26,-24.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T070,2023,2023,2023,-24.26,-24.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T070,2024,2024,2024,-4.21,-4.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T070,2025,2025,2025,73.21,73.21,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T070,2026,2026,2026,-4.21,-4.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T071,1985,1985,1987,-50.99,-50.99,landsat-5,30,unverified,LOW
 T071,1990,1990,1990,-36.7,-36.7,landsat-5,30,unverified,LOW
 T071,2000,2000,2000,7.26,7.26,landsat-5,30,unverified,LOW
 T071,2010,2010,2009,-19.67,-19.67,landsat-5,30,unverified,LOW
+T071,2017,2017,2017,-22.94,-22.94,Sentinel-2A,20,unverified,LOW
 T071,2018,2018,2018,-24.9,-24.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T071,2019,2019,2019,-24.06,-24.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T071,2020,2020,2020,-29.68,-29.68,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T071,2025,2025,2025,-10.9,-10.9,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T071,2021,2021,2021,-22.94,-22.94,Sentinel-2B,20,unverified,LOW
+T071,2022,2022,2022,-22.94,-22.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T071,2023,2023,2023,-22.94,-22.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T071,2024,2024,2024,-10.01,-10.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T071,2025,2025,2025,84.05,84.05,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T071,2026,2026,2026,-10.01,-10.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T072,1985,1985,1987,-57.67,-57.67,landsat-5,30,unverified,LOW
 T072,1990,1990,1990,-27.6,-27.6,landsat-5,30,unverified,LOW
 T072,2000,2000,2000,-5.35,-5.35,landsat-5,30,unverified,LOW
 T072,2010,2010,2009,1.29,1.29,landsat-5,30,unverified,LOW
+T072,2017,2017,2017,3.13,3.13,Sentinel-2A,20,unverified,LOW
 T072,2018,2018,2018,-6.89,-6.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T072,2019,2019,2019,-2.58,-2.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T072,2020,2020,2020,-8.2,-8.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T072,2025,2025,2025,10.06,10.06,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T072,2021,2021,2021,3.13,3.13,Sentinel-2B,20,unverified,LOW
+T072,2022,2022,2022,3.13,3.13,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T072,2023,2023,2023,3.13,3.13,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T072,2024,2024,2024,11.47,11.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T072,2025,2025,2025,94.88,94.88,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T072,2026,2026,2026,11.47,11.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T073,1985,1985,1987,-64.36,-64.36,landsat-5,30,unverified,LOW
 T073,1990,1990,1990,-34.29,-34.29,landsat-5,30,unverified,LOW
 T073,2000,2000,2000,-17.97,-17.97,landsat-5,30,unverified,LOW
 T073,2010,2010,2009,-15.18,-15.18,landsat-5,30,unverified,LOW
+T073,2017,2017,2017,10.04,10.04,Sentinel-2A,20,unverified,LOW
 T073,2018,2018,2018,-11.37,-11.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T073,2019,2019,2019,-13.45,-13.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T073,2020,2020,2020,-11.37,-11.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T073,2025,2025,2025,8.83,8.83,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T073,2021,2021,2021,10.04,10.04,Sentinel-2B,20,unverified,LOW
+T073,2022,2022,2022,11.01,11.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T073,2023,2023,2023,10.04,10.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T073,2024,2024,2024,8.83,8.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T073,2025,2025,2025,105.72,105.72,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T073,2026,2026,2026,8.83,8.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T074,1985,1985,1987,62.42,62.42,landsat-5,30,unverified,LOW
 T074,1990,1990,1990,36.87,36.87,landsat-5,30,unverified,LOW
 T074,2000,2000,2000,21.14,21.14,landsat-5,30,unverified,LOW
 T074,2010,2010,2009,22.01,22.01,landsat-5,30,unverified,LOW
+T074,2017,2017,2017,1.38,1.38,Sentinel-2A,20,unverified,LOW
 T074,2018,2018,2018,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T074,2019,2019,2019,21.68,21.68,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T074,2020,2020,2020,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T074,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T074,2021,2021,2021,1.38,1.38,Sentinel-2B,20,unverified,LOW
+T074,2022,2022,2022,-1.89,-1.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T074,2023,2023,2023,1.38,1.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T074,2024,2024,2024,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T074,2025,2025,2025,-130.3,-130.3,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T074,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T075,1985,1985,1987,55.99,55.99,landsat-5,30,unverified,LOW
 T075,1990,1990,1990,34.23,34.23,landsat-5,30,unverified,LOW
 T075,2000,2000,2000,15.69,15.69,landsat-5,30,unverified,LOW
 T075,2010,2010,2009,20.35,20.35,landsat-5,30,unverified,LOW
+T075,2017,2017,2017,3.93,3.93,Sentinel-2A,20,unverified,LOW
 T075,2018,2018,2018,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T075,2019,2019,2019,21.43,21.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T075,2020,2020,2020,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T075,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T075,2021,2021,2021,3.93,3.93,Sentinel-2B,20,unverified,LOW
+T075,2022,2022,2022,-1.63,-1.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T075,2023,2023,2023,3.93,3.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T075,2024,2024,2024,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T075,2025,2025,2025,-159.9,-159.9,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T075,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T076,1985,1985,1987,49.55,49.55,landsat-5,30,unverified,LOW
 T076,1990,1990,1990,31.58,31.58,landsat-5,30,unverified,LOW
 T076,2000,2000,2000,10.25,10.25,landsat-5,30,unverified,LOW
 T076,2010,2010,2009,18.68,18.68,landsat-5,30,unverified,LOW
+T076,2017,2017,2017,6.48,6.48,Sentinel-2A,20,unverified,LOW
 T076,2018,2018,2018,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T076,2019,2019,2019,21.18,21.18,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T076,2020,2020,2020,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T076,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T076,2021,2021,2021,6.48,6.48,Sentinel-2B,20,unverified,LOW
+T076,2022,2022,2022,-1.36,-1.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T076,2023,2023,2023,6.48,6.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T076,2024,2024,2024,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T076,2025,2025,2025,-165.47,-165.47,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T076,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T077,1985,1985,1987,43.11,43.11,landsat-5,30,unverified,LOW
 T077,1990,1990,1990,28.94,28.94,landsat-5,30,unverified,LOW
 T077,2000,2000,2000,4.8,4.8,landsat-5,30,unverified,LOW
 T077,2010,2010,2009,17.01,17.01,landsat-5,30,unverified,LOW
+T077,2017,2017,2017,9.03,9.03,Sentinel-2A,20,unverified,LOW
 T077,2018,2018,2018,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T077,2019,2019,2019,20.93,20.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T077,2020,2020,2020,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T077,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T077,2021,2021,2021,9.03,9.03,Sentinel-2B,20,unverified,LOW
+T077,2022,2022,2022,-1.1,-1.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T077,2023,2023,2023,9.03,9.03,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T077,2024,2024,2024,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T077,2025,2025,2025,-135.84,-135.84,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T077,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T078,1985,1985,1987,36.68,36.68,landsat-5,30,unverified,LOW
 T078,1990,1990,1990,26.3,26.3,landsat-5,30,unverified,LOW
 T078,2000,2000,2000,-0.64,-0.64,landsat-5,30,unverified,LOW
 T078,2010,2010,2009,15.34,15.34,landsat-5,30,unverified,LOW
+T078,2017,2017,2017,11.58,11.58,Sentinel-2A,20,unverified,LOW
 T078,2018,2018,2018,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T078,2019,2019,2019,20.68,20.68,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T078,2020,2020,2020,19.87,19.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T078,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T078,2021,2021,2021,11.58,11.58,Sentinel-2B,20,unverified,LOW
+T078,2022,2022,2022,-0.84,-0.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T078,2023,2023,2023,11.58,11.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T078,2024,2024,2024,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T078,2025,2025,2025,-106.21,-106.21,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T078,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T079,1985,1985,1987,24.93,24.93,landsat-5,30,unverified,LOW
 T079,1990,1990,1990,17.24,17.24,landsat-5,30,unverified,LOW
 T079,2000,2000,2000,-15.44,-15.44,landsat-5,30,unverified,LOW
 T079,2010,2010,2009,6.27,6.27,landsat-5,30,unverified,LOW
+T079,2017,2017,2017,6.55,6.55,Sentinel-2A,20,unverified,LOW
 T079,2018,2018,2018,12.9,12.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T079,2019,2019,2019,13.52,13.52,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T079,2020,2020,2020,12.9,12.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T079,2025,2025,2025,-8.62,-8.62,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T079,2021,2021,2021,6.55,6.55,Sentinel-2B,20,unverified,LOW
+T079,2022,2022,2022,-9.25,-9.25,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T079,2023,2023,2023,6.55,6.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T079,2024,2024,2024,-8.62,-8.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T079,2025,2025,2025,-82.1,-82.1,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T079,2026,2026,2026,-8.62,-8.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T080,1985,1985,1987,-37.55,-37.55,landsat-5,30,unverified,LOW
 T080,1990,1990,1990,-40.63,-40.63,landsat-5,30,unverified,LOW
 T080,2000,2000,2000,-79.16,-79.16,landsat-5,30,unverified,LOW
 T080,2010,2010,2009,-50.96,-50.96,landsat-5,30,unverified,LOW
+T080,2017,2017,2017,-45.22,-45.22,Sentinel-2A,20,unverified,LOW
 T080,2018,2018,2018,-41.78,-41.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T080,2019,2019,2019,-41.44,-41.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T080,2020,2020,2020,-41.78,-41.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T080,2025,2025,2025,-64.5,-64.5,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T080,2021,2021,2021,-45.22,-45.22,Sentinel-2B,20,unverified,LOW
+T080,2022,2022,2022,-64.81,-64.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T080,2023,2023,2023,-45.22,-45.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T080,2024,2024,2024,-64.5,-64.5,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T080,2025,2025,2025,-105.74,-105.74,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T080,2026,2026,2026,-64.5,-64.5,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T081,1985,1985,1987,-57.22,-57.22,landsat-5,30,unverified,LOW
 T081,1990,1990,1990,-69.94,-69.94,landsat-5,30,unverified,LOW
 T081,2000,2000,2000,-120.84,-120.84,landsat-5,30,unverified,LOW
 T081,2010,2010,2009,-108.11,-108.11,landsat-5,30,unverified,LOW
+T081,2017,2017,2017,-97.33,-97.33,Sentinel-2A,20,unverified,LOW
 T081,2018,2018,2018,-97.17,-97.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T081,2019,2019,2019,-97.16,-97.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T081,2020,2020,2020,-97.17,-97.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T081,2025,2025,2025,-116.6,-116.6,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T081,2021,2021,2021,-97.33,-97.33,Sentinel-2B,20,unverified,LOW
+T081,2022,2022,2022,-117.74,-117.74,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T081,2023,2023,2023,-97.33,-97.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T081,2024,2024,2024,-116.6,-116.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T081,2025,2025,2025,-127.87,-127.87,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T081,2026,2026,2026,-118.18,-118.18,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T082,1985,1985,1987,-76.37,-76.37,landsat-5,30,unverified,LOW
 T082,1990,1990,1990,-89.1,-89.1,landsat-5,30,unverified,LOW
 T082,2000,2000,2000,-134.57,-134.57,landsat-5,30,unverified,LOW
 T082,2010,2010,2009,-125.75,-125.75,landsat-5,30,unverified,LOW
+T082,2017,2017,2017,-122.94,-122.94,Sentinel-2A,20,unverified,LOW
 T082,2018,2018,2018,-122.94,-122.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T082,2019,2019,2019,-122.94,-122.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T082,2020,2020,2020,-122.94,-122.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T082,2025,2025,2025,-124.48,-124.48,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T082,2021,2021,2021,-122.94,-122.94,Sentinel-2B,20,unverified,LOW
+T082,2022,2022,2022,-141.78,-141.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T082,2023,2023,2023,-122.94,-122.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T082,2024,2024,2024,-124.48,-124.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T082,2025,2025,2025,-150.0,-150.0,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T082,2026,2026,2026,-148.81,-148.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T083,1985,1985,1987,-95.53,-95.53,landsat-5,30,unverified,LOW
 T083,1990,1990,1990,-108.25,-108.25,landsat-5,30,unverified,LOW
 T083,2000,2000,2000,-148.31,-148.31,landsat-5,30,unverified,LOW
 T083,2010,2010,2009,-143.39,-143.39,landsat-5,30,unverified,LOW
+T083,2017,2017,2017,-136.11,-136.11,Sentinel-2A,20,unverified,LOW
 T083,2018,2018,2018,-136.38,-136.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T083,2019,2019,2019,-136.11,-136.11,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T083,2020,2020,2020,-136.38,-136.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T083,2025,2025,2025,-139.41,-139.41,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T083,2021,2021,2021,-136.11,-136.11,Sentinel-2B,20,unverified,LOW
+T083,2022,2022,2022,-154.1,-154.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T083,2023,2023,2023,-137.81,-137.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T083,2024,2024,2024,-139.41,-139.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T083,2025,2025,2025,-163.91,-163.91,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T083,2026,2026,2026,-162.47,-162.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T084,1985,1985,1987,-114.68,-114.68,landsat-5,30,unverified,LOW
 T084,1990,1990,1990,-127.41,-127.41,landsat-5,30,unverified,LOW
 T084,2000,2000,2000,-162.04,-162.04,landsat-5,30,unverified,LOW
 T084,2010,2010,2009,-161.03,-161.03,landsat-5,30,unverified,LOW
+T084,2017,2017,2017,-148.14,-148.14,Sentinel-2A,20,unverified,LOW
 T084,2018,2018,2018,-148.7,-148.7,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T084,2019,2019,2019,-148.14,-148.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T084,2020,2020,2020,-148.7,-148.7,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T084,2025,2025,2025,-155.07,-155.07,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T084,2021,2021,2021,-148.14,-148.14,Sentinel-2B,20,unverified,LOW
+T084,2022,2022,2022,-166.42,-166.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T084,2023,2023,2023,-151.72,-151.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T084,2024,2024,2024,-155.07,-155.07,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T084,2025,2025,2025,-176.49,-176.49,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T084,2026,2026,2026,-173.37,-173.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T085,1985,1985,1987,-133.84,-133.84,landsat-5,30,unverified,LOW
 T085,1990,1990,1990,-146.56,-146.56,landsat-5,30,unverified,LOW
 T085,2000,2000,2000,-175.78,-175.78,landsat-5,30,unverified,LOW
 T085,2010,2010,2009,-178.66,-178.66,landsat-5,30,unverified,LOW
+T085,2017,2017,2017,-160.16,-160.16,Sentinel-2A,20,unverified,LOW
 T085,2018,2018,2018,-161.02,-161.02,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T085,2019,2019,2019,-160.16,-160.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T085,2020,2020,2020,-161.02,-161.02,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T085,2025,2025,2025,-170.74,-170.74,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T085,2021,2021,2021,-160.16,-160.16,Sentinel-2B,20,unverified,LOW
+T085,2022,2022,2022,-178.74,-178.74,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T085,2023,2023,2023,-165.62,-165.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T085,2024,2024,2024,-170.74,-170.74,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T085,2025,2025,2025,-189.06,-189.06,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T085,2026,2026,2026,-184.26,-184.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T086,1985,1985,1987,-152.99,-152.99,landsat-5,30,unverified,LOW
 T086,1990,1990,1990,-165.72,-165.72,landsat-5,30,unverified,LOW
 T086,2000,2000,2000,-189.52,-189.52,landsat-5,30,unverified,LOW
 T086,2010,2010,2009,-196.3,-196.3,landsat-5,30,unverified,LOW
+T086,2017,2017,2017,-172.19,-172.19,Sentinel-2A,20,unverified,LOW
 T086,2018,2018,2018,-173.34,-173.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T086,2019,2019,2019,-172.19,-172.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T086,2020,2020,2020,-173.34,-173.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T086,2025,2025,2025,-186.4,-186.4,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T086,2021,2021,2021,-172.19,-172.19,Sentinel-2B,20,unverified,LOW
+T086,2022,2022,2022,-191.06,-191.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T086,2023,2023,2023,-179.52,-179.52,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T086,2024,2024,2024,-186.4,-186.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T086,2025,2025,2025,-201.63,-201.63,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T086,2026,2026,2026,-195.16,-195.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T087,1985,1985,1987,-172.14,-172.14,landsat-5,30,unverified,LOW
 T087,1990,1990,1990,-184.87,-184.87,landsat-5,30,unverified,LOW
 T087,2000,2000,2000,-203.25,-203.25,landsat-5,30,unverified,LOW
 T087,2010,2010,2009,-213.94,-213.94,landsat-5,30,unverified,LOW
+T087,2017,2017,2017,-184.21,-184.21,Sentinel-2A,20,unverified,LOW
 T087,2018,2018,2018,-185.67,-185.67,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T087,2019,2019,2019,-184.21,-184.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T087,2020,2020,2020,-185.67,-185.67,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T087,2025,2025,2025,-202.06,-202.06,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T087,2021,2021,2021,-184.21,-184.21,Sentinel-2B,20,unverified,LOW
+T087,2022,2022,2022,-203.38,-203.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T087,2023,2023,2023,-193.42,-193.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T087,2024,2024,2024,-202.06,-202.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T087,2025,2025,2025,-214.21,-214.21,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T087,2026,2026,2026,-206.05,-206.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T088,1985,1985,1987,-176.31,-176.31,landsat-5,30,unverified,LOW
 T088,1990,1990,1990,-204.03,-204.03,landsat-5,30,unverified,LOW
 T088,2000,2000,2000,-189.58,-189.58,landsat-5,30,unverified,LOW
 T088,2010,2010,2009,-222.62,-222.62,landsat-5,30,unverified,LOW
+T088,2017,2017,2017,-183.34,-183.34,Sentinel-2A,20,unverified,LOW
 T088,2018,2018,2018,-162.14,-162.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T088,2019,2019,2019,-183.34,-183.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T088,2020,2020,2020,-172.42,-172.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T088,2025,2025,2025,-205.53,-205.53,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T088,2021,2021,2021,-183.34,-183.34,Sentinel-2B,20,unverified,LOW
+T088,2022,2022,2022,-184.65,-184.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T088,2023,2023,2023,-158.59,-158.59,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T088,2024,2024,2024,-205.53,-205.53,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T088,2025,2025,2025,-226.78,-226.78,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T088,2026,2026,2026,-205.13,-205.13,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T089,1985,1985,1987,-123.99,-123.99,landsat-5,30,unverified,LOW
 T089,1990,1990,1990,-148.18,-148.18,landsat-5,30,unverified,LOW
 T089,2000,2000,2000,-131.93,-131.93,landsat-5,30,unverified,LOW
 T089,2010,2010,2009,-176.0,-176.0,landsat-5,30,unverified,LOW
+T089,2017,2017,2017,-121.24,-121.24,Sentinel-2A,20,unverified,LOW
 T089,2018,2018,2018,-101.1,-101.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T089,2019,2019,2019,-121.24,-121.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T089,2020,2020,2020,-132.43,-132.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T089,2025,2025,2025,-146.34,-146.34,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T089,2021,2021,2021,-121.24,-121.24,Sentinel-2B,20,unverified,LOW
+T089,2022,2022,2022,-145.63,-145.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T089,2023,2023,2023,-109.02,-109.02,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T089,2024,2024,2024,-146.34,-146.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T089,2025,2025,2025,-164.05,-164.05,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T089,2026,2026,2026,-143.48,-143.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T090,1985,1985,1987,-71.68,-71.68,landsat-5,30,unverified,LOW
 T090,1990,1990,1990,-89.65,-89.65,landsat-5,30,unverified,LOW
 T090,2000,2000,2000,-74.27,-74.27,landsat-5,30,unverified,LOW
 T090,2010,2010,2009,-129.38,-129.38,landsat-5,30,unverified,LOW
+T090,2017,2017,2017,-59.14,-59.14,Sentinel-2A,20,unverified,LOW
 T090,2018,2018,2018,-40.07,-40.07,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T090,2019,2019,2019,-59.14,-59.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T090,2020,2020,2020,-92.44,-92.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T090,2025,2025,2025,-87.15,-87.15,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T090,2021,2021,2021,-59.14,-59.14,Sentinel-2B,20,unverified,LOW
+T090,2022,2022,2022,-106.61,-106.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T090,2023,2023,2023,-59.44,-59.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T090,2024,2024,2024,-87.15,-87.15,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T090,2025,2025,2025,-101.32,-101.32,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T090,2026,2026,2026,-81.84,-81.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T091,1985,1985,1987,-19.36,-19.36,landsat-5,30,unverified,LOW
 T091,1990,1990,1990,-31.13,-31.13,landsat-5,30,unverified,LOW
 T091,2000,2000,2000,-16.62,-16.62,landsat-5,30,unverified,LOW
 T091,2010,2010,2009,-82.76,-82.76,landsat-5,30,unverified,LOW
+T091,2017,2017,2017,2.95,2.95,Sentinel-2A,20,unverified,LOW
 T091,2018,2018,2018,20.96,20.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T091,2019,2019,2019,2.95,2.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T091,2020,2020,2020,-52.44,-52.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T091,2025,2025,2025,-27.97,-27.97,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T091,2021,2021,2021,2.95,2.95,Sentinel-2B,20,unverified,LOW
+T091,2022,2022,2022,-67.58,-67.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T091,2023,2023,2023,-9.86,-9.86,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T091,2024,2024,2024,-27.97,-27.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T091,2025,2025,2025,-38.59,-38.59,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T091,2026,2026,2026,-20.19,-20.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T092,1985,1985,1987,-6.72,-6.72,landsat-5,30,unverified,LOW
 T092,1990,1990,1990,-11.86,-11.86,landsat-5,30,unverified,LOW
 T092,2000,2000,2000,-0.02,-0.02,landsat-5,30,unverified,LOW
 T092,2010,2010,2009,-69.44,-69.44,landsat-5,30,unverified,LOW
+T092,2017,2017,2017,20.01,20.01,Sentinel-2A,20,unverified,LOW
 T092,2018,2018,2018,34.66,34.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T092,2019,2019,2019,20.01,20.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T092,2020,2020,2020,-48.76,-48.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T092,2025,2025,2025,-8.6,-8.6,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T092,2021,2021,2021,20.01,20.01,Sentinel-2B,20,unverified,LOW
+T092,2022,2022,2022,-64.16,-64.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T092,2023,2023,2023,-0.48,-0.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T092,2024,2024,2024,-8.6,-8.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T092,2025,2025,2025,-14.76,-14.76,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T092,2026,2026,2026,-0.0,-0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T093,1985,1985,1987,-13.78,-13.78,landsat-5,30,unverified,LOW
 T093,1990,1990,1990,-14.15,-14.15,landsat-5,30,unverified,LOW
 T093,2000,2000,2000,-2.96,-2.96,landsat-5,30,unverified,LOW
 T093,2010,2010,2009,-81.11,-81.11,landsat-5,30,unverified,LOW
+T093,2017,2017,2017,20.33,20.33,Sentinel-2A,20,unverified,LOW
 T093,2018,2018,2018,34.21,34.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T093,2019,2019,2019,20.33,20.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T093,2020,2020,2020,-66.13,-66.13,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T093,2025,2025,2025,-10.4,-10.4,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T093,2021,2021,2021,20.33,20.33,Sentinel-2B,20,unverified,LOW
+T093,2022,2022,2022,-82.39,-82.39,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T093,2023,2023,2023,-9.73,-9.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T093,2024,2024,2024,-10.4,-10.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T093,2025,2025,2025,-13.98,-13.98,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T093,2026,2026,2026,-0.0,-0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T094,1985,1985,1987,-20.83,-20.83,landsat-5,30,unverified,LOW
 T094,1990,1990,1990,-16.44,-16.44,landsat-5,30,unverified,LOW
 T094,2000,2000,2000,-5.9,-5.9,landsat-5,30,unverified,LOW
 T094,2010,2010,2009,-92.78,-92.78,landsat-5,30,unverified,LOW
+T094,2017,2017,2017,20.66,20.66,Sentinel-2A,20,unverified,LOW
 T094,2018,2018,2018,33.77,33.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T094,2019,2019,2019,20.66,20.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T094,2020,2020,2020,-83.5,-83.5,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T094,2025,2025,2025,-12.2,-12.2,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T094,2021,2021,2021,20.66,20.66,Sentinel-2B,20,unverified,LOW
+T094,2022,2022,2022,-100.63,-100.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T094,2023,2023,2023,-18.97,-18.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T094,2024,2024,2024,-12.2,-12.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T094,2025,2025,2025,-13.2,-13.2,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T094,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T095,1985,1985,1987,-27.89,-27.89,landsat-5,30,unverified,LOW
 T095,1990,1990,1990,-18.74,-18.74,landsat-5,30,unverified,LOW
 T095,2000,2000,2000,-8.85,-8.85,landsat-5,30,unverified,LOW
 T095,2010,2010,2009,-104.46,-104.46,landsat-5,30,unverified,LOW
+T095,2017,2017,2017,20.99,20.99,Sentinel-2A,20,unverified,LOW
 T095,2018,2018,2018,33.32,33.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T095,2019,2019,2019,20.99,20.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T095,2020,2020,2020,-100.87,-100.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T095,2025,2025,2025,-14.0,-14.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T095,2021,2021,2021,20.99,20.99,Sentinel-2B,20,unverified,LOW
+T095,2022,2022,2022,-118.86,-118.86,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T095,2023,2023,2023,-28.22,-28.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T095,2024,2024,2024,-14.0,-14.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T095,2025,2025,2025,-12.41,-12.41,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T095,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T096,1985,1985,1987,-34.94,-34.94,landsat-5,30,unverified,LOW
 T096,1990,1990,1990,-21.03,-21.03,landsat-5,30,unverified,LOW
 T096,2000,2000,2000,-11.79,-11.79,landsat-5,30,unverified,LOW
 T096,2010,2010,2009,-116.13,-116.13,landsat-5,30,unverified,LOW
+T096,2017,2017,2017,21.31,21.31,Sentinel-2A,20,unverified,LOW
 T096,2018,2018,2018,32.88,32.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T096,2019,2019,2019,21.31,21.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T096,2020,2020,2020,-118.24,-118.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T096,2025,2025,2025,-15.8,-15.8,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T096,2021,2021,2021,21.31,21.31,Sentinel-2B,20,unverified,LOW
+T096,2022,2022,2022,-137.1,-137.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T096,2023,2023,2023,-37.46,-37.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T096,2024,2024,2024,-15.8,-15.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T096,2025,2025,2025,-11.63,-11.63,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T096,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T097,1985,1985,1987,-42.0,-42.0,landsat-5,30,unverified,LOW
 T097,1990,1990,1990,-23.32,-23.32,landsat-5,30,unverified,LOW
 T097,2000,2000,2000,-14.74,-14.74,landsat-5,30,unverified,LOW
 T097,2010,2010,2009,-127.8,-127.8,landsat-5,30,unverified,LOW
+T097,2017,2017,2017,21.64,21.64,Sentinel-2A,20,unverified,LOW
 T097,2018,2018,2018,32.43,32.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T097,2019,2019,2019,21.64,21.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T097,2020,2020,2020,-135.61,-135.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T097,2025,2025,2025,-17.6,-17.6,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T097,2021,2021,2021,21.64,21.64,Sentinel-2B,20,unverified,LOW
+T097,2022,2022,2022,-155.33,-155.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T097,2023,2023,2023,-46.71,-46.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T097,2024,2024,2024,-17.6,-17.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T097,2025,2025,2025,-10.85,-10.85,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T097,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T098,1985,1985,1987,-49.06,-49.06,landsat-5,30,unverified,LOW
 T098,1990,1990,1990,-25.61,-25.61,landsat-5,30,unverified,LOW
 T098,2000,2000,2000,-17.68,-17.68,landsat-5,30,unverified,LOW
 T098,2010,2010,2009,-139.48,-139.48,landsat-5,30,unverified,LOW
+T098,2017,2017,2017,21.96,21.96,Sentinel-2A,20,unverified,LOW
 T098,2018,2018,2018,31.99,31.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T098,2019,2019,2019,21.96,21.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T098,2020,2020,2020,-152.99,-152.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T098,2025,2025,2025,-19.4,-19.4,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T098,2021,2021,2021,21.96,21.96,Sentinel-2B,20,unverified,LOW
+T098,2022,2022,2022,-173.57,-173.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T098,2023,2023,2023,-55.95,-55.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T098,2024,2024,2024,-19.4,-19.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T098,2025,2025,2025,-10.07,-10.07,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T098,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T099,1985,1985,1987,-56.11,-56.11,landsat-5,30,unverified,LOW
 T099,1990,1990,1990,-27.9,-27.9,landsat-5,30,unverified,LOW
 T099,2000,2000,2000,-20.63,-20.63,landsat-5,30,unverified,LOW
 T099,2010,2010,2009,-151.15,-151.15,landsat-5,30,unverified,LOW
+T099,2017,2017,2017,22.29,22.29,Sentinel-2A,20,unverified,LOW
 T099,2018,2018,2018,31.54,31.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T099,2019,2019,2019,22.29,22.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T099,2020,2020,2020,-170.36,-170.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T099,2025,2025,2025,-21.2,-21.2,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T099,2021,2021,2021,22.29,22.29,Sentinel-2B,20,unverified,LOW
+T099,2022,2022,2022,-191.8,-191.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T099,2023,2023,2023,-65.2,-65.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T099,2024,2024,2024,-21.2,-21.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T099,2025,2025,2025,-9.29,-9.29,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T099,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T100,1985,1985,1987,-63.17,-63.17,landsat-5,30,unverified,LOW
 T100,1990,1990,1990,-30.19,-30.19,landsat-5,30,unverified,LOW
 T100,2000,2000,2000,-23.57,-23.57,landsat-5,30,unverified,LOW
 T100,2010,2010,2009,-162.82,-162.82,landsat-5,30,unverified,LOW
+T100,2017,2017,2017,22.62,22.62,Sentinel-2A,20,unverified,LOW
 T100,2018,2018,2018,31.1,31.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T100,2019,2019,2019,22.62,22.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T100,2020,2020,2020,-187.73,-187.73,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T100,2025,2025,2025,-23.0,-23.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T100,2021,2021,2021,22.62,22.62,Sentinel-2B,20,unverified,LOW
+T100,2022,2022,2022,-210.04,-210.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T100,2023,2023,2023,-74.44,-74.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T100,2024,2024,2024,-23.0,-23.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T100,2025,2025,2025,-8.51,-8.51,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T100,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T101,1985,1985,1987,-70.22,-70.22,landsat-5,30,unverified,LOW
 T101,1990,1990,1990,-32.48,-32.48,landsat-5,30,unverified,LOW
 T101,2000,2000,2000,-26.51,-26.51,landsat-5,30,unverified,LOW
 T101,2010,2010,2009,-174.5,-174.5,landsat-5,30,unverified,LOW
+T101,2017,2017,2017,22.94,22.94,Sentinel-2A,20,unverified,LOW
 T101,2018,2018,2018,30.65,30.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T101,2019,2019,2019,22.94,22.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T101,2020,2020,2020,-205.1,-205.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T101,2025,2025,2025,-24.8,-24.8,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T101,2021,2021,2021,22.94,22.94,Sentinel-2B,20,unverified,LOW
+T101,2022,2022,2022,-228.27,-228.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T101,2023,2023,2023,-83.69,-83.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T101,2024,2024,2024,-24.8,-24.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T101,2025,2025,2025,-7.73,-7.73,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T101,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T102,1985,1985,1987,-77.28,-77.28,landsat-5,30,unverified,LOW
 T102,1990,1990,1990,-34.77,-34.77,landsat-5,30,unverified,LOW
 T102,2000,2000,2000,-29.46,-29.46,landsat-5,30,unverified,LOW
 T102,2010,2010,2009,-186.17,-186.17,landsat-5,30,unverified,LOW
+T102,2017,2017,2017,23.27,23.27,Sentinel-2A,20,unverified,LOW
 T102,2018,2018,2018,30.21,30.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T102,2019,2019,2019,23.27,23.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T102,2020,2020,2020,-222.47,-222.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T102,2025,2025,2025,-26.6,-26.6,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T102,2021,2021,2021,23.27,23.27,Sentinel-2B,20,unverified,LOW
+T102,2022,2022,2022,-246.51,-246.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T102,2023,2023,2023,-92.93,-92.93,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T102,2024,2024,2024,-26.6,-26.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T102,2025,2025,2025,-6.94,-6.94,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T102,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T103,1985,1985,1987,-84.33,-84.33,landsat-5,30,unverified,LOW
 T103,1990,1990,1990,-37.07,-37.07,landsat-5,30,unverified,LOW
 T103,2000,2000,2000,-32.4,-32.4,landsat-5,30,unverified,LOW
 T103,2010,2010,2009,-197.84,-197.84,landsat-5,30,unverified,LOW
+T103,2017,2017,2017,23.6,23.6,Sentinel-2A,20,unverified,LOW
 T103,2018,2018,2018,29.76,29.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T103,2019,2019,2019,23.6,23.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T103,2020,2020,2020,-239.84,-239.84,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T103,2025,2025,2025,-28.4,-28.4,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T103,2021,2021,2021,23.6,23.6,Sentinel-2B,20,unverified,LOW
+T103,2022,2022,2022,-264.75,-264.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T103,2023,2023,2023,-102.17,-102.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T103,2024,2024,2024,-28.4,-28.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T103,2025,2025,2025,-6.16,-6.16,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T103,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T104,1985,1985,1987,-91.39,-91.39,landsat-5,30,unverified,LOW
 T104,1990,1990,1990,-39.36,-39.36,landsat-5,30,unverified,LOW
 T104,2000,2000,2000,-35.35,-35.35,landsat-5,30,unverified,LOW
 T104,2010,2010,2009,-209.52,-209.52,landsat-5,30,unverified,LOW
+T104,2017,2017,2017,23.92,23.92,Sentinel-2A,20,unverified,LOW
 T104,2018,2018,2018,29.32,29.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T104,2019,2019,2019,23.92,23.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T104,2020,2020,2020,-257.21,-257.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T104,2025,2025,2025,-30.2,-30.2,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T104,2021,2021,2021,23.92,23.92,Sentinel-2B,20,unverified,LOW
+T104,2022,2022,2022,-282.98,-282.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T104,2023,2023,2023,-111.42,-111.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T104,2024,2024,2024,-30.2,-30.2,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T104,2025,2025,2025,-5.38,-5.38,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T104,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T105,1985,1985,1987,-98.45,-98.45,landsat-5,30,unverified,LOW
 T105,1990,1990,1990,-41.65,-41.65,landsat-5,30,unverified,LOW
 T105,2000,2000,2000,-38.29,-38.29,landsat-5,30,unverified,LOW
 T105,2010,2010,2009,-221.19,-221.19,landsat-5,30,unverified,LOW
+T105,2017,2017,2017,24.25,24.25,Sentinel-2A,20,unverified,LOW
 T105,2018,2018,2018,28.87,28.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T105,2019,2019,2019,24.25,24.25,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T105,2020,2020,2020,-274.58,-274.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T105,2025,2025,2025,-32.01,-32.01,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T105,2021,2021,2021,24.25,24.25,Sentinel-2B,20,unverified,LOW
+T105,2022,2022,2022,-301.22,-301.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T105,2023,2023,2023,-120.66,-120.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T105,2024,2024,2024,-32.01,-32.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T105,2025,2025,2025,-4.6,-4.6,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T105,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T106,1985,1985,1987,-105.5,-105.5,landsat-5,30,unverified,LOW
 T106,1990,1990,1990,-43.94,-43.94,landsat-5,30,unverified,LOW
 T106,2000,2000,2000,-41.24,-41.24,landsat-5,30,unverified,LOW
 T106,2010,2010,2009,-232.86,-232.86,landsat-5,30,unverified,LOW
+T106,2017,2017,2017,24.57,24.57,Sentinel-2A,20,unverified,LOW
 T106,2018,2018,2018,28.43,28.43,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T106,2019,2019,2019,24.57,24.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T106,2020,2020,2020,-291.95,-291.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T106,2025,2025,2025,-33.81,-33.81,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T106,2021,2021,2021,24.57,24.57,Sentinel-2B,20,unverified,LOW
+T106,2022,2022,2022,-319.45,-319.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T106,2023,2023,2023,-129.91,-129.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T106,2024,2024,2024,-33.81,-33.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T106,2025,2025,2025,-3.82,-3.82,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T106,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T107,1985,1985,1987,-112.56,-112.56,landsat-5,30,unverified,LOW
 T107,1990,1990,1990,-46.23,-46.23,landsat-5,30,unverified,LOW
 T107,2000,2000,2000,-44.18,-44.18,landsat-5,30,unverified,LOW
 T107,2010,2010,2009,-244.54,-244.54,landsat-5,30,unverified,LOW
+T107,2017,2017,2017,24.9,24.9,Sentinel-2A,20,unverified,LOW
 T107,2018,2018,2018,27.98,27.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T107,2019,2019,2019,24.9,24.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T107,2020,2020,2020,-285.38,-285.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T107,2025,2025,2025,-35.61,-35.61,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T107,2021,2021,2021,24.9,24.9,Sentinel-2B,20,unverified,LOW
+T107,2022,2022,2022,-303.28,-303.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T107,2023,2023,2023,-139.15,-139.15,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T107,2024,2024,2024,-35.61,-35.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T107,2025,2025,2025,-3.04,-3.04,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T107,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T108,1985,1985,1987,-119.61,-119.61,landsat-5,30,unverified,LOW
 T108,1990,1990,1990,-48.52,-48.52,landsat-5,30,unverified,LOW
 T108,2000,2000,2000,-47.13,-47.13,landsat-5,30,unverified,LOW
 T108,2010,2010,2009,-229.79,-229.79,landsat-5,30,unverified,LOW
+T108,2017,2017,2017,25.23,25.23,Sentinel-2A,20,unverified,LOW
 T108,2018,2018,2018,27.54,27.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T108,2019,2019,2019,25.23,25.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T108,2020,2020,2020,-207.4,-207.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T108,2025,2025,2025,-37.41,-37.41,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T108,2021,2021,2021,25.23,25.23,Sentinel-2B,20,unverified,LOW
+T108,2022,2022,2022,-225.29,-225.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T108,2023,2023,2023,-148.4,-148.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T108,2024,2024,2024,-37.41,-37.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T108,2025,2025,2025,-2.26,-2.26,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T108,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T109,1985,1985,1987,-127.25,-127.25,landsat-5,30,unverified,LOW
 T109,1990,1990,1990,-50.93,-50.93,landsat-5,30,unverified,LOW
 T109,2000,2000,2000,-50.2,-50.2,landsat-5,30,unverified,LOW
 T109,2010,2010,2009,-140.41,-140.41,landsat-5,30,unverified,LOW
+T109,2017,2017,2017,25.58,25.58,Sentinel-2A,20,unverified,LOW
 T109,2018,2018,2018,27.13,27.13,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T109,2019,2019,2019,25.58,25.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T109,2020,2020,2020,-124.85,-124.85,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T109,2025,2025,2025,-39.29,-39.29,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T109,2021,2021,2021,25.58,25.58,Sentinel-2B,20,unverified,LOW
+T109,2022,2022,2022,-142.12,-142.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T109,2023,2023,2023,-158.54,-158.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T109,2024,2024,2024,-39.29,-39.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T109,2025,2025,2025,-1.48,-1.48,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T109,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T110,1985,1985,1987,-68.78,-68.78,landsat-5,30,unverified,LOW
 T110,1990,1990,1990,-66.45,-66.45,landsat-5,30,unverified,LOW
 T110,2000,2000,2000,-66.42,-66.42,landsat-5,30,unverified,LOW
 T110,2010,2010,2009,-68.11,-68.11,landsat-5,30,unverified,LOW
+T110,2017,2017,2017,13.47,13.47,Sentinel-2A,20,unverified,LOW
 T110,2018,2018,2018,14.27,14.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T110,2019,2019,2019,13.47,13.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T110,2020,2020,2020,-58.87,-58.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T110,2025,2025,2025,-54.17,-54.17,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T110,2021,2021,2021,13.47,13.47,Sentinel-2B,20,unverified,LOW
+T110,2022,2022,2022,-75.17,-75.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T110,2023,2023,2023,-85.7,-85.7,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T110,2024,2024,2024,-54.17,-54.17,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T110,2025,2025,2025,-13.34,-13.34,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T110,2026,2026,2026,-12.65,-12.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T111,1985,1985,1987,-42.04,-42.04,landsat-5,30,unverified,LOW
 T111,1990,1990,1990,-43.96,-43.96,landsat-5,30,unverified,LOW
 T111,2000,2000,2000,-10.98,-10.98,landsat-5,30,unverified,LOW
 T111,2010,2010,2009,-10.98,-10.98,landsat-5,30,unverified,LOW
+T111,2017,2017,2017,-0.09,-0.09,Sentinel-2A,20,unverified,LOW
 T111,2018,2018,2018,-0.08,-0.08,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T111,2019,2019,2019,-0.09,-0.09,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T111,2020,2020,2020,-1.05,-1.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T111,2025,2025,2025,-21.34,-21.34,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T111,2021,2021,2021,-0.09,-0.09,Sentinel-2B,20,unverified,LOW
+T111,2022,2022,2022,-21.34,-21.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T111,2023,2023,2023,-21.34,-21.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T111,2024,2024,2024,-21.34,-21.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T111,2025,2025,2025,-21.34,-21.34,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T111,2026,2026,2026,-21.34,-21.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T112,1985,1985,1987,-41.41,-41.41,landsat-5,30,unverified,LOW
 T112,1990,1990,1990,-37.11,-37.11,landsat-5,30,unverified,LOW
 T112,2000,2000,2000,5.71,5.71,landsat-5,30,unverified,LOW
 T112,2010,2010,2009,17.64,17.64,landsat-5,30,unverified,LOW
+T112,2017,2017,2017,14.0,14.0,Sentinel-2A,20,unverified,LOW
 T112,2018,2018,2018,14.0,14.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T112,2019,2019,2019,14.0,14.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T112,2020,2020,2020,15.95,15.95,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T112,2025,2025,2025,13.87,13.87,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T112,2021,2021,2021,14.0,14.0,Sentinel-2B,20,unverified,LOW
+T112,2022,2022,2022,0.38,0.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T112,2023,2023,2023,0.38,0.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T112,2024,2024,2024,-0.98,-0.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T112,2025,2025,2025,-0.61,-0.61,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T112,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T113,1985,1985,1987,-21.38,-21.38,landsat-5,30,unverified,LOW
 T113,1990,1990,1990,-20.97,-20.97,landsat-5,30,unverified,LOW
 T113,2000,2000,2000,8.91,8.91,landsat-5,30,unverified,LOW
 T113,2010,2010,2009,14.38,14.38,landsat-5,30,unverified,LOW
+T113,2017,2017,2017,11.65,11.65,Sentinel-2A,20,unverified,LOW
 T113,2018,2018,2018,13.99,13.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T113,2019,2019,2019,13.99,13.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T113,2020,2020,2020,14.78,14.78,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T113,2025,2025,2025,9.89,9.89,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T113,2021,2021,2021,13.99,13.99,Sentinel-2B,20,unverified,LOW
+T113,2022,2022,2022,2.26,2.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T113,2023,2023,2023,2.26,2.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T113,2024,2024,2024,-5.79,-5.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T113,2025,2025,2025,-3.62,-3.62,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T113,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T114,1985,1985,1987,-0.92,-0.92,landsat-5,30,unverified,LOW
 T114,1990,1990,1990,-13.0,-13.0,landsat-5,30,unverified,LOW
 T114,2000,2000,2000,8.81,8.81,landsat-5,30,unverified,LOW
 T114,2010,2010,2009,9.21,9.21,landsat-5,30,unverified,LOW
+T114,2017,2017,2017,9.21,9.21,Sentinel-2A,20,unverified,LOW
 T114,2018,2018,2018,11.44,11.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T114,2019,2019,2019,9.21,9.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T114,2020,2020,2020,11.44,11.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T114,2025,2025,2025,5.78,5.78,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T114,2021,2021,2021,9.21,9.21,Sentinel-2B,20,unverified,LOW
+T114,2022,2022,2022,4.14,4.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T114,2023,2023,2023,4.14,4.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T114,2024,2024,2024,-10.6,-10.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T114,2025,2025,2025,-6.63,-6.63,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T114,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T115,1985,1985,1987,8.67,8.67,landsat-5,30,unverified,LOW
 T115,1990,1990,1990,4.39,4.39,landsat-5,30,unverified,LOW
 T115,2000,2000,2000,-1.14,-1.14,landsat-5,30,unverified,LOW
 T115,2010,2010,2009,1.99,1.99,landsat-5,30,unverified,LOW
+T115,2017,2017,2017,1.99,1.99,Sentinel-2A,20,unverified,LOW
 T115,2018,2018,2018,12.01,12.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T115,2019,2019,2019,1.99,1.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T115,2020,2020,2020,12.01,12.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T115,2025,2025,2025,1.99,1.99,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T115,2021,2021,2021,1.99,1.99,Sentinel-2B,20,unverified,LOW
+T115,2022,2022,2022,1.99,1.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T115,2023,2023,2023,1.99,1.99,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T115,2024,2024,2024,-6.11,-6.11,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T115,2025,2025,2025,-12.17,-12.17,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T115,2026,2026,2026,-1.46,-1.46,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T116,1985,1985,1987,22.24,22.24,landsat-5,30,unverified,LOW
 T116,1990,1990,1990,24.8,24.8,landsat-5,30,unverified,LOW
 T116,2000,2000,2000,0.59,0.59,landsat-5,30,unverified,LOW
 T116,2010,2010,2009,6.41,6.41,landsat-5,30,unverified,LOW
+T116,2017,2017,2017,6.41,6.41,Sentinel-2A,20,unverified,LOW
 T116,2018,2018,2018,15.0,15.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T116,2019,2019,2019,6.41,6.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T116,2020,2020,2020,15.41,15.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T116,2025,2025,2025,-0.04,-0.04,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T116,2021,2021,2021,6.41,6.41,Sentinel-2B,20,unverified,LOW
+T116,2022,2022,2022,2.89,2.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T116,2023,2023,2023,2.89,2.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T116,2024,2024,2024,2.89,2.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T116,2025,2025,2025,-7.74,-7.74,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T116,2026,2026,2026,-4.71,-4.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T117,1985,1985,1987,26.98,26.98,landsat-5,30,unverified,LOW
 T117,1990,1990,1990,18.16,18.16,landsat-5,30,unverified,LOW
 T117,2000,2000,2000,2.31,2.31,landsat-5,30,unverified,LOW
 T117,2010,2010,2009,10.84,10.84,landsat-5,30,unverified,LOW
+T117,2017,2017,2017,4.99,4.99,Sentinel-2A,20,unverified,LOW
 T117,2018,2018,2018,7.47,7.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T117,2019,2019,2019,8.76,8.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T117,2020,2020,2020,8.76,8.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T117,2025,2025,2025,-2.92,-2.92,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T117,2021,2021,2021,6.58,6.58,Sentinel-2B,20,unverified,LOW
+T117,2022,2022,2022,-3.76,-3.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T117,2023,2023,2023,-3.76,-3.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T117,2024,2024,2024,-3.76,-3.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T117,2025,2025,2025,-6.43,-6.43,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T117,2026,2026,2026,-7.96,-7.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T118,1985,1985,1987,18.96,18.96,landsat-5,30,unverified,LOW
 T118,1990,1990,1990,11.51,11.51,landsat-5,30,unverified,LOW
 T118,2000,2000,2000,4.04,4.04,landsat-5,30,unverified,LOW
 T118,2010,2010,2009,15.27,15.27,landsat-5,30,unverified,LOW
+T118,2017,2017,2017,-3.04,-3.04,Sentinel-2A,20,unverified,LOW
 T118,2018,2018,2018,-0.06,-0.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T118,2019,2019,2019,2.12,2.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T118,2020,2020,2020,2.12,2.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T118,2025,2025,2025,-5.8,-5.8,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T118,2021,2021,2021,1.93,1.93,Sentinel-2B,20,unverified,LOW
+T118,2022,2022,2022,-10.41,-10.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T118,2023,2023,2023,-10.41,-10.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T118,2024,2024,2024,-10.41,-10.41,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T118,2025,2025,2025,-11.65,-11.65,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T118,2026,2026,2026,-11.21,-11.21,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T119,1985,1985,1987,10.93,10.93,landsat-5,30,unverified,LOW
 T119,1990,1990,1990,4.86,4.86,landsat-5,30,unverified,LOW
 T119,2000,2000,2000,5.76,5.76,landsat-5,30,unverified,LOW
 T119,2010,2010,2009,1.5,1.5,landsat-5,30,unverified,LOW
+T119,2017,2017,2017,-8.61,-8.61,Sentinel-2A,20,unverified,LOW
 T119,2018,2018,2018,-7.59,-7.59,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T119,2019,2019,2019,5.55,5.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T119,2020,2020,2020,-4.53,-4.53,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T119,2025,2025,2025,-8.67,-8.67,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T119,2021,2021,2021,5.55,5.55,Sentinel-2B,20,unverified,LOW
+T119,2022,2022,2022,-11.66,-11.66,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T119,2023,2023,2023,-12.62,-12.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T119,2024,2024,2024,-12.62,-12.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T119,2025,2025,2025,-16.88,-16.88,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T119,2026,2026,2026,-8.61,-8.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T120,1985,1985,1987,2.9,2.9,landsat-5,30,unverified,LOW
 T120,1990,1990,1990,2.9,2.9,landsat-5,30,unverified,LOW
 T120,2000,2000,2000,7.48,7.48,landsat-5,30,unverified,LOW
 T120,2010,2010,2009,12.38,12.38,landsat-5,30,unverified,LOW
+T120,2017,2017,2017,-4.18,-4.18,Sentinel-2A,20,unverified,LOW
 T120,2018,2018,2018,-4.18,-4.18,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T120,2019,2019,2019,9.98,9.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T120,2020,2020,2020,-1.42,-1.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T120,2025,2025,2025,-11.55,-11.55,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T120,2021,2021,2021,9.98,9.98,Sentinel-2B,20,unverified,LOW
+T120,2022,2022,2022,-11.23,-11.23,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T120,2023,2023,2023,-13.45,-13.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T120,2024,2024,2024,-13.45,-13.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T120,2025,2025,2025,-22.11,-22.11,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T120,2026,2026,2026,-4.18,-4.18,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T121,1985,1985,1987,6.31,6.31,landsat-5,30,unverified,LOW
 T121,1990,1990,1990,6.31,6.31,landsat-5,30,unverified,LOW
 T121,2000,2000,2000,8.22,8.22,landsat-5,30,unverified,LOW
 T121,2010,2010,2009,26.67,26.67,landsat-5,30,unverified,LOW
+T121,2017,2017,2017,-0.77,-0.77,Sentinel-2A,20,unverified,LOW
 T121,2018,2018,2018,-0.77,-0.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T121,2019,2019,2019,13.4,13.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T121,2020,2020,2020,6.32,6.32,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T121,2025,2025,2025,-14.16,-14.16,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T121,2021,2021,2021,13.4,13.4,Sentinel-2B,20,unverified,LOW
+T121,2022,2022,2022,-11.88,-11.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T121,2023,2023,2023,-14.16,-14.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T121,2024,2024,2024,-14.16,-14.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T121,2025,2025,2025,-28.67,-28.67,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T121,2026,2026,2026,-0.77,-0.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T122,1985,1985,1987,-1.6,-1.6,landsat-5,30,unverified,LOW
 T122,1990,1990,1990,-7.51,-7.51,landsat-5,30,unverified,LOW
 T122,2000,2000,2000,-1.6,-1.6,landsat-5,30,unverified,LOW
 T122,2010,2010,2009,23.93,23.93,landsat-5,30,unverified,LOW
+T122,2017,2017,2017,-14.65,-14.65,Sentinel-2A,20,unverified,LOW
 T122,2018,2018,2018,-7.16,-7.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T122,2019,2019,2019,-0.37,-0.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T122,2020,2020,2020,-3.11,-3.11,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T122,2025,2025,2025,-18.88,-18.88,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T122,2021,2021,2021,-0.37,-0.37,Sentinel-2B,20,unverified,LOW
+T122,2022,2022,2022,-23.4,-23.4,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T122,2023,2023,2023,-18.88,-18.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T122,2024,2024,2024,-18.88,-18.88,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T122,2025,2025,2025,-34.26,-34.26,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T122,2026,2026,2026,-14.65,-14.65,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T123,1985,1985,1987,4.36,4.36,landsat-5,30,unverified,LOW
 T123,1990,1990,1990,-3.97,-3.97,landsat-5,30,unverified,LOW
 T123,2000,2000,2000,4.36,4.36,landsat-5,30,unverified,LOW
 T123,2010,2010,2009,21.22,21.22,landsat-5,30,unverified,LOW
+T123,2017,2017,2017,-14.62,-14.62,Sentinel-2A,20,unverified,LOW
 T123,2018,2018,2018,-1.19,-1.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T123,2019,2019,2019,-5.94,-5.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T123,2020,2020,2020,-4.94,-4.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T123,2025,2025,2025,-16.72,-16.72,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T123,2021,2021,2021,-5.94,-5.94,Sentinel-2B,20,unverified,LOW
+T123,2022,2022,2022,-15.76,-15.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T123,2023,2023,2023,-15.9,-15.9,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T123,2024,2024,2024,-16.72,-16.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T123,2025,2025,2025,-32.02,-32.02,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T123,2026,2026,2026,-16.72,-16.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T124,1985,1985,1987,10.33,10.33,landsat-5,30,unverified,LOW
 T124,1990,1990,1990,2.0,2.0,landsat-5,30,unverified,LOW
 T124,2000,2000,2000,10.33,10.33,landsat-5,30,unverified,LOW
 T124,2010,2010,2009,18.51,18.51,landsat-5,30,unverified,LOW
+T124,2017,2017,2017,-2.61,-2.61,Sentinel-2A,20,unverified,LOW
 T124,2018,2018,2018,4.77,4.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T124,2019,2019,2019,2.16,2.16,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T124,2020,2020,2020,5.82,5.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T124,2025,2025,2025,-8.61,-8.61,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T124,2021,2021,2021,2.16,2.16,Sentinel-2B,20,unverified,LOW
+T124,2022,2022,2022,-8.12,-8.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T124,2023,2023,2023,-6.27,-6.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T124,2024,2024,2024,-8.61,-8.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T124,2025,2025,2025,-20.01,-20.01,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T124,2026,2026,2026,-8.61,-8.61,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T125,1985,1985,1987,15.05,15.05,landsat-5,30,unverified,LOW
 T125,1990,1990,1990,8.0,8.0,landsat-5,30,unverified,LOW
 T125,2000,2000,2000,15.66,15.66,landsat-5,30,unverified,LOW
 T125,2010,2010,2009,15.05,15.05,landsat-5,30,unverified,LOW
+T125,2017,2017,2017,9.48,9.48,Sentinel-2A,20,unverified,LOW
 T125,2018,2018,2018,10.79,10.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T125,2019,2019,2019,10.33,10.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T125,2020,2020,2020,15.05,15.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T125,2025,2025,2025,-0.51,-0.51,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T125,2021,2021,2021,10.33,10.33,Sentinel-2B,20,unverified,LOW
+T125,2022,2022,2022,-0.48,-0.48,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T125,2023,2023,2023,3.37,3.37,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T125,2024,2024,2024,-0.51,-0.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T125,2025,2025,2025,-8.06,-8.06,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T125,2026,2026,2026,-0.51,-0.51,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T126,1985,1985,1987,14.14,14.14,landsat-5,30,unverified,LOW
 T126,1990,1990,1990,14.14,14.14,landsat-5,30,unverified,LOW
 T126,2000,2000,2000,23.95,23.95,landsat-5,30,unverified,LOW
 T126,2010,2010,2009,14.14,14.14,landsat-5,30,unverified,LOW
+T126,2017,2017,2017,14.14,14.14,Sentinel-2A,20,unverified,LOW
 T126,2018,2018,2018,14.14,14.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T126,2019,2019,2019,14.14,14.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T126,2020,2020,2020,14.14,14.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T126,2025,2025,2025,-0.0,-0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T126,2021,2021,2021,14.14,14.14,Sentinel-2B,20,unverified,LOW
+T126,2022,2022,2022,-0.0,-0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T126,2023,2023,2023,11.12,11.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T126,2024,2024,2024,-0.0,-0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T126,2025,2025,2025,-0.0,-0.0,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T126,2026,2026,2026,-0.0,-0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T127,1985,1985,1987,14.14,14.14,landsat-5,30,unverified,LOW
 T127,1990,1990,1990,14.14,14.14,landsat-5,30,unverified,LOW
 T127,2000,2000,2000,33.04,33.04,landsat-5,30,unverified,LOW
 T127,2010,2010,2009,14.14,14.14,landsat-5,30,unverified,LOW
+T127,2017,2017,2017,14.14,14.14,Sentinel-2A,20,unverified,LOW
 T127,2018,2018,2018,14.14,14.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T127,2019,2019,2019,14.14,14.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T127,2020,2020,2020,14.14,14.14,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T127,2025,2025,2025,0.0,0.0,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T127,2021,2021,2021,14.14,14.14,Sentinel-2B,20,unverified,LOW
+T127,2022,2022,2022,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T127,2023,2023,2023,5.24,5.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T127,2024,2024,2024,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T127,2025,2025,2025,-7.48,-7.48,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T127,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T128,1985,1985,1987,-52.86,-52.86,landsat-5,30,unverified,LOW
 T128,1990,1990,1990,18.74,18.74,landsat-5,30,unverified,LOW
 T128,2000,2000,2000,22.16,22.16,landsat-5,30,unverified,LOW
 T128,2010,2010,2009,22.27,22.27,landsat-5,30,unverified,LOW
+T128,2017,2017,2017,15.81,15.81,Sentinel-2A,20,unverified,LOW
 T128,2018,2018,2018,15.81,15.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T128,2019,2019,2019,16.64,16.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T128,2020,2020,2020,22.15,22.15,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T128,2025,2025,2025,-1.15,-1.15,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T128,2021,2021,2021,15.81,15.81,Sentinel-2B,20,unverified,LOW
+T128,2022,2022,2022,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T128,2023,2023,2023,5.55,5.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T128,2024,2024,2024,1.27,1.27,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T128,2025,2025,2025,-13.85,-13.85,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T128,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T129,1985,1985,1987,-80.15,-80.15,landsat-5,30,unverified,LOW
 T129,1990,1990,1990,13.97,13.97,landsat-5,30,unverified,LOW
 T129,2000,2000,2000,15.26,15.26,landsat-5,30,unverified,LOW
 T129,2010,2010,2009,20.04,20.04,landsat-5,30,unverified,LOW
+T129,2017,2017,2017,12.87,12.87,Sentinel-2A,20,unverified,LOW
 T129,2018,2018,2018,12.87,12.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T129,2019,2019,2019,16.64,16.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T129,2020,2020,2020,13.26,13.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T129,2025,2025,2025,-4.09,-4.09,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T129,2021,2021,2021,12.87,12.87,Sentinel-2B,20,unverified,LOW
+T129,2022,2022,2022,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T129,2023,2023,2023,5.55,5.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T129,2024,2024,2024,4.49,4.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T129,2025,2025,2025,-8.29,-8.29,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T129,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T130,1985,1985,1987,-101.0,-101.0,landsat-5,30,unverified,LOW
 T130,1990,1990,1990,7.0,7.0,landsat-5,30,unverified,LOW
 T130,2000,2000,2000,7.26,7.26,landsat-5,30,unverified,LOW
 T130,2010,2010,2009,12.96,12.96,landsat-5,30,unverified,LOW
+T130,2017,2017,2017,7.26,7.26,Sentinel-2A,20,unverified,LOW
 T130,2018,2018,2018,7.8,7.8,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T130,2019,2019,2019,12.07,12.07,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T130,2020,2020,2020,7.92,7.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T130,2025,2025,2025,-10.48,-10.48,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T130,2021,2021,2021,7.26,7.26,Sentinel-2B,20,unverified,LOW
+T130,2022,2022,2022,-0.63,-0.63,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T130,2023,2023,2023,-2.36,-2.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T130,2024,2024,2024,-1.24,-1.24,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T130,2025,2025,2025,-8.97,-8.97,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T130,2026,2026,2026,-1.19,-1.19,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T131,1985,1985,1987,-111.9,-111.9,landsat-5,30,unverified,LOW
 T131,1990,1990,1990,3.6,3.6,landsat-5,30,unverified,LOW
 T131,2000,2000,2000,4.5,4.5,landsat-5,30,unverified,LOW
 T131,2010,2010,2009,17.99,17.99,landsat-5,30,unverified,LOW
+T131,2017,2017,2017,4.5,4.5,Sentinel-2A,20,unverified,LOW
 T131,2018,2018,2018,6.38,6.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T131,2019,2019,2019,18.03,18.03,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T131,2020,2020,2020,14.64,14.64,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T131,2025,2025,2025,-11.9,-11.9,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T131,2021,2021,2021,4.5,4.5,Sentinel-2B,20,unverified,LOW
+T131,2022,2022,2022,-3.38,-3.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T131,2023,2023,2023,-3.77,-3.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T131,2024,2024,2024,-1.02,-1.02,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T131,2025,2025,2025,-7.34,-7.34,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T131,2026,2026,2026,-6.38,-6.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T132,1985,1985,1987,-123.03,-123.03,landsat-5,30,unverified,LOW
 T132,1990,1990,1990,0.21,0.21,landsat-5,30,unverified,LOW
 T132,2000,2000,2000,1.75,1.75,landsat-5,30,unverified,LOW
 T132,2010,2010,2009,23.0,23.0,landsat-5,30,unverified,LOW
+T132,2017,2017,2017,12.42,12.42,Sentinel-2A,20,unverified,LOW
 T132,2018,2018,2018,9.98,9.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T132,2019,2019,2019,23.98,23.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T132,2020,2020,2020,21.34,21.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T132,2025,2025,2025,-5.08,-5.08,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T132,2021,2021,2021,12.42,12.42,Sentinel-2B,20,unverified,LOW
+T132,2022,2022,2022,1.09,1.09,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T132,2023,2023,2023,4.05,4.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T132,2024,2024,2024,-0.79,-0.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T132,2025,2025,2025,-5.71,-5.71,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T132,2026,2026,2026,-11.58,-11.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T133,1985,1985,1987,-134.16,-134.16,landsat-5,30,unverified,LOW
 T133,1990,1990,1990,-3.18,-3.18,landsat-5,30,unverified,LOW
 T133,2000,2000,2000,-1.01,-1.01,landsat-5,30,unverified,LOW
 T133,2010,2010,2009,28.02,28.02,landsat-5,30,unverified,LOW
+T133,2017,2017,2017,21.68,21.68,Sentinel-2A,20,unverified,LOW
 T133,2018,2018,2018,19.94,19.94,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T133,2019,2019,2019,29.92,29.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T133,2020,2020,2020,28.04,28.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T133,2025,2025,2025,9.21,9.21,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T133,2021,2021,2021,21.68,21.68,Sentinel-2B,20,unverified,LOW
+T133,2022,2022,2022,8.58,8.58,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T133,2023,2023,2023,15.72,15.72,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T133,2024,2024,2024,-0.57,-0.57,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T133,2025,2025,2025,-4.08,-4.08,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T133,2026,2026,2026,-16.75,-16.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T134,1985,1985,1987,-145.28,-145.28,landsat-5,30,unverified,LOW
 T134,1990,1990,1990,-6.57,-6.57,landsat-5,30,unverified,LOW
 T134,2000,2000,2000,-3.76,-3.76,landsat-5,30,unverified,LOW
 T134,2010,2010,2009,33.03,33.03,landsat-5,30,unverified,LOW
+T134,2017,2017,2017,30.95,30.95,Sentinel-2A,20,unverified,LOW
 T134,2018,2018,2018,29.91,29.91,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T134,2019,2019,2019,35.87,35.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T134,2020,2020,2020,34.75,34.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T134,2025,2025,2025,23.49,23.49,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T134,2021,2021,2021,30.95,30.95,Sentinel-2B,20,unverified,LOW
+T134,2022,2022,2022,16.06,16.06,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T134,2023,2023,2023,27.38,27.38,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T134,2024,2024,2024,-0.34,-0.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T134,2025,2025,2025,-2.44,-2.44,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T134,2026,2026,2026,-10.04,-10.04,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T135,1985,1985,1987,-156.41,-156.41,landsat-5,30,unverified,LOW
 T135,1990,1990,1990,-9.96,-9.96,landsat-5,30,unverified,LOW
 T135,2000,2000,2000,-10.41,-10.41,landsat-5,30,unverified,LOW
 T135,2010,2010,2009,38.05,38.05,landsat-5,30,unverified,LOW
+T135,2017,2017,2017,40.21,40.21,Sentinel-2A,20,unverified,LOW
 T135,2018,2018,2018,39.87,39.87,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T135,2019,2019,2019,41.82,41.82,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T135,2020,2020,2020,41.45,41.45,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T135,2025,2025,2025,37.78,37.78,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T135,2021,2021,2021,40.21,40.21,Sentinel-2B,20,unverified,LOW
+T135,2022,2022,2022,23.54,23.54,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T135,2023,2023,2023,39.05,39.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T135,2024,2024,2024,-0.11,-0.11,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T135,2025,2025,2025,-0.81,-0.81,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T135,2026,2026,2026,-3.34,-3.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T136,1985,1985,1987,-158.43,-158.43,landsat-5,30,unverified,LOW
 T136,1990,1990,1990,-6.26,-6.26,landsat-5,30,unverified,LOW
 T136,2000,2000,2000,-9.45,-9.45,landsat-5,30,unverified,LOW
 T136,2010,2010,2009,33.44,33.44,landsat-5,30,unverified,LOW
+T136,2017,2017,2017,40.77,40.77,Sentinel-2A,20,unverified,LOW
 T136,2018,2018,2018,41.05,41.05,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T136,2019,2019,2019,42.6,42.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T136,2020,2020,2020,40.39,40.39,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T136,2025,2025,2025,39.24,39.24,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T136,2021,2021,2021,40.77,40.77,Sentinel-2B,20,unverified,LOW
+T136,2022,2022,2022,22.47,22.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T136,2023,2023,2023,40.77,40.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T136,2024,2024,2024,1.26,1.26,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T136,2025,2025,2025,-0.56,-0.56,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T136,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T137,1985,1985,1987,-152.89,-152.89,landsat-5,30,unverified,LOW
 T137,1990,1990,1990,1.43,1.43,landsat-5,30,unverified,LOW
 T137,2000,2000,2000,-0.17,-0.17,landsat-5,30,unverified,LOW
 T137,2010,2010,2009,28.68,28.68,landsat-5,30,unverified,LOW
+T137,2017,2017,2017,35.55,35.55,Sentinel-2A,20,unverified,LOW
 T137,2018,2018,2018,36.28,36.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T137,2019,2019,2019,40.47,40.47,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T137,2020,2020,2020,34.5,34.5,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T137,2025,2025,2025,31.43,31.43,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T137,2021,2021,2021,35.55,35.55,Sentinel-2B,20,unverified,LOW
+T137,2022,2022,2022,19.22,19.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T137,2023,2023,2023,35.55,35.55,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T137,2024,2024,2024,3.79,3.79,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T137,2025,2025,2025,-1.66,-1.66,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T137,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T138,1985,1985,1987,-147.35,-147.35,landsat-5,30,unverified,LOW
 T138,1990,1990,1990,9.12,9.12,landsat-5,30,unverified,LOW
 T138,2000,2000,2000,9.11,9.11,landsat-5,30,unverified,LOW
 T138,2010,2010,2009,23.92,23.92,landsat-5,30,unverified,LOW
+T138,2017,2017,2017,30.33,30.33,Sentinel-2A,20,unverified,LOW
 T138,2018,2018,2018,31.52,31.52,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T138,2019,2019,2019,38.34,38.34,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T138,2020,2020,2020,28.62,28.62,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T138,2025,2025,2025,23.61,23.61,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T138,2021,2021,2021,30.33,30.33,Sentinel-2B,20,unverified,LOW
+T138,2022,2022,2022,15.97,15.97,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T138,2023,2023,2023,30.33,30.33,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T138,2024,2024,2024,6.31,6.31,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T138,2025,2025,2025,-2.77,-2.77,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T138,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T139,1985,1985,1987,-141.81,-141.81,landsat-5,30,unverified,LOW
 T139,1990,1990,1990,16.82,16.82,landsat-5,30,unverified,LOW
 T139,2000,2000,2000,18.38,18.38,landsat-5,30,unverified,LOW
 T139,2010,2010,2009,19.16,19.16,landsat-5,30,unverified,LOW
+T139,2017,2017,2017,25.1,25.1,Sentinel-2A,20,unverified,LOW
 T139,2018,2018,2018,26.76,26.76,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T139,2019,2019,2019,36.22,36.22,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T139,2020,2020,2020,22.74,22.74,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T139,2025,2025,2025,15.79,15.79,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T139,2021,2021,2021,25.1,25.1,Sentinel-2B,20,unverified,LOW
+T139,2022,2022,2022,12.71,12.71,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T139,2023,2023,2023,25.1,25.1,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T139,2024,2024,2024,8.83,8.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T139,2025,2025,2025,-3.88,-3.88,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T139,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T140,1985,1985,1987,-136.54,-136.54,landsat-5,30,unverified,LOW
 T140,1990,1990,1990,24.57,24.57,landsat-5,30,unverified,LOW
 T140,2000,2000,2000,15.08,15.08,landsat-5,30,unverified,LOW
 T140,2010,2010,2009,14.38,14.38,landsat-5,30,unverified,LOW
+T140,2017,2017,2017,19.86,19.86,Sentinel-2A,20,unverified,LOW
 T140,2018,2018,2018,21.98,21.98,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T140,2019,2019,2019,34.08,34.08,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T140,2020,2020,2020,21.92,21.92,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T140,2025,2025,2025,7.95,7.95,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T140,2021,2021,2021,19.86,19.86,Sentinel-2B,20,unverified,LOW
+T140,2022,2022,2022,7.75,7.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T140,2023,2023,2023,19.86,19.86,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T140,2024,2024,2024,7.75,7.75,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T140,2025,2025,2025,-4.98,-4.98,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T140,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T141,1985,1985,1987,-125.05,-125.05,landsat-5,30,unverified,LOW
 T141,1990,1990,1990,25.48,25.48,landsat-5,30,unverified,LOW
 T141,2000,2000,2000,13.22,13.22,landsat-5,30,unverified,LOW
 T141,2010,2010,2009,15.35,15.35,landsat-5,30,unverified,LOW
+T141,2017,2017,2017,17.12,17.12,Sentinel-2A,20,unverified,LOW
 T141,2018,2018,2018,23.49,23.49,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T141,2019,2019,2019,33.69,33.69,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T141,2020,2020,2020,26.83,26.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T141,2025,2025,2025,6.62,6.62,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T141,2021,2021,2021,17.12,17.12,Sentinel-2B,20,unverified,LOW
+T141,2022,2022,2022,5.81,5.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T141,2023,2023,2023,17.12,17.12,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T141,2024,2024,2024,5.81,5.81,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T141,2025,2025,2025,-4.7,-4.7,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T141,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T142,1985,1985,1987,-112.56,-112.56,landsat-5,30,unverified,LOW
 T142,1990,1990,1990,22.96,22.96,landsat-5,30,unverified,LOW
 T142,2000,2000,2000,11.8,11.8,landsat-5,30,unverified,LOW
 T142,2010,2010,2009,13.59,13.59,landsat-5,30,unverified,LOW
+T142,2017,2017,2017,14.36,14.36,Sentinel-2A,20,unverified,LOW
 T142,2018,2018,2018,22.96,22.96,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T142,2019,2019,2019,31.28,31.28,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T142,2020,2020,2020,24.56,24.56,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T142,2025,2025,2025,5.7,5.7,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T142,2021,2021,2021,14.36,14.36,Sentinel-2B,20,unverified,LOW
+T142,2022,2022,2022,4.29,4.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T142,2023,2023,2023,14.36,14.36,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T142,2024,2024,2024,4.29,4.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T142,2025,2025,2025,-5.74,-5.74,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T142,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T143,1985,1985,1987,-100.08,-100.08,landsat-5,30,unverified,LOW
 T143,1990,1990,1990,20.44,20.44,landsat-5,30,unverified,LOW
 T143,2000,2000,2000,10.37,10.37,landsat-5,30,unverified,LOW
 T143,2010,2010,2009,11.84,11.84,landsat-5,30,unverified,LOW
+T143,2017,2017,2017,11.6,11.6,Sentinel-2A,20,unverified,LOW
 T143,2018,2018,2018,22.42,22.42,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T143,2019,2019,2019,28.86,28.86,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T143,2020,2020,2020,22.29,22.29,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T143,2025,2025,2025,4.79,4.79,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T143,2021,2021,2021,11.6,11.6,Sentinel-2B,20,unverified,LOW
+T143,2022,2022,2022,2.77,2.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T143,2023,2023,2023,11.6,11.6,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T143,2024,2024,2024,2.77,2.77,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T143,2025,2025,2025,-6.78,-6.78,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T143,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T144,1985,1985,1987,-87.6,-87.6,landsat-5,30,unverified,LOW
 T144,1990,1990,1990,17.92,17.92,landsat-5,30,unverified,LOW
 T144,2000,2000,2000,8.94,8.94,landsat-5,30,unverified,LOW
 T144,2010,2010,2009,10.08,10.08,landsat-5,30,unverified,LOW
+T144,2017,2017,2017,8.83,8.83,Sentinel-2A,20,unverified,LOW
 T144,2018,2018,2018,21.89,21.89,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T144,2019,2019,2019,26.44,26.44,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
 T144,2020,2020,2020,20.01,20.01,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
-T144,2025,2025,2025,3.87,3.87,"Sentinel-2A, Sentinel-2C",20,unverified,LOW
+T144,2021,2021,2021,8.83,8.83,Sentinel-2B,20,unverified,LOW
+T144,2022,2022,2022,1.25,1.25,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T144,2023,2023,2023,8.83,8.83,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T144,2024,2024,2024,1.25,1.25,"Sentinel-2A, Sentinel-2B",20,unverified,LOW
+T144,2025,2025,2025,-7.82,-7.82,"Sentinel-2A, Sentinel-2B, Sentinel-2C",20,unverified,LOW
 T144,2026,2026,2026,0.0,0.0,"Sentinel-2A, Sentinel-2B",20,unverified,LOW

@@ -43,10 +43,21 @@ h2 { margin: 0; color: var(--cream); font-size: 14px; font-weight: 500; }
 .year-readout { display: flex; align-items: flex-end; justify-content: space-between; margin: 5px 0 12px; }
 .year-readout > strong { color: var(--cream); font-family: Newsreader, Georgia, serif; font-size: 54px; font-style: italic; font-weight: 500; line-height: 1; }
 .year-readout > span { color: var(--muted); font-size: 10px; line-height: 1.45; text-align: right; }
+.timeline-scope { display: grid; grid-template-columns: 1fr auto; align-items: baseline; margin: 0 0 18px; padding: 11px 12px; border: 1px solid rgba(100, 209, 122, .22); background: rgba(100, 209, 122, .05); }
+.timeline-scope span { color: #8ca8a1; font-size: 9px; }
+.timeline-scope strong { color: #99d9af; font-family: Newsreader, serif; font-size: 17px; font-style: italic; font-weight: 500; }
+.timeline-scope small { grid-column: 1 / -1; margin-top: 2px; color: #587973; font-size: 7px; letter-spacing: .04em; }
 input[type='range'] { width: 100%; accent-color: var(--coral); }
 .tick-row { display: flex; justify-content: space-between; margin-top: 6px; }
 .tick-row button { padding: 2px 3px; border: 0; color: var(--muted); background: transparent; font-size: 10px; cursor: pointer; }
 .tick-row button.active { color: var(--coral); }
+.tick-row button.decade-start { margin-left: 7px; border-left: 1px solid rgba(100, 209, 122, .4); padding-left: 8px; }
+.tick-row button.intervention-year { color: #e0ae4d; }
+.tick-row button.intervention-year.active { color: #ffc75f; }
+.timeline-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 11px; }
+.timeline-presets button { padding: 6px 3px; border: 1px solid var(--line); color: #88aaa2; background: rgba(255,255,255,.025); font-size: 7px; cursor: pointer; }
+.timeline-presets button:hover { color: var(--cream); border-color: #577a73; }
+.timeline-presets button.intervention { color: #e0ae4d; border-color: rgba(240, 173, 51, .3); background: rgba(240, 173, 51, .05); }
 .switch-row { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; cursor: pointer; }
 .switch-row span strong, .switch-row span small { display: block; font-size: 11px; }
 .switch-row span small { color: var(--muted); font-size: 9px; }

@@ -21,10 +21,18 @@ EPOCHS = [
         "platforms": "landsat-5",
         "quality_pool_multiplier": 4,
     },
-    {"target_year": 2018, "actual_year": 2018, "dataset": "sentinel2", "count": 3},
-    {"target_year": 2020, "actual_year": 2020, "dataset": "sentinel2", "count": 3},
-    {"target_year": 2025, "actual_year": 2025, "dataset": "sentinel2", "count": 3},
-    {"target_year": 2026, "actual_year": 2026, "dataset": "sentinel2", "count": 3},
+    *[
+        {
+            "target_year": year,
+            "actual_year": year,
+            "dataset": "sentinel2",
+            "count": 3,
+            "start": f"{year}-01-01",
+            "end": f"{year}-04-30",
+            "quality_pool_multiplier": 3,
+        }
+        for year in range(2017, 2027)
+    ],
 ]
 
 
@@ -53,15 +61,17 @@ def main() -> None:
 
     for entry in selected:
         actual = entry["actual_year"]
+        start = str(entry.get("start", f"{actual}-01-01"))
+        end = str(entry.get("end", f"{actual}-12-31"))
         command = [
             sys.executable,
             "-u",
             "scripts/download_satellite_data.py",
             entry["dataset"],
             "--start",
-            f"{actual}-01-01",
+            start,
             "--end",
-            f"{actual}-12-31",
+            end,
             "--per-year",
             str(entry["count"]),
             "--quality-pool-multiplier",

@@ -90,7 +90,7 @@ export default function ProjectDashboard({ summary, onOpenCoast }: Props) {
         <div><span>สมุทรสงคราม</span><strong>Mangrove Impact Monitor</strong></div>
         <div className="view-tabs" role="tablist" aria-label="เลือกมุมมอง">
           <button className="active" role="tab" aria-selected="true">รายงาน 9 แปลง</button>
-          <button role="tab" aria-selected="false" onClick={onOpenCoast}>แผนที่ชายฝั่ง 1985–2026</button>
+          <button role="tab" aria-selected="false" onClick={onOpenCoast}>แผนที่ดาวเทียม 10 ปี</button>
         </div>
       </nav>
 

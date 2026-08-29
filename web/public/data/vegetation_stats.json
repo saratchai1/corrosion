@@ -24,9 +24,21 @@
     "ndvi_threshold": 0.32
   },
   {
+    "target_year": 2017,
+    "actual_year": 2017,
+    "area_ha": 2340.28,
+    "ndvi_threshold": 0.32
+  },
+  {
     "target_year": 2018,
     "actual_year": 2018,
     "area_ha": 2412.02,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2019,
+    "actual_year": 2019,
+    "area_ha": 2422.04,
     "ndvi_threshold": 0.32
   },
   {
@@ -36,9 +48,33 @@
     "ndvi_threshold": 0.32
   },
   {
+    "target_year": 2021,
+    "actual_year": 2021,
+    "area_ha": 2135.38,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2022,
+    "actual_year": 2022,
+    "area_ha": 1823.03,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2023,
+    "actual_year": 2023,
+    "area_ha": 1831.63,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2024,
+    "actual_year": 2024,
+    "area_ha": 1772.88,
+    "ndvi_threshold": 0.32
+  },
+  {
     "target_year": 2025,
     "actual_year": 2025,
-    "area_ha": 1978.69,
+    "area_ha": 1723.91,
     "ndvi_threshold": 0.32
   },
   {

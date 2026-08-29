@@ -1,14 +1,20 @@
 {
   "title": "Samut Songkhram image-derived coastal change MVP",
-  "generated_at_utc": "2026-08-28T16:45:29.126338+00:00",
-  "epoch_count": 8,
+  "generated_at_utc": "2026-08-29T06:31:15.327685+00:00",
+  "epoch_count": 14,
   "target_years": [
     1985,
     1990,
     2000,
     2010,
+    2017,
     2018,
+    2019,
     2020,
+    2021,
+    2022,
+    2023,
+    2024,
     2025,
     2026
   ],
@@ -17,8 +23,14 @@
     1990,
     2000,
     2009,
+    2017,
     2018,
+    2019,
     2020,
+    2021,
+    2022,
+    2023,
+    2024,
     2025,
     2026
   ],
@@ -66,9 +78,21 @@
       "ndvi_threshold": 0.32
     },
     {
+      "target_year": 2017,
+      "actual_year": 2017,
+      "area_ha": 2340.28,
+      "ndvi_threshold": 0.32
+    },
+    {
       "target_year": 2018,
       "actual_year": 2018,
       "area_ha": 2412.02,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2019,
+      "actual_year": 2019,
+      "area_ha": 2422.04,
       "ndvi_threshold": 0.32
     },
     {
@@ -78,9 +102,33 @@
       "ndvi_threshold": 0.32
     },
     {
+      "target_year": 2021,
+      "actual_year": 2021,
+      "area_ha": 2135.38,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2022,
+      "actual_year": 2022,
+      "area_ha": 1823.03,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2023,
+      "actual_year": 2023,
+      "area_ha": 1831.63,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2024,
+      "actual_year": 2024,
+      "area_ha": 1772.88,
+      "ndvi_threshold": 0.32
+    },
+    {
       "target_year": 2025,
       "actual_year": 2025,
-      "area_ha": 1978.69,
+      "area_ha": 1723.91,
       "ndvi_threshold": 0.32
     },
     {

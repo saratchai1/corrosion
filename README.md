@@ -1,16 +1,16 @@
 # Samut Songkhram Coastal Change
 
-Reproducible geospatial workflow and static WebApp for exploring apparent coastal change in Samut Songkhram, Thailand. The province-wide MVP covers eight target epochs from 1985–2026 using Landsat and Sentinel-2 imagery. A project-focused assessment additionally covers the nine verified planting plots `91–98-STC` and `87-VSD` before, during, and after the reported 2024 planting year.
+Reproducible geospatial workflow and static WebApp for exploring apparent coastal change in Samut Songkhram, Thailand. The province-wide MVP covers 14 target epochs: four historical Landsat snapshots and annual Sentinel-2 imagery for every year from 2017–2026. A project-focused assessment additionally covers the nine verified planting plots `91–98-STC` and `87-VSD` before, during, and after the reported 2024 planting year.
 
 The displayed line is an **image-derived water-land boundary**, not a surveyed or tide-normalized shoreline. Every current epoch has `tide_status=unverified`; rates and classes therefore have `LOW` confidence and must not be described as definitive erosion rates.
 
 ## MVP outputs
 
 - Quality-masked median surface-reflectance composites in EPSG:32647 COG format (local only)
-- MNDWI water-land boundary for eight epochs
+- MNDWI water-land boundary for 14 epochs, including a continuous annual 2017–2026 sequence
 - Coastal vegetation spectral proxy and area statistics
 - 100 m transects, yearly positions, endpoint and regression rates, and resolution-aware classes
-- React + TypeScript + Vite + MapLibre static WebApp with timeline, synchronized comparison, layer controls, transect graph, and responsive layout
+- React + TypeScript + Vite + MapLibre static WebApp with a default 10-year satellite map, historical timeline, synchronized comparison, project-impact report, layer controls, transect graph, and responsive layout
 - Verified 9-plot overlay and January–April Sentinel-2 indicators for 2023–2026, including local observational controls
 
 ## 2024 planting assessment
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 python scripts/download_mvp_epochs.py
 ```
 
-The bounded download selects 2–3 full-AOI optical acquisitions per epoch and stores AOI-only source COGs under `data/satellite/`. The tested local working set is about 355 MB, below the 15 GB ceiling. Source and processed TIFFs remain local because Git LFS quota is not verified.
+The bounded download selects 2–3 full-AOI optical acquisitions per epoch and stores AOI-only source COGs under `data/satellite/`. The current local working set remains below 1 GB and well below the 15 GB ceiling. Source and processed TIFFs remain local because Git LFS quota is not verified.
 
 For the nine planting plots, build/refresh the verified AOI, download the 2023–2026 same-season subset, and calculate indicators with:
 

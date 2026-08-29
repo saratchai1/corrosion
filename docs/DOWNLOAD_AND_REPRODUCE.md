@@ -71,7 +71,7 @@ Before retaining a new year/date, check total working size. Target <=15 GB. If e
 
 ## 12. Coastal-change MVP
 
-Download only the eight tested epochs and build every derived product plus static web asset:
+Download the 14 tested epochs—four historical Landsat snapshots plus annual Sentinel-2 imagery for 2017–2026—and build every derived product plus static web asset:
 
 ```bash
 python scripts/download_mvp_epochs.py

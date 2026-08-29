@@ -7,7 +7,7 @@ import type { DataIndex, ProjectImpactSummary, Summary, TransectSelection, ViewS
 const initialView: ViewState = { center: [100.005, 13.345], zoom: 10.7, bearing: 0, pitch: 0 }
 
 export default function App() {
-  const [page, setPage] = useState<'project' | 'coast'>('project')
+  const [page, setPage] = useState<'project' | 'coast'>('coast')
   const [index, setIndex] = useState<DataIndex | null>(null)
   const [summary, setSummary] = useState<Summary | null>(null)
   const [projectSummary, setProjectSummary] = useState<ProjectImpactSummary | null>(null)
@@ -31,6 +31,8 @@ export default function App() {
         setSummary(summaryData as Summary)
         setProjectSummary(projectSummaryData as ProjectImpactSummary)
         setYearIndex((indexData as DataIndex).epochs.length - 1)
+        const prePlantingIndex = (indexData as DataIndex).epochs.findIndex((item) => item.targetYear === 2023)
+        setCompareIndex(prePlantingIndex >= 0 ? prePlantingIndex : 0)
       })
       .catch((reason: unknown) => setError(reason instanceof Error ? reason.message : String(reason)))
   }, [])
@@ -55,17 +57,17 @@ export default function App() {
     <main className="app-shell">
       <aside className="sidebar">
         <div className="coast-view-tabs view-tabs" role="tablist" aria-label="เลือกมุมมอง">
-          <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงาน 9 แปลง</button>
-          <button className="active" role="tab" aria-selected="true">แผนที่ชายฝั่ง</button>
+          <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงานผล 9 แปลง</button>
+          <button className="active" role="tab" aria-selected="true">แผนที่ดาวเทียม 10 ปี</button>
         </div>
         <header>
-          <span className="project-tag">SAMUT SONGKHRAM COASTAL CHANGE · 1985–2026</span>
-          <h1>ร่องรอยชายฝั่ง<br /><em>Coastal change</em></h1>
-          <p>สำรวจการเคลื่อนที่ที่ปรากฏของขอบเขตน้ำ–แผ่นดินจากภาพดาวเทียมหลายช่วงเวลา</p>
+          <span className="project-tag">ANNUAL SATELLITE IMAGERY · 2017–2026</span>
+          <h1>แผนที่ภาพดาวเทียม<br /><em>10-year timeline</em></h1>
+          <p>ภาพ Sentinel-2 ครบรายปี 10 ปีล่าสุด พร้อมภาพประวัติศาสตร์ Landsat ย้อนถึงปี 1987 และชั้นข้อมูลการเปลี่ยนแปลงชายฝั่ง</p>
         </header>
 
         <section className="summary-grid">
-          <article title="ช่วงปีภาพจริงที่นำมาวิเคราะห์; ไม่ได้หมายความว่ามีข้อมูลต่อเนื่องทุกปี"><span>ช่วงเวลาวิเคราะห์</span><strong>{index.epochs[0].actualYear}–{index.epochs.at(-1)?.actualYear}</strong><small>{summary.epoch_count} epochs</small></article>
+          <article title="Sentinel-2 ครบรายปี 2017–2026 และมีภาพประวัติศาสตร์ Landsat อีก 4 ช่วง"><span>ภาพรายปีล่าสุด</span><strong>2017–2026</strong><small>10 annual + 4 historical</small></article>
           <article title="ผลรวมช่วง transect ที่ขอบเขตน้ำ–แผ่นดินเคลื่อนเข้าฝั่งเกินความละเอียด 30 เมตร; tide unverified"><span>แนวถอยร่นที่ปรากฏ</span><strong>{summary.apparent_erosion_length_km.toFixed(1)} km</strong><small>LOW confidence</small></article>
           <article title="ผลรวมช่วง transect ที่ขอบเขตน้ำ–แผ่นดินเคลื่อนออกทะเลเกินความละเอียด 30 เมตร; tide unverified"><span>แนวงอกเพิ่มที่ปรากฏ</span><strong>{summary.apparent_accretion_length_km.toFixed(1)} km</strong><small>transect estimate</small></article>
           <article title="ช่วงที่การเปลี่ยนแปลงอยู่ภายใน ±30 เมตร จึงไม่ควรตีความทิศทาง"><span>คงที่ในช่วงความละเอียด</span><strong>{summary.stable_length_km.toFixed(1)} km</strong><small>within ±30 m</small></article>
@@ -74,10 +76,21 @@ export default function App() {
         </section>
 
         <section className="control-section timeline-section">
-          <div className="section-heading"><span>01</span><h2>เวลา / Timeline</h2></div>
-          <div className="year-readout"><strong>{epoch.targetYear}</strong><span>ภาพจริง {epoch.actualYear}<br />{epoch.sensor} · {epoch.resolutionM} m</span></div>
+          <div className="section-heading"><span>01</span><h2>ภาพย้อนหลัง / Imagery timeline</h2></div>
+          <div className="timeline-scope"><span>10 ปีล่าสุดครบรายปี</span><strong>2017—2026</strong><small>+ historical snapshots: 1985 / 1990 / 2000 / 2010</small></div>
+          <div className="year-readout"><strong>{epoch.targetYear}</strong><span>{epoch.targetYear === 2024 ? 'ปีดำเนินการปลูก*' : `ภาพจริง ${epoch.actualYear}`}<br />{epoch.sensor} · {epoch.resolutionM} m</span></div>
           <input aria-label="Select epoch" type="range" min="0" max={index.epochs.length - 1} value={yearIndex} onChange={(event) => setYearIndex(Number(event.target.value))} />
-          <div className="tick-row">{index.epochs.map((item, itemIndex) => <button key={item.targetYear} className={itemIndex === yearIndex ? 'active' : ''} onClick={() => setYearIndex(itemIndex)}>{String(item.targetYear).slice(2)}</button>)}</div>
+          <div className="tick-row">{index.epochs.map((item, itemIndex) => <button
+            key={item.targetYear}
+            title={`${item.targetYear}${item.targetYear === 2024 ? ' · ปีดำเนินการปลูก' : ''}`}
+            className={`${itemIndex === yearIndex ? 'active' : ''} ${item.targetYear === 2017 ? 'decade-start' : ''} ${item.targetYear === 2024 ? 'intervention-year' : ''}`}
+            onClick={() => setYearIndex(itemIndex)}
+          >{String(item.targetYear).slice(2)}</button>)}</div>
+          <div className="timeline-presets">
+            <button onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2017))}>2017 · เริ่ม 10 ปี</button>
+            <button className="intervention" onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2024))}>2024 · ปีปลูก*</button>
+            <button onClick={() => setYearIndex(index.epochs.length - 1)}>2026 · ล่าสุด</button>
+          </div>
           <label className="switch-row"><span><strong>เปรียบเทียบสองช่วงเวลา</strong><small>Side-by-side, synchronized maps</small></span><input type="checkbox" checked={compare} onChange={(event) => setCompare(event.target.checked)} /><i /></label>
           {compare && <label className="compare-select">แผนที่ซ้าย / left<select value={compareIndex} onChange={(event) => setCompareIndex(Number(event.target.value))}>{index.epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} (ภาพ {item.actualYear})</option>)}</select></label>}
         </section>
