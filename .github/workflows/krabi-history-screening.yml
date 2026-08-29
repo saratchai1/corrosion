@@ -6,6 +6,13 @@ on:
       - data/krabi-satellite-v1
     paths:
       - '.github/workflows/krabi-history-screening.yml'
+      - 'scripts/download_krabi_satellite_data.py'
+      - 'scripts/process_sentinel2_water_history.py'
+      - 'scripts/extract_water_mask.py'
+      - 'scripts/summarize_water_history.py'
+      - 'scripts/compare_water_change.py'
+      - 'scripts/build_analysis_corridor.py'
+      - 'regions/krabi/data/aoi/**'
   workflow_dispatch:
 
 permissions:
@@ -37,7 +44,7 @@ jobs:
             --output regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson \
             --buffer-m 500
 
-      - name: Download one selected Sentinel-2 acquisition per year
+      - name: Download one Collection 1 Sentinel-2 acquisition per year
         run: |
           python scripts/download_krabi_satellite_data.py sentinel2 \
             --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
@@ -52,7 +59,7 @@ jobs:
             --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --json data/manifests/sentinel2_history_raster_validation.json
 
-      - name: Build STAC-calibrated cloud-masked annual water history
+      - name: Build Collection 1 cloud-masked annual water history
         working-directory: regions/krabi
         run: |
           python ../../scripts/process_sentinel2_water_history.py \
@@ -81,7 +88,7 @@ jobs:
       - name: Upload annual screening outputs
         uses: actions/upload-artifact@v4
         with:
-          name: krabi-sentinel2-water-history-2016-2026
+          name: krabi-sentinel2-c1-water-history-2016-2026
           path: |
             regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
             regions/krabi/data/catalog/sentinel2_scenes.csv
