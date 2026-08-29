@@ -30,13 +30,18 @@ def reflectance(arr: np.ndarray, scale: float, offset: float) -> np.ndarray:
     return arr.astype("float32") * scale + offset
 
 
+def masked_to_float(raw: np.ma.MaskedArray) -> np.ndarray:
+    """Cast integer masked rasters before filling with NaN."""
+    return np.asarray(raw.astype("float32").filled(np.nan), dtype="float32")
+
+
 def regrid_band(src_path: Path, reference: rasterio.io.DatasetReader) -> tuple[np.ndarray, np.ndarray]:
     with rasterio.open(src_path) as src:
         raw = src.read(1, masked=True)
         dst = np.full((reference.height, reference.width), np.nan, dtype="float32")
         valid = np.zeros((reference.height, reference.width), dtype="uint8")
         reproject(
-            source=np.asarray(raw.filled(np.nan), dtype="float32"),
+            source=masked_to_float(raw),
             destination=dst,
             src_transform=src.transform,
             src_crs=src.crs,
@@ -137,7 +142,7 @@ def main() -> None:
         green_valid = ~np.ma.getmaskarray(green_raw)
         swir_raw, swir_valid = regrid_band(args.swir, green_src)
 
-        green = reflectance(np.asarray(green_raw.filled(np.nan)), g_scale, g_offset)
+        green = reflectance(masked_to_float(green_raw), g_scale, g_offset)
         swir = reflectance(swir_raw, s_scale, s_offset)
         denom = green + swir
         valid = green_valid & swir_valid & np.isfinite(green) & np.isfinite(swir) & (np.abs(denom) > 1e-8)
@@ -145,17 +150,25 @@ def main() -> None:
         mndwi[valid] = (green[valid] - swir[valid]) / denom[valid]
         water = valid & (mndwi > args.threshold)
 
+        # 0 = valid non-water, 1 = valid water, 255 = invalid/no-data.
+        water_class = np.full(green.shape, 255, dtype="uint8")
+        water_class[valid] = 0
+        water_class[water] = 1
+
         tags = {
             "sensor": args.sensor,
             "acquisition_date": args.date,
             "mndwi_threshold": str(args.threshold),
+            "class_0": "valid_non_water",
+            "class_1": "valid_water",
+            "class_255": "invalid_nodata",
             "tide_status": args.tide_status,
             "tide_level_m": "" if args.tide_level_m is None else str(args.tide_level_m),
             "tide_datum": args.tide_datum or "",
             "generated_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         }
         write_cog(args.out_dir / "mndwi.tif", mndwi, green_src, dtype="float32", nodata=-9999.0, tags=tags)
-        write_cog(args.out_dir / "water_mask.tif", water.astype("uint8"), green_src, dtype="uint8", nodata=0, tags=tags)
+        write_cog(args.out_dir / "water_mask.tif", water_class, green_src, dtype="uint8", nodata=255, tags=tags)
         vector = water_geojson(
             water,
             green_src,
