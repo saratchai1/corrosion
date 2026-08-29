@@ -1,0 +1,38 @@
+[
+  {
+    "scene_id": "S2B_47PQQ_20180206_0_L2A",
+    "date": "2018-02-06",
+    "sensor": "Sentinel-2",
+    "cloud_aoi": 0.0,
+    "footprint_status": "RAYONG_CONFIRMED",
+    "tide_status": "UNVERIFIED",
+    "rgb_preview": "shoreline_2018-02-06.png",
+    "ndwi_preview": "shoreline_2018-02-06.png",
+    "mndwi_preview": "shoreline_2018-02-06.png",
+    "water_edge_geojson": "2018-02-06_water_edge.geojson"
+  },
+  {
+    "scene_id": "S2B_47PQQ_20211227_0_L2A",
+    "date": "2021-12-27",
+    "sensor": "Sentinel-2",
+    "cloud_aoi": 0.0,
+    "footprint_status": "RAYONG_CONFIRMED",
+    "tide_status": "UNVERIFIED",
+    "rgb_preview": "shoreline_2021-12-27.png",
+    "ndwi_preview": "shoreline_2021-12-27.png",
+    "mndwi_preview": "shoreline_2021-12-27.png",
+    "water_edge_geojson": "2021-12-27_water_edge.geojson"
+  },
+  {
+    "scene_id": "S2C_47PQQ_20251221_0_L2A",
+    "date": "2025-12-21",
+    "sensor": "Sentinel-2",
+    "cloud_aoi": 0.0,
+    "footprint_status": "RAYONG_CONFIRMED",
+    "tide_status": "UNVERIFIED",
+    "rgb_preview": "shoreline_2025-12-21.png",
+    "ndwi_preview": "shoreline_2025-12-21.png",
+    "mndwi_preview": "shoreline_2025-12-21.png",
+    "water_edge_geojson": "2025-12-21_water_edge.geojson"
+  }
+]

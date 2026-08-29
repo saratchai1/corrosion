@@ -1,0 +1,11 @@
+year,station,hourly_matrix_available,high_low_events_available,datum,source_url,qa_status
+2017,PR,False,False,MSL/LLW,,MISSING
+2018,PR,False,False,MSL/LLW,,MISSING
+2019,PR,False,False,MSL/LLW,,MISSING
+2020,PR,False,False,MSL/LLW,,MISSING
+2021,PR,False,False,MSL/LLW,,MISSING
+2022,PR,False,True,MSL/LLW,https://hydro.navy.mi.th/tide65/PR2022.pdf,OK
+2023,PR,False,True,MSL/LLW,https://hydro.navy.mi.th/tide66/PR2023.pdf,OK
+2024,PR,True,False,MSL/LLW,https://hydro.navy.mi.th/download/Water_lever67/LLW/PR2024.pdf,OK
+2025,PR,False,False,MSL/LLW,,MISSING
+2026,PR,False,False,MSL/LLW,,MISSING
