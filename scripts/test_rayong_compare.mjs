@@ -91,11 +91,12 @@ try {
   assert.equal(initial?.plotCount, 14, 'validated KMZ-derived plot count must be 14');
   assert.equal(await page.locator('.maplibregl-canvas').count(), 2, 'both map canvases must exist');
 
-  await page.locator('[data-testid="swipe-range"]').evaluate((element) => {
-    element.value = '27';
-    element.dispatchEvent(new Event('input', { bubbles: true }));
-    element.dispatchEvent(new Event('change', { bubbles: true }));
-  });
+  const range = page.locator('[data-testid="swipe-range"]');
+  await range.focus();
+  await page.keyboard.press('Home');
+  for (let step = 3; step < 27; step += 1) {
+    await page.keyboard.press('ArrowRight');
+  }
   await page.waitForFunction(() => window.__RAYONG_COMPARE_TEST__?.swipe === 27);
   const clipPath = await page.locator('#after-pane').evaluate((element) => getComputedStyle(element).clipPath);
   assert.match(clipPath, /27%/, 'after map must be clipped at the selected swipe position');
