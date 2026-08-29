@@ -1,6 +1,6 @@
 # ThaiCoast OSF inventory
 
-- Generated: `2026-08-29T10:36:49.043349Z`
+- Generated: `2026-08-29T10:39:25.580308Z`
 - Source: `https://osf.io/mxjhk/`
 - Resources (nodes + registrations): **1**
 - Storage providers: **1**
