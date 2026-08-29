@@ -6,8 +6,9 @@ Input date directories must contain ``water_mask.tif`` encoded as:
 projected grid. The script produces frequency, consensus and uncertainty COGs,
 vector polygons, an epoch change map, and per-plot summaries.
 
-This is a screening product. It explicitly does not convert water-edge change to
-an erosion rate while tide remains unverified.
+Near-empty cloud-masked scenes are excluded before voting. This is a screening
+product and does not convert water-edge change to an erosion rate while tide
+remains unverified.
 """
 from __future__ import annotations
 
@@ -37,6 +38,8 @@ class MaskRecord:
     acquisition_date: date
     path: Path
     summary: dict[str, object]
+    grid_pixel_count: int
+    valid_fraction_grid: float
 
 
 @dataclass
@@ -58,8 +61,16 @@ def parse_date_dir(path: Path) -> date | None:
         return None
 
 
-def load_records(root: Path) -> list[MaskRecord]:
+def mask_grid_pixels(path: Path) -> int:
+    with rasterio.open(path) as src:
+        return int(src.width * src.height)
+
+
+def load_records(
+    root: Path, min_scene_valid_fraction: float
+) -> tuple[list[MaskRecord], list[dict[str, object]]]:
     records: list[MaskRecord] = []
+    excluded: list[dict[str, object]] = []
     for directory in sorted(path for path in root.iterdir() if path.is_dir()):
         acquisition_date = parse_date_dir(directory)
         if acquisition_date is None:
@@ -69,12 +80,41 @@ def load_records(root: Path) -> list[MaskRecord]:
         if not mask_path.exists() or not summary_path.exists():
             continue
         summary = json.loads(summary_path.read_text(encoding="utf-8"))
-        records.append(MaskRecord(acquisition_date, mask_path, summary))
+        grid_pixel_count = mask_grid_pixels(mask_path)
+        valid_pixel_count = int(summary.get("valid_pixel_count", 0))
+        valid_fraction_grid = (
+            valid_pixel_count / grid_pixel_count if grid_pixel_count else 0.0
+        )
+        if valid_fraction_grid < min_scene_valid_fraction:
+            excluded.append(
+                {
+                    "date": acquisition_date.isoformat(),
+                    "valid_pixel_count": valid_pixel_count,
+                    "grid_pixel_count": grid_pixel_count,
+                    "valid_fraction_grid": round(valid_fraction_grid, 6),
+                    "reason": "INSUFFICIENT_VALID_COVERAGE",
+                }
+            )
+            print(
+                "exclude scene",
+                acquisition_date.isoformat(),
+                f"valid_fraction_grid={valid_fraction_grid:.6f}",
+            )
+            continue
+        records.append(
+            MaskRecord(
+                acquisition_date,
+                mask_path,
+                summary,
+                grid_pixel_count,
+                valid_fraction_grid,
+            )
+        )
     if not records:
         raise ValueError(
-            f"No date directories with water_mask.tif + summary.json: {root}"
+            f"No usable date directories with water_mask.tif + summary.json: {root}"
         )
-    return records
+    return records, excluded
 
 
 def assert_same_grid(
@@ -87,7 +127,9 @@ def assert_same_grid(
         crs = CRS.from_user_input(src.crs)
         width, height = src.width, src.height
     if not crs.is_projected:
-        raise ValueError(f"Consensus area calculation requires projected CRS, got {crs}")
+        raise ValueError(
+            f"Consensus area calculation requires projected CRS, got {crs}"
+        )
     for record in records[1:]:
         with rasterio.open(record.path) as src:
             if (
@@ -233,11 +275,19 @@ def aggregate_summary(
         "acquisition_dates": [
             record.acquisition_date.isoformat() for record in aggregate.records
         ],
+        "scene_valid_fraction_grid": {
+            record.acquisition_date.isoformat(): round(
+                record.valid_fraction_grid, 6
+            )
+            for record in aggregate.records
+        },
         "min_observations_per_pixel": aggregate.min_observations,
         "consensus_threshold": threshold,
         "classified_area_m2": round(float(enough.sum() * pixel_area_m2), 2),
         "consensus_water_area_m2": round(float(water.sum() * pixel_area_m2), 2),
-        "variable_water_area_m2": round(float(variable.sum() * pixel_area_m2), 2),
+        "variable_water_area_m2": round(
+            float(variable.sum() * pixel_area_m2), 2
+        ),
         "mean_water_frequency": (
             round(float(aggregate.frequency[enough].mean()), 6)
             if enough.any()
@@ -268,7 +318,9 @@ def write_aggregate(
     min_area_m2: float,
 ) -> dict[str, object]:
     pixel_area_m2 = abs(transform_grid.a * transform_grid.e)
-    status = aggregate_summary(aggregate, pixel_area_m2, threshold)["analysis_status"]
+    status = aggregate_summary(
+        aggregate, pixel_area_m2, threshold
+    )["analysis_status"]
     tags = {
         "aggregate_label": aggregate.label,
         "acquisition_count": str(len(aggregate.records)),
@@ -313,8 +365,11 @@ def write_aggregate(
         min_area_m2=min_area_m2,
         properties={"aggregate": aggregate.label, "analysis_status": status},
     )
+    output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "water_consensus.geojson").write_text(
-        json.dumps({"type": "FeatureCollection", "features": features}, indent=2),
+        json.dumps(
+            {"type": "FeatureCollection", "features": features}, indent=2
+        ),
         encoding="utf-8",
     )
     summary = aggregate_summary(aggregate, pixel_area_m2, threshold)
@@ -436,7 +491,8 @@ def per_plot_summary(
                 ),
                 "screening_flag": (
                     "REVIEW_WATER_GAIN"
-                    if gain >= max(1000.0, 0.01 * valid_pixels * pixel_area_m2)
+                    if gain
+                    >= max(1000.0, 0.01 * valid_pixels * pixel_area_m2)
                     else "NO_LARGE_WATER_GAIN_SIGNAL"
                 ),
                 "analysis_status": "MULTI_SCENE_TIDE_UNVERIFIED_SCREENING",
@@ -459,7 +515,9 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
 def parse_years(value: str | None) -> list[int] | None:
     if value is None:
         return None
-    years = sorted({int(part.strip()) for part in value.split(",") if part.strip()})
+    years = sorted(
+        {int(part.strip()) for part in value.split(",") if part.strip()}
+    )
     if not years:
         raise argparse.ArgumentTypeError("Year list cannot be empty")
     return years
@@ -473,8 +531,20 @@ def main() -> None:
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--plots", type=Path)
     parser.add_argument("--threshold", type=float, default=0.5)
-    parser.add_argument("--min-valid-fraction", type=float, default=0.5)
-    parser.add_argument("--min-area-m2", type=float, default=400.0)
+    parser.add_argument(
+        "--min-valid-fraction",
+        type=float,
+        default=0.5,
+        help="Minimum fraction of retained scenes valid at each pixel",
+    )
+    parser.add_argument(
+        "--min-scene-valid-fraction",
+        type=float,
+        default=0.10,
+        help="Exclude a whole scene when valid grid coverage is below this value",
+    )
+    parser.add_argument("--min-scenes-per-year", type=int, default=2)
+    parser.add_argument("--min-area-m2", type=float, default=100.0)
     parser.add_argument("--baseline-years", type=parse_years)
     parser.add_argument("--latest-years", type=parse_years)
     args = parser.parse_args()
@@ -483,8 +553,14 @@ def main() -> None:
         raise ValueError("--threshold must be between 0 and 1")
     if not 0 < args.min_valid_fraction <= 1:
         raise ValueError("--min-valid-fraction must be in (0, 1]")
+    if not 0 <= args.min_scene_valid_fraction <= 1:
+        raise ValueError("--min-scene-valid-fraction must be in [0, 1]")
+    if args.min_scenes_per_year < 1:
+        raise ValueError("--min-scenes-per-year must be at least 1")
 
-    records = load_records(args.root)
+    records, excluded_scenes = load_records(
+        args.root, args.min_scene_valid_fraction
+    )
     profile, transform_grid, crs, _, _ = assert_same_grid(records)
     profile["transform"] = transform_grid
     profile["crs"] = crs
@@ -496,6 +572,18 @@ def main() -> None:
     years = sorted(by_year)
     if len(years) < 2:
         raise ValueError("At least two years are required for epoch comparison")
+    insufficient_years = {
+        year: len(by_year[year])
+        for year in years
+        if len(by_year[year]) < args.min_scenes_per_year
+    }
+    if insufficient_years:
+        raise ValueError(
+            "Too few usable scenes after coverage filtering: "
+            + ", ".join(
+                f"{year}={count}" for year, count in insufficient_years.items()
+            )
+        )
 
     args.out.mkdir(parents=True, exist_ok=True)
     annual_summaries = []
@@ -529,7 +617,9 @@ def main() -> None:
     baseline_records = [
         record for year in baseline_years for record in by_year[year]
     ]
-    latest_records = [record for year in latest_years for record in by_year[year]]
+    latest_records = [
+        record for year in latest_years for record in by_year[year]
+    ]
     baseline_label = f"baseline_{min(baseline_years)}_{max(baseline_years)}"
     latest_label = f"latest_{min(latest_years)}_{max(latest_years)}"
     baseline = aggregate_records(
@@ -594,7 +684,9 @@ def main() -> None:
     )
     change_dir.mkdir(parents=True, exist_ok=True)
     (change_dir / "water_change.geojson").write_text(
-        json.dumps({"type": "FeatureCollection", "features": features}, indent=2),
+        json.dumps(
+            {"type": "FeatureCollection", "features": features}, indent=2
+        ),
         encoding="utf-8",
     )
     change_summary = {
@@ -624,9 +716,9 @@ def main() -> None:
         ),
         "analysis_status": "MULTI_SCENE_TIDE_UNVERIFIED_SCREENING",
         "interpretation": (
-            "Multi-date consensus reduces cloud and single-scene noise, but candidate "
-            "water-edge change is not an erosion/accretion rate until tide and field "
-            "reference uncertainty are controlled."
+            "Multi-date consensus reduces cloud and single-scene noise, but "
+            "candidate water-edge change is not an erosion/accretion rate until "
+            "tide and field reference uncertainty are controlled."
         ),
     }
 
@@ -650,18 +742,20 @@ def main() -> None:
         json.dumps(change_summary, indent=2), encoding="utf-8"
     )
     write_csv(args.out / "annual_summary.csv", annual_summaries)
+    final_summary = {
+        "years": years,
+        "retained_scene_count": len(records),
+        "excluded_scene_count": len(excluded_scenes),
+        "excluded_scenes": excluded_scenes,
+        "minimum_scene_valid_fraction": args.min_scene_valid_fraction,
+        "minimum_scenes_per_year": args.min_scenes_per_year,
+        "annual": annual_summaries,
+        "epoch_change": change_summary,
+    }
     (args.out / "summary.json").write_text(
-        json.dumps(
-            {
-                "years": years,
-                "annual": annual_summaries,
-                "epoch_change": change_summary,
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
+        json.dumps(final_summary, indent=2), encoding="utf-8"
     )
-    print(json.dumps(change_summary, indent=2))
+    print(json.dumps(final_summary, indent=2))
 
 
 if __name__ == "__main__":
