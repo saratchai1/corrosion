@@ -6,8 +6,8 @@ This wrapper deliberately reuses scripts/download_satellite_data.py. It only:
 2) replaces the Samut Songkhram-only AOI guard with a Krabi working envelope;
 3) changes the working directory so catalogs/rasters/previews/manifests are written
    under regions/krabi/data instead of the inherited Samut Songkhram data tree;
-4) preserves source GeoTIFF band scale/offset in AOI-clipped outputs so spectral
-   indices can use scene-specific radiometric calibration.
+4) records source GeoTIFF band scale/offset in AOI-clipped COG tags so spectral
+   indices can use scene-specific radiometric calibration without rewriting COGs.
 """
 from __future__ import annotations
 
@@ -78,7 +78,17 @@ def load_krabi_aoi(path: Path):
     return mapping(union), union
 
 
-def clip_asset_preserve_calibration(
+def source_calibration(href: str) -> tuple[float, float]:
+    import rasterio
+
+    with rasterio.Env(**core.raster_env()):
+        with rasterio.open(href) as src:
+            scale = float(src.scales[0]) if src.scales and src.scales[0] is not None else 1.0
+            offset = float(src.offsets[0]) if src.offsets and src.offsets[0] is not None else 0.0
+    return scale, offset
+
+
+def clip_asset_with_calibration_tags(
     href: str,
     geom4326: dict[str, Any],
     outpath: Path,
@@ -88,49 +98,29 @@ def clip_asset_preserve_calibration(
     tags: dict[str, str],
     dst_crs: str = core.ANALYSIS_CRS,
 ) -> Path:
-    """Delegate clipping, then copy source band scale/offset into the COG.
-
-    Earth Search Sentinel-2 data can require scene-specific scale/offset handling,
-    especially across processing baselines. Landsat Collection 2 also uses a
-    non-zero reflectance offset. Keeping the raster calibration with each clipped
-    band avoids hard-coding one convention across the full time series.
-    """
-    import rasterio
-
-    result = ORIGINAL_CLIP_ASSET(
+    """Read source calibration first and persist it during the one COG write."""
+    scale, offset = source_calibration(href)
+    enriched_tags = {
+        **tags,
+        "source_band_scale": str(scale),
+        "source_band_offset": str(offset),
+        "calibration_source": "source_geotiff_band_metadata",
+    }
+    return ORIGINAL_CLIP_ASSET(
         href,
         geom4326,
         outpath,
         resolution=resolution,
         categorical=categorical,
-        tags=tags,
+        tags=enriched_tags,
         dst_crs=dst_crs,
     )
-
-    scale = 1.0
-    offset = 0.0
-    with rasterio.Env(**core.raster_env()):
-        with rasterio.open(href) as src:
-            if src.scales and src.scales[0] is not None:
-                scale = float(src.scales[0])
-            if src.offsets and src.offsets[0] is not None:
-                offset = float(src.offsets[0])
-
-    with rasterio.open(result, "r+") as dst:
-        dst.scales = (scale,)
-        dst.offsets = (offset,)
-        dst.update_tags(
-            source_band_scale=str(scale),
-            source_band_offset=str(offset),
-            calibration_source="source_geotiff_band_metadata",
-        )
-    return result
 
 
 def main() -> None:
     REGION_ROOT.mkdir(parents=True, exist_ok=True)
     core.load_aoi = load_krabi_aoi
-    core.clip_asset = clip_asset_preserve_calibration
+    core.clip_asset = clip_asset_with_calibration_tags
 
     argv = list(sys.argv[1:])
     if "--aoi" not in argv:
