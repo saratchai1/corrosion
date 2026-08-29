@@ -6,14 +6,25 @@ import type { Epoch, TransectSelection, ViewState } from './types'
 
 maplibregl.setWorkerUrl(workerUrl)
 
+export type LayerVisibility = {
+  imagery: boolean
+  boundary: boolean
+  vegetation: boolean
+  transects: boolean
+  plots: boolean
+}
+
 type Props = {
   epoch: Epoch
   label: string
-  layers: { imagery: boolean; boundary: boolean; vegetation: boolean; transects: boolean; plots: boolean }
+  layers: LayerVisibility
   opacity: number
   sharedView: ViewState
   onView: (value: ViewState) => void
   onTransect: (selection: TransectSelection) => void
+  interactive?: boolean
+  showControls?: boolean
+  labelSide?: 'left' | 'right'
 }
 
 const style: maplibregl.StyleSpecification = {
@@ -37,7 +48,18 @@ function parsePositions(value: unknown): Record<string, number | null> {
   return value as Record<string, number | null>
 }
 
-export default function MapPane({ epoch, label, layers, opacity, sharedView, onView, onTransect }: Props) {
+export default function MapPane({
+  epoch,
+  label,
+  layers,
+  opacity,
+  sharedView,
+  onView,
+  onTransect,
+  interactive = true,
+  showControls = true,
+  labelSide = 'left',
+}: Props) {
   const container = useRef<HTMLDivElement>(null)
   const mapRef = useRef<MapLibreMap | null>(null)
   const internalMove = useRef(false)
@@ -52,10 +74,13 @@ export default function MapPane({ epoch, label, layers, opacity, sharedView, onV
       bearing: sharedView.bearing,
       pitch: sharedView.pitch,
       attributionControl: false,
+      interactive,
     })
     mapRef.current = map
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
-    map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right')
+    if (showControls) {
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
+      map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right')
+    }
     map.on('move', () => {
       if (internalMove.current) return
       const center = map.getCenter()
@@ -129,7 +154,7 @@ export default function MapPane({ epoch, label, layers, opacity, sharedView, onV
   }, [epoch, layers, opacity, onTransect])
 
   return (
-    <div className="map-pane">
+    <div className={`map-pane label-${labelSide}`}>
       <div className="map-label"><span>{label}</span><strong>{epoch.targetYear}</strong><small>ภาพจริง {epoch.actualYear}</small></div>
       <div ref={container} className="map-canvas" />
     </div>

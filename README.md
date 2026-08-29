@@ -10,7 +10,7 @@ The displayed line is an **image-derived water-land boundary**, not a surveyed o
 - MNDWI water-land boundary for 14 epochs, including a continuous annual 2017–2026 sequence
 - Coastal vegetation spectral proxy and area statistics
 - 100 m transects, yearly positions, endpoint and regression rates, and resolution-aware classes
-- React + TypeScript + Vite + MapLibre static WebApp with a default 10-year satellite map, historical timeline, synchronized comparison, project-impact report, layer controls, transect graph, and responsive layout
+- React + TypeScript + Vite + MapLibre static WebApp with a default 10-year satellite map, historical timeline, draggable before–after swipe comparison, project-impact report, layer controls, transect graph, and responsive layout
 - Verified 9-plot overlay and January–April Sentinel-2 indicators for 2023–2026, including local observational controls
 
 ## 2024 planting assessment

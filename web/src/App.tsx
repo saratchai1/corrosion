@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import MapPane from './MapPane'
 import ProjectDashboard from './ProjectDashboard'
+import SwipeCompare from './SwipeCompare'
 import TransectChart from './TransectChart'
 import type { DataIndex, ProjectImpactSummary, Summary, TransectSelection, ViewState } from './types'
 
@@ -16,7 +17,7 @@ export default function App() {
   const [compare, setCompare] = useState(false)
   const [compareIndex, setCompareIndex] = useState(0)
   const [view, setView] = useState<ViewState>(initialView)
-  const [opacity, setOpacity] = useState(0.82)
+  const [opacity, setOpacity] = useState(1)
   const [selection, setSelection] = useState<TransectSelection | null>(null)
   const [layers, setLayers] = useState({ imagery: true, boundary: true, vegetation: false, transects: true, plots: true })
 
@@ -91,14 +92,14 @@ export default function App() {
             <button className="intervention" onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2024))}>2024 · ปีปลูก*</button>
             <button onClick={() => setYearIndex(index.epochs.length - 1)}>2026 · ล่าสุด</button>
           </div>
-          <label className="switch-row"><span><strong>เปรียบเทียบสองช่วงเวลา</strong><small>Side-by-side, synchronized maps</small></span><input type="checkbox" checked={compare} onChange={(event) => setCompare(event.target.checked)} /><i /></label>
-          {compare && <label className="compare-select">แผนที่ซ้าย / left<select value={compareIndex} onChange={(event) => setCompareIndex(Number(event.target.value))}>{index.epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} (ภาพ {item.actualYear})</option>)}</select></label>}
+          <label className="switch-row"><span><strong>สไลเดอร์ภาพก่อน–หลัง</strong><small>Swipe comparison on one map</small></span><input type="checkbox" checked={compare} onChange={(event) => setCompare(event.target.checked)} /><i /></label>
+          {compare && <label className="compare-select">ภาพก่อน / Before<select value={compareIndex} onChange={(event) => setCompareIndex(Number(event.target.value))}>{index.epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} (ภาพ {item.actualYear})</option>)}</select></label>}
         </section>
 
         <section className="control-section">
           <div className="section-heading"><span>02</span><h2>ชั้นข้อมูล / Layers</h2></div>
           <div className="layer-list">{layerOptions.map(([key, thai, english]) => <label key={key}><input type="checkbox" checked={layers[key]} onChange={(event) => setLayers((current) => ({ ...current, [key]: event.target.checked }))} /><i className={`swatch ${key}`} /><span><strong>{thai}</strong><small>{english}</small></span></label>)}</div>
-          <label className="opacity">ความทึบภาพ / Imagery opacity <strong>{Math.round(opacity * 100)}%</strong><input type="range" min="0" max="1" step="0.05" value={opacity} onChange={(event) => setOpacity(Number(event.target.value))} /></label>
+          <label className="opacity">ความทึบภาพ / Imagery opacity <strong>{Math.round(opacity * 100)}%</strong><input type="range" min="0" max="1" step="0.05" value={opacity} onChange={(event) => setOpacity(Number(event.target.value))} /><small>ภาพวิเคราะห์ Sentinel-2: 20 ม./พิกเซล · ซูมเกินความละเอียดจะดูนุ่ม</small></label>
         </section>
 
         {projectSummary && <section className="project-result">
@@ -124,9 +125,10 @@ export default function App() {
         </footer>
       </aside>
 
-      <section className={`map-stage ${compare ? 'is-compare' : ''}`}>
-        {compare && <MapPane epoch={compareEpoch} label="A · BEFORE" layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />}
-        <MapPane epoch={epoch} label={compare ? 'B · AFTER' : 'SELECTED EPOCH'} layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />
+      <section className={`map-stage ${compare ? 'is-swipe' : ''}`}>
+        {compare
+          ? <SwipeCompare before={compareEpoch} after={epoch} layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />
+          : <MapPane epoch={epoch} label="SELECTED EPOCH" layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />}
         <div className="legend"><span><i className="erosion" /> apparent erosion</span><span><i className="accretion" /> apparent accretion</span><span><i className="stable" /> within resolution</span></div>
       </section>
     </main>
