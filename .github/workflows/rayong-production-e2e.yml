@@ -1,0 +1,119 @@
+name: Rayong production before-after E2E
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/rayong-production-e2e.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Test Rayong production comparison
+        env:
+          RAYONG_URL: https://rayong-coastal-before-after.vercel.app
+        run: |
+          mkdir -p artifacts/rayong-production-e2e
+          cat > /tmp/test-rayong-production.mjs <<'JS'
+          import assert from 'node:assert/strict';
+          import { chromium } from 'playwright';
+
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({
+            viewport: { width: 1440, height: 960 },
+            deviceScaleFactor: 1,
+          });
+          const pageErrors = [];
+          const consoleErrors = [];
+          page.on('pageerror', (error) => pageErrors.push(error.message));
+          page.on('console', (message) => {
+            if (message.type() !== 'error') return;
+            const text = message.text();
+            if (text.includes('tile.openstreetmap.org') || text.includes('Failed to load resource')) return;
+            consoleErrors.push(text);
+          });
+
+          try {
+            await page.goto(process.env.RAYONG_URL, {
+              waitUntil: 'domcontentloaded',
+              timeout: 60_000,
+            });
+            await page.waitForFunction(
+              () => window.__RAYONG_COMPARE_TEST__?.ready === true,
+              undefined,
+              { timeout: 90_000 },
+            );
+            await page.waitForFunction(
+              () => window.__RAYONG_COMPARE_TEST__?.plotCount === 14,
+              undefined,
+              { timeout: 30_000 },
+            );
+
+            const initial = await page.evaluate(() => window.__RAYONG_COMPARE_TEST__);
+            assert.equal(initial.mapCount, 2);
+            assert.equal(initial.beforeYear, '2018');
+            assert.equal(initial.afterYear, '2025');
+            assert.equal(initial.plotCount, 14);
+            assert.equal(await page.locator('.maplibregl-canvas').count(), 2);
+
+            const range = page.locator('[data-testid="swipe-range"]');
+            await range.focus();
+            await page.keyboard.press('Home');
+            for (let value = 3; value < 27; value += 1) {
+              await page.keyboard.press('ArrowRight');
+            }
+            await page.waitForFunction(() => window.__RAYONG_COMPARE_TEST__?.swipe === 27);
+            const clipPath = await page.locator('#after-pane').evaluate(
+              (element) => getComputedStyle(element).clipPath,
+            );
+            assert.match(clipPath, /27%/);
+
+            await page.selectOption('#before-year', '2021');
+            await page.waitForFunction(
+              () => window.__RAYONG_COMPARE_TEST__?.beforeYear === '2021',
+            );
+            await page.locator('button[data-layer="mndwi"]').click();
+            await page.waitForFunction(
+              () => window.__RAYONG_COMPARE_TEST__?.selectedLayer === 'mndwi',
+            );
+
+            await page.screenshot({
+              path: 'artifacts/rayong-production-e2e/rayong-production.png',
+              fullPage: true,
+            });
+
+            assert.deepEqual(pageErrors, []);
+            assert.deepEqual(consoleErrors, []);
+            console.log(JSON.stringify({ initial, clipPath, pageErrors, consoleErrors }, null, 2));
+          } finally {
+            await browser.close();
+          }
+          JS
+          node /tmp/test-rayong-production.mjs
+
+      - name: Upload production browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rayong-production-before-after
+          path: artifacts/rayong-production-e2e/**
+          if-no-files-found: error
+          retention-days: 30
