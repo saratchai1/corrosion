@@ -1,0 +1,26 @@
+{
+  "sentinel2": {
+    "status": "DRY_RUN_COMPLETE",
+    "first_available_year": 2017,
+    "last_available_year": 2026,
+    "total_discovered": 1774,
+    "total_selected_dates": 40,
+    "total_selected_scenes": 40
+  },
+  "sentinel1": {
+    "status": "DRY_RUN_COMPLETE",
+    "first_available_year": 2015,
+    "last_available_year": 2026,
+    "total_discovered": 1176,
+    "total_selected_dates": 228,
+    "total_selected_scenes": 228
+  },
+  "landsat": {
+    "status": "PARTIAL_DRY_RUN",
+    "first_available_year": 1984,
+    "last_available_year": 2012,
+    "total_discovered": 530,
+    "total_selected_dates": 152,
+    "total_selected_scenes": 152
+  }
+}

@@ -1,0 +1,7 @@
+station,year,datum,source_url,download_status,sha256,parser_status
+pak_nam_rayong,2026,LLW,https://hydro.navy.mi.th/storage/frontend/article/23000/file/th/PR2026.pdf,downloaded,561850a2f3ad96db6c1134aba0a14169fb7b0254d5fd7d443d47f89a1248eb2d,parsed
+pak_nam_rayong,2026,MSL,https://hydro.navy.mi.th/storage/frontend/article/23001/file/th/PR2026msl.pdf,downloaded,cffa579a66c7c5ff65567d54fd4907f51fe19f07a322c1df93b21c63d2c456da,parsed
+map_ta_phut,2026,LLW,https://hydro.navy.mi.th/storage/frontend/article/22998/file/th/MT2026.pdf,downloaded,18182f79a6342d4c2f1628cc97a33ff33c56342764379fbd74147bebfb709f7d,parsed
+map_ta_phut,2026,MSL,https://hydro.navy.mi.th/storage/frontend/article/22999/file/th/MT2026msl.pdf,downloaded,951ef9d311220f936adeac5ef81a35fbcfc4099eb86f499e90ba8bd8ab4e1f03,parsed
+laem_sing,2026,LLW,https://hydro.navy.mi.th/storage/frontend/article/23002/file/th/LS2026.pdf,downloaded,6371ceba4148503384d0bb51b78476c8983afcb491da1caf355136fb4ac304e5,parsed
+laem_sing,2026,MSL,https://hydro.navy.mi.th/storage/frontend/article/23003/file/th/LS2026msl.pdf,downloaded,efb6e7be77e7df4b7f355c6494ec488bc865dcfa2cdaf3e363e1c12d8d2c3052,parsed

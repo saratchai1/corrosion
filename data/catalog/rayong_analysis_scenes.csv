@@ -1,0 +1,5 @@
+dataset,scene_id,date,year,sensor,cloud_aoi,tide_height,tide_delta,selection_status,selection_reason
+sentinel2,S2B_47PQQ_20260105_0_L2A,2026-01-05,2026,sentinel2,0.0,1.4,1.4,REJECTED,Tide delta > 0.2m
+sentinel2,S2B_47PQQ_20260204_0_L2A,2026-02-04,2026,sentinel2,0.0,0.809,0.809,REJECTED,Tide delta > 0.2m
+sentinel2,S2A_47PQQ_20260313_0_L2A,2026-03-13,2026,sentinel2,0.0,0.208,0.208,REJECTED,Tide delta > 0.2m
+sentinel2,S2C_47PQQ_20260410_0_L2A,2026-04-10,2026,sentinel2,0.0,-0.282,0.282,REJECTED,Tide delta > 0.2m

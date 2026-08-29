@@ -4,27 +4,64 @@
     {
       "type": "Feature",
       "properties": {
-        "station_name": "Map Ta Phut",
+        "station_id": "pak_nam_rayong",
+        "station_name": "Pak Nam Rayong",
+        "latitude": 12.657222,
+        "longitude": 101.276111,
         "source": "Hydrographic Department, Royal Thai Navy",
-        "datum": "LLW",
-        "status": "active"
+        "datum_options": "LLW, MSL",
+        "distance_to_aoi_centroid_km": 48.6,
+        "distance_to_aoi_nearest_km": 39.5,
+        "role": "PRIMARY_WEST"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [101.1333, 12.6500]
+        "coordinates": [
+          101.276111,
+          12.657222
+        ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "station_name": "Ko Samet",
+        "station_id": "map_ta_phut",
+        "station_name": "Map Ta Phut",
+        "latitude": 12.672778,
+        "longitude": 101.138889,
         "source": "Hydrographic Department, Royal Thai Navy",
-        "datum": "LLW",
-        "status": "active"
+        "datum_options": "LLW, MSL",
+        "distance_to_aoi_centroid_km": 63.2,
+        "distance_to_aoi_nearest_km": 54.4,
+        "role": "SECONDARY"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [101.4500, 12.5667]
+        "coordinates": [
+          101.138889,
+          12.672778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "station_id": "laem_sing",
+        "station_name": "Laem Sing",
+        "latitude": 12.475278,
+        "longitude": 102.058611,
+        "source": "Hydrographic Department, Royal Thai Navy",
+        "datum_options": "LLW, MSL",
+        "distance_to_aoi_centroid_km": 45.8,
+        "distance_to_aoi_nearest_km": 39.4,
+        "role": "PRIMARY_EAST"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          102.058611,
+          12.475278
+        ]
       }
     }
   ]
