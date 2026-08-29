@@ -1,16 +1,18 @@
-name: Rayong web build and browser test
+name: Rayong web build, browser test, and publish
 
 on:
   push:
     branches:
       - data/rayong-satellite-v1
+    paths-ignore:
+      - 'web/published/**'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build-and-test:
+  build-test-publish:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -64,3 +66,21 @@ jobs:
           path: artifacts/rayong-compare-e2e/**
           if-no-files-found: error
           retention-days: 30
+      - name: Publish tested static bundle to branch
+        if: success() && github.actor != 'github-actions[bot]'
+        run: |
+          rm -rf web/published
+          mkdir -p web/published
+          cp web/dist/index.html web/published/index.html
+          cp -R web/dist/assets web/published/assets
+          touch web/published/.nojekyll
+          printf '{"source_commit":"%s"}\n' "$GITHUB_SHA" > web/published/version.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f web/published
+          if git diff --cached --quiet; then
+            echo "Published bundle is unchanged"
+            exit 0
+          fi
+          git commit -m "deploy: publish Rayong before-after [skip ci]"
+          git push origin HEAD:data/rayong-satellite-v1
