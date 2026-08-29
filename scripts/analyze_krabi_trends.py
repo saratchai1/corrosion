@@ -150,7 +150,7 @@ def main() -> None:
             events.append(event)
 
     with TREND_OUT.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=trend_fields)
+        writer = csv.DictWriter(handle, fieldnames=trend_fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(summaries)
 
@@ -159,7 +159,7 @@ def main() -> None:
         "ndvi_drop", "recovery_month", "recovery_qa", "ndvi_recovery", "note",
     ]
     with EVENT_OUT.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=event_fields)
+        writer = csv.DictWriter(handle, fieldnames=event_fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(events)
 
