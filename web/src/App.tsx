@@ -52,7 +52,7 @@ export default function App() {
       const m = map.current;
 
       // Add Sources
-      m.addSource('aoi', { type: 'geojson', data: '/data/rayong_coastal_analysis_aoi.geojson' });
+      m.addSource('aoi', { type: 'geojson', data: '/corrosion/data/rayong_coastal_analysis_aoi.geojson' });
       m.addLayer({
         id: 'aoi-layer',
         type: 'line',
@@ -60,7 +60,7 @@ export default function App() {
         paint: { 'line-color': '#eab308', 'line-width': 2, 'line-dasharray': [2, 2] }
       });
 
-      m.addSource('plots', { type: 'geojson', data: '/data/rayong_planting_plots_validated.geojson' });
+      m.addSource('plots', { type: 'geojson', data: '/corrosion/data/rayong_planting_plots_validated.geojson' });
       m.addLayer({
         id: 'plots-layer',
         type: 'line',
@@ -98,7 +98,7 @@ export default function App() {
           const srcId = `${y}-${l}`;
           m.addSource(srcId, {
             type: 'image',
-            url: `/data/layers/${d}_${l}.png`,
+            url: `/corrosion/data/layers/${d}_${l}.png`,
             coordinates: coordBounds
           });
           m.addLayer({
@@ -110,7 +110,7 @@ export default function App() {
         });
 
         // Add apparent water edge
-        m.addSource(`${y}-shoreline`, { type: 'geojson', data: `/data/${d}_water_edge.geojson` });
+        m.addSource(`${y}-shoreline`, { type: 'geojson', data: `/corrosion/data/${d}_water_edge.geojson` });
         m.addLayer({
           id: `${y}-shoreline-layer`,
           type: 'line',
@@ -125,7 +125,7 @@ export default function App() {
 
       // Load transects
       try {
-        m.addSource('transects', { type: 'geojson', data: '/data/rayong_transects_50m.geojson' });
+        m.addSource('transects', { type: 'geojson', data: '/corrosion/data/rayong_transects_50m.geojson' });
       } catch (e) {}
 
       updateLayers(year1, year2, selectedLayer);
