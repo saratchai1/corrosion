@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/krabi-pipeline-smoke.yml'
       - 'scripts/analyze_krabi_trends.py'
+      - 'scripts/build_analysis_corridor.py'
       - 'scripts/download_krabi_satellite_data.py'
       - 'scripts/download_satellite_data.py'
       - 'scripts/validate_rasters.py'
@@ -21,6 +22,7 @@ on:
     paths:
       - '.github/workflows/krabi-pipeline-smoke.yml'
       - 'scripts/analyze_krabi_trends.py'
+      - 'scripts/build_analysis_corridor.py'
       - 'scripts/download_krabi_satellite_data.py'
       - 'scripts/download_satellite_data.py'
       - 'scripts/validate_rasters.py'
@@ -63,26 +65,38 @@ jobs:
           diff -u /tmp/vegetation_trends.expected.csv regions/krabi/analysis/vegetation_trends.csv
           diff -u /tmp/events.expected.csv regions/krabi/analysis/events.csv
 
+      - name: Build 500m shoreline analysis corridor
+        run: |
+          python scripts/build_analysis_corridor.py \
+            --input regions/krabi/data/aoi/krabi_pdd_plots.geojson \
+            --output regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --buffer-m 500
+
       - name: Sentinel-2 STAC smoke
         run: |
           python scripts/download_krabi_satellite_data.py sentinel2 \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --start 2026-01-01 --end 2026-08-29 --per-year 1 --dry-run
 
       - name: Landsat STAC smoke
         run: |
           python scripts/download_krabi_satellite_data.py landsat \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --start 2026-01-01 --end 2026-08-29 --per-year 1 --dry-run
 
       - name: Sentinel-1 STAC smoke
         run: |
           python scripts/download_krabi_satellite_data.py sentinel1 \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --start 2026-01-01 --end 2026-08-29 --per-year 1 --dry-run
 
       - name: Upload smoke catalogs
         uses: actions/upload-artifact@v4
         with:
           name: krabi-smoke-catalogs
-          path: regions/krabi/data/catalog/*.csv
+          path: |
+            regions/krabi/data/catalog/*.csv
+            regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
           if-no-files-found: error
 
   download-smoke:
@@ -104,15 +118,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Build 500m shoreline analysis corridor
+        run: |
+          python scripts/build_analysis_corridor.py \
+            --input regions/krabi/data/aoi/krabi_pdd_plots.geojson \
+            --output regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson \
+            --buffer-m 500
+
       - name: Download one AOI acquisition per sensor
         run: |
           python scripts/download_krabi_satellite_data.py sentinel2 \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --start 2026-01-01 --end 2026-08-29 --per-year 1 \
             --download --max-downloads 1
           python scripts/download_krabi_satellite_data.py landsat \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --start 2026-01-01 --end 2026-08-29 --per-year 1 \
             --download --max-downloads 1
           python scripts/download_krabi_satellite_data.py sentinel1 \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --start 2026-01-01 --end 2026-08-29 --per-year 1 \
             --download --max-downloads 1
 
@@ -122,7 +146,7 @@ jobs:
           mapfile -t RASTERS < <(find data/satellite -type f -name '*.tif' | sort)
           test "${#RASTERS[@]}" -gt 0
           python ../../scripts/validate_rasters.py "${RASTERS[@]}" \
-            --aoi data/aoi/krabi_pdd_plots.geojson \
+            --aoi data/aoi/krabi_shoreline_corridor_500m.geojson \
             --json data/manifests/raster_validation.json \
             --checksums data/manifests/checksums.sha256
 
@@ -150,6 +174,7 @@ jobs:
         with:
           name: krabi-aoi-raster-smoke
           path: |
+            regions/krabi/data/aoi/krabi_shoreline_corridor_500m.geojson
             regions/krabi/data/catalog/*.csv
             regions/krabi/data/satellite/**
             regions/krabi/data/previews/**
