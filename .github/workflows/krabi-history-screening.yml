@@ -3,6 +3,7 @@ name: Krabi multi-scene water-edge screening
 on:
   push:
     branches:
+      - main
       - data/krabi-satellite-v1
     paths:
       - '.github/workflows/krabi-history-screening.yml'
@@ -25,14 +26,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: krabi-history-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   sentinel2-history:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: data/krabi-satellite-v1
 
       - uses: actions/setup-python@v5
         with:
@@ -131,12 +134,17 @@ jobs:
           assert summary['pilot']['scene_count'] >= 18
           assert summary['executive']['engineering_erosion_rate_status'] == 'NOT_ESTIMATED_TIDE_UNVERIFIED'
           assert len(manifest['downloads']) >= 10
+          assert manifest['previews']
+          assert all(item.get('scene_qa') == 'USABLE' for item in manifest['previews'])
           assert (site / 'data/water_change.geojson').stat().st_size > 0
           print(json.dumps({
               'plot_count': summary['pilot']['plot_count'],
               'scene_count': summary['pilot']['scene_count'],
               'downloads': len(manifest['downloads']),
               'previews': len(manifest['previews']),
+              'preview_dates': [item['date'] for item in manifest['previews']],
+              'git_sha': manifest['git_sha'],
+              'branch': manifest['branch'],
           }, indent=2))
           PY
 
