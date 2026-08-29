@@ -127,7 +127,7 @@ export default function App() {
 
       <section className={`map-stage ${compare ? 'is-swipe' : ''}`}>
         {compare
-          ? <SwipeCompare before={compareEpoch} after={epoch} layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />
+          ? <SwipeCompare epochs={index.epochs} beforeIndex={compareIndex} afterIndex={yearIndex} before={compareEpoch} after={epoch} layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} onBeforeChange={setCompareIndex} onAfterChange={setYearIndex} />
           : <MapPane epoch={epoch} label="SELECTED EPOCH" layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />}
         <div className="legend"><span><i className="erosion" /> apparent erosion</span><span><i className="accretion" /> apparent accretion</span><span><i className="stable" /> within resolution</span></div>
       </section>

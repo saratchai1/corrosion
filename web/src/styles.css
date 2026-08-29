@@ -133,6 +133,14 @@ footer span { display: block; margin-top: 9px; color: #ff9c88; font-size: 9px; }
 .swipe-layer { contain: strict; }
 .swipe-after { z-index: 2; overflow: hidden; pointer-events: none; will-change: clip; }
 .swipe-after .maplibregl-control-container, .swipe-after .maplibregl-ctrl { pointer-events: auto; }
+.swipe-toolbar { position: absolute; z-index: 7; top: 20px; left: 50%; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 8px; width: min(510px, calc(100% - 36px)); padding: 8px; border: 1px solid rgba(255,255,255,.24); background: rgba(7,27,29,.9); box-shadow: 0 5px 25px rgba(4,20,21,.3); transform: translateX(-50%); backdrop-filter: blur(10px); }
+.swipe-toolbar label { display: grid; gap: 4px; min-width: 0; }
+.swipe-toolbar label span, .swipe-zoom-control > span { color: #90c6ba; font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
+.swipe-toolbar select { min-width: 0; width: 100%; padding: 7px 6px; border: 1px solid rgba(255,255,255,.22); border-radius: 0; color: #edf5f0; background: #163638; font: inherit; font-size: 10px; }
+.swipe-zoom-control { display: grid; justify-items: center; gap: 4px; }
+.swipe-zoom-control div { display: flex; gap: 3px; }
+.swipe-zoom-control button { display: grid; width: 28px; height: 28px; padding: 0; border: 1px solid rgba(255,255,255,.3); color: #eaf5ef; background: #214b4b; place-items: center; cursor: pointer; font-size: 18px; line-height: 1; }
+.swipe-zoom-control button:hover { background: #2f6661; }
 .swipe-divider { position: absolute; z-index: 6; top: 0; bottom: 0; left: 0; width: 42px; border: 0; outline: 0; cursor: ew-resize; touch-action: none; user-select: none; will-change: transform; transform: translate3d(0, 0, 0) translateX(-50%); }
 .swipe-divider::before { position: absolute; top: 0; bottom: 0; left: 20px; width: 2px; content: ''; background: white; box-shadow: 0 0 0 1px rgba(5, 24, 25, .35), 0 0 18px rgba(5, 24, 25, .42); }
 .swipe-divider span { position: absolute; top: 50%; left: 50%; display: grid; width: 42px; height: 42px; border: 2px solid white; border-radius: 50%; place-items: center; color: #0c2c2d; background: #f4f0e7; box-shadow: 0 5px 20px rgba(5, 24, 25, .38); font-size: 19px; font-weight: 600; transform: translate(-50%, -50%); }
@@ -282,6 +290,8 @@ footer span { display: block; margin-top: 9px; color: #ff9c88; font-size: 9px; }
   .map-stage { height: 70vh; min-height: 520px; }
   .legend { left: 10px; right: auto; bottom: 10px; flex-wrap: wrap; }
   .swipe-range-control { bottom: 72px; grid-template-columns: auto minmax(80px, 1fr) auto; width: calc(100% - 24px); }
+  .swipe-toolbar { top: 12px; width: calc(100% - 24px); gap: 5px; padding: 6px; }
+  .swipe-toolbar select { padding: 6px 4px; font-size: 9px; }
   .map-label { top: 12px; left: 12px; }
   .map-pane.label-right .map-label { top: 12px; right: 54px; }
 }

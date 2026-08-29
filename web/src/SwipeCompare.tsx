@@ -3,6 +3,9 @@ import MapPane, { type LayerVisibility } from './MapPane'
 import type { Epoch, TransectSelection, ViewState } from './types'
 
 type Props = {
+  epochs: Epoch[]
+  beforeIndex: number
+  afterIndex: number
   before: Epoch
   after: Epoch
   layers: LayerVisibility
@@ -10,11 +13,14 @@ type Props = {
   sharedView: ViewState
   onView: (value: ViewState) => void
   onTransect: (selection: TransectSelection) => void
+  onBeforeChange: (value: number) => void
+  onAfterChange: (value: number) => void
 }
 
 const clamp = (value: number) => Math.min(100, Math.max(0, value))
+const clampZoom = (value: number) => Math.min(18, Math.max(8, value))
 
-export default function SwipeCompare({ before, after, layers, opacity, sharedView, onView, onTransect }: Props) {
+export default function SwipeCompare({ epochs, beforeIndex, afterIndex, before, after, layers, opacity, sharedView, onView, onTransect, onBeforeChange, onAfterChange }: Props) {
   const container = useRef<HTMLDivElement>(null)
   const afterLayer = useRef<HTMLDivElement>(null)
   const divider = useRef<HTMLDivElement>(null)
@@ -71,6 +77,8 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
     schedulePosition(((clientX - left) / width) * 100)
   }
 
+  const updateZoom = (delta: number) => onView({ ...sharedView, zoom: clampZoom(sharedView.zoom + delta) })
+
   return (
     <div ref={container} className="swipe-compare">
       <div className="swipe-layer swipe-before">
@@ -97,6 +105,28 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
           interactive={false}
           labelSide="right"
         />
+      </div>
+
+      <div className="swipe-toolbar" aria-label="ตัวควบคุมแผนที่เปรียบเทียบ">
+        <label>
+          <span>ก่อน / Before</span>
+          <select aria-label="เลือกภาพก่อน" value={beforeIndex} onChange={(event) => onBeforeChange(Number(event.target.value))}>
+            {epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} · {item.actualYear}</option>)}
+          </select>
+        </label>
+        <div className="swipe-zoom-control">
+          <span>ZOOM {sharedView.zoom.toFixed(1)}</span>
+          <div>
+            <button type="button" aria-label="ลดการซูม" onClick={() => updateZoom(-1)}>−</button>
+            <button type="button" aria-label="ขยายแผนที่" onClick={() => updateZoom(1)}>+</button>
+          </div>
+        </div>
+        <label>
+          <span>หลัง / After</span>
+          <select aria-label="เลือกภาพหลัง" value={afterIndex} onChange={(event) => onAfterChange(Number(event.target.value))}>
+            {epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} · {item.actualYear}</option>)}
+          </select>
+        </label>
       </div>
 
       <div
