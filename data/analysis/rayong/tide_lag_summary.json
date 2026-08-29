@@ -1,0 +1,25 @@
+{
+  "lag_analysis": [
+    {
+      "pair": "PR_vs_LS",
+      "optimal_lag_minutes": 5,
+      "max_correlation": 0.984198201330026,
+      "mean_offset_m": 0.11040158311847702,
+      "rmse_m": 0.15207778493112264,
+      "amplitude_ratio": 1.0799999999999998
+    },
+    {
+      "pair": "PR_vs_MT",
+      "optimal_lag_minutes": 5,
+      "max_correlation": 0.9873835795217678,
+      "mean_offset_m": 0.12138351615941546,
+      "rmse_m": 0.15641746792731287,
+      "amplitude_ratio": 0.9
+    }
+  ],
+  "scene_selection_sensitivity": {
+    "total_simulated_scenes": 73,
+    "PR_only_vs_Bracketing_changes": 4,
+    "LS_only_vs_Bracketing_changes": 5
+  }
+}

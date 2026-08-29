@@ -16,10 +16,10 @@
     "total_selected_scenes": 228
   },
   "landsat": {
-    "status": "PARTIAL_DRY_RUN",
+    "status": "DISCOVERY_COMPLETE",
     "first_available_year": 1984,
     "last_available_year": 2012,
-    "total_discovered": 530,
+    "total_discovered": 618,
     "total_selected_dates": 152,
     "total_selected_scenes": 152
   }
