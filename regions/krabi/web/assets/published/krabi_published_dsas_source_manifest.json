@@ -1,0 +1,93 @@
+{
+  "generated_utc": "2026-08-29T10:40:14.631613Z",
+  "source_project": "https://osf.io/mxjhk/",
+  "inventory_generated_utc": "2026-08-29T10:40:01.899307Z",
+  "downloads": [
+    {
+      "name": "Krabi_Points.shp",
+      "source_path": "/Erosion rates/Krabi_Points.shp",
+      "source_download": "https://osf.io/download/62a33450b9b3fc0434db3c6c/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/4f9c060aab9d3007b775c1d030202fa08a78616f2f039c3128f1781453a0fcc9?response-content-disposition=attachment%3B%20filename%3D%22Krabi_Points.shp%22%3B%20filename%2A%3DUTF-8%27%27Krabi_Points.shp&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000063&Signature=a3%2FgyjhGMbFrO9IH2KeNkFbOZpm6KjeTc7MxsIZhbzXFGEw7kkplYvBN7T5QgxLk1JJjq5wjU8sOVJdt9bqXbowYY%2F53s8FPXenwVmTp0oLd3XlAxZmpwnUQuRYmZEoyUdvRAYv3%2BI63%2BgwL4znZqHmLobKTrGiUObpCjAUY24ypAPC9xCGV0oCA7SQMWacQdQux7hOw3YbwbLQMH%2Bn4KtiEC8%2FZVC5JwyLzoSzy%2BG44%2Ba3%2B43XuoXUC1Pz64d09DSy6Us5lVNvNE8itPBkAUWaO9tXUewhfMDOV9v9VI1eZAGtM7t89x6YKPApkpsIxcU8auDVqmHij1CphWi6bnw%3D%3D",
+      "bytes": 18748,
+      "sha256": "4f9c060aab9d3007b775c1d030202fa08a78616f2f039c3128f1781453a0fcc9",
+      "inventory_sha256": "4f9c060aab9d3007b775c1d030202fa08a78616f2f039c3128f1781453a0fcc9",
+      "inventory_md5": "b8c3f3de1f6425fb377f3456c99fe6a1"
+    },
+    {
+      "name": "Krabi_Points.shx",
+      "source_path": "/Erosion rates/Krabi_Points.shx",
+      "source_download": "https://osf.io/download/62a33453f0123f039beae209/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/818f95032ba9e5ba0e2a0d62ce0bd7765e4014365535ff811baca33061d80b05?response-content-disposition=attachment%3B%20filename%3D%22Krabi_Points.shx%22%3B%20filename%2A%3DUTF-8%27%27Krabi_Points.shx&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000065&Signature=p%2FCMopHC1PMBPyPwoV41xDW2FxFQD0f1TAufRIItGFmOh56w7zVS8K9TmViSm4zzYkJsVYe7PBZCos8A19lzvG6lASc9wyJFwkgofKbGzH6c1he2y6ThgEFMi0PIsg2x1gGJNrTfmuj3SUcYa7AAYXC0rrJ0LhOczsJfUxuRArdI17kkYI6s3zZjBrkgoCw0b%2BRg1lY9pbHAAdsWXc1RJhaz2n2vlrZFjtDrFOH%2FMEf0qAVxwfp4pSmzKBB33SjGSsCGzEeeofY9xoFwuEyF3u7JvjwrruvkzILDWSkW23HJsi4qXQgjtIOkcE7EgFvR6087%2BD%2BVJxdGm%2B0oEDbE2g%3D%3D",
+      "bytes": 5428,
+      "sha256": "818f95032ba9e5ba0e2a0d62ce0bd7765e4014365535ff811baca33061d80b05",
+      "inventory_sha256": "818f95032ba9e5ba0e2a0d62ce0bd7765e4014365535ff811baca33061d80b05",
+      "inventory_md5": "fc0e67a1746d4d49b6c0068f3da2423a"
+    },
+    {
+      "name": "Krabi_Points.dbf",
+      "source_path": "/Erosion rates/Krabi_Points.dbf",
+      "source_download": "https://osf.io/download/62a3344cb9b3fc0435db3ea1/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/9833190d57012b18808cc901d13a59dac08c2cbc3bba639f71ac30f91d447f10?response-content-disposition=attachment%3B%20filename%3D%22Krabi_Points.dbf%22%3B%20filename%2A%3DUTF-8%27%27Krabi_Points.dbf&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000067&Signature=wEYDKyH0dYVeYvRsNwbZemNZliQj%2B%2BcfekdbtlSQCu3grKO%2F98y2%2Fp9iCB79x7jAOFlGOd71ltfUBtxcSmxiw5OwHWvPXr6zthGT21trcMNLZNh7prRwQ71Iye7RMMgJ6cV0aalCUG86urLqf7wNCmyXUVKm645IXcMPuLjMWy0W7UuEucGF6BONVwT%2BN5PmZdiPsyfs4%2F7biWj81Rh8vt54thrTEyon1m3nGAwsUeU1LJ8wSsoBJ7UJN%2BNfOAwde5%2BOiHuJQiWbK33s2Gll4V1skied5XZAGSDSa%2BZGrpsirT8XLlebapI3VCmf17vZEaFWJQSGnbmV6Wi0u14IgA%3D%3D",
+      "bytes": 250520,
+      "sha256": "9833190d57012b18808cc901d13a59dac08c2cbc3bba639f71ac30f91d447f10",
+      "inventory_sha256": "9833190d57012b18808cc901d13a59dac08c2cbc3bba639f71ac30f91d447f10",
+      "inventory_md5": "8afc48a1175fcd14ee1922dfdcca84e7"
+    },
+    {
+      "name": "Krabi_Points.prj",
+      "source_path": "/Erosion rates/Krabi_Points.prj",
+      "source_download": "https://osf.io/download/62a3344a78fd98042b71096a/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/c77be1866509aabe2a1252f1985cf6edf712ac78fb01f3cc0a0c6a5a82e2f250?response-content-disposition=attachment%3B%20filename%3D%22Krabi_Points.prj%22%3B%20filename%2A%3DUTF-8%27%27Krabi_Points.prj&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000068&Signature=l1Rjk0HAKjI%2BKIjGepRAESdicRuEda5b5Cu8sZljxWvfld2Ah7j3t6kZagBLr28hFlAIoPlmWQVL5kL%2FJBPrf9c6eVGobW7KIVI7hYaDfmZ%2B%2Fh0bj1twNV8mNte20EmeBy%2FQZr9yoymYAovbfmotPI21d7BHlnl1ERdNSCC4pXeoK%2B9IF8QFZoEVejpP1TnHD61kJXeTOLBiOeY2yuI4yQxkP7vORROXvnMz1W2S6fxVka%2BgjZifO5U1rS7ctqy0uzlq7pj12DhR2048TR%2BVj6EvTIhMqCsaiIz1rvaWqzUbjRj6me%2BNmKnZ2OgtEolFEvUSJAa2vw3m0KPoG70eOw%3D%3D",
+      "bytes": 401,
+      "sha256": "c77be1866509aabe2a1252f1985cf6edf712ac78fb01f3cc0a0c6a5a82e2f250",
+      "inventory_sha256": "c77be1866509aabe2a1252f1985cf6edf712ac78fb01f3cc0a0c6a5a82e2f250",
+      "inventory_md5": "f4030a4e85afa3ba9cc9950784aee67b"
+    },
+    {
+      "name": "Krabi_Points.cpg",
+      "source_path": "/Erosion rates/Krabi_Points.cpg",
+      "source_download": "https://osf.io/download/62a33448df5d94037b989871/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824?response-content-disposition=attachment%3B%20filename%3D%22Krabi_Points.cpg%22%3B%20filename%2A%3DUTF-8%27%27Krabi_Points.cpg&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000070&Signature=C0R0iT%2FasIOXMSRhFoYrOjhGis4ir7%2FayBCYZPQrWThB62NKeILA9lzSl4c2DTkfsdgzS%2B77OVlu4N6xg9m8u9HcmnH94yQKwybfl2ZujGXNvwGFGvluxBdePIH4hF48pFelCjQ2%2FrPUOYr%2FCRaKmDRibrd6BMqBj0PSqpMO2UjhRieaafZ8Mu9qdYSs1X%2FIjnZwo3MXZpGNJjrObCiV7pDC8ess3xTyKP17s0fYY%2BkGRnI1kNUcdr7t13HOJkhRcxq%2F%2BBErVu7Ip7hIn93T6jqgGUwwqof0E9x0IrGuJFk0wpDoJPNnDsgP3xjVLIg1SWy21atwZa%2BWaLUHMwbSfg%3D%3D",
+      "bytes": 5,
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "inventory_sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "inventory_md5": "ae3b3df9970b49b6523e608759bc957d"
+    },
+    {
+      "name": "Krabi_erosion.txt",
+      "source_path": "/Erosion rates/Krabi_erosion.txt",
+      "source_download": "https://osf.io/download/62a33447b9b3fc0435db3e8e/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/86474f0503b675e46f0852ecc9f9b34fa0ada8bd38e4d0bc4b034d0ff7410ccc?response-content-disposition=attachment%3B%20filename%3D%22Krabi_erosion.txt%22%3B%20filename%2A%3DUTF-8%27%27Krabi_erosion.txt&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000071&Signature=HgrXDgUSXgbH%2F0XwZDfRUeYdA%2FFdeKf6RKVHeANBtYytBOvI6C1H%2FGDQi%2BMKWRC5NyTuS4LYjXTR5gRKmxgbMo0XFksi44YdNlXbC1qARMJTPpHpY5ird%2Bn%2BGskbYiSa83bzNrBM8M%2BAMXM%2FQUET%2F8z0iRfsAf1goLUKZxoXVZlXPcC1kUmZ5ec%2BZw4xKmGx%2B5Ufh2g2KTBF4%2Bd1ros0vQh1jomzFpczL%2FBNhIvIYQoXyj%2BrtUpsInW4Cs2Q3kRbP7EMXNrv3JAhANojADCENRO3E4VbbyGMFQ5SfIp%2BJijZacfMBgZdUaRQa8XyCuxlk1K%2FKbpvKZRiAuUKWqC8Eg%3D%3D",
+      "bytes": 217363,
+      "sha256": "86474f0503b675e46f0852ecc9f9b34fa0ada8bd38e4d0bc4b034d0ff7410ccc",
+      "inventory_sha256": "86474f0503b675e46f0852ecc9f9b34fa0ada8bd38e4d0bc4b034d0ff7410ccc",
+      "inventory_md5": "bd8fd192b8ae861af93b05d8e72174e8"
+    },
+    {
+      "name": "Krabi_erosion.txt.xml",
+      "source_path": "/Erosion rates/Krabi_erosion.txt.xml",
+      "source_download": "https://osf.io/download/62a33447f0123f0393eadc35/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/54712b85f984522563ba82288328a49a8bb71250475aebbac89d42d4fdadcaaa?response-content-disposition=attachment%3B%20filename%3D%22Krabi_erosion.txt.xml%22%3B%20filename%2A%3DUTF-8%27%27Krabi_erosion.txt.xml&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000073&Signature=ZjAxFrCDTem9RE1F5HmHmwNOUh17%2FEZAwObjE7p2c1wmaHny3DCcdNW2vPBWfdYnZBxyl7HQqn15OJTLr7vMMWTbTxBN0g0CgbaKt19rdp%2FYpLdlqaJQcE4PzDc2x6hbnh7m3k%2BAc7eA8njV8crH0YaLxctebcn1bzWOlIyxBFwpuSDDp7PAC4vsQS0drsFpXzG894Tzbp5%2BuBGYPDwLLd1OsMuQN9IvUNTxGneu0J9amTWSApB7DNX6pThqDv5iReNAmzl3D3Sj85zYCGhcVzTCZnjxcU2MhNl%2BoUJOc2LOfVp6OdsGqmJjTLoCuUqFHTw8x2JdgY5l2kEe0FFZ%2FQ%3D%3D",
+      "bytes": 28615,
+      "sha256": "54712b85f984522563ba82288328a49a8bb71250475aebbac89d42d4fdadcaaa",
+      "inventory_sha256": "54712b85f984522563ba82288328a49a8bb71250475aebbac89d42d4fdadcaaa",
+      "inventory_md5": "9857dc1d1ea12a4a0f38f208596c4055"
+    },
+    {
+      "name": "Krabi_Points.shp.xml",
+      "source_path": "/Erosion rates/Krabi_Points.shp.xml",
+      "source_download": "https://osf.io/download/62a3345178fd98042a710b89/",
+      "resolved_url": "https://storage.googleapis.com/cos-osf-prod-files-us-east1/37d7bb2982885f3443eacfa0a875a8b38543088876f525bf5c054f27899853b8?response-content-disposition=attachment%3B%20filename%3D%22Krabi_Points.shp.xml%22%3B%20filename%2A%3DUTF-8%27%27Krabi_Points.shp.xml&GoogleAccessId=files-us%40cos-osf-prod.iam.gserviceaccount.com&Expires=1788000074&Signature=OdBeHGSGenPosf7uvnJjkpzEAaaJQFW6jN2hduDyAuhYQYcpXz2uMG1Heh%2BMwDcVaZGnKLyBS5QW1SdTZ4DNdAdR4pLIxMYt5DUE4yC4%2BOj6m7lkbZNvIg1INFfPaliND%2BK6F3oGaQQFUyqdyF8%2BDmmMmoYCO2mFuAm%2FVdHzA3TbsVk%2FgJOnz9ibVTdDDLNYuUYsh%2BPbce4wUvk2oN1wzCIrWpeu59U%2FP55pqoVhuFVKARcQiX4Tj6v3smBrcJ0429JHVFh6S9Qcys0hwVs%2FhSiFPaUKkQAtTQaIWuxn8PLr0OMKAs3Xj69FdHdw3zAnPrTxYLwtneGjHswD7uLjgg%3D%3D",
+      "bytes": 28850,
+      "sha256": "37d7bb2982885f3443eacfa0a875a8b38543088876f525bf5c054f27899853b8",
+      "inventory_sha256": "37d7bb2982885f3443eacfa0a875a8b38543088876f525bf5c054f27899853b8",
+      "inventory_md5": "4aaadd480d0f2629eb89050f80b13f3c"
+    }
+  ],
+  "output": {
+    "geojson": "krabi_published_dsas_points.geojson",
+    "geojson_sha256": "feaa622c1c36d9db355ffada988ad302bcb23c6758c3e4f03583a286887df198",
+    "summary": "krabi_published_dsas_summary.json",
+    "schema": "krabi_published_dsas_schema.json"
+  }
+}

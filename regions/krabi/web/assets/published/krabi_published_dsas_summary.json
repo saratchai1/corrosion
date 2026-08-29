@@ -1,0 +1,48 @@
+{
+  "generated_utc": "2026-08-29T10:40:14.629743Z",
+  "status": "PUBLISHED_HISTORICAL_DSAS_POINTS_IMPORTED",
+  "source_project": "https://osf.io/mxjhk/",
+  "published_period": "1990-2019",
+  "feature_count": 666,
+  "invalid_geometry_count": 0,
+  "source_crs": "EPSG:32647",
+  "target_crs": "EPSG:4326",
+  "bounds_wgs84": [
+    98.62527440445884,
+    7.468442051128867,
+    99.2631515590904,
+    8.373341185114326
+  ],
+  "primary_rate_field": "LRR",
+  "rate_count": 666,
+  "rate_minimum": -34.59,
+  "rate_maximum": 21.68,
+  "rate_mean": -0.7771171171171171,
+  "rate_median": -0.05,
+  "dashboard_rate_class_counts": {
+    "ACCRETION": 133,
+    "RELATIVELY_STABLE": 221,
+    "RETREAT": 158,
+    "STRONG_ACCRETION": 62,
+    "STRONG_RETREAT": 92
+  },
+  "text_join": {
+    "joined": true,
+    "method": "unique_identifier",
+    "shape_id": "TransectID",
+    "text_id": "TransectID",
+    "matched": 666,
+    "shape_rows": 666,
+    "text_rows": 666
+  },
+  "interpretation": {
+    "valid_for": [
+      "published 1990-2019 historical shoreline-rate context",
+      "province-scale hotspot screening"
+    ],
+    "not_valid_for": [
+      "claiming current 2026 shoreline status",
+      "replacing local tide-normalized monitoring"
+    ]
+  }
+}

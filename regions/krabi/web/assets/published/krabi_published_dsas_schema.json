@@ -1,0 +1,1197 @@
+{
+  "shapefile_encoding": "utf-8",
+  "field_definitions": [
+    {
+      "name": "OBJECTID",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    },
+    {
+      "name": "TransectID",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    },
+    {
+      "name": "BaselineID",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    },
+    {
+      "name": "GroupID",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    },
+    {
+      "name": "TransOrder",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    },
+    {
+      "name": "Azimuth",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "ShrCount",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    },
+    {
+      "name": "TCD",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "SHAPE_Leng",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "SCE",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "NSM",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "EPR",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "EPRunc",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "LRR",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "LR2",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "LSE",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "LCI90",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "WLR",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "WR2",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "WSE",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "WCI90",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "Shape_Le_1",
+      "type": "F",
+      "size": 19,
+      "decimal": 11
+    },
+    {
+      "name": "ORIG_FID",
+      "type": "N",
+      "size": 10,
+      "decimal": 0
+    }
+  ],
+  "field_statistics": {
+    "OBJECTID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 625,
+      "sample_values": [
+        718,
+        724,
+        729,
+        735,
+        769,
+        0,
+        9,
+        10
+      ],
+      "minimum": 0.0,
+      "maximum": 1025.0,
+      "mean": 437.7027027027027,
+      "median": 406.5,
+      "negative_count": 0,
+      "positive_count": 633,
+      "zero_count": 33
+    },
+    "TransectID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        767,
+        773,
+        778,
+        784,
+        818,
+        287,
+        288,
+        289
+      ],
+      "minimum": 9.0,
+      "maximum": 1060.0,
+      "mean": 473.5450450450451,
+      "median": 426.5,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "BaselineID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 18,
+      "sample_values": [
+        16,
+        6,
+        20,
+        4,
+        1,
+        3,
+        5,
+        7
+      ],
+      "minimum": 1.0,
+      "maximum": 22.0,
+      "mean": 10.031531531531531,
+      "median": 11.0,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "GroupID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 1,
+      "sample_values": [
+        1
+      ],
+      "minimum": 1.0,
+      "maximum": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "TransOrder": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        767,
+        773,
+        778,
+        784,
+        818,
+        287,
+        288,
+        289
+      ],
+      "minimum": 9.0,
+      "maximum": 1060.0,
+      "mean": 473.5450450450451,
+      "median": 426.5,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "Azimuth": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 660,
+      "sample_values": [
+        329.74,
+        114.17,
+        17.22,
+        128.94,
+        306.69,
+        6.67,
+        0.74,
+        25.46
+      ],
+      "minimum": 0.47,
+      "maximum": 359.33,
+      "mean": 154.2501051051051,
+      "median": 107.545,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "ShrCount": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 28,
+      "sample_values": [
+        13,
+        14,
+        7,
+        8,
+        9,
+        12,
+        11,
+        5
+      ],
+      "minimum": 2.0,
+      "maximum": 30.0,
+      "mean": 8.82882882882883,
+      "median": 7.0,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "TCD": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        576091.87,
+        579091.87,
+        581591.87,
+        584591.87,
+        601591.87,
+        184279.36,
+        184779.36,
+        185279.36
+      ],
+      "minimum": 4000.0,
+      "maximum": 818411.39,
+      "mean": 344010.88396396395,
+      "median": 307087.63,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "SHAPE_Leng": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 24,
+      "sample_values": [
+        300.0,
+        299.999999999,
+        299.999999998,
+        300.000000004,
+        300.000000003,
+        0.0,
+        499.999999997,
+        499.999999998
+      ],
+      "minimum": 0.0,
+      "maximum": 500.000000008,
+      "mean": 467.71771771765617,
+      "median": 500.0,
+      "negative_count": 0,
+      "positive_count": 633,
+      "zero_count": 33
+    },
+    "SCE": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 650,
+      "sample_values": [
+        71.47,
+        105.95,
+        46.95,
+        102.78,
+        73.49,
+        49.51,
+        55.14,
+        79.91
+      ],
+      "minimum": 1.11,
+      "maximum": 389.98,
+      "mean": 75.15855855855855,
+      "median": 60.504999999999995,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "NSM": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 647,
+      "sample_values": [
+        -40.11,
+        39.77,
+        -35.23,
+        36.73,
+        -26.34,
+        29.55,
+        24.38,
+        38.8
+      ],
+      "minimum": -252.62,
+      "maximum": 206.73,
+      "mean": -8.97882882882883,
+      "median": -11.45,
+      "negative_count": 420,
+      "positive_count": 246,
+      "zero_count": 0
+    },
+    "EPR": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 443,
+      "sample_values": [
+        -1.43,
+        1.42,
+        -1.26,
+        1.31,
+        -0.96,
+        1.06,
+        0.87,
+        1.39
+      ],
+      "minimum": -276.42,
+      "maximum": 56.18,
+      "mean": -1.4706156156156156,
+      "median": -0.48,
+      "negative_count": 419,
+      "positive_count": 246,
+      "zero_count": 1
+    },
+    "EPRunc": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 44,
+      "sample_values": [
+        1.51,
+        1.54,
+        1.52,
+        1.74,
+        1.86,
+        1.75,
+        20.27,
+        19.75
+      ],
+      "minimum": 1.51,
+      "maximum": 119.2,
+      "mean": 4.088738738738739,
+      "median": 1.74,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "LRR": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 411,
+      "sample_values": [
+        -1.8,
+        -0.29,
+        -0.73,
+        0.13,
+        -0.35,
+        -0.24,
+        1.03,
+        1.43
+      ],
+      "minimum": -34.59,
+      "maximum": 21.68,
+      "mean": -0.7771171171171171,
+      "median": -0.05,
+      "negative_count": 344,
+      "positive_count": 286,
+      "zero_count": 36
+    },
+    "LR2": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 97,
+      "sample_values": [
+        0.64,
+        0.01,
+        0.35,
+        0.0,
+        0.03,
+        0.02,
+        0.5,
+        0.45
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mean": 0.27717717717717716,
+      "median": 0.18,
+      "negative_count": 0,
+      "positive_count": 587,
+      "zero_count": 79
+    },
+    "LSE": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 579,
+      "sample_values": [
+        14.37,
+        29.33,
+        12.88,
+        37.39,
+        23.94,
+        18.11,
+        10.45,
+        15.95
+      ],
+      "minimum": 0.0,
+      "maximum": 135.64,
+      "mean": 23.162507507507506,
+      "median": 17.43,
+      "negative_count": 0,
+      "positive_count": 630,
+      "zero_count": 36
+    },
+    "LCI90": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 359,
+      "sample_values": [
+        0.74,
+        1.45,
+        0.9,
+        2.49,
+        1.41,
+        1.34,
+        0.59,
+        0.64
+      ],
+      "minimum": 0.0,
+      "maximum": 99.3,
+      "mean": 4.086921921921922,
+      "median": 1.415,
+      "negative_count": 0,
+      "positive_count": 630,
+      "zero_count": 36
+    },
+    "WLR": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 411,
+      "sample_values": [
+        -1.8,
+        -0.29,
+        -0.73,
+        0.13,
+        -0.35,
+        -0.24,
+        1.03,
+        1.43
+      ],
+      "minimum": -34.59,
+      "maximum": 21.68,
+      "mean": -0.7771171171171171,
+      "median": -0.05,
+      "negative_count": 344,
+      "positive_count": 286,
+      "zero_count": 36
+    },
+    "WR2": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 97,
+      "sample_values": [
+        0.64,
+        0.01,
+        0.35,
+        0.0,
+        0.03,
+        0.02,
+        0.5,
+        0.45
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mean": 0.27717717717717716,
+      "median": 0.18,
+      "negative_count": 0,
+      "positive_count": 587,
+      "zero_count": 79
+    },
+    "WSE": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 194,
+      "sample_values": [
+        0.48,
+        0.98,
+        0.43,
+        1.25,
+        0.8,
+        0.6,
+        0.35,
+        0.53
+      ],
+      "minimum": 0.0,
+      "maximum": 4.52,
+      "mean": 0.771966966966967,
+      "median": 0.58,
+      "negative_count": 0,
+      "positive_count": 629,
+      "zero_count": 37
+    },
+    "WCI90": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 359,
+      "sample_values": [
+        0.74,
+        1.45,
+        0.9,
+        2.49,
+        1.41,
+        1.34,
+        0.59,
+        0.64
+      ],
+      "minimum": 0.0,
+      "maximum": 99.3,
+      "mean": 4.086921921921922,
+      "median": 1.415,
+      "negative_count": 0,
+      "positive_count": 630,
+      "zero_count": 36
+    },
+    "Shape_Le_1": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 664,
+      "sample_values": [
+        300.000043661,
+        300.000038135,
+        300.00008994,
+        300.0000317,
+        300.000036318,
+        499.999991144,
+        500.000044019,
+        500.00002814
+      ],
+      "minimum": 299.999936165,
+      "maximum": 500.000106797,
+      "mean": 492.492492977506,
+      "median": 499.9999984035,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "ORIG_FID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        663,
+        664,
+        665,
+        666,
+        667,
+        668,
+        669,
+        670
+      ],
+      "minimum": 1.0,
+      "maximum": 700.0,
+      "mean": 351.36336336336336,
+      "median": 357.5,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_OBJECTID_1": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        "663",
+        "664",
+        "665",
+        "666",
+        "667",
+        "668",
+        "669",
+        "670"
+      ],
+      "minimum": 1.0,
+      "maximum": 700.0,
+      "mean": 351.36336336336336,
+      "median": 357.5,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_OBJECTID": {
+      "nonnull_count": 633,
+      "numeric_count": 633,
+      "unique_count": 624,
+      "sample_values": [
+        "718",
+        "724",
+        "729",
+        "735",
+        "769",
+        "9",
+        "10",
+        "11"
+      ],
+      "minimum": 9.0,
+      "maximum": 1025.0,
+      "mean": 460.521327014218,
+      "median": 423.0,
+      "negative_count": 0,
+      "positive_count": 633,
+      "zero_count": 0
+    },
+    "txt_TransectID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        "767",
+        "773",
+        "778",
+        "784",
+        "818",
+        "287",
+        "288",
+        "289"
+      ],
+      "minimum": 9.0,
+      "maximum": 1060.0,
+      "mean": 473.5450450450451,
+      "median": 426.5,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_BaselineID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 18,
+      "sample_values": [
+        "16",
+        "6",
+        "20",
+        "4",
+        "1",
+        "3",
+        "5",
+        "7"
+      ],
+      "minimum": 1.0,
+      "maximum": 22.0,
+      "mean": 10.031531531531531,
+      "median": 11.0,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_GroupID": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 1,
+      "sample_values": [
+        "1"
+      ],
+      "minimum": 1.0,
+      "maximum": 1.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_TransOrder": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        "767",
+        "773",
+        "778",
+        "784",
+        "818",
+        "287",
+        "288",
+        "289"
+      ],
+      "minimum": 9.0,
+      "maximum": 1060.0,
+      "mean": 473.5450450450451,
+      "median": 426.5,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_Azimuth": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 660,
+      "sample_values": [
+        "329.740000000000009",
+        "114.170000000000002",
+        "17.219999999999999",
+        "128.939999999999998",
+        "306.689999999999998",
+        "6.670000000000000",
+        "0.740000000000000",
+        "25.460000000000001"
+      ],
+      "minimum": 0.47,
+      "maximum": 359.33,
+      "mean": 154.2501051051051,
+      "median": 107.545,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_ShrCount": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 28,
+      "sample_values": [
+        "13",
+        "14",
+        "7",
+        "8",
+        "9",
+        "12",
+        "11",
+        "5"
+      ],
+      "minimum": 2.0,
+      "maximum": 30.0,
+      "mean": 8.82882882882883,
+      "median": 7.0,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_TCD": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        "576091.869999999995343",
+        "579091.869999999995343",
+        "581591.869999999995343",
+        "584591.869999999995343",
+        "601591.869999999995343",
+        "184279.359999999986030",
+        "184779.359999999986030",
+        "185279.359999999986030"
+      ],
+      "minimum": 4000.0,
+      "maximum": 818411.39,
+      "mean": 344010.88396396395,
+      "median": 307087.63,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_SHAPE_Leng": {
+      "nonnull_count": 633,
+      "numeric_count": 633,
+      "unique_count": 23,
+      "sample_values": [
+        "300.000000000000000",
+        "299.999999999000011",
+        "299.999999998000021",
+        "300.000000004000015",
+        "300.000000003000025",
+        "499.999999996999975",
+        "499.999999998000021",
+        "500.000000000000000"
+      ],
+      "minimum": 299.999999997,
+      "maximum": 500.000000008,
+      "mean": 492.1011058451169,
+      "median": 500.0,
+      "negative_count": 0,
+      "positive_count": 633,
+      "zero_count": 0
+    },
+    "txt_SCE": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 650,
+      "sample_values": [
+        "71.469999999999999",
+        "105.950000000000003",
+        "46.950000000000003",
+        "102.780000000000001",
+        "73.489999999999995",
+        "49.509999999999998",
+        "55.140000000000001",
+        "79.909999999999997"
+      ],
+      "minimum": 1.11,
+      "maximum": 389.98,
+      "mean": 75.15855855855855,
+      "median": 60.504999999999995,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_NSM": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 647,
+      "sample_values": [
+        "-40.109999999999999",
+        "39.770000000000003",
+        "-35.229999999999997",
+        "36.729999999999997",
+        "-26.340000000000000",
+        "29.550000000000001",
+        "24.379999999999999",
+        "38.799999999999997"
+      ],
+      "minimum": -252.62,
+      "maximum": 206.73,
+      "mean": -8.97882882882883,
+      "median": -11.45,
+      "negative_count": 420,
+      "positive_count": 246,
+      "zero_count": 0
+    },
+    "txt_EPR": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 443,
+      "sample_values": [
+        "-1.430000000000000",
+        "1.420000000000000",
+        "-1.260000000000000",
+        "1.310000000000000",
+        "-0.960000000000000",
+        "1.060000000000000",
+        "0.870000000000000",
+        "1.390000000000000"
+      ],
+      "minimum": -276.42,
+      "maximum": 56.18,
+      "mean": -1.4706156156156156,
+      "median": -0.48,
+      "negative_count": 419,
+      "positive_count": 246,
+      "zero_count": 1
+    },
+    "txt_EPRunc": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 44,
+      "sample_values": [
+        "1.510000000000000",
+        "1.540000000000000",
+        "1.520000000000000",
+        "1.740000000000000",
+        "1.860000000000000",
+        "1.750000000000000",
+        "20.270000000000000",
+        "19.750000000000000"
+      ],
+      "minimum": 1.51,
+      "maximum": 119.2,
+      "mean": 4.088738738738739,
+      "median": 1.74,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    },
+    "txt_LRR": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 411,
+      "sample_values": [
+        "-1.800000000000000",
+        "-0.290000000000000",
+        "-0.730000000000000",
+        "0.130000000000000",
+        "-0.350000000000000",
+        "-0.240000000000000",
+        "1.030000000000000",
+        "1.430000000000000"
+      ],
+      "minimum": -34.59,
+      "maximum": 21.68,
+      "mean": -0.7771171171171171,
+      "median": -0.05,
+      "negative_count": 344,
+      "positive_count": 286,
+      "zero_count": 36
+    },
+    "txt_LR2": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 97,
+      "sample_values": [
+        "0.640000000000000",
+        "0.010000000000000",
+        "0.350000000000000",
+        "0.000000000000000",
+        "0.030000000000000",
+        "0.020000000000000",
+        "0.500000000000000",
+        "0.450000000000000"
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mean": 0.27717717717717716,
+      "median": 0.18,
+      "negative_count": 0,
+      "positive_count": 587,
+      "zero_count": 79
+    },
+    "txt_LSE": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 579,
+      "sample_values": [
+        "14.369999999999999",
+        "29.329999999999998",
+        "12.880000000000001",
+        "37.390000000000001",
+        "23.940000000000001",
+        "18.109999999999999",
+        "10.449999999999999",
+        "15.949999999999999"
+      ],
+      "minimum": 0.0,
+      "maximum": 135.64,
+      "mean": 23.162507507507506,
+      "median": 17.43,
+      "negative_count": 0,
+      "positive_count": 630,
+      "zero_count": 36
+    },
+    "txt_LCI90": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 359,
+      "sample_values": [
+        "0.740000000000000",
+        "1.450000000000000",
+        "0.900000000000000",
+        "2.490000000000000",
+        "1.410000000000000",
+        "1.340000000000000",
+        "0.590000000000000",
+        "0.640000000000000"
+      ],
+      "minimum": 0.0,
+      "maximum": 99.3,
+      "mean": 4.086921921921922,
+      "median": 1.415,
+      "negative_count": 0,
+      "positive_count": 630,
+      "zero_count": 36
+    },
+    "txt_WLR": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 411,
+      "sample_values": [
+        "-1.800000000000000",
+        "-0.290000000000000",
+        "-0.730000000000000",
+        "0.130000000000000",
+        "-0.350000000000000",
+        "-0.240000000000000",
+        "1.030000000000000",
+        "1.430000000000000"
+      ],
+      "minimum": -34.59,
+      "maximum": 21.68,
+      "mean": -0.7771171171171171,
+      "median": -0.05,
+      "negative_count": 344,
+      "positive_count": 286,
+      "zero_count": 36
+    },
+    "txt_WR2": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 97,
+      "sample_values": [
+        "0.640000000000000",
+        "0.010000000000000",
+        "0.350000000000000",
+        "0.000000000000000",
+        "0.030000000000000",
+        "0.020000000000000",
+        "0.500000000000000",
+        "0.450000000000000"
+      ],
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "mean": 0.27717717717717716,
+      "median": 0.18,
+      "negative_count": 0,
+      "positive_count": 587,
+      "zero_count": 79
+    },
+    "txt_WSE": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 194,
+      "sample_values": [
+        "0.480000000000000",
+        "0.980000000000000",
+        "0.430000000000000",
+        "1.250000000000000",
+        "0.800000000000000",
+        "0.600000000000000",
+        "0.350000000000000",
+        "0.530000000000000"
+      ],
+      "minimum": 0.0,
+      "maximum": 4.52,
+      "mean": 0.771966966966967,
+      "median": 0.58,
+      "negative_count": 0,
+      "positive_count": 629,
+      "zero_count": 37
+    },
+    "txt_WCI90": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 359,
+      "sample_values": [
+        "0.740000000000000",
+        "1.450000000000000",
+        "0.900000000000000",
+        "2.490000000000000",
+        "1.410000000000000",
+        "1.340000000000000",
+        "0.590000000000000",
+        "0.640000000000000"
+      ],
+      "minimum": 0.0,
+      "maximum": 99.3,
+      "mean": 4.086921921921922,
+      "median": 1.415,
+      "negative_count": 0,
+      "positive_count": 630,
+      "zero_count": 36
+    },
+    "txt_Shape_Length": {
+      "nonnull_count": 666,
+      "numeric_count": 666,
+      "unique_count": 666,
+      "sample_values": [
+        "300.000043661365112",
+        "300.000038135264674",
+        "300.000089940343344",
+        "300.000031700345573",
+        "300.000036317515139",
+        "499.999991143586612",
+        "500.000044018703989",
+        "500.000028139836161"
+      ],
+      "minimum": 299.9999361652808,
+      "maximum": 500.00010679725733,
+      "mean": 492.49249297752084,
+      "median": 499.9999984034639,
+      "negative_count": 0,
+      "positive_count": 666,
+      "zero_count": 0
+    }
+  },
+  "text_export": {
+    "encoding": "utf-8-sig",
+    "delimiter": ",",
+    "fieldnames": [
+      "OBJECTID_1",
+      "OBJECTID",
+      "TransectID",
+      "BaselineID",
+      "GroupID",
+      "TransOrder",
+      "Azimuth",
+      "ShrCount",
+      "TCD",
+      "SHAPE_Leng",
+      "SCE",
+      "NSM",
+      "EPR",
+      "EPRunc",
+      "LRR",
+      "LR2",
+      "LSE",
+      "LCI90",
+      "WLR",
+      "WR2",
+      "WSE",
+      "WCI90",
+      "Shape_Length"
+    ],
+    "row_count": 666,
+    "preview_lines": [
+      "OBJECTID_1,OBJECTID,TransectID,BaselineID,GroupID,TransOrder,Azimuth,ShrCount,TCD,SHAPE_Leng,SCE,NSM,EPR,EPRunc,LRR,LR2,LSE,LCI90,WLR,WR2,WSE,WCI90,Shape_Length",
+      "663,718,767,16,1,767,329.740000000000009,13,576091.869999999995343,300.000000000000000,71.469999999999999,-40.109999999999999,-1.430000000000000,1.510000000000000,-1.800000000000000,0.640000000000000,14.369999999999999,0.740000000000000,-1.800000000000000,0.640000000000000,0.480000000000000,0.740000000000000,300.000043661365112",
+      "664,724,773,16,1,773,114.170000000000002,14,579091.869999999995343,299.999999999000011,105.950000000000003,39.770000000000003,1.420000000000000,1.510000000000000,-0.290000000000000,0.010000000000000,29.329999999999998,1.450000000000000,-0.290000000000000,0.010000000000000,0.980000000000000,1.450000000000000,300.000038135264674",
+      "665,729,778,16,1,778,17.219999999999999,7,581591.869999999995343,299.999999998000021,46.950000000000003,-35.229999999999997,-1.260000000000000,1.510000000000000,-0.730000000000000,0.350000000000000,12.880000000000001,0.900000000000000,-0.730000000000000,0.350000000000000,0.430000000000000,0.900000000000000,300.000089940343344",
+      "666,735,784,16,1,784,128.939999999999998,8,584591.869999999995343,300.000000004000015,102.780000000000001,36.729999999999997,1.310000000000000,1.510000000000000,0.130000000000000,0.000000000000000,37.390000000000001,2.490000000000000,0.130000000000000,0.000000000000000,1.250000000000000,2.490000000000000,300.000031700345573",
+      "667,769,818,16,1,818,306.689999999999998,9,601591.869999999995343,300.000000003000025,73.489999999999995,-26.340000000000000,-0.960000000000000,1.540000000000000,-0.350000000000000,0.030000000000000,23.940000000000001,1.410000000000000,-0.350000000000000,0.030000000000000,0.800000000000000,1.410000000000000,300.000036317515139",
+      "668,,287,6,1,287,6.670000000000000,8,184279.359999999986030,,49.509999999999998,29.550000000000001,1.060000000000000,1.520000000000000,-0.240000000000000,0.020000000000000,18.109999999999999,1.340000000000000,-0.240000000000000,0.020000000000000,0.600000000000000,1.340000000000000,499.999991143586612",
+      "669,,288,6,1,288,0.740000000000000,12,184779.359999999986030,,55.140000000000001,24.379999999999999,0.870000000000000,1.520000000000000,1.030000000000000,0.500000000000000,10.449999999999999,0.590000000000000,1.030000000000000,0.500000000000000,0.350000000000000,0.590000000000000,500.000044018703989",
+      "670,,289,6,1,289,25.460000000000001,12,185279.359999999986030,,79.909999999999997,38.799999999999997,1.390000000000000,1.520000000000000,1.430000000000000,0.450000000000000,15.949999999999999,0.900000000000000,1.430000000000000,0.450000000000000,0.530000000000000,0.900000000000000,500.000028139836161",
+      "671,,290,6,1,290,21.270000000000000,13,185779.359999999986030,,49.479999999999997,8.960000000000001,0.320000000000000,1.520000000000000,0.540000000000000,0.170000000000000,11.619999999999999,0.640000000000000,0.540000000000000,0.170000000000000,0.390000000000000,0.640000000000000,500.000094317461446",
+      "672,,291,6,1,291,13.420000000000000,13,186279.359999999986030,,59.990000000000002,1.650000000000000,0.060000000000000,1.520000000000000,-0.270000000000000,0.020000000000000,17.379999999999999,0.950000000000000,-0.270000000000000,0.020000000000000,0.580000000000000,0.950000000000000,499.999920396756465",
+      "673,,292,6,1,292,0.830000000000000,13,186779.359999999986030,,37.430000000000000,22.840000000000000,0.820000000000000,1.520000000000000,0.450000000000000,0.140000000000000,11.150000000000000,0.610000000000000,0.450000000000000,0.140000000000000,0.370000000000000,0.610000000000000,499.999932967744257"
+    ]
+  },
+  "text_join": {
+    "joined": true,
+    "method": "unique_identifier",
+    "shape_id": "TransectID",
+    "text_id": "TransectID",
+    "matched": 666,
+    "shape_rows": 666,
+    "text_rows": 666
+  },
+  "selected_primary_rate_field": "LRR"
+}
