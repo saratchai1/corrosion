@@ -32,7 +32,7 @@ jobs:
           RAYONG_URL: https://rayong-coastal-before-after.vercel.app
         run: |
           mkdir -p artifacts/rayong-production-e2e
-          cat > /tmp/test-rayong-production.mjs <<'JS'
+          cat > test-rayong-production.mjs <<'JS'
           import assert from 'node:assert/strict';
           import { chromium } from 'playwright';
 
@@ -103,11 +103,17 @@ jobs:
             assert.deepEqual(pageErrors, []);
             assert.deepEqual(consoleErrors, []);
             console.log(JSON.stringify({ initial, clipPath, pageErrors, consoleErrors }, null, 2));
+          } catch (error) {
+            await page.screenshot({
+              path: 'artifacts/rayong-production-e2e/failure.png',
+              fullPage: true,
+            }).catch(() => undefined);
+            throw error;
           } finally {
             await browser.close();
           }
           JS
-          node /tmp/test-rayong-production.mjs
+          node test-rayong-production.mjs
 
       - name: Upload production browser evidence
         if: always()
