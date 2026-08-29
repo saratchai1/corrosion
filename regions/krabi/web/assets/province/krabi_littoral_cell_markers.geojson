@@ -1,0 +1,132 @@
+{
+  "type": "FeatureCollection",
+  "name": "krabi_dmcr_cell_markers",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A13",
+        "name_th": "อ่าวพังงา",
+        "lon": 98.78,
+        "lat": 8.38,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.78,
+          8.38
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A14",
+        "name_th": "อ่าวลึก",
+        "lon": 98.88,
+        "lat": 8.27,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.88,
+          8.27
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A15",
+        "name_th": "ท่าเลน",
+        "lon": 98.76,
+        "lat": 8.13,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.76,
+          8.13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A16",
+        "name_th": "อ่าวนาง",
+        "lon": 98.8,
+        "lat": 8.03,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.8,
+          8.03
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A17",
+        "name_th": "ปากน้ำกระบี่",
+        "lon": 98.91,
+        "lat": 8.0,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.91,
+          8.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A18",
+        "name_th": "คลองท่อม",
+        "lon": 99.04,
+        "lat": 7.84,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.04,
+          7.84
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "A19",
+        "name_th": "คลองพน",
+        "lon": 99.13,
+        "lat": 7.55,
+        "geometry_status": "approximate_navigation_marker_not_official_cell_boundary",
+        "source_name": "DMCR littoral-cell names A13-A19"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.13,
+          7.55
+        ]
+      }
+    }
+  ]
+}

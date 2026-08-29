@@ -1,0 +1,135 @@
+{
+  "generated_utc": "2026-08-29T10:10:48.470230Z",
+  "asset_status": "VALIDATED_STATIC_PROVINCE_IMAGERY",
+  "province": "Krabi",
+  "province_code": "81",
+  "source_boundary": {
+    "url": "https://raw.githubusercontent.com/chingchai/OpenGISData-Thailand/refs/heads/master/provinces.geojson",
+    "properties": {
+      "pro_code": "81",
+      "pro_th": "กระบี่",
+      "pro_en": "Krabi",
+      "reg_nesdb": "South",
+      "reg_royin": "South",
+      "perimeter": 777.02456363084,
+      "area_sqkm": 5319.41524737463
+    }
+  },
+  "display_bbox_wgs84": [
+    98.42359348709466,
+    7.136756682899066,
+    99.4653021638372,
+    8.732963840020565
+  ],
+  "years": {
+    "2018": {
+      "request_url": "https://tiles.maps.eox.at/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=s2cloudless-2018&STYLES=&SRS=EPSG%3A4326&BBOX=98.42359349%2C7.13675668%2C99.46530216%2C8.73296384&WIDTH=1900&HEIGHT=2350&FORMAT=image%2Fjpeg&TRANSPARENT=false&BGCOLOR=0x000000",
+      "content_type": "image/jpeg",
+      "bytes": 725814,
+      "mean_rgb": [
+        37.875,
+        74.09,
+        72.194
+      ],
+      "stddev_rgb": [
+        18.014,
+        23.248,
+        11.394
+      ],
+      "plain_path": "krabi_province_s2cloudless_2018.jpg",
+      "plain_sha256": "cb7dccfcf27a7804491a019d5c6b385b0753b0c0a13888218e43c946a8968909",
+      "labelled_path": "krabi_province_s2cloudless_2018_labelled.jpg",
+      "labelled_sha256": "ff2591d94d1aa9504c441c8b9dc15778bf5b5c94e05b681c1c71059672efbf7d",
+      "dimensions": [
+        1900,
+        2350
+      ]
+    },
+    "2020": {
+      "request_url": "https://tiles.maps.eox.at/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=s2cloudless-2020&STYLES=&SRS=EPSG%3A4326&BBOX=98.42359349%2C7.13675668%2C99.46530216%2C8.73296384&WIDTH=1900&HEIGHT=2350&FORMAT=image%2Fjpeg&TRANSPARENT=false&BGCOLOR=0x000000",
+      "content_type": "image/jpeg",
+      "bytes": 735385,
+      "mean_rgb": [
+        21.372,
+        47.655,
+        29.022
+      ],
+      "stddev_rgb": [
+        14.71,
+        19.36,
+        9.954
+      ],
+      "plain_path": "krabi_province_s2cloudless_2020.jpg",
+      "plain_sha256": "670215349c45ee9150f5d127654b4c9b49fdc9935462eb7315d71be59e6459eb",
+      "labelled_path": "krabi_province_s2cloudless_2020_labelled.jpg",
+      "labelled_sha256": "1b8f0243567af5656bb3c958b97ef3a5169ba7f1a350afc7afb1ce9fd9cd0054",
+      "dimensions": [
+        1900,
+        2350
+      ]
+    },
+    "2022": {
+      "request_url": "https://tiles.maps.eox.at/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=s2cloudless-2022&STYLES=&SRS=EPSG%3A4326&BBOX=98.42359349%2C7.13675668%2C99.46530216%2C8.73296384&WIDTH=1900&HEIGHT=2350&FORMAT=image%2Fjpeg&TRANSPARENT=false&BGCOLOR=0x000000",
+      "content_type": "image/jpeg",
+      "bytes": 735201,
+      "mean_rgb": [
+        23.857,
+        51.636,
+        38.02
+      ],
+      "stddev_rgb": [
+        14.504,
+        20.388,
+        10.374
+      ],
+      "plain_path": "krabi_province_s2cloudless_2022.jpg",
+      "plain_sha256": "e5945306b8f3771ade8b6a191a64117cfb5caf5bf641b00275f84f6cbe340057",
+      "labelled_path": "krabi_province_s2cloudless_2022_labelled.jpg",
+      "labelled_sha256": "2720d81fe5a3d58842aa0a38aec8f9ebdcd553bd2e0dff1e2b7d4b0ddf60152d",
+      "dimensions": [
+        1900,
+        2350
+      ]
+    },
+    "2024": {
+      "request_url": "https://tiles.maps.eox.at/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=s2cloudless-2024&STYLES=&SRS=EPSG%3A4326&BBOX=98.42359349%2C7.13675668%2C99.46530216%2C8.73296384&WIDTH=1900&HEIGHT=2350&FORMAT=image%2Fjpeg&TRANSPARENT=false&BGCOLOR=0x000000",
+      "content_type": "image/jpeg",
+      "bytes": 904981,
+      "mean_rgb": [
+        23.236,
+        41.07,
+        27.375
+      ],
+      "stddev_rgb": [
+        18.274,
+        23.564,
+        13.931
+      ],
+      "plain_path": "krabi_province_s2cloudless_2024.jpg",
+      "plain_sha256": "363af4b8b5aa6a220aa0bd526827f218213225b619fcd23defefd89785fd49ef",
+      "labelled_path": "krabi_province_s2cloudless_2024_labelled.jpg",
+      "labelled_sha256": "3d4e67832efdf7969217b5f07574e24e5ce25f167aecc5485264082d8f4c604d",
+      "dimensions": [
+        1900,
+        2350
+      ]
+    }
+  },
+  "before_after_validation": {
+    "before_year": 2018,
+    "after_year": 2024,
+    "mean_absolute_rgb_difference": 31.6939,
+    "mean_rms_rgb_difference": 33.8063,
+    "fraction_pixels_luma_difference_gte_12": 0.971485
+  },
+  "interpretation": {
+    "visual_use": "province-wide annual cloudless visual comparison",
+    "not_valid_for": [
+      "tide-matched shoreline position",
+      "engineering erosion rate",
+      "causal attribution"
+    ],
+    "next_analysis": "extract annual shorelines and calculate transect rates by coastal cell"
+  },
+  "attribution": "Sentinel-2 cloudless by EOX IT Services GmbH; contains modified Copernicus Sentinel data. Boundary: OpenGISData-Thailand."
+}
