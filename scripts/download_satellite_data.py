@@ -153,6 +153,8 @@ def rfc3339_interval(start: date, end: date) -> str:
     )
 
 
+import time as _time
+
 def request_json(
     method: str,
     url: str,
@@ -161,26 +163,38 @@ def request_json(
     dataset: str,
     date_range: str,
     timeout: int = 120,
+    max_retries: int = 3,
 ) -> dict[str, Any]:
-    try:
-        response = requests.request(method, url, json=body, timeout=timeout)
-    except requests.RequestException:
-        eprint("STAC request transport failure")
-        eprint("endpoint:", url)
-        eprint("dataset:", dataset)
-        eprint("date_range:", date_range)
-        eprint("request_body:", json.dumps(body, ensure_ascii=False, indent=2))
-        raise
-    if not response.ok:
-        eprint("STAC request failed")
-        eprint("endpoint:", url)
-        eprint("dataset:", dataset)
-        eprint("date_range:", date_range)
-        eprint("request_body:", json.dumps(body, ensure_ascii=False, indent=2))
-        eprint("status:", response.status_code)
-        eprint("response_body:", response.text)
-        response.raise_for_status()
-    return response.json()
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = requests.request(method, url, json=body, timeout=timeout)
+        except requests.RequestException as exc:
+            if attempt < max_retries:
+                eprint(f"STAC request transport failure (attempt {attempt}), retrying...")
+                _time.sleep(2 ** attempt)
+                continue
+            eprint("STAC request transport failure")
+            eprint("endpoint:", url)
+            eprint("dataset:", dataset)
+            eprint("date_range:", date_range)
+            eprint("request_body:", json.dumps(body, ensure_ascii=False, indent=2))
+            raise
+        
+        if not response.ok:
+            if response.status_code >= 500 and attempt < max_retries:
+                eprint(f"STAC request failed with {response.status_code} (attempt {attempt}), retrying...")
+                _time.sleep(2 ** attempt)
+                continue
+                
+            eprint("STAC request failed")
+            eprint("endpoint:", url)
+            eprint("dataset:", dataset)
+            eprint("date_range:", date_range)
+            eprint("request_body:", json.dumps(body, ensure_ascii=False, indent=2))
+            eprint("status:", response.status_code)
+            eprint("response_body:", response.text)
+            response.raise_for_status()
+        return response.json()
 
 
 def check_collection(dataset: str) -> None:
