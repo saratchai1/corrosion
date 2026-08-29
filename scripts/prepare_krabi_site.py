@@ -67,6 +67,38 @@ def catalog_rows(path: Path) -> list[dict[str, str]]:
         )
 
 
+def truthy_csv(value: str | None) -> bool:
+    return str(value or "").strip().lower() in {"true", "1", "yes"}
+
+
+def usable_preview_endpoints(
+    region: Path, catalog: list[dict[str, str]]
+) -> tuple[dict[str, str], dict[str, str]]:
+    """Return earliest/latest catalog scenes that passed the scene coverage QA."""
+    history_path = region / "analysis" / "water_history.csv"
+    if not history_path.exists():
+        raise FileNotFoundError(
+            f"Scene QA history is required for preview selection: {history_path}"
+        )
+    with history_path.open(newline="", encoding="utf-8") as handle:
+        history = list(csv.DictReader(handle))
+    usable_dates = sorted(
+        row["date"] for row in history if truthy_csv(row.get("scene_usable"))
+    )
+    if not usable_dates:
+        raise ValueError("No QA-usable scene is available for dashboard previews")
+
+    by_date: dict[str, dict[str, str]] = {}
+    for row in catalog:
+        by_date.setdefault(row["acquisition_datetime_utc"][:10], row)
+    matched_dates = [value for value in usable_dates if value in by_date]
+    if not matched_dates:
+        raise ValueError(
+            "No QA-usable date in water_history.csv matches the Sentinel-2 catalog"
+        )
+    return by_date[matched_dates[0]], by_date[matched_dates[-1]]
+
+
 def find_preview(region: Path, scene_id: str, suffix: str) -> Path | None:
     matches = sorted(
         path
@@ -88,13 +120,15 @@ def copy_preview(
         return None
     date = row["acquisition_datetime_utc"][:10]
     extension = source.suffix.lower()
-    destination = site / "assets" / f"{role}_{date}_{suffix.removeprefix('_').removesuffix('.png')}{extension}"
+    kind = suffix.removeprefix("_").removesuffix(".png")
+    destination = site / "assets" / f"{role}_{date}_{kind}{extension}"
     copy_required(source, destination)
     return {
         "role": role,
         "date": date,
         "scene_id": row["scene_id"],
-        "kind": suffix.removeprefix("_").removesuffix(".png"),
+        "kind": kind,
+        "scene_qa": "USABLE",
         "path": destination.relative_to(site).as_posix(),
     }
 
@@ -168,11 +202,14 @@ def main() -> None:
     catalog = catalog_rows(region / "data" / "catalog" / "sentinel2_scenes.csv")
     preview_rows = []
     if catalog:
-        for role, row in (("earliest", catalog[0]), ("latest", catalog[-1])):
+        earliest, latest = usable_preview_endpoints(region, catalog)
+        for role, row in (("earliest", earliest), ("latest", latest)):
             for suffix in ("_rgb.png", "_ndvi.png"):
                 copied = copy_preview(region, site, row, role, suffix)
                 if copied:
                     preview_rows.append(copied)
+    if not preview_rows:
+        raise ValueError("No QA-usable satellite preview could be packaged")
 
     manifest = {
         "generated_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
@@ -205,16 +242,23 @@ def main() -> None:
         site / "data" / "water_change.geojson",
         site / "data" / "site_manifest.json",
     ]
-    missing = [str(path) for path in expected if not path.exists() or path.stat().st_size == 0]
+    missing = [
+        str(path) for path in expected if not path.exists() or path.stat().st_size == 0
+    ]
     if missing:
-        raise RuntimeError("Static site package is incomplete: " + ", ".join(missing))
+        raise RuntimeError(
+            "Static site package is incomplete: " + ", ".join(missing)
+        )
     print(
         json.dumps(
             {
                 "site": str(site),
-                "file_count": sum(1 for path in site.rglob("*") if path.is_file()),
+                "file_count": sum(
+                    1 for path in site.rglob("*") if path.is_file()
+                ),
                 "download_count": len(downloads),
                 "preview_count": len(preview_rows),
+                "preview_dates": [row["date"] for row in preview_rows],
             },
             indent=2,
         )
