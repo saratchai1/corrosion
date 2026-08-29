@@ -3,5 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/corrosion/',
+  // Relative assets work on both GitHub Pages (/corrosion/) and Vercel (/).
+  base: './',
 })
