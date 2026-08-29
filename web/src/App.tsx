@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import MapPane from './MapPane'
+import ProjectDashboard from './ProjectDashboard'
 import TransectChart from './TransectChart'
 import type { DataIndex, ProjectImpactSummary, Summary, TransectSelection, ViewState } from './types'
 
 const initialView: ViewState = { center: [100.005, 13.345], zoom: 10.7, bearing: 0, pitch: 0 }
 
 export default function App() {
+  const [page, setPage] = useState<'project' | 'coast'>('project')
   const [index, setIndex] = useState<DataIndex | null>(null)
   const [summary, setSummary] = useState<Summary | null>(null)
   const [projectSummary, setProjectSummary] = useState<ProjectImpactSummary | null>(null)
@@ -45,11 +47,17 @@ export default function App() {
   ] as const, [])
 
   if (error) return <main className="loading">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>
-  if (!index || !summary || !epoch || !compareEpoch) return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
+  if (!index || !summary || !projectSummary || !epoch || !compareEpoch) return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
+
+  if (page === 'project') return <ProjectDashboard summary={projectSummary} onOpenCoast={() => setPage('coast')} />
 
   return (
     <main className="app-shell">
       <aside className="sidebar">
+        <div className="coast-view-tabs view-tabs" role="tablist" aria-label="เลือกมุมมอง">
+          <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงาน 9 แปลง</button>
+          <button className="active" role="tab" aria-selected="true">แผนที่ชายฝั่ง</button>
+        </div>
         <header>
           <span className="project-tag">SAMUT SONGKHRAM COASTAL CHANGE · 1985–2026</span>
           <h1>ร่องรอยชายฝั่ง<br /><em>Coastal change</em></h1>

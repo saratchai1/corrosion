@@ -42,11 +42,45 @@ export type Summary = {
 }
 
 export type ProjectImpactSummary = {
+  title: string
+  years: number[]
   plot_count: number
+  plot_ids: string[]
   official_participating_area_rai: number
   erosion_effect_conclusion: string
   conclusion_th: string
   confidence: string
+  design: {
+    pre: number[]
+    intervention_ambiguous: number[]
+    post: number[]
+    season_window: string
+    matched_control: string
+  }
+  project_yearly_metrics: Array<{
+    year: number
+    period_role: string
+    mean_ndvi: number
+    median_ndvi: number
+    vegetation_fraction_ndvi_gte_0_35: number
+    strong_vegetation_fraction_ndvi_gte_0_50: number
+    water_fraction_mndwi_gt_0: number
+    scene_dates: string
+    scene_count: number
+    sensor: string
+  }>
+  matched_control_comparison: Array<{
+    year: number
+    period_role: string
+    impact_mean_ndvi: number
+    control_mean_ndvi: number
+    impact_vegetation_fraction: number
+    control_vegetation_fraction: number
+    impact_water_fraction: number
+    control_water_fraction: number
+    impact_pixel_count: number
+    matched_control_pixel_count: number
+  }>
   difference_in_differences: Array<{
     post_year: number
     ndvi_difference_in_differences: number
@@ -55,11 +89,39 @@ export type ProjectImpactSummary = {
   }>
   post_boundary_evidence: {
     status: string
+    feature: string
+    period: string
     transect_count: number
     within_20m_count: number
+    apparent_inland_count: number
+    apparent_seaward_count: number
     median_movement_m: number | null
+    mean_movement_m: number | null
     confidence: string
+    per_plot: Array<{
+      plot_id: string
+      transect_count: number
+      median_movement_m: number | null
+      mean_movement_m: number | null
+      apparent_inland_count: number
+      within_20m_count: number
+      apparent_seaward_count: number
+    }>
+    unavailable_plot_ids: string[]
+    unavailable_reason: string
   }
+  plot_change_summary: Array<{
+    plot_id: string
+    valid_pixels_2023: number
+    ndvi_change_2023_2025: number
+    ndvi_change_2023_2026: number
+    vegetation_fraction_change_2023_2025: number
+    vegetation_fraction_change_2023_2026: number
+    water_fraction_change_2023_2025: number
+    water_fraction_change_2023_2026: number
+    confidence: string
+  }>
+  limitations: string[]
 }
 
 export type ViewState = {
