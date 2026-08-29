@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import MapPane, { type LayerVisibility } from './MapPane'
 import type { Epoch, TransectSelection, ViewState } from './types'
 
@@ -16,27 +16,59 @@ const clamp = (value: number) => Math.min(100, Math.max(0, value))
 
 export default function SwipeCompare({ before, after, layers, opacity, sharedView, onView, onTransect }: Props) {
   const container = useRef<HTMLDivElement>(null)
+  const afterLayer = useRef<HTMLDivElement>(null)
+  const divider = useRef<HTMLDivElement>(null)
+  const range = useRef<HTMLInputElement>(null)
+  const geometry = useRef({ width: 0, height: 0, left: 0 })
+  const position = useRef(50)
   const pendingPosition = useRef<number | null>(null)
   const frame = useRef<number | null>(null)
-  const [position, setPosition] = useState(50)
 
-  useEffect(() => () => {
-    if (frame.current !== null) cancelAnimationFrame(frame.current)
-  }, [])
+  const paintPosition = (value: number) => {
+    const next = clamp(value)
+    const { width, height } = geometry.current
+    const x = (next / 100) * width
+    position.current = next
+    if (afterLayer.current) afterLayer.current.style.clip = `rect(0px, ${width}px, ${height}px, ${x}px)`
+    if (divider.current) {
+      divider.current.style.transform = `translate3d(${x}px, 0, 0) translateX(-50%)`
+      divider.current.setAttribute('aria-valuenow', String(Math.round(next)))
+      divider.current.setAttribute('aria-valuetext', `แสดงภาพก่อน ${Math.round(next)} เปอร์เซ็นต์`)
+    }
+    if (range.current) range.current.value = String(next)
+  }
+
+  useLayoutEffect(() => {
+    const element = container.current
+    if (!element) return
+    const measure = () => {
+      const bounds = element.getBoundingClientRect()
+      geometry.current = { width: bounds.width, height: bounds.height, left: bounds.left }
+      paintPosition(position.current)
+    }
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(element)
+    return () => {
+      observer.disconnect()
+      if (frame.current !== null) cancelAnimationFrame(frame.current)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const schedulePosition = (value: number) => {
     pendingPosition.current = clamp(value)
     if (frame.current !== null) return
     frame.current = requestAnimationFrame(() => {
-      if (pendingPosition.current !== null) setPosition(pendingPosition.current)
+      if (pendingPosition.current !== null) paintPosition(pendingPosition.current)
+      pendingPosition.current = null
       frame.current = null
     })
   }
 
   const updateFromPointer = (clientX: number) => {
-    const bounds = container.current?.getBoundingClientRect()
-    if (!bounds || bounds.width === 0) return
-    schedulePosition(((clientX - bounds.left) / bounds.width) * 100)
+    const { left, width } = geometry.current
+    if (width === 0) return
+    schedulePosition(((clientX - left) / width) * 100)
   }
 
   return (
@@ -53,7 +85,7 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
           showControls={false}
         />
       </div>
-      <div className="swipe-layer swipe-after" style={{ clipPath: `inset(0 0 0 ${position}%)` }}>
+      <div ref={afterLayer} className="swipe-layer swipe-after">
         <MapPane
           epoch={after}
           label="AFTER · ภาพหลัง"
@@ -68,16 +100,18 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
       </div>
 
       <div
+        ref={divider}
         className="swipe-divider"
-        style={{ left: `${position}%` }}
         role="slider"
         tabIndex={0}
         aria-label="เลื่อนเส้นเพื่อเปรียบเทียบภาพก่อนและหลัง"
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-valuenow={Math.round(position)}
-        aria-valuetext={`แสดงภาพก่อน ${Math.round(position)} เปอร์เซ็นต์`}
+        aria-valuenow={50}
+        aria-valuetext="แสดงภาพก่อน 50 เปอร์เซ็นต์"
         onPointerDown={(event) => {
+          const bounds = container.current?.getBoundingClientRect()
+          if (bounds) geometry.current = { width: bounds.width, height: bounds.height, left: bounds.left }
           event.currentTarget.setPointerCapture(event.pointerId)
           updateFromPointer(event.clientX)
         }}
@@ -93,7 +127,7 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
         onKeyDown={(event) => {
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
           event.preventDefault()
-          const currentPosition = pendingPosition.current ?? position
+          const currentPosition = pendingPosition.current ?? position.current
           if (event.key === 'ArrowLeft') schedulePosition(currentPosition - 2)
           if (event.key === 'ArrowRight') schedulePosition(currentPosition + 2)
           if (event.key === 'Home') schedulePosition(0)
@@ -106,12 +140,13 @@ export default function SwipeCompare({ before, after, layers, opacity, sharedVie
       <label className="swipe-range-control">
         <span>ก่อน {before.targetYear}</span>
         <input
+          ref={range}
           aria-label="สัดส่วนภาพก่อนและหลัง"
           type="range"
           min="0"
           max="100"
-          value={position}
-          onChange={(event) => setPosition(Number(event.target.value))}
+          defaultValue="50"
+          onInput={(event) => schedulePosition(Number(event.currentTarget.value))}
         />
         <span>หลัง {after.targetYear}</span>
       </label>
