@@ -1,0 +1,22 @@
+name: Rayong web build
+
+on:
+  push:
+    branches:
+      - data/rayong-satellite-v1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --prefix web
+      - run: npm run build --prefix web
