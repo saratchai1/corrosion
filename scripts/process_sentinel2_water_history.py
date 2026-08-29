@@ -1,15 +1,59 @@
 #!/usr/bin/env python3
-"""Run cloud-masked MNDWI water extraction for selected Sentinel-2 catalog scenes."""
+"""Run cloud-masked MNDWI water extraction for selected Sentinel-2 catalog scenes.
+
+Sentinel-2 radiometric scale/offset are read from each Earth Search STAC item's
+`raster:bands` metadata and passed explicitly to the extractor. A calibration
+audit records STAC values beside the source-GeoTIFF header values captured during
+download so processing-baseline differences remain visible and reproducible.
+"""
 from __future__ import annotations
 
 import argparse
 import csv
+import json
 import subprocess
 import sys
 from pathlib import Path
 
+import rasterio
+import requests
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 EXTRACTOR = SCRIPT_DIR / "extract_water_mask.py"
+EARTH_SEARCH = "https://earth-search.aws.element84.com/v1"
+
+
+def asset_calibration(item: dict, key: str) -> tuple[float, float, str]:
+    asset = item.get("assets", {}).get(key, {})
+    bands = asset.get("raster:bands") or []
+    band = bands[0] if bands else {}
+    scale = band.get("scale")
+    offset = band.get("offset")
+    if scale is None:
+        scale = 1.0
+    if offset is None:
+        offset = 0.0
+    return float(scale), float(offset), "earth_search_stac_raster_bands"
+
+
+def fetch_item(scene_id: str) -> dict:
+    url = f"{EARTH_SEARCH}/collections/sentinel-2-l2a/items/{scene_id}"
+    response = requests.get(url, timeout=60)
+    response.raise_for_status()
+    item = response.json()
+    if item.get("id") != scene_id:
+        raise ValueError(f"Earth Search returned unexpected item for {scene_id}")
+    return item
+
+
+def local_calibration(path: Path) -> dict[str, object]:
+    with rasterio.open(path) as src:
+        tags = src.tags()
+        return {
+            "source_geotiff_scale": float(tags.get("source_band_scale", src.scales[0] if src.scales else 1.0)),
+            "source_geotiff_offset": float(tags.get("source_band_offset", src.offsets[0] if src.offsets else 0.0)),
+            "source_geotiff_calibration_source": tags.get("calibration_source", "raster_band_metadata"),
+        }
 
 
 def main() -> None:
@@ -25,6 +69,7 @@ def main() -> None:
 
     processed_dates: set[str] = set()
     processed = 0
+    audit: list[dict[str, object]] = []
     for row in sorted(rows, key=lambda item: (item["acquisition_datetime_utc"], item["scene_id"])):
         date = row["acquisition_datetime_utc"][:10]
         scene_id = row["scene_id"]
@@ -46,6 +91,29 @@ def main() -> None:
                 + ", ".join(str(path) for path in missing)
             )
 
+        item = fetch_item(scene_id)
+        g_scale, g_offset, g_source = asset_calibration(item, "green")
+        s_scale, s_offset, s_source = asset_calibration(item, "swir16")
+        green_local = local_calibration(green)
+        swir_local = local_calibration(swir)
+        audit.append({
+            "scene_id": scene_id,
+            "date": date,
+            "green_stac_scale": g_scale,
+            "green_stac_offset": g_offset,
+            "swir_stac_scale": s_scale,
+            "swir_stac_offset": s_offset,
+            "stac_calibration_source": g_source,
+            "green_local": green_local,
+            "swir_local": swir_local,
+            "stac_vs_local_match": (
+                abs(g_scale - float(green_local["source_geotiff_scale"])) < 1e-12
+                and abs(g_offset - float(green_local["source_geotiff_offset"])) < 1e-12
+                and abs(s_scale - float(swir_local["source_geotiff_scale"])) < 1e-12
+                and abs(s_offset - float(swir_local["source_geotiff_offset"])) < 1e-12
+            ),
+        })
+
         out_dir = args.out_root / date
         cmd = [
             sys.executable,
@@ -57,6 +125,10 @@ def main() -> None:
             "--date", date,
             "--out-dir", str(out_dir),
             "--tide-status", args.tide_status,
+            "--green-scale", str(g_scale),
+            "--green-offset", str(g_offset),
+            "--swir-scale", str(s_scale),
+            "--swir-offset", str(s_offset),
         ]
         print("run:", " ".join(cmd))
         subprocess.run(cmd, check=True)
@@ -65,7 +137,25 @@ def main() -> None:
 
     if processed == 0:
         raise SystemExit("No Sentinel-2 scenes were processed")
+
+    audit_path = args.out_root.parent / "sentinel2_calibration_audit.json"
+    audit_path.parent.mkdir(parents=True, exist_ok=True)
+    audit_path.write_text(
+        json.dumps(
+            {
+                "provider": "Element 84 Earth Search",
+                "collection": "sentinel-2-l2a",
+                "policy": "STAC raster:bands scale/offset explicitly override local COG defaults for index calculation",
+                "scene_count": len(audit),
+                "mismatch_count": sum(not bool(row["stac_vs_local_match"]) for row in audit),
+                "scenes": audit,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     print(f"processed_dates={processed}")
+    print(f"calibration_audit={audit_path}")
 
 
 if __name__ == "__main__":
