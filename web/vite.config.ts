@@ -5,4 +5,7 @@ import { sites } from '@openai/sites-vite-plugin'
 export default defineConfig({
   plugins: [react(), sites()],
   base: './',
+  build: {
+    outDir: 'dist/client',
+  },
 })
