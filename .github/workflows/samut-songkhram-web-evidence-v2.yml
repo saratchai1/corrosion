@@ -5,6 +5,7 @@ on:
     branches:
       - feature/samut-songkhram-web-evidence-v2
     paths:
+      - 'web/src/App.tsx'
       - 'web/src/TideAwareOverview.tsx'
       - 'web/src/TideAwareDashboard.tsx'
       - 'web/src/tideAwareOverview.css'
@@ -38,6 +39,7 @@ jobs:
           grep -q 'EROSION EFFECT' web/src/TideAwareOverview.tsx
           grep -q 'TideMatchChart' web/src/TideAwareOverview.tsx
           grep -q 'PlotExplorer' web/src/TideAwareOverview.tsx
+          grep -q 'lazy(() => import' web/src/App.tsx
           test -f web/public/data/project_tide_aware/imagery/2023_selected.webp
           test -f web/public/data/project_tide_aware/imagery/2026_selected.webp
           test -f web/public/data/project_tide_aware/summary.json
