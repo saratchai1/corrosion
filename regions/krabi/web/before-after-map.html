@@ -3,59 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="แผนที่เปรียบเทียบภาพดาวเทียมก่อน–หลังจังหวัดกระบี่แบบ swipe map ซูมและเลื่อนได้">
-  <title>Krabi Before–After Swipe Map</title>
+  <meta name="description" content="แผนที่เปรียบเทียบภาพดาวเทียมจริงก่อน–หลัง จังหวัดกระบี่ ตั้งแต่ปี 2018 ถึงข้อมูล Sentinel-2 ปี 2026 ปัจจุบัน">
+  <title>จังหวัดกระบี่ · เปรียบเทียบภาพดาวเทียมก่อน–หลัง</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="before-after-map.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="index.html">KRABI · COASTAL CHANGE</a>
+    <a class="brand" href="index.html">KRABI PROVINCE · COASTAL CHANGE</a>
     <nav class="nav" aria-label="เมนูหลัก">
-      <a href="index.html">ภาพรวมจังหวัด</a>
+      <a href="index.html">ภาพรวมจังหวัดกระบี่</a>
       <a class="active" href="before-after-map.html">เปรียบเทียบก่อน–หลัง</a>
-      <a href="published-dsas.html">แผนที่ DSAS 666 จุด</a>
+      <a href="published-dsas.html">แผนที่ DSAS กระบี่</a>
     </nav>
   </header>
 
   <main class="shell">
     <section class="intro">
       <div>
-        <p class="eyebrow">SYNCHRONIZED SWIPE MAP · SAME EXTENT</p>
-        <h1>เปรียบเทียบก่อน–หลัง<br>แบบสมุทรสาคร</h1>
+        <p class="eyebrow">KRABI PROVINCE · REAL SATELLITE · 2018–2026</p>
+        <h1>จังหวัดกระบี่<br>เปรียบเทียบภาพก่อน–หลัง</h1>
       </div>
       <div class="intro-copy">
-        <p>แผนที่สองชั้นใช้ตำแหน่ง ศูนย์กลาง และระดับซูมเดียวกัน ลากเส้นแบ่งเพื่อเปิดภาพแต่ละปี แล้วซูมหรือเลื่อนไปตรวจแนวชายฝั่ง ปากน้ำ และเกาะในตำแหน่งเดียวกันตลอดเวลา</p>
-        <div class="guardrail"><b>การตีความ:</b> ภาพชุดนี้เป็น annual cloudless mosaic สำหรับดูบริบทและคัดกรองการเปลี่ยนแปลง ไม่ใช่ shoreline ที่จับคู่ระดับน้ำ และไม่ใช้คำนวณอัตรากัดเซาะเชิงวิศวกรรมโดยตรง</div>
+        <p>แผนที่สองฝั่งใช้ขอบเขต ตำแหน่ง และระดับซูมเดียวกันทั้งจังหวัดกระบี่ ลากเส้นแบ่งเพื่อเทียบแนวชายฝั่ง ปากน้ำ ป่าชายเลน และเกาะในตำแหน่งเดียวกัน</p>
+        <div class="guardrail"><b>ภาพปี 2026 เป็นข้อมูลจริงถึงปัจจุบัน:</b> ระบบประกอบจากฉาก Sentinel‑2 L2A ที่ถ่ายในปี 2026 โดยเลือกพิกเซลปลอดเมฆล่าสุด วันที่ข้อมูลล่าสุดจะแสดงใต้แผนที่ ภาพนี้ไม่ใช่ annual cloudless ที่สร้างเสร็จหลังจบปี และไม่ใช่ภาพสังเคราะห์</div>
       </div>
     </section>
 
-    <section class="workspace" aria-label="แผนที่เปรียบเทียบภาพก่อนและหลัง">
+    <section class="workspace" aria-label="แผนที่จังหวัดกระบี่เปรียบเทียบภาพก่อนและหลัง">
       <div class="workspace-head">
         <div>
-          <p class="eyebrow">KRABI PROVINCE · 2018–2024</p>
-          <h2>ลากเส้นแบ่ง ซูม และเลื่อนแผนที่</h2>
-          <p>ฝั่งซ้ายคือ BEFORE ฝั่งขวาคือ AFTER โดยทั้งสองฝั่งล็อกมุมมองเดียวกันตลอดเวลา</p>
+          <p class="eyebrow">KRABI PROVINCE · SAME EXTENT · CURRENT THROUGH 2026</p>
+          <h2>ภาพดาวเทียมพื้นที่เดียวกันทั้งจังหวัด</h2>
+          <p>ฝั่งซ้ายคือ BEFORE ฝั่งขวาคือ AFTER ทั้งสองฝั่งซิงก์กันเมื่อซูมหรือเลื่อนแผนที่</p>
         </div>
 
         <div class="year-controls">
           <label>
             <span>BEFORE</span>
-            <select id="beforeYear" aria-label="เลือกปีภาพก่อน">
+            <select id="beforeYear" aria-label="เลือกปีภาพก่อนของจังหวัดกระบี่">
               <option value="2018" selected>2018</option>
               <option value="2020">2020</option>
               <option value="2022">2022</option>
               <option value="2024">2024</option>
+              <option value="2026">2026 YTD</option>
             </select>
           </label>
           <span class="arrow" aria-hidden="true">→</span>
           <label>
             <span>AFTER</span>
-            <select id="afterYear" aria-label="เลือกปีภาพหลัง">
+            <select id="afterYear" aria-label="เลือกปีภาพหลังของจังหวัดกระบี่">
               <option value="2018">2018</option>
               <option value="2020">2020</option>
               <option value="2022">2022</option>
-              <option value="2024" selected>2024</option>
+              <option value="2024">2024</option>
+              <option value="2026" selected>2026 YTD</option>
             </select>
           </label>
         </div>
@@ -63,39 +65,38 @@
 
       <div class="toolbar">
         <div class="toolbar-group" aria-label="คู่ปีด่วน">
-          <button class="tool active" type="button" data-pair="2018-2024">2018 ↔ 2024</button>
-          <button class="tool" type="button" data-pair="2020-2024">2020 ↔ 2024</button>
-          <button class="tool" type="button" data-pair="2018-2022">2018 ↔ 2022</button>
+          <button class="tool active" type="button" data-pair="2018-2026">2018 ↔ 2026</button>
+          <button class="tool" type="button" data-pair="2024-2026">2024 ↔ 2026</button>
+          <button class="tool" type="button" data-pair="2020-2026">2020 ↔ 2026</button>
         </div>
-        <div class="toolbar-group" aria-label="ขอบเขตมุมมอง">
-          <button id="viewProvince" class="tool view active" type="button">ทั้งจังหวัด</button>
+        <div class="toolbar-group" aria-label="ขอบเขตมุมมองจังหวัดกระบี่">
+          <button id="viewProvince" class="tool view active" type="button">ทั้งจังหวัดกระบี่</button>
           <button id="viewDsas" class="tool view" type="button">แนว DSAS</button>
           <button id="viewKhlongThom" class="tool view" type="button">คลองท่อม</button>
         </div>
         <div class="toolbar-group switches">
-          <label class="switch"><input id="showBoundary" type="checkbox" checked> ขอบเขตจังหวัด</label>
+          <label class="switch"><input id="showBoundary" type="checkbox" checked> ขอบเขตจังหวัดกระบี่</label>
           <label class="switch"><input id="showDsas" type="checkbox"> จุด DSAS</label>
         </div>
       </div>
 
       <div id="mapStage" class="map-stage" style="--split:50%">
-        <div id="beforeMap" class="map-surface" aria-label="แผนที่ภาพก่อน"></div>
+        <div id="beforeMap" class="map-surface" aria-label="แผนที่ภาพก่อน จังหวัดกระบี่"></div>
         <div id="afterViewport" class="after-viewport" aria-hidden="true">
           <div id="afterMap" class="map-surface"></div>
         </div>
 
         <div class="scene-label scene-before">
           <span id="beforeLabel">BEFORE · 2018</span>
-          <small>Sentinel‑2 cloudless</small>
+          <small id="beforeSourceLabel">Sentinel‑2 cloudless · annual mosaic</small>
         </div>
         <div class="scene-label scene-after">
-          <span id="afterLabel">AFTER · 2024</span>
-          <small>Sentinel‑2 cloudless</small>
+          <span id="afterLabel">AFTER · 2026 YTD</span>
+          <small id="afterSourceLabel">Sentinel‑2 L2A · current-year composite</small>
         </div>
 
         <div id="compareDivider" class="compare-divider" aria-hidden="true"></div>
-
-        <div id="mapStatus" class="map-status">กำลังโหลดภาพและขอบเขตจังหวัด…</div>
+        <div id="mapStatus" class="map-status">กำลังโหลดภาพดาวเทียมจังหวัดกระบี่…</div>
 
         <div class="slider-dock">
           <div class="slider-copy">
@@ -103,23 +104,28 @@
             <strong id="splitReadout">50% ก่อน / 50% หลัง</strong>
             <span>AFTER →</span>
           </div>
-          <input id="compareRange" class="compare-range" type="range" min="0" max="100" value="50" aria-label="เลื่อนเปรียบเทียบภาพดาวเทียมก่อนและหลัง">
+          <input id="compareRange" class="compare-range" type="range" min="0" max="100" value="50" aria-label="เลื่อนเปรียบเทียบภาพดาวเทียมจังหวัดกระบี่ก่อนและหลัง">
         </div>
 
-        <div id="viewReadout" class="view-readout">มุมมอง: ทั้งจังหวัด</div>
+        <div id="viewReadout" class="view-readout">มุมมอง: ทั้งจังหวัดกระบี่</div>
       </div>
 
       <div class="workspace-foot">
-        <span><b>ใช้งานเหมือนสมุทรสาคร:</b> ลาก slider เพื่อแบ่งภาพ แล้วใช้เมาส์/แทร็กแพดซูมและเลื่อนตำแหน่ง แผนที่อีกฝั่งจะตามโดยอัตโนมัติ</span>
-        <span>ภาพ: EOX Sentinel‑2 cloudless / modified Copernicus<br>ขอบเขต: OpenGISData‑Thailand</span>
+        <span><b>วิธีใช้:</b> ลาก slider เพื่อแบ่งภาพ แล้วใช้เมาส์หรือแทร็กแพดซูมและเลื่อนตำแหน่ง แผนที่อีกฝั่งจะตามโดยอัตโนมัติ</span>
+        <span id="dataAttribution">กำลังอ่านวันที่ภาพล่าสุดและแหล่งข้อมูล…</span>
       </div>
     </section>
 
-    <section class="metrics" aria-label="ข้อมูลชุดเปรียบเทียบ">
+    <section class="metrics" aria-label="ข้อมูลชุดเปรียบเทียบจังหวัดกระบี่">
       <article class="metric">
         <span>คู่ภาพปัจจุบัน</span>
-        <strong id="pairMetric">2018 → 2024</strong>
+        <strong id="pairMetric">2018 → 2026</strong>
         <small>เปลี่ยนปีได้จาก selector</small>
+      </article>
+      <article class="metric">
+        <span>ข้อมูลปี 2026 ล่าสุดถึง</span>
+        <strong id="latestMetric">—</strong>
+        <small>วันที่ถ่ายล่าสุดที่มีส่วนใน composite</small>
       </article>
       <article class="metric">
         <span>ขนาดภาพแต่ละปี</span>
@@ -127,12 +133,7 @@
         <small>พิกเซล · bbox เดียวกัน</small>
       </article>
       <article class="metric">
-        <span>พื้นที่ขอบเขตจังหวัด</span>
-        <strong id="areaMetric">—</strong>
-        <small>จาก manifest ที่ตรวจแล้ว</small>
-      </article>
-      <article class="metric">
-        <span>จุด DSAS</span>
+        <span>จุด DSAS จังหวัดกระบี่</span>
         <strong id="dsasMetric">666</strong>
         <small>เปิด–ปิดเป็นชั้นอ้างอิงได้</small>
       </article>
@@ -141,19 +142,19 @@
     <section class="reading-grid">
       <article class="reading-card">
         <p class="eyebrow">WHAT TO LOOK FOR</p>
-        <h3>ควรดูอะไรจากภาพคู่</h3>
-        <p>แนวน้ำและดอนตะกอน ปากคลอง ความต่อเนื่องของแนวป่าชายเลน พื้นที่ถมดิน และบริบทโครงสร้างชายฝั่ง โดยตรวจตำแหน่งเดียวกันในหลายคู่ปี ไม่สรุปจากสีที่ต่างกันเพียงอย่างเดียว</p>
+        <h3>ดูการเปลี่ยนแปลงตรงไหน</h3>
+        <p>ตรวจแนวน้ำและดอนตะกอน ปากคลอง ความต่อเนื่องของแนวป่าชายเลน พื้นที่ถมดิน และโครงสร้างชายฝั่ง โดยเทียบหลายคู่ปีในตำแหน่งเดียวกัน</p>
       </article>
       <article class="reading-card caution">
-        <p class="eyebrow">DO NOT OVERCLAIM</p>
-        <h3>สิ่งที่ภาพคู่นี้ยืนยันไม่ได้</h3>
-        <p>อัตรากัดเซาะเป็นเมตรต่อปี สาเหตุของการเปลี่ยนแปลง การตายหรือรอดของต้นไม้ และผลคาร์บอน ต้องใช้ shoreline หลายช่วงเวลา ระดับน้ำ ความไม่แน่นอน และหลักฐานภาคสนามเพิ่มเติม</p>
+        <p class="eyebrow">2026 DATA STATUS</p>
+        <h3>ล่าสุดจริง แต่ยังเป็นข้อมูลระหว่างปี</h3>
+        <p>ภาพ 2026 ใช้ฉาก Sentinel‑2 L2A จริงตั้งแต่ 1 มกราคม 2026 ถึงวันที่ระบุบนเว็บ แต่วันที่ของพิกเซลอาจต่างกันเพื่อหลบเมฆ การยืนยันอัตรากัดเซาะยังต้องควบคุมระดับน้ำและวิเคราะห์ shoreline หลายช่วงเวลา</p>
       </article>
     </section>
 
     <footer class="footer">
-      <span>Krabi Before–After Swipe Map · synchronized same-extent comparison</span>
-      <span><a href="index.html">ภาพรวมจังหวัด</a> · <a href="published-dsas.html">DSAS 666 จุด</a></span>
+      <span>จังหวัดกระบี่ · Krabi Province Coastal Before / After</span>
+      <span><a href="index.html">ภาพรวมจังหวัดกระบี่</a> · <a href="published-dsas.html">DSAS กระบี่ 666 จุด</a></span>
     </footer>
   </main>
 
