@@ -1,0 +1,706 @@
+{
+  "title": "Samut Songkhram pre-planting and recent coastal screening",
+  "generated_at_utc": "2026-08-30T14:11:50.532954+00:00",
+  "evidence_level": "TIDE_AWARE_PREPLANTING_CONTEXT",
+  "erosion_effect_conclusion": "NOT_DEMONSTRATED",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "periods": {
+    "historical_preplanting": {
+      "waterline_years": [
+        2020,
+        2021,
+        2023
+      ],
+      "mangrove_edge_proxy_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "label_th": "ก่อนช่วงดำเนินการ 2020–2023"
+    },
+    "recent_monitoring": {
+      "waterline_years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "mangrove_edge_proxy_years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "label_th": "ช่วงติดตาม 2023–2026"
+    },
+    "intervention_note": "ใช้ปี 2024 เป็นช่วงดำเนินการที่กำกวม เพราะยังไม่มีวันปลูกและวันปลูกซ่อมรายแปลงที่ยืนยัน"
+  },
+  "scene_selection": {
+    "current_target_tide_m_msl": 1.0879,
+    "maximum_historical_delta_from_target_m": 0.3,
+    "accepted_waterline_years": [
+      2020,
+      2021,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "visual_context_only_years": [
+      2017,
+      2018,
+      2019,
+      2022
+    ],
+    "accepted_tide_spread_m": 0.3608,
+    "display_scenes": [
+      {
+        "year": 2017,
+        "date": "2017-01-27",
+        "scene_id": "S2A_MSIL2A_20170127T034011_R061_T47PPQ_20210207T211817",
+        "image": "data/project_preplanting_history/imagery/2017_selected.webp",
+        "tide_level_m_msl": null,
+        "tide_status": "unverified",
+        "tide_source_tier": "",
+        "waterline_accepted": false
+      },
+      {
+        "year": 2018,
+        "date": "2018-02-06",
+        "scene_id": "S2B_MSIL2A_20180206T033919_R061_T47PPQ_20201013T193310",
+        "image": "data/project_preplanting_history/imagery/2018_selected.webp",
+        "tide_level_m_msl": null,
+        "tide_status": "unverified",
+        "tide_source_tier": "",
+        "waterline_accepted": false
+      },
+      {
+        "year": 2019,
+        "date": "2019-03-23",
+        "scene_id": "S2B_MSIL2A_20190323T033719_R061_T47PPQ_20201007T094741",
+        "image": "data/project_preplanting_history/imagery/2019_selected.webp",
+        "tide_level_m_msl": null,
+        "tide_status": "unverified",
+        "tide_source_tier": "",
+        "waterline_accepted": false
+      },
+      {
+        "year": 2020,
+        "date": "2020-01-27",
+        "scene_id": "S2B_MSIL2A_20200127T034019_R061_T47PPQ_20201002T124351",
+        "image": "data/project_preplanting_history/imagery/2020_selected.webp",
+        "tide_level_m_msl": 1.1418,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "waterline_accepted": true
+      },
+      {
+        "year": 2021,
+        "date": "2021-01-31",
+        "scene_id": "S2B_MSIL2A_20210131T033959_R061_T47PPQ_20210202T120414",
+        "image": "data/project_preplanting_history/imagery/2021_selected.webp",
+        "tide_level_m_msl": 1.2457,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "waterline_accepted": true
+      },
+      {
+        "year": 2022,
+        "date": "2022-01-06",
+        "scene_id": "S2B_MSIL2A_20220106T034129_R061_T47PPQ_20220107T070715",
+        "image": "data/project_preplanting_history/imagery/2022_selected.webp",
+        "tide_level_m_msl": 1.5426,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "waterline_accepted": false
+      },
+      {
+        "year": 2023,
+        "date": "2023-01-16",
+        "scene_id": "S2A_MSIL2A_20230116T034101_R061_T47PNQ_20230116T121416",
+        "image": "data/project_preplanting_history/imagery/2023_selected.webp",
+        "tide_level_m_msl": 1.2299,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "waterline_accepted": true
+      },
+      {
+        "year": 2024,
+        "date": "2024-02-15",
+        "scene_id": "S2B_MSIL2A_20240215T033839_R061_T47PNQ_20240215T081344",
+        "image": "data/project_preplanting_history/imagery/2024_selected.webp",
+        "tide_level_m_msl": 1.1037,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "waterline_accepted": true
+      },
+      {
+        "year": 2025,
+        "date": "2025-02-14",
+        "scene_id": "S2C_MSIL2A_20250214T033901_R061_T47PNQ_20250214T090512",
+        "image": "data/project_preplanting_history/imagery/2025_selected.webp",
+        "tide_level_m_msl": 0.8849,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "waterline_accepted": true
+      },
+      {
+        "year": 2026,
+        "date": "2026-01-30",
+        "scene_id": "S2C_MSIL2A_20260130T034001_R061_T47PNQ_20260130T081910",
+        "image": "data/project_preplanting_history/imagery/2026_selected.webp",
+        "tide_level_m_msl": 1.133,
+        "tide_status": "predicted_interpolated",
+        "tide_source_tier": "official_hourly_prediction",
+        "waterline_accepted": true
+      }
+    ],
+    "audit_csv": "data/processed/project_preplanting_history/scene_selection_audit.csv"
+  },
+  "answer_to_preplanting_question": {
+    "status": "MIXED_HISTORICAL_SIGNAL",
+    "headline_th": "สัญญาณก่อนและหลังปี 2023 แตกต่างกันตามตำแหน่ง",
+    "historical_apparent_landward_fraction": 0.115,
+    "recent_apparent_landward_fraction": 0.0544,
+    "historical_median_lrr_m_per_year": 0.0,
+    "recent_median_lrr_m_per_year": 0.0,
+    "allowed_interpretation_th": "ใช้ตอบได้เพียงว่าช่วงก่อนปี 2023 มีหรือไม่มีสัญญาณถอยร่นจากภาพมากกว่าช่วงล่าสุด; ยังใช้ยืนยันไม่ได้ว่าการเปลี่ยนแนวโน้มเกิดจากการปลูก"
+  },
+  "indicators": {
+    "waterline": {
+      "role": "SUPPORTING_ONLY",
+      "historical_years": [
+        2020,
+        2021,
+        2023
+      ],
+      "recent_years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "historical": {
+        "transect_count": 294,
+        "classified_transect_count": 287,
+        "median_nsm_m": 0.0,
+        "median_epr_m_per_year": 0.0,
+        "median_lrr_m_per_year": 0.0,
+        "class_counts": {
+          "APPARENT_LANDWARD": 33,
+          "APPARENT_SEAWARD": 97,
+          "INSUFFICIENT_DATA": 7,
+          "WITHIN_20M": 157
+        }
+      },
+      "recent": {
+        "transect_count": 294,
+        "classified_transect_count": 294,
+        "median_nsm_m": 0.0,
+        "median_epr_m_per_year": 0.0,
+        "median_lrr_m_per_year": 0.0,
+        "class_counts": {
+          "APPARENT_LANDWARD": 16,
+          "APPARENT_SEAWARD": 65,
+          "WITHIN_20M": 213
+        }
+      }
+    },
+    "mangrove_edge_proxy": {
+      "role": "PRIMARY_SCREENING",
+      "historical_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "recent_years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "area_ha_by_year": {
+        "2017": 592.19,
+        "2018": 607.39,
+        "2019": 620.99,
+        "2020": 689.29,
+        "2021": 584.73,
+        "2022": 553.89,
+        "2023": 814.98,
+        "2024": 979.17,
+        "2025": 984.17,
+        "2026": 1059.05
+      },
+      "historical": {
+        "transect_count": 294,
+        "classified_transect_count": 294,
+        "median_nsm_m": -20.0,
+        "median_epr_m_per_year": -3.33,
+        "median_lrr_m_per_year": -2.86,
+        "class_counts": {
+          "APPARENT_LANDWARD": 140,
+          "APPARENT_SEAWARD": 46,
+          "WITHIN_20M": 108
+        }
+      },
+      "recent": {
+        "transect_count": 294,
+        "classified_transect_count": 294,
+        "median_nsm_m": 20.0,
+        "median_epr_m_per_year": 6.67,
+        "median_lrr_m_per_year": 6.0,
+        "class_counts": {
+          "APPARENT_LANDWARD": 16,
+          "APPARENT_SEAWARD": 140,
+          "WITHIN_20M": 138
+        }
+      }
+    }
+  },
+  "transects": {
+    "treatment_count": 294,
+    "reference_geometry": "data/processed/project_tide_aware/transects.geojson",
+    "position_convention": "metres relative to the 2026 accepted waterline; positive is seaward",
+    "screening_threshold_m": 20.0
+  },
+  "controls": {
+    "source": "data/processed/project_tide_aware/candidate_controls.csv",
+    "status": "CANDIDATE_UNVERIFIED",
+    "scientific_limit": "Trend comparisons with candidate controls remain screening only until structures, dredging, reclamation, other planting history and field geomorphology are verified."
+  },
+  "per_plot": [
+    {
+      "plot_id": "91-STC",
+      "treatment_transect_count": 109,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": 6.32,
+        "recent_median_lrr_m_per_year": 0.0,
+        "trend_change_recent_minus_historical_m_per_year": -6.32,
+        "candidate_control_historical_median_lrr_m_per_year": 0.0,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": 6.32,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": -6.32,
+        "historical_class_counts": {
+          "INSUFFICIENT_DATA": 3,
+          "WITHIN_20M": 48,
+          "APPARENT_LANDWARD": 2,
+          "APPARENT_SEAWARD": 56
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 82,
+          "APPARENT_SEAWARD": 24,
+          "APPARENT_LANDWARD": 3
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -2.14,
+        "recent_median_lrr_m_per_year": 6.0,
+        "trend_change_recent_minus_historical_m_per_year": 8.14,
+        "candidate_control_historical_median_lrr_m_per_year": -4.29,
+        "candidate_control_recent_median_lrr_m_per_year": 6.0,
+        "historical_treatment_minus_control_lrr_m_per_year": 2.15,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": -2.15,
+        "historical_class_counts": {
+          "APPARENT_LANDWARD": 52,
+          "APPARENT_SEAWARD": 33,
+          "WITHIN_20M": 24
+        },
+        "recent_class_counts": {
+          "APPARENT_SEAWARD": 51,
+          "APPARENT_LANDWARD": 7,
+          "WITHIN_20M": 51
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "92-STC",
+      "treatment_transect_count": 59,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": 0.0,
+        "recent_median_lrr_m_per_year": 0.0,
+        "trend_change_recent_minus_historical_m_per_year": 0.0,
+        "candidate_control_historical_median_lrr_m_per_year": 0.0,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": 0.0,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": 0.0,
+        "historical_class_counts": {
+          "WITHIN_20M": 26,
+          "APPARENT_LANDWARD": 8,
+          "APPARENT_SEAWARD": 23,
+          "INSUFFICIENT_DATA": 2
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 47,
+          "APPARENT_SEAWARD": 8,
+          "APPARENT_LANDWARD": 4
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -4.02,
+        "recent_median_lrr_m_per_year": 8.0,
+        "trend_change_recent_minus_historical_m_per_year": 12.02,
+        "candidate_control_historical_median_lrr_m_per_year": -2.36,
+        "candidate_control_recent_median_lrr_m_per_year": 6.0,
+        "historical_treatment_minus_control_lrr_m_per_year": -1.66,
+        "recent_treatment_minus_control_lrr_m_per_year": 2.0,
+        "difference_in_differences_screening_m_per_year": 3.66,
+        "historical_class_counts": {
+          "WITHIN_20M": 22,
+          "APPARENT_LANDWARD": 33,
+          "APPARENT_SEAWARD": 4
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 20,
+          "APPARENT_SEAWARD": 35,
+          "APPARENT_LANDWARD": 4
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "93-STC",
+      "treatment_transect_count": 48,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": 0.0,
+        "recent_median_lrr_m_per_year": 0.0,
+        "trend_change_recent_minus_historical_m_per_year": 0.0,
+        "candidate_control_historical_median_lrr_m_per_year": -86.38,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": 86.38,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": -86.38,
+        "historical_class_counts": {
+          "WITHIN_20M": 35,
+          "APPARENT_SEAWARD": 13
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 36,
+          "APPARENT_SEAWARD": 11,
+          "APPARENT_LANDWARD": 1
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -1.41,
+        "recent_median_lrr_m_per_year": 6.0,
+        "trend_change_recent_minus_historical_m_per_year": 7.41,
+        "candidate_control_historical_median_lrr_m_per_year": -45.82,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": 44.41,
+        "recent_treatment_minus_control_lrr_m_per_year": 6.0,
+        "difference_in_differences_screening_m_per_year": -38.41,
+        "historical_class_counts": {
+          "WITHIN_20M": 26,
+          "APPARENT_SEAWARD": 7,
+          "APPARENT_LANDWARD": 15
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 25,
+          "APPARENT_SEAWARD": 22,
+          "APPARENT_LANDWARD": 1
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "94-STC",
+      "treatment_transect_count": 20,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": 47.12,
+        "recent_median_lrr_m_per_year": 0.0,
+        "trend_change_recent_minus_historical_m_per_year": -47.12,
+        "candidate_control_historical_median_lrr_m_per_year": 60.0,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": -12.88,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": 12.88,
+        "historical_class_counts": {
+          "APPARENT_LANDWARD": 4,
+          "WITHIN_20M": 12,
+          "APPARENT_SEAWARD": 3,
+          "INSUFFICIENT_DATA": 1
+        },
+        "recent_class_counts": {
+          "APPARENT_SEAWARD": 3,
+          "WITHIN_20M": 13,
+          "APPARENT_LANDWARD": 4
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -2.86,
+        "recent_median_lrr_m_per_year": 6.0,
+        "trend_change_recent_minus_historical_m_per_year": 8.86,
+        "candidate_control_historical_median_lrr_m_per_year": -2.14,
+        "candidate_control_recent_median_lrr_m_per_year": 6.0,
+        "historical_treatment_minus_control_lrr_m_per_year": -0.72,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": 0.72,
+        "historical_class_counts": {
+          "APPARENT_LANDWARD": 9,
+          "WITHIN_20M": 9,
+          "APPARENT_SEAWARD": 2
+        },
+        "recent_class_counts": {
+          "APPARENT_SEAWARD": 6,
+          "WITHIN_20M": 12,
+          "APPARENT_LANDWARD": 2
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "95-STC",
+      "treatment_transect_count": 22,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": 0.0,
+        "recent_median_lrr_m_per_year": 0.0,
+        "trend_change_recent_minus_historical_m_per_year": 0.0,
+        "candidate_control_historical_median_lrr_m_per_year": 88.57,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": -88.57,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": 88.57,
+        "historical_class_counts": {
+          "APPARENT_LANDWARD": 3,
+          "WITHIN_20M": 17,
+          "APPARENT_SEAWARD": 2
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 15,
+          "APPARENT_LANDWARD": 3,
+          "APPARENT_SEAWARD": 4
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -4.1,
+        "recent_median_lrr_m_per_year": 6.55,
+        "trend_change_recent_minus_historical_m_per_year": 10.65,
+        "candidate_control_historical_median_lrr_m_per_year": -21.43,
+        "candidate_control_recent_median_lrr_m_per_year": 4.0,
+        "historical_treatment_minus_control_lrr_m_per_year": 17.33,
+        "recent_treatment_minus_control_lrr_m_per_year": 2.55,
+        "difference_in_differences_screening_m_per_year": -14.78,
+        "historical_class_counts": {
+          "WITHIN_20M": 12,
+          "APPARENT_LANDWARD": 10
+        },
+        "recent_class_counts": {
+          "APPARENT_SEAWARD": 10,
+          "WITHIN_20M": 12
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "96-STC",
+      "treatment_transect_count": 6,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": 48.57,
+        "recent_median_lrr_m_per_year": 0.71,
+        "trend_change_recent_minus_historical_m_per_year": -47.86,
+        "candidate_control_historical_median_lrr_m_per_year": 5.71,
+        "candidate_control_recent_median_lrr_m_per_year": -2.05,
+        "historical_treatment_minus_control_lrr_m_per_year": 42.86,
+        "recent_treatment_minus_control_lrr_m_per_year": 2.76,
+        "difference_in_differences_screening_m_per_year": -40.1,
+        "historical_class_counts": {
+          "WITHIN_20M": 5,
+          "INSUFFICIENT_DATA": 1
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 4,
+          "APPARENT_SEAWARD": 2
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -3.93,
+        "recent_median_lrr_m_per_year": 0.0,
+        "trend_change_recent_minus_historical_m_per_year": 3.93,
+        "candidate_control_historical_median_lrr_m_per_year": -2.86,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": -1.07,
+        "recent_treatment_minus_control_lrr_m_per_year": 0.0,
+        "difference_in_differences_screening_m_per_year": 1.07,
+        "historical_class_counts": {
+          "APPARENT_LANDWARD": 2,
+          "WITHIN_20M": 4
+        },
+        "recent_class_counts": {
+          "APPARENT_SEAWARD": 2,
+          "WITHIN_20M": 4
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "97-STC",
+      "treatment_transect_count": 19,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": -7.16,
+        "recent_median_lrr_m_per_year": 4.1,
+        "trend_change_recent_minus_historical_m_per_year": 11.26,
+        "candidate_control_historical_median_lrr_m_per_year": 4.3,
+        "candidate_control_recent_median_lrr_m_per_year": 0.0,
+        "historical_treatment_minus_control_lrr_m_per_year": -11.46,
+        "recent_treatment_minus_control_lrr_m_per_year": 4.1,
+        "difference_in_differences_screening_m_per_year": 15.56,
+        "historical_class_counts": {
+          "WITHIN_20M": 9,
+          "APPARENT_LANDWARD": 10
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 9,
+          "APPARENT_SEAWARD": 10
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -5.16,
+        "recent_median_lrr_m_per_year": 6.0,
+        "trend_change_recent_minus_historical_m_per_year": 11.16,
+        "candidate_control_historical_median_lrr_m_per_year": -4.3,
+        "candidate_control_recent_median_lrr_m_per_year": 6.02,
+        "historical_treatment_minus_control_lrr_m_per_year": -0.86,
+        "recent_treatment_minus_control_lrr_m_per_year": -0.02,
+        "difference_in_differences_screening_m_per_year": 0.84,
+        "historical_class_counts": {
+          "WITHIN_20M": 7,
+          "APPARENT_LANDWARD": 12
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 8,
+          "APPARENT_SEAWARD": 9,
+          "APPARENT_LANDWARD": 2
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "98-STC",
+      "treatment_transect_count": 11,
+      "candidate_control_count": 3,
+      "waterline": {
+        "historical_median_lrr_m_per_year": -7.14,
+        "recent_median_lrr_m_per_year": 2.0,
+        "trend_change_recent_minus_historical_m_per_year": 9.14,
+        "candidate_control_historical_median_lrr_m_per_year": 4.3,
+        "candidate_control_recent_median_lrr_m_per_year": -2.05,
+        "historical_treatment_minus_control_lrr_m_per_year": -11.44,
+        "recent_treatment_minus_control_lrr_m_per_year": 4.05,
+        "difference_in_differences_screening_m_per_year": 15.49,
+        "historical_class_counts": {
+          "APPARENT_LANDWARD": 6,
+          "WITHIN_20M": 5
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 7,
+          "APPARENT_SEAWARD": 3,
+          "APPARENT_LANDWARD": 1
+        },
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": -3.0,
+        "recent_median_lrr_m_per_year": 3.86,
+        "trend_change_recent_minus_historical_m_per_year": 6.86,
+        "candidate_control_historical_median_lrr_m_per_year": -5.73,
+        "candidate_control_recent_median_lrr_m_per_year": 6.01,
+        "historical_treatment_minus_control_lrr_m_per_year": 2.73,
+        "recent_treatment_minus_control_lrr_m_per_year": -2.15,
+        "difference_in_differences_screening_m_per_year": -4.88,
+        "historical_class_counts": {
+          "WITHIN_20M": 4,
+          "APPARENT_LANDWARD": 7
+        },
+        "recent_class_counts": {
+          "WITHIN_20M": 6,
+          "APPARENT_SEAWARD": 5
+        },
+        "confidence": "LOW"
+      }
+    },
+    {
+      "plot_id": "87-VSD",
+      "treatment_transect_count": 0,
+      "candidate_control_count": 0,
+      "waterline": {
+        "historical_median_lrr_m_per_year": null,
+        "recent_median_lrr_m_per_year": null,
+        "trend_change_recent_minus_historical_m_per_year": null,
+        "candidate_control_historical_median_lrr_m_per_year": null,
+        "candidate_control_recent_median_lrr_m_per_year": null,
+        "historical_treatment_minus_control_lrr_m_per_year": null,
+        "recent_treatment_minus_control_lrr_m_per_year": null,
+        "difference_in_differences_screening_m_per_year": null,
+        "historical_class_counts": {},
+        "recent_class_counts": {},
+        "confidence": "LOW"
+      },
+      "mangrove_edge_proxy": {
+        "historical_median_lrr_m_per_year": null,
+        "recent_median_lrr_m_per_year": null,
+        "trend_change_recent_minus_historical_m_per_year": null,
+        "candidate_control_historical_median_lrr_m_per_year": null,
+        "candidate_control_recent_median_lrr_m_per_year": null,
+        "historical_treatment_minus_control_lrr_m_per_year": null,
+        "recent_treatment_minus_control_lrr_m_per_year": null,
+        "difference_in_differences_screening_m_per_year": null,
+        "historical_class_counts": {},
+        "recent_class_counts": {},
+        "confidence": "LOW"
+      }
+    }
+  ],
+  "allowed_claim_th": "เปรียบเทียบได้ว่าก่อนปี 2023 มีสัญญาณการถอยร่นจากภาพมากหรือน้อยกว่าช่วง 2023–2026 แต่ยังสรุปไม่ได้ว่าความแตกต่างเกิดจากการปลูกป่าชายเลน",
+  "limitations": [
+    "ระดับน้ำย้อนหลังจาก ThailandTideTables เป็นค่าประมาณระหว่างจุดน้ำขึ้นลงจากแหล่งทุติยภูมิ ไม่ใช่ระดับน้ำที่วัดหน้าแปลง",
+    "การเลือกภาพตามระดับน้ำช่วยลดความต่าง แต่ไม่ใช่การปรับ waterline ทุกปีให้เป็น datum แนวราบเดียวกัน",
+    "Sentinel-2 วิเคราะห์บนกริด 20 เมตร; การเปลี่ยนแปลงภายใน ±20 เมตรไม่ควรตีความทิศทาง",
+    "MANGROVE_EDGE_PROXY เป็นขอบพืชจาก NDVI ไม่ใช่ขอบป่าชายเลนที่ตรวจยืนยันด้วยโดรนหรือ confusion matrix",
+    "วันปลูกและวันปลูกซ่อมรายแปลงยังไม่ได้รับการยืนยัน",
+    "candidate controls ยังไม่ได้ตรวจโครงสร้างชายฝั่ง การขุดลอก การถม และประวัติปลูก",
+    "ผลต่างของแนวโน้มก่อนและหลังไม่ใช่หลักฐานเชิงเหตุผลว่าการปลูกลดการกัดเซาะ"
+  ],
+  "source_data": {
+    "scene_catalog": "data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv",
+    "current_tide_aware_summary": "data/processed/project_tide_aware/summary.json",
+    "plots": "data/aoi/samut_songkhram_project_plots.geojson",
+    "transects": "data/processed/project_tide_aware/transects.geojson",
+    "candidate_controls": "data/processed/project_tide_aware/candidate_controls.csv"
+  }
+}
