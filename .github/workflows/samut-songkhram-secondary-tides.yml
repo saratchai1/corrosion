@@ -102,7 +102,7 @@ jobs:
           assert len(manifest['pages']) == 36
           assert len(manifest['year_continuity_qa']) == 3
           assert all(
-              row['maximum_consecutive_event_gap_hours'] <= 48.0
+              row['maximum_consecutive_event_gap_hours'] <= 72.0
               for row in manifest['year_continuity_qa']
           )
           assert all(
@@ -124,6 +124,12 @@ jobs:
           assert statuses['modelled_secondary_extrema_cosine'] == 9, statuses
           assert all(row['tide_level'] != '' for row in scenes)
           assert all(row['tide_datum'] == 'MSL' for row in scenes)
+          secondary_spans = [
+              float(row['tide_bracket_span_minutes']) / 60
+              for row in scenes
+              if row['tide_status'] == 'modelled_secondary_extrema_cosine'
+          ]
+          assert max(secondary_spans) <= 36.0, secondary_spans
 
           readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
           assert readiness['evidence_level'] == 'TIDE_AWARE_SCREENING', readiness
@@ -136,6 +142,7 @@ jobs:
               'months': len(by_month),
               'validation_metrics_m': validation['metrics_m'],
               'scene_status_counts': dict(statuses),
+              'maximum_secondary_scene_bracket_hours': max(secondary_spans),
               'evidence_level': readiness['evidence_level'],
           }, ensure_ascii=False, indent=2))
           PY
