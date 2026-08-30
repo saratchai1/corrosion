@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import importlib.util
 import math
+import sys
 import tempfile
 import unittest
 from datetime import datetime
@@ -18,6 +19,7 @@ MODULE_PATH = (
 SPEC = importlib.util.spec_from_file_location("secondary_tides", MODULE_PATH)
 assert SPEC and SPEC.loader
 secondary_tides = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = secondary_tides
 SPEC.loader.exec_module(secondary_tides)
 
 
