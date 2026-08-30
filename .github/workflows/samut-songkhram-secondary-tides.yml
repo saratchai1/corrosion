@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/samut-songkhram-secondary-tides.yml'
       - 'requirements.txt'
+      - 'scripts/cache_thailandtidetables_via_jina.py'
       - 'scripts/scrape_thailandtidetables_mae_klong.py'
       - 'scripts/audit_samut_songkhram_erosion_readiness.py'
       - 'tests/test_scrape_thailandtidetables_mae_klong.py'
@@ -24,7 +25,7 @@ concurrency:
 jobs:
   collect-validate-and-match:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,14 +46,20 @@ jobs:
           python -m unittest tests.test_scrape_thailandtidetables_mae_klong -v
           python -m unittest tests.test_audit_samut_songkhram_erosion_readiness -v
 
+      - name: Cache 2023-2026 monthly pages through Jina Reader
+        run: |
+          python scripts/cache_thailandtidetables_via_jina.py \
+            --years 2023 2024 2025 2026 \
+            --refresh \
+            --sleep-seconds 0.10
+
       - name: Collect 2023-2025 monthly extrema and validate datum with 2026
         run: |
           python scripts/scrape_thailandtidetables_mae_klong.py \
             --years 2023 2024 2025 \
             --validation-year 2026 \
-            --refresh \
             --require-validation \
-            --sleep-seconds 0.20
+            --sleep-seconds 0
 
       - name: Rebuild evidence-readiness audit with completed tide catalog
         run: |
