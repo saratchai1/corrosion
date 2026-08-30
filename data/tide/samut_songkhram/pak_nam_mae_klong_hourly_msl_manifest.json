@@ -1,0 +1,115 @@
+{
+  "generated_at_utc": "2026-08-30T08:17:01.689273+00:00",
+  "station_name": "Pak Nam Mae Klong",
+  "datum": "MSL",
+  "timezone": "Asia/Bangkok (UTC+07:00)",
+  "data_kind": "hourly harmonic tide prediction",
+  "observed": false,
+  "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
+  "years": [
+    2026
+  ],
+  "row_count": 8760,
+  "output_csv": "data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv",
+  "parser": {
+    "library": "pdfplumber",
+    "monthly_page_rule": "last 12 PDF pages, January through December",
+    "row_rule": "day plus exactly 24 numeric values grouped by word coordinates"
+  },
+  "sources": [
+    {
+      "year": 2026,
+      "source_url": "https://hydro.navy.mi.th/storage/frontend/article/23009/file/th/MK2026mls.pdf",
+      "pdf_page_count": 23,
+      "sha256": "c56307e88d48c0b423dbd03f6de8c77f92ab90edb12baac7d1fc58bffb693d0e",
+      "bytes": 821876,
+      "hour_count": 8760,
+      "minimum_msl_m": -1.9,
+      "maximum_msl_m": 1.8,
+      "months": [
+        {
+          "month": 1,
+          "pdf_page_index_zero_based": 11,
+          "day_count": 31,
+          "hour_count": 744
+        },
+        {
+          "month": 2,
+          "pdf_page_index_zero_based": 12,
+          "day_count": 28,
+          "hour_count": 672
+        },
+        {
+          "month": 3,
+          "pdf_page_index_zero_based": 13,
+          "day_count": 31,
+          "hour_count": 744
+        },
+        {
+          "month": 4,
+          "pdf_page_index_zero_based": 14,
+          "day_count": 30,
+          "hour_count": 720
+        },
+        {
+          "month": 5,
+          "pdf_page_index_zero_based": 15,
+          "day_count": 31,
+          "hour_count": 744
+        },
+        {
+          "month": 6,
+          "pdf_page_index_zero_based": 16,
+          "day_count": 30,
+          "hour_count": 720
+        },
+        {
+          "month": 7,
+          "pdf_page_index_zero_based": 17,
+          "day_count": 31,
+          "hour_count": 744
+        },
+        {
+          "month": 8,
+          "pdf_page_index_zero_based": 18,
+          "day_count": 31,
+          "hour_count": 744
+        },
+        {
+          "month": 9,
+          "pdf_page_index_zero_based": 19,
+          "day_count": 30,
+          "hour_count": 720
+        },
+        {
+          "month": 10,
+          "pdf_page_index_zero_based": 20,
+          "day_count": 31,
+          "hour_count": 744
+        },
+        {
+          "month": 11,
+          "pdf_page_index_zero_based": 21,
+          "day_count": 30,
+          "hour_count": 720
+        },
+        {
+          "month": 12,
+          "pdf_page_index_zero_based": 22,
+          "day_count": 31,
+          "hour_count": 744
+        }
+      ],
+      "attempted_urls": [
+        {
+          "url": "https://hydro.navy.mi.th/storage/frontend/article/23009/file/th/MK2026mls.pdf",
+          "resolved_url": "https://hydro.navy.mi.th/storage/frontend/article/23009/file/th/MK2026mls.pdf",
+          "status_code": 200,
+          "content_type": "application/pdf",
+          "bytes": 821876
+        }
+      ]
+    }
+  ],
+  "scientific_limit": "Predicted station tide improves scene comparability but is not an observed water level at each planting plot."
+}

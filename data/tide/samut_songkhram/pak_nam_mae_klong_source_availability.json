@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-08-30T00:00:00Z",
+  "station_name": "Pak Nam Mae Klong",
+  "datum": "MSL",
+  "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
+  "years": {
+    "2023": {
+      "status": "OFFICIAL_PDF_URL_UNAVAILABLE",
+      "handling": "SCENES_LEFT_UNMATCHED",
+      "note": "Legacy Hydrographic Department URL variants returned HTTP 404; bounded Internet Archive searches found no copy."
+    },
+    "2024": {
+      "status": "OFFICIAL_PDF_URL_UNAVAILABLE",
+      "handling": "SCENES_LEFT_UNMATCHED",
+      "note": "Legacy Hydrographic Department URL variants returned HTTP 404; bounded Internet Archive searches found no copy."
+    },
+    "2025": {
+      "status": "OFFICIAL_PDF_URL_UNAVAILABLE",
+      "handling": "SCENES_LEFT_UNMATCHED",
+      "note": "The previously indexed Hydrographic Department MSL URL now returns HTTP 404."
+    },
+    "2026": {
+      "status": "OFFICIAL_PDF_AVAILABLE",
+      "handling": "HOURLY_TABLE_PARSED_AND_SCENES_MATCHED",
+      "source_url": "https://hydro.navy.mi.th/storage/frontend/article/23009/file/th/MK2026mls.pdf"
+    }
+  },
+  "policy": "No missing year is filled from another year, an uncited table, or a search-result snippet."
+}

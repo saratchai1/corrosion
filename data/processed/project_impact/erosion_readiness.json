@@ -1,0 +1,82 @@
+{
+  "generated_at_utc": "2026-08-30T08:17:01.993062+00:00",
+  "project_id": "TH-SSK-MANGROVE-2024",
+  "evidence_level": "SATELLITE_SCREENING",
+  "allowed_claim_th": "ผลดาวเทียมเป็นการคัดกรองเบื้องต้นและยังไม่ยืนยันผลของการปลูกต่อการกัดเซาะชายฝั่ง",
+  "erosion_effect_demonstrated": false,
+  "satellite": {
+    "scene_count": 12,
+    "years": [
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "tide_matched_scene_count": 3,
+    "tide_matched_scene_fraction": 0.25,
+    "tide_status_counts": {
+      "predicted_interpolated": 3,
+      "unmatched_no_bracket": 9
+    }
+  },
+  "boundary": {
+    "indicator": "image-derived water-land boundary; not a surveyed or tide-normalized shoreline",
+    "period": "2025-2026",
+    "transect_count": 43,
+    "covered_plot_ids": [
+      "91-STC",
+      "92-STC",
+      "93-STC",
+      "94-STC",
+      "95-STC",
+      "96-STC",
+      "97-STC",
+      "98-STC"
+    ],
+    "uncovered_plot_ids": [
+      "87-VSD"
+    ],
+    "tide_status": "unverified",
+    "confidence": "LOW"
+  },
+  "intervention": {
+    "nominal_year": 2024,
+    "exact_date_status": "UNVERIFIED"
+  },
+  "controls": {
+    "status": "DESIGN_REQUIRED",
+    "target_count_per_treatment_segment": 3
+  },
+  "drone": {
+    "row_count": 0,
+    "repeat_surveys_by_plot": {},
+    "ready_plot_ids": []
+  },
+  "field": {
+    "row_count": 0,
+    "observations_by_plot": {},
+    "ready_plot_ids": []
+  },
+  "blockers": [
+    "exact planting date is not verified",
+    "tide-matched scene coverage is 25.0%; target is at least 80.0%",
+    "boundary transects do not cover: 87-VSD",
+    "fewer than 2 repeat drone surveys for: 87-VSD, 91-STC, 92-STC, 93-STC, 94-STC, 95-STC, 96-STC, 97-STC, 98-STC",
+    "no field boundary observation for: 87-VSD, 91-STC, 92-STC, 93-STC, 94-STC, 95-STC, 96-STC, 97-STC, 98-STC",
+    "coastal control segments are not verified",
+    "only 2 configured post years; need at least 3"
+  ],
+  "prohibited_claims_th": [
+    "พิสูจน์แล้วว่าป่าดักตะกอนกี่ตัน",
+    "พิสูจน์แล้วว่าป่าลดคลื่นกี่เปอร์เซ็นต์",
+    "ป้องกันพายุได้ทุกระดับ",
+    "ป้องกันการกัดเซาะได้ทุกพื้นที่ในประเทศไทย"
+  ],
+  "source_paths": {
+    "config": "config/samut_songkhram_erosion_free_data_v1.json",
+    "scene_catalog": "data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv",
+    "summary": "data/processed/project_impact/summary.json",
+    "drone_metadata": "data/field/samut_songkhram/drone_surveys.csv",
+    "field_observations": "data/field/samut_songkhram/boundary_observations.csv"
+  }
+}
