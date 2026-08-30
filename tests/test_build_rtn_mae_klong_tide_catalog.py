@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
 import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -12,11 +13,11 @@ MODULE_PATH = ROOT / "scripts" / "build_rtn_mae_klong_tide_catalog.py"
 
 
 def load_module():
-    spec = importlib.util.spec_from_file_location(
-        "build_rtn_mae_klong_tide_catalog", MODULE_PATH
-    )
+    module_name = "build_rtn_mae_klong_tide_catalog"
+    spec = importlib.util.spec_from_file_location(module_name, MODULE_PATH)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
     spec.loader.exec_module(module)
     return module
 
