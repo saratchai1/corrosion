@@ -2,9 +2,9 @@
 """Recover removed official tide-table PDFs from the Internet Archive.
 
 The Hydrographic Department periodically changes or removes annual download
-paths. This utility queries the Internet Archive CDX index for exact and narrow
-wildcard matches, validates recovered bytes as PDFs, and places them in the
-cache format consumed by ``build_rtn_mae_klong_tide_catalog.py``.
+paths. This utility queries the Internet Archive CDX index for narrow wildcard
+matches, validates recovered bytes as PDFs, and places them in the cache format
+consumed by ``build_rtn_mae_klong_tide_catalog.py``.
 
 An archived copy remains an official Hydrographic Department document, but the
 manifest records both the original official URL and the archive retrieval URL.
@@ -17,7 +17,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
 
 import requests
 
@@ -41,16 +40,13 @@ def official_candidates(year: int) -> list[str]:
 
 
 def cdx_queries(year: int) -> list[str]:
-    values = list(official_candidates(year))
-    values.extend(
-        [
-            f"www.hydro.navy.mi.th/download/*/MSL/KL{year}*",
-            f"hydro.navy.mi.th/download/*/MSL/KL{year}*",
-            f"www.hydro.navy.mi.th/download/*/*/MK{year}*",
-            f"hydro.navy.mi.th/download/*/*/MK{year}*",
-        ]
-    )
-    return list(dict.fromkeys(values))
+    # Keep the search narrow and bounded. Exact HTTP/HTTPS variants are covered
+    # by the host/path wildcard, while the storage query catches migrated files.
+    return [
+        f"www.hydro.navy.mi.th/download/*/MSL/KL{year}*",
+        f"hydro.navy.mi.th/download/*/MSL/KL{year}*",
+        f"hydro.navy.mi.th/storage/frontend/article/*/file/*/*{year}*",
+    ]
 
 
 def is_pdf(content: bytes, content_type: str = "") -> bool:
@@ -212,6 +208,7 @@ def recover_year(
         "year": year,
         "status": "ARCHIVE_NOT_FOUND",
         "candidate_count": len(candidates),
+        "official_urls_checked": official_candidates(year),
         "queries": queries_report,
         "download_attempts": download_attempts,
     }
@@ -222,7 +219,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--years", nargs="+", type=int, default=list(DEFAULT_YEARS))
     parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
-    parser.add_argument("--timeout-seconds", type=float, default=45.0)
+    parser.add_argument("--timeout-seconds", type=float, default=12.0)
     parser.add_argument(
         "--require-all",
         action="store_true",
