@@ -56,7 +56,7 @@ jobs:
 
       - name: Build 2023-2025 extrema and validate datum with official 2026
         run: |
-          python scripts/build_secondary_mae_klong_tide_catalog.py \
+          python -m scripts.build_secondary_mae_klong_tide_catalog \
             --years 2023 2024 2025 \
             --validation-year 2026 \
             --require-validation
