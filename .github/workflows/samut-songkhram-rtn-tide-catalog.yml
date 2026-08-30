@@ -8,6 +8,7 @@ on:
       - '.github/workflows/samut-songkhram-rtn-tide-catalog.yml'
       - 'requirements.txt'
       - 'scripts/build_rtn_mae_klong_tide_catalog.py'
+      - 'scripts/discover_rtn_tide_archives.py'
       - 'scripts/match_scene_tides.py'
       - 'scripts/audit_samut_songkhram_erosion_readiness.py'
       - 'tests/test_build_rtn_mae_klong_tide_catalog.py'
@@ -47,13 +48,31 @@ jobs:
           python -m unittest tests.test_match_scene_tides -v
           python -m unittest tests.test_audit_samut_songkhram_erosion_readiness -v
 
-      - name: Build available official 2024-2026 hourly MSL tide catalog
+      - name: Search archives for removed 2023-2024 official PDFs
         run: |
-          # The official 2023 archive URL currently returns 404. Do not invent or
-          # silently substitute values; process the still-available official years.
+          python scripts/discover_rtn_tide_archives.py --years 2023 2024
+
+      - name: Select officially available years
+        id: years
+        shell: bash
+        run: |
+          years="2025 2026"
+          for year in 2023 2024; do
+            pdf=".cache/rtn_tides/samut_songkhram/pak_nam_mae_klong_${year}_msl.pdf"
+            source=".cache/rtn_tides/samut_songkhram/pak_nam_mae_klong_${year}_source.json"
+            if [[ -f "$pdf" && -f "$source" ]]; then
+              years="$year $years"
+            fi
+          done
+          echo "years=$years" >> "$GITHUB_OUTPUT"
+          echo "Official years selected: $years"
+
+      - name: Build available official hourly MSL tide catalog
+        run: |
+          # Do not use --refresh here: recovered archive PDFs are intentionally
+          # cached by the preceding discovery step.
           python scripts/build_rtn_mae_klong_tide_catalog.py \
-            --years 2024 2025 2026 \
-            --refresh
+            --years ${{ steps.years.outputs.years }}
 
       - name: Match project scenes to predicted tide
         run: |
@@ -68,76 +87,91 @@ jobs:
       - name: Validate generated evidence
         run: |
           python - <<'PY'
+          import calendar
           import csv
           import json
           from pathlib import Path
 
           tide_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv')
           manifest_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json')
+          archive_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json')
           matched_path = Path('data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv')
           readiness_path = Path('data/processed/project_impact/erosion_readiness.json')
 
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          archive = json.loads(archive_path.read_text(encoding='utf-8'))
+          available_years = set(manifest['years'])
+          assert {2025, 2026}.issubset(available_years), available_years
+          assert available_years.issubset({2023, 2024, 2025, 2026})
+          expected_rows = sum(
+              8784 if calendar.isleap(year) else 8760 for year in available_years
+          )
+
           with tide_path.open(newline='', encoding='utf-8') as handle:
               tides = list(csv.DictReader(handle))
-          assert len(tides) == 26304, len(tides)
-          assert {row['source_year'] for row in tides} == {'2024', '2025', '2026'}
+          assert len(tides) == expected_rows, (len(tides), expected_rows)
+          assert {int(row['source_year']) for row in tides} == available_years
           assert {row['datum'] for row in tides} == {'MSL'}
           assert all(row['source_url'].startswith('https://') for row in tides)
           assert all(row['qa_status'] == 'official_pdf_parsed_word_coordinates' for row in tides)
-
-          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          assert manifest['row_count'] == 26304
-          assert manifest['years'] == [2024, 2025, 2026]
+          assert manifest['row_count'] == expected_rows
           assert manifest['observed'] is False
-          assert len(manifest['sources']) == 3
+          assert len(manifest['sources']) == len(available_years)
           for source in manifest['sources']:
-              expected = 8784 if source['year'] == 2024 else 8760
+              expected = 8784 if calendar.isleap(source['year']) else 8760
               assert source['hour_count'] == expected
               assert len(source['sha256']) == 64
               assert source['source_url'].startswith('https://')
+
+          archive_results = {item['year']: item for item in archive['results']}
+          assert set(archive_results) == {2023, 2024}
+          for year in (2023, 2024):
+              status = archive_results[year]['status']
+              assert status in {
+                  'RECOVERED_FROM_INTERNET_ARCHIVE',
+                  'ARCHIVE_NOT_FOUND',
+              }
+              if year in available_years:
+                  assert status == 'RECOVERED_FROM_INTERNET_ARCHIVE'
 
           with matched_path.open(newline='', encoding='utf-8') as handle:
               scenes = list(csv.DictReader(handle))
           assert len(scenes) == 12, len(scenes)
           matched = [row for row in scenes if row['tide_status'].startswith('predicted_')]
           unmatched = [row for row in scenes if not row['tide_status'].startswith('predicted_')]
-          assert len(matched) == 9, len(matched)
-          assert len(unmatched) == 3, len(unmatched)
-          assert {row['acquisition_datetime_utc'][:4] for row in unmatched} == {'2023'}
+          expected_matched = 3 * len(available_years)
+          assert len(matched) == expected_matched, (len(matched), expected_matched)
+          assert {int(row['acquisition_datetime_utc'][:4]) for row in matched} == available_years
+          assert {
+              int(row['acquisition_datetime_utc'][:4]) for row in unmatched
+          } == {2023, 2024, 2025, 2026}.difference(available_years)
           assert all(row['tide_level'] != '' for row in matched)
           assert all(row['tide_datum'] == 'MSL' for row in matched)
           assert all(row['tide_source_url'].startswith('https://') for row in matched)
 
           readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
-          assert readiness['evidence_level'] == 'SATELLITE_SCREENING', readiness
+          fraction = expected_matched / 12
+          expected_level = (
+              'TIDE_AWARE_SCREENING' if fraction >= 0.8 else 'SATELLITE_SCREENING'
+          )
+          assert readiness['evidence_level'] == expected_level, readiness
           assert readiness['satellite']['scene_count'] == 12
-          assert readiness['satellite']['tide_matched_scene_count'] == 9
-          assert readiness['satellite']['tide_matched_scene_fraction'] == 0.75
+          assert readiness['satellite']['tide_matched_scene_count'] == expected_matched
+          assert readiness['satellite']['tide_matched_scene_fraction'] == round(fraction, 5)
           assert readiness['erosion_effect_demonstrated'] is False
-          assert any('75.0%' in blocker for blocker in readiness['blockers'])
 
           print(json.dumps({
+              'available_years': sorted(available_years),
               'tide_rows': len(tides),
               'matched_scenes': len(matched),
-              'unmatched_2023_scenes': len(unmatched),
+              'unmatched_scenes': len(unmatched),
+              'archive_status': {
+                  year: archive_results[year]['status'] for year in (2023, 2024)
+              },
               'evidence_level': readiness['evidence_level'],
               'source_urls': [source['source_url'] for source in manifest['sources']],
           }, ensure_ascii=False, indent=2))
           PY
-
-      - name: Record unavailable 2023 official archive
-        run: |
-          cat > data/tide/samut_songkhram/pak_nam_mae_klong_2023_archive_status.json <<'JSON'
-          {
-            "year": 2023,
-            "station_name": "Pak Nam Mae Klong",
-            "datum_requested": "MSL",
-            "status": "OFFICIAL_ARCHIVE_NOT_FOUND",
-            "checked_at_utc": "2026-08-30T00:00:00Z",
-            "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
-            "note": "The former annual archive URL variants returned HTTP 404. The three 2023 Sentinel-2 scenes remain explicitly unmatched; no replacement values were fabricated or silently borrowed from another year."
-          }
-          JSON
 
       - name: Commit generated tide evidence
         run: |
@@ -146,13 +180,13 @@ jobs:
           git add \
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv \
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json \
-            data/tide/samut_songkhram/pak_nam_mae_klong_2023_archive_status.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json \
             data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
             data/processed/project_impact/erosion_readiness.json
           if git diff --cached --quiet; then
             echo 'No generated changes to commit.'
           else
-            git commit -m 'data: add available official Mae Klong tide matches'
+            git commit -m 'data: add official Mae Klong tide-matched scene catalog'
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
@@ -164,7 +198,7 @@ jobs:
           path: |
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json
-            data/tide/samut_songkhram/pak_nam_mae_klong_2023_archive_status.json
+            data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json
             data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
             data/processed/project_impact/erosion_readiness.json
             .cache/rtn_tides/samut_songkhram/**
