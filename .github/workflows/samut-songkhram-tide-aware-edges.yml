@@ -1,0 +1,152 @@
+name: Build tide-aware Samut Songkhram edges
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-tide-aware-edges-v1
+    paths:
+      - '.github/workflows/samut-songkhram-tide-aware-edges.yml'
+      - 'requirements.txt'
+      - 'scripts/download_catalog_assets.py'
+      - 'scripts/build_tide_aware_project_edges.py'
+      - 'scripts/build_coastal_change_mvp.py'
+      - 'scripts/download_satellite_data.py'
+      - 'tests/test_build_tide_aware_project_edges.py'
+      - 'data/aoi/samut_songkhram_project_plots.geojson'
+      - 'data/aoi/samut_songkhram_project_analysis_aoi.geojson'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv'
+      - 'web/src/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-tide-aware-edges-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run tide-aware unit tests
+        run: |
+          python -m unittest tests.test_build_tide_aware_project_edges -v
+
+      - name: Download exact versioned Sentinel-2 inputs
+        run: |
+          python -m scripts.download_catalog_assets \
+            --catalog data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
+            --aoi data/aoi/samut_songkhram_project_analysis_aoi.geojson \
+            --manifest /tmp/tide-aware-download-manifest.json
+
+      - name: Build waterline, mangrove-edge proxy, transects and candidate controls
+        run: |
+          python -m scripts.build_tide_aware_project_edges
+
+      - name: Validate scientific gates and generated schema
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          root = Path('data/processed/project_tide_aware')
+          summary = json.loads((root / 'summary.json').read_text(encoding='utf-8'))
+          selection = json.loads((root / 'scene_selection.json').read_text(encoding='utf-8'))
+
+          assert summary['evidence_level'] == 'TIDE_AWARE_SCREENING', summary
+          assert summary['erosion_effect_conclusion'] == 'NOT_DEMONSTRATED', summary
+          assert summary['plot_count'] == 9
+          assert selection['status'] == 'ACCEPTABLE_FOR_TIDE_AWARE_SCREENING'
+          assert selection['tide_spread_m'] <= 0.40
+          assert len(selection['selected_scenes']) == 4
+          assert summary['waterline_scene_selection']['source_tier_counts'] == {
+              'official_hourly_prediction': 1,
+              'secondary_published_extrema': 3,
+          }
+          assert summary['transects']['treatment_count'] > 0
+          assert not summary['transects']['plots_without_treatment_transects'], summary['transects']
+          assert summary['controls']['selected_count'] > 0
+
+          with (root / 'transect_metrics.csv').open(newline='', encoding='utf-8') as handle:
+              metrics = list(csv.DictReader(handle))
+          assert {row['indicator'] for row in metrics} == {
+              'WATERLINE', 'MANGROVE_EDGE_PROXY'
+          }
+          assert all(row['confidence'] == 'LOW' for row in metrics)
+
+          with (root / 'candidate_controls.csv').open(newline='', encoding='utf-8') as handle:
+              controls = list(csv.DictReader(handle))
+          counts = Counter(row['plot_id'] for row in controls)
+          assert set(counts) == set(summary['plot_ids']), counts
+          assert min(counts.values()) >= 1, counts
+
+          for year in (2023, 2024, 2025, 2026):
+              assert (root / 'waterline' / f'{year}.geojson').exists()
+              assert (root / 'mangrove_proxy' / f'{year}_polygon.geojson').exists()
+              assert Path(f'web/public/data/project_tide_aware/imagery/{year}_selected.webp').exists()
+
+          print(json.dumps({
+              'scene_selection': selection['selected_scenes'],
+              'tide_spread_m': selection['tide_spread_m'],
+              'treatment_count_by_plot': summary['transects']['treatment_count_by_plot'],
+              'candidate_controls_by_plot': dict(counts),
+              'waterline': summary['indicators']['waterline'],
+              'mangrove_edge_proxy': summary['indicators']['mangrove_edge_proxy'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build web application
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit generated tide-aware products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/processed/project_tide_aware \
+            web/public/data/project_tide_aware
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'data: add tide-aware project edge screening'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload tide-aware evidence package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-tide-aware-edges
+          path: |
+            /tmp/tide-aware-download-manifest.json
+            data/processed/project_tide_aware/**
+            web/public/data/project_tide_aware/**
+            web/dist/**
+          if-no-files-found: warn
+          retention-days: 30
