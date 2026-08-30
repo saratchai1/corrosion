@@ -1,0 +1,53 @@
+name: Build production web artifact
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/coastal-change-webapp
+    paths:
+      - '.github/workflows/build-production-web-artifact.yml'
+      - 'web/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/coastal-change-webapp
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Build production bundle
+        working-directory: web
+        run: npm run build
+
+      - name: Inspect bundle
+        run: |
+          test -f web/dist/index.html
+          test -f web/dist/data/project_tide_aware/summary.json
+          test -f web/dist/data/project_tide_aware/imagery/2023_selected.webp
+          test -f web/dist/data/project_tide_aware/imagery/2026_selected.webp
+          du -sh web/dist
+          find web/dist -type f | wc -l
+
+      - name: Upload production bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-production-web
+          path: web/dist/**
+          if-no-files-found: error
+          retention-days: 3
