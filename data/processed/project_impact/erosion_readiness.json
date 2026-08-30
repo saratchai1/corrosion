@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-08-30T08:21:34.058722+00:00",
+  "generated_at_utc": "2026-08-30T09:56:09.338100+00:00",
   "project_id": "TH-SSK-MANGROVE-2024",
-  "evidence_level": "SATELLITE_SCREENING",
-  "allowed_claim_th": "ผลดาวเทียมเป็นการคัดกรองเบื้องต้นและยังไม่ยืนยันผลของการปลูกต่อการกัดเซาะชายฝั่ง",
+  "evidence_level": "TIDE_AWARE_SCREENING",
+  "allowed_claim_th": "ผลดาวเทียมที่คัดตามระดับน้ำสนับสนุนการติดตามแนวโน้ม แต่ยังต้องตรวจด้วยโดรนหรือภาคสนาม",
   "erosion_effect_demonstrated": false,
   "satellite": {
     "scene_count": 12,
@@ -12,11 +12,11 @@
       2025,
       2026
     ],
-    "tide_matched_scene_count": 3,
-    "tide_matched_scene_fraction": 0.25,
+    "tide_matched_scene_count": 12,
+    "tide_matched_scene_fraction": 1.0,
     "tide_status_counts": {
-      "predicted_interpolated": 3,
-      "unmatched_no_bracket": 9
+      "modelled_secondary_extrema_cosine": 9,
+      "predicted_interpolated": 3
     }
   },
   "boundary": {
@@ -59,7 +59,6 @@
   },
   "blockers": [
     "exact planting date is not verified",
-    "tide-matched scene coverage is 25.0%; target is at least 80.0%",
     "boundary transects do not cover: 87-VSD",
     "fewer than 2 repeat drone surveys for: 87-VSD, 91-STC, 92-STC, 93-STC, 94-STC, 95-STC, 96-STC, 97-STC, 98-STC",
     "no field boundary observation for: 87-VSD, 91-STC, 92-STC, 93-STC, 94-STC, 95-STC, 96-STC, 97-STC, 98-STC",

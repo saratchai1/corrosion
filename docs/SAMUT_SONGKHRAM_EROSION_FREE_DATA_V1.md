@@ -5,7 +5,7 @@
 Use only:
 
 - free Landsat, Sentinel-2 and supporting Sentinel-1 data;
-- free predicted tide tables or a documented open tide model;
+- free predicted tide tables or a documented open tide source;
 - routine UAV surveys inside project plots; and
 - simple field observations collected during normal site visits.
 
@@ -24,43 +24,73 @@ The existing project already provides:
 - province context from Landsat and Sentinel-2;
 - image-derived water-land boundaries and transects;
 - 43 current plot-crossing transects for `91–98-STC`; and
-- a conservative conclusion of `NOT_DEMONSTRATED` with `LOW` confidence.
+- a conservative conclusion of `NOT_DEMONSTRATED` with `LOW` confidence for erosion effect.
 
-The present blocker is not a lack of satellite imagery. It is that the existing edge is an image-derived water-land boundary, the exact planting date is ambiguous, controls are not designed as coastal controls, UAV/field boundaries are not yet standardized, and `87-VSD` has no comparable transect coverage.
+The present blocker is no longer a lack of tide metadata. It is that the existing boundary is still an image-derived water-land boundary, the exact planting date is ambiguous, controls are not verified as coastal controls, UAV/field boundaries are not yet standardized, and `87-VSD` has no comparable transect coverage.
 
-## Verified tide baseline as of 2026-08-30
+## Tide-aware scene coverage as of 2026-08-30
+
+### Official 2026 hourly baseline
 
 The official Pak Nam Mae Klong 2026 MSL PDF was parsed and validated successfully:
 
 - 8,760 hourly predictions;
 - all 365 days and 24 values per day recovered;
-- source PDF checksum and page-level parsing metadata retained;
-- all three 2026 Sentinel-2 project scenes matched by interpolation; and
-- nine scenes from 2023–2025 left explicitly unmatched.
+- source PDF checksum and page-level parsing metadata retained; and
+- all three 2026 Sentinel-2 project scenes matched by interpolation.
 
-The former official annual PDF URLs for 2023–2025 returned HTTP 404. Missing values were not copied from another year, inferred from a search-result snippet or silently replaced. The resulting tide-matched fraction is 25%, so the evidence level correctly remains `SATELLITE_SCREENING` rather than `TIDE_AWARE_SCREENING`.
+### Secondary 2023–2025 extrema
+
+The former official annual PDF URLs for 2023–2025 returned HTTP 404. All 36 monthly ThailandTideTables pages were therefore collected as a separately identified secondary source, producing 3,608 published high/low extrema:
+
+- 2023: 1,208;
+- 2024: 1,199; and
+- 2025: 1,201.
+
+The source site reports Chart Datum and attributes its data to World Tides and the Hydrographic Department, Royal Thai Navy. Values were converted to candidate MSL using the published Pak Nam Mae Klong offset:
+
+```text
+MSL candidate = published Chart Datum height - 2.14 m
+```
+
+The conversion was validated against the official 2026 hourly MSL series using the 2026 secondary extrema:
+
+- MAE: 0.02215 m;
+- RMSE: 0.02723 m;
+- bias: -0.00040 m;
+- 95th-percentile absolute error: 0.05000 m; and
+- maximum absolute error: 0.07000 m.
+
+The nine previously unmatched 2023–2025 Sentinel-2 scenes were then assigned screening estimates using cosine interpolation between consecutive published extrema. The maximum interpolation bracket used by a project scene is 17.71667 hours. The three official 2026 matches remain unchanged.
+
+The project scene catalog now has tide metadata for 12 of 12 scenes, so the evidence gate is:
+
+```text
+TIDE_AWARE_SCREENING
+```
+
+This does not demonstrate an erosion effect. It means scene comparison now includes traceable tide context, with official and secondary source tiers kept separate.
 
 Versioned outputs:
 
 ```text
 data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv
 data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json
-data/tide/samut_songkhram/pak_nam_mae_klong_source_availability.json
+data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema.csv
+data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema_manifest.json
+data/tide/samut_songkhram/pak_nam_mae_klong_secondary_extrema_2026_validation.json
 data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
 data/processed/project_impact/erosion_readiness.json
 ```
 
-## Work package 1 — complete tide-aware scene coverage
+## Work package 1 — maintain tide-aware scene coverage
 
-1. retain the verified 2026 official MSL baseline;
-2. recover cited official 2023–2025 annual tables where possible, or select one consistent open tide model for all four years;
-3. document station/model, datum or reference convention, coordinates, temporal resolution, version and licence;
-4. validate any open-model series against the official 2026 station predictions before use;
-5. match scene acquisition times using `scripts/match_scene_tides.py`;
-6. retain unmatched scenes explicitly; and
-7. use tide primarily to screen waterline observations, not to manufacture a surveyed shoreline.
-
-Do not lower the configured 80% tide-matched threshold merely to promote the evidence level.
+1. retain the verified official 2026 hourly MSL baseline;
+2. retain the secondary 2023–2025 extrema as a distinct source tier;
+3. preserve source URL, retrieval URL, datum conversion, validation metrics and interpolation brackets;
+4. replace a secondary year with an official annual table if a cited copy is recovered;
+5. never relabel secondary interpolation as an observed or official hourly value; and
+6. use tide primarily to screen waterline observations, not to manufacture a surveyed shoreline.
 
 ## Work package 2 — correct boundary indicators
 
@@ -131,16 +161,15 @@ The analysis team can proceed without new paid instruments, but operations shoul
 ## Current status
 
 ```text
-SATELLITE_SCREENING
+TIDE_AWARE_SCREENING
 ```
 
 Current allowed wording:
 
-> ผลดาวเทียมเป็นการคัดกรองเบื้องต้นและยังไม่ยืนยันผลของการปลูกต่อการกัดเซาะชายฝั่ง
+> ผลดาวเทียมที่คัดตามระดับน้ำสนับสนุนการติดตามแนวโน้ม แต่ยังต้องตรวจด้วยโดรนหรือภาคสนาม
 
 Current major blockers:
 
-- only 3 of 12 project scenes have verified tide metadata;
 - exact planting dates are not verified;
 - `87-VSD` lacks boundary-transect coverage;
 - no standardized repeat UAV or field-boundary records are versioned;
