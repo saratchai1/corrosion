@@ -19,6 +19,19 @@ The project-focused result is **not demonstrated** for reduced coastal erosion, 
 
 See [project impact methodology and results](docs/PROJECT_IMPACT_ANALYSIS.md).
 
+## Free-data erosion upgrade
+
+The free-data implementation separates `MANGROVE_EDGE`, `BANK_EDGE` and `WATERLINE`, matches satellite acquisition times to cited hourly tide predictions, standardizes routine UAV/field metadata, and audits the strongest claim supported by the available evidence.
+
+```bash
+python scripts/match_scene_tides.py
+python scripts/audit_samut_songkhram_erosion_readiness.py
+```
+
+The first command requires a reviewed hourly MSL CSV for Pak Nam Mae Klong under `data/tide/samut_songkhram/`. The second command currently should remain at `SATELLITE_SCREENING` until tide coverage, planting dates, repeat UAV/field boundaries and coastal controls are verified.
+
+See [free-data erosion implementation v1](docs/SAMUT_SONGKHRAM_EROSION_FREE_DATA_V1.md) and [machine-readable analysis configuration](config/samut_songkhram_erosion_free_data_v1.json).
+
 The active implementation branch is `feature/coastal-change-webapp`, based on `data/samut-songkhram-satellite-v1`.
 
 ## Reproduce the MVP
@@ -77,6 +90,8 @@ The deployable static bundle is written to `web/dist/`.
 ## Data and documentation
 
 - [MVP methodology and results](docs/COASTAL_CHANGE_MVP.md)
+- [Project impact methodology and results](docs/PROJECT_IMPACT_ANALYSIS.md)
+- [Free-data erosion implementation](docs/SAMUT_SONGKHRAM_EROSION_FREE_DATA_V1.md)
 - [Download and full data workflow](docs/DOWNLOAD_AND_REPRODUCE.md)
 - [Scientific and operational limitations](docs/DATA_LIMITATIONS.md)
 - [Data sources](docs/DATA_SOURCES.md)

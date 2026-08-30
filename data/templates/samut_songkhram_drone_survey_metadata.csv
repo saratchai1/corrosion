@@ -1,0 +1,1 @@
+survey_id,plot_id,acquisition_datetime_bangkok,flight_plan_id,aircraft,camera,rtk_used,gcp_used,horizontal_rmse_m,vertical_rmse_m,tide_station,predicted_tide_m_msl,orthomosaic_path,boundary_geojson_path,qa_status,notes
