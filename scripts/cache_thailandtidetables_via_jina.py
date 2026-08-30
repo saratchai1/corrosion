@@ -48,7 +48,7 @@ DAY_RE = re.compile(r"^(?:0?[1-9]|[12]\d|3[01])$")
 FLOAT_RE = re.compile(r"^-?\d+(?:\.\d+)?(?:\s*m)?$", re.IGNORECASE)
 MIN_DAY_COVERAGE_FRACTION = 0.70
 MAX_MONTH_EDGE_GAP_DAYS = 2
-MAX_EVENT_GAP_HOURS = 48.0
+MAX_EVENT_GAP_HOURS = 72.0
 
 
 @dataclass(frozen=True)
