@@ -1,0 +1,39 @@
+name: Tide-aware source snapshot
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-tide-aware-edges-v1
+    paths:
+      - '.github/workflows/tide-aware-source-snapshot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Upload repository source
+        uses: actions/upload-artifact@v4
+        with:
+          name: corrosion-source-snapshot
+          path: |
+            .github/**
+            config/**
+            data/**
+            docs/**
+            scripts/**
+            tests/**
+            web/**
+            README.md
+            CHANGELOG.md
+            requirements.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
