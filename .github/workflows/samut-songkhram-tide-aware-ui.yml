@@ -1,0 +1,64 @@
+name: Validate Samut Songkhram tide-aware dashboard
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-tide-aware-ui-v1
+    paths:
+      - '.github/workflows/samut-songkhram-tide-aware-ui.yml'
+      - 'web/src/**'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+      - 'web/public/data/project_tide_aware/**'
+  pull_request:
+    branches:
+      - feature/coastal-change-webapp
+    paths:
+      - 'web/src/**'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+      - 'web/public/data/project_tide_aware/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Validate tide-aware public data
+        run: |
+          node - <<'NODE'
+          const fs = require('fs')
+          const summaryPath = 'web/public/data/project_tide_aware/summary.json'
+          const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'))
+          if (summary.evidence_level !== 'TIDE_AWARE_SCREENING') throw new Error('unexpected evidence level')
+          if (summary.erosion_effect_conclusion !== 'NOT_DEMONSTRATED') throw new Error('claim guard failed')
+          if (summary.coastal_eligibility.screenable_plot_count !== 8) throw new Error('expected 8 screenable plots')
+          if (summary.coastal_eligibility.excluded_plot_ids.join(',') !== '87-VSD') throw new Error('87-VSD eligibility mismatch')
+          for (const year of [2023, 2024, 2025, 2026]) {
+            const image = `web/public/data/project_tide_aware/imagery/${year}_selected.webp`
+            if (!fs.existsSync(image)) throw new Error(`missing ${image}`)
+          }
+          console.log({
+            evidence: summary.evidence_level,
+            plots: summary.coastal_eligibility,
+            tideSpreadM: summary.waterline_scene_selection.tide_spread_m,
+          })
+          NODE
+
+      - name: Install web dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Type-check and build dashboard
+        working-directory: web
+        run: npm run build

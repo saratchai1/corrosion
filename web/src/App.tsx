@@ -2,16 +2,25 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import MapPane from './MapPane'
 import ProjectDashboard from './ProjectDashboard'
 import SwipeCompare from './SwipeCompare'
+import TideAwareDashboard from './TideAwareDashboard'
 import TransectChart from './TransectChart'
-import type { DataIndex, ProjectImpactSummary, Summary, TransectSelection, ViewState } from './types'
+import type {
+  DataIndex,
+  ProjectImpactSummary,
+  Summary,
+  TideAwareSummary,
+  TransectSelection,
+  ViewState,
+} from './types'
 
 const initialView: ViewState = { center: [100.005, 13.345], zoom: 10.7, bearing: 0, pitch: 0 }
 
 export default function App() {
-  const [page, setPage] = useState<'project' | 'coast'>('coast')
+  const [page, setPage] = useState<'project' | 'tide' | 'coast'>('tide')
   const [index, setIndex] = useState<DataIndex | null>(null)
   const [summary, setSummary] = useState<Summary | null>(null)
   const [projectSummary, setProjectSummary] = useState<ProjectImpactSummary | null>(null)
+  const [tideSummary, setTideSummary] = useState<TideAwareSummary | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [yearIndex, setYearIndex] = useState(0)
   const [compare, setCompare] = useState(false)
@@ -26,11 +35,13 @@ export default function App() {
       fetch('data/index.json').then((response) => response.json()),
       fetch('data/summary.json').then((response) => response.json()),
       fetch('data/project/summary.json').then((response) => response.json()),
+      fetch('data/project_tide_aware/summary.json').then((response) => response.json()),
     ])
-      .then(([indexData, summaryData, projectSummaryData]) => {
+      .then(([indexData, summaryData, projectSummaryData, tideSummaryData]) => {
         setIndex(indexData as DataIndex)
         setSummary(summaryData as Summary)
         setProjectSummary(projectSummaryData as ProjectImpactSummary)
+        setTideSummary(tideSummaryData as TideAwareSummary)
         setYearIndex((indexData as DataIndex).epochs.length - 1)
         const prePlantingIndex = (indexData as DataIndex).epochs.findIndex((item) => item.targetYear === 2023)
         setCompareIndex(prePlantingIndex >= 0 ? prePlantingIndex : 0)
@@ -50,15 +61,23 @@ export default function App() {
   ] as const, [])
 
   if (error) return <main className="loading">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>
-  if (!index || !summary || !projectSummary || !epoch || !compareEpoch) return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
+  if (!index || !summary || !projectSummary || !tideSummary || !epoch || !compareEpoch) return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
 
   if (page === 'project') return <ProjectDashboard summary={projectSummary} onOpenCoast={() => setPage('coast')} />
+  if (page === 'tide') return (
+    <TideAwareDashboard
+      summary={tideSummary}
+      onOpenProject={() => setPage('project')}
+      onOpenCoast={() => setPage('coast')}
+    />
+  )
 
   return (
     <main className="app-shell">
       <aside className="sidebar">
         <div className="coast-view-tabs view-tabs" role="tablist" aria-label="เลือกมุมมอง">
           <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงานผล 9 แปลง</button>
+          <button role="tab" aria-selected="false" onClick={() => setPage('tide')}>คุมระดับน้ำ</button>
           <button className="active" role="tab" aria-selected="true">แผนที่ดาวเทียม 10 ปี</button>
         </div>
         <header>
@@ -102,18 +121,19 @@ export default function App() {
           <label className="opacity">ความทึบภาพ / Imagery opacity <strong>{Math.round(opacity * 100)}%</strong><input type="range" min="0" max="1" step="0.05" value={opacity} onChange={(event) => setOpacity(Number(event.target.value))} /><small>ภาพวิเคราะห์ Sentinel-2: 20 ม./พิกเซล · ซูมเกินความละเอียดจะดูนุ่ม</small></label>
         </section>
 
-        {projectSummary && <section className="project-result">
-          <span className="eyebrow">2024 PLANTING ASSESSMENT · LOW CONFIDENCE</span>
-          <h2>ผลเฉพาะ 9 แปลง</h2>
+        <section className="project-result">
+          <span className="eyebrow">TIDE-AWARE SCREENING · 2023–2026</span>
+          <h2>ผลคัดภาพตามระดับน้ำ</h2>
           <strong>ยังไม่พิสูจน์ว่าลดการกัดเซาะ</strong>
-          <p>{projectSummary.conclusion_th}</p>
+          <p>{tideSummary.allowed_claim_th}</p>
           <dl>
-            <div><dt>แปลง</dt><dd>{projectSummary.plot_count}</dd></div>
-            <div><dt>พื้นที่ทางการ</dt><dd>{projectSummary.official_participating_area_rai.toFixed(1)} ไร่</dd></div>
-            <div><dt>NDVI DiD ปี 2026</dt><dd>{projectSummary.difference_in_differences.find((item) => item.post_year === 2026)?.ndvi_difference_in_differences.toFixed(3) ?? '—'}</dd></div>
-            <div><dt>ขอบเขตใน ±20 ม.</dt><dd>{projectSummary.post_boundary_evidence.within_20m_count}/{projectSummary.post_boundary_evidence.transect_count}</dd></div>
+            <div><dt>ระดับน้ำ spread</dt><dd>{tideSummary.waterline_scene_selection.tide_spread_m.toFixed(3)} m</dd></div>
+            <div><dt>หน้าแปลง</dt><dd>{tideSummary.transects.treatment_count} transects</dd></div>
+            <div><dt>Waterline ±20 ม.</dt><dd>{tideSummary.indicators.waterline.class_counts.WITHIN_20M ?? 0}/{tideSummary.indicators.waterline.transect_count}</dd></div>
+            <div><dt>Controls</dt><dd>{tideSummary.controls.selected_count} candidate</dd></div>
           </dl>
-        </section>}
+          <button type="button" onClick={() => setPage('tide')}>เปิดรายงาน tide-aware</button>
+        </section>
 
         {selection ? <TransectChart selection={selection} /> : <section className="empty-chart"><span>03</span><p>คลิกแนว transect บนแผนที่เพื่อดูกราฟตำแหน่งขอบเขตตามเวลา</p><small>Click a transect for its time series.</small></section>}
 
@@ -121,7 +141,7 @@ export default function App() {
           <strong>ข้อจำกัดสำคัญ / Critical limitation</strong>
           <p>{index.disclaimer_th}</p>
           <p>{index.disclaimer_en}</p>
-          <span>ระดับน้ำ: ไม่ผ่านการตรวจสอบ · Tide status: UNVERIFIED</span>
+          <span>แผนที่ 10 ปีเดิม: ระดับน้ำไม่ผ่านการตรวจสอบ · ใช้หน้า tide-aware สำหรับการคัดภาพระดับน้ำใกล้กัน</span>
         </footer>
       </aside>
 
