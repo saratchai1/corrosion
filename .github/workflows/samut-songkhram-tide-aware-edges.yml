@@ -9,9 +9,11 @@ on:
       - 'requirements.txt'
       - 'scripts/download_catalog_assets.py'
       - 'scripts/build_tide_aware_project_edges.py'
+      - 'scripts/classify_samut_songkhram_coastal_eligibility.py'
       - 'scripts/build_coastal_change_mvp.py'
       - 'scripts/download_satellite_data.py'
       - 'tests/test_build_tide_aware_project_edges.py'
+      - 'tests/test_classify_samut_songkhram_coastal_eligibility.py'
       - 'data/aoi/samut_songkhram_project_plots.geojson'
       - 'data/aoi/samut_songkhram_project_analysis_aoi.geojson'
       - 'data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv'
@@ -46,6 +48,7 @@ jobs:
       - name: Run tide-aware unit tests
         run: |
           python -m unittest tests.test_build_tide_aware_project_edges -v
+          python -m unittest tests.test_classify_samut_songkhram_coastal_eligibility -v
 
       - name: Download exact versioned Sentinel-2 inputs
         run: |
@@ -57,6 +60,10 @@ jobs:
       - name: Build waterline, mangrove-edge proxy, transects and candidate controls
         run: |
           python -m scripts.build_tide_aware_project_edges
+
+      - name: Classify project plots by coastal-frontage applicability
+        run: |
+          python -m scripts.classify_samut_songkhram_coastal_eligibility
 
       - name: Validate scientific gates and generated schema
         run: |
@@ -81,8 +88,42 @@ jobs:
               'secondary_published_extrema': 3,
           }
           assert summary['transects']['treatment_count'] > 0
-          assert not summary['transects']['plots_without_treatment_transects'], summary['transects']
           assert summary['controls']['selected_count'] > 0
+
+          eligibility = summary['coastal_eligibility']
+          screenable = set(eligibility['screenable_plot_ids'])
+          excluded = set(eligibility['excluded_plot_ids'])
+          manual_review = set(eligibility['manual_review_plot_ids'])
+          assert screenable == {
+              '91-STC', '92-STC', '93-STC', '94-STC',
+              '95-STC', '96-STC', '97-STC', '98-STC',
+          }, eligibility
+          assert excluded == {'87-VSD'}, eligibility
+          assert not manual_review, eligibility
+          assert eligibility['maximum_frontage_distance_m'] == 3500.0
+
+          missing = set(summary['transects']['plots_without_treatment_transects'])
+          assert missing == {'87-VSD'}, summary['transects']
+          assert set(
+              summary['transects'][
+                  'plots_without_treatment_transects_explained_by_eligibility'
+              ]
+          ) == excluded
+          assert not summary['transects']['unresolved_missing_treatment_plot_ids']
+
+          with (root / 'plot_coastal_eligibility.csv').open(
+              newline='', encoding='utf-8'
+          ) as handle:
+              eligibility_rows = list(csv.DictReader(handle))
+          assert len(eligibility_rows) == 9
+          eligibility_by_plot = {row['plot_id']: row for row in eligibility_rows}
+          assert float(
+              eligibility_by_plot['87-VSD']['distance_to_2026_waterline_m']
+          ) > 3500.0
+          assert (
+              eligibility_by_plot['87-VSD']['coastal_erosion_scope']
+              == 'EXCLUDED_FROM_COASTAL_SCREENING'
+          )
 
           with (root / 'transect_metrics.csv').open(newline='', encoding='utf-8') as handle:
               metrics = list(csv.DictReader(handle))
@@ -94,8 +135,9 @@ jobs:
           with (root / 'candidate_controls.csv').open(newline='', encoding='utf-8') as handle:
               controls = list(csv.DictReader(handle))
           counts = Counter(row['plot_id'] for row in controls)
-          assert set(counts) == set(summary['plot_ids']), counts
+          assert set(counts) == screenable, counts
           assert min(counts.values()) >= 1, counts
+          assert not summary['controls']['screenable_plots_without_candidate_controls']
 
           for year in (2023, 2024, 2025, 2026):
               assert (root / 'waterline' / f'{year}.geojson').exists()
@@ -106,6 +148,7 @@ jobs:
               'scene_selection': selection['selected_scenes'],
               'tide_spread_m': selection['tide_spread_m'],
               'treatment_count_by_plot': summary['transects']['treatment_count_by_plot'],
+              'coastal_eligibility': eligibility,
               'candidate_controls_by_plot': dict(counts),
               'waterline': summary['indicators']['waterline'],
               'mangrove_edge_proxy': summary['indicators']['mangrove_edge_proxy'],
