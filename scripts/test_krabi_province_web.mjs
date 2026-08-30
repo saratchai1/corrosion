@@ -2,23 +2,60 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const baseUrl = process.env.KRABI_WEB_URL || 'http://127.0.0.1:4173';
+const baseUrl = (process.env.KRABI_WEB_URL || 'http://127.0.0.1:4173').replace(/\/$/, '');
 const outDir = process.env.KRABI_E2E_OUT || 'artifacts/krabi-web-e2e';
+const isProductionWrapper = /vercel\.app$/i.test(new URL(baseUrl).hostname);
+const dashboardUrl = `${baseUrl}${isProductionWrapper ? '/province-overview.html' : '/index.html'}`;
+const beforeAfterUrl = `${baseUrl}${isProductionWrapper ? '/' : '/before-after-map.html'}`;
+const dsasUrl = `${baseUrl}/published-dsas.html`;
+const wrongProvincePattern = /สมุทรสงคราม|สมุทรสาคร|ระยอง/;
+
 await fs.mkdir(outDir, { recursive: true });
 
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
 const consoleErrors = [];
 page.on('console', (message) => {
-  if (message.type() === 'error') consoleErrors.push(message.text());
+  if (message.type() !== 'error') return;
+  const text = message.text();
+  if (
+    text.includes('favicon.ico') ||
+    text.includes('server.arcgisonline.com') ||
+    text.includes('Failed to load resource: net::ERR_BLOCKED_BY_CLIENT')
+  ) return;
+  consoleErrors.push(text);
 });
 page.on('pageerror', (error) => consoleErrors.push(error.message));
 
-const report = { baseUrl, dashboard: {}, beforeAfter: {}, dsas: {}, consoleErrors };
+const report = {
+  baseUrl,
+  dashboardUrl,
+  beforeAfterUrl,
+  dsasUrl,
+  dashboard: {},
+  beforeAfter: {},
+  dsas: {},
+  consoleErrors,
+};
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+async function setRange(selector, value) {
+  await page.locator(selector).evaluate((element, nextValue) => {
+    element.value = String(nextValue);
+    element.dispatchEvent(new Event('input', { bubbles: true }));
+  }, value);
+}
 
 try {
-  await page.goto(`${baseUrl}/index.html`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
-  await page.waitForFunction(() => window.__KRABI_DASHBOARD_TEST__?.ready === true, null, { timeout: 60_000 });
+  await page.goto(dashboardUrl, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+  await page.waitForFunction(
+    () => window.__KRABI_DASHBOARD_TEST__?.ready === true,
+    undefined,
+    { timeout: 120_000 },
+  );
 
   const dashboard = await page.evaluate(() => {
     const state = window.__KRABI_DASHBOARD_TEST__;
@@ -27,95 +64,157 @@ try {
     const stage = document.getElementById('compareStage');
     return {
       state: JSON.parse(JSON.stringify(state)),
-      before: { src: before.currentSrc || before.src, width: before.naturalWidth, height: before.naturalHeight },
-      after: { src: after.currentSrc || after.src, width: after.naturalWidth, height: after.naturalHeight },
+      title: document.title,
+      heading: document.querySelector('h1')?.textContent?.trim() || '',
+      bodyText: document.body.innerText,
+      before: {
+        src: before.currentSrc || before.src,
+        width: before.naturalWidth,
+        height: before.naturalHeight,
+      },
+      after: {
+        src: after.currentSrc || after.src,
+        width: after.naturalWidth,
+        height: after.naturalHeight,
+      },
       split: getComputedStyle(stage).getPropertyValue('--split').trim(),
       clipPath: getComputedStyle(after).clipPath,
-      mapLink: document.querySelector('a[href="before-after-map.html"]')?.textContent?.trim()
+      latestDataDate: document.getElementById('latestDataDate')?.textContent?.trim(),
+      mapLink: document.querySelector('a[href="before-after-map.html"]')?.textContent?.trim(),
     };
   });
 
-  if (!dashboard.mapLink) throw new Error('Province dashboard has no link to the before-after map');
-  if (dashboard.before.src === dashboard.after.src) throw new Error('Before and after image URLs are identical');
-  if (dashboard.before.width !== 1900 || dashboard.before.height !== 2350) throw new Error(`Unexpected before dimensions: ${dashboard.before.width}x${dashboard.before.height}`);
-  if (dashboard.after.width !== 1900 || dashboard.after.height !== 2350) throw new Error(`Unexpected after dimensions: ${dashboard.after.width}x${dashboard.after.height}`);
+  assert(dashboard.state.province === 'Krabi', `Dashboard province is ${dashboard.state.province}`);
+  assert(dashboard.state.beforeYear === 2018 && dashboard.state.afterYear === 2026,
+    `Unexpected dashboard pair ${dashboard.state.beforeYear}-${dashboard.state.afterYear}`);
+  assert(dashboard.state.manifest?.current_year_status === 'VALIDATED_SENTINEL2_L2A_YEAR_TO_DATE',
+    `Unexpected current-year status ${dashboard.state.manifest?.current_year_status}`);
+  assert(/^2026-/.test(dashboard.state.latestDataThrough || ''),
+    `Latest data date is not in 2026: ${dashboard.state.latestDataThrough}`);
+  assert(dashboard.mapLink, 'Province dashboard has no link to the before-after map');
+  assert(/กระบี่|Krabi/i.test(`${dashboard.title} ${dashboard.heading}`), 'Dashboard is not identified as Krabi');
+  assert(!wrongProvincePattern.test(dashboard.bodyText), 'Dashboard still contains another province name');
+  assert(dashboard.before.src !== dashboard.after.src, 'Before and after image URLs are identical');
+  assert(dashboard.after.src.includes('krabi_province_s2_2026_ytd.jpg'),
+    `Dashboard does not load the 2026 YTD asset: ${dashboard.after.src}`);
+  assert(dashboard.before.width === 1900 && dashboard.before.height === 2350,
+    `Unexpected before dimensions ${dashboard.before.width}x${dashboard.before.height}`);
+  assert(dashboard.after.width === 1900 && dashboard.after.height === 2350,
+    `Unexpected after dimensions ${dashboard.after.width}x${dashboard.after.height}`);
 
-  const clipBefore = dashboard.clipPath;
-  await page.locator('#compareRange').fill('18');
-  await page.waitForTimeout(250);
-  const sliderResult = await page.evaluate(() => ({
+  const dashboardClipBefore = dashboard.clipPath;
+  await setRange('#compareRange', 18);
+  await page.waitForFunction(
+    () => getComputedStyle(document.getElementById('compareStage')).getPropertyValue('--split').trim() === '18%',
+  );
+  const dashboardSlider = await page.evaluate(() => ({
     split: getComputedStyle(document.getElementById('compareStage')).getPropertyValue('--split').trim(),
     clipPath: getComputedStyle(document.getElementById('afterImage')).clipPath,
-    label: document.getElementById('splitValue').textContent
+    label: document.getElementById('splitValue').textContent,
   }));
-  if (sliderResult.clipPath === clipBefore) throw new Error('Slider did not change after-image clip-path');
-  if (sliderResult.split !== '18%') throw new Error(`Slider CSS split is ${sliderResult.split}, expected 18%`);
-  report.dashboard = { ...dashboard, sliderResult };
-  await page.screenshot({ path: path.join(outDir, 'province-dashboard.png'), fullPage: true });
+  assert(dashboardSlider.clipPath !== dashboardClipBefore, 'Dashboard slider did not change clip-path');
+  assert(dashboardSlider.split === '18%', `Dashboard split is ${dashboardSlider.split}`);
 
-  await page.goto(`${baseUrl}/before-after-map.html`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
-  await page.waitForFunction(() => window.__KRABI_BEFORE_AFTER_TEST__?.ready === true, null, { timeout: 90_000 });
+  await page.selectOption('#beforeYear', '2024');
+  await page.waitForFunction(
+    () => window.__KRABI_DASHBOARD_TEST__?.ready === true &&
+      window.__KRABI_DASHBOARD_TEST__?.beforeYear === 2024 &&
+      window.__KRABI_DASHBOARD_TEST__?.afterYear === 2026,
+    undefined,
+    { timeout: 120_000 },
+  );
+
+  report.dashboard = { ...dashboard, dashboardSlider };
+  await page.screenshot({ path: path.join(outDir, 'province-dashboard-2026.png'), fullPage: true });
+
+  await page.goto(beforeAfterUrl, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+  await page.waitForFunction(
+    () => window.__KRABI_BEFORE_AFTER_TEST__?.ready === true,
+    undefined,
+    { timeout: 120_000 },
+  );
 
   const mapInitial = await page.evaluate(() => {
     const state = window.__KRABI_BEFORE_AFTER_TEST__;
     const viewport = document.getElementById('afterViewport');
     return {
       state: JSON.parse(JSON.stringify(state)),
+      title: document.title,
+      heading: document.querySelector('h1')?.textContent?.trim() || '',
+      bodyText: document.body.innerText,
       clipPath: getComputedStyle(viewport).clipPath,
       beforeLabel: document.getElementById('beforeLabel').textContent,
       afterLabel: document.getElementById('afterLabel').textContent,
-      leafletMaps: document.querySelectorAll('.leaflet-container').length
+      latestMetric: document.getElementById('latestMetric')?.textContent?.trim(),
+      leafletMaps: document.querySelectorAll('.leaflet-container').length,
     };
   });
 
-  if (mapInitial.state.beforeYear !== 2018 || mapInitial.state.afterYear !== 2024) {
-    throw new Error(`Unexpected initial map pair: ${mapInitial.state.beforeYear}-${mapInitial.state.afterYear}`);
-  }
-  if (mapInitial.state.imageDimensions?.[0] !== 1900 || mapInitial.state.imageDimensions?.[1] !== 2350) {
-    throw new Error(`Unexpected swipe-map image dimensions: ${mapInitial.state.imageDimensions}`);
-  }
-  if (mapInitial.leafletMaps !== 2) throw new Error(`Expected two synchronized Leaflet maps, found ${mapInitial.leafletMaps}`);
-  if (!(mapInitial.state.mapSync?.delta <= 1e-7)) throw new Error(`Initial maps are not synchronized: ${mapInitial.state.mapSync?.delta}`);
+  assert(mapInitial.state.province === 'Krabi', `Swipe-map province is ${mapInitial.state.province}`);
+  assert(mapInitial.state.beforeYear === 2018 && mapInitial.state.afterYear === 2026,
+    `Unexpected initial map pair ${mapInitial.state.beforeYear}-${mapInitial.state.afterYear}`);
+  assert(mapInitial.state.currentYearStatus === 'VALIDATED_SENTINEL2_L2A_YEAR_TO_DATE',
+    `Unexpected map current-year status ${mapInitial.state.currentYearStatus}`);
+  assert(/^2026-/.test(mapInitial.state.latestDataThrough || ''),
+    `Map latest date is not in 2026: ${mapInitial.state.latestDataThrough}`);
+  assert(mapInitial.state.imageDimensions?.[0] === 1900 && mapInitial.state.imageDimensions?.[1] === 2350,
+    `Unexpected swipe-map image dimensions ${mapInitial.state.imageDimensions}`);
+  assert(mapInitial.leafletMaps === 2, `Expected two Leaflet maps, found ${mapInitial.leafletMaps}`);
+  assert(mapInitial.state.mapSync?.delta <= 1e-7,
+    `Initial maps are not synchronized: ${mapInitial.state.mapSync?.delta}`);
+  assert(/กระบี่|Krabi/i.test(`${mapInitial.title} ${mapInitial.heading}`), 'Swipe map is not identified as Krabi');
+  assert(!wrongProvincePattern.test(mapInitial.bodyText), 'Swipe map still contains another province name');
+  assert(/2026/.test(mapInitial.afterLabel), `After label is not 2026: ${mapInitial.afterLabel}`);
 
-  const initialClip = mapInitial.clipPath;
-  await page.locator('#compareRange').fill('23');
-  await page.waitForTimeout(250);
+  const mapClipBefore = mapInitial.clipPath;
+  await setRange('#compareRange', 23);
+  await page.waitForFunction(() => window.__KRABI_BEFORE_AFTER_TEST__?.split === 23);
   const splitResult = await page.evaluate(() => ({
     split: window.__KRABI_BEFORE_AFTER_TEST__.split,
     clipPath: getComputedStyle(document.getElementById('afterViewport')).clipPath,
-    readout: document.getElementById('splitReadout').textContent
+    readout: document.getElementById('splitReadout').textContent,
   }));
-  if (splitResult.split !== 23) throw new Error(`Swipe map split is ${splitResult.split}, expected 23`);
-  if (splitResult.clipPath === initialClip) throw new Error('Swipe map clip-path did not change');
+  assert(splitResult.split === 23, `Swipe-map split is ${splitResult.split}`);
+  assert(splitResult.clipPath !== mapClipBefore, 'Swipe-map clip-path did not change');
 
-  await page.locator('[data-pair="2020-2024"]').click();
-  await page.waitForFunction(() => {
-    const state = window.__KRABI_BEFORE_AFTER_TEST__;
-    return state?.ready === true && state.beforeYear === 2020 && state.afterYear === 2024;
-  }, null, { timeout: 90_000 });
+  await page.selectOption('#beforeYear', '2020');
+  await page.waitForFunction(
+    () => window.__KRABI_BEFORE_AFTER_TEST__?.ready === true &&
+      window.__KRABI_BEFORE_AFTER_TEST__?.beforeYear === 2020 &&
+      window.__KRABI_BEFORE_AFTER_TEST__?.afterYear === 2026,
+    undefined,
+    { timeout: 120_000 },
+  );
 
-  await page.locator('#viewKhlongThom').click();
-  await page.waitForTimeout(800);
-  const viewResult = await page.evaluate(() => JSON.parse(JSON.stringify(window.__KRABI_BEFORE_AFTER_TEST__)));
-  if (viewResult.view !== 'khlong-thom') throw new Error(`View button did not switch to Khlong Thom: ${viewResult.view}`);
-  if (!(viewResult.mapSync?.delta <= 1e-7)) throw new Error(`Maps diverged after fitBounds: ${viewResult.mapSync?.delta}`);
+  await page.check('#showDsas');
+  await page.waitForFunction(
+    () => window.__KRABI_BEFORE_AFTER_TEST__?.dsasLoaded === true &&
+      window.__KRABI_BEFORE_AFTER_TEST__?.dsasVisible === true &&
+      window.__KRABI_BEFORE_AFTER_TEST__?.dsasCount === 666,
+    undefined,
+    { timeout: 90_000 },
+  );
 
-  await page.locator('#showDsas').check();
-  await page.waitForFunction(() => {
-    const state = window.__KRABI_BEFORE_AFTER_TEST__;
-    return state?.dsasLoaded === true && state.dsasVisible === true;
-  }, null, { timeout: 90_000 });
-  const dsasOverlayResult = await page.evaluate(() => ({
-    count: window.__KRABI_BEFORE_AFTER_TEST__.dsasCount,
-    visible: window.__KRABI_BEFORE_AFTER_TEST__.dsasVisible
-  }));
-  if (dsasOverlayResult.count !== 666) throw new Error(`Swipe-map DSAS layer has ${dsasOverlayResult.count} points`);
+  await page.click('#viewKhlongThom');
+  await page.waitForFunction(() => window.__KRABI_BEFORE_AFTER_TEST__?.view === 'khlong-thom');
+  await page.waitForTimeout(500);
+  const mapFinal = await page.evaluate(() => JSON.parse(JSON.stringify(window.__KRABI_BEFORE_AFTER_TEST__)));
+  assert(mapFinal.ready === true, 'Final swipe-map state is not ready');
+  assert(mapFinal.beforeYear === 2020 && mapFinal.afterYear === 2026,
+    `Unexpected final pair ${mapFinal.beforeYear}-${mapFinal.afterYear}`);
+  assert(mapFinal.dsasCount === 666, `DSAS count is ${mapFinal.dsasCount}`);
+  assert(mapFinal.error === null, `Swipe-map error: ${mapFinal.error}`);
+  assert(mapFinal.mapSync?.delta <= 1e-7, `Maps diverged: ${mapFinal.mapSync?.delta}`);
 
-  report.beforeAfter = { mapInitial, splitResult, viewResult, dsasOverlayResult };
-  await page.screenshot({ path: path.join(outDir, 'before-after-map.png'), fullPage: true });
+  report.beforeAfter = { mapInitial, splitResult, mapFinal };
+  await page.screenshot({ path: path.join(outDir, 'before-after-map-2026.png'), fullPage: true });
 
-  await page.goto(`${baseUrl}/published-dsas.html`, { waitUntil: 'domcontentloaded', timeout: 60_000 });
-  await page.waitForFunction(() => window.__KRABI_DSAS_TEST__?.ready === true, null, { timeout: 60_000 });
+  await page.goto(dsasUrl, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+  await page.waitForFunction(
+    () => window.__KRABI_DSAS_TEST__?.ready === true,
+    undefined,
+    { timeout: 90_000 },
+  );
   const dsas = await page.evaluate(() => {
     const state = window.__KRABI_DSAS_TEST__;
     const canvas = document.getElementById('mapCanvas');
@@ -126,38 +225,35 @@ try {
         drawnCount: state.drawnCount,
         selectedTransectId: state.selectedTransectId,
         imageDimensions: state.imageDimensions,
-        error: state.error
+        error: state.error,
       })),
+      bodyText: document.body.innerText,
       canvas: { width: canvas.width, height: canvas.height },
-      visibleText: document.getElementById('visibleCount').textContent,
-      selectedRate: document.getElementById('selectedRate').textContent
     };
   });
+  assert(dsas.state.featureCount === 666, `DSAS feature count is ${dsas.state.featureCount}`);
+  assert(dsas.state.drawnCount === 666, `DSAS drawn count is ${dsas.state.drawnCount}`);
+  assert(dsas.state.selectedTransectId, 'No DSAS feature selected after initialization');
+  assert(dsas.state.imageDimensions?.[0] === 1900 && dsas.state.imageDimensions?.[1] === 2350,
+    `Unexpected DSAS background dimensions ${dsas.state.imageDimensions}`);
+  assert(dsas.canvas.width >= 500 && dsas.canvas.height >= 500,
+    `DSAS canvas is too small ${dsas.canvas.width}x${dsas.canvas.height}`);
+  assert(!wrongProvincePattern.test(dsas.bodyText), 'DSAS page contains another province name');
 
-  if (dsas.state.featureCount !== 666) throw new Error(`DSAS feature count is ${dsas.state.featureCount}, expected 666`);
-  if (dsas.state.drawnCount !== 666) throw new Error(`DSAS drawn count is ${dsas.state.drawnCount}, expected 666`);
-  if (!dsas.state.selectedTransectId) throw new Error('No DSAS feature was selected after initialization');
-  if (dsas.state.imageDimensions?.[0] !== 1900 || dsas.state.imageDimensions?.[1] !== 2350) throw new Error(`Unexpected DSAS background dimensions: ${dsas.state.imageDimensions}`);
-  if (dsas.canvas.width < 500 || dsas.canvas.height < 500) throw new Error(`DSAS canvas is too small: ${dsas.canvas.width}x${dsas.canvas.height}`);
-
-  await page.locator('#showRetreat').click();
+  await page.click('#showRetreat');
   await page.waitForTimeout(200);
   const retreatCount = await page.evaluate(() => window.__KRABI_DSAS_TEST__.drawnCount);
-  if (!(retreatCount > 0 && retreatCount < 666)) throw new Error(`Retreat filter returned invalid count: ${retreatCount}`);
-  await page.locator('#showAll').click();
+  assert(retreatCount > 0 && retreatCount < 666, `Invalid retreat filter count ${retreatCount}`);
+  await page.click('#showAll');
   await page.locator('.hotspot').first().click();
   await page.waitForTimeout(200);
   const selectedAfterClick = await page.evaluate(() => window.__KRABI_DSAS_TEST__.selectedTransectId);
-  if (!selectedAfterClick) throw new Error('Hotspot click did not select a transect');
+  assert(selectedAfterClick, 'Hotspot click did not select a transect');
 
   report.dsas = { ...dsas, retreatFilterCount: retreatCount, selectedAfterClick };
   await page.screenshot({ path: path.join(outDir, 'published-dsas.png'), fullPage: true });
 
-  const fatalErrors = consoleErrors.filter((value) =>
-    !value.includes('favicon.ico') &&
-    !value.includes('Failed to load resource: net::ERR_BLOCKED_BY_CLIENT')
-  );
-  if (fatalErrors.length) throw new Error(`Browser console errors: ${fatalErrors.join(' | ')}`);
+  assert(consoleErrors.length === 0, `Browser console errors: ${consoleErrors.join(' | ')}`);
   report.status = 'PASS';
 } catch (error) {
   report.status = 'FAIL';
