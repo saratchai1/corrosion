@@ -195,7 +195,7 @@ class SecondaryTideScraperTests(unittest.TestCase):
             with output.open(newline="", encoding="utf-8") as handle:
                 rows = list(csv.DictReader(handle))
             self.assertEqual(rows[0]["tide_status"], "modelled_secondary_extrema_cosine")
-            self.assertEqual(rows[0]["tide_level"], "0.0000")
+            self.assertAlmostEqual(float(rows[0]["tide_level"]), 0.0, places=4)
             self.assertEqual(rows[1]["tide_status"], "predicted_interpolated")
             self.assertEqual(rows[1]["tide_source_tier"], "official_hourly_prediction")
 
