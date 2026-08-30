@@ -58,3 +58,11 @@ jobs:
           test -f web/dist/client/data/project_tide_aware/imagery/2026_selected.webp
           du -sh web/dist/client
           find web/dist/client -type f | wc -l
+
+      - name: Upload preview bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-evidence-web-v2
+          path: web/dist/client/**
+          if-no-files-found: error
+          retention-days: 3
