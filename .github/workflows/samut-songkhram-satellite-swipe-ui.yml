@@ -1,0 +1,82 @@
+name: Validate Samut Songkhram satellite swipe dashboard
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-satellite-swipe-v1
+    paths:
+      - 'web/src/TideAwareDashboard.tsx'
+      - 'web/src/tideAwareSwipe.css'
+      - 'web/src/types.ts'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+      - 'web/public/data/project_tide_aware/**'
+      - '.github/workflows/samut-songkhram-satellite-swipe-ui.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Validate real satellite comparison inputs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('web/public/data/project_tide_aware')
+          summary = json.loads((root / 'summary.json').read_text(encoding='utf-8'))
+
+          assert summary['evidence_level'] == 'TIDE_AWARE_SCREENING'
+          assert summary['erosion_effect_conclusion'] == 'NOT_DEMONSTRATED'
+          assert summary['waterline_scene_selection']['status'] == 'ACCEPTABLE_FOR_TIDE_AWARE_SCREENING'
+          assert summary['waterline_scene_selection']['tide_spread_m'] <= 0.40
+
+          scenes = summary['waterline_scene_selection']['selected_scenes']
+          assert [scene['year'] for scene in scenes] == [2023, 2024, 2025, 2026]
+          for scene in scenes:
+              image = root / 'imagery' / f"{scene['year']}_selected.webp"
+              assert image.exists(), image
+              assert image.stat().st_size > 10_000, image
+              assert scene['tide_level_m_msl'] is not None
+
+          component = Path('web/src/TideAwareDashboard.tsx').read_text(encoding='utf-8')
+          required = [
+              'SatelliteSwipe',
+              'ภาพก่อน–หลัง',
+              'data/project_tide_aware/imagery/',
+              'ยังไม่พิสูจน์',
+              'Mean Sea Level',
+          ]
+          for token in required:
+              assert token in component, token
+
+          print(json.dumps({
+              'years': [scene['year'] for scene in scenes],
+              'tides_m_msl': [scene['tide_level_m_msl'] for scene in scenes],
+              'tide_spread_m': summary['waterline_scene_selection']['tide_spread_m'],
+              'waterline_counts': summary['indicators']['waterline']['class_counts'],
+              'mangrove_proxy_counts': summary['indicators']['mangrove_edge_proxy']['class_counts'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Install web dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Type-check and build dashboard
+        working-directory: web
+        run: npm run build
