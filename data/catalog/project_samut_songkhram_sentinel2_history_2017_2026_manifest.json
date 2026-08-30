@@ -1,0 +1,37 @@
+{
+  "generated_at_utc": "2026-08-30T14:01:12.601080+00:00",
+  "output": "data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv",
+  "source_historical_catalog": "data/catalog/mvp_optical_scenes.csv",
+  "source_current_catalog": "data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv",
+  "historical_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "current_years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "candidate_count_per_year": {
+    "2017": 3,
+    "2018": 3,
+    "2019": 3,
+    "2020": 3,
+    "2021": 3,
+    "2022": 3,
+    "2023": 3,
+    "2024": 3,
+    "2025": 3,
+    "2026": 3
+  },
+  "scene_count": 30,
+  "historical_scene_count": 18,
+  "current_scene_count": 12,
+  "selection_rule": "For 2017-2022, choose up to three January-April Sentinel-2 rows from the existing versioned MVP catalog, ranked by AOI cloud and scene cloud. Preserve the existing 2023-2026 project catalog rows.",
+  "scientific_limit": "This file only versions candidate imagery. Historical WATERLINE use still requires validated tide metadata and per-year acceptance."
+}
