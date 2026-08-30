@@ -1,0 +1,197 @@
+name: Build official Mae Klong tide catalog
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-rtn-tide-catalog-v1
+    paths:
+      - '.github/workflows/samut-songkhram-rtn-tide-catalog.yml'
+      - 'requirements.txt'
+      - 'scripts/build_rtn_mae_klong_tide_catalog.py'
+      - 'scripts/match_scene_tides.py'
+      - 'scripts/audit_samut_songkhram_erosion_readiness.py'
+      - 'tests/test_build_rtn_mae_klong_tide_catalog.py'
+      - 'tests/test_match_scene_tides.py'
+      - 'tests/test_audit_samut_songkhram_erosion_readiness.py'
+      - 'config/samut_songkhram_erosion_free_data_v1.json'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes.csv'
+      - 'data/processed/project_impact/summary.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-rtn-tide-catalog-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-verified-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tide parser dependencies
+        run: |
+          python -m pip install --disable-pip-version-check \
+            'requests>=2.32,<3' \
+            'pdfplumber>=0.11,<1'
+
+      - name: Run tide and evidence unit tests
+        run: |
+          python -m unittest tests.test_build_rtn_mae_klong_tide_catalog -v
+          python -m unittest tests.test_match_scene_tides -v
+          python -m unittest tests.test_audit_samut_songkhram_erosion_readiness -v
+
+      - name: Build the currently available official 2026 MSL catalog
+        run: |
+          python scripts/build_rtn_mae_klong_tide_catalog.py \
+            --years 2026 \
+            --refresh
+
+      - name: Match the project scene catalog
+        run: |
+          python scripts/match_scene_tides.py \
+            --scene-catalog data/catalog/project_samut_songkhram_sentinel2_scenes.csv \
+            --tide-csv data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv \
+            --output data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
+
+      - name: Rebuild evidence-readiness audit
+        run: python scripts/audit_samut_songkhram_erosion_readiness.py
+
+      - name: Record official source availability
+        run: |
+          cat > data/tide/samut_songkhram/pak_nam_mae_klong_source_availability.json <<'JSON'
+          {
+            "checked_at_utc": "2026-08-30T00:00:00Z",
+            "station_name": "Pak Nam Mae Klong",
+            "datum": "MSL",
+            "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
+            "years": {
+              "2023": {
+                "status": "OFFICIAL_PDF_URL_UNAVAILABLE",
+                "handling": "SCENES_LEFT_UNMATCHED",
+                "note": "Legacy Hydrographic Department URL variants returned HTTP 404; bounded Internet Archive searches found no copy."
+              },
+              "2024": {
+                "status": "OFFICIAL_PDF_URL_UNAVAILABLE",
+                "handling": "SCENES_LEFT_UNMATCHED",
+                "note": "Legacy Hydrographic Department URL variants returned HTTP 404; bounded Internet Archive searches found no copy."
+              },
+              "2025": {
+                "status": "OFFICIAL_PDF_URL_UNAVAILABLE",
+                "handling": "SCENES_LEFT_UNMATCHED",
+                "note": "The previously indexed Hydrographic Department MSL URL now returns HTTP 404."
+              },
+              "2026": {
+                "status": "OFFICIAL_PDF_AVAILABLE",
+                "handling": "HOURLY_TABLE_PARSED_AND_SCENES_MATCHED",
+                "source_url": "https://hydro.navy.mi.th/storage/frontend/article/23009/file/th/MK2026mls.pdf"
+              }
+            },
+            "policy": "No missing year is filled from another year, an uncited table, or a search-result snippet."
+          }
+          JSON
+
+      - name: Validate the baseline evidence
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          tide_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv')
+          manifest_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json')
+          availability_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_source_availability.json')
+          matched_path = Path('data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv')
+          readiness_path = Path('data/processed/project_impact/erosion_readiness.json')
+
+          with tide_path.open(newline='', encoding='utf-8') as handle:
+              tides = list(csv.DictReader(handle))
+          assert len(tides) == 8760, len(tides)
+          assert {row['source_year'] for row in tides} == {'2026'}
+          assert {row['datum'] for row in tides} == {'MSL'}
+          assert all(row['source_url'].startswith('https://hydro.navy.mi.th/') for row in tides)
+          assert all(row['qa_status'] == 'official_pdf_parsed_word_coordinates' for row in tides)
+
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          assert manifest['years'] == [2026]
+          assert manifest['row_count'] == 8760
+          assert manifest['observed'] is False
+          assert len(manifest['sources']) == 1
+          assert manifest['sources'][0]['hour_count'] == 8760
+          assert len(manifest['sources'][0]['sha256']) == 64
+
+          availability = json.loads(availability_path.read_text(encoding='utf-8'))
+          assert availability['years']['2026']['status'] == 'OFFICIAL_PDF_AVAILABLE'
+          assert all(
+              availability['years'][str(year)]['status'] == 'OFFICIAL_PDF_URL_UNAVAILABLE'
+              for year in (2023, 2024, 2025)
+          )
+
+          with matched_path.open(newline='', encoding='utf-8') as handle:
+              scenes = list(csv.DictReader(handle))
+          assert len(scenes) == 12, len(scenes)
+          matched = [row for row in scenes if row['tide_status'].startswith('predicted_')]
+          unmatched = [row for row in scenes if not row['tide_status'].startswith('predicted_')]
+          assert len(matched) == 3, len(matched)
+          assert len(unmatched) == 9, len(unmatched)
+          assert {row['acquisition_datetime_utc'][:4] for row in matched} == {'2026'}
+          assert {row['acquisition_datetime_utc'][:4] for row in unmatched} == {'2023', '2024', '2025'}
+          assert all(row['tide_level'] for row in matched)
+          assert all(row['tide_datum'] == 'MSL' for row in matched)
+
+          readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
+          assert readiness['evidence_level'] == 'SATELLITE_SCREENING'
+          assert readiness['satellite']['scene_count'] == 12
+          assert readiness['satellite']['tide_matched_scene_count'] == 3
+          assert readiness['satellite']['tide_matched_scene_fraction'] == 0.25
+          assert readiness['erosion_effect_demonstrated'] is False
+
+          print(json.dumps({
+              'official_tide_rows': len(tides),
+              'matched_scenes': len(matched),
+              'unmatched_scenes': len(unmatched),
+              'evidence_level': readiness['evidence_level'],
+              'remaining_gap': '2023-2025 tide source or one consistent open tide model',
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit the verified baseline
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv \
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_source_availability.json \
+            data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
+            data/processed/project_impact/erosion_readiness.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'data: add verified 2026 Mae Klong tide matches'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload baseline evidence and parser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-mae-klong-tide-baseline
+          path: |
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json
+            data/tide/samut_songkhram/pak_nam_mae_klong_source_availability.json
+            data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
+            data/processed/project_impact/erosion_readiness.json
+            .cache/rtn_tides/samut_songkhram/**
+          if-no-files-found: warn
+          retention-days: 30
