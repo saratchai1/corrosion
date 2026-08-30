@@ -11,15 +11,26 @@ This directory stores **free, cited tide predictions** used to screen satellite 
 
 Use the official Mean Sea Level table where available. Do not mix MSL and Lowest Low Water values in one time series without a documented datum conversion.
 
-## Required CSV
+## Build the official 2023–2026 hourly catalog
 
-Create:
+The repository can download the annual official station PDFs, resolve archived URL variants, parse the 12 monthly hourly tables, and validate the expected number of hours per year:
+
+```bash
+python scripts/build_rtn_mae_klong_tide_catalog.py --refresh
+```
+
+This creates:
 
 ```text
 data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv
+data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json
 ```
 
-with this schema:
+The manifest records each resolved PDF URL, SHA-256 checksum, page count, parsed hour count, tide range, and URL attempts. A year is rejected if the parser cannot recover every expected day and all 24 hourly values per day.
+
+The generated values are harmonic **predictions**, not observations at the planting plots. They are retained at one-hour resolution in Thailand local time.
+
+## Required CSV schema
 
 ```csv
 datetime_bangkok,tide_m_msl,station_name,datum,source_url,source_year,qa_status
@@ -28,12 +39,12 @@ datetime_bangkok,tide_m_msl,station_name,datum,source_url,source_year,qa_status
 Rules:
 
 1. one row per full local hour;
-2. use ISO-8601 time, preferably with `+07:00`;
-3. record the exact source PDF URL and year;
-4. retain transcription or parsing QA status;
+2. use ISO-8601 time with `+07:00`;
+3. record the exact resolved official PDF URL and year;
+4. retain parsing QA status;
 5. never label predicted tide as an observed local water level.
 
-The header-only template is `pak_nam_mae_klong_hourly_msl_template.csv`.
+The header-only fallback template is `pak_nam_mae_klong_hourly_msl_template.csv`.
 
 ## Match to satellite catalog
 
