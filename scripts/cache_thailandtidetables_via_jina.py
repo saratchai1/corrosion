@@ -3,12 +3,14 @@
 
 ThailandTideTables returns HTTP 403 to GitHub-hosted runners. Jina Reader can
 retrieve the public page and expose its table as Markdown. This utility parses
-that Markdown, validates every calendar day, and writes a minimal synthetic
-HTML cache in the exact format consumed by
-``scrape_thailandtidetables_mae_klong.py``.
+that Markdown, performs conservative coverage and continuity checks, and writes
+a minimal synthetic HTML cache consumed by the secondary tide builder.
 
-The original ThailandTideTables URL remains the data source. The cache metadata
-records the Jina retrieval URL separately so provenance is not obscured.
+A calendar day may legitimately contain no reported extremum at this mixed-tide
+station. Therefore completeness is evaluated from event continuity, coverage
+near month boundaries, and maximum gaps—not by requiring every date to appear.
+The original ThailandTideTables URL remains the data source; Jina is recorded
+separately as the retrieval transport.
 """
 from __future__ import annotations
 
@@ -44,6 +46,9 @@ DEFAULT_CACHE = Path(".cache/thailandtidetables/pak_nam_mae_klong")
 TIME_RE = re.compile(r"(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?!\d)")
 DAY_RE = re.compile(r"^(?:0?[1-9]|[12]\d|3[01])$")
 FLOAT_RE = re.compile(r"^-?\d+(?:\.\d+)?(?:\s*m)?$", re.IGNORECASE)
+MIN_DAY_COVERAGE_FRACTION = 0.70
+MAX_MONTH_EDGE_GAP_DAYS = 2
+MAX_EVENT_GAP_HOURS = 48.0
 
 
 @dataclass(frozen=True)
@@ -88,7 +93,89 @@ def source_url(year: int, month: int) -> str:
     return URL_TEMPLATE.format(year=year, month=month)
 
 
-def parse_markdown(markdown: str, *, year: int, month: int) -> list[Event]:
+def event_datetime(year: int, month: int, event: Event) -> datetime:
+    return datetime(year, month, event.day, event.hour, event.minute)
+
+
+def maximum_event_gap_hours(year: int, month: int, events: list[Event]) -> float:
+    values = [event_datetime(year, month, event) for event in events]
+    if len(values) < 2:
+        return math.inf
+    return max(
+        (after - before).total_seconds() / 3600
+        for before, after in zip(values, values[1:])
+    )
+
+
+def longest_missing_day_run(expected_days: set[int], actual_days: set[int]) -> int:
+    longest = 0
+    current = 0
+    for day in sorted(expected_days):
+        if day in actual_days:
+            current = 0
+        else:
+            current += 1
+            longest = max(longest, current)
+    return longest
+
+
+def validate_month_events(
+    events: list[Event], *, year: int, month: int
+) -> dict[str, object]:
+    if not events:
+        raise ValueError(f"no extrema found for {year}-{month:02d}")
+    days_in_month = calendar.monthrange(year, month)[1]
+    expected_days = set(range(1, days_in_month + 1))
+    actual_days = {event.day for event in events}
+    extra_days = sorted(actual_days.difference(expected_days))
+    if extra_days:
+        raise ValueError(f"invalid days for {year}-{month:02d}: {extra_days}")
+
+    coverage_fraction = len(actual_days) / days_in_month
+    first_day = min(actual_days)
+    last_day = max(actual_days)
+    longest_missing = longest_missing_day_run(expected_days, actual_days)
+    max_gap = maximum_event_gap_hours(year, month, events)
+
+    if coverage_fraction < MIN_DAY_COVERAGE_FRACTION:
+        raise ValueError(
+            f"low day coverage for {year}-{month:02d}: {coverage_fraction:.1%}"
+        )
+    if first_day > 1 + MAX_MONTH_EDGE_GAP_DAYS:
+        raise ValueError(
+            f"first reported day too late for {year}-{month:02d}: {first_day}"
+        )
+    if last_day < days_in_month - MAX_MONTH_EDGE_GAP_DAYS:
+        raise ValueError(
+            f"last reported day too early for {year}-{month:02d}: {last_day}"
+        )
+    if longest_missing > MAX_MONTH_EDGE_GAP_DAYS:
+        raise ValueError(
+            f"too many consecutive dates without extrema for {year}-{month:02d}: "
+            f"{longest_missing}"
+        )
+    if max_gap > MAX_EVENT_GAP_HOURS:
+        raise ValueError(
+            f"event gap too large for {year}-{month:02d}: {max_gap:.2f} h"
+        )
+    if len(events) < days_in_month:
+        raise ValueError(
+            f"too few extrema for {year}-{month:02d}: {len(events)}"
+        )
+
+    return {
+        "days_in_month": days_in_month,
+        "reported_day_count": len(actual_days),
+        "day_coverage_fraction": round(coverage_fraction, 5),
+        "missing_days": sorted(expected_days.difference(actual_days)),
+        "longest_missing_day_run": longest_missing,
+        "first_reported_day": first_day,
+        "last_reported_day": last_day,
+        "maximum_intra_month_event_gap_hours": round(max_gap, 5),
+    }
+
+
+def parse_markdown(markdown: str, *, year: int, month: int) -> tuple[list[Event], dict[str, object]]:
     expected_heading = f"{calendar.month_name[month]} {year}"
     if "Pak Nam Mae Klong" not in markdown or expected_heading not in markdown:
         raise ValueError(
@@ -133,18 +220,8 @@ def parse_markdown(markdown: str, *, year: int, month: int) -> list[Event]:
         events[key] = Event(current_day, hour, minute, height)
 
     output = sorted(events.values(), key=lambda item: (item.day, item.hour, item.minute))
-    expected_days = set(range(1, calendar.monthrange(year, month)[1] + 1))
-    actual_days = {event.day for event in output}
-    if actual_days != expected_days:
-        raise ValueError(
-            f"incomplete {year}-{month:02d}; missing={sorted(expected_days-actual_days)}, "
-            f"extra={sorted(actual_days-expected_days)}"
-        )
-    if len(output) < len(expected_days) * 2:
-        raise ValueError(
-            f"too few extrema for {year}-{month:02d}: {len(output)}"
-        )
-    return output
+    qa = validate_month_events(output, year=year, month=month)
+    return output, qa
 
 
 def synthetic_html(year: int, month: int, events: list[Event]) -> str:
@@ -209,13 +286,15 @@ def cache_month(
     cache_dir.mkdir(parents=True, exist_ok=True)
     html_path = cache_dir / f"{year}-{month:02d}.html"
     meta_path = cache_dir / f"{year}-{month:02d}.json"
+    markdown_path = cache_dir / f"{year}-{month:02d}.reader.md"
     if not refresh and html_path.exists() and meta_path.exists():
         return json.loads(meta_path.read_text(encoding="utf-8"))
 
     markdown, retrieval_url, diagnostics = fetch_reader(
         session, year=year, month=month, timeout_seconds=timeout_seconds
     )
-    events = parse_markdown(markdown, year=year, month=month)
+    markdown_path.write_text(markdown, encoding="utf-8")
+    events, coverage_qa = parse_markdown(markdown, year=year, month=month)
     rendered = synthetic_html(year, month, events)
     digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
     fetched_at = datetime.now(timezone.utc).isoformat()
@@ -229,6 +308,7 @@ def cache_month(
         "sha256": digest,
         "event_count": len(events),
         "day_count": len({event.day for event in events}),
+        "coverage_qa": coverage_qa,
         "minimum_height_m_chart_datum": min(event.height for event in events),
         "maximum_height_m_chart_datum": max(event.height for event in events),
         "reader_diagnostics": diagnostics,
@@ -292,6 +372,13 @@ def main() -> int:
                 "cached_months": len(results),
                 "years": sorted(set(args.years)),
                 "event_count": sum(int(item["event_count"]) for item in results),
+                "months_with_missing_calendar_days": sum(
+                    bool(item["coverage_qa"]["missing_days"]) for item in results
+                ),
+                "maximum_event_gap_hours": max(
+                    float(item["coverage_qa"]["maximum_intra_month_event_gap_hours"])
+                    for item in results
+                ),
                 "retrieval_methods": sorted(
                     {str(item["retrieval_method"]) for item in results}
                 ),
