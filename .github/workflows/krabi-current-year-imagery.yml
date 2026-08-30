@@ -1,0 +1,108 @@
+name: Krabi current-year Sentinel-2 imagery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/krabi-current-year-imagery.yml'
+      - 'scripts/build_krabi_current_year_asset.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: krabi-current-year-imagery
+  cancel-in-progress: false
+
+jobs:
+  build-current-year:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install geospatial dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build real current-year Krabi image
+        run: |
+          CURRENT_YEAR="$(date -u +%Y)"
+          END_DATE="$(date -u +%F)"
+          echo "Building Krabi Sentinel-2 YTD ${CURRENT_YEAR} through ${END_DATE}"
+          python scripts/build_krabi_current_year_asset.py \
+            --out regions/krabi/web/assets/province \
+            --year "${CURRENT_YEAR}" \
+            --end-date "${END_DATE}"
+
+      - name: Validate current-year output
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import date
+          from pathlib import Path
+          from PIL import Image
+
+          year = date.today().year
+          root = Path('regions/krabi/web/assets/province')
+          manifest = json.loads((root / 'province_imagery_manifest.json').read_text(encoding='utf-8'))
+          assert manifest['province'] == 'Krabi'
+          assert manifest['latest_available_year'] == year
+          assert manifest['current_year_status'] == 'VALIDATED_SENTINEL2_L2A_YEAR_TO_DATE'
+          current = manifest['years'][str(year)]
+          assert current['temporal_status'] == 'YEAR_TO_DATE_NOT_COMPLETE_ANNUAL_MOSAIC'
+          assert current['latest_acquisition_date'].startswith(str(year))
+          assert current['clear_pixel_fraction'] >= 0.70
+          assert current['uncovered_fraction'] <= 0.12
+          image_path = root / current['plain_path']
+          assert image_path.exists() and image_path.stat().st_size > 100_000
+          image = Image.open(image_path)
+          assert list(image.size) == current['dimensions']
+          assert current['plain_sha256']
+          assert manifest['before_after_validation']['after_year'] == year
+          print(json.dumps({
+              'province': manifest['province'],
+              'latest_available_year': year,
+              'latest_data_through': manifest['latest_data_through'],
+              'image': current['plain_path'],
+              'dimensions': current['dimensions'],
+              'clear_pixel_fraction': current['clear_pixel_fraction'],
+              'fallback_fraction': current['fallback_latest_observation_fraction'],
+              'uncovered_fraction': current['uncovered_fraction'],
+              'selected_scene_count': current['selected_scene_count'],
+          }, indent=2))
+          PY
+
+      - name: Upload current-year QA package
+        uses: actions/upload-artifact@v4
+        with:
+          name: krabi-current-year-sentinel2
+          path: |
+            regions/krabi/web/assets/province/krabi_province_s2_*_ytd.jpg
+            regions/krabi/web/assets/province/krabi_province_s2_*_ytd_labelled.jpg
+            regions/krabi/web/assets/province/province_imagery_manifest.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit generated current-year assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add regions/krabi/web/assets/province
+          if git diff --cached --quiet; then
+            echo 'No current-year imagery changes to commit.'
+            exit 0
+          fi
+          git commit -m 'data: add current-year Krabi Sentinel-2 imagery'
+          git pull --rebase origin main
+          git push origin HEAD:main
