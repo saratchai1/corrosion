@@ -9,6 +9,7 @@ on:
       - 'requirements.txt'
       - 'scripts/build_rtn_mae_klong_tide_catalog.py'
       - 'scripts/discover_rtn_tide_archives.py'
+      - 'scripts/recover_commoncrawl_tide_pdfs.py'
       - 'scripts/match_scene_tides.py'
       - 'scripts/audit_samut_songkhram_erosion_readiness.py'
       - 'tests/test_build_rtn_mae_klong_tide_catalog.py'
@@ -29,7 +30,7 @@ concurrency:
 jobs:
   build-and-match:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +41,11 @@ jobs:
           python-version: '3.12'
 
       - name: Install tide parser dependencies
-        run: python -m pip install --disable-pip-version-check 'requests>=2.32,<3' 'pdfplumber>=0.11,<1'
+        run: |
+          python -m pip install --disable-pip-version-check \
+            'requests>=2.32,<3' \
+            'pdfplumber>=0.11,<1' \
+            'warcio>=1.7,<2'
 
       - name: Run tide and evidence unit tests
         run: |
@@ -48,16 +53,28 @@ jobs:
           python -m unittest tests.test_match_scene_tides -v
           python -m unittest tests.test_audit_samut_songkhram_erosion_readiness -v
 
-      - name: Search archives for removed 2023-2024 official PDFs
+      - name: Recover removed 2023-2025 official PDFs from Common Crawl
         run: |
-          python scripts/discover_rtn_tide_archives.py --years 2023 2024
+          python scripts/recover_commoncrawl_tide_pdfs.py \
+            --years 2023 2024 2025 \
+            --crawl-limit 12 \
+            --timeout-seconds 18
+
+      - name: Search Internet Archive as a second recovery source
+        run: |
+          python scripts/discover_rtn_tide_archives.py \
+            --years 2023 2024 2025 \
+            --timeout-seconds 10
 
       - name: Select officially available years
         id: years
         shell: bash
         run: |
-          years="2025 2026"
-          for year in 2023 2024; do
+          # The 2026 PDF remains available at the current official site. Earlier
+          # years are included only when an archived copy was recovered and
+          # validated as a PDF. Missing years remain explicit.
+          years="2026"
+          for year in 2023 2024 2025; do
             pdf=".cache/rtn_tides/samut_songkhram/pak_nam_mae_klong_${year}_msl.pdf"
             source=".cache/rtn_tides/samut_songkhram/pak_nam_mae_klong_${year}_source.json"
             if [[ -f "$pdf" && -f "$source" ]]; then
@@ -69,8 +86,8 @@ jobs:
 
       - name: Build available official hourly MSL tide catalog
         run: |
-          # Do not use --refresh here: recovered archive PDFs are intentionally
-          # cached by the preceding discovery step.
+          # Do not use --refresh: archived PDFs recovered above are intentionally
+          # cached, while 2026 is downloaded from the current official URL.
           python scripts/build_rtn_mae_klong_tide_catalog.py \
             --years ${{ steps.years.outputs.years }}
 
@@ -94,14 +111,16 @@ jobs:
 
           tide_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv')
           manifest_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json')
-          archive_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json')
+          commoncrawl_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_commoncrawl_recovery.json')
+          wayback_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json')
           matched_path = Path('data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv')
           readiness_path = Path('data/processed/project_impact/erosion_readiness.json')
 
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          archive = json.loads(archive_path.read_text(encoding='utf-8'))
+          commoncrawl = json.loads(commoncrawl_path.read_text(encoding='utf-8'))
+          wayback = json.loads(wayback_path.read_text(encoding='utf-8'))
           available_years = set(manifest['years'])
-          assert {2025, 2026}.issubset(available_years), available_years
+          assert 2026 in available_years, available_years
           assert available_years.issubset({2023, 2024, 2025, 2026})
           expected_rows = sum(
               8784 if calendar.isleap(year) else 8760 for year in available_years
@@ -112,7 +131,7 @@ jobs:
           assert len(tides) == expected_rows, (len(tides), expected_rows)
           assert {int(row['source_year']) for row in tides} == available_years
           assert {row['datum'] for row in tides} == {'MSL'}
-          assert all(row['source_url'].startswith('https://') for row in tides)
+          assert all(row['source_url'].startswith(('http://', 'https://')) for row in tides)
           assert all(row['qa_status'] == 'official_pdf_parsed_word_coordinates' for row in tides)
           assert manifest['row_count'] == expected_rows
           assert manifest['observed'] is False
@@ -121,18 +140,28 @@ jobs:
               expected = 8784 if calendar.isleap(source['year']) else 8760
               assert source['hour_count'] == expected
               assert len(source['sha256']) == 64
-              assert source['source_url'].startswith('https://')
+              assert source['source_url'].startswith(('http://', 'https://'))
 
-          archive_results = {item['year']: item for item in archive['results']}
-          assert set(archive_results) == {2023, 2024}
-          for year in (2023, 2024):
-              status = archive_results[year]['status']
-              assert status in {
+          commoncrawl_results = {item['year']: item for item in commoncrawl['results']}
+          wayback_results = {item['year']: item for item in wayback['results']}
+          assert set(commoncrawl_results) == {2023, 2024, 2025}
+          assert set(wayback_results) == {2023, 2024, 2025}
+          for year in (2023, 2024, 2025):
+              cc_status = commoncrawl_results[year]['status']
+              wb_status = wayback_results[year]['status']
+              assert cc_status in {
+                  'RECOVERED_FROM_COMMON_CRAWL',
+                  'COMMON_CRAWL_COPY_NOT_FOUND',
+              }
+              assert wb_status in {
                   'RECOVERED_FROM_INTERNET_ARCHIVE',
                   'ARCHIVE_NOT_FOUND',
               }
               if year in available_years:
-                  assert status == 'RECOVERED_FROM_INTERNET_ARCHIVE'
+                  assert (
+                      cc_status == 'RECOVERED_FROM_COMMON_CRAWL'
+                      or wb_status == 'RECOVERED_FROM_INTERNET_ARCHIVE'
+                  )
 
           with matched_path.open(newline='', encoding='utf-8') as handle:
               scenes = list(csv.DictReader(handle))
@@ -147,7 +176,7 @@ jobs:
           } == {2023, 2024, 2025, 2026}.difference(available_years)
           assert all(row['tide_level'] != '' for row in matched)
           assert all(row['tide_datum'] == 'MSL' for row in matched)
-          assert all(row['tide_source_url'].startswith('https://') for row in matched)
+          assert all(row['tide_source_url'].startswith(('http://', 'https://')) for row in matched)
 
           readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
           fraction = expected_matched / 12
@@ -165,8 +194,13 @@ jobs:
               'tide_rows': len(tides),
               'matched_scenes': len(matched),
               'unmatched_scenes': len(unmatched),
-              'archive_status': {
-                  year: archive_results[year]['status'] for year in (2023, 2024)
+              'commoncrawl_status': {
+                  year: commoncrawl_results[year]['status']
+                  for year in (2023, 2024, 2025)
+              },
+              'wayback_status': {
+                  year: wayback_results[year]['status']
+                  for year in (2023, 2024, 2025)
               },
               'evidence_level': readiness['evidence_level'],
               'source_urls': [source['source_url'] for source in manifest['sources']],
@@ -180,6 +214,7 @@ jobs:
           git add \
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv \
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_commoncrawl_recovery.json \
             data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json \
             data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
             data/processed/project_impact/erosion_readiness.json
@@ -198,6 +233,7 @@ jobs:
           path: |
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv
             data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json
+            data/tide/samut_songkhram/pak_nam_mae_klong_commoncrawl_recovery.json
             data/tide/samut_songkhram/pak_nam_mae_klong_archive_discovery.json
             data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
             data/processed/project_impact/erosion_readiness.json
