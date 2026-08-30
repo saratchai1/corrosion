@@ -1,9 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import MapPane from './MapPane'
-import ProjectDashboard from './ProjectDashboard'
-import SwipeCompare from './SwipeCompare'
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import TideAwareDashboard from './TideAwareDashboard'
-import TransectChart from './TransectChart'
 import type {
   DataIndex,
   ProjectImpactSummary,
@@ -13,7 +16,16 @@ import type {
   ViewState,
 } from './types'
 
+const MapPane = lazy(() => import('./MapPane'))
+const ProjectDashboard = lazy(() => import('./ProjectDashboard'))
+const SwipeCompare = lazy(() => import('./SwipeCompare'))
+const TransectChart = lazy(() => import('./TransectChart'))
+
 const initialView: ViewState = { center: [100.005, 13.345], zoom: 10.7, bearing: 0, pitch: 0 }
+
+function ViewLoading({ label }: { label: string }) {
+  return <main className="loading">{label}</main>
+}
 
 export default function App() {
   const [page, setPage] = useState<'project' | 'tide' | 'coast'>('tide')
@@ -61,96 +73,111 @@ export default function App() {
   ] as const, [])
 
   if (error) return <main className="loading">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>
-  if (!index || !summary || !projectSummary || !tideSummary || !epoch || !compareEpoch) return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
+  if (!index || !summary || !projectSummary || !tideSummary || !epoch || !compareEpoch) {
+    return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
+  }
 
-  if (page === 'project') return <ProjectDashboard summary={projectSummary} onOpenCoast={() => setPage('coast')} />
-  if (page === 'tide') return (
-    <TideAwareDashboard
-      summary={tideSummary}
-      onOpenProject={() => setPage('project')}
-      onOpenCoast={() => setPage('coast')}
-    />
-  )
+  if (page === 'project') {
+    return (
+      <Suspense fallback={<ViewLoading label="กำลังเปิดรายงาน 9 แปลง…" />}>
+        <ProjectDashboard summary={projectSummary} onOpenCoast={() => setPage('coast')} />
+      </Suspense>
+    )
+  }
+
+  if (page === 'tide') {
+    return (
+      <TideAwareDashboard
+        summary={tideSummary}
+        onOpenProject={() => setPage('project')}
+        onOpenCoast={() => setPage('coast')}
+      />
+    )
+  }
 
   return (
-    <main className="app-shell">
-      <aside className="sidebar">
-        <div className="coast-view-tabs view-tabs" role="tablist" aria-label="เลือกมุมมอง">
-          <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงานผล 9 แปลง</button>
-          <button role="tab" aria-selected="false" onClick={() => setPage('tide')}>คุมระดับน้ำ</button>
-          <button className="active" role="tab" aria-selected="true">แผนที่ดาวเทียม 10 ปี</button>
-        </div>
-        <header>
-          <span className="project-tag">ANNUAL SATELLITE IMAGERY · 2017–2026</span>
-          <h1>แผนที่ภาพดาวเทียม<br /><em>10-year timeline</em></h1>
-          <p>ภาพ Sentinel-2 ครบรายปี 10 ปีล่าสุด พร้อมภาพประวัติศาสตร์ Landsat ย้อนถึงปี 1987 และชั้นข้อมูลการเปลี่ยนแปลงชายฝั่ง</p>
-        </header>
-
-        <section className="summary-grid">
-          <article title="Sentinel-2 ครบรายปี 2017–2026 และมีภาพประวัติศาสตร์ Landsat อีก 4 ช่วง"><span>ภาพรายปีล่าสุด</span><strong>2017–2026</strong><small>10 annual + 4 historical</small></article>
-          <article title="ผลรวมช่วง transect ที่ขอบเขตน้ำ–แผ่นดินเคลื่อนเข้าฝั่งเกินความละเอียด 30 เมตร; tide unverified"><span>แนวถอยร่นที่ปรากฏ</span><strong>{summary.apparent_erosion_length_km.toFixed(1)} km</strong><small>LOW confidence</small></article>
-          <article title="ผลรวมช่วง transect ที่ขอบเขตน้ำ–แผ่นดินเคลื่อนออกทะเลเกินความละเอียด 30 เมตร; tide unverified"><span>แนวงอกเพิ่มที่ปรากฏ</span><strong>{summary.apparent_accretion_length_km.toFixed(1)} km</strong><small>transect estimate</small></article>
-          <article title="ช่วงที่การเปลี่ยนแปลงอยู่ภายใน ±30 เมตร จึงไม่ควรตีความทิศทาง"><span>คงที่ในช่วงความละเอียด</span><strong>{summary.stable_length_km.toFixed(1)} km</strong><small>within ±30 m</small></article>
-          <article title="ผลต่างพื้นที่ vegetation spectral proxy ระหว่าง epoch แรกและล่าสุด; ไม่ใช่บัญชีป่าชายเลนที่ผ่านการตรวจสอบ"><span>พืชชายฝั่ง proxy</span><strong>{summary.vegetation_proxy_change_ha >= 0 ? '+' : ''}{summary.vegetation_proxy_change_ha.toFixed(0)} ha</strong><small>{summary.vegetation_proxy_change_percent.toFixed(1)}%</small></article>
-          <article title="ค่ากึ่งกลางการเคลื่อนที่สุทธิของ transect ที่มีข้อมูล; ค่าบวกหมายถึงออกทะเล"><span>ค่ากึ่งกลางสุทธิ</span><strong>{summary.median_net_change_m?.toFixed(0) ?? '—'} m</strong><small>positive = seaward</small></article>
-        </section>
-
-        <section className="control-section timeline-section">
-          <div className="section-heading"><span>01</span><h2>ภาพย้อนหลัง / Imagery timeline</h2></div>
-          <div className="timeline-scope"><span>10 ปีล่าสุดครบรายปี</span><strong>2017—2026</strong><small>+ historical snapshots: 1985 / 1990 / 2000 / 2010</small></div>
-          <div className="year-readout"><strong>{epoch.targetYear}</strong><span>{epoch.targetYear === 2024 ? 'ปีดำเนินการปลูก*' : `ภาพจริง ${epoch.actualYear}`}<br />{epoch.sensor} · {epoch.resolutionM} m</span></div>
-          <input aria-label="Select epoch" type="range" min="0" max={index.epochs.length - 1} value={yearIndex} onChange={(event) => setYearIndex(Number(event.target.value))} />
-          <div className="tick-row">{index.epochs.map((item, itemIndex) => <button
-            key={item.targetYear}
-            title={`${item.targetYear}${item.targetYear === 2024 ? ' · ปีดำเนินการปลูก' : ''}`}
-            className={`${itemIndex === yearIndex ? 'active' : ''} ${item.targetYear === 2017 ? 'decade-start' : ''} ${item.targetYear === 2024 ? 'intervention-year' : ''}`}
-            onClick={() => setYearIndex(itemIndex)}
-          >{String(item.targetYear).slice(2)}</button>)}</div>
-          <div className="timeline-presets">
-            <button onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2017))}>2017 · เริ่ม 10 ปี</button>
-            <button className="intervention" onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2024))}>2024 · ปีปลูก*</button>
-            <button onClick={() => setYearIndex(index.epochs.length - 1)}>2026 · ล่าสุด</button>
+    <Suspense fallback={<ViewLoading label="กำลังเปิดแผนที่ดาวเทียม…" />}>
+      <main className="app-shell">
+        <aside className="sidebar">
+          <div className="coast-view-tabs view-tabs" role="tablist" aria-label="เลือกมุมมอง">
+            <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงานผล 9 แปลง</button>
+            <button role="tab" aria-selected="false" onClick={() => setPage('tide')}>คุมระดับน้ำ</button>
+            <button className="active" role="tab" aria-selected="true">แผนที่ดาวเทียม 10 ปี</button>
           </div>
-          <label className="switch-row"><span><strong>สไลเดอร์ภาพก่อน–หลัง</strong><small>Swipe comparison on one map</small></span><input type="checkbox" checked={compare} onChange={(event) => setCompare(event.target.checked)} /><i /></label>
-          {compare && <label className="compare-select">ภาพก่อน / Before<select value={compareIndex} onChange={(event) => setCompareIndex(Number(event.target.value))}>{index.epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} (ภาพ {item.actualYear})</option>)}</select></label>}
+          <header>
+            <span className="project-tag">ANNUAL SATELLITE IMAGERY · 2017–2026</span>
+            <h1>แผนที่ภาพดาวเทียม<br /><em>10-year timeline</em></h1>
+            <p>ภาพ Sentinel-2 ครบรายปี 10 ปีล่าสุด พร้อมภาพประวัติศาสตร์ Landsat ย้อนถึงปี 1987 และชั้นข้อมูลการเปลี่ยนแปลงชายฝั่ง</p>
+          </header>
+
+          <section className="summary-grid">
+            <article title="Sentinel-2 ครบรายปี 2017–2026 และมีภาพประวัติศาสตร์ Landsat อีก 4 ช่วง"><span>ภาพรายปีล่าสุด</span><strong>2017–2026</strong><small>10 annual + 4 historical</small></article>
+            <article title="ผลรวมช่วง transect ที่ขอบเขตน้ำ–แผ่นดินเคลื่อนเข้าฝั่งเกินความละเอียด 30 เมตร; tide unverified"><span>แนวถอยร่นที่ปรากฏ</span><strong>{summary.apparent_erosion_length_km.toFixed(1)} km</strong><small>LOW confidence</small></article>
+            <article title="ผลรวมช่วง transect ที่ขอบเขตน้ำ–แผ่นดินเคลื่อนออกทะเลเกินความละเอียด 30 เมตร; tide unverified"><span>แนวงอกเพิ่มที่ปรากฏ</span><strong>{summary.apparent_accretion_length_km.toFixed(1)} km</strong><small>transect estimate</small></article>
+            <article title="ช่วงที่การเปลี่ยนแปลงอยู่ภายใน ±30 เมตร จึงไม่ควรตีความทิศทาง"><span>คงที่ในช่วงความละเอียด</span><strong>{summary.stable_length_km.toFixed(1)} km</strong><small>within ±30 m</small></article>
+            <article title="ผลต่างพื้นที่ vegetation spectral proxy ระหว่าง epoch แรกและล่าสุด; ไม่ใช่บัญชีป่าชายเลนที่ผ่านการตรวจสอบ"><span>พืชชายฝั่ง proxy</span><strong>{summary.vegetation_proxy_change_ha >= 0 ? '+' : ''}{summary.vegetation_proxy_change_ha.toFixed(0)} ha</strong><small>{summary.vegetation_proxy_change_percent.toFixed(1)}%</small></article>
+            <article title="ค่ากึ่งกลางการเคลื่อนที่สุทธิของ transect ที่มีข้อมูล; ค่าบวกหมายถึงออกทะเล"><span>ค่ากึ่งกลางสุทธิ</span><strong>{summary.median_net_change_m?.toFixed(0) ?? '—'} m</strong><small>positive = seaward</small></article>
+          </section>
+
+          <section className="control-section timeline-section">
+            <div className="section-heading"><span>01</span><h2>ภาพย้อนหลัง / Imagery timeline</h2></div>
+            <div className="timeline-scope"><span>10 ปีล่าสุดครบรายปี</span><strong>2017—2026</strong><small>+ historical snapshots: 1985 / 1990 / 2000 / 2010</small></div>
+            <div className="year-readout"><strong>{epoch.targetYear}</strong><span>{epoch.targetYear === 2024 ? 'ปีดำเนินการปลูก*' : `ภาพจริง ${epoch.actualYear}`}<br />{epoch.sensor} · {epoch.resolutionM} m</span></div>
+            <input aria-label="Select epoch" type="range" min="0" max={index.epochs.length - 1} value={yearIndex} onChange={(event) => setYearIndex(Number(event.target.value))} />
+            <div className="tick-row">{index.epochs.map((item, itemIndex) => <button
+              key={item.targetYear}
+              title={`${item.targetYear}${item.targetYear === 2024 ? ' · ปีดำเนินการปลูก' : ''}`}
+              className={`${itemIndex === yearIndex ? 'active' : ''} ${item.targetYear === 2017 ? 'decade-start' : ''} ${item.targetYear === 2024 ? 'intervention-year' : ''}`}
+              onClick={() => setYearIndex(itemIndex)}
+            >{String(item.targetYear).slice(2)}</button>)}</div>
+            <div className="timeline-presets">
+              <button onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2017))}>2017 · เริ่ม 10 ปี</button>
+              <button className="intervention" onClick={() => setYearIndex(index.epochs.findIndex((item) => item.targetYear === 2024))}>2024 · ปีปลูก*</button>
+              <button onClick={() => setYearIndex(index.epochs.length - 1)}>2026 · ล่าสุด</button>
+            </div>
+            <label className="switch-row"><span><strong>สไลเดอร์ภาพก่อน–หลัง</strong><small>Swipe comparison on one map</small></span><input type="checkbox" checked={compare} onChange={(event) => setCompare(event.target.checked)} /><i /></label>
+            {compare && <label className="compare-select">ภาพก่อน / Before<select value={compareIndex} onChange={(event) => setCompareIndex(Number(event.target.value))}>{index.epochs.map((item, itemIndex) => <option value={itemIndex} key={item.targetYear}>{item.targetYear} (ภาพ {item.actualYear})</option>)}</select></label>}
+          </section>
+
+          <section className="control-section">
+            <div className="section-heading"><span>02</span><h2>ชั้นข้อมูล / Layers</h2></div>
+            <div className="layer-list">{layerOptions.map(([key, thai, english]) => <label key={key}><input type="checkbox" checked={layers[key]} onChange={(event) => setLayers((current) => ({ ...current, [key]: event.target.checked }))} /><i className={`swatch ${key}`} /><span><strong>{thai}</strong><small>{english}</small></span></label>)}</div>
+            <label className="opacity">ความทึบภาพ / Imagery opacity <strong>{Math.round(opacity * 100)}%</strong><input type="range" min="0" max="1" step="0.05" value={opacity} onChange={(event) => setOpacity(Number(event.target.value))} /><small>ภาพวิเคราะห์ Sentinel-2: 20 ม./พิกเซล · ซูมเกินความละเอียดจะดูนุ่ม</small></label>
+          </section>
+
+          <section className="project-result">
+            <span className="eyebrow">TIDE-AWARE SCREENING · 2023–2026</span>
+            <h2>ผลคัดภาพตามระดับน้ำ</h2>
+            <strong>ยังไม่พิสูจน์ว่าลดการกัดเซาะ</strong>
+            <p>{tideSummary.allowed_claim_th}</p>
+            <dl>
+              <div><dt>ระดับน้ำ spread</dt><dd>{tideSummary.waterline_scene_selection.tide_spread_m.toFixed(3)} m</dd></div>
+              <div><dt>หน้าแปลง</dt><dd>{tideSummary.transects.treatment_count} transects</dd></div>
+              <div><dt>Waterline ±20 ม.</dt><dd>{tideSummary.indicators.waterline.class_counts.WITHIN_20M ?? 0}/{tideSummary.indicators.waterline.transect_count}</dd></div>
+              <div><dt>Controls</dt><dd>{tideSummary.controls.selected_count} candidate</dd></div>
+            </dl>
+            <button type="button" onClick={() => setPage('tide')}>เปิดรายงาน tide-aware</button>
+          </section>
+
+          {selection
+            ? <TransectChart selection={selection} />
+            : <section className="empty-chart"><span>03</span><p>คลิกแนว transect บนแผนที่เพื่อดูกราฟตำแหน่งขอบเขตตามเวลา</p><small>Click a transect for its time series.</small></section>}
+
+          <footer>
+            <strong>ข้อจำกัดสำคัญ / Critical limitation</strong>
+            <p>{index.disclaimer_th}</p>
+            <p>{index.disclaimer_en}</p>
+            <span>แผนที่ 10 ปีเดิม: ระดับน้ำไม่ผ่านการตรวจสอบ · ใช้หน้า tide-aware สำหรับการคัดภาพระดับน้ำใกล้กัน</span>
+          </footer>
+        </aside>
+
+        <section className={`map-stage ${compare ? 'is-swipe' : ''}`}>
+          {compare
+            ? <SwipeCompare epochs={index.epochs} beforeIndex={compareIndex} afterIndex={yearIndex} before={compareEpoch} after={epoch} layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} onBeforeChange={setCompareIndex} onAfterChange={setYearIndex} />
+            : <MapPane epoch={epoch} label="SELECTED EPOCH" layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />}
+          <div className="legend"><span><i className="erosion" /> apparent erosion</span><span><i className="accretion" /> apparent accretion</span><span><i className="stable" /> within resolution</span></div>
         </section>
-
-        <section className="control-section">
-          <div className="section-heading"><span>02</span><h2>ชั้นข้อมูล / Layers</h2></div>
-          <div className="layer-list">{layerOptions.map(([key, thai, english]) => <label key={key}><input type="checkbox" checked={layers[key]} onChange={(event) => setLayers((current) => ({ ...current, [key]: event.target.checked }))} /><i className={`swatch ${key}`} /><span><strong>{thai}</strong><small>{english}</small></span></label>)}</div>
-          <label className="opacity">ความทึบภาพ / Imagery opacity <strong>{Math.round(opacity * 100)}%</strong><input type="range" min="0" max="1" step="0.05" value={opacity} onChange={(event) => setOpacity(Number(event.target.value))} /><small>ภาพวิเคราะห์ Sentinel-2: 20 ม./พิกเซล · ซูมเกินความละเอียดจะดูนุ่ม</small></label>
-        </section>
-
-        <section className="project-result">
-          <span className="eyebrow">TIDE-AWARE SCREENING · 2023–2026</span>
-          <h2>ผลคัดภาพตามระดับน้ำ</h2>
-          <strong>ยังไม่พิสูจน์ว่าลดการกัดเซาะ</strong>
-          <p>{tideSummary.allowed_claim_th}</p>
-          <dl>
-            <div><dt>ระดับน้ำ spread</dt><dd>{tideSummary.waterline_scene_selection.tide_spread_m.toFixed(3)} m</dd></div>
-            <div><dt>หน้าแปลง</dt><dd>{tideSummary.transects.treatment_count} transects</dd></div>
-            <div><dt>Waterline ±20 ม.</dt><dd>{tideSummary.indicators.waterline.class_counts.WITHIN_20M ?? 0}/{tideSummary.indicators.waterline.transect_count}</dd></div>
-            <div><dt>Controls</dt><dd>{tideSummary.controls.selected_count} candidate</dd></div>
-          </dl>
-          <button type="button" onClick={() => setPage('tide')}>เปิดรายงาน tide-aware</button>
-        </section>
-
-        {selection ? <TransectChart selection={selection} /> : <section className="empty-chart"><span>03</span><p>คลิกแนว transect บนแผนที่เพื่อดูกราฟตำแหน่งขอบเขตตามเวลา</p><small>Click a transect for its time series.</small></section>}
-
-        <footer>
-          <strong>ข้อจำกัดสำคัญ / Critical limitation</strong>
-          <p>{index.disclaimer_th}</p>
-          <p>{index.disclaimer_en}</p>
-          <span>แผนที่ 10 ปีเดิม: ระดับน้ำไม่ผ่านการตรวจสอบ · ใช้หน้า tide-aware สำหรับการคัดภาพระดับน้ำใกล้กัน</span>
-        </footer>
-      </aside>
-
-      <section className={`map-stage ${compare ? 'is-swipe' : ''}`}>
-        {compare
-          ? <SwipeCompare epochs={index.epochs} beforeIndex={compareIndex} afterIndex={yearIndex} before={compareEpoch} after={epoch} layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} onBeforeChange={setCompareIndex} onAfterChange={setYearIndex} />
-          : <MapPane epoch={epoch} label="SELECTED EPOCH" layers={layers} opacity={opacity} sharedView={view} onView={setView} onTransect={handleTransect} />}
-        <div className="legend"><span><i className="erosion" /> apparent erosion</span><span><i className="accretion" /> apparent accretion</span><span><i className="stable" /> within resolution</span></div>
-      </section>
-    </main>
+      </main>
+    </Suspense>
   )
 }
