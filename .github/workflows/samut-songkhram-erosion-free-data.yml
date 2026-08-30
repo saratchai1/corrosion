@@ -1,0 +1,73 @@
+name: Samut Songkhram erosion free-data checks
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-erosion-free-data-v1
+    paths:
+      - '.github/workflows/samut-songkhram-erosion-free-data.yml'
+      - 'config/samut_songkhram_erosion_free_data_v1.json'
+      - 'data/tide/samut_songkhram/**'
+      - 'data/templates/samut_songkhram_*'
+      - 'scripts/match_scene_tides.py'
+      - 'scripts/audit_samut_songkhram_erosion_readiness.py'
+      - 'tests/test_match_scene_tides.py'
+      - 'tests/test_audit_samut_songkhram_erosion_readiness.py'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes*.csv'
+      - 'data/processed/project_impact/summary.json'
+  pull_request:
+    paths:
+      - '.github/workflows/samut-songkhram-erosion-free-data.yml'
+      - 'config/samut_songkhram_erosion_free_data_v1.json'
+      - 'data/tide/samut_songkhram/**'
+      - 'data/templates/samut_songkhram_*'
+      - 'scripts/match_scene_tides.py'
+      - 'scripts/audit_samut_songkhram_erosion_readiness.py'
+      - 'tests/test_match_scene_tides.py'
+      - 'tests/test_audit_samut_songkhram_erosion_readiness.py'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes*.csv'
+      - 'data/processed/project_impact/summary.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: samut-songkhram-erosion-free-data-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate configuration JSON
+        run: python -m json.tool config/samut_songkhram_erosion_free_data_v1.json > /dev/null
+
+      - name: Run free-data unit tests
+        run: python -m unittest discover -s tests -p 'test_*erosion*.py' -v
+
+      - name: Audit current evidence level
+        run: |
+          python scripts/audit_samut_songkhram_erosion_readiness.py \
+            --output /tmp/samut_songkhram_erosion_readiness.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(Path('/tmp/samut_songkhram_erosion_readiness.json').read_text())
+          assert result['evidence_level'] in {
+              'SATELLITE_SCREENING',
+              'TIDE_AWARE_SCREENING',
+              'OBSERVED_STABILIZATION',
+              'COMPARATIVE_EFFECT',
+          }
+          assert result['erosion_effect_demonstrated'] is False or result['evidence_level'] == 'COMPARATIVE_EFFECT'
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          PY
