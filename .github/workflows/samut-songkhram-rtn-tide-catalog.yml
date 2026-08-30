@@ -1,0 +1,144 @@
+name: Build official Mae Klong tide catalog
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-rtn-tide-catalog-v1
+    paths:
+      - '.github/workflows/samut-songkhram-rtn-tide-catalog.yml'
+      - 'requirements.txt'
+      - 'scripts/build_rtn_mae_klong_tide_catalog.py'
+      - 'scripts/match_scene_tides.py'
+      - 'scripts/audit_samut_songkhram_erosion_readiness.py'
+      - 'tests/test_build_rtn_mae_klong_tide_catalog.py'
+      - 'tests/test_match_scene_tides.py'
+      - 'tests/test_audit_samut_songkhram_erosion_readiness.py'
+      - 'config/samut_songkhram_erosion_free_data_v1.json'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes.csv'
+      - 'data/processed/project_impact/summary.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-rtn-tide-catalog-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tide parser dependencies
+        run: python -m pip install --disable-pip-version-check 'requests>=2.32,<3' 'pdfplumber>=0.11,<1'
+
+      - name: Run tide and evidence unit tests
+        run: |
+          python -m unittest tests.test_build_rtn_mae_klong_tide_catalog -v
+          python -m unittest tests.test_match_scene_tides -v
+          python -m unittest tests.test_audit_samut_songkhram_erosion_readiness -v
+
+      - name: Build official 2023-2026 hourly MSL tide catalog
+        run: python scripts/build_rtn_mae_klong_tide_catalog.py --refresh
+
+      - name: Match every project scene to predicted tide
+        run: |
+          python scripts/match_scene_tides.py \
+            --scene-catalog data/catalog/project_samut_songkhram_sentinel2_scenes.csv \
+            --tide-csv data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv \
+            --output data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
+
+      - name: Rebuild evidence-readiness audit
+        run: python scripts/audit_samut_songkhram_erosion_readiness.py
+
+      - name: Validate generated evidence
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          tide_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv')
+          manifest_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json')
+          matched_path = Path('data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv')
+          readiness_path = Path('data/processed/project_impact/erosion_readiness.json')
+
+          with tide_path.open(newline='', encoding='utf-8') as handle:
+              tides = list(csv.DictReader(handle))
+          assert len(tides) == 35064, len(tides)
+          assert {row['source_year'] for row in tides} == {'2023', '2024', '2025', '2026'}
+          assert {row['datum'] for row in tides} == {'MSL'}
+          assert all(row['source_url'].startswith('https://') for row in tides)
+          assert all(row['qa_status'] == 'official_pdf_parsed_word_coordinates' for row in tides)
+
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          assert manifest['row_count'] == 35064
+          assert manifest['observed'] is False
+          assert len(manifest['sources']) == 4
+          for source in manifest['sources']:
+              expected = 8784 if source['year'] == 2024 else 8760
+              assert source['hour_count'] == expected
+              assert len(source['sha256']) == 64
+              assert source['source_url'].startswith('https://')
+
+          with matched_path.open(newline='', encoding='utf-8') as handle:
+              scenes = list(csv.DictReader(handle))
+          assert len(scenes) == 12, len(scenes)
+          assert all(row['tide_status'].startswith('predicted_') for row in scenes)
+          assert all(row['tide_level'] != '' for row in scenes)
+          assert all(row['tide_datum'] == 'MSL' for row in scenes)
+          assert all(row['tide_source_url'].startswith('https://') for row in scenes)
+
+          readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
+          assert readiness['evidence_level'] == 'TIDE_AWARE_SCREENING', readiness
+          assert readiness['satellite']['scene_count'] == 12
+          assert readiness['satellite']['tide_matched_scene_count'] == 12
+          assert readiness['satellite']['tide_matched_scene_fraction'] == 1.0
+          assert readiness['erosion_effect_demonstrated'] is False
+
+          print(json.dumps({
+              'tide_rows': len(tides),
+              'matched_scenes': len(scenes),
+              'evidence_level': readiness['evidence_level'],
+              'source_urls': [source['source_url'] for source in manifest['sources']],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit generated tide evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv \
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json \
+            data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
+            data/processed/project_impact/erosion_readiness.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'data: add official Mae Klong tide-matched scene catalog'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload tide evidence and parser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-mae-klong-tide-catalog
+          path: |
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv
+            data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl_manifest.json
+            data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
+            data/processed/project_impact/erosion_readiness.json
+            .cache/rtn_tides/samut_songkhram/**
+          if-no-files-found: warn
+          retention-days: 30
