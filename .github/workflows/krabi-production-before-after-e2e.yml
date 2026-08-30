@@ -1,19 +1,24 @@
-name: Krabi production before-after E2E
+name: Krabi production through 2026 E2E
 
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/krabi-production-before-after-e2e.yml'
+      - 'scripts/test_krabi_province_web.mjs'
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: krabi-production-2026-e2e
+  cancel-in-progress: true
+
 jobs:
   chromium:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -27,135 +32,17 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Test Krabi production comparison
+      - name: Test public Krabi production
         env:
-          KRABI_URL: https://krabi-coastal-mangrove-pilot.vercel.app/
-        run: |
-          mkdir -p artifacts/krabi-production-e2e
-          cat > test-krabi-production.mjs <<'JS'
-          import assert from 'node:assert/strict';
-          import { writeFile } from 'node:fs/promises';
-          import { chromium } from 'playwright';
-
-          const browser = await chromium.launch({ headless: true });
-          const page = await browser.newPage({
-            viewport: { width: 1440, height: 1100 },
-            deviceScaleFactor: 1,
-          });
-          const pageErrors = [];
-          const consoleErrors = [];
-          page.on('pageerror', (error) => pageErrors.push(error.message));
-          page.on('console', (message) => {
-            if (message.type() !== 'error') return;
-            const text = message.text();
-            if (
-              text.includes('Failed to load resource') ||
-              text.includes('server.arcgisonline.com') ||
-              text.includes('favicon')
-            ) return;
-            consoleErrors.push(text);
-          });
-
-          try {
-            await page.goto(process.env.KRABI_URL, {
-              waitUntil: 'domcontentloaded',
-              timeout: 60_000,
-            });
-            await page.waitForFunction(
-              () => window.__KRABI_BEFORE_AFTER_TEST__?.ready === true,
-              undefined,
-              { timeout: 120_000 },
-            );
-
-            const initial = await page.evaluate(() => window.__KRABI_BEFORE_AFTER_TEST__);
-            assert.equal(initial.ready, true);
-            assert.equal(initial.beforeYear, 2018);
-            assert.equal(initial.afterYear, 2024);
-            assert.equal(initial.boundaryLoaded, true);
-            assert.equal(initial.manifestStatus, 'VALIDATED_STATIC_PROVINCE_IMAGERY');
-            assert.deepEqual(initial.imageDimensions, [1900, 2350]);
-            assert.equal(await page.locator('.leaflet-container').count(), 2);
-            assert.match((await page.locator('h1').textContent()) || '', /สมุทรสงคราม/);
-            assert.doesNotMatch((await page.locator('h1').textContent()) || '', /สมุทรสาคร/);
-
-            await page.locator('#compareRange').evaluate((element) => {
-              element.value = '23';
-              element.dispatchEvent(new Event('input', { bubbles: true }));
-            });
-            await page.waitForFunction(
-              () => window.__KRABI_BEFORE_AFTER_TEST__?.split === 23,
-            );
-            assert.equal(
-              await page.locator('#mapStage').evaluate((element) =>
-                element.style.getPropertyValue('--split').trim(),
-              ),
-              '23%',
-            );
-            assert.match((await page.locator('#splitReadout').textContent()) || '', /23% ก่อน \/ 77% หลัง/);
-
-            await page.selectOption('#beforeYear', '2020');
-            await page.waitForFunction(
-              () =>
-                window.__KRABI_BEFORE_AFTER_TEST__?.ready === true &&
-                window.__KRABI_BEFORE_AFTER_TEST__?.beforeYear === 2020 &&
-                window.__KRABI_BEFORE_AFTER_TEST__?.afterYear === 2024,
-              undefined,
-              { timeout: 120_000 },
-            );
-
-            await page.check('#showDsas');
-            await page.waitForFunction(
-              () =>
-                window.__KRABI_BEFORE_AFTER_TEST__?.dsasLoaded === true &&
-                window.__KRABI_BEFORE_AFTER_TEST__?.dsasCount === 666,
-              undefined,
-              { timeout: 60_000 },
-            );
-
-            await page.click('#viewKhlongThom');
-            await page.waitForFunction(
-              () => window.__KRABI_BEFORE_AFTER_TEST__?.view === 'khlong-thom',
-            );
-            await page.waitForTimeout(500);
-
-            const finalState = await page.evaluate(() => window.__KRABI_BEFORE_AFTER_TEST__);
-            assert.equal(finalState.ready, true);
-            assert.equal(finalState.beforeYear, 2020);
-            assert.equal(finalState.afterYear, 2024);
-            assert.equal(finalState.split, 23);
-            assert.equal(finalState.dsasCount, 666);
-            assert.equal(finalState.error, null);
-            assert.ok(finalState.mapSync?.delta <= 1e-9, `map sync delta ${finalState.mapSync?.delta}`);
-
-            await page.screenshot({
-              path: 'artifacts/krabi-production-e2e/krabi-before-after-production.png',
-              fullPage: true,
-            });
-            await writeFile(
-              'artifacts/krabi-production-e2e/state.json',
-              JSON.stringify({ initial, finalState, pageErrors, consoleErrors }, null, 2),
-            );
-
-            assert.deepEqual(pageErrors, []);
-            assert.deepEqual(consoleErrors, []);
-            console.log(JSON.stringify({ initial, finalState, pageErrors, consoleErrors }, null, 2));
-          } catch (error) {
-            await page.screenshot({
-              path: 'artifacts/krabi-production-e2e/failure.png',
-              fullPage: true,
-            }).catch(() => undefined);
-            throw error;
-          } finally {
-            await browser.close();
-          }
-          JS
-          node test-krabi-production.mjs
+          KRABI_WEB_URL: https://krabi-coastal-mangrove-pilot.vercel.app
+          KRABI_E2E_OUT: artifacts/krabi-production-2026
+        run: node scripts/test_krabi_province_web.mjs
 
       - name: Upload production browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: krabi-production-before-after
-          path: artifacts/krabi-production-e2e/**
+          name: krabi-production-through-2026
+          path: artifacts/krabi-production-2026/**
           if-no-files-found: error
           retention-days: 30
