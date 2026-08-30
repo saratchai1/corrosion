@@ -3,69 +3,77 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="ภาพดาวเทียมก่อน–หลังทั้งจังหวัดกระบี่ และข้อมูล DSAS แนวชายฝั่ง 666 จุด">
-  <title>Krabi Province Coastal Change</title>
+  <meta name="description" content="ภาพดาวเทียมจังหวัดกระบี่ก่อน–หลังถึงปี 2026 และข้อมูล DSAS แนวชายฝั่ง 666 จุด">
+  <title>จังหวัดกระบี่ · ภาพรวมการเปลี่ยนแปลงชายฝั่ง</title>
   <link rel="stylesheet" href="province-dashboard.css">
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">KRABI · PROVINCE COASTAL CHANGE</div>
+    <div class="brand">KRABI PROVINCE · COASTAL CHANGE</div>
     <nav class="nav" aria-label="เมนูหลัก">
       <a href="#compare" class="primary">ภาพก่อน–หลัง</a>
-      <a href="before-after-map.html">แผนที่ก่อน–หลังแบบสมุทรสาคร</a>
-      <a href="#evidence">ข้อมูลทั้งจังหวัด</a>
-      <a href="published-dsas.html">แผนที่ DSAS 666 จุด</a>
-      <a href="#method">วิธีวิเคราะห์</a>
+      <a href="before-after-map.html">แผนที่เปรียบเทียบเต็มจอ</a>
+      <a href="#evidence">ข้อมูลจังหวัดกระบี่</a>
+      <a href="published-dsas.html">DSAS กระบี่ 666 จุด</a>
+      <a href="#method">วิธีตีความ</a>
     </nav>
   </header>
 
   <main class="shell">
     <section class="hero" id="compare">
       <div>
-        <p class="eyebrow">WHOLE PROVINCE · STATIC VERIFIED IMAGERY</p>
-        <h1>ดูชายฝั่งกระบี่<br>ทั้งจังหวัด</h1>
-        <p class="lead">เลื่อนภาพ Sentinel‑2 cloudless ปี 2018–2024 บนขอบเขตเดียวกันทั้งจังหวัด ตั้งแต่อ่าวลึก–อ่าวนาง–ปากน้ำกระบี่–คลองท่อม รวมเกาะและแนวชายฝั่งทั้งหมดในเฟรมเดียว ไม่ใช้ภาพแปลงปลูกแทนภาพรวมจังหวัด</p>
-        <div class="finding"><b>สถานะข้อมูล:</b> ภาพทั้ง 4 ปีถูกสร้างเป็นไฟล์คงที่ขนาด 1,900 × 2,350 พิกเซล และตรวจแล้วว่าภาพ 2018 กับ 2024 แตกต่างกันจริงก่อนนำขึ้นเว็บ ส่วนอัตราถอยร่นด้านล่างมาจากชุดข้อมูล DSAS ที่เผยแพร่สำหรับช่วง 1990–2019 ไม่ได้อนุมานจากสีภาพสองใบ</div>
+        <p class="eyebrow">KRABI PROVINCE · REAL SATELLITE · CURRENT THROUGH 2026</p>
+        <h1>ชายฝั่งจังหวัดกระบี่<br>จากอดีตถึงปัจจุบัน</h1>
+        <p class="lead">เปรียบเทียบภาพทั้งจังหวัดบนขอบเขตเดียวกัน ตั้งแต่อ่าวลึก อ่าวนาง ปากน้ำกระบี่ คลองท่อม ไปจนถึงเกาะและแนวชายฝั่งด้านอันดามัน</p>
+        <div class="finding"><b>ข้อมูลล่าสุด:</b> ภาพย้อนหลังปี 2018–2024 เป็น Sentinel‑2 cloudless annual mosaic ส่วนภาพปี 2026 ประกอบจากฉาก Sentinel‑2 L2A จริงของปีปัจจุบันโดยเลือกพิกเซลปลอดเมฆล่าสุด วันที่ข้อมูลล่าสุดแสดงบนหน้าเว็บ ไม่ใช้ภาพสร้างและไม่เปลี่ยนเพียงป้ายปี</div>
         <div class="hero-actions">
-          <a class="btn primary" href="before-after-map.html">เปิดแผนที่ก่อน–หลังแบบเต็ม</a>
-          <a class="btn" href="published-dsas.html">เปิดแผนที่ถอยร่น/งอกเพิ่ม 666 จุด</a>
-          <button class="btn" type="button" data-pair="2018-2024">เทียบ 2018 ↔ 2024</button>
-          <button class="btn" type="button" data-pair="2020-2024">เทียบ 2020 ↔ 2024</button>
+          <a class="btn primary" href="before-after-map.html">เปิดแผนที่ก่อน–หลังเต็มจอ</a>
+          <a class="btn" href="published-dsas.html">เปิดแผนที่ DSAS 666 จุด</a>
+          <button class="btn" type="button" data-pair="2018-2026">เทียบ 2018 ↔ 2026</button>
+          <button class="btn" type="button" data-pair="2024-2026">เทียบ 2024 ↔ 2026</button>
         </div>
       </div>
 
-      <article class="compare-card" aria-label="เครื่องมือเปรียบเทียบภาพดาวเทียม">
+      <article class="compare-card" aria-label="เครื่องมือเปรียบเทียบภาพดาวเทียมจังหวัดกระบี่">
         <div class="compare-head">
           <div>
-            <b>Krabi Province · Before / After</b>
+            <b>จังหวัดกระบี่ · Before / After</b>
             <small>ลากบนภาพเพื่อเปลี่ยนสัดส่วน BEFORE และ AFTER</small>
           </div>
           <div class="year-controls">
             <label>BEFORE
-              <select id="beforeYear" aria-label="เลือกปีภาพก่อน">
-                <option>2018</option><option>2020</option><option>2022</option>
+              <select id="beforeYear" aria-label="เลือกปีภาพก่อน จังหวัดกระบี่">
+                <option value="2018" selected>2018</option>
+                <option value="2020">2020</option>
+                <option value="2022">2022</option>
+                <option value="2024">2024</option>
+                <option value="2026">2026 YTD</option>
               </select>
             </label>
             <label>AFTER
-              <select id="afterYear" aria-label="เลือกปีภาพหลัง">
-                <option>2020</option><option>2022</option><option selected>2024</option>
+              <select id="afterYear" aria-label="เลือกปีภาพหลัง จังหวัดกระบี่">
+                <option value="2018">2018</option>
+                <option value="2020">2020</option>
+                <option value="2022">2022</option>
+                <option value="2024">2024</option>
+                <option value="2026" selected>2026 YTD</option>
               </select>
             </label>
           </div>
         </div>
         <div id="compareStage" class="compare-stage" style="--split:50%">
-          <img id="beforeImage" class="before-image" alt="ภาพดาวเทียมก่อน">
-          <img id="afterImage" class="after-image" alt="ภาพดาวเทียมหลัง">
+          <img id="beforeImage" class="before-image" alt="ภาพดาวเทียมก่อน จังหวัดกระบี่">
+          <img id="afterImage" class="after-image" alt="ภาพดาวเทียมหลัง จังหวัดกระบี่">
           <svg id="provinceBoundary" class="boundary-svg" viewBox="0 0 1900 2350" preserveAspectRatio="none" aria-hidden="true"></svg>
-          <div class="year-label before"><span id="beforeLabel">BEFORE · 2018</span><small>Sentinel‑2 cloudless</small></div>
-          <div class="year-label after"><span id="afterLabel">AFTER · 2024</span><small>Sentinel‑2 cloudless</small></div>
+          <div class="year-label before"><span id="beforeLabel">BEFORE · 2018</span><small id="beforeSourceLabel">Sentinel‑2 cloudless</small></div>
+          <div class="year-label after"><span id="afterLabel">AFTER · 2026 YTD</span><small id="afterSourceLabel">Sentinel‑2 L2A current year</small></div>
           <div class="divider" aria-hidden="true"></div>
-          <input id="compareRange" class="range" type="range" min="0" max="100" value="50" aria-label="เลื่อนเปรียบเทียบภาพก่อนและหลัง">
-          <div id="compareStatus" class="status">กำลังตรวจไฟล์ภาพ…</div>
+          <input id="compareRange" class="range" type="range" min="0" max="100" value="50" aria-label="เลื่อนเปรียบเทียบภาพจังหวัดกระบี่ก่อนและหลัง">
+          <div id="compareStatus" class="status">กำลังตรวจไฟล์ภาพจังหวัดกระบี่…</div>
         </div>
         <div class="compare-foot">
           <span><b id="splitValue">50% ภาพก่อน / 50% ภาพหลัง</b><br>เลื่อนไปทางขวาเพื่อเปิดภาพเก่ามากขึ้น เลื่อนไปทางซ้ายเพื่อเปิดภาพใหม่มากขึ้น</span>
-          <span>เส้นสีขาว = ขอบเขตจังหวัดเพื่อการแสดงผล<br>ภาพ: EOX Sentinel‑2 cloudless / modified Copernicus</span>
+          <span id="latestDataNote">กำลังอ่านวันที่ข้อมูลปี 2026 ล่าสุด…</span>
         </div>
       </article>
     </section>
@@ -73,35 +81,37 @@
     <section class="section" id="evidence">
       <div class="section-head">
         <div>
-          <p class="eyebrow">PROVINCE-SCALE EVIDENCE</p>
-          <h2>ภาพรวมก่อน แล้วค่อยหาจุดเสี่ยง</h2>
+          <p class="eyebrow">KRABI PROVINCE-SCALE EVIDENCE</p>
+          <h2>ดูทั้งจังหวัดก่อน แล้วค่อยลงจุดเสี่ยง</h2>
         </div>
-        <p>ภาพทั้งจังหวัดตอบว่าแต่ละพื้นที่อยู่ตรงไหนและเปลี่ยนบริบทอย่างไร ส่วนการระบุ “ถอยร่นกี่เมตรต่อปี” ต้องใช้ shoreline หลายปีและ transect จึงแยกเป็นแผนที่ DSAS โดยตรง</p>
+        <p>ภาพระดับจังหวัดใช้ดูบริบทของแนวชายฝั่ง ส่วนคำตอบว่าแนวใดถอยร่นกี่เมตรต่อปีใช้ข้อมูล shoreline หลายปีและ transect ในหน้า DSAS</p>
       </div>
 
       <div class="metrics">
-        <article class="metric"><span>พื้นที่ขอบเขตจังหวัด</span><strong id="provinceArea">—</strong><small>จาก OpenGISData-Thailand</small></article>
+        <article class="metric"><span>พื้นที่ขอบเขตจังหวัดกระบี่</span><strong id="provinceArea">—</strong><small>จาก OpenGISData-Thailand</small></article>
+        <article class="metric"><span>ข้อมูลปี 2026 ล่าสุดถึง</span><strong id="latestDataDate">—</strong><small>วันที่ถ่ายล่าสุดที่มีส่วนใน composite</small></article>
         <article class="metric"><span>จุด DSAS ที่นำเข้า</span><strong id="transectCount">—</strong><small>ข้อมูลเผยแพร่ 1990–2019</small></article>
         <article class="metric"><span>จุดถอยร่น</span><strong id="retreatCount" style="color:var(--red)">—</strong><small>รวม retreat และ strong retreat</small></article>
-        <article class="metric"><span>จุดค่อนข้างคงที่</span><strong id="stableCount">—</strong><small>ตาม convention สำหรับ dashboard</small></article>
+        <article class="metric"><span>จุดค่อนข้างคงที่</span><strong id="stableCount">—</strong><small>ตามเกณฑ์ dashboard</small></article>
         <article class="metric"><span>ช่วง LRR</span><strong id="rateRange">—</strong><small>เมตร/ปี · 1990–2019</small></article>
       </div>
 
-      <div class="timeline" aria-label="ปีภาพดาวเทียม">
-        <button class="year-card active" type="button" data-year="2018"><b>2018</b><span>ภาพจังหวัด 1,900 × 2,350</span></button>
-        <button class="year-card" type="button" data-year="2020"><b>2020</b><span>ใช้เป็นปีเปรียบเทียบกลาง</span></button>
-        <button class="year-card" type="button" data-year="2022"><b>2022</b><span>ตรวจการเปลี่ยนแปลงล่าสุด</span></button>
-        <button class="year-card active" type="button" data-year="2024"><b>2024</b><span>ภาพล่าสุดใน annual mosaic ชุดนี้</span></button>
+      <div class="timeline" aria-label="ปีภาพดาวเทียมจังหวัดกระบี่">
+        <button class="year-card active" type="button" data-year="2018"><b>2018</b><span>annual cloudless mosaic</span></button>
+        <button class="year-card" type="button" data-year="2020"><b>2020</b><span>annual cloudless mosaic</span></button>
+        <button class="year-card" type="button" data-year="2022"><b>2022</b><span>annual cloudless mosaic</span></button>
+        <button class="year-card" type="button" data-year="2024"><b>2024</b><span>annual cloudless mosaic</span></button>
+        <button class="year-card active" type="button" data-year="2026"><b>2026 YTD</b><span>Sentinel‑2 L2A ถึงปัจจุบัน</span></button>
       </div>
 
       <div class="evidence-grid" style="margin-top:10px">
         <article class="evidence-card">
-          <h3>ผลตรวจว่า slider ใช้ภาพคนละไฟล์จริง</h3>
-          <p>ระบบตรวจ URL, ขนาดภาพ, manifest และโหลดภาพทั้งสองสำเร็จก่อนขึ้นสถานะพร้อมใช้งาน ค่า mean absolute RGB difference ระหว่าง 2018–2024 คือ <b id="differenceScore">—</b> จึงไม่ใช่การเลื่อนเส้นทับภาพเดียว</p>
+          <h3>ตรวจว่าเป็นภาพคนละชุดจริง</h3>
+          <p>ระบบตรวจ URL ขนาดภาพ manifest และความแตกต่างของพิกเซลก่อนขึ้นสถานะพร้อมใช้งาน ค่า mean absolute RGB difference ของคู่แรก–ล่าสุดคือ <b id="differenceScore">—</b></p>
         </article>
         <article class="evidence-card">
-          <h3>การกระจายสถานะ DSAS</h3>
-          <div id="distribution" class="distribution" aria-label="การกระจายสถานะ shoreline"></div>
+          <h3>การกระจายสถานะ DSAS จังหวัดกระบี่</h3>
+          <div id="distribution" class="distribution" aria-label="การกระจายสถานะ shoreline จังหวัดกระบี่"></div>
         </article>
       </div>
     </section>
@@ -110,21 +120,10 @@
       <div class="cta-card">
         <div>
           <p class="eyebrow">SYNCHRONIZED SWIPE MAP</p>
-          <h3>ซูมและเลื่อนภาพก่อน–หลังในตำแหน่งเดียวกัน</h3>
-          <p>หน้าเปรียบเทียบแบบสมุทรสาครล็อกแผนที่สองฝั่งให้ใช้ center และ zoom เดียวกัน เลือกปี 2018/2020/2022/2024 และเปิดขอบเขตจังหวัดหรือจุด DSAS เป็นชั้นอ้างอิงได้</p>
+          <h3>ซูมและเลื่อนภาพสองปีในตำแหน่งเดียวกัน</h3>
+          <p>หน้าเต็มจอล็อก center และ zoom ของภาพสองฝั่ง เลือกปีถึง 2026 เปิดขอบเขตจังหวัดกระบี่ และเปิดจุด DSAS เป็นชั้นอ้างอิงได้</p>
         </div>
         <a class="btn primary" href="before-after-map.html">เปิดแผนที่ก่อน–หลัง</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="cta-card">
-        <div>
-          <p class="eyebrow">PUBLISHED DSAS · 666 TRANSECTS</p>
-          <h3>คลิกดูว่าช่วงไหนถอยร่น ช่วงไหนงอกเพิ่ม</h3>
-          <p>หน้าแผนที่วาดจุด DSAS ลงบนภาพจังหวัดจริง มีตัวกรอง 5 ระดับ แสดง LRR, EPR, NSM, SCE, ความไม่แน่นอน และรายการ hotspot ที่รุนแรงที่สุด โดยรักษาค่าต้นฉบับทุกจุด</p>
-        </div>
-        <a class="btn primary" href="published-dsas.html">เปิดแผนที่ DSAS เต็มจอ</a>
       </div>
     </section>
 
@@ -132,21 +131,20 @@
       <div class="section-head">
         <div>
           <p class="eyebrow">INTERPRETATION BOUNDARY</p>
-          <h2>แยกภาพหลักฐานออกจากอัตรากัดเซาะ</h2>
+          <h2>ภาพล่าสุดไม่เท่ากับอัตรากัดเซาะ</h2>
         </div>
-        <p>Annual cloudless mosaic เหมาะกับการมองภาพรวมจังหวัด แต่ไม่ใช่ shoreline ที่ควบคุมระดับน้ำ ส่วน DSAS เป็นบริบทประวัติ 1990–2019 และยังไม่ใช่สถานะปัจจุบันปี 2026</p>
+        <p>ภาพ 2026 เป็น year-to-date latest-clear-pixel composite จากฉากจริง แต่ไม่ได้จับคู่ระดับน้ำ การรายงานเมตรต่อปียังต้องใช้ shoreline หลายช่วงเวลา tide matching และ positional uncertainty</p>
       </div>
       <div class="method-grid">
-        <article class="method"><b>1 · Province overview</b><p>ใช้ภาพคงที่ปี 2018/2020/2022/2024 ขอบเขตเดียวกัน จึงเลื่อนเทียบได้โดยไม่พึ่ง tile service ภายนอกระหว่างใช้งาน</p></article>
-        <article class="method"><b>2 · Historical rate</b><p>ใช้ LRR จากชุดข้อมูล shoreline/DSAS ที่เผยแพร่จำนวน 666 จุด เพื่อระบุบริเวณถอยร่น งอกเพิ่ม และค่อนข้างคงที่</p></article>
-        <article class="method"><b>3 · Current monitoring</b><p>การยืนยันอัตราปัจจุบันต้องเพิ่ม shoreline ปีล่าสุดที่ tide-matched, RTK control, transect และ positional uncertainty</p></article>
+        <article class="method"><b>1 · Historical overview</b><p>ใช้ annual cloudless mosaic ปี 2018–2024 บนขอบเขตเดียวกันเพื่ออ่านบริบทระยะยาว</p></article>
+        <article class="method"><b>2 · Current year</b><p>ใช้ Sentinel‑2 L2A ปี 2026 จริง เลือกพิกเซลปลอดเมฆล่าสุดและบันทึกวันที่กับ scene ID ใน manifest</p></article>
+        <article class="method"><b>3 · Shoreline rate</b><p>ใช้ DSAS 666 จุดเป็นบริบทประวัติ และเพิ่ม shoreline ปีล่าสุดแบบควบคุมระดับน้ำก่อนสรุปอัตราปัจจุบัน</p></article>
       </div>
-      <div class="warning"><b>ข้อจำกัด:</b> จุดสีแดงใน DSAS หมายถึงอัตราถอยร่นในชุดข้อมูลประวัติ 1990–2019 ตาม convention ของ dashboard ไม่ใช่ประกาศสถานะอย่างเป็นทางการของ DMCR และไม่ควรตีความว่าเป็นอัตราปี 2026 โดยอัตโนมัติ</div>
     </section>
 
     <footer class="footer">
-      <span>Krabi Province Coastal Change · static validated imagery + published historical DSAS</span>
-      <span><a href="https://osf.io/mxjhk/" target="_blank" rel="noreferrer">Published dataset source</a> · <a href="https://github.com/saratchai1/corrosion/tree/main/regions/krabi" target="_blank" rel="noreferrer">Reproducible pipeline</a></span>
+      <span>จังหวัดกระบี่ · Krabi Province Coastal Change</span>
+      <span>Satellite imagery + published DSAS context</span>
     </footer>
   </main>
 
