@@ -1,0 +1,59 @@
+{
+  "years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "target_tide_m_msl": 1.0879,
+  "tide_spread_m": 0.345,
+  "maximum_delta_from_target_m": 0.203,
+  "maximum_secondary_bracket_minutes": 472.0,
+  "status": "ACCEPTABLE_FOR_TIDE_AWARE_SCREENING",
+  "selected_scenes": [
+    {
+      "year": 2023,
+      "scene_id": "S2A_MSIL2A_20230116T034101_R061_T47PNQ_20230116T121416",
+      "acquisition_datetime_bangkok": "2023-01-16T10:41:01.024000+07:00",
+      "tide_level_m_msl": 1.2299,
+      "delta_from_target_m": 0.142,
+      "tide_status": "modelled_secondary_extrema_cosine",
+      "tide_source_tier": "secondary_published_extrema",
+      "tide_source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2023-01-474.php",
+      "secondary_bracket_span_minutes": 472.0
+    },
+    {
+      "year": 2024,
+      "scene_id": "S2B_MSIL2A_20240215T033839_R061_T47PNQ_20240215T081344",
+      "acquisition_datetime_bangkok": "2024-02-15T10:38:39.024000+07:00",
+      "tide_level_m_msl": 1.1037,
+      "delta_from_target_m": 0.0158,
+      "tide_status": "modelled_secondary_extrema_cosine",
+      "tide_source_tier": "secondary_published_extrema",
+      "tide_source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2024-02-474.php",
+      "secondary_bracket_span_minutes": 442.0
+    },
+    {
+      "year": 2025,
+      "scene_id": "S2C_MSIL2A_20250214T033901_R061_T47PNQ_20250214T090512",
+      "acquisition_datetime_bangkok": "2025-02-14T10:39:01.025000+07:00",
+      "tide_level_m_msl": 0.8849,
+      "delta_from_target_m": -0.203,
+      "tide_status": "modelled_secondary_extrema_cosine",
+      "tide_source_tier": "secondary_published_extrema",
+      "tide_source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2025-02-474.php",
+      "secondary_bracket_span_minutes": 380.0
+    },
+    {
+      "year": 2026,
+      "scene_id": "S2C_MSIL2A_20260130T034001_R061_T47PNQ_20260130T081910",
+      "acquisition_datetime_bangkok": "2026-01-30T10:40:01.025000+07:00",
+      "tide_level_m_msl": 1.133,
+      "delta_from_target_m": 0.0451,
+      "tide_status": "predicted_interpolated",
+      "tide_source_tier": "official_hourly_prediction",
+      "tide_source_url": "https://hydro.navy.mi.th/storage/frontend/article/23009/file/th/MK2026mls.pdf",
+      "secondary_bracket_span_minutes": null
+    }
+  ]
+}
