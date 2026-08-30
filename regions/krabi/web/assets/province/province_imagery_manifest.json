@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-29T10:10:48.470230Z",
+  "generated_utc": "2026-08-30T02:07:02.349562Z",
   "asset_status": "VALIDATED_STATIC_PROVINCE_IMAGERY",
   "province": "Krabi",
   "province_code": "81",
@@ -113,17 +113,676 @@
         1900,
         2350
       ]
+    },
+    "2026": {
+      "source": "Element 84 Earth Search",
+      "stac_endpoint": "https://earth-search.aws.element84.com/v1",
+      "collection": "sentinel-2-c1-l2a",
+      "product_type": "Sentinel-2 L2A current-year latest-clear-pixel composite",
+      "temporal_status": "YEAR_TO_DATE_NOT_COMPLETE_ANNUAL_MOSAIC",
+      "search_start_date": "2026-01-01",
+      "search_end_date": "2026-08-30",
+      "latest_acquisition_datetime_utc": "2026-08-28T03:56:26.256000Z",
+      "latest_acquisition_date": "2026-08-28",
+      "candidate_scene_count": 288,
+      "selected_scene_count": 72,
+      "selected_scene_count_by_mgrs_tile": {
+        "47NMH": 14,
+        "47NMJ": 14,
+        "47NNH": 14,
+        "47NNJ": 14,
+        "47PMK": 14,
+        "47PNK": 14
+      },
+      "processed_scene_count": 60,
+      "used_clear_scene_count": 50,
+      "failed_scene_count": 0,
+      "clear_pixel_fraction": 0.996853,
+      "fallback_latest_observation_fraction": 0.003147,
+      "uncovered_fraction": 0.0,
+      "earliest_contributing_datetime_utc": "2026-03-26T03:55:56.938000Z",
+      "latest_contributing_datetime_utc": "2026-08-28T03:56:26.256000Z",
+      "scene_records": [
+        {
+          "scene_id": "S2C_T47NMH_20260828T034744_L2A",
+          "datetime_utc": "2026-08-28T03:56:26.256000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 77.3939,
+          "new_clear_pixels": 160372,
+          "clear_fraction_after_scene": 0.035918,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/8/S2C_T47NMH_20260828T034744_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/8/S2C_T47NMH_20260828T034744_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NMJ_20260828T034744_L2A",
+          "datetime_utc": "2026-08-28T03:56:11.699000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 32.9371,
+          "new_clear_pixels": 1072297,
+          "clear_fraction_after_scene": 0.276074,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2C_T47NMJ_20260828T034744_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2C_T47NMJ_20260828T034744_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNJ_20260828T034744_L2A",
+          "datetime_utc": "2026-08-28T03:56:08.484000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 48.0327,
+          "new_clear_pixels": 578614,
+          "clear_fraction_after_scene": 0.405662,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2C_T47NNJ_20260828T034744_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2C_T47NNJ_20260828T034744_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47PNK_20260828T034744_L2A",
+          "datetime_utc": "2026-08-28T03:55:54.088000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 87.4435,
+          "new_clear_pixels": 121522,
+          "clear_fraction_after_scene": 0.432879,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2C_T47PNK_20260828T034744_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2C_T47PNK_20260828T034744_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260826T035826_L2A",
+          "datetime_utc": "2026-08-26T04:05:51.384000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 81.047,
+          "new_clear_pixels": 67360,
+          "clear_fraction_after_scene": 0.447965,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260826T035826_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260826T035826_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMH_20260823T034450_L2A",
+          "datetime_utc": "2026-08-23T03:56:25.067000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 36.581,
+          "new_clear_pixels": 12682,
+          "clear_fraction_after_scene": 0.450806,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/8/S2B_T47NMH_20260823T034450_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/8/S2B_T47NMH_20260823T034450_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNH_20260823T034450_L2A",
+          "datetime_utc": "2026-08-23T03:56:21.947000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 33.6703,
+          "new_clear_pixels": 74924,
+          "clear_fraction_after_scene": 0.467586,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2B_T47NNH_20260823T034450_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2B_T47NNH_20260823T034450_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMJ_20260823T034450_L2A",
+          "datetime_utc": "2026-08-23T03:56:10.493000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 80.3785,
+          "new_clear_pixels": 87034,
+          "clear_fraction_after_scene": 0.487078,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2B_T47NMJ_20260823T034450_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2B_T47NMJ_20260823T034450_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNJ_20260823T034450_L2A",
+          "datetime_utc": "2026-08-23T03:56:07.292000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 53.529,
+          "new_clear_pixels": 176445,
+          "clear_fraction_after_scene": 0.526596,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2B_T47NNJ_20260823T034450_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2B_T47NNJ_20260823T034450_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260823T034450_L2A",
+          "datetime_utc": "2026-08-23T03:55:55.764000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 85.3834,
+          "new_clear_pixels": 132724,
+          "clear_fraction_after_scene": 0.556321,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260823T034450_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260823T034450_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PNK_20260823T034450_L2A",
+          "datetime_utc": "2026-08-23T03:55:52.885000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 61.8735,
+          "new_clear_pixels": 131668,
+          "clear_fraction_after_scene": 0.58581,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2B_T47PNK_20260823T034450_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2B_T47PNK_20260823T034450_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NNH_20260820T034758_L2A",
+          "datetime_utc": "2026-08-20T03:56:40.099000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 85.7376,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.58581,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2A_T47NNH_20260820T034758_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2A_T47NNH_20260820T034758_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47PMK_20260813T040503_L2A",
+          "datetime_utc": "2026-08-13T04:06:10.642000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 57.1968,
+          "new_clear_pixels": 55959,
+          "clear_fraction_after_scene": 0.598343,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2A_T47PMK_20260813T040503_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2A_T47PMK_20260813T040503_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNH_20260813T034618_L2A",
+          "datetime_utc": "2026-08-13T03:56:23.654000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 82.1548,
+          "new_clear_pixels": 4076,
+          "clear_fraction_after_scene": 0.599256,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2B_T47NNH_20260813T034618_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2B_T47NNH_20260813T034618_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMJ_20260813T034618_L2A",
+          "datetime_utc": "2026-08-13T03:56:12.198000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 48.3113,
+          "new_clear_pixels": 270480,
+          "clear_fraction_after_scene": 0.659834,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2B_T47NMJ_20260813T034618_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2B_T47NMJ_20260813T034618_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNJ_20260813T034618_L2A",
+          "datetime_utc": "2026-08-13T03:56:08.995000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 45.6001,
+          "new_clear_pixels": 78895,
+          "clear_fraction_after_scene": 0.677503,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2B_T47NNJ_20260813T034618_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2B_T47NNJ_20260813T034618_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260813T034618_L2A",
+          "datetime_utc": "2026-08-13T03:55:57.478000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 74.5266,
+          "new_clear_pixels": 90296,
+          "clear_fraction_after_scene": 0.697726,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260813T034618_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260813T034618_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PNK_20260813T034618_L2A",
+          "datetime_utc": "2026-08-13T03:55:54.593000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 43.4854,
+          "new_clear_pixels": 98921,
+          "clear_fraction_after_scene": 0.719881,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2B_T47PNK_20260813T034618_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2B_T47PNK_20260813T034618_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47PMK_20260811T035705_L2A",
+          "datetime_utc": "2026-08-11T04:05:53.910000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 77.1236,
+          "new_clear_pixels": 12669,
+          "clear_fraction_after_scene": 0.722718,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2C_T47PMK_20260811T035705_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2C_T47PMK_20260811T035705_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260806T035744_L2A",
+          "datetime_utc": "2026-08-06T04:05:54.144000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 88.7271,
+          "new_clear_pixels": 187,
+          "clear_fraction_after_scene": 0.72276,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260806T035744_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260806T035744_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMH_20260803T034424_L2A",
+          "datetime_utc": "2026-08-03T03:56:28.675000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 21.8543,
+          "new_clear_pixels": 5754,
+          "clear_fraction_after_scene": 0.724049,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/8/S2B_T47NMH_20260803T034424_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/8/S2B_T47NMH_20260803T034424_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNH_20260803T034424_L2A",
+          "datetime_utc": "2026-08-03T03:56:25.574000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 19.6693,
+          "new_clear_pixels": 7092,
+          "clear_fraction_after_scene": 0.725637,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2B_T47NNH_20260803T034424_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/8/S2B_T47NNH_20260803T034424_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMJ_20260803T034424_L2A",
+          "datetime_utc": "2026-08-03T03:56:14.123000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 20.6031,
+          "new_clear_pixels": 82453,
+          "clear_fraction_after_scene": 0.744104,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2B_T47NMJ_20260803T034424_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/8/S2B_T47NMJ_20260803T034424_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNJ_20260803T034424_L2A",
+          "datetime_utc": "2026-08-03T03:56:10.919000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 32.5882,
+          "new_clear_pixels": 58421,
+          "clear_fraction_after_scene": 0.757188,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2B_T47NNJ_20260803T034424_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/8/S2B_T47NNJ_20260803T034424_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260803T034424_L2A",
+          "datetime_utc": "2026-08-03T03:55:59.413000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 41.7462,
+          "new_clear_pixels": 310666,
+          "clear_fraction_after_scene": 0.826766,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260803T034424_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/8/S2B_T47PMK_20260803T034424_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PNK_20260803T034424_L2A",
+          "datetime_utc": "2026-08-03T03:55:56.514000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 33.9499,
+          "new_clear_pixels": 142252,
+          "clear_fraction_after_scene": 0.858626,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2B_T47PNK_20260803T034424_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/8/S2B_T47PNK_20260803T034424_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NMH_20260731T034823_L2A",
+          "datetime_utc": "2026-07-31T03:56:46.422000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 47.8408,
+          "new_clear_pixels": 326,
+          "clear_fraction_after_scene": 0.858699,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/7/S2A_T47NMH_20260731T034823_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/7/S2A_T47NMH_20260731T034823_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NNH_20260731T034823_L2A",
+          "datetime_utc": "2026-07-31T03:56:43.322000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 50.5641,
+          "new_clear_pixels": 13,
+          "clear_fraction_after_scene": 0.858701,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/7/S2A_T47NNH_20260731T034823_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/7/S2A_T47NNH_20260731T034823_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NMJ_20260731T034823_L2A",
+          "datetime_utc": "2026-07-31T03:56:31.871000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 28.3325,
+          "new_clear_pixels": 36837,
+          "clear_fraction_after_scene": 0.866952,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/7/S2A_T47NMJ_20260731T034823_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/7/S2A_T47NMJ_20260731T034823_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NNJ_20260731T034823_L2A",
+          "datetime_utc": "2026-07-31T03:56:28.662000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 25.9368,
+          "new_clear_pixels": 36831,
+          "clear_fraction_after_scene": 0.8752,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/7/S2A_T47NNJ_20260731T034823_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/7/S2A_T47NNJ_20260731T034823_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47PNK_20260731T034823_L2A",
+          "datetime_utc": "2026-07-31T03:56:14.260000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 62.2233,
+          "new_clear_pixels": 90212,
+          "clear_fraction_after_scene": 0.895405,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/7/S2A_T47PNK_20260731T034823_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/7/S2A_T47PNK_20260731T034823_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNH_20260719T034748_L2A",
+          "datetime_utc": "2026-07-19T03:56:26.902000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 70.9743,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.895405,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/7/S2C_T47NNH_20260719T034748_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/7/S2C_T47NNH_20260719T034748_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NMJ_20260719T034748_L2A",
+          "datetime_utc": "2026-07-19T03:56:15.458000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 52.9519,
+          "new_clear_pixels": 4234,
+          "clear_fraction_after_scene": 0.896353,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/7/S2C_T47NMJ_20260719T034748_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/7/S2C_T47NMJ_20260719T034748_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNJ_20260719T034748_L2A",
+          "datetime_utc": "2026-07-19T03:56:12.239000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 58.8321,
+          "new_clear_pixels": 6335,
+          "clear_fraction_after_scene": 0.897772,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/7/S2C_T47NNJ_20260719T034748_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/7/S2C_T47NNJ_20260719T034748_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47PNK_20260719T034748_L2A",
+          "datetime_utc": "2026-07-19T03:55:57.839000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 51.8224,
+          "new_clear_pixels": 33649,
+          "clear_fraction_after_scene": 0.905308,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/7/S2C_T47PNK_20260719T034748_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/7/S2C_T47PNK_20260719T034748_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNJ_20260714T034656_L2A",
+          "datetime_utc": "2026-07-14T03:56:10.444000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 81.2595,
+          "new_clear_pixels": 1428,
+          "clear_fraction_after_scene": 0.905628,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/7/S2B_T47NNJ_20260714T034656_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/7/S2B_T47NNJ_20260714T034656_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PNK_20260714T034656_L2A",
+          "datetime_utc": "2026-07-14T03:55:56.045000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 50.1365,
+          "new_clear_pixels": 16331,
+          "clear_fraction_after_scene": 0.909285,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/7/S2B_T47PNK_20260714T034656_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/7/S2B_T47PNK_20260714T034656_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NMH_20260709T034739_L2A",
+          "datetime_utc": "2026-07-09T03:56:28.655000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 79.6411,
+          "new_clear_pixels": 1,
+          "clear_fraction_after_scene": 0.909286,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/7/S2C_T47NMH_20260709T034739_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/7/S2C_T47NMH_20260709T034739_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNH_20260709T034739_L2A",
+          "datetime_utc": "2026-07-09T03:56:25.547000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 70.4443,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.909286,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/7/S2C_T47NNH_20260709T034739_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/7/S2C_T47NNH_20260709T034739_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NMJ_20260709T034739_L2A",
+          "datetime_utc": "2026-07-09T03:56:14.107000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 43.0919,
+          "new_clear_pixels": 2544,
+          "clear_fraction_after_scene": 0.909855,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/7/S2C_T47NMJ_20260709T034739_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/7/S2C_T47NMJ_20260709T034739_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMH_20260704T034650_L2A",
+          "datetime_utc": "2026-07-04T03:56:26.089000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 52.6798,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.909855,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/7/S2B_T47NMH_20260704T034650_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/7/S2B_T47NMH_20260704T034650_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMH_20260614T035338_L2A",
+          "datetime_utc": "2026-06-14T03:56:26.773000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 29.7301,
+          "new_clear_pixels": 7,
+          "clear_fraction_after_scene": 0.909857,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/6/S2B_T47NMH_20260614T035338_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/6/S2B_T47NMH_20260614T035338_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PNK_20260425T034540_L2A",
+          "datetime_utc": "2026-04-25T03:55:52.190000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 4.094,
+          "new_clear_pixels": 23455,
+          "clear_fraction_after_scene": 0.91511,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2B_T47PNK_20260425T034540_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2B_T47PNK_20260425T034540_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNH_20260420T035608_L2A",
+          "datetime_utc": "2026-04-20T03:56:25.364000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 10.188,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.91511,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/4/S2C_T47NNH_20260420T035608_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/4/S2C_T47NNH_20260420T035608_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NMJ_20260420T035608_L2A",
+          "datetime_utc": "2026-04-20T03:56:17.200000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 3.9347,
+          "new_clear_pixels": 38,
+          "clear_fraction_after_scene": 0.915118,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/4/S2C_T47NMJ_20260420T035608_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/4/S2C_T47NMJ_20260420T035608_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNJ_20260420T035608_L2A",
+          "datetime_utc": "2026-04-20T03:56:15.530000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 13.4579,
+          "new_clear_pixels": 448,
+          "clear_fraction_after_scene": 0.915219,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/4/S2C_T47NNJ_20260420T035608_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/4/S2C_T47NNJ_20260420T035608_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47PNK_20260420T034345_L2A",
+          "datetime_utc": "2026-04-20T03:55:56.301000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 20.6784,
+          "new_clear_pixels": 223,
+          "clear_fraction_after_scene": 0.915269,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2C_T47PNK_20260420T034345_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2C_T47PNK_20260420T034345_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NMH_20260412T035013_L2A",
+          "datetime_utc": "2026-04-12T03:56:44.892000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 1.0195,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.915269,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/4/S2A_T47NMH_20260412T035013_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/4/S2A_T47NMH_20260412T035013_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NMJ_20260412T035013_L2A",
+          "datetime_utc": "2026-04-12T03:56:33.695000Z",
+          "mgrs_tile": "47NMJ",
+          "scene_cloud_cover_percent": 1.7757,
+          "new_clear_pixels": 1703,
+          "clear_fraction_after_scene": 0.91565,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/4/S2A_T47NMJ_20260412T035013_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MJ/2026/4/S2A_T47NMJ_20260412T035013_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47NNJ_20260412T035013_L2A",
+          "datetime_utc": "2026-04-12T03:56:30.478000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 8.7604,
+          "new_clear_pixels": 8171,
+          "clear_fraction_after_scene": 0.91748,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/4/S2A_T47NNJ_20260412T035013_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/4/S2A_T47NNJ_20260412T035013_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47PNK_20260412T035013_L2A",
+          "datetime_utc": "2026-04-12T03:56:16.084000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 11.4654,
+          "new_clear_pixels": 73,
+          "clear_fraction_after_scene": 0.917497,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2A_T47PNK_20260412T035013_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2A_T47PNK_20260412T035013_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47NNJ_20260410T034513_L2A",
+          "datetime_utc": "2026-04-10T03:56:08.151000Z",
+          "mgrs_tile": "47NNJ",
+          "scene_cloud_cover_percent": 9.8465,
+          "new_clear_pixels": 1201,
+          "clear_fraction_after_scene": 0.917766,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/4/S2C_T47NNJ_20260410T034513_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NJ/2026/4/S2C_T47NNJ_20260410T034513_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47PNK_20260410T034513_L2A",
+          "datetime_utc": "2026-04-10T03:55:53.753000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 13.9887,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.917766,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2C_T47PNK_20260410T034513_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2C_T47PNK_20260410T034513_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PNK_20260405T035122_L2A",
+          "datetime_utc": "2026-04-05T03:55:55.266000Z",
+          "mgrs_tile": "47PNK",
+          "scene_cloud_cover_percent": 10.9161,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.917766,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2B_T47PNK_20260405T035122_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/NK/2026/4/S2B_T47PNK_20260405T035122_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2C_T47PMK_20260403T040252_L2A",
+          "datetime_utc": "2026-04-03T04:05:54.563000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 5.7966,
+          "new_clear_pixels": 144603,
+          "clear_fraction_after_scene": 0.950151,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/4/S2C_T47PMK_20260403T040252_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/4/S2C_T47PMK_20260403T040252_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260329T040102_L2A",
+          "datetime_utc": "2026-03-29T04:05:52.815000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 5.6567,
+          "new_clear_pixels": 7025,
+          "clear_fraction_after_scene": 0.951725,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/3/S2B_T47PMK_20260329T040102_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/3/S2B_T47PMK_20260329T040102_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2A_T47PMK_20260326T040425_L2A",
+          "datetime_utc": "2026-03-26T04:06:15.643000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 4.5976,
+          "new_clear_pixels": 1027,
+          "clear_fraction_after_scene": 0.951955,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/3/S2A_T47PMK_20260326T040425_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/3/S2A_T47PMK_20260326T040425_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NMH_20260326T035309_L2A",
+          "datetime_utc": "2026-03-26T03:56:26.187000Z",
+          "mgrs_tile": "47NMH",
+          "scene_cloud_cover_percent": 12.8677,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.951955,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/3/S2B_T47NMH_20260326T035309_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/MH/2026/3/S2B_T47NMH_20260326T035309_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47NNH_20260326T035309_L2A",
+          "datetime_utc": "2026-03-26T03:56:23.097000Z",
+          "mgrs_tile": "47NNH",
+          "scene_cloud_cover_percent": 4.2748,
+          "new_clear_pixels": 0,
+          "clear_fraction_after_scene": 0.951955,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/3/S2B_T47NNH_20260326T035309_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/N/NH/2026/3/S2B_T47NNH_20260326T035309_L2A/SCL.tif"
+        },
+        {
+          "scene_id": "S2B_T47PMK_20260326T035309_L2A",
+          "datetime_utc": "2026-03-26T03:55:56.938000Z",
+          "mgrs_tile": "47PMK",
+          "scene_cloud_cover_percent": 3.835,
+          "new_clear_pixels": 200469,
+          "clear_fraction_after_scene": 0.996853,
+          "visual_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/3/S2B_T47PMK_20260326T035309_L2A/TCI.tif",
+          "scl_href": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/47/P/MK/2026/3/S2B_T47PMK_20260326T035309_L2A/SCL.tif"
+        }
+      ],
+      "failures": [],
+      "mean_rgb": [
+        47.552,
+        67.988,
+        60.049
+      ],
+      "stddev_rgb": [
+        25.745,
+        30.968,
+        24.397
+      ],
+      "plain_path": "krabi_province_s2_2026_ytd.jpg",
+      "plain_sha256": "e3e6a7f8e0b646b8b91ddb4343cfa7b74928ba7818ef5848ede86f97194064ab",
+      "labelled_path": "krabi_province_s2_2026_ytd_labelled.jpg",
+      "labelled_sha256": "19f39c3063d5d1891594e2867e07ae458b77bc3fa920c4aacfe73fa4325ffbf8",
+      "dimensions": [
+        1900,
+        2350
+      ],
+      "clear_scl_codes": [
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "attribution": "Contains modified Copernicus Sentinel data 2026; accessed through Element 84 Earth Search.",
+      "interpretation_note": "Real Sentinel-2 L2A scenes acquired in the current year. Latest clear observation varies by pixel and is not tide matched."
     }
   },
   "before_after_validation": {
     "before_year": 2018,
-    "after_year": 2024,
-    "mean_absolute_rgb_difference": 31.6939,
-    "mean_rms_rgb_difference": 33.8063,
-    "fraction_pixels_luma_difference_gte_12": 0.971485
+    "after_year": 2026,
+    "mean_absolute_rgb_difference": 19.2347,
+    "mean_rms_rgb_difference": 25.4549,
+    "fraction_pixels_luma_difference_gte_12": 0.657352
   },
   "interpretation": {
-    "visual_use": "province-wide annual cloudless visual comparison",
+    "visual_use": "province-wide historical annual mosaics plus current-year Sentinel-2 L2A YTD comparison",
     "not_valid_for": [
       "tide-matched shoreline position",
       "engineering erosion rate",
@@ -131,5 +790,8 @@
     ],
     "next_analysis": "extract annual shorelines and calculate transect rates by coastal cell"
   },
-  "attribution": "Sentinel-2 cloudless by EOX IT Services GmbH; contains modified Copernicus Sentinel data. Boundary: OpenGISData-Thailand."
+  "attribution": "Historical annual imagery: Sentinel-2 cloudless by EOX IT Services GmbH. Current 2026 imagery: contains modified Copernicus Sentinel data, accessed through Element 84 Earth Search. Boundary: OpenGISData-Thailand.",
+  "latest_available_year": 2026,
+  "latest_data_through": "2026-08-28",
+  "current_year_status": "VALIDATED_SENTINEL2_L2A_YEAR_TO_DATE"
 }
