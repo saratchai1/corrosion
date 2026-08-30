@@ -10,7 +10,7 @@ on:
       - 'web/**'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -43,6 +43,24 @@ jobs:
           test -f web/dist/client/data/project_tide_aware/imagery/2026_selected.webp
           du -sh web/dist/client
           find web/dist/client -type f | wc -l
+
+      - name: Publish immutable production bundle branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/samut-songkhram-site
+          mkdir -p /tmp/samut-songkhram-site
+          cp -a web/dist/client/. /tmp/samut-songkhram-site/
+          touch /tmp/samut-songkhram-site/.nojekyll
+          cd /tmp/samut-songkhram-site
+          git init
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -b production-samut-songkhram
+          git add -A
+          git commit -m "deploy: Samut Songkhram production bundle ${GITHUB_SHA}"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin production-samut-songkhram
 
       - name: Upload production client bundle
         uses: actions/upload-artifact@v4
