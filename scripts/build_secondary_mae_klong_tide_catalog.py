@@ -49,8 +49,8 @@ DEFAULT_OFFICIAL_2026 = Path(
 DEFAULT_SCENES = Path(
     "data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv"
 )
-MAX_CROSS_MONTH_EVENT_GAP_HOURS = 48.0
-MAX_YEAR_EDGE_GAP_HOURS = 48.0
+MAX_CROSS_MONTH_EVENT_GAP_HOURS = 72.0
+MAX_YEAR_EDGE_GAP_HOURS = 72.0
 
 
 def parse_cached_month(
