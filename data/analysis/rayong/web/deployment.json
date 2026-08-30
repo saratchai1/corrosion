@@ -1,9 +1,9 @@
 {
-  "status": "PARTIAL",
+  "status": "DEPLOYED",
   "provider": "GitHub Pages (Actions)",
   "url": "https://saratchai1.github.io/corrosion/",
-  "git_commit": "b5119fa",
-  "verified_at_utc": "2026-08-29T12:56:00Z",
-  "http_status": 404,
-  "screening_status": "PARTIALLY_READY"
+  "git_commit": "719adc359a561398c83dbac3d2c37b2652864061",
+  "verified_at_utc": "2026-08-30T01:47:00Z",
+  "http_status": 200,
+  "screening_status": "READY"
 }
