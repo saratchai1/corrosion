@@ -35,19 +35,19 @@ jobs:
         working-directory: web
         run: npm run build
 
-      - name: Inspect bundle
+      - name: Inspect client bundle
         run: |
-          test -f web/dist/index.html
-          test -f web/dist/data/project_tide_aware/summary.json
-          test -f web/dist/data/project_tide_aware/imagery/2023_selected.webp
-          test -f web/dist/data/project_tide_aware/imagery/2026_selected.webp
-          du -sh web/dist
-          find web/dist -type f | wc -l
+          test -f web/dist/client/index.html
+          test -f web/dist/client/data/project_tide_aware/summary.json
+          test -f web/dist/client/data/project_tide_aware/imagery/2023_selected.webp
+          test -f web/dist/client/data/project_tide_aware/imagery/2026_selected.webp
+          du -sh web/dist/client
+          find web/dist/client -type f | wc -l
 
-      - name: Upload production bundle
+      - name: Upload production client bundle
         uses: actions/upload-artifact@v4
         with:
           name: samut-songkhram-production-web
-          path: web/dist/**
+          path: web/dist/client/**
           if-no-files-found: error
           retention-days: 3
