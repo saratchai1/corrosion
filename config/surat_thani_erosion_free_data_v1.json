@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "project_id": "TH-SURAT-37-STC-2023",
   "title": "Surat Thani 37-STC mangrove coastal-erosion assessment using free data and project records",
-  "status": "SCREENING_MVP_BUILT_CONTROLS_NO_INTERVENTION_CONFIRMED_PARTIAL_TIDE_CONTEXT",
+  "status": "SCREENING_MVP_BUILT_CONTROLS_CONFIRMED_SCENE_LEVEL_TIDE_CONTEXT_WATERLINE_SENSITIVITY_FAILED",
   "scope": {
     "province": "Surat Thani",
     "plot_ids": ["37-STC"],
@@ -42,7 +42,7 @@
   "boundary_indicators": [
     {"type": "MANGROVE_EDGE", "role": "PRIMARY", "requires_tide_metadata": false},
     {"type": "BANK_EDGE", "role": "PRIMARY_WHERE_VISIBLE", "requires_tide_metadata": false},
-    {"type": "WATERLINE", "role": "SUPPORTING_ONLY", "requires_tide_metadata": true}
+    {"type": "WATERLINE", "role": "SUPPORTING_CONTEXT_ONLY_FAILED_CURRENT_ROBUSTNESS_TEST", "requires_tide_metadata": true}
   ],
   "satellite": {
     "sentinel2": {"provider": "Microsoft Planetary Computer", "collection": "sentinel-2-l2a", "start": "2016-01-01", "per_year": 4, "analysis_resolution_m": 20, "target_usable_scenes_per_year": 3, "catalog_output": "data/catalog/surat_thani_sentinel2_scenes.csv"},
@@ -59,26 +59,37 @@
     "distance_from_current_aoi_centroid_km": 23.96,
     "timezone": "Asia/Bangkok",
     "primary_source": "Hydrographic Department, Royal Thai Navy",
-    "primary_source_type": "OFFICIAL_HOURLY_PREDICTED_TIDE_MSL",
     "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
     "official_2026_msl_pdf": "https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf",
     "official_2026_llw_companion": "KP2026.pdf (user-supplied project copy)",
     "official_msl_years_live_and_verified": [2026],
-    "datum": "MSL",
+    "official_2024_msl_indexed_source": "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
+    "official_2024_msl_status": "INDEXED_HISTORICAL_CONTENT_SCENE_VALUES_CAPTURED_ORIGINAL_URL_NOT_LIVE",
+    "datum": "MSL where explicitly sourced from RTN MSL products",
     "lowest_low_water_below_msl_m": 1.43,
     "datum_relationship_source": "Official 2026 tide-table comparison page for Ko Prap; MSL height equals tide-table LLW height minus 1.43 m, subject to the table's 0.1 m rounding.",
     "hourly_catalog_output": "data/tide/surat_thani/ko_prap_hourly_msl.csv",
     "hourly_manifest_output": "data/tide/surat_thani/ko_prap_hourly_msl_manifest.json",
     "matched_scene_output": "data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv",
-    "scene_match_method": "Exact hour or linear interpolation between adjacent official hourly MSL predictions, maximum bracketing gap 90 minutes.",
+    "selected_scene_stage_output": "data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026.csv",
+    "selected_scene_stage_manifest": "data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026_manifest.json",
     "historical_2023_extrema_source": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
     "historical_2023_extrema_datum": "LOWEST_LOW_WATER",
     "historical_2023_selected_scene_phase_output": "data/tide/surat_thani/ko_prap_2023_selected_scene_phase.csv",
-    "public_monthly_fallback_url_template": "https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php",
-    "public_monthly_fallback_runtime_limit": "The site is useful for manual/source lookup but returned HTTP 403 from GitHub Actions, so automated CI must not depend on it.",
+    "public_monthly_url_template_th": "https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php",
+    "public_monthly_url_template_en": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-{year}-{month:02d}-466.php",
+    "public_monthly_datum": "CHART_DATUM",
+    "public_monthly_runtime_limit": "ThailandTideTables has returned HTTP 403 from GitHub Actions. CI consumes committed sourced scene-stage values instead of runtime scraping.",
+    "scene_level_context": {
+      "2023": "3/3 selected scenes have official extrema phase; all rising",
+      "2024": "3/3 selected scenes have indexed official RTN MSL scene values; April also has public extrema phase",
+      "2025": "3/3 selected scenes have public Chart-Datum extrema phase; no silent MSL conversion",
+      "2026": "3/3 selected scenes have official RTN hourly MSL match plus public extrema phase"
+    },
+    "scene_level_stage_context_fraction_2023_2026": 1.0,
     "web_context_output": "web/public/data/surat_thani/tide_context.json",
-    "status": "OFFICIAL_2026_MSL_MATCHED_2023_SELECTED_SCENE_PHASE_2024_2025_REPRODUCIBLE_MSL_PENDING",
-    "interpretation_limit": "Ko Prap predictions are supporting metadata for scene screening, not observed water level inside plot 37-STC. Waterline remains a supporting indicator only; primary coastal indicators are mangrove edge and bank edge where visible."
+    "status": "SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL",
+    "interpretation_limit": "Ko Prap predictions are supporting metadata for scene screening, not observed water level inside plot 37-STC. Waterline remains supporting/contextual only; primary coastal indicators are mangrove edge and bank edge where visible."
   },
   "controls": {
     "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
@@ -95,16 +106,23 @@
       "similar pre-2023 boundary trend",
       "similar mudflat/exposure and river-mouth influence"
     ],
-    "resolved_checks": [
-      "no mangrove planting during intervention/post period",
-      "no new seawall, breakwater, bamboo fence or other coastal-protection structure",
-      "no dredging, embankment or channel intervention known to change coastal process",
-      "no other known materially different intervention"
-    ],
     "remaining_checks": [
       "physical coastal-setting comparability remains satellite-screened rather than field-verified",
       "field/UAV validation remains required before causal impact language"
     ]
+  },
+  "waterline_sensitivity": {
+    "status": "FAILED_SCENE_SELECTION_ROBUSTNESS_SIGN_REVERSAL",
+    "selection_file": "data/analysis/surat_thani/tide_matched_scene_selection.json",
+    "summary_file": "data/analysis/surat_thani/tide_matched_sensitivity_summary.json",
+    "baseline_three_scene_project_2023_2026_m": -4.45,
+    "baseline_three_scene_pooled_control_2023_2026_m": 0.0,
+    "baseline_project_minus_control_m": -4.45,
+    "tide_stage_single_scene_project_2023_2026_m": 23.43,
+    "tide_stage_single_scene_pooled_control_2023_2026_m": -3.15,
+    "tide_stage_project_minus_control_m": 26.58,
+    "project_minus_control_sensitivity_shift_m": 31.03,
+    "interpretation": "The project-minus-control waterline contrast reverses sign under tide-stage-constrained single-scene selection. Waterline is therefore not robust enough for an impact claim and is downgraded to supporting/contextual evidence."
   },
   "transects": {
     "design_project_frontage_spacing_m": 50,
@@ -122,14 +140,16 @@
     "components": ["sensor pixel size", "geolocation and co-registration", "classification threshold sensitivity", "tide mismatch for waterline", "manual digitizing", "UAV horizontal RMSE"]
   },
   "evidence_gates": {
-    "minimum_tide_matched_scene_fraction": 0.8,
     "minimum_post_years_for_comparative_effect": 3,
     "require_verified_controls_for_comparative_effect": true,
-    "require_drone_or_field_validation": true
+    "require_drone_or_field_validation": true,
+    "require_primary_mangrove_or_bank_edge_validation": true,
+    "waterline_scene_selection_robustness": "FAILED",
+    "waterline_allowed_role": "SUPPORTING_CONTEXT_ONLY"
   },
   "claim_language": {
     "satellite_screening": "ผลดาวเทียมเป็นการคัดกรองเบื้องต้นและยังไม่ยืนยันผลของการปลูกต่อการกัดเซาะชายฝั่ง",
-    "tide_aware_screening": "ผลดาวเทียมที่คัดตามระดับน้ำสนับสนุนการติดตามแนวโน้ม แต่ยังต้องตรวจด้วยโดรนหรือภาคสนาม",
-    "comparative_effect": "ข้อมูลดาวเทียม โดรน และพื้นที่อ้างอิงสนับสนุนว่าโครงการมีส่วนช่วยลดอัตราการถอยร่นของแนวชายฝั่งในพื้นที่ศึกษา"
+    "tide_aware_screening": "ผลแนวน้ำจากภาพดาวเทียมไวต่อการเลือกภาพและสภาวะน้ำ จึงใช้เป็นข้อมูลประกอบเท่านั้น และต้องยืนยันด้วยแนวป่าชายเลน/แนวตลิ่งและโดรนหรือภาคสนาม",
+    "current_impact_claim_status": "NOT_SUPPORTED_BY_CURRENT_WATERLINE_ANALYSIS"
   }
 }
