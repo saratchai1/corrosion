@@ -1,0 +1,94 @@
+name: Surat Thani 10m coastal vegetation edge
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_vegetation_edge_screening.py
+      - .github/workflows/surat-thani-vegetation-edge.yml
+      - data/aoi/surat_thani_37_stc_current_aoi.geojson
+      - data/analysis/surat_thani/control_candidates.json
+      - data/analysis/surat_thani/control_verification.json
+      - data/processed/surat_thani/statistics/transect_summary.geojson
+
+permissions:
+  contents: write
+
+jobs:
+  vegetation-edge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install geospatial dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download 2017-2026 same-season Sentinel-2 source scenes
+        run: |
+          python -u scripts/download_surat_thani_mvp_epochs.py \
+            --epochs 2017,2018,2019,2020,2021,2022,2023,2024,2025,2026
+
+      - name: Build 10m vegetation-edge screening
+        run: python -u scripts/build_surat_thani_vegetation_edge_screening.py
+
+      - name: QA vegetation-edge products
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/mangrove_edge_proxy_screening.json').read_text(encoding='utf-8'))
+          assert p['plot_code'] == '37-STC', p
+          assert p['analysis_role'] == 'PRIMARY_SATELLITE_COASTAL_VEGETATION_EDGE_SCREENING', p
+          assert p['indicator']['native_analysis_resolution_m'] == 10, p['indicator']
+          assert p['indicator']['tide_dependency'].startswith('NONE_EXPLICIT'), p['indicator']
+          assert set(p['annual_inputs']) == {str(y) for y in range(2017, 2027)}, p['annual_inputs'].keys()
+          assert all(v['scene_count'] >= 2 for v in p['annual_inputs'].values()), p['annual_inputs']
+          assert 20 <= p['groups']['project_frontage_transect_count'] <= 25, p['groups']
+          assert p['groups']['control_transect_count'] == 15, p['groups']
+          assert set(p['threshold_results']) == {'0.28', '0.32', '0.36'}, p['threshold_results'].keys()
+          assert p['evidence_status']['vegetation_edge_role'] == 'PRIMARY_SATELLITE_SCREENING_INDICATOR', p['evidence_status']
+          assert Path('web/public/data/surat_thani/coastal_vegetation_edge_points.geojson').exists()
+          assert Path('web/public/data/surat_thani/coastal_vegetation_edge_transects.geojson').exists()
+          primary = p['primary_result']
+          print(json.dumps({
+            'project_transects': p['groups']['project_frontage_transect_count'],
+            'control_transects': p['groups']['control_transect_count'],
+            'project_net_2023_2026_m': primary['project_frontage']['median_change_2023_to_2026_m'],
+            'control_net_2023_2026_m': primary['pooled_controls']['median_change_2023_to_2026_m'],
+            'net_contrast_m': primary['project_minus_control_change_2023_2026_m'],
+            'slope_change_contrast_m_per_year': primary['project_minus_control_slope_change_m_per_year'],
+            'threshold_sign': p['robustness']['net_contrast_sign_across_thresholds'],
+            'empirical_instability_m': p['robustness']['empirical_edge_instability_floor_m'],
+          }, indent=2))
+          PY
+
+      - name: Commit vegetation-edge products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/analysis/surat_thani/mangrove_edge_proxy_screening.json \
+            data/processed/surat_thani/statistics/coastal_vegetation_edge_transects.geojson \
+            data/processed/surat_thani/statistics/coastal_vegetation_edge_points.geojson \
+            data/processed/surat_thani/web/mangrove_edge_proxy_screening.json \
+            data/processed/surat_thani/web/coastal_vegetation_edge_transects.geojson \
+            data/processed/surat_thani/web/coastal_vegetation_edge_points.geojson \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/mangrove_edge_proxy_screening.json \
+            web/public/data/surat_thani/coastal_vegetation_edge_transects.geojson \
+            web/public/data/surat_thani/coastal_vegetation_edge_points.geojson \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No vegetation-edge product changes'
+          else
+            git commit -m 'data: add 37-STC 10m vegetation-edge screening [skip ci]'
+            git push
+          fi
