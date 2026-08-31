@@ -44,6 +44,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
           git add data/tide/surat_thani/ko_prap_hourly_msl.csv data/tide/surat_thani/ko_prap_hourly_msl_manifest.json
           if git diff --cached --quiet; then
             echo 'No tide changes'
