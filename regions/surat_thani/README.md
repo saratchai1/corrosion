@@ -52,7 +52,27 @@ Current first-pass results:
 - median per-transect post-period slope, 2024-2026: approximately **0.00 m/year**.
 - selected-transect long-term classes from the MVP: 12 apparent erosion, 9 stable, 2 apparent accretion.
 
-This apparent slowing after 2023 is a **screening signal only**. The annual median positions are not monotonic (2024 -1.15 m, 2025 +3.84 m, 2026 -2.68 m), which is one reason tide state, image conditions, indicator choice and field validation remain important.
+The apparent slowing after 2023 is a **screening signal only**. Annual median positions are not monotonic (2024 -1.15 m, 2025 +3.84 m, 2026 -2.68 m), so tide state, image conditions, indicator choice and field validation remain important.
+
+## Control/reference comparison
+The satellite pretrend screen selected three spatially separated reference windows outside the current PDD neighbourhood:
+- rank 1: T043-T047, median distance about 896 m from the PDD;
+- rank 2: T054-T058, median distance about 1,648 m;
+- rank 3: T049-T053, median distance about 1,248 m.
+
+On **2026-08-31**, the project user confirmed for these selected control windows that there was **no mangrove planting during the intervention/post period, no new seawall/breakwater/bamboo fence or other coastal-protection structure, no dredging/embankment/channel intervention, and no other known materially different intervention**. This confirmation is recorded in `data/analysis/surat_thani/control_verification.json`.
+
+The treatment-control comparative screening is in `data/analysis/surat_thani/comparative_screening.json` and `web/public/data/surat_thani/comparative_screening.json`.
+
+Key descriptive results:
+- 37-STC frontage median pre slope: **-2.102 m/year**; post slope: **~0.000 m/year**; post-minus-pre change: **+2.102 m/year**.
+- pooled 15 control transects median pre slope: **-1.263 m/year**; post slope: **+1.625 m/year**; post-minus-pre change: **+2.888 m/year**.
+- project-minus-control slope-change contrast: **-0.786 m/year**.
+- 2023→2026 apparent boundary change: project **-4.45 m**, pooled controls **0.00 m**; project-minus-control contrast **-4.45 m**.
+
+Therefore the apparent post-2023 slowing is **not stronger at the project frontage than in the selected no-known-intervention controls**. In this first-pass automated water-land-boundary analysis, the controls improved at least as much as, and by the slope-change metric more than, the project frontage. This weakens any interpretation that the observed slowing is uniquely attributable to planting and points to broader coastal variability, tide/image effects, or other shared drivers as plausible explanations.
+
+This remains a descriptive screening comparison, not a formal causal difference-in-differences estimate. Physical coastal-setting equivalence still requires review and field/UAV validation remains an evidence gate.
 
 ## Ko Prap tide reference
 Use **Ko Prap / เกาะปราบ, station 466**, coordinates **09°15′54″N, 99°26′04″E** (WGS84), about **23.96 km** from the current project-boundary centroid, as a supporting tide-screening reference. It is not an in-plot water-level gauge.
@@ -93,13 +113,13 @@ Current waterline tide gate is **PARTIAL_TIDE_CONTEXT_ONLY** because reproducibl
 2. Use **bank edge** as primary where clearly visible.
 3. Use **waterline** only as supporting evidence with tide metadata.
 4. Keep automated spectral boundaries labelled **image-derived**, never surveyed shoreline.
-5. Do not attribute an apparent post-2023 slowing to planting until comparable unplanted controls, uncertainty checks, and UAV/field validation are available.
+5. The selected controls have user-confirmed absence of known intervention, but do not make a planting-impact claim until physical-setting review, uncertainty checks and UAV/field validation are complete.
 
 ## What remains before an impact claim
-- identify and verify approximately three comparable unplanted control/reference coastal segments;
 - obtain reproducible tide context for 2024-2025 or constrain image comparison to comparable tide stage;
 - manually/orthophoto validate mangrove edge or bank edge;
-- add UAV or field validation at 37-STC;
-- check for coastal structures, dredging, embankment, channel works or other interventions that could explain the apparent trend.
+- verify physical coastal-setting comparability of the three selected control windows;
+- add UAV or field validation at 37-STC and preferably controls;
+- estimate positional uncertainty and test sensitivity to scene/tide selection.
 
-Until those gates are passed, the correct claim is: **satellite screening indicates a possible change in coastal-boundary behaviour near 37-STC, but does not yet establish a causal erosion-reduction effect from planting.**
+Until those gates are passed, the correct claim is: **satellite screening shows a change in image-derived coastal-boundary behaviour near 37-STC, but the selected no-known-intervention controls show equal or stronger post-2023 improvement, so current evidence does not support attributing the apparent slowing to planting.**
