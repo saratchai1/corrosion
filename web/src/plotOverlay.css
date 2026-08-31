@@ -1,5 +1,14 @@
 .spectral-swipe-stage {
   position: relative;
+  touch-action: none;
+}
+
+.spectral-swipe-stage.spectral-can-pan {
+  cursor: grab;
+}
+
+.spectral-swipe-stage.spectral-is-panning {
+  cursor: grabbing;
 }
 
 .spectral-zoom-layer,
@@ -13,10 +22,14 @@
 }
 
 .spectral-zoom-layer {
-  transform: scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
   transform-origin: 50% 50%;
   transition: transform 160ms ease-out;
   will-change: transform;
+}
+
+.spectral-is-panning .spectral-zoom-layer {
+  transition: none;
 }
 
 .spectral-zoom-layer-after {
@@ -60,6 +73,8 @@
 
 .spectral-swipe-stage .spectral-divider {
   z-index: 10;
+  cursor: ew-resize;
+  pointer-events: auto;
 }
 
 .spectral-swipe-stage .spectral-year-label,
@@ -141,6 +156,33 @@
   white-space: nowrap;
 }
 
+.spectral-pan-hint {
+  position: absolute;
+  z-index: 13;
+  top: 62px;
+  left: 50%;
+  max-width: min(88%, 580px);
+  padding: 6px 10px;
+  border: 1px solid rgba(181, 214, 205, 0.24);
+  border-radius: 999px;
+  color: rgba(231, 241, 237, 0.82);
+  background: rgba(5, 23, 25, 0.76);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(8px);
+  transform: translateX(-50%);
+  font-size: 8px;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.spectral-can-pan .spectral-pan-hint {
+  color: #dff3e9;
+  border-color: rgba(143, 203, 173, 0.45);
+  background: rgba(7, 31, 33, 0.86);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spectral-zoom-layer {
     transition: none;
@@ -159,5 +201,12 @@
 
   .spectral-zoom-controls button {
     min-height: 36px;
+  }
+
+  .spectral-pan-hint {
+    top: 54px;
+    max-width: calc(100% - 24px);
+    font-size: 7px;
+    white-space: normal;
   }
 }
