@@ -3,7 +3,7 @@ name: Build Samut Songkhram contextual multispectral slider
 on:
   push:
     branches:
-      - fix/samut-songkhram-internal-scroll-links
+      - feature/samut-songkhram-web-svg-overlay-v1
     paths:
       - '.github/workflows/samut-songkhram-spectral-context.yml'
       - 'scripts/build_preplanting_visual_context.py'
@@ -11,6 +11,8 @@ on:
       - 'scripts/download_satellite_data.py'
       - 'scripts/build_coastal_change_mvp.py'
       - 'web/src/PreplantingHistoryDashboardV2.tsx'
+      - 'web/src/PlotOverlayInjector.tsx'
+      - 'web/src/plotOverlay.css'
       - 'web/src/preplantingSpectral.css'
       - 'web/src/TideAwareDashboard.tsx'
       - 'web/package.json'
@@ -76,7 +78,7 @@ jobs:
             --aoi data/aoi/samut_songkhram_project_analysis_aoi.geojson \
             --manifest /tmp/spectral-context-download-manifest.json
 
-      - name: Build contextual RGB and spectral views
+      - name: Build clean contextual rasters and SVG overlays
         run: python -m scripts.build_preplanting_visual_context
 
       - name: Validate generated visual evidence
@@ -90,6 +92,9 @@ jobs:
           visual = summary['visualization']
           assert visual['default_view'] == 'focus'
           assert visual['default_mode'] == 'rgb'
+          assert visual['raster_presentation'] == 'CLEAN_NO_BAKED_LABELS_OR_BOUNDARIES'
+          assert visual['map_overlay_model'] == 'WEB_SVG_LAYER'
+          assert visual['overlay_count'] == 20
           assert set(visual['modes']) == {
               'rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir'
           }
@@ -99,22 +104,18 @@ jobs:
           assert len(summary['scene_selection']['display_scenes']) == 10
           for scene in summary['scene_selection']['display_scenes']:
               assert set(scene['visuals']) == {'focus', 'full'}
+              assert set(scene['plot_overlays']) == {'focus', 'full'}
               for view in ('focus', 'full'):
                   assert set(scene['visuals'][view]) == {
                       'rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir'
                   }
+                  overlay = Path('web/public') / scene['plot_overlays'][view]
+                  assert overlay.exists() and overlay.stat().st_size > 500, overlay
+                  text = overlay.read_text(encoding='utf-8')
+                  assert '<polyline' in text and '<text' in text and '<rect' in text
                   for path in scene['visuals'][view].values():
-                      assert Path('web/public') / path.removeprefix('data/')
-              for view in ('focus', 'full'):
-                  for mode in ('rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir'):
-                      path = Path(
-                          f'web/public/data/project_preplanting_history/visuals/'
-                          f'{view}/{mode}/{scene["year"]}.webp'
-                      )
-                      assert path.exists() and path.stat().st_size > 10_000, path
-          assert Path(
-              'web/public/data/project_preplanting_history/visuals/manifest.json'
-          ).exists()
+                      raster = Path('web/public') / path
+                      assert raster.exists() and raster.stat().st_size > 10_000, raster
           print(json.dumps(visual, ensure_ascii=False, indent=2))
           PY
 
@@ -130,17 +131,20 @@ jobs:
           npm ci
           npm run build
 
-      - name: Validate production bundle contains spectral assets
+      - name: Validate production bundle contains web overlays
         run: |
           test -f web/dist/client/index.html
           test -f web/dist/client/data/project_preplanting_history/visuals/focus/mndwi/2020.webp
           test -f web/dist/client/data/project_preplanting_history/visuals/focus/ndvi/2026.webp
           test -f web/dist/client/data/project_preplanting_history/visuals/full/swir/2026.webp
-          grep -q 'ยังไม่พิสูจน์ว่าแนวโน้มดีขึ้นเพราะการปลูก' web/src/PreplantingHistoryDashboardV2.tsx
-          grep -q 'พื้นหลังเป็นภาพบริบทเต็มพื้นที่' web/src/PreplantingHistoryDashboardV2.tsx
+          test -f web/dist/client/data/project_preplanting_history/visuals/focus/overlay/2020.svg
+          test -f web/dist/client/data/project_preplanting_history/visuals/focus/overlay/2026.svg
+          grep -q 'PlotOverlayInjector' web/src/TideAwareDashboard.tsx
+          grep -q 'กรอบแปลง: เปิด' web/src/PlotOverlayInjector.tsx
+          grep -q 'spectral-web-map-overlay' web/src/plotOverlay.css
           grep -q 'MNDWI' web/src/PreplantingHistoryDashboardV2.tsx
 
-      - name: Commit contextual visual assets
+      - name: Commit clean visual assets and SVG overlays
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -152,7 +156,7 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No generated visual changes to commit.'
           else
-            git commit -m 'data: add contextual multispectral history visuals'
+            git commit -m 'data: replace baked labels with web SVG overlays'
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
@@ -160,7 +164,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: samut-songkhram-contextual-spectral-slider
+          name: samut-songkhram-web-svg-overlay-slider
           path: |
             /tmp/spectral-context-download-manifest.json
             data/processed/project_preplanting_history/visuals/**

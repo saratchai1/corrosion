@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import PlotOverlayInjector from './PlotOverlayInjector'
 import PreplantingHistoryDashboardV2, {
   type PreplantingHistorySummaryV2,
 } from './PreplantingHistoryDashboardV2'
@@ -80,11 +81,14 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
   }
 
   return (
-    <PreplantingHistoryDashboardV2
-      history={history}
-      onOpenCurrent={() => setView('current')}
-      onOpenProject={onOpenProject}
-      onOpenCoast={onOpenCoast}
-    />
+    <>
+      <PreplantingHistoryDashboardV2
+        history={history}
+        onOpenCurrent={() => setView('current')}
+        onOpenProject={onOpenProject}
+        onOpenCoast={onOpenCoast}
+      />
+      <PlotOverlayInjector scenes={history.scene_selection.display_scenes} />
+    </>
   )
 }
