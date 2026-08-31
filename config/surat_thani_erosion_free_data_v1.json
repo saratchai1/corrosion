@@ -2,10 +2,12 @@
   "schema_version": "1.1",
   "project_id": "TH-SURAT-37-STC-2023",
   "title": "Surat Thani 37-STC mangrove coastal-erosion assessment using free data and project records",
-  "status": "PRIMARY_10M_VEGETATION_SCREENING_BUILT_SMALL_POSITIVE_ESTABLISHMENT_SIGNAL_NO_EDGE_ADVANCE_WATERLINE_FAILED_ROBUSTNESS_FIELD_VALIDATION_PENDING",
+  "status": "EVIDENCE_STACK_QA_PASSED_SMALL_POSITIVE_ESTABLISHMENT_NO_10M_EDGE_ADVANCE_WATERLINE_FAILED_S1_WEAK_VARIABLE_FIELD_VALIDATION_PENDING",
   "scope": {
     "province": "Surat Thani",
-    "plot_ids": ["37-STC"],
+    "plot_ids": [
+      "37-STC"
+    ],
     "primary_question": "Did the seaward mangrove/coastal-vegetation edge in front of 37-STC retreat less after planting than before planting and than comparable no-known-intervention coastal segments?",
     "secondary_question": "Did vegetation greenness or green-pixel occupancy inside the current 37-STC PDD increase after planting relative to comparable no-known-intervention coastal windows?",
     "primary_outcomes": [
@@ -43,11 +45,44 @@
     "total_seedlings": 142232
   },
   "analysis_period": {
-    "long_term_context_years": [1987, 1990, 2000, 2009, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
-    "pre_years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+    "long_term_context_years": [
+      1987,
+      1990,
+      2000,
+      2009,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "pre_years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
     "intervention_year": 2023,
-    "post_years": [2024, 2025, 2026],
-    "season_months": [2, 3, 4],
+    "post_years": [
+      2024,
+      2025,
+      2026
+    ],
+    "season_months": [
+      2,
+      3,
+      4
+    ],
     "season_rule": "Prefer February-April optical comparisons for repeatability; because the representative intervention date is 2023-10-18, February-April 2023 observations are classified as pre-intervention. Keep rejected scenes with reasons and do not substitute months silently."
   },
   "indicator_hierarchy": [
@@ -69,7 +104,11 @@
       "role": "PRIMARY_SUPPORTING_BIOLOGICAL_MONITORING_SIGNAL",
       "resolution_m": 10,
       "requires_tide_metadata": false,
-      "not_equivalent_to": ["tree_survival_percentage", "species_identity", "erosion_reduction"]
+      "not_equivalent_to": [
+        "tree_survival_percentage",
+        "species_identity",
+        "erosion_reduction"
+      ]
     },
     {
       "type": "WATERLINE",
@@ -102,8 +141,39 @@
       "per_year": 20,
       "use_as_primary_boundary": false,
       "catalog_output": "data/catalog/surat_thani_sentinel1_scenes.csv",
-      "relative_corroboration_status": "SAME_SEASON_QA_RERUN_IN_PROGRESS_OR_PENDING_FINAL_SYNTHESIS",
-      "absolute_biomass_or_backscatter_claim": "NOT_ALLOWED_WITH_CURRENT_RELATIVE_GRD_DIAGNOSTIC"
+      "relative_corroboration_status": "SAME_SEASON_QA_PASSED_WEAK_VARIABLE_RELATIVE_GRD_DIAGNOSTIC",
+      "absolute_biomass_or_backscatter_claim": "NOT_ALLOWED_WITH_CURRENT_RELATIVE_GRD_DIAGNOSTIC",
+      "relative_corroboration_file": "data/analysis/surat_thani/s1_relative_corroboration.json",
+      "same_season_months": [
+        2,
+        3,
+        4
+      ],
+      "selected_track": "descending:62",
+      "selected_scene_counts_by_year": {
+        "2023": 3,
+        "2024": 2,
+        "2025": 3,
+        "2026": 3
+      },
+      "change_2026_vs_2023_project_minus_control": {
+        "project_minus_control_median_log10_vv": -0.01688,
+        "project_minus_control_median_log10_vh": 0.01336,
+        "project_minus_control_median_vh_vv_log_ratio": 0.1415
+      },
+      "vh_vv_log_ratio_annual_project_minus_control": {
+        "2023": 0.0976,
+        "2024": -0.3981,
+        "2025": 0.3554,
+        "2026": 0.2391
+      },
+      "vh_vv_log_ratio_single_scene_ranges": {
+        "2023": 0.2543,
+        "2024": 0.197,
+        "2025": 0.3235,
+        "2026": 0.475
+      },
+      "interpretation": "The same-season relative GRD signal is non-monotonic and the 2026-vs-2023 VH/VV contrast change is smaller than endpoint single-scene contrast variability. Use as weak/variable corroboration only; do not interpret as calibrated biomass or causal planting evidence."
     },
     "catalog_summary": "data/analysis/surat_thani/catalog_summary.json",
     "catalog_status": "BUILT_AND_QA_PASSED"
@@ -112,8 +182,16 @@
     "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
     "candidate_file": "data/analysis/surat_thani/control_candidates.json",
     "verification_file": "data/analysis/surat_thani/control_verification.json",
-    "selected_candidate_ranks": [1, 2, 3],
-    "selected_transect_groups": ["T043-T047", "T054-T058", "T049-T053"],
+    "selected_candidate_ranks": [
+      1,
+      2,
+      3
+    ],
+    "selected_transect_groups": [
+      "T043-T047",
+      "T054-T058",
+      "T049-T053"
+    ],
     "user_confirmed_no_intervention": true,
     "user_confirmation_date": "2026-08-31",
     "resolved_checks": [
@@ -137,7 +215,11 @@
     "resolution_m": 10,
     "annual_composite": "median NDVI from three SCL-cloud-masked February-April scenes",
     "primary_ndvi_threshold": 0.32,
-    "tested_ndvi_thresholds": [0.28, 0.32, 0.36],
+    "tested_ndvi_thresholds": [
+      0.28,
+      0.32,
+      0.36
+    ],
     "minimum_persistent_vegetated_run_m": 30,
     "project_frontage_transect_count": 23,
     "control_transect_count": 15,
@@ -151,8 +233,16 @@
       "project_minus_control_change_2023_2026_m": 0.0,
       "project_minus_control_slope_change_m_per_year": -0.857
     },
-    "threshold_net_contrasts_2023_2026_m": [0.0, 0.0, 0.0],
-    "threshold_slope_change_contrasts_m_per_year": [-1.572, -0.857, -5.5],
+    "threshold_net_contrasts_2023_2026_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "threshold_slope_change_contrasts_m_per_year": [
+      -1.572,
+      -0.857,
+      -5.5
+    ],
     "empirical_edge_instability_floor_m": 10.0,
     "project_single_scene_edge_range_median": 10.0,
     "project_single_scene_edge_range_p90_m": 95.0,
@@ -165,20 +255,24 @@
     "sensor": "Sentinel-2 L2A",
     "resolution_m": 10,
     "project_area_ha": 25.21,
-    "control_window_areas_ha": [6.11, 6.10, 6.31],
+    "control_window_areas_ha": [
+      6.11,
+      6.1,
+      6.31
+    ],
     "pooled_control_area_ha": 18.46,
     "project_cross_shore_control_window_design_span_m": 123.6,
     "project_median_ndvi": {
       "2023": -0.1065,
       "2024": -0.1237,
-      "2025": -0.1080,
+      "2025": -0.108,
       "2026": -0.1072
     },
     "project_green_fraction_ndvi_ge_0_32": {
       "2023": 0.0143,
       "2024": 0.0155,
       "2025": 0.0218,
-      "2026": 0.0230
+      "2026": 0.023
     },
     "project_minus_control_change_2026_vs_2023": {
       "median_ndvi": 0.0061,
@@ -198,13 +292,18 @@
     "station_name": "Ko Prap",
     "station_name_th": "เกาะปราบ",
     "station_id": "466",
-    "official_station_coordinates_lon_lat": [99.434444, 9.265],
+    "official_station_coordinates_lon_lat": [
+      99.434444,
+      9.265
+    ],
     "distance_from_current_aoi_centroid_km": 23.96,
     "timezone": "Asia/Bangkok",
     "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
     "official_2026_msl_pdf": "https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf",
     "official_2026_llw_companion": "KP2026.pdf (user-supplied project copy)",
-    "official_msl_years_live_and_verified": [2026],
+    "official_msl_years_live_and_verified": [
+      2026
+    ],
     "official_2024_msl_indexed_source": "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
     "official_2024_msl_status": "INDEXED_HISTORICAL_CONTENT_SCENE_VALUES_CAPTURED_ORIGINAL_URL_NOT_LIVE",
     "datum": "MSL where explicitly sourced from RTN MSL products",
@@ -275,11 +374,20 @@
     "waterline_allowed_role": "SUPPORTING_CONTEXT_ONLY",
     "coastal_vegetation_edge_10m_detection": "NO_RELATIVE_2023_2026_ADVANCE_DETECTED",
     "in_plot_establishment_signal": "SMALL_POSITIVE_BUT_WITHIN_SINGLE_SCENE_VARIABILITY",
-    "current_causal_erosion_reduction_claim": "NOT_SUPPORTED"
+    "current_causal_erosion_reduction_claim": "NOT_SUPPORTED",
+    "sentinel1_relative_corroboration": "WEAK_VARIABLE_SUPPORTING_ONLY",
+    "integrated_evidence_stack_qa": "PASSED"
   },
   "claim_language": {
     "recommended_th": "ข้อมูลดาวเทียมพบสัญญาณการเพิ่มขึ้นของความเขียวภายในแปลง 37-STC เล็กน้อยเมื่อเทียบกับพื้นที่อ้างอิง แต่ยังไม่พบการขยายตัวของขอบพืชในระดับความละเอียด 10 เมตร และผล waterline มีความไวต่อระดับน้ำ/การเลือกภาพสูง จึงยังไม่สามารถสรุปว่าการปลูกช่วยลดการกัดเซาะชายฝั่งได้โดยตรง จำเป็นต้องยืนยันด้วย UAV/ภาพความละเอียดสูงและข้อมูลภาคสนาม",
     "prohibited_current_claim": "การปลูกป่าชายเลน 37-STC ได้ลดการกัดเซาะชายฝั่งแล้ว",
     "current_impact_claim_status": "CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM"
+  },
+  "final_outputs": {
+    "executive_summary": "data/analysis/surat_thani/executive_summary.json",
+    "executive_summary_th": "regions/surat_thani/EXECUTIVE_SUMMARY_TH.md",
+    "evidence_manifest": "data/analysis/surat_thani/evidence_manifest.json",
+    "standalone_web_report": "web/public/surat-thani-37-stc.html",
+    "web_data_root": "web/public/data/surat_thani/"
   }
 }

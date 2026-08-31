@@ -576,5 +576,8 @@
   "s1_relative_corroboration_status": "CORROBORATION_DIAGNOSTIC_ONLY_NOT_CAUSAL_OR_BIOMASS_CLAIM",
   "executive_summary_file": "executive_summary.json",
   "executive_summary_status": "CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM",
-  "planting_establishment_signal": "SMALL_POSITIVE_RELATIVE_OPTICAL_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY"
+  "planting_establishment_signal": "SMALL_POSITIVE_RELATIVE_OPTICAL_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY",
+  "evidence_manifest_file": "evidence_manifest.json",
+  "evidence_stack_qa_status": "PASSED",
+  "sentinel1_relative_status": "SAME_SEASON_QA_PASSED_WEAK_VARIABLE_RELATIVE_GRD_DIAGNOSTIC"
 }
