@@ -44,6 +44,9 @@
     }
   },
   "image_count": 100,
+  "overlay_count": 20,
+  "raster_presentation": "CLEAN_NO_BAKED_LABELS_OR_BOUNDARIES",
+  "map_overlay_model": "WEB_SVG_LAYER",
   "background_source": "Annual January-April Sentinel-2 context composite used only for geographic orientation.",
   "analysis_overlay_source": "Exact selected Sentinel-2 scene used by the pre-planting evidence catalog; transparent outside valid project-AOI pixels.",
   "scientific_guard_th": "สี RGB/False colour/NDVI/MNDWI/SWIR ช่วยอ่านรูปแบบเชิงสเปกตรัม แต่ไม่เพิ่มระดับข้อสรุปเชิงเหตุ–ผล และไม่ใช่ข้อมูลตะกอนหรือคลื่น"

@@ -94,7 +94,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2017.webp"
           }
         },
-        "context_image": "data/imagery/2017.webp"
+        "context_image": "data/imagery/2017.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2017.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2017.svg"
+        }
       },
       {
         "year": 2018,
@@ -121,7 +125,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2018.webp"
           }
         },
-        "context_image": "data/imagery/2018.webp"
+        "context_image": "data/imagery/2018.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2018.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2018.svg"
+        }
       },
       {
         "year": 2019,
@@ -148,7 +156,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2019.webp"
           }
         },
-        "context_image": "data/imagery/2019.webp"
+        "context_image": "data/imagery/2019.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2019.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2019.svg"
+        }
       },
       {
         "year": 2020,
@@ -175,7 +187,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2020.webp"
           }
         },
-        "context_image": "data/imagery/2020.webp"
+        "context_image": "data/imagery/2020.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2020.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2020.svg"
+        }
       },
       {
         "year": 2021,
@@ -202,7 +218,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2021.webp"
           }
         },
-        "context_image": "data/imagery/2021.webp"
+        "context_image": "data/imagery/2021.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2021.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2021.svg"
+        }
       },
       {
         "year": 2022,
@@ -229,7 +249,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2022.webp"
           }
         },
-        "context_image": "data/imagery/2022.webp"
+        "context_image": "data/imagery/2022.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2022.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2022.svg"
+        }
       },
       {
         "year": 2023,
@@ -256,7 +280,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2023.webp"
           }
         },
-        "context_image": "data/imagery/2023.webp"
+        "context_image": "data/imagery/2023.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2023.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2023.svg"
+        }
       },
       {
         "year": 2024,
@@ -283,7 +311,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2024.webp"
           }
         },
-        "context_image": "data/imagery/2024.webp"
+        "context_image": "data/imagery/2024.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2024.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2024.svg"
+        }
       },
       {
         "year": 2025,
@@ -310,7 +342,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2025.webp"
           }
         },
-        "context_image": "data/imagery/2025.webp"
+        "context_image": "data/imagery/2025.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2025.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2025.svg"
+        }
       },
       {
         "year": 2026,
@@ -337,7 +373,11 @@
             "swir": "data/project_preplanting_history/visuals/full/swir/2026.webp"
           }
         },
-        "context_image": "data/imagery/2026.webp"
+        "context_image": "data/imagery/2026.webp",
+        "plot_overlays": {
+          "focus": "data/project_preplanting_history/visuals/focus/overlay/2026.svg",
+          "full": "data/project_preplanting_history/visuals/full/overlay/2026.svg"
+        }
       }
     ],
     "audit_csv": "data/processed/project_preplanting_history/scene_selection_audit.csv"
@@ -919,6 +959,9 @@
       }
     },
     "image_count": 100,
+    "overlay_count": 20,
+    "raster_presentation": "CLEAN_NO_BAKED_LABELS_OR_BOUNDARIES",
+    "map_overlay_model": "WEB_SVG_LAYER",
     "background_source": "Annual January-April Sentinel-2 context composite used only for geographic orientation.",
     "analysis_overlay_source": "Exact selected Sentinel-2 scene used by the pre-planting evidence catalog; transparent outside valid project-AOI pixels.",
     "scientific_guard_th": "สี RGB/False colour/NDVI/MNDWI/SWIR ช่วยอ่านรูปแบบเชิงสเปกตรัม แต่ไม่เพิ่มระดับข้อสรุปเชิงเหตุ–ผล และไม่ใช่ข้อมูลตะกอนหรือคลื่น"
