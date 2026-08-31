@@ -1,0 +1,73 @@
+name: Surat Thani treatment-control comparative screening
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_comparative_screening.py
+      - data/analysis/surat_thani/control_candidates.json
+      - data/analysis/surat_thani/control_verification.json
+      - data/aoi/surat_thani_37_stc_current_aoi.geojson
+      - data/processed/surat_thani/statistics/transect_summary.geojson
+      - .github/workflows/surat-thani-comparative-screening.yml
+
+permissions:
+  contents: write
+
+jobs:
+  comparative:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Build treatment-control screening
+        run: python -u scripts/build_surat_thani_comparative_screening.py
+
+      - name: QA comparative screening
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/comparative_screening.json').read_text(encoding='utf-8'))
+          assert p['plot_code'] == '37-STC', p
+          assert p['control_verification_status'] == 'USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING', p
+          assert p['project_frontage']['transect_count'] == 23, p['project_frontage']['transect_count']
+          assert p['controls']['candidate_count'] == 3, p['controls']
+          assert p['controls']['pooled_15_transects']['transect_count'] == 15, p['controls']['pooled_15_transects']
+          assert p['evidence_status']['claim_status'] == 'COMPARATIVE_SCREENING_ONLY_NOT_CAUSAL_IMPACT_CLAIM', p
+          assert Path('web/public/data/surat_thani/comparative_screening.json').exists()
+          print({
+            'project_pre': p['project_frontage']['median_pre_2017_2023_slope_m_per_year'],
+            'project_post': p['project_frontage']['median_post_2024_2026_slope_m_per_year'],
+            'control_pre': p['controls']['pooled_15_transects']['median_pre_2017_2023_slope_m_per_year'],
+            'control_post': p['controls']['pooled_15_transects']['median_post_2024_2026_slope_m_per_year'],
+            'slope_contrast': p['screening_contrasts']['project_minus_control_slope_change_m_per_year'],
+            'net_contrast': p['screening_contrasts']['project_minus_control_apparent_change_2023_2026_m'],
+          })
+          PY
+
+      - name: Commit comparative products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/analysis/surat_thani/comparative_screening.json \
+            data/processed/surat_thani/web/comparative_screening.json \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/comparative_screening.json \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No comparative-screening changes'
+          else
+            git commit -m 'data: add 37-STC treatment-control screening [skip ci]'
+            git push
+          fi
