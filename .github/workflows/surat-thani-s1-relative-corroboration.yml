@@ -1,0 +1,89 @@
+name: Surat Thani Sentinel-1 relative corroboration
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_s1_relative_corroboration.py
+      - scripts/build_surat_thani_planting_establishment_screening.py
+      - scripts/download_satellite_data_surat_thani.py
+      - scripts/download_satellite_data.py
+      - .github/workflows/surat-thani-s1-relative-corroboration.yml
+      - data/aoi/surat_thani_37_stc_current_aoi.geojson
+      - data/analysis/surat_thani/control_candidates.json
+      - data/analysis/surat_thani/control_verification.json
+      - data/processed/surat_thani/statistics/transect_summary.geojson
+
+permissions:
+  contents: write
+
+jobs:
+  s1-relative:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install geospatial dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download same-season Sentinel-1 GRD VV/VH 2023-2026
+        run: |
+          python -u scripts/download_satellite_data_surat_thani.py sentinel1 \
+            --start 2023-02-01 \
+            --end 2026-04-30 \
+            --per-year 20 \
+            --bands VV,VH \
+            --catalog data/catalog/surat_thani_s1_corroboration_scenes.csv \
+            --output-root data/satellite/surat_thani_s1_corroboration \
+            --download \
+            --skip-previews
+
+      - name: Build same-track project-vs-control relative SAR diagnostic
+        run: python -u scripts/build_surat_thani_s1_relative_corroboration.py
+
+      - name: QA relative SAR diagnostic
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/s1_relative_corroboration.json').read_text(encoding='utf-8'))
+          assert p['plot_code'] == '37-STC', p
+          assert p['analysis_role'] == 'INDEPENDENT_SENTINEL1_RELATIVE_CORROBORATION_ONLY', p
+          assert p['method']['product_level'] == 'Sentinel-1 Level-1 GRD', p['method']
+          assert p['method']['absolute_backscatter_interpretation'] == 'NOT_ALLOWED', p['method']
+          assert set(p['annual']) == {'2023','2024','2025','2026'}, p['annual'].keys()
+          assert all(v['scene_count'] >= 2 for v in p['annual'].values()), p['annual']
+          assert p['evidence_status']['radiometric_terrain_correction'].startswith('NOT_APPLIED'), p['evidence_status']
+          assert p['evidence_status']['claim_status'] == 'CORROBORATION_DIAGNOSTIC_ONLY_NOT_CAUSAL_OR_BIOMASS_CLAIM', p['evidence_status']
+          print(json.dumps({
+            'track': p['method']['selected_track_key'],
+            'scene_counts': {y: v['scene_count'] for y, v in p['annual'].items()},
+            'change_2026_vs_2023': p['change_2026_vs_2023_in_within_scene_project_minus_control'],
+          }, indent=2))
+          PY
+
+      - name: Commit relative SAR products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/catalog/surat_thani_s1_corroboration_scenes.csv \
+            data/analysis/surat_thani/s1_relative_corroboration.json \
+            data/processed/surat_thani/web/s1_relative_corroboration.json \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/s1_relative_corroboration.json \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No Sentinel-1 corroboration changes'
+          else
+            git commit -m 'data: add 37-STC relative Sentinel-1 corroboration [skip ci]'
+            git push
+          fi
