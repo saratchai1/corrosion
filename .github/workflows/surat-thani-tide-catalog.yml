@@ -13,6 +13,8 @@ on:
       - data/catalog/surat_thani_mvp_optical_scenes.csv
       - data/tide/surat_thani/ko_prap_2023_selected_scene_phase.csv
       - data/tide/surat_thani/ko_prap_2023_selected_scene_phase_manifest.json
+      - data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026.csv
+      - data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026_manifest.json
       - .github/workflows/surat-thani-tide-catalog.yml
 
 permissions:
@@ -38,7 +40,6 @@ jobs:
           python - <<'PY'
           import csv, json
           from pathlib import Path
-
           rows = list(csv.DictReader(Path('data/tide/surat_thani/ko_prap_hourly_msl.csv').open(encoding='utf-8')))
           manifest = json.loads(Path('data/tide/surat_thani/ko_prap_hourly_msl_manifest.json').read_text(encoding='utf-8'))
           assert len(rows) == 8760, len(rows)
@@ -67,33 +68,31 @@ jobs:
           python - <<'PY'
           import csv
           from pathlib import Path
-
           rows = list(csv.DictReader(Path('data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv').open(encoding='utf-8')))
           s2_2026 = [r for r in rows if r.get('dataset') == 'sentinel2' and r.get('acquisition_datetime_bangkok', '').startswith('2026-')]
           assert len(s2_2026) >= 3, len(s2_2026)
           assert all(r.get('tide_status', '').startswith('predicted_') for r in s2_2026), s2_2026
           assert all(r.get('tide_datum') == 'MSL' for r in s2_2026), s2_2026
-          print({
-            'sentinel2_2026': len(s2_2026),
-            'levels_m_msl': [r.get('tide_level') for r in s2_2026],
-            'methods': [r.get('tide_match_method') for r in s2_2026],
-          })
+          print({'sentinel2_2026': len(s2_2026), 'levels_m_msl': [r.get('tide_level') for r in s2_2026]})
           PY
 
-      - name: QA preserved 2023 selected-scene tide phase
+      - name: QA 2023-2026 selected-scene stage table
         run: |
           python - <<'PY'
           import csv, json
           from pathlib import Path
-
-          rows = list(csv.DictReader(Path('data/tide/surat_thani/ko_prap_2023_selected_scene_phase.csv').open(encoding='utf-8')))
-          manifest = json.loads(Path('data/tide/surat_thani/ko_prap_2023_selected_scene_phase_manifest.json').read_text(encoding='utf-8'))
-          assert len(rows) == 3, len(rows)
-          assert manifest['datum'] == 'LOWEST_LOW_WATER', manifest
+          rows = list(csv.DictReader(Path('data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026.csv').open(encoding='utf-8')))
+          manifest = json.loads(Path('data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026_manifest.json').read_text(encoding='utf-8'))
+          assert len(rows) == 12, len(rows)
+          by_year = {y: [r for r in rows if r['year'] == str(y)] for y in range(2023, 2027)}
+          assert all(len(by_year[y]) == 3 for y in by_year), {y: len(v) for y, v in by_year.items()}
           assert all(r['stage'] in {'RISING', 'FALLING'} for r in rows), rows
-          assert all(0 <= float(r['phase_0_1']) <= 1 for r in rows), rows
-          assert all(r['datum'] == 'LOWEST_LOW_WATER' for r in rows), rows
-          print({'scene_count': len(rows), 'stage': [r['stage'] for r in rows], 'phase': [r['phase_0_1'] for r in rows]})
+          assert all(r['phase_0_1'] and 0 <= float(r['phase_0_1']) <= 1 for r in by_year[2023]), by_year[2023]
+          assert all(r['phase_0_1'] and 0 <= float(r['phase_0_1']) <= 1 for r in by_year[2025]), by_year[2025]
+          assert all(r['phase_0_1'] and 0 <= float(r['phase_0_1']) <= 1 for r in by_year[2026]), by_year[2026]
+          assert sum(bool(r['tide_m_msl']) for r in by_year[2024]) == 3, by_year[2024]
+          assert 'thai_user_supplied_pattern' in manifest['public_url_templates'], manifest
+          print({'rows': len(rows), 'years': {y: len(v) for y, v in by_year.items()}})
           PY
 
       - name: Publish tide context to Surat web data
@@ -104,12 +103,15 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          p = Path('web/public/data/surat_thani/tide_context.json')
-          d = json.loads(p.read_text(encoding='utf-8'))
+          d = json.loads(Path('web/public/data/surat_thani/tide_context.json').read_text(encoding='utf-8'))
           assert d['coverage']['2023']['selected_scene_count'] == 3, d
+          assert d['coverage']['2024']['msl_resolved_count'] == 3, d['coverage']['2024']
+          assert d['coverage']['2025']['phase_resolved_count'] == 3, d['coverage']['2025']
           assert d['coverage']['2026']['matched_selected_sentinel2_scenes'] >= 3, d
-          assert d['waterline_gate']['status'] == 'PARTIAL_TIDE_CONTEXT_ONLY', d
-          print({'status': d['waterline_gate']['status'], '2023': d['coverage']['2023'], '2026': d['coverage']['2026']})
+          assert d['waterline_gate']['status'] == 'SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL', d
+          index = json.loads(Path('web/public/data/surat_thani/index.json').read_text(encoding='utf-8'))
+          assert index['tide_status'] == 'scene_level_tide_context_partial_msl', index
+          print({'status': d['waterline_gate']['status'], '2024': d['coverage']['2024'], '2025': d['coverage']['2025']})
           PY
 
       - name: Commit tide products
@@ -130,6 +132,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No official tide-context changes'
           else
-            git commit -m 'data: publish Ko Prap tide context [skip ci]'
+            git commit -m 'data: publish expanded Ko Prap tide context [skip ci]'
             git push
           fi
