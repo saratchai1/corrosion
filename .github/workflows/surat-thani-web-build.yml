@@ -1,0 +1,39 @@
+name: Surat Thani standalone web build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - web/surat-thani-coastal-change-v1
+    paths:
+      - 'web-surat-thani/**'
+      - 'web/public/data/surat_thani/**'
+      - 'data/aoi/surat_thani_37_stc_current_aoi.geojson'
+      - '.github/workflows/surat-thani-web-build.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install
+        working-directory: web-surat-thani
+        run: npm install
+      - name: Build standalone Surat Thani app
+        working-directory: web-surat-thani
+        run: npm run build
+      - name: QA isolated build
+        run: |
+          test -f web-surat-thani/dist/index.html
+          test -f web-surat-thani/dist/data/surat_thani/index.json
+          test -f web-surat-thani/dist/data/surat_thani/executive_summary.json
+          test -f web-surat-thani/dist/data/surat_thani/project_boundary.geojson
+          grep -q '37-STC' web-surat-thani/dist/index.html || true
+          git diff --exit-code -- web || {
+            echo 'ERROR: standalone web build modified legacy web/'
+            exit 1
+          }
