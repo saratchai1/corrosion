@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "plot_code": "37-STC",
+  "confirmation_date": "2026-08-31",
+  "confirmation_source": "project user confirmation in ChatGPT conversation",
+  "scope": "three ranked control-candidate windows generated for the Surat Thani 37-STC coastal screening",
+  "candidate_windows": [
+    {"rank": 1, "transect_ids": ["T043", "T044", "T045", "T046", "T047"]},
+    {"rank": 2, "transect_ids": ["T054", "T055", "T056", "T057", "T058"]},
+    {"rank": 3, "transect_ids": ["T049", "T050", "T051", "T052", "T053"]}
+  ],
+  "user_confirmed": {
+    "no_mangrove_planting_during_intervention_or_post_period": true,
+    "no_new_seawall_breakwater_bamboo_fence_or_other_coastal_protection_structure": true,
+    "no_dredging_embankment_or_channel_intervention_known_to_change_coastal_process": true,
+    "no_other_known_intervention_materially_different_from_37_STC": true
+  },
+  "not_established_by_user_confirmation": {
+    "physical_coastal_setting_equivalence": "SATELLITE_SCREENED_NOT_FIELD_VERIFIED",
+    "mudflat_exposure_equivalence": "SATELLITE_SCREENED_NOT_FIELD_VERIFIED",
+    "river_mouth_and_wave_exposure_equivalence": "SATELLITE_SCREENED_NOT_FIELD_VERIFIED",
+    "high_resolution_or_field_validation": false
+  },
+  "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
+  "claim_limit": "This confirmation resolves the known-intervention exclusion check for the selected candidate windows. It does not by itself establish physical comparability or causality. Comparative outputs remain screening-level until coastal-setting review and field/UAV validation are completed."
+}
