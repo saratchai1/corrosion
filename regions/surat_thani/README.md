@@ -1,53 +1,105 @@
 # Surat Thani 37-STC coastal-erosion pilot
 
-This branch applies the tested Samut Songkhram free-data workflow to the real project boundary for **37-STC**, Ban Lamet, Lamet Subdistrict, Chaiya District, Surat Thani.
+This branch applies the tested Samut Songkhram free-data workflow to **37-STC**, Ban Lamet, Lamet Subdistrict, Chaiya District, Surat Thani.
 
 ## Grounded project inputs
-- **Primary/current PDD boundary: 157.55 rai** (`SHP PDD`); EPSG:32647 cross-check = **157.56 rai**. This is the smaller boundary and is used for all primary analysis.
-- Historical/reference record: **200.05 rai** (`ยืนยันกรม`); supplied polygon computes to **196.21 rai**. It is retained for boundary history/reference only and is not used as the primary AOI.
-- **Representative intervention date: 2023-10-18**, using the planting-end date as the before/after cutoff.
-- Because the seasonal comparison window is February-April, the 2023 seasonal scenes are **pre-intervention**. Post-intervention annual comparisons begin in 2024.
+- **Primary/current PDD boundary: 157.55 rai** (`SHP PDD`); EPSG:32647 cross-check = **157.56 rai**. This is the smaller boundary and is used for primary analysis.
+- Historical/reference record: **200.05 rai** (`ยืนยันกรม`); supplied polygon computes to about **196.21 rai**. It is kept for boundary history/reference only.
+- **Representative intervention date: 2023-10-18**, using planting end as the before/after cutoff.
+- February-April 2023 imagery is therefore **pre-intervention**; post-intervention seasonal comparisons begin in 2024.
 - Species/counts: โกงกางใบใหญ่ 100,000; โกงกางใบเล็ก 40,000; ลำพู 2,232; total **142,232 seedlings**.
 
 ## Geometry
-- `data/aoi/surat_thani_37_stc_current_aoi.geojson` — **primary project boundary (157.55 rai)** used for plot-level analysis.
-- `data/aoi/surat_thani_37_stc_boundaries.geojson` — current plus historical/reference boundary versions.
-- `data/aoi/surat_thani_37_stc_analysis_aoi.geojson` — derived envelope around a 2 km buffer for surrounding coast/reference context; **not** a project boundary.
+- `data/aoi/surat_thani_37_stc_current_aoi.geojson` — primary 157.55-rai project polygon.
+- `data/aoi/surat_thani_37_stc_boundaries.geojson` — current and historical/reference versions.
+- `data/aoi/surat_thani_37_stc_analysis_aoi.geojson` — derived 2-km surrounding-coast analysis envelope; **not** a project boundary.
 
-## Satellite workflow
+## Satellite catalogs
+The catalog workflow runs the common tested downloader against the Surat analytical AOI. The implementation currently uses **Microsoft Planetary Computer** for Sentinel-2 L2A, Landsat C2 L2, and Sentinel-1 GRD.
+
+Latest QA-passed catalogs:
+- Sentinel-2: **44 selected scenes / 44 selected dates**, 2016-01-13 to 2026-04-30.
+- Landsat: **235 selected scenes / 235 selected dates**, 1987-12-09 to 2026-05-26.
+- Sentinel-1: **262 selected scenes / 229 selected dates**, 2015-03-02 to 2026-08-27.
+
+Summary: `data/analysis/surat_thani/catalog_summary.json`
+
+Run:
 ```bash
 python scripts/download_satellite_data_surat_thani.py sentinel2 --dry-run
 python scripts/download_satellite_data_surat_thani.py landsat --dry-run
 python scripts/download_satellite_data_surat_thani.py sentinel1 --dry-run
 ```
-Catalogs are isolated as `data/catalog/surat_thani_<dataset>_scenes.csv`; downloads go under `data/satellite/surat_thani/`.
 
-The coastal-change MVP currently contains **14 epochs**, **58 transects**, water-land boundary proxies, coastal vegetation proxies, statistics, and browser-ready files under `web/public/data/surat_thani/`. These are screening products, not surveyed shoreline positions.
+## Coastal-change MVP
+The bounded optical MVP has been built and QA-passed with:
+- **14 epochs**: long-term Landsat context plus annual/seasonal Sentinel-2 through 2026.
+- **58 transects** over the surrounding Chaiya coast.
+- automated MNDWI-derived water-land boundary proxies;
+- NDVI coastal-vegetation proxies;
+- browser-ready imagery, boundaries, transects and statistics under `web/public/data/surat_thani/`.
 
-## Tide reference and scene screening
-Use **Ko Prap / เกาะปราบ (Surat Thani), station 466** as the tide-screening station. The current automated source uses the supplied month/year URL pattern:
+The full-coast output is intentionally broader than the project plot. To avoid presenting surrounding coastline as if it were 37-STC, a separate frontage screen selects transects that intersect or pass within 150 m of the current 157.55-rai PDD polygon.
 
+### 37-STC frontage screen
+`web/public/data/surat_thani/project_frontage_summary.json`
+
+Current first-pass results:
+- **23 / 58 transects** selected near the current PDD polygon.
+- median image-derived boundary position fell from **+3.16 m (2023)** to **-2.68 m (2026)** relative to the 2026 reference geometry.
+- median apparent 2023→2026 change across selected transects: **-4.45 m** (positive direction = seaward).
+- median per-transect pre-intervention slope, 2017-2023: **-2.10 m/year**.
+- median per-transect post-period slope, 2024-2026: approximately **0.00 m/year**.
+- selected-transect long-term classes from the MVP: 12 apparent erosion, 9 stable, 2 apparent accretion.
+
+This apparent slowing after 2023 is a **screening signal only**. The annual median positions are not monotonic (2024 -1.15 m, 2025 +3.84 m, 2026 -2.68 m), which is one reason tide state, image conditions, indicator choice and field validation remain important.
+
+## Ko Prap tide reference
+Use **Ko Prap / เกาะปราบ, station 466**, coordinates **09°15′54″N, 99°26′04″E** (WGS84), about **23.96 km** from the current project-boundary centroid, as a supporting tide-screening reference. It is not an in-plot water-level gauge.
+
+Two official 2026 Royal Thai Navy Hydrographic Department tables establish the datum treatment:
+- `KP2026.pdf` — hourly predictions above **Lowest Low Water / chart datum**.
+- `KP2026msl.pdf` — hourly predictions above **Mean Sea Level (MSL)**.
+- official comparison table gives Ko Prap Lowest Low Water as **1.43 m below MSL**.
+
+The live reproducible 2026 MSL source is:
+`https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf`
+
+The pipeline parses **8,760 hourly 2026 MSL values** and matches scene time by exact hour or linear interpolation with a maximum 90-minute bracketing gap.
+
+For the three selected 2026 Sentinel-2 scenes, matched predicted Ko Prap levels are approximately:
+- 2026-03-01 10:37 ICT: **+1.038 m MSL**
+- 2026-04-05 10:35 ICT: **-0.441 m MSL**
+- 2026-04-30 10:35 ICT: **-0.100 m MSL**
+
+For 2023, the official historical product currently available to the project is an extrema table above **Lowest Low Water**, not a reproducibly downloadable hourly MSL archive. The three selected February-April 2023 scenes have therefore been preserved only as official extrema **stage/phase context**; all three occur on a rising tide. Numeric LLW heights are not mixed with the 2026 MSL series.
+
+The user-supplied public URL pattern is retained as a manual fallback:
 `https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php`
 
-Run:
-```bash
-python scripts/build_ko_prap_tide_screening.py
-```
+That site returned HTTP 403 from GitHub Actions, so CI does not depend on it.
 
-The script reads the selected Sentinel-2 scene catalog, fetches only the required scene months plus adjacent months, parses the full-month predicted tide-extrema tables, and brackets each scene between the previous and next extrema. Primary screening fields are **RISING/FALLING tide stage** and normalized **phase position (0-1)**.
+Tide products:
+- `data/tide/surat_thani/ko_prap_hourly_msl.csv`
+- `data/tide/surat_thani/ko_prap_hourly_msl_manifest.json`
+- `data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv`
+- `data/tide/surat_thani/ko_prap_2023_selected_scene_phase.csv`
+- `web/public/data/surat_thani/tide_context.json`
 
-Outputs:
-- `data/tide/surat_thani/ko_prap_tide_extrema.csv`
-- `data/tide/surat_thani/ko_prap_tide_extrema_manifest.json`
-- `data/catalog/surat_thani_mvp_optical_scenes_tide_screened.csv`
+Current waterline tide gate is **PARTIAL_TIDE_CONTEXT_ONLY** because reproducible hourly MSL for 2024-2025 is not yet committed. Do not describe the whole 2023-2026 waterline sequence as fully tide-normalized.
 
-Important datum rule: the site describes a chart/reference datum. Its heights are therefore stored as `CHART_REFERENCE_DATUM_SOURCE_SITE`; they are **not** relabelled as MSL and must not be numerically mixed with an official MSL series unless an official datum relationship is verified. A scene height linearly interpolated between extrema is retained only as a screening approximation. Station predictions are supporting metadata, not observed water level at 37-STC.
+## Interpretation hierarchy
+1. Prefer **mangrove edge** as the primary image indicator.
+2. Use **bank edge** as primary where clearly visible.
+3. Use **waterline** only as supporting evidence with tide metadata.
+4. Keep automated spectral boundaries labelled **image-derived**, never surveyed shoreline.
+5. Do not attribute an apparent post-2023 slowing to planting until comparable unplanted controls, uncertainty checks, and UAV/field validation are available.
 
-## Analysis intent
-1. Long-term Landsat context before planting.
-2. Sentinel-2 annual/seasonal mangrove-edge and water-edge screening.
-3. Treat **2023-10-18** as the representative intervention cutoff; compare post-planting 2024-2026 against pre-intervention history.
-4. Tide-stage/phase screening of waterline observations.
-5. Add nearby unplanted reference/control segments before comparative-effect claims.
+## What remains before an impact claim
+- identify and verify approximately three comparable unplanted control/reference coastal segments;
+- obtain reproducible tide context for 2024-2025 or constrain image comparison to comparable tide stage;
+- manually/orthophoto validate mangrove edge or bank edge;
+- add UAV or field validation at 37-STC;
+- check for coastal structures, dredging, embankment, channel works or other interventions that could explain the apparent trend.
 
-Do not label one image-derived waterline as a surveyed shoreline or attribute erosion reduction to planting without repeat observations, uncertainty checks, tide screening and suitable controls.
+Until those gates are passed, the correct claim is: **satellite screening indicates a possible change in coastal-boundary behaviour near 37-STC, but does not yet establish a causal erosion-reduction effect from planting.**
