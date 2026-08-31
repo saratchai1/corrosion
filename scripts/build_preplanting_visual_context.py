@@ -1,34 +1,36 @@
 #!/usr/bin/env python3
-"""Build contextual, multispectral web images for the pre-planting slider.
+"""Build clean contextual multispectral imagery plus web SVG map overlays.
 
-The existing tide-aware analysis rasters are clipped to a multi-part project AOI,
-so pixels outside that AOI appear black in a plain RGB preview.  This script
-places each selected-scene analysis raster back onto the wider, georeferenced
-annual Sentinel-2 context image, draws the project plots, and exports consistent
-before/after images for five scientifically relevant views:
+The selected Sentinel-2 analysis rasters are composited onto the wider annual
+same-season Sentinel-2 context so the slider has geographic context instead of
+black NoData.  Raster outputs intentionally contain *no* baked text, plot
+labels, plot boundaries, analysis-window outlines, north arrows, or scale bars.
+Those presentation elements belong to the web layer.
 
-* true colour (RGB)
-* vegetation false colour (NIR / red / green)
+Five spectral views are exported for every selected year:
+
+* true colour RGB
+* vegetation false colour NIR / Red / Green
 * NDVI
 * MNDWI
-* SWIR moisture / wet-soil composite (SWIR1 / NIR / red)
+* SWIR / NIR / Red moisture-wet-soil composite
 
-The wider background is an annual same-season context composite.  The coloured
-analysis window is generated from the exact selected scene listed in the
-pre-planting summary.  Therefore the context helps orientation but is not used
-as a replacement for the tide-aware WATERLINE evidence.
+For each year and map view, a transparent SVG is exported separately.  The SVG
+contains the project plot boundaries/IDs and the exact selected-scene analysis
+window.  The React app overlays those SVGs at runtime, so fonts and boundaries
+remain sharp, accessible, switchable, and independent from the satellite
+pixels.
 """
 from __future__ import annotations
 
 import argparse
 import csv
 import json
-import math
 from pathlib import Path
 from typing import Any
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont
+from PIL import Image, ImageEnhance
 from pyproj import Transformer
 from shapely.geometry import shape
 from shapely.ops import transform
@@ -134,7 +136,12 @@ def rgba_composite(channels: list[np.ndarray], valid: np.ndarray, gamma: float =
     return Image.fromarray(output, mode="RGBA")
 
 
-def colourize(index: np.ndarray, valid: np.ndarray, stops: list[float], colours: list[tuple[int, int, int]]) -> Image.Image:
+def colourize(
+    index: np.ndarray,
+    valid: np.ndarray,
+    stops: list[float],
+    colours: list[tuple[int, int, int]],
+) -> Image.Image:
     clipped = np.clip(index, stops[0], stops[-1])
     output = np.zeros((index.shape[0], index.shape[1], 4), dtype="uint8")
     for channel in range(3):
@@ -226,7 +233,11 @@ def load_plots(path: Path, crs: Any) -> list[dict[str, Any]]:
     return plots
 
 
-def bounds_from_plots(plots: list[dict[str, Any]], plot_ids: set[str], mapper: Any) -> tuple[float, float, float, float]:
+def bounds_from_plots(
+    plots: list[dict[str, Any]],
+    plot_ids: set[str],
+    mapper: Any,
+) -> tuple[float, float, float, float]:
     points: list[tuple[float, float]] = []
     for plot in plots:
         if plot["plot_id"] not in plot_ids:
@@ -278,83 +289,91 @@ def expand_to_aspect(
     if bottom > image_height:
         top -= bottom - image_height
         bottom = image_height
-    left = max(0, left)
-    top = max(0, top)
-    right = min(image_width, right)
-    bottom = min(image_height, bottom)
-    return tuple(int(round(value)) for value in (left, top, right, bottom))
+    return (
+        int(round(max(0, left))),
+        int(round(max(0, top))),
+        int(round(min(image_width, right))),
+        int(round(min(image_height, bottom))),
+    )
 
 
-def font(size: int) -> ImageFont.ImageFont:
-    for candidate in (
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-        "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
-    ):
-        path = Path(candidate)
-        if path.exists():
-            return ImageFont.truetype(str(path), size=size)
-    return ImageFont.load_default()
-
-
-def draw_map_decorations(
-    image: Image.Image,
-    *,
-    plot_lines: list[tuple[str, list[tuple[float, float]], tuple[float, float]]],
+def local_point(
+    point: tuple[float, float],
     crop: tuple[int, int, int, int],
-    source_size: tuple[int, int],
-    title: str,
-    subtitle: str,
-    metres_per_source_pixel: float,
-) -> None:
-    draw = ImageDraw.Draw(image, "RGBA")
-    target_width, target_height = image.size
-    crop_left, crop_top, crop_right, crop_bottom = crop
-    scale_x = target_width / max(crop_right - crop_left, 1)
-    scale_y = target_height / max(crop_bottom - crop_top, 1)
+    target_width: int,
+    target_height: int,
+) -> tuple[float, float]:
+    left, top, right, bottom = crop
+    scale_x = target_width / max(right - left, 1)
+    scale_y = target_height / max(bottom - top, 1)
+    return (
+        round((point[0] - left) * scale_x, 2),
+        round((point[1] - top) * scale_y, 2),
+    )
 
-    def local(point: tuple[float, float]) -> tuple[float, float]:
-        return (point[0] - crop_left) * scale_x, (point[1] - crop_top) * scale_y
 
-    for plot_id, ring, centroid in plot_lines:
-        local_ring = [local(point) for point in ring]
-        draw.line(local_ring, fill=(255, 222, 89, 235), width=max(2, round(target_width / 600)), joint="curve")
-        x, y = local(centroid)
-        if -40 <= x <= target_width + 40 and -30 <= y <= target_height + 30:
-            label = plot_id
-            label_font = font(max(12, round(target_width / 85)))
-            box = draw.textbbox((x, y), label, font=label_font, anchor="mm")
-            draw.rounded_rectangle(
-                (box[0] - 5, box[1] - 3, box[2] + 5, box[3] + 3),
-                radius=4,
-                fill=(5, 24, 26, 205),
-                outline=(255, 222, 89, 210),
-                width=1,
+def build_web_overlay_svg(
+    *,
+    plots: list[dict[str, Any]],
+    plot_ids: set[str],
+    mapper: Any,
+    crop: tuple[int, int, int, int],
+    overlay_box: tuple[int, int, int, int],
+    target_width: int,
+    target_height: int,
+) -> str:
+    parts = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        (
+            f'<svg xmlns="http://www.w3.org/2000/svg" '
+            f'viewBox="0 0 {target_width} {target_height}" '
+            'preserveAspectRatio="none" aria-hidden="true">'
+        ),
+        '<g fill="none" stroke-linejoin="round" stroke-linecap="round">',
+    ]
+
+    analysis_tl = local_point((overlay_box[0], overlay_box[1]), crop, target_width, target_height)
+    analysis_br = local_point((overlay_box[2], overlay_box[3]), crop, target_width, target_height)
+    parts.append(
+        (
+            f'<rect x="{analysis_tl[0]:.2f}" y="{analysis_tl[1]:.2f}" '
+            f'width="{analysis_br[0] - analysis_tl[0]:.2f}" '
+            f'height="{analysis_br[1] - analysis_tl[1]:.2f}" '
+            'stroke="#74ead6" stroke-width="2" stroke-dasharray="10 7" '
+            'vector-effect="non-scaling-stroke" opacity="0.9"/>'
+        )
+    )
+
+    for plot in plots:
+        plot_id = plot["plot_id"]
+        if plot_id not in plot_ids:
+            continue
+        rings = geometry_pixel_points(plot["geometry"], mapper)
+        for ring in rings:
+            local_ring = [local_point(point, crop, target_width, target_height) for point in ring]
+            points = " ".join(f"{x:.2f},{y:.2f}" for x, y in local_ring)
+            parts.append(
+                f'<polyline points="{points}" stroke="#ffe45e" stroke-width="3" '
+                'vector-effect="non-scaling-stroke" opacity="0.98"/>'
             )
-            draw.text((x, y), label, font=label_font, fill=(255, 245, 205, 255), anchor="mm")
+        centroid = local_point(
+            mapper(plot["geometry"].centroid.x, plot["geometry"].centroid.y),
+            crop,
+            target_width,
+            target_height,
+        )
+        parts.append(
+            (
+                f'<text x="{centroid[0]:.2f}" y="{centroid[1]:.2f}" '
+                'fill="#fff4ad" stroke="#061719" stroke-width="5" '
+                'paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" '
+                'font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" '
+                f'font-size="18" font-weight="700">{plot_id}</text>'
+            )
+        )
 
-    panel_w = min(round(target_width * 0.48), 600)
-    panel_h = max(70, round(target_height * 0.12))
-    draw.rounded_rectangle((18, 18, 18 + panel_w, 18 + panel_h), radius=10, fill=(4, 22, 24, 205), outline=(170, 218, 198, 120), width=1)
-    draw.text((34, 30), title, font=font(max(19, round(target_width / 55))), fill=(245, 244, 233, 255))
-    draw.text((34, 58), subtitle, font=font(max(12, round(target_width / 90))), fill=(160, 203, 187, 255))
-
-    # North arrow
-    arrow_x = target_width - 48
-    arrow_y = 42
-    draw.polygon([(arrow_x, arrow_y - 18), (arrow_x - 8, arrow_y + 8), (arrow_x + 8, arrow_y + 8)], fill=(245, 244, 233, 235))
-    draw.text((arrow_x, arrow_y + 13), "N", font=font(max(13, round(target_width / 85))), fill=(245, 244, 233, 255), anchor="ma")
-
-    # Rounded scale bar.  Use a visually stable 1 km or 2 km length.
-    crop_width_source = max(crop_right - crop_left, 1)
-    metres_per_target_pixel = metres_per_source_pixel * crop_width_source / target_width
-    scale_metres = 2000 if target_width * metres_per_target_pixel > 11000 else 1000
-    scale_pixels = max(45, scale_metres / max(metres_per_target_pixel, 1e-6))
-    x0 = 32
-    y0 = target_height - 34
-    draw.line((x0, y0, x0 + scale_pixels, y0), fill=(245, 244, 233, 245), width=4)
-    draw.line((x0, y0 - 5, x0, y0 + 5), fill=(245, 244, 233, 245), width=2)
-    draw.line((x0 + scale_pixels, y0 - 5, x0 + scale_pixels, y0 + 5), fill=(245, 244, 233, 245), width=2)
-    draw.text((x0 + scale_pixels / 2, y0 - 11), f"{scale_metres / 1000:g} km", font=font(max(11, round(target_width / 100))), fill=(245, 244, 233, 255), anchor="ms")
+    parts.extend(['</g>', '</svg>'])
+    return "\n".join(parts) + "\n"
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -385,6 +404,7 @@ def main() -> int:
     web_output_dir.mkdir(parents=True, exist_ok=True)
 
     scene_visuals: dict[int, dict[str, dict[str, str]]] = {}
+    scene_overlays: dict[int, dict[str, str]] = {}
     view_manifest: dict[str, Any] = {}
 
     for scene in summary["scene_selection"]["display_scenes"]:
@@ -415,84 +435,88 @@ def main() -> int:
         plots = load_plots(ROOT / args.plots, grid["crs"])
 
         left, bottom, right, top = grid["bounds"]
-        overlay_corners = [mapper(left, top), mapper(right, top), mapper(right, bottom), mapper(left, bottom)]
-        overlay_left = min(point[0] for point in overlay_corners)
-        overlay_right = max(point[0] for point in overlay_corners)
-        overlay_top = min(point[1] for point in overlay_corners)
-        overlay_bottom = max(point[1] for point in overlay_corners)
+        overlay_corners = [
+            mapper(left, top),
+            mapper(right, top),
+            mapper(right, bottom),
+            mapper(left, bottom),
+        ]
         overlay_box = (
-            int(round(overlay_left)),
-            int(round(overlay_top)),
-            int(round(overlay_right)),
-            int(round(overlay_bottom)),
+            int(round(min(point[0] for point in overlay_corners))),
+            int(round(min(point[1] for point in overlay_corners))),
+            int(round(max(point[0] for point in overlay_corners))),
+            int(round(max(point[1] for point in overlay_corners))),
         )
         overlay_width = max(1, overlay_box[2] - overlay_box[0])
         overlay_height = max(1, overlay_box[3] - overlay_box[1])
 
-        plot_lines: list[tuple[str, list[tuple[float, float]], tuple[float, float]]] = []
-        for plot in plots:
-            rings = geometry_pixel_points(plot["geometry"], mapper)
-            if not rings:
-                continue
-            centroid = mapper(plot["geometry"].centroid.x, plot["geometry"].centroid.y)
-            for ring in rings:
-                plot_lines.append((plot["plot_id"], ring, centroid))
-
         scene_visuals[year] = {}
+        scene_overlays[year] = {}
         for view_name, view_info in VIEWS.items():
+            plot_ids = set(view_info["plot_ids"])
             crop = expand_to_aspect(
-                bounds_from_plots(plots, set(view_info["plot_ids"]), mapper),
+                bounds_from_plots(plots, plot_ids, mapper),
                 image_width=context_width,
                 image_height=context_height,
                 margin_fraction=float(view_info["margin_fraction"]),
             )
             scene_visuals[year][view_name] = {}
-            for mode_name, mode_info in MODES.items():
+
+            overlay_relative = Path(view_name) / "overlay" / f"{year}.svg"
+            overlay_svg = build_web_overlay_svg(
+                plots=plots,
+                plot_ids=plot_ids,
+                mapper=mapper,
+                crop=crop,
+                overlay_box=overlay_box,
+                target_width=args.target_width,
+                target_height=args.target_height,
+            )
+            for destination_root in (output_dir, web_output_dir):
+                destination = destination_root / overlay_relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_text(overlay_svg, encoding="utf-8")
+            scene_overlays[year][view_name] = (
+                f"data/project_preplanting_history/visuals/{overlay_relative.as_posix()}"
+            )
+
+            for mode_name in MODES:
                 if mode_name == "rgb":
                     base = context.copy()
                 else:
                     base = ImageEnhance.Color(context).enhance(0.30)
                     base = ImageEnhance.Brightness(base).enhance(0.48)
-                overlay = rendered[mode_name].resize((overlay_width, overlay_height), Image.Resampling.BILINEAR)
+                overlay = rendered[mode_name].resize(
+                    (overlay_width, overlay_height),
+                    Image.Resampling.BILINEAR,
+                )
                 base_rgba = base.convert("RGBA")
                 base_rgba.alpha_composite(overlay, dest=(overlay_box[0], overlay_box[1]))
-                draw = ImageDraw.Draw(base_rgba, "RGBA")
-                draw.rounded_rectangle(
-                    overlay_box,
-                    radius=8,
-                    outline=(255, 222, 89, 220),
-                    width=max(2, round(context_width / 350)),
-                )
                 cropped = base_rgba.crop(crop).convert("RGB").resize(
                     (args.target_width, args.target_height),
                     Image.Resampling.LANCZOS,
-                )
-                metres_per_source_pixel = float(abs(grid["transform"].a)) * (grid["width"] / max(overlay_width, 1))
-                filtered_lines = [line for line in plot_lines if line[0] in set(view_info["plot_ids"])]
-                draw_map_decorations(
-                    cropped,
-                    plot_lines=filtered_lines,
-                    crop=crop,
-                    source_size=(context_width, context_height),
-                    title=f"{year} · {mode_info['label_th']}",
-                    subtitle=f"{view_info['label_th']} · กรอบสีเหลืองคือพื้นที่ภาพที่ใช้วิเคราะห์",
-                    metres_per_source_pixel=metres_per_source_pixel,
                 )
                 relative = Path(view_name) / mode_name / f"{year}.webp"
                 for destination_root in (output_dir, web_output_dir):
                     destination = destination_root / relative
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     cropped.save(destination, "WEBP", quality=82, method=6)
-                public_path = f"data/project_preplanting_history/visuals/{relative.as_posix()}"
-                scene_visuals[year][view_name][mode_name] = public_path
-            view_manifest.setdefault(view_name, {
-                "label_th": view_info["label_th"],
-                "description_th": view_info["description_th"],
-            })
+                scene_visuals[year][view_name][mode_name] = (
+                    f"data/project_preplanting_history/visuals/{relative.as_posix()}"
+                )
+
+            view_manifest.setdefault(
+                view_name,
+                {
+                    "label_th": view_info["label_th"],
+                    "description_th": view_info["description_th"],
+                },
+            )
 
     for scene in summary["scene_selection"]["display_scenes"]:
         year = int(scene["year"])
         scene["visuals"] = scene_visuals[year]
+        scene["plot_overlays"] = scene_overlays[year]
         scene["context_image"] = f"data/imagery/{year}.webp"
 
     summary["visualization"] = {
@@ -501,6 +525,9 @@ def main() -> int:
         "views": view_manifest,
         "modes": MODES,
         "image_count": len(scene_visuals) * len(VIEWS) * len(MODES),
+        "overlay_count": len(scene_overlays) * len(VIEWS),
+        "raster_presentation": "CLEAN_NO_BAKED_LABELS_OR_BOUNDARIES",
+        "map_overlay_model": "WEB_SVG_LAYER",
         "background_source": (
             "Annual January-April Sentinel-2 context composite used only for geographic orientation."
         ),
