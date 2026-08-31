@@ -1,0 +1,102 @@
+{
+  "generated_at_utc": "2026-08-31T14:06:40.533581+00:00",
+  "plot_code": "37-STC",
+  "station": {
+    "name": "Ko Prap",
+    "name_th": "เกาะปราบ",
+    "coordinates_lon_lat": [
+      99.434444,
+      9.265
+    ],
+    "distance_from_project_centroid_km": 23.96,
+    "role": "supporting tide-screening reference; not an in-plot gauge"
+  },
+  "datum_relationship": {
+    "lowest_low_water_below_mean_sea_level_m": 1.43,
+    "source": "Royal Thai Navy 2026 Tide Tables",
+    "warning": "Do not mix LLW and MSL heights without an explicit datum treatment."
+  },
+  "coverage": {
+    "2023": {
+      "status": "OFFICIAL_EXTREMA_PHASE_FOR_SELECTED_SCENES",
+      "datum": "LOWEST_LOW_WATER",
+      "selected_scene_count": 3,
+      "numeric_height_use": "NO_CROSS_YEAR_MSL_COMPARISON",
+      "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf"
+    },
+    "2024": {
+      "status": "HOURLY_MSL_NOT_YET_REPRODUCIBLY_AVAILABLE"
+    },
+    "2025": {
+      "status": "HOURLY_MSL_NOT_YET_REPRODUCIBLY_AVAILABLE"
+    },
+    "2026": {
+      "status": "OFFICIAL_HOURLY_MSL_MATCHED",
+      "datum": "MSL",
+      "hourly_rows": 8760,
+      "matched_selected_sentinel2_scenes": 3,
+      "source_url": "https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf"
+    }
+  },
+  "selected_scene_context": {
+    "2023": [
+      {
+        "scene_id": "S2B_MSIL2A_20230210T033859_R061_T47PNL_20230211T035717",
+        "acquisition_datetime_bangkok": "2023-02-10T10:38:59.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.5354,
+        "previous_extrema_datetime_bangkok": "2023-02-10T06:37:00+07:00",
+        "next_extrema_datetime_bangkok": "2023-02-10T14:09:00+07:00",
+        "datum": "LOWEST_LOW_WATER"
+      },
+      {
+        "scene_id": "S2B_MSIL2A_20230312T033539_R061_T47PNL_20230312T103608",
+        "acquisition_datetime_bangkok": "2023-03-12T10:35:39.025000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.3558,
+        "previous_extrema_datetime_bangkok": "2023-03-12T08:29:00+07:00",
+        "next_extrema_datetime_bangkok": "2023-03-12T14:25:00+07:00",
+        "datum": "LOWEST_LOW_WATER"
+      },
+      {
+        "scene_id": "S2A_MSIL2A_20230406T033541_R061_T47PNL_20230406T112615",
+        "acquisition_datetime_bangkok": "2023-04-06T10:35:41.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.7138,
+        "previous_extrema_datetime_bangkok": "2023-04-06T06:13:00+07:00",
+        "next_extrema_datetime_bangkok": "2023-04-06T12:21:00+07:00",
+        "datum": "LOWEST_LOW_WATER"
+      }
+    ],
+    "2026": [
+      {
+        "scene_id": "S2C_MSIL2A_20260301T033701_R061_T47PNL_20260301T091613",
+        "acquisition_datetime_bangkok": "2026-03-01T10:37:01.025000+07:00",
+        "tide_m_msl": 1.038,
+        "match_method": "linear_between_predictions",
+        "datum": "MSL"
+      },
+      {
+        "scene_id": "S2B_MSIL2A_20260405T033539_R061_T47PNL_20260405T072236",
+        "acquisition_datetime_bangkok": "2026-04-05T10:35:39.024000+07:00",
+        "tide_m_msl": -0.441,
+        "match_method": "linear_between_predictions",
+        "datum": "MSL"
+      },
+      {
+        "scene_id": "S2C_MSIL2A_20260430T033541_R061_T47PNL_20260430T081812",
+        "acquisition_datetime_bangkok": "2026-04-30T10:35:41.025000+07:00",
+        "tide_m_msl": -0.1,
+        "match_method": "linear_between_predictions",
+        "datum": "MSL"
+      }
+    ]
+  },
+  "waterline_gate": {
+    "status": "PARTIAL_TIDE_CONTEXT_ONLY",
+    "reason": "2023 selected scenes have official LLW tide phase and 2026 selected scenes have official hourly MSL; reproducible hourly MSL is still missing for 2024-2025.",
+    "allowed_claim": "Use tide context to screen image-derived waterline observations.",
+    "not_allowed_claim": "Do not call the 2023-2026 waterline series fully tide-normalized or attribute shoreline change to planting from tide metadata alone."
+  },
+  "primary_indicator_note": "Mangrove edge and bank edge remain primary where visible; waterline is supporting only."
+}

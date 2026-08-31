@@ -551,5 +551,8 @@
       "boundary": "boundaries/2026_water_land_boundary.geojson",
       "vegetation": "vegetation/2026_coastal_vegetation_proxy.geojson"
     }
-  ]
+  ],
+  "tide_context_file": "tide_context.json",
+  "tide_context_status": "PARTIAL_TIDE_CONTEXT_ONLY",
+  "tide_context_note": "2023 selected scenes have official LLW tide phase and 2026 selected scenes have official hourly MSL; reproducible hourly MSL is still missing for 2024-2025."
 }
