@@ -1,0 +1,17 @@
+{
+  "station_name": "Ko Prap",
+  "station_name_th": "เกาะปราบ",
+  "station_coordinates_lon_lat": [99.434444, 9.265],
+  "year": 2023,
+  "datum": "LOWEST_LOW_WATER",
+  "data_kind": "selected-scene bracket from official daily tide extrema",
+  "observed": false,
+  "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
+  "source_publisher": "Hydrographic Department, Royal Thai Navy",
+  "source_access_note": "The official 2023 PDF remains indexed and its table content is retrievable through search/indexed copies, but a fresh GitHub Actions HTTP download currently redirects to a 404. To avoid pretending the dead archive URL is reproducible, only the extrema bracketing the three selected 2023 Sentinel-2 scenes are preserved here with explicit provenance.",
+  "selected_scene_count": 3,
+  "selected_scene_tide_stage": ["RISING", "RISING", "RISING"],
+  "phase_definition": "0 at previous extrema and 1 at next extrema; used only as a relative tide-stage descriptor.",
+  "scientific_limit": "Heights are above Lowest Low Water and are not MSL. Do not compare the numeric LLW heights directly with the 2026 MSL hourly series. The phase fraction is not a harmonic water-level interpolation.",
+  "output_csv": "data/tide/surat_thani/ko_prap_2023_selected_scene_phase.csv"
+}
