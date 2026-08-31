@@ -1,0 +1,76 @@
+name: Surat Thani 37-STC frontage summary
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_project_frontage_summary.py
+      - data/aoi/surat_thani_37_stc_current_aoi.geojson
+      - data/processed/surat_thani/statistics/transect_summary.geojson
+      - .github/workflows/surat-thani-frontage-summary.yml
+
+permissions:
+  contents: write
+
+jobs:
+  frontage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Build current-PDD frontage summary
+        run: python -u scripts/build_surat_thani_project_frontage_summary.py
+
+      - name: QA frontage products
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          s = json.loads(Path('data/processed/surat_thani/statistics/project_frontage_summary.json').read_text(encoding='utf-8'))
+          g = json.loads(Path('data/processed/surat_thani/statistics/project_frontage_transects.geojson').read_text(encoding='utf-8'))
+          assert s['plot_code'] == '37-STC', s
+          assert s['scope']['primary_boundary_area_rai'] == 157.55, s
+          assert 0 < s['scope']['selected_transect_count'] <= s['scope']['all_coast_transect_count'], s
+          assert len(g['features']) == s['scope']['selected_transect_count'], (len(g['features']), s)
+          assert s['period']['representative_intervention_date'] == '2023-10-18', s
+          assert s['claim_status'] == 'SCREENING_ONLY_NOT_FOR_CAUSAL_IMPACT_CLAIMS', s
+          assert Path('web/public/data/surat_thani/project_frontage_summary.json').exists()
+          assert Path('web/public/data/surat_thani/project_frontage_transects.geojson').exists()
+          print({
+            'selected': s['scope']['selected_transect_count'],
+            'all': s['scope']['all_coast_transect_count'],
+            'median_change_2023_2026_m': s['image_derived_water_land_boundary_screening']['median_apparent_change_2023_to_2026_m'],
+            'median_pre_slope': s['image_derived_water_land_boundary_screening']['median_pre_2017_2023_slope_m_per_year'],
+            'median_post_slope': s['image_derived_water_land_boundary_screening']['median_post_2024_2026_slope_m_per_year'],
+          })
+          PY
+
+      - name: Commit frontage products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/processed/surat_thani/statistics/project_frontage_summary.json \
+            data/processed/surat_thani/statistics/project_frontage_transects.geojson \
+            data/processed/surat_thani/web/project_frontage_summary.json \
+            data/processed/surat_thani/web/project_frontage_transects.geojson \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/project_frontage_summary.json \
+            web/public/data/surat_thani/project_frontage_transects.geojson \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No frontage-summary changes'
+          else
+            git commit -m 'data: add 37-STC project-frontage screening [skip ci]'
+            git push
+          fi
