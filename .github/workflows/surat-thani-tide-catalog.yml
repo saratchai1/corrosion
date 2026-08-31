@@ -1,0 +1,53 @@
+name: Surat Thani Ko Prap tide catalog
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_rtn_ko_prap_tide_catalog.py
+      - .github/workflows/surat-thani-tide-catalog.yml
+
+permissions:
+  contents: write
+
+jobs:
+  tide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Parse official Ko Prap hourly MSL predictions
+        run: python -u scripts/build_rtn_ko_prap_tide_catalog.py
+      - name: QA tide catalog
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          csv_path = Path('data/tide/surat_thani/ko_prap_hourly_msl.csv')
+          manifest_path = Path('data/tide/surat_thani/ko_prap_hourly_msl_manifest.json')
+          rows = list(csv.DictReader(csv_path.open(encoding='utf-8')))
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          assert len(rows) in {35064, 35088}, len(rows)
+          assert manifest['station_name'] == 'Ko Prap'
+          assert manifest['datum'] == 'MSL'
+          assert manifest['observed'] is False
+          print({'rows': len(rows), 'years': manifest['years']})
+          PY
+      - name: Commit tide products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/tide/surat_thani/ko_prap_hourly_msl.csv data/tide/surat_thani/ko_prap_hourly_msl_manifest.json
+          if git diff --cached --quiet; then
+            echo 'No tide changes'
+          else
+            git commit -m 'data: add Ko Prap hourly MSL tide catalog [skip ci]'
+            git push
+          fi
