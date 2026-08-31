@@ -1,0 +1,94 @@
+{
+  "generated_at_utc": "2026-08-31T14:15:25.999834+00:00",
+  "plot_code": "37-STC",
+  "status": "PROVISIONAL_UNVERIFIED_CONTROL_CANDIDATES",
+  "project_frontage_reference": {
+    "current_pdd_area_rai": 157.55,
+    "representative_intervention_date": "2023-10-18",
+    "project_frontage_median_pre_2017_2023_slope_m_per_year": -2.1
+  },
+  "screening_method": {
+    "outside_distance_min_m": 400.0,
+    "window_transects": 5,
+    "window_length_approx_m": 400,
+    "minimum_selected_window_center_separation_m": 500.0,
+    "rank_basis": "absolute difference from project median 2017-2023 image-derived pretrend plus completeness penalty"
+  },
+  "candidate_count": 3,
+  "candidates": [
+    {
+      "rank": 1,
+      "start_chainage_m": 4200.0,
+      "end_chainage_m": 4600.0,
+      "center_chainage_m": 4400.0,
+      "transect_ids": [
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047"
+      ],
+      "median_distance_to_pdd_m": 896.2,
+      "median_pre_2017_2023_slope_m_per_year": -2.17,
+      "pretrend_difference_from_project_m_per_year": -0.06,
+      "mean_pre_observation_completeness": 1.0,
+      "midpoint_lon_lat": [
+        99.242015,
+        9.353836
+      ],
+      "ranking_score_lower_is_better": 0.063
+    },
+    {
+      "rank": 2,
+      "start_chainage_m": 5300.0,
+      "end_chainage_m": 5700.0,
+      "center_chainage_m": 5500.0,
+      "transect_ids": [
+        "T054",
+        "T055",
+        "T056",
+        "T057",
+        "T058"
+      ],
+      "median_distance_to_pdd_m": 1647.7,
+      "median_pre_2017_2023_slope_m_per_year": -1.87,
+      "pretrend_difference_from_project_m_per_year": 0.24,
+      "mean_pre_observation_completeness": 1.0,
+      "midpoint_lon_lat": [
+        99.25126,
+        9.357297
+      ],
+      "ranking_score_lower_is_better": 0.235
+    },
+    {
+      "rank": 3,
+      "start_chainage_m": 4800.0,
+      "end_chainage_m": 5200.0,
+      "center_chainage_m": 5000.0,
+      "transect_ids": [
+        "T049",
+        "T050",
+        "T051",
+        "T052",
+        "T053"
+      ],
+      "median_distance_to_pdd_m": 1247.7,
+      "median_pre_2017_2023_slope_m_per_year": -1.02,
+      "pretrend_difference_from_project_m_per_year": 1.08,
+      "mean_pre_observation_completeness": 1.0,
+      "midpoint_lon_lat": [
+        99.246906,
+        9.356033
+      ],
+      "ranking_score_lower_is_better": 1.081
+    }
+  ],
+  "mandatory_verification_before_use_as_controls": [
+    "confirm no mangrove planting during the intervention/post period",
+    "confirm no new seawall, breakwater, bamboo fence or other erosion-control structure difference",
+    "confirm no dredging, embankment or channel intervention that changes coastal process",
+    "visually confirm comparable coastal setting, mudflat exposure and river-mouth influence",
+    "review high-resolution imagery and preferably field/UAV evidence"
+  ],
+  "claim_limit": "Candidates are generated from satellite-transect similarity only and are not verified controls. They must not be used for a comparative-effect or causal planting claim until the mandatory checks are completed."
+}
