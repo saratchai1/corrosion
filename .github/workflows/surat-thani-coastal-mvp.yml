@@ -1,0 +1,67 @@
+name: Surat Thani coastal-change MVP
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/download_surat_thani_mvp_epochs.py
+      - scripts/build_surat_thani_coastal_change_mvp.py
+      - .github/workflows/surat-thani-coastal-mvp.yml
+      - data/aoi/surat_thani_37_stc_*.geojson
+
+permissions:
+  contents: write
+
+jobs:
+  mvp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install geospatial dependencies
+        run: pip install -r requirements.txt
+      - name: Download bounded Surat Thani MVP epochs
+        run: python -u scripts/download_surat_thani_mvp_epochs.py
+      - name: Build water boundary vegetation transects and web data
+        run: python -u scripts/build_surat_thani_coastal_change_mvp.py
+      - name: QA generated products
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          root = Path('data/processed/surat_thani')
+          summary = json.loads((root/'statistics/summary.json').read_text(encoding='utf-8'))
+          assert summary['epoch_count'] >= 10, summary
+          assert summary['transect_count'] > 0, summary
+          catalog = list(csv.DictReader(Path('data/catalog/surat_thani_mvp_optical_scenes.csv').open(encoding='utf-8')))
+          assert catalog, 'empty MVP catalog'
+          assert (Path('web/public/data/surat_thani/project/plots.geojson')).exists()
+          print(json.dumps({
+              'epoch_count': summary['epoch_count'],
+              'transect_count': summary['transect_count'],
+              'class_counts': summary['class_counts'],
+              'catalog_scene_rows': len(catalog),
+              'target_years': summary['target_years'],
+          }, indent=2))
+          PY
+      - name: Commit derived Surat Thani products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/catalog/surat_thani_mvp_optical_scenes.csv \
+            data/catalog/surat_thani_mvp_epochs.json \
+            data/processed/surat_thani \
+            web/public/data/surat_thani
+          if git diff --cached --quiet; then
+            echo 'No derived-product changes'
+          else
+            git commit -m 'data: build Surat Thani coastal-change MVP [skip ci]'
+            git push
+          fi
