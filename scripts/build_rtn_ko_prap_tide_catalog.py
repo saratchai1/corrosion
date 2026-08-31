@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Build the Surat Thani Ko Prap hourly MSL tide catalog using the tested RTN PDF parser.
+"""Build the Surat Thani Ko Prap hourly MSL tide catalog with the tested RTN parser.
 
-Official Ko Prap hourly MSL archives are verified for 2024-2026. The 2023
-archive is intentionally excluded because the legacy official MSL file could
-not be resolved reliably; do not substitute LLW data or infer a datum offset.
+The 2026 Ko Prap MSL table has been independently checked against the user-supplied
+`KP2026msl.pdf`. The companion `KP2026.pdf` uses Lowest Low Water / chart datum;
+the official table states that Ko Prap Lowest Low Water is 1.43 m below Mean Sea
+Level. Do not mix those two height columns without an explicit datum conversion.
+
+Only 2026 is enabled by default because that official MSL download URL is currently
+live and reproducible. Historical sources can be added later when a live official
+archive (or a preserved project copy) is available.
 """
 from __future__ import annotations
 
@@ -12,7 +17,7 @@ from pathlib import Path
 import build_rtn_mae_klong_tide_catalog as core
 
 
-core.DEFAULT_YEARS = (2024, 2025, 2026)
+core.DEFAULT_YEARS = (2026,)
 core.DEFAULT_OUTPUT = Path("data/tide/surat_thani/ko_prap_hourly_msl.csv")
 core.DEFAULT_MANIFEST = Path("data/tide/surat_thani/ko_prap_hourly_msl_manifest.json")
 core.DEFAULT_CACHE = Path(".cache/rtn_tides/surat_thani")
@@ -22,33 +27,18 @@ core.OFFICIAL_LANDING_PAGE = "https://hydro.navy.mi.th/waterlaveltable"
 
 
 def year_url_candidates(year: int) -> list[str]:
-    known = {
-        2026: [
+    if year == 2026:
+        return [
             "https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf",
-            "https://www.hydro.navy.mi.th/download/Water_lever69/MSL/KP2026msl.pdf",
-        ],
-        2025: [
-            "https://www.hydro.navy.mi.th/download/Water_lever68/MSL/KP2025%20msl.pdf",
-        ],
-        2024: [
-            "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
-        ],
+        ]
+
+    # Historical URLs are retained as hints only. They are not in DEFAULT_YEARS
+    # because the legacy server currently returns 404 to fresh downloads.
+    historical = {
+        2025: "https://www.hydro.navy.mi.th/download/Water_lever68/MSL/KP2025%20msl.pdf",
+        2024: "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
     }
-    urls = list(known.get(year, []))
-    short = year - 1957
-    for host in ("www.hydro.navy.mi.th", "hydro.navy.mi.th"):
-        for folder in ("Water_lever", "Water_level"):
-            for datum in ("MSL", "msl"):
-                for filename in (
-                    f"KP{year}%20msl.pdf",
-                    f"KP{year}%20MSL.pdf",
-                    f"KP{year}msl.pdf",
-                    f"KP{year}MSL.pdf",
-                ):
-                    urls.append(
-                        f"https://{host}/download/{folder}{short:02d}/{datum}/{filename}"
-                    )
-    return list(dict.fromkeys(urls))
+    return [historical[year]] if year in historical else []
 
 
 core.year_url_candidates = year_url_candidates
