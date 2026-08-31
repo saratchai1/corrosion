@@ -17,6 +17,26 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
   const [historyError, setHistoryError] = useState<string | null>(null)
 
   useEffect(() => {
+    const handleInternalAnchorClick = (event: MouseEvent) => {
+      const source = event.target
+      if (!(source instanceof Element)) return
+
+      const anchor = source.closest<HTMLAnchorElement>('a[href^="#"]')
+      const href = anchor?.getAttribute('href')
+      if (!href || href === '#') return
+
+      const target = document.getElementById(decodeURIComponent(href.slice(1)))
+      if (!target) return
+
+      event.preventDefault()
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+
+    document.addEventListener('click', handleInternalAnchorClick)
+    return () => document.removeEventListener('click', handleInternalAnchorClick)
+  }, [])
+
+  useEffect(() => {
     let active = true
     fetch('data/project_preplanting_history/summary.json')
       .then((response) => {
