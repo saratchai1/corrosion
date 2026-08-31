@@ -1,0 +1,46 @@
+name: Validate Samut Songkhram slider zoom
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-slider-zoom-v1
+    paths:
+      - 'web/src/PlotOverlayInjector.tsx'
+      - 'web/src/plotOverlay.css'
+      - '.github/workflows/samut-songkhram-slider-zoom.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Type-check and build production bundle
+        working-directory: web
+        run: npm run build
+
+      - name: Validate zoom implementation
+        run: |
+          grep -q 'MAX_ZOOM = 3' web/src/PlotOverlayInjector.tsx
+          grep -q 'ซูมเข้า' web/src/PlotOverlayInjector.tsx
+          grep -q 'ซูมออก' web/src/PlotOverlayInjector.tsx
+          grep -q 'spectral-zoom-controls' web/src/plotOverlay.css
+          grep -q 'spectral-before-clip' web/src/plotOverlay.css
+          test -f web/dist/client/index.html

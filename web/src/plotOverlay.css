@@ -2,13 +2,50 @@
   position: relative;
 }
 
+.spectral-zoom-layer,
+.spectral-before-clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.spectral-zoom-layer {
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform 160ms ease-out;
+  will-change: transform;
+}
+
+.spectral-zoom-layer-after {
+  z-index: 1;
+}
+
+.spectral-before-clip {
+  z-index: 2;
+  overflow: hidden;
+}
+
+.spectral-zoom-layer-before {
+  z-index: 2;
+}
+
+.spectral-zoom-layer > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .spectral-web-map-overlay {
   position: absolute;
   z-index: 5;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: fill !important;
   pointer-events: none;
   user-select: none;
 }
@@ -49,8 +86,78 @@
   color: #fff0a8;
 }
 
+.spectral-zoom-controls {
+  position: absolute;
+  z-index: 14;
+  top: 14px;
+  left: 50%;
+  display: grid;
+  grid-template-columns: 42px minmax(68px, auto) 42px;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid rgba(229, 242, 236, 0.5);
+  border-radius: 7px;
+  background: rgba(5, 23, 25, 0.9);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.spectral-zoom-controls button {
+  min-height: 38px;
+  border: 0;
+  border-right: 1px solid rgba(229, 242, 236, 0.2);
+  color: #f2f6f3;
+  background: transparent;
+  cursor: pointer;
+}
+
+.spectral-zoom-controls button:last-child {
+  border-right: 0;
+}
+
+.spectral-zoom-controls button:hover:not(:disabled),
+.spectral-zoom-controls button:focus-visible {
+  color: #071b1d;
+  background: #bce5d1;
+  outline: none;
+}
+
+.spectral-zoom-controls button:disabled {
+  color: rgba(214, 228, 223, 0.28);
+  cursor: default;
+}
+
+.spectral-zoom-button {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.spectral-zoom-reset {
+  padding: 0 10px;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spectral-zoom-layer {
+    transition: none;
+  }
+}
+
 @media (max-width: 700px) {
   .spectral-overlay-toggle {
     min-width: 120px;
+  }
+
+  .spectral-zoom-controls {
+    top: 9px;
+    grid-template-columns: 38px minmax(60px, auto) 38px;
+  }
+
+  .spectral-zoom-controls button {
+    min-height: 36px;
   }
 }
