@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "station": "Ko Prap",
+  "station_id": "466",
+  "timezone": "Asia/Bangkok",
+  "purpose": "Scene-level tide-stage context for the selected 37-STC Sentinel-2 MVP acquisitions, especially the previously missing 2024-2025 context.",
+  "source_hierarchy": [
+    "Royal Thai Navy Hydrographic Department official MSL prediction table when scene-level hourly MSL is available",
+    "ThailandTideTables Koh Prap station 466 monthly extrema pages for rising/falling stage and relative phase",
+    "Royal Thai Navy historical extrema archive for the preserved 2023 selected-scene phase"
+  ],
+  "public_url_templates": {
+    "english": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-{year}-{month:02d}-466.php",
+    "thai_user_supplied_pattern": "https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php"
+  },
+  "datum_rules": {
+    "thailandtidetables": "The public pages label heights as Chart Datum. Heights are retained only as extrema context and are not silently relabelled as MSL.",
+    "official_2024_msl": "The indexed RTN 2024 MSL product explicitly states heights are above Mean Sea Level. The original historical PDF URL is no longer live, so these records are marked indexed/non-live provenance.",
+    "official_2026_msl": "Live RTN 2026 hourly predictions are above Mean Sea Level and are matched/interpolated to scene time by the existing tide workflow.",
+    "known_2026_relationship": "At Ko Prap, the official 2026 comparison gives Lowest Low Water 1.43 m below MSL. This relationship is not used here to convert 2025 public Chart Datum extrema into MSL."
+  },
+  "phase_definition": "Relative elapsed time from the previous extrema to the next extrema, scaled 0 to 1. It describes stage timing only and is not harmonic water-level interpolation.",
+  "2024_special_case": "February and March 2024 public extrema pages were not reliably retrievable in the current web/cache path. Scene direction and MSL for those two acquisitions therefore use the indexed official RTN 2024 hourly MSL table. April 2024 has both public extrema phase and official MSL context.",
+  "automation_limit": "ThailandTideTables previously returned HTTP 403 from GitHub Actions. CI therefore consumes this committed, sourced scene-stage table rather than scraping that site at runtime.",
+  "claim_limit": "This improves tide-stage screening of the image-derived wet/dry boundary but does not make the full shoreline series surveyed or fully tide-normalized. Mangrove edge/bank edge and field/UAV evidence remain higher-value validation targets."
+}
