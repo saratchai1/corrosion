@@ -1,4 +1,4 @@
-name: Surat Thani Ko Prap tide catalog
+name: Surat Thani Ko Prap tide screening
 
 on:
   workflow_dispatch:
@@ -6,7 +6,8 @@ on:
     branches:
       - data/surat-thani-satellite-v1
     paths:
-      - scripts/build_rtn_ko_prap_tide_catalog.py
+      - scripts/build_ko_prap_tide_screening.py
+      - data/catalog/surat_thani_mvp_optical_scenes.csv
       - .github/workflows/surat-thani-tide-catalog.yml
 
 permissions:
@@ -23,33 +24,49 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Parse official Ko Prap hourly MSL predictions
-        run: python -u scripts/build_rtn_ko_prap_tide_catalog.py
-      - name: QA tide catalog
+      - name: Build Ko Prap tide-extrema screening catalog
+        run: python -u scripts/build_ko_prap_tide_screening.py
+      - name: QA tide screening
         run: |
           python - <<'PY'
           import csv, json
           from pathlib import Path
-          csv_path = Path('data/tide/surat_thani/ko_prap_hourly_msl.csv')
-          manifest_path = Path('data/tide/surat_thani/ko_prap_hourly_msl_manifest.json')
-          rows = list(csv.DictReader(csv_path.open(encoding='utf-8')))
+
+          tide_path = Path('data/tide/surat_thani/ko_prap_tide_extrema.csv')
+          matched_path = Path('data/catalog/surat_thani_mvp_optical_scenes_tide_screened.csv')
+          manifest_path = Path('data/tide/surat_thani/ko_prap_tide_extrema_manifest.json')
+
+          tide_rows = list(csv.DictReader(tide_path.open(encoding='utf-8')))
+          matched = list(csv.DictReader(matched_path.open(encoding='utf-8')))
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          assert len(rows) == 26304, len(rows)
-          assert manifest['years'] == [2024, 2025, 2026], manifest['years']
-          assert manifest['station_name'] == 'Ko Prap'
-          assert manifest['datum'] == 'MSL'
-          assert manifest['observed'] is False
-          print({'rows': len(rows), 'years': manifest['years']})
+
+          assert manifest['station_id'] == '466', manifest
+          assert manifest['station_name'] == 'Ko Prap', manifest
+          assert manifest['source_type'] == 'PREDICTED_TIDE_EXTREMA', manifest
+          assert manifest['datum'] == 'CHART_REFERENCE_DATUM_SOURCE_SITE', manifest
+          assert not manifest['failures'], manifest['failures']
+          assert len(tide_rows) == manifest['event_count'] and len(tide_rows) > 500
+          counts = manifest['match_counts']
+          assert counts['sentinel2_total'] > 0, counts
+          assert counts['sentinel2_matched'] == counts['sentinel2_total'], counts
+          s2 = [r for r in matched if r.get('dataset') == 'sentinel2']
+          assert s2 and all(r.get('tide_screen_status') == 'MATCHED' for r in s2), s2[:3]
+          assert all(r.get('tide_stage') in {'RISING', 'FALLING'} for r in s2), s2[:3]
+          assert all(r.get('tide_height_method') == 'LINEAR_BETWEEN_EXTREMA_SCREENING_ONLY' for r in s2), s2[:3]
+          print({'events': len(tide_rows), **counts, 'months': len(manifest['required_months'])})
           PY
       - name: Commit tide products
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase --autostash origin data/surat-thani-satellite-v1
-          git add data/tide/surat_thani/ko_prap_hourly_msl.csv data/tide/surat_thani/ko_prap_hourly_msl_manifest.json
+          git add \
+            data/tide/surat_thani/ko_prap_tide_extrema.csv \
+            data/tide/surat_thani/ko_prap_tide_extrema_manifest.json \
+            data/catalog/surat_thani_mvp_optical_scenes_tide_screened.csv
           if git diff --cached --quiet; then
-            echo 'No tide changes'
+            echo 'No tide-screening changes'
           else
-            git commit -m 'data: add Ko Prap hourly MSL tide catalog [skip ci]'
+            git commit -m 'data: add Ko Prap scene tide screening [skip ci]'
             git push
           fi
