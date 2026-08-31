@@ -1,0 +1,3 @@
+boundary_role,source_label,reported_rai,qgis_rai,arcgis_rai,computed_area_m2_epsg32647,computed_rai_epsg32647,interpretation
+reference_confirmed_department,ยืนยันกรม,200.05,196.36,0,313933.00,196.21,"reference boundary; reported area differs from polygon-computed area"
+current_pdd,SHP PDD,157.55,157.68,157.56,252094.31,157.56,"current analysis boundary; polygon area agrees with reported/PDD area"

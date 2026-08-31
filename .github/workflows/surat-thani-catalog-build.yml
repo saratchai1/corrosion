@@ -1,0 +1,57 @@
+name: Surat Thani satellite catalogs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - data/aoi/surat_thani_37_stc_*.geojson
+      - config/surat_thani_erosion_free_data_v1.json
+      - scripts/download_satellite_data_surat_thani.py
+      - .github/workflows/surat-thani-catalog-build.yml
+
+permissions:
+  contents: write
+
+jobs:
+  catalogs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Build Surat Thani catalogs
+        run: |
+          python scripts/download_satellite_data_surat_thani.py sentinel2 --dry-run
+          python scripts/download_satellite_data_surat_thani.py landsat --dry-run
+          python scripts/download_satellite_data_surat_thani.py sentinel1 --dry-run
+      - name: Summarize catalogs
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          out = {}
+          for dataset in ('sentinel2','landsat','sentinel1'):
+              path = Path(f'data/catalog/surat_thani_{dataset}_scenes.csv')
+              rows = list(csv.DictReader(path.open(encoding='utf-8')))
+              dates = sorted({r.get('acquisition_datetime_utc','')[:10] for r in rows if r.get('acquisition_datetime_utc')})
+              out[dataset] = {'scenes': len(rows), 'selected_dates': len(dates), 'first_date': dates[0] if dates else None, 'last_date': dates[-1] if dates else None}
+          root = Path('data/analysis/surat_thani')
+          root.mkdir(parents=True, exist_ok=True)
+          (root/'catalog_summary.json').write_text(json.dumps(out, indent=2), encoding='utf-8')
+          PY
+      - name: Commit generated catalogs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/catalog/surat_thani_*_scenes.csv data/analysis/surat_thani/catalog_summary.json
+          if git diff --cached --quiet; then
+            echo 'No catalog changes'
+          else
+            git commit -m 'data: build Surat Thani satellite catalogs [skip ci]'
+            git push
+          fi
