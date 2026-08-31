@@ -1,0 +1,63 @@
+name: Surat Thani provisional control candidates
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_control_candidates.py
+      - data/aoi/surat_thani_37_stc_current_aoi.geojson
+      - data/processed/surat_thani/statistics/transect_summary.geojson
+      - .github/workflows/surat-thani-control-candidates.yml
+
+permissions:
+  contents: write
+
+jobs:
+  controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Rank provisional outside control windows
+        run: python -u scripts/build_surat_thani_control_candidates.py
+
+      - name: QA candidates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/control_candidates.json').read_text(encoding='utf-8'))
+          assert p['plot_code'] == '37-STC', p
+          assert p['status'] == 'PROVISIONAL_UNVERIFIED_CONTROL_CANDIDATES', p
+          assert p['candidate_count'] >= 2, p
+          assert all(c['median_distance_to_pdd_m'] >= 400 for c in p['candidates']), p
+          assert all(len(c['transect_ids']) == 5 for c in p['candidates']), p
+          assert Path('web/public/data/surat_thani/control_candidates.json').exists()
+          print({'candidate_count': p['candidate_count'], 'candidates': p['candidates']})
+          PY
+
+      - name: Commit candidates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/analysis/surat_thani/control_candidates.json \
+            data/processed/surat_thani/web/control_candidates.json \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/control_candidates.json \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No control-candidate changes'
+          else
+            git commit -m 'data: add provisional 37-STC control candidates [skip ci]'
+            git push
+          fi
