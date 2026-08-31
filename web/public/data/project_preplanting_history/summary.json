@@ -48,7 +48,7 @@
       ],
       "label_th": "ช่วงติดตาม 2023–2026"
     },
-    "intervention_note": "ใช้ปี 2024 เป็นช่วงดำเนินการที่กำกวม เพราะยังไม่มีวันปลูกและวันปลูกซ่อมรายแปลงที่ยืนยัน"
+    "intervention_note": "ยืนยันวันปลูกเสร็จแล้วสำหรับ 91-STC (24 ก.ย. 2024), 97-STC (20 ก.ย. 2024) และ 98-STC (15 ก.ย. 2024); วันเริ่มปลูกของสามแปลงยังไม่ยืนยัน และ 92–96-STC ยังขาดข้อมูลเวลา"
   },
   "scene_selection": {
     "current_target_tide_m_msl": 1.0879,
@@ -965,5 +965,15 @@
     "background_source": "Annual January-April Sentinel-2 context composite used only for geographic orientation.",
     "analysis_overlay_source": "Exact selected Sentinel-2 scene used by the pre-planting evidence catalog; transparent outside valid project-AOI pixels.",
     "scientific_guard_th": "สี RGB/False colour/NDVI/MNDWI/SWIR ช่วยอ่านรูปแบบเชิงสเปกตรัม แต่ไม่เพิ่มระดับข้อสรุปเชิงเหตุ–ผล และไม่ใช่ข้อมูลตะกอนหรือคลื่น"
+  },
+  "planting_evidence": {
+    "status": "PARTIAL_PLANTING_COMPLETION_DATES_VERIFIED",
+    "verified_plot_ids": [
+      "91-STC",
+      "97-STC",
+      "98-STC"
+    ],
+    "verified_area_rai": 298.98,
+    "summary_path": "data/project_planting_aware/summary.json"
   }
 }

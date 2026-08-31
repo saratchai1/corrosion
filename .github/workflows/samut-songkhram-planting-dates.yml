@@ -1,0 +1,145 @@
+name: Apply Samut Songkhram planting completion evidence
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-planting-dates-v1
+    paths:
+      - '.github/workflows/samut-songkhram-planting-dates.yml'
+      - 'data/project/samut_songkhram_planting_completion_evidence.csv'
+      - 'data/processed/project_preplanting_history/indicator_timeseries.csv'
+      - 'data/processed/project_preplanting_history/summary.json'
+      - 'web/public/data/project_preplanting_history/summary.json'
+      - 'scripts/apply_samut_songkhram_planting_evidence.py'
+      - 'web/src/PlantingEvidenceInjector.tsx'
+      - 'web/src/plantingEvidence.css'
+      - 'web/src/TideAwareDashboard.tsx'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-planting-dates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply verified planting completion dates
+        run: python -m scripts.apply_samut_songkhram_planting_evidence
+
+      - name: Validate planting timing and scientific guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('web/public/data/project_planting_aware/summary.json')
+          value = json.loads(path.read_text(encoding='utf-8'))
+          assert value['evidence_level'] == 'PARTIAL_PLANTING_COMPLETION_DATES_VERIFIED'
+          assert value['erosion_effect_conclusion'] == 'NOT_DEMONSTRATED'
+          assert value['verified_plot_ids'] == ['91-STC', '97-STC', '98-STC']
+          assert value['verified_plot_count'] == 3
+          assert abs(value['verified_area_rai'] - 298.98) < 1e-9
+          assert value['plots_without_verified_timing'] == ['92-STC', '93-STC', '94-STC', '95-STC', '96-STC']
+          expected = {
+              '91-STC': ('2024-09-24', 143, 493),
+              '97-STC': ('2024-09-20', 147, 497),
+              '98-STC': ('2024-09-15', 152, 502),
+          }
+          for plot in value['plots']:
+              completion, first_days, latest_days = expected[plot['plot_id']]
+              assert plot['planting_completion_date'] == completion
+              assert plot['planting_start_date'] is None
+              assert plot['last_before_completion_observation']['year'] == 2024
+              assert plot['last_before_completion_observation']['scene_date'] == '2024-02-15'
+              assert plot['last_before_completion_observation']['phase'] == 'BEFORE_COMPLETION_START_UNKNOWN'
+              assert plot['first_confirmed_post_completion_observation']['year'] == 2025
+              assert plot['first_confirmed_post_completion_observation']['days_from_completion'] == first_days
+              assert plot['latest_confirmed_post_completion_observation']['year'] == 2026
+              assert plot['latest_confirmed_post_completion_observation']['days_from_completion'] == latest_days
+              waterline = plot['indicators']['waterline']
+              assert waterline['transition_before_completion_to_first_post']['paired_transect_count'] > 0
+              assert waterline['confirmed_post_completion_change']['paired_transect_count'] > 0
+              assert waterline['confirmed_post_completion_change']['confidence'] == 'LOW'
+          history = json.loads(Path(
+              'web/public/data/project_preplanting_history/summary.json'
+          ).read_text(encoding='utf-8'))
+          assert history['planting_evidence']['verified_plot_ids'] == ['91-STC', '97-STC', '98-STC']
+          assert 'วันปลูกเสร็จแล้ว' in history['periods']['intervention_note']
+          print(json.dumps({
+              'verified_plots': value['verified_plot_ids'],
+              'verified_area_rai': value['verified_area_rai'],
+              '2024_status': value['timing_interpretation']['2024_status'],
+              'effect': value['erosion_effect_conclusion'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Type-check and build production web
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Validate production output
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          built = Path('web/dist/client/data/project_planting_aware/summary.json')
+          assert built.exists() and built.stat().st_size > 1000, built
+          panel = Path('web/src/PlantingEvidenceInjector.tsx').read_text(encoding='utf-8')
+          dashboard = Path('web/src/TideAwareDashboard.tsx').read_text(encoding='utf-8')
+          assert 'ข้อมูลวันปลูกที่ยืนยันแล้ว ถูกนำเข้าการวิเคราะห์แล้ว' in panel
+          assert 'จึงไม่ใช่ confirmed pre-plant' in panel
+          assert 'data/project_planting_aware/summary.json' in dashboard
+          print({'built_summary_bytes': built.stat().st_size})
+          PY
+
+      - name: Commit planting-aware evidence products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/processed/project_planting_aware \
+            data/processed/project_preplanting_history/summary.json \
+            web/public/data/project_planting_aware \
+            web/public/data/project_preplanting_history/summary.json
+          if git diff --cached --quiet; then
+            echo 'No generated planting-aware changes to commit.'
+          else
+            git commit -m 'data: apply verified planting completion dates'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload planting-aware evidence package
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-planting-aware-evidence
+          path: |
+            data/project/samut_songkhram_planting_completion_evidence.csv
+            data/processed/project_planting_aware/**
+            web/public/data/project_planting_aware/**
+            web/dist/client/**
+          if-no-files-found: error
+          retention-days: 7

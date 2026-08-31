@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import PlantingEvidenceInjector, {
+  type PlantingAwareSummary,
+} from './PlantingEvidenceInjector'
 import PlotOverlayInjector from './PlotOverlayInjector'
 import PreplantingHistoryDashboardV2, {
   type PreplantingHistorySummaryV2,
@@ -16,6 +19,7 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
   const [view, setView] = useState<'history' | 'current'>('history')
   const [history, setHistory] = useState<PreplantingHistorySummaryV2 | null>(null)
   const [historyError, setHistoryError] = useState<string | null>(null)
+  const [planting, setPlanting] = useState<PlantingAwareSummary | null>(null)
 
   useEffect(() => {
     const handleInternalAnchorClick = (event: MouseEvent) => {
@@ -58,6 +62,24 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
     }
   }, [])
 
+  useEffect(() => {
+    let active = true
+    fetch('data/project_planting_aware/summary.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        return response.json()
+      })
+      .then((value: unknown) => {
+        if (active) setPlanting(value as PlantingAwareSummary)
+      })
+      .catch(() => {
+        if (active) setPlanting(null)
+      })
+    return () => {
+      active = false
+    }
+  }, [])
+
   if (view === 'current') {
     return (
       <>
@@ -88,6 +110,7 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
         onOpenProject={onOpenProject}
         onOpenCoast={onOpenCoast}
       />
+      {planting && <PlantingEvidenceInjector summary={planting} />}
       <PlotOverlayInjector scenes={history.scene_selection.display_scenes} />
     </>
   )
