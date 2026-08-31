@@ -1,0 +1,39 @@
+{
+  "description": "Surat Thani 37-STC tide-stage constrained single-scene sensitivity epochs",
+  "tide_status": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+  "selection_file": "data/analysis/surat_thani/tide_matched_scene_selection.json",
+  "epochs": [
+    {
+      "target_year": 2023,
+      "actual_year": 2023,
+      "dataset": "sentinel2",
+      "count": 1,
+      "start": "2023-02-10",
+      "end": "2023-02-10"
+    },
+    {
+      "target_year": 2024,
+      "actual_year": 2024,
+      "dataset": "sentinel2",
+      "count": 1,
+      "start": "2024-02-25",
+      "end": "2024-02-25"
+    },
+    {
+      "target_year": 2025,
+      "actual_year": 2025,
+      "dataset": "sentinel2",
+      "count": 1,
+      "start": "2025-03-16",
+      "end": "2025-03-16"
+    },
+    {
+      "target_year": 2026,
+      "actual_year": 2026,
+      "dataset": "sentinel2",
+      "count": 1,
+      "start": "2026-04-05",
+      "end": "2026-04-05"
+    }
+  ]
+}

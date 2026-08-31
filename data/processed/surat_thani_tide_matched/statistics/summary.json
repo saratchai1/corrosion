@@ -1,0 +1,65 @@
+{
+  "title": "Surat Thani 37-STC tide-stage constrained coastal sensitivity",
+  "generated_at_utc": "2026-08-31T14:58:36.944536+00:00",
+  "epoch_count": 4,
+  "target_years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "actual_years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "reference_epoch": 2026,
+  "transect_spacing_m": 100.0,
+  "transect_count": 59,
+  "classified_transect_count": 57,
+  "class_counts": {
+    "apparent_erosion": 3,
+    "apparent_accretion": 15,
+    "stable": 39,
+    "insufficient_data": 2
+  },
+  "apparent_erosion_length_km": 0.3,
+  "apparent_accretion_length_km": 1.5,
+  "stable_length_km": 3.9,
+  "median_net_change_m": 0.0,
+  "mean_net_change_m": 21.46,
+  "tide_status": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+  "overall_confidence": "LOW",
+  "interpretation": "Results describe apparent movement of image-derived water-land boundaries, not true or surveyed shorelines.",
+  "vegetation_proxy": [
+    {
+      "target_year": 2023,
+      "actual_year": 2023,
+      "area_ha": 995.55,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2024,
+      "actual_year": 2024,
+      "area_ha": 963.97,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2025,
+      "actual_year": 2025,
+      "area_ha": 974.19,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2026,
+      "actual_year": 2026,
+      "area_ha": 930.53,
+      "ndvi_threshold": 0.32
+    }
+  ],
+  "vegetation_proxy_change_ha": -65.02,
+  "vegetation_proxy_change_percent": -6.53,
+  "analysis_role": "SECONDARY_TIDE_STAGE_SENSITIVITY_ANALYSIS",
+  "baseline_comparison": "web/public/data/surat_thani/project_frontage_summary.json"
+}

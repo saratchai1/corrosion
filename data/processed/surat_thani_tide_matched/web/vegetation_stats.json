@@ -1,0 +1,26 @@
+[
+  {
+    "target_year": 2023,
+    "actual_year": 2023,
+    "area_ha": 995.55,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2024,
+    "actual_year": 2024,
+    "area_ha": 963.97,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2025,
+    "actual_year": 2025,
+    "area_ha": 974.19,
+    "ndvi_threshold": 0.32
+  },
+  {
+    "target_year": 2026,
+    "actual_year": 2026,
+    "area_ha": 930.53,
+    "ndvi_threshold": 0.32
+  }
+]

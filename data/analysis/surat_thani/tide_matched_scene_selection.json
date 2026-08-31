@@ -1,0 +1,80 @@
+{
+  "generated_at_utc": "2026-08-31T14:58:35.047931+00:00",
+  "plot_code": "37-STC",
+  "role": "SECONDARY_TIDE_STAGE_SENSITIVITY_ANALYSIS",
+  "reference": {
+    "year": 2023,
+    "representative_intervention_date": "2023-10-18",
+    "2023_scene_role": "PRE_INTERVENTION",
+    "target_stage": "RISING",
+    "target_phase_0_1": 0.5354,
+    "phase_definition": "elapsed fraction between adjacent extrema; timing descriptor only"
+  },
+  "selected_scenes": [
+    {
+      "year": 2023,
+      "scene_id": "S2B_MSIL2A_20230210T033859_R061_T47PNL_20230211T035717",
+      "acquisition_datetime_bangkok": "2023-02-10T10:38:59.024000+07:00",
+      "stage": "RISING",
+      "phase_0_1": 0.5354,
+      "tide_m_msl": null,
+      "match_strength": "DIRECTION_AND_PHASE",
+      "target_stage": "RISING",
+      "target_phase_0_1": 0.5354,
+      "selection_score_lower_is_better": 0.00082,
+      "aoi_bad_quality_percent": 0.82,
+      "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
+      "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+    },
+    {
+      "year": 2024,
+      "scene_id": "S2B_MSIL2A_20240225T033729_R061_T47PNL_20240225T081626",
+      "acquisition_datetime_bangkok": "2024-02-25T10:37:29.024000+07:00",
+      "stage": "RISING",
+      "phase_0_1": null,
+      "tide_m_msl": 0.82497,
+      "match_strength": "DIRECTION_ONLY_PHASE_UNRESOLVED",
+      "target_stage": "RISING",
+      "target_phase_0_1": 0.5354,
+      "selection_score_lower_is_better": 0.35,
+      "aoi_bad_quality_percent": 0.0,
+      "source_url": "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
+      "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+    },
+    {
+      "year": 2025,
+      "scene_id": "S2C_MSIL2A_20250316T033601_R061_T47PNL_20250316T090315",
+      "acquisition_datetime_bangkok": "2025-03-16T10:36:01.024000+07:00",
+      "stage": "RISING",
+      "phase_0_1": 0.604211,
+      "tide_m_msl": null,
+      "match_strength": "DIRECTION_AND_PHASE",
+      "target_stage": "RISING",
+      "target_phase_0_1": 0.5354,
+      "selection_score_lower_is_better": 0.068811,
+      "aoi_bad_quality_percent": 0.0,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2025-03-466.php",
+      "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+    },
+    {
+      "year": 2026,
+      "scene_id": "S2B_MSIL2A_20260405T033539_R061_T47PNL_20260405T072236",
+      "acquisition_datetime_bangkok": "2026-04-05T10:35:39.024000+07:00",
+      "stage": "RISING",
+      "phase_0_1": 0.377576,
+      "tide_m_msl": -0.441,
+      "match_strength": "DIRECTION_AND_PHASE",
+      "target_stage": "RISING",
+      "target_phase_0_1": 0.5354,
+      "selection_score_lower_is_better": 0.157824,
+      "aoi_bad_quality_percent": 0.0,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2026-04-466.php",
+      "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+    }
+  ],
+  "limitations": [
+    "2024-02 is selected from official hourly RTN MSL direction because its extrema phase is not resolved in the currently retrievable public archive.",
+    "A single-scene sensitivity analysis is more tide-stage-specific but less robust to scene-specific spectral noise than the three-scene median baseline.",
+    "This is not a surveyed or fully tide-normalized shoreline product."
+  ]
+}

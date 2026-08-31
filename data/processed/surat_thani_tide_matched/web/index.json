@@ -1,0 +1,160 @@
+{
+  "title": "Surat Thani 37-STC Tide-Stage Sensitivity",
+  "aoi": "37-STC and surrounding Chaiya coast (derived analytical AOI)",
+  "analysis_crs": "EPSG:32647",
+  "tide_status": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+  "disclaimer_th": "เส้นที่แสดงเป็นขอบเขตน้ำ–แผ่นดินจากภาพดาวเทียม ไม่ใช่เส้นชายฝั่งจริงหรือผลสำรวจ และยังไม่ได้ปรับแก้ระดับน้ำขึ้นน้ำลง",
+  "disclaimer_en": "Displayed lines are image-derived water-land boundaries, not surveyed shorelines, and are not tide-normalized.",
+  "epochs": [
+    {
+      "targetYear": 2023,
+      "actualYear": 2023,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2B",
+      "dates": [
+        "2023-02-10"
+      ],
+      "sceneCount": 1,
+      "resolutionM": 20,
+      "tideStatus": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+      "mndwiThreshold": 0.04297,
+      "validFraction": 0.9844,
+      "oceanFraction": 0.4608,
+      "vegetationAreaHa": 995.55,
+      "image": "imagery/2023.webp",
+      "imageCoordinates": [
+        [
+          99.20400416368108,
+          9.365430053999306
+        ],
+        [
+          99.25627990726012,
+          9.3653961182939
+        ],
+        [
+          99.25624710950352,
+          9.320533769569298
+        ],
+        [
+          99.20397805585367,
+          9.320567539917779
+        ]
+      ],
+      "boundary": "boundaries/2023_water_land_boundary.geojson",
+      "vegetation": "vegetation/2023_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2024,
+      "actualYear": 2024,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2B",
+      "dates": [
+        "2024-02-25"
+      ],
+      "sceneCount": 1,
+      "resolutionM": 20,
+      "tideStatus": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+      "mndwiThreshold": 0.03516,
+      "validFraction": 0.9925,
+      "oceanFraction": 0.4652,
+      "vegetationAreaHa": 963.97,
+      "image": "imagery/2024.webp",
+      "imageCoordinates": [
+        [
+          99.20400416368108,
+          9.365430053999306
+        ],
+        [
+          99.25627990726012,
+          9.3653961182939
+        ],
+        [
+          99.25624710950352,
+          9.320533769569298
+        ],
+        [
+          99.20397805585367,
+          9.320567539917779
+        ]
+      ],
+      "boundary": "boundaries/2024_water_land_boundary.geojson",
+      "vegetation": "vegetation/2024_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2025,
+      "actualYear": 2025,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2C",
+      "dates": [
+        "2025-03-16"
+      ],
+      "sceneCount": 1,
+      "resolutionM": 20,
+      "tideStatus": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+      "mndwiThreshold": 0.04297,
+      "validFraction": 0.9925,
+      "oceanFraction": 0.4634,
+      "vegetationAreaHa": 974.19,
+      "image": "imagery/2025.webp",
+      "imageCoordinates": [
+        [
+          99.20400416368108,
+          9.365430053999306
+        ],
+        [
+          99.25627990726012,
+          9.3653961182939
+        ],
+        [
+          99.25624710950352,
+          9.320533769569298
+        ],
+        [
+          99.20397805585367,
+          9.320567539917779
+        ]
+      ],
+      "boundary": "boundaries/2025_water_land_boundary.geojson",
+      "vegetation": "vegetation/2025_coastal_vegetation_proxy.geojson"
+    },
+    {
+      "targetYear": 2026,
+      "actualYear": 2026,
+      "dataset": "sentinel2",
+      "sensor": "Sentinel-2B",
+      "dates": [
+        "2026-04-05"
+      ],
+      "sceneCount": 1,
+      "resolutionM": 20,
+      "tideStatus": "SCENE_STAGE_CONSTRAINED_NOT_FULLY_TIDE_NORMALIZED",
+      "mndwiThreshold": 0.02734,
+      "validFraction": 0.9925,
+      "oceanFraction": 0.4578,
+      "vegetationAreaHa": 930.53,
+      "image": "imagery/2026.webp",
+      "imageCoordinates": [
+        [
+          99.20400416368108,
+          9.365430053999306
+        ],
+        [
+          99.25627990726012,
+          9.3653961182939
+        ],
+        [
+          99.25624710950352,
+          9.320533769569298
+        ],
+        [
+          99.20397805585367,
+          9.320567539917779
+        ]
+      ],
+      "boundary": "boundaries/2026_water_land_boundary.geojson",
+      "vegetation": "vegetation/2026_coastal_vegetation_proxy.geojson"
+    }
+  ],
+  "analysis_role": "SECONDARY_TIDE_STAGE_SENSITIVITY_ANALYSIS",
+  "scene_selection_file": "../../../../data/analysis/surat_thani/tide_matched_scene_selection.json"
+}
