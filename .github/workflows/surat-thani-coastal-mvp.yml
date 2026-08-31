@@ -54,6 +54,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
           git add \
             data/catalog/surat_thani_mvp_optical_scenes.csv \
             data/catalog/surat_thani_mvp_epochs.json \
