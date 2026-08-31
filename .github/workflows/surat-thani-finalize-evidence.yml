@@ -1,0 +1,74 @@
+name: Surat Thani finalize evidence status
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/finalize_surat_thani_evidence_status.py
+      - .github/workflows/surat-thani-finalize-evidence.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Finalize config and evidence manifest
+        run: python -u scripts/finalize_surat_thani_evidence_status.py
+
+      - name: QA final status manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cfg = json.loads(Path('config/surat_thani_erosion_free_data_v1.json').read_text(encoding='utf-8'))
+          m = json.loads(Path('data/analysis/surat_thani/evidence_manifest.json').read_text(encoding='utf-8'))
+          idx = json.loads(Path('web/public/data/surat_thani/index.json').read_text(encoding='utf-8'))
+
+          assert cfg['status'].startswith('EVIDENCE_STACK_QA_PASSED_'), cfg['status']
+          assert cfg['satellite']['sentinel1']['relative_corroboration_status'] == 'SAME_SEASON_QA_PASSED_WEAK_VARIABLE_RELATIVE_GRD_DIAGNOSTIC', cfg['satellite']['sentinel1']
+          assert cfg['evidence_gates']['integrated_evidence_stack_qa'] == 'PASSED', cfg['evidence_gates']
+          assert cfg['evidence_gates']['current_causal_erosion_reduction_claim'] == 'NOT_SUPPORTED', cfg['evidence_gates']
+          assert m['causal_erosion_reduction_claim'] == 'CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM', m
+          assert m['evidence_layers']['coastal_vegetation_edge_10m']['qa'] == 'PASSED', m
+          assert m['evidence_layers']['in_plot_optical_establishment']['qa'] == 'PASSED', m
+          assert m['evidence_layers']['waterline']['qa'] == 'FAILED_ROBUSTNESS_AS_EXPECTED_AND_DOWNGRADED', m
+          assert m['evidence_layers']['sentinel1_relative_grd']['qa'] == 'PASSED', m
+          assert m['evidence_layers']['sentinel1_relative_grd']['all_selected_months_feb_apr'] is True, m
+          assert idx['evidence_stack_qa_status'] == 'PASSED', idx
+          assert idx['primary_satellite_indicator'] == 'coastal_vegetation_edge_proxy', idx
+          assert Path('web/public/data/surat_thani/evidence_manifest.json').exists()
+          print({
+              'overall_status': m['overall_status'],
+              's1_status': m['evidence_layers']['sentinel1_relative_grd']['status'],
+              'remaining_hard_gates': m['remaining_hard_gates'],
+          })
+          PY
+
+      - name: Commit final status products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            config/surat_thani_erosion_free_data_v1.json \
+            data/analysis/surat_thani/evidence_manifest.json \
+            data/processed/surat_thani/web/evidence_manifest.json \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/evidence_manifest.json \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No final evidence-status changes'
+          else
+            git commit -m 'data: finalize 37-STC evidence status [skip ci]'
+            git push
+          fi
