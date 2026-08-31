@@ -34,7 +34,8 @@ jobs:
           manifest_path = Path('data/tide/surat_thani/ko_prap_hourly_msl_manifest.json')
           rows = list(csv.DictReader(csv_path.open(encoding='utf-8')))
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          assert len(rows) in {35064, 35088}, len(rows)
+          assert len(rows) == 26304, len(rows)
+          assert manifest['years'] == [2024, 2025, 2026], manifest['years']
           assert manifest['station_name'] == 'Ko Prap'
           assert manifest['datum'] == 'MSL'
           assert manifest['observed'] is False
