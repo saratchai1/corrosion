@@ -571,5 +571,7 @@
   "waterline_role": "SUPPORTING_SENSITIVITY_CONTEXT_ONLY",
   "planting_establishment_screening_file": "planting_establishment_screening.json",
   "vegetation_control_windows_file": "vegetation_control_windows.geojson",
-  "planting_establishment_status": "10M_SENTINEL2_NDVI_PROJECT_VS_USER_CONFIRMED_CONTROLS"
+  "planting_establishment_status": "10M_SENTINEL2_NDVI_PROJECT_VS_USER_CONFIRMED_CONTROLS",
+  "s1_relative_corroboration_file": "s1_relative_corroboration.json",
+  "s1_relative_corroboration_status": "CORROBORATION_DIAGNOSTIC_ONLY_NOT_CAUSAL_OR_BIOMASS_CLAIM"
 }
