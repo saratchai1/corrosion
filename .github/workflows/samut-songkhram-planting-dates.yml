@@ -103,10 +103,18 @@ jobs:
 
       - name: Validate production output
         run: |
-          test -f web/dist/client/data/project_planting_aware/summary.json
-          grep -q 'ข้อมูลวันปลูกที่ยืนยันแล้ว ถูกนำเข้าการวิเคราะห์แล้ว' web/src/PlantingEvidenceInjector.tsx
-          grep -q 'ยังไม่ใช่ confirmed pre-plant' web/src/PlantingEvidenceInjector.tsx
-          grep -q 'data/project_planting_aware/summary.json' web/src/TideAwareDashboard.tsx
+          python - <<'PY'
+          from pathlib import Path
+
+          built = Path('web/dist/client/data/project_planting_aware/summary.json')
+          assert built.exists() and built.stat().st_size > 1000, built
+          panel = Path('web/src/PlantingEvidenceInjector.tsx').read_text(encoding='utf-8')
+          dashboard = Path('web/src/TideAwareDashboard.tsx').read_text(encoding='utf-8')
+          assert 'ข้อมูลวันปลูกที่ยืนยันแล้ว ถูกนำเข้าการวิเคราะห์แล้ว' in panel
+          assert 'จึงไม่ใช่ confirmed pre-plant' in panel
+          assert 'data/project_planting_aware/summary.json' in dashboard
+          print({'built_summary_bytes': built.stat().st_size})
+          PY
 
       - name: Commit planting-aware evidence products
         run: |
