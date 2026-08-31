@@ -1,0 +1,86 @@
+name: Surat Thani planting establishment screening
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_vegetation_edge_screening.py
+      - scripts/build_surat_thani_planting_establishment_screening.py
+      - .github/workflows/surat-thani-planting-establishment.yml
+      - data/aoi/surat_thani_37_stc_current_aoi.geojson
+      - data/analysis/surat_thani/control_candidates.json
+      - data/analysis/surat_thani/control_verification.json
+      - data/processed/surat_thani/statistics/transect_summary.geojson
+
+permissions:
+  contents: write
+
+jobs:
+  establishment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install geospatial dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download 2017-2026 same-season Sentinel-2 source scenes
+        run: |
+          python -u scripts/download_surat_thani_mvp_epochs.py \
+            --epochs 2017,2018,2019,2020,2021,2022,2023,2024,2025,2026
+
+      - name: Build project-versus-control vegetation establishment screening
+        run: python -u scripts/build_surat_thani_planting_establishment_screening.py
+
+      - name: QA establishment products
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/planting_establishment_screening.json').read_text(encoding='utf-8'))
+          assert p['plot_code'] == '37-STC', p
+          assert p['analysis_role'] == 'PLANTING_ESTABLISHMENT_SCREENING_NOT_EROSION_IMPACT', p
+          assert p['indicator']['resolution_m'] == 10, p['indicator']
+          assert 24 <= p['spatial_design']['project_area_ha'] <= 27, p['spatial_design']
+          assert len(p['spatial_design']['control_window_areas_ha']) == 3, p['spatial_design']
+          assert set(p['project_annual_metrics']) == {str(y) for y in range(2017, 2027)}, p['project_annual_metrics'].keys()
+          assert set(p['comparisons']['green_fraction']) == {'0.28', '0.32', '0.36'}, p['comparisons']['green_fraction'].keys()
+          assert p['evidence_status']['control_intervention_exclusion'] == 'USER_CONFIRMED', p['evidence_status']
+          assert Path('web/public/data/surat_thani/vegetation_control_windows.geojson').exists()
+          print(json.dumps({
+            'project_area_ha': p['spatial_design']['project_area_ha'],
+            'control_window_areas_ha': p['spatial_design']['control_window_areas_ha'],
+            'median_ndvi_did_2026_vs_2023': p['robustness']['median_ndvi_2026_vs_2023_did'],
+            'primary_green_fraction_did_2026_vs_2023': p['robustness']['primary_green_fraction_2026_vs_2023_did'],
+            'green_threshold_sign': p['robustness']['green_fraction_2026_vs_2023_did_sign_across_thresholds'],
+            'signal': p['robustness']['establishment_signal'],
+          }, indent=2))
+          PY
+
+      - name: Commit establishment products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/analysis/surat_thani/planting_establishment_screening.json \
+            data/analysis/surat_thani/vegetation_control_windows.geojson \
+            data/processed/surat_thani/web/planting_establishment_screening.json \
+            data/processed/surat_thani/web/vegetation_control_windows.geojson \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/planting_establishment_screening.json \
+            web/public/data/surat_thani/vegetation_control_windows.geojson \
+            web/public/data/surat_thani/index.json
+          if git diff --cached --quiet; then
+            echo 'No planting-establishment product changes'
+          else
+            git commit -m 'data: add 37-STC planting establishment screening [skip ci]'
+            git push
+          fi
