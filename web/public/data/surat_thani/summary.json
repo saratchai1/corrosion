@@ -1,0 +1,143 @@
+{
+  "title": "Surat Thani 37-STC image-derived coastal change MVP",
+  "generated_at_utc": "2026-08-31T13:29:29.984850+00:00",
+  "epoch_count": 14,
+  "target_years": [
+    1985,
+    1990,
+    2000,
+    2010,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "actual_years": [
+    1987,
+    1990,
+    2000,
+    2009,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "reference_epoch": 2026,
+  "transect_spacing_m": 100.0,
+  "transect_count": 58,
+  "classified_transect_count": 56,
+  "class_counts": {
+    "apparent_erosion": 42,
+    "apparent_accretion": 3,
+    "stable": 11,
+    "insufficient_data": 2
+  },
+  "apparent_erosion_length_km": 4.2,
+  "apparent_accretion_length_km": 0.3,
+  "stable_length_km": 1.1,
+  "median_net_change_m": -133.55,
+  "mean_net_change_m": -157.41,
+  "tide_status": "unverified",
+  "overall_confidence": "LOW",
+  "interpretation": "Results describe apparent movement of image-derived water-land boundaries, not true or surveyed shorelines.",
+  "vegetation_proxy": [
+    {
+      "target_year": 1985,
+      "actual_year": 1987,
+      "area_ha": 387.42,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 1990,
+      "actual_year": 1990,
+      "area_ha": 649.05,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2000,
+      "actual_year": 2000,
+      "area_ha": 1002.42,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2010,
+      "actual_year": 2009,
+      "area_ha": 1194.45,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2017,
+      "actual_year": 2017,
+      "area_ha": 1159.82,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2018,
+      "actual_year": 2018,
+      "area_ha": 1153.43,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2019,
+      "actual_year": 2019,
+      "area_ha": 1170.83,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2020,
+      "actual_year": 2020,
+      "area_ha": 1125.33,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2021,
+      "actual_year": 2021,
+      "area_ha": 1167.71,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2022,
+      "actual_year": 2022,
+      "area_ha": 998.3,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2023,
+      "actual_year": 2023,
+      "area_ha": 983.49,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2024,
+      "actual_year": 2024,
+      "area_ha": 929.6,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2025,
+      "actual_year": 2025,
+      "area_ha": 967.79,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2026,
+      "actual_year": 2026,
+      "area_ha": 915.65,
+      "ndvi_threshold": 0.32
+    }
+  ],
+  "vegetation_proxy_change_ha": 528.23,
+  "vegetation_proxy_change_percent": 136.35
+}
