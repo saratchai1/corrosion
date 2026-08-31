@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>37-STC สุราษฎร์ธานี — Coastal & Mangrove Evidence Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f4f7f5; --panel:#fff; --ink:#15251e; --muted:#66756d;
+      --line:#dce5df; --green:#18764a; --green-soft:#e9f5ee;
+      --amber:#a86608; --amber-soft:#fff4df; --red:#9e372f; --red-soft:#fdeceb;
+      --blue:#245f8f; --blue-soft:#eaf3fa;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;line-height:1.55}
+    main{max-width:1180px;margin:0 auto;padding:28px 18px 64px}
+    header{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+    h1{font-size:clamp(26px,4vw,42px);line-height:1.1;margin:0 0 8px}
+    h2{font-size:21px;margin:0 0 14px}
+    h3{font-size:16px;margin:0 0 6px}
+    p{margin:6px 0}
+    .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);font-weight:700}
+    .sub{color:var(--muted);max-width:760px}
+    .stamp{font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(24,50,38,.04)}
+    .metric{grid-column:span 3;min-height:146px}
+    .wide{grid-column:span 7}.side{grid-column:span 5}.full{grid-column:1/-1}
+    .metric strong{display:block;font-size:23px;margin:8px 0 2px}
+    .metric .unit{font-size:12px;color:var(--muted)}
+    .tag{display:inline-block;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:700;background:var(--blue-soft);color:var(--blue)}
+    .tag.ok{background:var(--green-soft);color:var(--green)}
+    .tag.warn{background:var(--amber-soft);color:var(--amber)}
+    .tag.bad{background:var(--red-soft);color:var(--red)}
+    .section{margin-top:14px}
+    .barrow{display:grid;grid-template-columns:76px 1fr 74px;align-items:center;gap:9px;margin:9px 0;font-size:13px}
+    .track{height:10px;background:#eef2ef;border-radius:999px;overflow:hidden;position:relative}
+    .bar{height:100%;border-radius:999px;background:var(--green)}
+    .bar.control{background:#88998f}
+    .timeline{display:grid;grid-template-columns:64px 1fr 80px;gap:10px;align-items:center;margin:9px 0}
+    .spark{height:8px;background:#edf1ee;border-radius:99px;position:relative}
+    .dot{width:12px;height:12px;border-radius:50%;background:var(--green);position:absolute;top:50%;transform:translate(-50%,-50%)}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+    th{color:var(--muted);font-weight:600}
+    .callout{border-left:4px solid var(--amber);background:var(--amber-soft);padding:13px 15px;border-radius:0 12px 12px 0}
+    .goodcallout{border-left-color:var(--green);background:var(--green-soft)}
+    .badcallout{border-left-color:var(--red);background:var(--red-soft)}
+    .small{font-size:12px;color:var(--muted)}
+    code{font-size:11px;background:#eef2ef;padding:2px 5px;border-radius:5px}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .sources{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .source{padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;font-size:12px}
+    .loading{padding:40px;text-align:center;color:var(--muted)}
+    @media(max-width:850px){.metric{grid-column:span 6}.wide,.side{grid-column:1/-1}header{display:block}.stamp{text-align:left;margin-top:8px}}
+    @media(max-width:520px){.metric{grid-column:1/-1}.grid{gap:10px}.card{border-radius:13px;padding:15px}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <div class="eyebrow">Surat Thani / Chaiya / 37-STC</div>
+      <h1>หลักฐานการเปลี่ยนแปลงชายฝั่งและการตั้งตัวของป่าชายเลน</h1>
+      <p class="sub">รายงานคัดกรองจากข้อมูลฟรี โดยแยก “การตั้งตัวของพืช” ออกจาก “ผลต่อการกัดเซาะชายฝั่ง” อย่างชัดเจน</p>
+    </div>
+    <div class="stamp" id="stamp">กำลังอ่านข้อมูล…</div>
+  </header>
+
+  <div id="loading" class="card loading">กำลังโหลดผลวิเคราะห์จาก <code>data/surat_thani/</code></div>
+  <div id="report" hidden>
+    <section class="grid" id="topMetrics"></section>
+
+    <section class="grid section">
+      <article class="card wide">
+        <h2>การตั้งตัวของพืชภายในแปลง</h2>
+        <p class="small">Sentinel-2 NDVI 10 ม. · median จากภาพช่วง ก.พ.–เม.ย. · เปรียบเทียบกับ control ที่ยืนยันว่าไม่มี intervention</p>
+        <div id="greenChart"></div>
+        <div class="callout goodcallout" id="greenConclusion"></div>
+      </article>
+      <article class="card side">
+        <h2>ขอบพืชชายฝั่ง</h2>
+        <div id="edgeBody"></div>
+      </article>
+    </section>
+
+    <section class="grid section">
+      <article class="card wide">
+        <h2>ทำไม waterline จึงไม่ใช่หลักฐานหลัก</h2>
+        <div id="waterBody"></div>
+      </article>
+      <article class="card side">
+        <h2>สถานะหลักฐาน</h2>
+        <table id="evidenceTable"></table>
+      </article>
+    </section>
+
+    <section class="grid section">
+      <article class="card full">
+        <h2>ข้อสรุปที่ใช้สื่อสารได้</h2>
+        <div class="callout" id="claimText"></div>
+        <h2 style="margin-top:20px">งานที่ควรทำต่อ</h2>
+        <table id="nextTable"></table>
+      </article>
+    </section>
+
+    <section class="card section">
+      <h2>ข้อมูลและ provenance</h2>
+      <p class="small">ค่าทั้งหมดอ่านจากไฟล์ผลวิเคราะห์ที่ commit ใน branch เดียวกัน ไม่ hard-code ตัวเลขลงหน้า report</p>
+      <div class="sources" id="sources"></div>
+    </section>
+  </div>
+</main>
+<script>
+const BASE='data/surat_thani/';
+const fmt=(v,d=2)=>v==null?'—':Number(v).toFixed(d);
+const pct=v=>v==null?'—':`${(Number(v)*100).toFixed(2)}%`;
+async function j(name){const r=await fetch(BASE+name,{cache:'no-store'});if(!r.ok)throw new Error(`${name}: HTTP ${r.status}`);return r.json()}
+function tag(text,kind=''){return `<span class="tag ${kind}">${text}</span>`}
+function metric(title,value,unit,note,kind=''){
+ return `<article class="card metric"><div class="small">${title}</div><strong>${value}</strong><div class="unit">${unit||''}</div><p class="small">${note||''}</p>${kind?tag(kind,kind==='ผ่าน'?'ok':kind==='ไม่ผ่าน'?'bad':'warn'):''}</article>`
+}
+function makeBars(project,control){
+ const years=['2023','2024','2025','2026'];
+ const vals=years.flatMap(y=>[project[y]?.green_fraction?.['0.32'],control[y]?.green_fraction?.['0.32']]).filter(v=>v!=null).map(Number);
+ const max=Math.max(...vals,0.04);
+ return years.map(y=>{
+  const p=Number(project[y]?.green_fraction?.['0.32']||0), c=Number(control[y]?.green_fraction?.['0.32']||0);
+  return `<div style="margin:15px 0 4px;font-weight:650">${y}</div>
+  <div class="barrow"><span>37-STC</span><div class="track"><div class="bar" style="width:${Math.min(100,p/max*100)}%"></div></div><b>${pct(p)}</b></div>
+  <div class="barrow"><span>Control</span><div class="track"><div class="bar control" style="width:${Math.min(100,c/max*100)}%"></div></div><b>${pct(c)}</b></div>`
+ }).join('')
+}
+async function main(){
+ try{
+  const [exec,est,edge,tideSens,tide]=await Promise.all([
+    j('executive_summary.json'),j('planting_establishment_screening.json'),j('mangrove_edge_proxy_screening.json'),j('tide_matched_sensitivity_summary.json'),j('tide_context.json')
+  ]);
+  document.querySelector('#loading').hidden=true;document.querySelector('#report').hidden=false;
+  document.querySelector('#stamp').textContent=`Generated ${new Date(exec.generated_at_utc).toLocaleString('th-TH')} · PDD 157.55 ไร่ · intervention 18 ต.ค. 2023`;
+  const k=exec.key_numbers, d=exec.executive_decision;
+  document.querySelector('#topMetrics').innerHTML=[
+    metric('สถานะ causal erosion claim','ยังไม่รองรับ','หลักฐานปัจจุบัน','waterline ไม่ผ่าน robustness','ไม่ผ่าน'),
+    metric('NDVI สุทธิ 2026−2023',`+${fmt(k.optical_establishment.median_ndvi_project_minus_control_change_2026_vs_2023,4)}`,'project − control','สัญญาณบวกขนาดเล็ก','เฝ้าระวัง'),
+    metric('Green fraction ≥0.32',`+${fmt(k.optical_establishment.green_fraction_change_percentage_points,2)}`,'จุดเปอร์เซ็นต์','บวกครบ threshold 0.28/0.32/0.36','เฝ้าระวัง'),
+    metric('Vegetation edge','0.0','ม. project − control, 2023→2026','ยังไม่เห็น edge advance ที่ระดับ 10 ม.','เฝ้าระวัง')
+  ].join('');
+  document.querySelector('#greenChart').innerHTML=makeBars(est.project_annual_metrics,est.pooled_control_annual_metrics);
+  document.querySelector('#greenConclusion').innerHTML=`<b>พบ small positive monitoring signal</b><br>Green fraction ที่ threshold 0.32 เพิ่มสุทธิ ${fmt(k.optical_establishment.green_fraction_change_percentage_points,2)} จุดเปอร์เซ็นต์ และ median NDVI เพิ่มสุทธิ ${fmt(k.optical_establishment.median_ndvi_project_minus_control_change_2026_vs_2023,4)} แต่ขนาดยังอยู่ในช่วงความแปรปรวนของภาพเดี่ยวบางปี จึงยังไม่ใช่การยืนยัน survival/canopy gain.`;
+  const ep=k.coastal_vegetation_edge;
+  document.querySelector('#edgeBody').innerHTML=`
+    <p>${tag('PRIMARY SATELLITE INDICATOR','ok')}</p>
+    <table><tr><th></th><th>2023→2026</th></tr><tr><td>37-STC</td><td><b>${fmt(ep.project_median_change_2023_2026_m,1)} ม.</b></td></tr><tr><td>Control</td><td><b>${fmt(ep.control_median_change_2023_2026_m,1)} ม.</b></td></tr><tr><td>Project − Control</td><td><b>${fmt(ep.project_minus_control_change_m,1)} ม.</b></td></tr></table>
+    <p>ความไม่เสถียรเชิงประจักษ์ขั้นต่ำประมาณ <b>${fmt(ep.empirical_edge_instability_floor_m,0)} ม.</b> จึงตีความว่า “ยังไม่ตรวจพบการเลื่อนของขอบพืชในระดับ 10 ม.” ไม่ใช่ “ต้นไม้ไม่โต”</p>
+    <p class="small">Sparse/young seedlings อาจยังไม่กินพื้นที่มากพอในพิกเซล 10×10 ม.</p>`;
+  const w=k.waterline_sensitivity;
+  document.querySelector('#waterBody').innerHTML=`
+    <div class="callout badcallout"><b>ผลกลับเครื่องหมายเมื่อเปลี่ยนวิธีคัด scene/tide</b><br>Baseline composite: <b>${fmt(w.baseline_three_scene_project_minus_control_2023_2026_m)} ม.</b> → tide-stage single scene: <b>${fmt(w.tide_stage_single_scene_project_minus_control_2023_2026_m)} ม.</b> · shift = <b>${fmt(w.sensitivity_shift_m)} ม.</b></div>
+    <p>ความไวระดับนี้สูงกว่าสัญญาณที่ต้องการวัด จึงลด waterline เป็น supporting context เท่านั้น แม้ข้อมูลน้ำเกาะปราบของ scene ปี 2023–2026 จะถูกเก็บเพิ่มแล้วก็ตาม</p>
+    <p>${tag(tide.waterline_gate?.status||'PARTIAL TIDE CONTEXT','warn')}</p>`;
+  const rows=[
+    ['Coastal vegetation edge','หลัก','10 m Sentinel-2','คัดกรองได้','ok'],
+    ['In-plot NDVI establishment','หลักเสริม','10 m Sentinel-2','สัญญาณบวกเล็ก','warn'],
+    ['Waterline','ประกอบ','MNDWI + tide','ไม่ผ่าน robustness','bad'],
+    ['Controls','เปรียบเทียบ','15 transects / 3 windows','ผู้ใช้ยืนยัน no intervention','ok'],
+    ['Sentinel-1','corroboration','relative GRD','ไม่ใช้เป็น biomass claim','warn'],
+    ['UAV / Field','validation','ยังขาด','จำเป็นก่อน impact claim','bad']
+  ];
+  document.querySelector('#evidenceTable').innerHTML='<tr><th>Layer</th><th>Role</th><th>Status</th></tr>'+rows.map(r=>`<tr><td>${r[0]}<div class="small">${r[2]}</div></td><td>${r[1]}</td><td>${tag(r[3],r[4])}</td></tr>`).join('');
+  document.querySelector('#claimText').innerHTML=`<b>ข้อความแนะนำ:</b><br>ข้อมูลดาวเทียมพบสัญญาณการเพิ่มขึ้นของความเขียวภายในแปลง 37-STC เล็กน้อยเมื่อเทียบกับพื้นที่อ้างอิง แต่ยังไม่พบการขยายตัวของขอบพืชในระดับความละเอียด 10 เมตร และผล waterline มีความไวต่อระดับน้ำ/การเลือกภาพสูง จึงยังไม่สามารถสรุปว่าการปลูกช่วยลดการกัดเซาะชายฝั่งได้โดยตรง จำเป็นต้องยืนยันด้วย UAV/ภาพความละเอียดสูงและข้อมูลภาคสนาม`;
+  document.querySelector('#nextTable').innerHTML='<tr><th>#</th><th>งาน</th><th>เหตุผล</th></tr>'+exec.next_actions_ranked.map(x=>`<tr><td>${x.rank}</td><td><b>${x.action}</b></td><td>${x.why}</td></tr>`).join('');
+  const files=['executive_summary.json','planting_establishment_screening.json','mangrove_edge_proxy_screening.json','tide_matched_sensitivity_summary.json','tide_context.json','comparative_screening.json','control_candidates.json'];
+  document.querySelector('#sources').innerHTML=files.map(f=>`<a class="source" href="${BASE+f}">${f}</a>`).join('');
+ }catch(e){document.querySelector('#loading').innerHTML=`โหลดรายงานไม่สำเร็จ: ${String(e)}<br><span class="small">executive_summary.json อาจยังอยู่ระหว่าง GitHub Actions build</span>`}
+}
+main();
+</script>
+</body>
+</html>
