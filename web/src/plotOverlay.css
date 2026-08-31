@@ -1,0 +1,56 @@
+.spectral-swipe-stage {
+  position: relative;
+}
+
+.spectral-web-map-overlay {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.spectral-web-map-overlay-before {
+  z-index: 6;
+}
+
+.spectral-web-map-overlay[hidden] {
+  display: none;
+}
+
+.spectral-swipe-stage .spectral-divider {
+  z-index: 10;
+}
+
+.spectral-swipe-stage .spectral-year-label,
+.spectral-swipe-stage .spectral-location-note {
+  z-index: 11;
+}
+
+.spectral-overlay-toggle {
+  min-width: 150px;
+  border-color: rgba(255, 228, 94, 0.34) !important;
+  background: rgba(255, 228, 94, 0.04) !important;
+}
+
+.spectral-overlay-toggle strong {
+  color: #c9d7d2;
+}
+
+.spectral-overlay-toggle.active {
+  border-color: rgba(255, 228, 94, 0.78) !important;
+  background: rgba(255, 228, 94, 0.12) !important;
+}
+
+.spectral-overlay-toggle.active strong {
+  color: #fff0a8;
+}
+
+@media (max-width: 700px) {
+  .spectral-overlay-toggle {
+    min-width: 120px;
+  }
+}
