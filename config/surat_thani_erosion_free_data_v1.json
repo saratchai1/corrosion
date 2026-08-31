@@ -1,13 +1,19 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "project_id": "TH-SURAT-37-STC-2023",
   "title": "Surat Thani 37-STC mangrove coastal-erosion assessment using free data and project records",
-  "status": "SCREENING_MVP_BUILT_CONTROLS_CONFIRMED_SCENE_LEVEL_TIDE_CONTEXT_WATERLINE_SENSITIVITY_FAILED",
+  "status": "PRIMARY_10M_VEGETATION_SCREENING_BUILT_SMALL_POSITIVE_ESTABLISHMENT_SIGNAL_NO_EDGE_ADVANCE_WATERLINE_FAILED_ROBUSTNESS_FIELD_VALIDATION_PENDING",
   "scope": {
     "province": "Surat Thani",
     "plot_ids": ["37-STC"],
-    "primary_question": "Did the seaward mangrove edge or bank edge in front of 37-STC retreat less after planting than before planting and than comparable unplanted coastal segments?",
-    "primary_outcomes": ["mangrove_edge_position_m", "bank_edge_position_m", "tide_screened_waterline_position_m"]
+    "primary_question": "Did the seaward mangrove/coastal-vegetation edge in front of 37-STC retreat less after planting than before planting and than comparable no-known-intervention coastal segments?",
+    "secondary_question": "Did vegetation greenness or green-pixel occupancy inside the current 37-STC PDD increase after planting relative to comparable no-known-intervention coastal windows?",
+    "primary_outcomes": [
+      "coastal_vegetation_edge_position_m",
+      "bank_or_stable_geomorphic_edge_position_m_where_high_resolution_validation_exists",
+      "in_plot_ndvi_and_green_fraction",
+      "tide_screened_waterline_position_m_supporting_only"
+    ]
   },
   "geometry": {
     "current_project_boundary": "data/aoi/surat_thani_37_stc_current_aoi.geojson",
@@ -17,6 +23,7 @@
     "source_crs": "EPSG:4326",
     "analysis_crs": "EPSG:32647",
     "primary_boundary_area_rai": 157.55,
+    "primary_boundary_area_ha_crosscheck": 25.21,
     "primary_boundary_rule": "USE_SMALLER_CURRENT_PDD_BOUNDARY_FOR_ALL_PRIMARY_ANALYSIS",
     "historical_boundary_area_rai": 200.05,
     "historical_boundary_role": "REFERENCE_HISTORY_ONLY_NOT_PRIMARY_AOI"
@@ -28,7 +35,11 @@
     "representative_intervention_date": "2023-10-18",
     "representative_date_rule": "USE_PLANTING_END_DATE_AS_INTERVENTION_DATE_FOR_BEFORE_AFTER_ANALYSIS",
     "exact_date_status": "PLANTING_END_DATE_ACCEPTED_AS_REPRESENTATIVE_INTERVENTION_DATE",
-    "species_seedlings": {"โกงกางใบใหญ่": 100000, "โกงกางใบเล็ก": 40000, "ลำพู": 2232},
+    "species_seedlings": {
+      "โกงกางใบใหญ่": 100000,
+      "โกงกางใบเล็ก": 40000,
+      "ลำพู": 2232
+    },
     "total_seedlings": 142232
   },
   "analysis_period": {
@@ -39,17 +50,149 @@
     "season_months": [2, 3, 4],
     "season_rule": "Prefer February-April optical comparisons for repeatability; because the representative intervention date is 2023-10-18, February-April 2023 observations are classified as pre-intervention. Keep rejected scenes with reasons and do not substitute months silently."
   },
-  "boundary_indicators": [
-    {"type": "MANGROVE_EDGE", "role": "PRIMARY", "requires_tide_metadata": false},
-    {"type": "BANK_EDGE", "role": "PRIMARY_WHERE_VISIBLE", "requires_tide_metadata": false},
-    {"type": "WATERLINE", "role": "SUPPORTING_CONTEXT_ONLY_FAILED_CURRENT_ROBUSTNESS_TEST", "requires_tide_metadata": true}
+  "indicator_hierarchy": [
+    {
+      "type": "COASTAL_VEGETATION_EDGE_PROXY",
+      "role": "PRIMARY_SATELLITE_SCREENING_INDICATOR",
+      "resolution_m": 10,
+      "requires_tide_metadata": false,
+      "species_confirmation": "REQUIRES_UAV_FIELD_OR_ORTHOPHOTO_VALIDATION"
+    },
+    {
+      "type": "BANK_OR_STABLE_GEOMORPHIC_EDGE",
+      "role": "PRIMARY_WHERE_HIGH_RESOLUTION_EDGE_IS_VISIBLE_AND_MANUALLY_VALIDATED",
+      "requires_tide_metadata": false,
+      "automation_status": "NOT_RELIABLY_AUTOMATED_FROM_CURRENT_FREE_10M_OPTICAL_DATA_ON_SOFT_MUDDY_INTERTIDAL_COAST"
+    },
+    {
+      "type": "IN_PLOT_VEGETATION_ESTABLISHMENT",
+      "role": "PRIMARY_SUPPORTING_BIOLOGICAL_MONITORING_SIGNAL",
+      "resolution_m": 10,
+      "requires_tide_metadata": false,
+      "not_equivalent_to": ["tree_survival_percentage", "species_identity", "erosion_reduction"]
+    },
+    {
+      "type": "WATERLINE",
+      "role": "SUPPORTING_CONTEXT_ONLY_FAILED_CURRENT_ROBUSTNESS_TEST",
+      "requires_tide_metadata": true
+    }
   ],
   "satellite": {
-    "sentinel2": {"provider": "Microsoft Planetary Computer", "collection": "sentinel-2-l2a", "start": "2016-01-01", "per_year": 4, "analysis_resolution_m": 20, "target_usable_scenes_per_year": 3, "catalog_output": "data/catalog/surat_thani_sentinel2_scenes.csv"},
-    "landsat": {"provider": "Microsoft Planetary Computer", "collection": "landsat-c2-l2", "start": "1984-01-01", "per_year": 6, "analysis_resolution_m": 30, "catalog_output": "data/catalog/surat_thani_landsat_scenes.csv"},
-    "sentinel1": {"provider": "Microsoft Planetary Computer", "collection": "sentinel-1-grd", "start": "2015-01-01", "per_year": 20, "use_as_primary_boundary": false, "catalog_output": "data/catalog/surat_thani_sentinel1_scenes.csv"},
+    "sentinel2": {
+      "provider": "Microsoft Planetary Computer",
+      "collection": "sentinel-2-l2a",
+      "start": "2016-01-01",
+      "catalog_per_year": 4,
+      "primary_vegetation_analysis_resolution_m": 10,
+      "target_usable_scenes_per_year": 3,
+      "catalog_output": "data/catalog/surat_thani_sentinel2_scenes.csv"
+    },
+    "landsat": {
+      "provider": "Microsoft Planetary Computer",
+      "collection": "landsat-c2-l2",
+      "start": "1984-01-01",
+      "per_year": 6,
+      "analysis_resolution_m": 30,
+      "catalog_output": "data/catalog/surat_thani_landsat_scenes.csv"
+    },
+    "sentinel1": {
+      "provider": "Microsoft Planetary Computer",
+      "collection": "sentinel-1-grd",
+      "start": "2015-01-01",
+      "per_year": 20,
+      "use_as_primary_boundary": false,
+      "catalog_output": "data/catalog/surat_thani_sentinel1_scenes.csv",
+      "relative_corroboration_status": "SAME_SEASON_QA_RERUN_IN_PROGRESS_OR_PENDING_FINAL_SYNTHESIS",
+      "absolute_biomass_or_backscatter_claim": "NOT_ALLOWED_WITH_CURRENT_RELATIVE_GRD_DIAGNOSTIC"
+    },
     "catalog_summary": "data/analysis/surat_thani/catalog_summary.json",
     "catalog_status": "BUILT_AND_QA_PASSED"
+  },
+  "controls": {
+    "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
+    "candidate_file": "data/analysis/surat_thani/control_candidates.json",
+    "verification_file": "data/analysis/surat_thani/control_verification.json",
+    "selected_candidate_ranks": [1, 2, 3],
+    "selected_transect_groups": ["T043-T047", "T054-T058", "T049-T053"],
+    "user_confirmed_no_intervention": true,
+    "user_confirmation_date": "2026-08-31",
+    "resolved_checks": [
+      "no mangrove planting during intervention/post period",
+      "no new seawall, breakwater, bamboo fence or other coastal-protection structure",
+      "no dredging, embankment or channel intervention known to change coastal process",
+      "no other known materially different intervention"
+    ],
+    "remaining_checks": [
+      "physical coastal-setting equivalence remains satellite-screened rather than field-verified",
+      "field/UAV validation remains required before causal impact language"
+    ]
+  },
+  "coastal_vegetation_edge_screening": {
+    "status": "NO_DETECTABLE_10M_SCALE_RELATIVE_EDGE_ADVANCE_2023_2026",
+    "analysis_file": "data/analysis/surat_thani/mangrove_edge_proxy_screening.json",
+    "web_file": "web/public/data/surat_thani/mangrove_edge_proxy_screening.json",
+    "transects_file": "web/public/data/surat_thani/coastal_vegetation_edge_transects.geojson",
+    "points_file": "web/public/data/surat_thani/coastal_vegetation_edge_points.geojson",
+    "sensor": "Sentinel-2 L2A B4/B8",
+    "resolution_m": 10,
+    "annual_composite": "median NDVI from three SCL-cloud-masked February-April scenes",
+    "primary_ndvi_threshold": 0.32,
+    "tested_ndvi_thresholds": [0.28, 0.32, 0.36],
+    "minimum_persistent_vegetated_run_m": 30,
+    "project_frontage_transect_count": 23,
+    "control_transect_count": 15,
+    "primary_threshold_results": {
+      "project_median_pre_2017_2023_slope_m_per_year": -1.429,
+      "project_median_post_2024_2026_slope_m_per_year": 0.0,
+      "project_median_change_2023_2026_m": 0.0,
+      "pooled_control_median_pre_2017_2023_slope_m_per_year": -2.286,
+      "pooled_control_median_post_2024_2026_slope_m_per_year": 0.0,
+      "pooled_control_median_change_2023_2026_m": 0.0,
+      "project_minus_control_change_2023_2026_m": 0.0,
+      "project_minus_control_slope_change_m_per_year": -0.857
+    },
+    "threshold_net_contrasts_2023_2026_m": [0.0, 0.0, 0.0],
+    "threshold_slope_change_contrasts_m_per_year": [-1.572, -0.857, -5.5],
+    "empirical_edge_instability_floor_m": 10.0,
+    "project_single_scene_edge_range_median": 10.0,
+    "project_single_scene_edge_range_p90_m": 95.0,
+    "interpretation": "No project-relative seaward advance of the persistent high-NDVI coastal vegetation edge is detectable at 10 m scale from 2023 to 2026. This does not mean planted seedlings failed; young or sparse seedlings can remain sub-pixel."
+  },
+  "planting_establishment_screening": {
+    "status": "SMALL_POSITIVE_RELATIVE_OPTICAL_MONITORING_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY",
+    "analysis_file": "data/analysis/surat_thani/planting_establishment_screening.json",
+    "control_windows_file": "data/analysis/surat_thani/vegetation_control_windows.geojson",
+    "sensor": "Sentinel-2 L2A",
+    "resolution_m": 10,
+    "project_area_ha": 25.21,
+    "control_window_areas_ha": [6.11, 6.10, 6.31],
+    "pooled_control_area_ha": 18.46,
+    "project_cross_shore_control_window_design_span_m": 123.6,
+    "project_median_ndvi": {
+      "2023": -0.1065,
+      "2024": -0.1237,
+      "2025": -0.1080,
+      "2026": -0.1072
+    },
+    "project_green_fraction_ndvi_ge_0_32": {
+      "2023": 0.0143,
+      "2024": 0.0155,
+      "2025": 0.0218,
+      "2026": 0.0230
+    },
+    "project_minus_control_change_2026_vs_2023": {
+      "median_ndvi": 0.0061,
+      "green_fraction_ndvi_ge_0_32": 0.0071,
+      "green_fraction_ndvi_ge_0_32_percentage_points": 0.71
+    },
+    "green_fraction_sign_across_thresholds_0_28_0_32_0_36": "CONSISTENT_POSITIVE",
+    "project_single_scene_variability": {
+      "median_ndvi_range_2023": 0.0956,
+      "median_ndvi_range_2026": 0.1142,
+      "green_fraction_range_2023": 0.0095,
+      "green_fraction_range_2026": 0.0056
+    },
+    "interpretation": "A small positive project-relative optical greenness/green-pixel signal exists after 2023, but its magnitude is within observed single-scene variability. Treat as a monitoring signal only; do not convert it to survival percentage, canopy area, species identity or erosion reduction."
   },
   "tide": {
     "station_name": "Ko Prap",
@@ -58,7 +201,6 @@
     "official_station_coordinates_lon_lat": [99.434444, 9.265],
     "distance_from_current_aoi_centroid_km": 23.96,
     "timezone": "Asia/Bangkok",
-    "primary_source": "Hydrographic Department, Royal Thai Navy",
     "official_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
     "official_2026_msl_pdf": "https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf",
     "official_2026_llw_companion": "KP2026.pdf (user-supplied project copy)",
@@ -67,15 +209,8 @@
     "official_2024_msl_status": "INDEXED_HISTORICAL_CONTENT_SCENE_VALUES_CAPTURED_ORIGINAL_URL_NOT_LIVE",
     "datum": "MSL where explicitly sourced from RTN MSL products",
     "lowest_low_water_below_msl_m": 1.43,
-    "datum_relationship_source": "Official 2026 tide-table comparison page for Ko Prap; MSL height equals tide-table LLW height minus 1.43 m, subject to the table's 0.1 m rounding.",
     "hourly_catalog_output": "data/tide/surat_thani/ko_prap_hourly_msl.csv",
-    "hourly_manifest_output": "data/tide/surat_thani/ko_prap_hourly_msl_manifest.json",
-    "matched_scene_output": "data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv",
     "selected_scene_stage_output": "data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026.csv",
-    "selected_scene_stage_manifest": "data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026_manifest.json",
-    "historical_2023_extrema_source": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
-    "historical_2023_extrema_datum": "LOWEST_LOW_WATER",
-    "historical_2023_selected_scene_phase_output": "data/tide/surat_thani/ko_prap_2023_selected_scene_phase.csv",
     "public_monthly_url_template_th": "https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php",
     "public_monthly_url_template_en": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-{year}-{month:02d}-466.php",
     "public_monthly_datum": "CHART_DATUM",
@@ -89,27 +224,7 @@
     "scene_level_stage_context_fraction_2023_2026": 1.0,
     "web_context_output": "web/public/data/surat_thani/tide_context.json",
     "status": "SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL",
-    "interpretation_limit": "Ko Prap predictions are supporting metadata for scene screening, not observed water level inside plot 37-STC. Waterline remains supporting/contextual only; primary coastal indicators are mangrove edge and bank edge where visible."
-  },
-  "controls": {
-    "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
-    "target_count_per_treatment_segment": 3,
-    "candidate_file": "data/analysis/surat_thani/control_candidates.json",
-    "verification_file": "data/analysis/surat_thani/control_verification.json",
-    "selected_candidate_ranks": [1, 2, 3],
-    "user_confirmed_no_intervention": true,
-    "user_confirmation_date": "2026-08-31",
-    "selection_rules": [
-      "same coastal-process setting where possible",
-      "no planting during intervention period",
-      "no new hard coastal structure difference",
-      "similar pre-2023 boundary trend",
-      "similar mudflat/exposure and river-mouth influence"
-    ],
-    "remaining_checks": [
-      "physical coastal-setting comparability remains satellite-screened rather than field-verified",
-      "field/UAV validation remains required before causal impact language"
-    ]
+    "interpretation_limit": "Ko Prap predictions are supporting metadata for scene screening, not observed water level inside plot 37-STC."
   },
   "waterline_sensitivity": {
     "status": "FAILED_SCENE_SELECTION_ROBUSTNESS_SIGN_REVERSAL",
@@ -122,7 +237,13 @@
     "tide_stage_single_scene_pooled_control_2023_2026_m": -3.15,
     "tide_stage_project_minus_control_m": 26.58,
     "project_minus_control_sensitivity_shift_m": 31.03,
-    "interpretation": "The project-minus-control waterline contrast reverses sign under tide-stage-constrained single-scene selection. Waterline is therefore not robust enough for an impact claim and is downgraded to supporting/contextual evidence."
+    "interpretation": "The project-minus-control waterline contrast reverses sign under tide-stage-constrained single-scene selection. Waterline is not robust enough for an impact claim and remains supporting/contextual evidence only."
+  },
+  "bank_edge": {
+    "status": "MANUAL_HIGH_RESOLUTION_VALIDATION_REQUIRED",
+    "current_free_10m_automation_decision": "DO_NOT_AUTOMATE_AS_PRIMARY_METRIC",
+    "reason": "The soft muddy/intertidal frontage does not provide a consistently separable bank/geomorphic edge at Sentinel-2 10 m resolution. Automating it would risk generating a precise-looking but unvalidated line.",
+    "preferred_next_source": "UAV orthomosaic, high-resolution orthophoto, or manually reviewed comparable high-resolution imagery"
   },
   "transects": {
     "design_project_frontage_spacing_m": 50,
@@ -130,14 +251,20 @@
     "adjacent_and_control_spacing_m": 100,
     "orientation": "approximately perpendicular to selected reference edge",
     "positive_direction": "seaward",
-    "minimum_project_frontage_buffer_m": 500,
-    "metrics": ["NSM", "EPR", "LRR", "SCE"],
     "project_frontage_summary": "web/public/data/surat_thani/project_frontage_summary.json",
     "project_frontage_selection_distance_m": 150
   },
   "uncertainty": {
-    "rule": "Do not classify movement as erosion or accretion when absolute movement does not exceed estimated horizontal uncertainty for that indicator and epoch.",
-    "components": ["sensor pixel size", "geolocation and co-registration", "classification threshold sensitivity", "tide mismatch for waterline", "manual digitizing", "UAV horizontal RMSE"]
+    "rule": "Do not classify movement as erosion or accretion when absolute movement does not exceed estimated horizontal uncertainty/instability for that indicator and epoch.",
+    "components": [
+      "sensor pixel size",
+      "geolocation and co-registration",
+      "NDVI threshold sensitivity",
+      "single-scene spectral variability",
+      "tide mismatch for waterline",
+      "manual digitizing",
+      "UAV horizontal RMSE"
+    ]
   },
   "evidence_gates": {
     "minimum_post_years_for_comparative_effect": 3,
@@ -145,11 +272,14 @@
     "require_drone_or_field_validation": true,
     "require_primary_mangrove_or_bank_edge_validation": true,
     "waterline_scene_selection_robustness": "FAILED",
-    "waterline_allowed_role": "SUPPORTING_CONTEXT_ONLY"
+    "waterline_allowed_role": "SUPPORTING_CONTEXT_ONLY",
+    "coastal_vegetation_edge_10m_detection": "NO_RELATIVE_2023_2026_ADVANCE_DETECTED",
+    "in_plot_establishment_signal": "SMALL_POSITIVE_BUT_WITHIN_SINGLE_SCENE_VARIABILITY",
+    "current_causal_erosion_reduction_claim": "NOT_SUPPORTED"
   },
   "claim_language": {
-    "satellite_screening": "ผลดาวเทียมเป็นการคัดกรองเบื้องต้นและยังไม่ยืนยันผลของการปลูกต่อการกัดเซาะชายฝั่ง",
-    "tide_aware_screening": "ผลแนวน้ำจากภาพดาวเทียมไวต่อการเลือกภาพและสภาวะน้ำ จึงใช้เป็นข้อมูลประกอบเท่านั้น และต้องยืนยันด้วยแนวป่าชายเลน/แนวตลิ่งและโดรนหรือภาคสนาม",
-    "current_impact_claim_status": "NOT_SUPPORTED_BY_CURRENT_WATERLINE_ANALYSIS"
+    "recommended_th": "ข้อมูลดาวเทียมพบสัญญาณการเพิ่มขึ้นของความเขียวภายในแปลง 37-STC เล็กน้อยเมื่อเทียบกับพื้นที่อ้างอิง แต่ยังไม่พบการขยายตัวของขอบพืชในระดับความละเอียด 10 เมตร และผล waterline มีความไวต่อระดับน้ำ/การเลือกภาพสูง จึงยังไม่สามารถสรุปว่าการปลูกช่วยลดการกัดเซาะชายฝั่งได้โดยตรง จำเป็นต้องยืนยันด้วย UAV/ภาพความละเอียดสูงและข้อมูลภาคสนาม",
+    "prohibited_current_claim": "การปลูกป่าชายเลน 37-STC ได้ลดการกัดเซาะชายฝั่งแล้ว",
+    "current_impact_claim_status": "CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM"
   }
 }
