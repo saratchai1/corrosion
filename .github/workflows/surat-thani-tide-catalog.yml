@@ -1,4 +1,4 @@
-name: Surat Thani Ko Prap tide screening
+name: Surat Thani Ko Prap official MSL
 
 on:
   workflow_dispatch:
@@ -6,7 +6,9 @@ on:
     branches:
       - data/surat-thani-satellite-v1
     paths:
-      - scripts/build_ko_prap_tide_screening.py
+      - scripts/build_rtn_ko_prap_tide_catalog.py
+      - scripts/build_rtn_mae_klong_tide_catalog.py
+      - scripts/match_scene_tides.py
       - data/catalog/surat_thani_mvp_optical_scenes.csv
       - .github/workflows/surat-thani-tide-catalog.yml
 
@@ -24,49 +26,72 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Build Ko Prap tide-extrema screening catalog
-        run: python -u scripts/build_ko_prap_tide_screening.py
-      - name: QA tide screening
+
+      - name: Build official Ko Prap 2026 hourly MSL catalog
+        run: python -u scripts/build_rtn_ko_prap_tide_catalog.py
+
+      - name: QA official MSL catalog
         run: |
           python - <<'PY'
           import csv, json
           from pathlib import Path
 
-          tide_path = Path('data/tide/surat_thani/ko_prap_tide_extrema.csv')
-          matched_path = Path('data/catalog/surat_thani_mvp_optical_scenes_tide_screened.csv')
-          manifest_path = Path('data/tide/surat_thani/ko_prap_tide_extrema_manifest.json')
-
-          tide_rows = list(csv.DictReader(tide_path.open(encoding='utf-8')))
-          matched = list(csv.DictReader(matched_path.open(encoding='utf-8')))
+          csv_path = Path('data/tide/surat_thani/ko_prap_hourly_msl.csv')
+          manifest_path = Path('data/tide/surat_thani/ko_prap_hourly_msl_manifest.json')
+          rows = list(csv.DictReader(csv_path.open(encoding='utf-8')))
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
 
-          assert manifest['station_id'] == '466', manifest
+          assert len(rows) == 8760, len(rows)
+          assert manifest['years'] == [2026], manifest['years']
           assert manifest['station_name'] == 'Ko Prap', manifest
-          assert manifest['source_type'] == 'PREDICTED_TIDE_EXTREMA', manifest
-          assert manifest['datum'] == 'CHART_REFERENCE_DATUM_SOURCE_SITE', manifest
-          assert not manifest['failures'], manifest['failures']
-          assert len(tide_rows) == manifest['event_count'] and len(tide_rows) > 500
-          counts = manifest['match_counts']
-          assert counts['sentinel2_total'] > 0, counts
-          assert counts['sentinel2_matched'] == counts['sentinel2_total'], counts
-          s2 = [r for r in matched if r.get('dataset') == 'sentinel2']
-          assert s2 and all(r.get('tide_screen_status') == 'MATCHED' for r in s2), s2[:3]
-          assert all(r.get('tide_stage') in {'RISING', 'FALLING'} for r in s2), s2[:3]
-          assert all(r.get('tide_height_method') == 'LINEAR_BETWEEN_EXTREMA_SCREENING_ONLY' for r in s2), s2[:3]
-          print({'events': len(tide_rows), **counts, 'months': len(manifest['required_months'])})
+          assert manifest['datum'] == 'MSL', manifest
+          assert manifest['observed'] is False, manifest
+          assert rows[0]['datetime_bangkok'].startswith('2026-01-01T00:00:00'), rows[0]
+          assert rows[-1]['datetime_bangkok'].startswith('2026-12-31T23:00:00'), rows[-1]
+          print({'rows': len(rows), 'years': manifest['years'], 'datum': manifest['datum']})
           PY
+
+      - name: Match MVP scene times to official MSL
+        run: |
+          python -u scripts/match_scene_tides.py \
+            --scene-catalog data/catalog/surat_thani_mvp_optical_scenes.csv \
+            --tide-csv data/tide/surat_thani/ko_prap_hourly_msl.csv \
+            --output data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv \
+            --max-gap-minutes 90 \
+            --station-name 'Ko Prap' \
+            --datum 'MSL' \
+            --source-url 'https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf'
+
+      - name: QA scene-to-tide matching
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          rows = list(csv.DictReader(Path('data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv').open(encoding='utf-8')))
+          s2_2026 = [r for r in rows if r.get('dataset') == 'sentinel2' and r.get('acquisition_datetime_bangkok', '').startswith('2026-')]
+          assert len(s2_2026) >= 3, len(s2_2026)
+          assert all(r.get('tide_status', '').startswith('predicted_') for r in s2_2026), s2_2026
+          assert all(r.get('tide_datum') == 'MSL' for r in s2_2026), s2_2026
+          print({
+            'sentinel2_2026': len(s2_2026),
+            'levels_m_msl': [r.get('tide_level') for r in s2_2026],
+            'methods': [r.get('tide_match_method') for r in s2_2026],
+          })
+          PY
+
       - name: Commit tide products
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git pull --rebase --autostash origin data/surat-thani-satellite-v1
           git add \
-            data/tide/surat_thani/ko_prap_tide_extrema.csv \
-            data/tide/surat_thani/ko_prap_tide_extrema_manifest.json \
-            data/catalog/surat_thani_mvp_optical_scenes_tide_screened.csv
+            data/tide/surat_thani/ko_prap_hourly_msl.csv \
+            data/tide/surat_thani/ko_prap_hourly_msl_manifest.json \
+            data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv
           if git diff --cached --quiet; then
-            echo 'No tide-screening changes'
+            echo 'No official MSL changes'
           else
-            git commit -m 'data: add Ko Prap scene tide screening [skip ci]'
+            git commit -m 'data: add Ko Prap 2026 hourly MSL and scene matches [skip ci]'
             git push
           fi
