@@ -554,5 +554,8 @@
   ],
   "tide_context_file": "tide_context.json",
   "tide_context_status": "PARTIAL_TIDE_CONTEXT_ONLY",
-  "tide_context_note": "2023 selected scenes have official LLW tide phase and 2026 selected scenes have official hourly MSL; reproducible hourly MSL is still missing for 2024-2025."
+  "tide_context_note": "2023 selected scenes have official LLW tide phase and 2026 selected scenes have official hourly MSL; reproducible hourly MSL is still missing for 2024-2025.",
+  "project_frontage_summary_file": "project_frontage_summary.json",
+  "project_frontage_transects_file": "project_frontage_transects.geojson",
+  "project_frontage_scope": "37-STC current PDD boundary, 157.55 rai, transects within 150 m"
 }

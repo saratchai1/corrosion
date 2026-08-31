@@ -1,0 +1,1431 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T015",
+        "chainage_m": 1400.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 241.77,
+          "1990": -160.16,
+          "2000": 58.14,
+          "2010": -3.31,
+          "2017": 208.71,
+          "2018": 1.28,
+          "2019": 1.28,
+          "2020": 1.28,
+          "2021": 1.28,
+          "2022": 1.28,
+          "2023": 1.28,
+          "2024": 1.28,
+          "2025": 1.28,
+          "2026": 1.28
+        },
+        "net_change_m": -240.49,
+        "net_movement_m": -240.49,
+        "rate_m_per_year": -6.17,
+        "end_point_rate_m_per_year": -6.17,
+        "regression_rate_m_per_year": -1.33,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 79.32,
+        "apparent_change_2023_2026_m": 0.0,
+        "pre_2017_2023_slope_m_per_year": -22.22,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.21434633296671,
+            9.349496478113387
+          ],
+          [
+            99.22956700731736,
+            9.326963274796908
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T016",
+        "chainage_m": 1500.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 240.22,
+          "1990": -214.09,
+          "2000": -113.51,
+          "2010": -3.97,
+          "2017": 186.56,
+          "2018": 6.45,
+          "2019": -2.81,
+          "2020": -3.59,
+          "2021": 3.43,
+          "2022": -2.81,
+          "2023": 3.43,
+          "2024": -3.59,
+          "2025": -3.59,
+          "2026": -2.81
+        },
+        "net_change_m": -243.03,
+        "net_movement_m": -243.03,
+        "rate_m_per_year": -6.23,
+        "end_point_rate_m_per_year": -6.23,
+        "regression_rate_m_per_year": 0.32,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -6.24,
+        "pre_2017_2023_slope_m_per_year": -20.06,
+        "post_2024_2026_slope_m_per_year": 0.39
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.21862748642295,
+            9.351591228185532
+          ],
+          [
+            99.22687332723261,
+            9.325722147596142
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T017",
+        "chainage_m": 1600.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 210.59,
+          "1990": -219.83,
+          "2000": -156.18,
+          "2010": -73.36,
+          "2017": 58.02,
+          "2018": 35.66,
+          "2019": 35.66,
+          "2020": 35.66,
+          "2021": -71.23,
+          "2022": 35.66,
+          "2023": 35.66,
+          "2024": 35.66,
+          "2025": 35.66,
+          "2026": 35.66
+        },
+        "net_change_m": -174.93,
+        "net_movement_m": -174.93,
+        "rate_m_per_year": -4.49,
+        "end_point_rate_m_per_year": -4.49,
+        "regression_rate_m_per_year": 1.9,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": 0.0,
+        "pre_2017_2023_slope_m_per_year": -6.21,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.21433917816985,
+            9.349092326176816
+          ],
+          [
+            99.2327411859967,
+            9.329036737799527
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T018",
+        "chainage_m": 1700.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 292.36,
+          "1990": -238.08,
+          "2000": -166.23,
+          "2010": -81.56,
+          "2017": 90.84,
+          "2018": 30.37,
+          "2019": 30.37,
+          "2020": -5.24,
+          "2021": -75.9,
+          "2022": 12.7,
+          "2023": 6.46,
+          "2024": 0.0,
+          "2025": 6.46,
+          "2026": 0.0
+        },
+        "net_change_m": -292.36,
+        "net_movement_m": -292.36,
+        "rate_m_per_year": -7.5,
+        "end_point_rate_m_per_year": -7.5,
+        "regression_rate_m_per_year": 0.37,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -6.46,
+        "pre_2017_2023_slope_m_per_year": -14.1,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.21094693863638,
+            9.34344802587186
+          ],
+          [
+            99.23723156383618,
+            9.336049267214412
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T019",
+        "chainage_m": 1800.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 312.83,
+          "1990": -93.38,
+          "2000": -80.52,
+          "2010": -41.6,
+          "2017": 108.73,
+          "2018": 43.42,
+          "2019": 43.42,
+          "2020": -10.91,
+          "2021": -43.53,
+          "2022": 25.09,
+          "2023": 13.0,
+          "2024": 0.0,
+          "2025": 13.0,
+          "2026": 0.0
+        },
+        "net_change_m": -312.83,
+        "net_movement_m": -312.83,
+        "rate_m_per_year": -8.02,
+        "end_point_rate_m_per_year": -8.02,
+        "regression_rate_m_per_year": -1.92,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -13.0,
+        "pre_2017_2023_slope_m_per_year": -14.67,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.21290788420329,
+            9.34807218536048
+          ],
+          [
+            99.23574082093835,
+            9.333172823694408
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T020",
+        "chainage_m": 1900.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 289.36,
+          "1990": -56.33,
+          "2000": -51.22,
+          "2010": -45.59,
+          "2017": 98.28,
+          "2018": -17.24,
+          "2019": -17.24,
+          "2020": -49.2,
+          "2021": -41.9,
+          "2022": -40.29,
+          "2023": -57.41,
+          "2024": -62.23,
+          "2025": -56.78,
+          "2026": -62.23
+        },
+        "net_change_m": -351.59,
+        "net_movement_m": -351.59,
+        "rate_m_per_year": -9.02,
+        "end_point_rate_m_per_year": -9.02,
+        "regression_rate_m_per_year": -4.03,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -4.82,
+        "pre_2017_2023_slope_m_per_year": -19.21,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.2180042648591,
+            9.352716392309699
+          ],
+          [
+            99.23215176433544,
+            9.329503476739106
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T021",
+        "chainage_m": 2000.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 278.84,
+          "1990": -38.53,
+          "2000": -28.52,
+          "2010": -11.75,
+          "2017": 60.09,
+          "2018": -7.73,
+          "2019": -7.73,
+          "2020": -20.77,
+          "2021": -10.7,
+          "2022": -16.5,
+          "2023": -29.76,
+          "2024": -31.03,
+          "2025": -18.56,
+          "2026": -31.03
+        },
+        "net_change_m": -309.87,
+        "net_movement_m": -309.87,
+        "rate_m_per_year": -7.95,
+        "end_point_rate_m_per_year": -7.95,
+        "regression_rate_m_per_year": -3.48,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -1.27,
+        "pre_2017_2023_slope_m_per_year": -10.36,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.21878333311767,
+            9.35318478960665
+          ],
+          [
+            99.23293079842914,
+            9.329971844405067
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T022",
+        "chainage_m": 2100.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 268.31,
+          "1990": -20.74,
+          "2000": -5.82,
+          "2010": 22.09,
+          "2017": 21.9,
+          "2018": 26.61,
+          "2019": 19.79,
+          "2020": 19.6,
+          "2021": 29.52,
+          "2022": 19.73,
+          "2023": 19.01,
+          "2024": 6.94,
+          "2025": 19.67,
+          "2026": 6.94
+        },
+        "net_change_m": -261.37,
+        "net_movement_m": -261.37,
+        "rate_m_per_year": -6.7,
+        "end_point_rate_m_per_year": -6.7,
+        "regression_rate_m_per_year": -2.6,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -12.07,
+        "pre_2017_2023_slope_m_per_year": -0.45,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.2195624034355,
+            9.353653185133705
+          ],
+          [
+            99.23370983457498,
+            9.330440210302324
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T023",
+        "chainage_m": 2200.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 114.08,
+          "1990": -2.94,
+          "2000": 7.59,
+          "2010": 6.42,
+          "2017": 2.21,
+          "2018": 32.12,
+          "2019": 26.1,
+          "2020": 24.08,
+          "2021": 20.45,
+          "2022": 5.52,
+          "2023": 2.21,
+          "2024": -4.54,
+          "2025": 2.21,
+          "2026": -4.54
+        },
+        "net_change_m": -118.62,
+        "net_movement_m": -118.62,
+        "rate_m_per_year": -3.04,
+        "end_point_rate_m_per_year": -3.04,
+        "regression_rate_m_per_year": -1.24,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -6.75,
+        "pre_2017_2023_slope_m_per_year": -2.1,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22050679821265,
+            9.354219399956742
+          ],
+          [
+            99.2343235577788,
+            9.330810759572573
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T024",
+        "chainage_m": 2300.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 107.94,
+          "1990": -11.4,
+          "2000": -8.55,
+          "2010": -8.87,
+          "2017": -12.86,
+          "2018": 8.35,
+          "2019": 7.04,
+          "2020": 22.84,
+          "2021": 5.86,
+          "2022": 11.76,
+          "2023": -12.86,
+          "2024": -14.32,
+          "2025": -12.86,
+          "2026": -14.32
+        },
+        "net_change_m": -122.26,
+        "net_movement_m": -122.26,
+        "rate_m_per_year": -3.13,
+        "end_point_rate_m_per_year": -3.13,
+        "regression_rate_m_per_year": -1.28,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -1.46,
+        "pre_2017_2023_slope_m_per_year": 0.2,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22575753419694,
+            9.356099505643234
+          ],
+          [
+            99.2307991403393,
+            9.329430986847228
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T025",
+        "chainage_m": 2400.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 122.12,
+          "1990": -5.77,
+          "2000": -5.77,
+          "2010": -5.77,
+          "2017": -5.77,
+          "2018": 14.58,
+          "2019": 14.58,
+          "2020": 14.58,
+          "2021": 14.58,
+          "2022": 14.58,
+          "2023": -5.77,
+          "2024": -5.77,
+          "2025": -5.77,
+          "2026": -5.77
+        },
+        "net_change_m": -127.89,
+        "net_movement_m": -127.89,
+        "rate_m_per_year": -3.28,
+        "end_point_rate_m_per_year": -3.28,
+        "regression_rate_m_per_year": -1.35,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": 0.0,
+        "pre_2017_2023_slope_m_per_year": -0.0,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22665259594912,
+            9.356266422344733
+          ],
+          [
+            99.23169413578175,
+            9.329597892672226
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T026",
+        "chainage_m": 2500.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": 136.29,
+          "1990": -19.46,
+          "2000": -18.02,
+          "2010": 10.37,
+          "2017": 10.3,
+          "2018": 23.94,
+          "2019": 19.6,
+          "2020": 17.56,
+          "2021": 23.94,
+          "2022": 17.56,
+          "2023": 10.93,
+          "2024": 10.3,
+          "2025": 10.3,
+          "2026": 4.79
+        },
+        "net_change_m": -131.5,
+        "net_movement_m": -131.5,
+        "rate_m_per_year": -3.37,
+        "end_point_rate_m_per_year": -3.37,
+        "regression_rate_m_per_year": -0.97,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_erosion",
+        "classification_detail": "apparent_erosion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -6.14,
+        "pre_2017_2023_slope_m_per_year": -0.23,
+        "post_2024_2026_slope_m_per_year": -2.75
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22754765850269,
+            9.35643333676677
+          ],
+          [
+            99.23258913202181,
+            9.32976479622385
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T027",
+        "chainage_m": 2600.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -4.89,
+          "1990": -18.55,
+          "2000": -9.8,
+          "2010": 8.32,
+          "2017": 3.84,
+          "2018": 19.15,
+          "2019": 12.8,
+          "2020": 12.8,
+          "2021": 19.55,
+          "2022": 12.8,
+          "2023": 7.15,
+          "2024": 3.84,
+          "2025": 3.84,
+          "2026": -3.01
+        },
+        "net_change_m": 1.88,
+        "net_movement_m": 1.88,
+        "rate_m_per_year": 0.05,
+        "end_point_rate_m_per_year": 0.05,
+        "regression_rate_m_per_year": 0.57,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -10.16,
+        "pre_2017_2023_slope_m_per_year": 0.14,
+        "post_2024_2026_slope_m_per_year": -3.42
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22413633109667,
+            9.355237643146754
+          ],
+          [
+            99.2376557424587,
+            9.331658343864527
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T028",
+        "chainage_m": 2700.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -35.61,
+          "1990": -13.08,
+          "2000": 7.99,
+          "2010": 13.79,
+          "2017": 9.31,
+          "2018": 21.05,
+          "2019": 18.27,
+          "2020": 18.27,
+          "2021": 21.99,
+          "2022": 18.27,
+          "2023": 13.49,
+          "2024": 9.31,
+          "2025": 9.31,
+          "2026": 8.38
+        },
+        "net_change_m": 43.99,
+        "net_movement_m": 43.99,
+        "rate_m_per_year": 1.13,
+        "end_point_rate_m_per_year": 1.13,
+        "regression_rate_m_per_year": 0.96,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_accretion",
+        "classification_detail": "apparent_accretion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -5.11,
+        "pre_2017_2023_slope_m_per_year": 0.38,
+        "post_2024_2026_slope_m_per_year": -0.46
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22492770257675,
+            9.355685242675401
+          ],
+          [
+            99.23844707648841,
+            9.332105914745393
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T029",
+        "chainage_m": 2800.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -7.68,
+          "1990": -12.87,
+          "2000": 12.37,
+          "2010": 12.37,
+          "2017": 8.57,
+          "2018": 19.78,
+          "2019": 19.78,
+          "2020": 13.24,
+          "2021": 24.42,
+          "2022": 14.35,
+          "2023": 11.67,
+          "2024": 8.57,
+          "2025": 8.57,
+          "2026": 4.3
+        },
+        "net_change_m": 11.98,
+        "net_movement_m": 11.98,
+        "rate_m_per_year": 0.31,
+        "end_point_rate_m_per_year": 0.31,
+        "regression_rate_m_per_year": 0.52,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -7.37,
+        "pre_2017_2023_slope_m_per_year": 0.11,
+        "post_2024_2026_slope_m_per_year": -2.13
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22571907605224,
+            9.356132840380415
+          ],
+          [
+            99.2392384125065,
+            9.33255348380429
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T030",
+        "chainage_m": 2900.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -6.14,
+          "1990": -24.07,
+          "2000": -4.47,
+          "2010": -4.47,
+          "2017": -1.66,
+          "2018": 7.43,
+          "2019": 7.43,
+          "2020": 3.02,
+          "2021": 10.3,
+          "2022": 5.78,
+          "2023": -0.91,
+          "2024": -1.66,
+          "2025": -1.66,
+          "2026": -2.68
+        },
+        "net_change_m": 3.46,
+        "net_movement_m": 3.46,
+        "rate_m_per_year": 0.09,
+        "end_point_rate_m_per_year": 0.09,
+        "regression_rate_m_per_year": 0.44,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -1.77,
+        "pre_2017_2023_slope_m_per_year": 0.06,
+        "post_2024_2026_slope_m_per_year": -0.51
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22651045152323,
+            9.356580436261593
+          ],
+          [
+            99.24002975051283,
+            9.33300105104091
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T031",
+        "chainage_m": 3000.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -8.16,
+          "1990": -23.36,
+          "2000": 1.73,
+          "2010": -1.6,
+          "2017": 12.11,
+          "2018": 6.38,
+          "2019": 6.38,
+          "2020": 3.25,
+          "2021": 2.22,
+          "2022": 6.38,
+          "2023": 3.25,
+          "2024": -1.15,
+          "2025": 3.25,
+          "2026": -1.15
+        },
+        "net_change_m": 7.01,
+        "net_movement_m": 7.01,
+        "rate_m_per_year": 0.18,
+        "end_point_rate_m_per_year": 0.18,
+        "regression_rate_m_per_year": 0.45,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -4.4,
+        "pre_2017_2023_slope_m_per_year": -1.1,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22679674114464,
+            9.35672786546233
+          ],
+          [
+            99.24132615582297,
+            9.33374876229199
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T032",
+        "chainage_m": 3100.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -34.57,
+          "1990": -34.57,
+          "2000": -8.42,
+          "2010": -5.6,
+          "2017": 82.13,
+          "2018": 2.52,
+          "2019": 22.45,
+          "2020": 9.04,
+          "2021": 28.02,
+          "2022": -6.32,
+          "2023": -10.95,
+          "2024": -11.92,
+          "2025": 15.17,
+          "2026": -11.92
+        },
+        "net_change_m": 22.65,
+        "net_movement_m": 22.65,
+        "rate_m_per_year": 0.58,
+        "end_point_rate_m_per_year": 0.58,
+        "regression_rate_m_per_year": 1.05,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -0.97,
+        "pre_2017_2023_slope_m_per_year": -10.41,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22489584201271,
+            9.35526643925372
+          ],
+          [
+            99.24455797543631,
+            9.336427050696862
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T033",
+        "chainage_m": 3200.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -17.65,
+          "1990": -17.65,
+          "2000": -5.94,
+          "2010": 35.72,
+          "2017": 99.55,
+          "2018": 67.57,
+          "2019": 66.25,
+          "2020": 66.25,
+          "2021": 77.81,
+          "2022": -10.67,
+          "2023": -10.67,
+          "2024": -18.51,
+          "2025": 92.47,
+          "2026": -18.51
+        },
+        "net_change_m": -0.86,
+        "net_movement_m": -0.86,
+        "rate_m_per_year": -0.02,
+        "end_point_rate_m_per_year": -0.02,
+        "regression_rate_m_per_year": 1.35,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -7.84,
+        "pre_2017_2023_slope_m_per_year": -16.99,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.22552812142108,
+            9.355917404029526
+          ],
+          [
+            99.24519025563207,
+            9.337077981100643
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T034",
+        "chainage_m": 3300.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -19.5,
+          "1990": -19.5,
+          "2000": -13.38,
+          "2010": 2.38,
+          "2017": 55.06,
+          "2018": 23.41,
+          "2019": 23.41,
+          "2020": 23.41,
+          "2021": 31.0,
+          "2022": -3.3,
+          "2023": -3.3,
+          "2024": -7.61,
+          "2025": 61.9,
+          "2026": -7.61
+        },
+        "net_change_m": 11.89,
+        "net_movement_m": 11.89,
+        "rate_m_per_year": 0.3,
+        "end_point_rate_m_per_year": 0.3,
+        "regression_rate_m_per_year": 1.06,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -4.31,
+        "pre_2017_2023_slope_m_per_year": -7.89,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.2324938891593,
+            9.35999648100942
+          ],
+          [
+            99.23976493163238,
+            9.333840577812449
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T035",
+        "chainage_m": 3400.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -45.4,
+          "1990": -45.4,
+          "2000": -44.96,
+          "2010": -39.94,
+          "2017": 18.54,
+          "2018": 6.97,
+          "2019": 6.97,
+          "2020": 6.97,
+          "2021": 9.75,
+          "2022": -19.87,
+          "2023": -19.87,
+          "2024": -21.18,
+          "2025": -0.07,
+          "2026": -21.18
+        },
+        "net_change_m": 24.22,
+        "net_movement_m": 24.22,
+        "rate_m_per_year": 0.62,
+        "end_point_rate_m_per_year": 0.62,
+        "regression_rate_m_per_year": 1.22,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 0.0,
+        "apparent_change_2023_2026_m": -1.31,
+        "pre_2017_2023_slope_m_per_year": -5.93,
+        "post_2024_2026_slope_m_per_year": -0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.23337175525083,
+            9.36023720738467
+          ],
+          [
+            99.24064273628555,
+            9.334081288068926
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T036",
+        "chainage_m": 3500.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -21.87,
+          "1990": -21.87,
+          "2000": -24.57,
+          "2010": -21.87,
+          "2017": 17.24,
+          "2018": 9.26,
+          "2019": 9.26,
+          "2020": 9.26,
+          "2021": 9.26,
+          "2022": 9.26,
+          "2023": 9.26,
+          "2024": 4.81,
+          "2025": 4.81,
+          "2026": 4.81
+        },
+        "net_change_m": 26.68,
+        "net_movement_m": 26.68,
+        "rate_m_per_year": 0.68,
+        "end_point_rate_m_per_year": 0.68,
+        "regression_rate_m_per_year": 0.99,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "stable",
+        "classification_detail": "stable_within_resolution",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 46.02,
+        "apparent_change_2023_2026_m": -4.45,
+        "pre_2017_2023_slope_m_per_year": -0.85,
+        "post_2024_2026_slope_m_per_year": 0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.2342496225008,
+            9.360477931554563
+          ],
+          [
+            99.24152054209202,
+            9.33432199612529
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "transect_id": "T038",
+        "chainage_m": 3700.0,
+        "spacing_m": 100.0,
+        "length_m": 3000.0,
+        "observations": 14,
+        "positions_m": {
+          "1985": -44.53,
+          "1990": -44.53,
+          "2000": -31.93,
+          "2010": -11.97,
+          "2017": 17.94,
+          "2018": 23.16,
+          "2019": 17.94,
+          "2020": 17.94,
+          "2021": 17.94,
+          "2022": 17.94,
+          "2023": 3.16,
+          "2024": 3.16,
+          "2025": 3.16,
+          "2026": 3.16
+        },
+        "net_change_m": 47.69,
+        "net_movement_m": 47.69,
+        "rate_m_per_year": 1.22,
+        "end_point_rate_m_per_year": 1.22,
+        "regression_rate_m_per_year": 1.63,
+        "start_year": 1985,
+        "end_year": 2026,
+        "n_observations": 14,
+        "classification": "apparent_accretion",
+        "classification_detail": "apparent_accretion",
+        "confidence": "LOW",
+        "confidence_reasons": [
+          "tide level unavailable for every epoch",
+          "intertidal mudflat exposure can move the observed wet/dry edge",
+          "sensor resolution and wet/dry pixel mixing limit positional precision",
+          "automated spectral boundary requires field or orthophoto validation"
+        ],
+        "interpretation": "positive is apparent seaward movement; not tide-normalized shoreline change",
+        "project_frontage": true,
+        "distance_to_current_pdd_m": 136.16,
+        "apparent_change_2023_2026_m": 0.0,
+        "pre_2017_2023_slope_m_per_year": -1.96,
+        "post_2024_2026_slope_m_per_year": 0.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.2254631045113,
+            9.348807108108216
+          ],
+          [
+            99.25277269352328,
+            9.348041000502631
+          ]
+        ]
+      }
+    }
+  ]
+}
