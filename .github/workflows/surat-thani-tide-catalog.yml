@@ -1,4 +1,4 @@
-name: Surat Thani Ko Prap official MSL
+name: Surat Thani Ko Prap official tide context
 
 on:
   workflow_dispatch:
@@ -7,6 +7,7 @@ on:
       - data/surat-thani-satellite-v1
     paths:
       - scripts/build_rtn_ko_prap_tide_catalog.py
+      - scripts/build_rtn_ko_prap_2023_extrema.py
       - scripts/build_rtn_mae_klong_tide_catalog.py
       - scripts/match_scene_tides.py
       - data/catalog/surat_thani_mvp_optical_scenes.csv
@@ -30,7 +31,7 @@ jobs:
       - name: Build official Ko Prap 2026 hourly MSL catalog
         run: python -u scripts/build_rtn_ko_prap_tide_catalog.py
 
-      - name: QA official MSL catalog
+      - name: QA official 2026 MSL catalog
         run: |
           python - <<'PY'
           import csv, json
@@ -51,7 +52,7 @@ jobs:
           print({'rows': len(rows), 'years': manifest['years'], 'datum': manifest['datum']})
           PY
 
-      - name: Match MVP scene times to official MSL
+      - name: Match MVP scene times to official 2026 MSL
         run: |
           python -u scripts/match_scene_tides.py \
             --scene-catalog data/catalog/surat_thani_mvp_optical_scenes.csv \
@@ -62,7 +63,7 @@ jobs:
             --datum 'MSL' \
             --source-url 'https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf'
 
-      - name: QA scene-to-tide matching
+      - name: QA 2026 scene-to-MSL matching
         run: |
           python - <<'PY'
           import csv
@@ -80,6 +81,34 @@ jobs:
           })
           PY
 
+      - name: Build official Ko Prap 2023 extrema and scene phase
+        run: python -u scripts/build_rtn_ko_prap_2023_extrema.py
+
+      - name: QA 2023 official tide phase
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+
+          extrema = list(csv.DictReader(Path('data/tide/surat_thani/ko_prap_2023_extrema_llw.csv').open(encoding='utf-8')))
+          manifest = json.loads(Path('data/tide/surat_thani/ko_prap_2023_extrema_llw_manifest.json').read_text(encoding='utf-8'))
+          matched = list(csv.DictReader(Path('data/catalog/surat_thani_2023_scenes_tide_phase.csv').open(encoding='utf-8')))
+          s2 = [r for r in matched if r.get('dataset') == 'sentinel2' and r.get('acquisition_datetime_bangkok', '').startswith('2023-')]
+
+          assert manifest['datum'] == 'LOWEST_LOW_WATER', manifest
+          assert manifest['day_count'] == 365, manifest
+          assert 650 <= len(extrema) <= 1200, len(extrema)
+          assert len(s2) >= 3, len(s2)
+          assert all(r.get('tide_phase_status') == 'MATCHED_OFFICIAL_EXTREMA' for r in s2), s2
+          assert all(r.get('tide_stage') in {'RISING', 'FALLING'} for r in s2), s2
+          print({
+            'extrema': len(extrema),
+            'sentinel2_2023': len(s2),
+            'stage': [r.get('tide_stage') for r in s2],
+            'phase': [r.get('tide_phase_0_1') for r in s2],
+          })
+          PY
+
       - name: Commit tide products
         run: |
           git config user.name 'github-actions[bot]'
@@ -88,10 +117,13 @@ jobs:
           git add \
             data/tide/surat_thani/ko_prap_hourly_msl.csv \
             data/tide/surat_thani/ko_prap_hourly_msl_manifest.json \
-            data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv
+            data/catalog/surat_thani_mvp_optical_scenes_tide_msl.csv \
+            data/tide/surat_thani/ko_prap_2023_extrema_llw.csv \
+            data/tide/surat_thani/ko_prap_2023_extrema_llw_manifest.json \
+            data/catalog/surat_thani_2023_scenes_tide_phase.csv
           if git diff --cached --quiet; then
-            echo 'No official MSL changes'
+            echo 'No official tide-context changes'
           else
-            git commit -m 'data: add Ko Prap 2026 hourly MSL and scene matches [skip ci]'
+            git commit -m 'data: add Ko Prap official tide context [skip ci]'
             git push
           fi
