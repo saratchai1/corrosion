@@ -1,0 +1,20 @@
+{
+  "sentinel2": {
+    "scenes": 44,
+    "selected_dates": 44,
+    "first_date": "2016-01-13",
+    "last_date": "2026-04-30"
+  },
+  "landsat": {
+    "scenes": 235,
+    "selected_dates": 235,
+    "first_date": "1987-12-09",
+    "last_date": "2026-05-26"
+  },
+  "sentinel1": {
+    "scenes": 262,
+    "selected_dates": 229,
+    "first_date": "2015-03-02",
+    "last_date": "2026-08-27"
+  }
+}
