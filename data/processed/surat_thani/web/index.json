@@ -562,5 +562,11 @@
   "control_candidates_status": "PROVISIONAL_UNVERIFIED",
   "comparative_screening_file": "comparative_screening.json",
   "comparative_screening_status": "TREATMENT_CONTROL_SCREENING_WITH_USER_CONFIRMED_NO_KNOWN_CONTROL_INTERVENTIONS",
-  "tide_disclaimer": "Scene-level tide stage is available for 2023-2026, but the water-land boundary series is not fully MSL-normalized; waterline remains supporting evidence."
+  "tide_disclaimer": "Scene-level tide stage is available for 2023-2026, but the water-land boundary series is not fully MSL-normalized; waterline remains supporting evidence.",
+  "primary_satellite_indicator": "coastal_vegetation_edge_proxy",
+  "vegetation_edge_screening_file": "mangrove_edge_proxy_screening.json",
+  "vegetation_edge_transects_file": "coastal_vegetation_edge_transects.geojson",
+  "vegetation_edge_points_file": "coastal_vegetation_edge_points.geojson",
+  "vegetation_edge_status": "10M_SENTINEL2_NDVI_SCREENING_WITH_THRESHOLD_AND_SCENE_SENSITIVITY",
+  "waterline_role": "SUPPORTING_SENSITIVITY_CONTEXT_ONLY"
 }

@@ -1,0 +1,627 @@
+{
+  "generated_at_utc": "2026-08-31T15:27:32.040639+00:00",
+  "plot_code": "37-STC",
+  "representative_intervention_date": "2023-10-18",
+  "analysis_role": "PRIMARY_SATELLITE_COASTAL_VEGETATION_EDGE_SCREENING",
+  "indicator": {
+    "name": "coastal_vegetation_edge_proxy",
+    "preferred_interpretation": "seaward edge of persistent high-NDVI coastal vegetation",
+    "not_claimed": "not a species-classified mangrove inventory and not a field-surveyed vegetation edge",
+    "sensor": "Sentinel-2 L2A B4/B8",
+    "native_analysis_resolution_m": 10,
+    "annual_composite": "median NDVI from up to three cloud-masked February-April scenes",
+    "cloud_mask": "Sentinel-2 SCL excludes no-data, saturated/defective, cloud shadow, medium/high cloud, cirrus, snow/ice",
+    "primary_ndvi_threshold": 0.32,
+    "tested_thresholds": [
+      0.28,
+      0.32,
+      0.36
+    ],
+    "sample_step_m": 10.0,
+    "minimum_persistent_vegetated_run_m": 30.0,
+    "edge_rule": "seaward-most persistent vegetated run on each fixed inland-to-seaward transect",
+    "tide_dependency": "NONE_EXPLICIT; water mask/waterline is not used in edge detection"
+  },
+  "annual_inputs": {
+    "2017": {
+      "scene_count": 3,
+      "dates": [
+        "2017-02-26",
+        "2017-03-18",
+        "2017-04-27"
+      ],
+      "scene_ids": [
+        "S2A_MSIL2A_20170226T033711_R061_T47PNL_20210208T171543",
+        "S2A_MSIL2A_20170318T033531_R061_T47PNL_20210208T232716",
+        "S2A_MSIL2A_20170427T033541_R061_T47PNL_20210209T105916"
+      ],
+      "composite_valid_fraction": 0.3877
+    },
+    "2018": {
+      "scene_count": 3,
+      "dates": [
+        "2018-02-01",
+        "2018-02-26",
+        "2018-03-28"
+      ],
+      "scene_ids": [
+        "S2A_MSIL2A_20180201T033951_R061_T47PNL_20201013T174450",
+        "S2B_MSIL2A_20180226T033709_R061_T47PNL_20201104T151958",
+        "S2B_MSIL2A_20180328T033739_R061_T47PNL_20201013T153849"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2019": {
+      "scene_count": 3,
+      "dates": [
+        "2019-02-11",
+        "2019-03-23",
+        "2019-04-17"
+      ],
+      "scene_ids": [
+        "S2B_MSIL2A_20190211T033859_R061_T47PNL_20201007T155504",
+        "S2B_MSIL2A_20190323T033719_R061_T47PNL_20201007T094740",
+        "S2A_MSIL2A_20190417T033541_R061_T47PNL_20201007T030425"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2020": {
+      "scene_count": 3,
+      "dates": [
+        "2020-02-26",
+        "2020-03-22",
+        "2020-04-11"
+      ],
+      "scene_ids": [
+        "S2B_MSIL2A_20200226T033719_R061_T47PNL_20200928T132439",
+        "S2A_MSIL2A_20200322T033531_R061_T47PNL_20201014T231526",
+        "S2A_MSIL2A_20200411T033531_R061_T47PNL_20200923T010425"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2021": {
+      "scene_count": 3,
+      "dates": [
+        "2021-02-20",
+        "2021-03-12",
+        "2021-04-26"
+      ],
+      "scene_ids": [
+        "S2B_MSIL2A_20210220T033759_R061_T47PNL_20210220T151603",
+        "S2B_MSIL2A_20210312T033539_R061_T47PNL_20210312T160153",
+        "S2A_MSIL2A_20210426T033531_R061_T47PNL_20210426T132640"
+      ],
+      "composite_valid_fraction": 0.9936
+    },
+    "2022": {
+      "scene_count": 3,
+      "dates": [
+        "2022-02-05",
+        "2022-03-12",
+        "2022-04-21"
+      ],
+      "scene_ids": [
+        "S2B_MSIL2A_20220205T033929_R061_T47PNL_20220218T223728",
+        "S2A_MSIL2A_20220312T033541_R061_T47PNL_20220312T201539",
+        "S2A_MSIL2A_20220421T033541_R061_T47PNL_20220421T215159"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2023": {
+      "scene_count": 3,
+      "dates": [
+        "2023-02-10",
+        "2023-03-12",
+        "2023-04-06"
+      ],
+      "scene_ids": [
+        "S2B_MSIL2A_20230210T033859_R061_T47PNL_20230211T035717",
+        "S2B_MSIL2A_20230312T033539_R061_T47PNL_20230312T103608",
+        "S2A_MSIL2A_20230406T033541_R061_T47PNL_20230406T112615"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2024": {
+      "scene_count": 3,
+      "dates": [
+        "2024-02-25",
+        "2024-03-21",
+        "2024-04-20"
+      ],
+      "scene_ids": [
+        "S2B_MSIL2A_20240225T033729_R061_T47PNL_20240225T081626",
+        "S2A_MSIL2A_20240321T033541_R061_T47PNL_20240321T091105",
+        "S2A_MSIL2A_20240420T033541_R061_T47PNL_20240420T101326"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2025": {
+      "scene_count": 3,
+      "dates": [
+        "2025-02-14",
+        "2025-03-16",
+        "2025-04-07"
+      ],
+      "scene_ids": [
+        "S2C_MSIL2A_20250214T033901_R061_T47PNL_20250214T090512",
+        "S2C_MSIL2A_20250316T033601_R061_T47PNL_20250316T090315",
+        "S2A_MSIL2A_20250407T034201_R061_T47PNL_20250407T083514"
+      ],
+      "composite_valid_fraction": 0.9944
+    },
+    "2026": {
+      "scene_count": 3,
+      "dates": [
+        "2026-03-01",
+        "2026-04-05",
+        "2026-04-30"
+      ],
+      "scene_ids": [
+        "S2C_MSIL2A_20260301T033701_R061_T47PNL_20260301T091613",
+        "S2B_MSIL2A_20260405T033539_R061_T47PNL_20260405T072236",
+        "S2C_MSIL2A_20260430T033541_R061_T47PNL_20260430T081812"
+      ],
+      "composite_valid_fraction": 0.9944
+    }
+  },
+  "groups": {
+    "project_frontage_transect_count": 23,
+    "project_frontage_transect_ids": [
+      "T015",
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021",
+      "T022",
+      "T023",
+      "T024",
+      "T025",
+      "T026",
+      "T027",
+      "T028",
+      "T029",
+      "T030",
+      "T031",
+      "T032",
+      "T033",
+      "T034",
+      "T035",
+      "T036",
+      "T038"
+    ],
+    "control_transect_count": 15,
+    "control_transect_ids": [
+      "T043",
+      "T044",
+      "T045",
+      "T046",
+      "T047",
+      "T054",
+      "T055",
+      "T056",
+      "T057",
+      "T058",
+      "T049",
+      "T050",
+      "T051",
+      "T052",
+      "T053"
+    ],
+    "control_verification_status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING"
+  },
+  "threshold_results": {
+    "0.28": {
+      "project_frontage": {
+        "transect_count": 23,
+        "transect_ids": [
+          "T015",
+          "T016",
+          "T017",
+          "T018",
+          "T019",
+          "T020",
+          "T021",
+          "T022",
+          "T023",
+          "T024",
+          "T025",
+          "T026",
+          "T027",
+          "T028",
+          "T029",
+          "T030",
+          "T031",
+          "T032",
+          "T033",
+          "T034",
+          "T035",
+          "T036",
+          "T038"
+        ],
+        "observation_completeness": 0.983,
+        "median_pre_2017_2023_slope_m_per_year": -0.714,
+        "median_post_2024_2026_slope_m_per_year": 0.0,
+        "median_slope_change_post_minus_pre_m_per_year": 0.714,
+        "median_change_2023_to_2026_m": 0.0,
+        "yearly_median_edge_change_relative_to_2023_m": {
+          "2017": 0.0,
+          "2018": 20.0,
+          "2019": 20.0,
+          "2020": 20.0,
+          "2021": 20.0,
+          "2022": 0.0,
+          "2023": 0.0,
+          "2024": 0.0,
+          "2025": 0.0,
+          "2026": 0.0
+        },
+        "median_threshold_edge_spread_m": 0.0,
+        "p90_threshold_edge_spread_m": 30.0,
+        "median_single_scene_edge_range_m": 10.0,
+        "p90_single_scene_edge_range_m": 95.0
+      },
+      "pooled_controls": {
+        "transect_count": 15,
+        "transect_ids": [
+          "T043",
+          "T044",
+          "T045",
+          "T046",
+          "T047",
+          "T054",
+          "T055",
+          "T056",
+          "T057",
+          "T058",
+          "T049",
+          "T050",
+          "T051",
+          "T052",
+          "T053"
+        ],
+        "observation_completeness": 0.927,
+        "median_pre_2017_2023_slope_m_per_year": -2.286,
+        "median_post_2024_2026_slope_m_per_year": 0.0,
+        "median_slope_change_post_minus_pre_m_per_year": 2.286,
+        "median_change_2023_to_2026_m": 0.0,
+        "yearly_median_edge_change_relative_to_2023_m": {
+          "2017": -455.0,
+          "2018": 10.0,
+          "2019": 10.0,
+          "2020": 10.0,
+          "2021": 10.0,
+          "2022": 0.0,
+          "2023": 0.0,
+          "2024": 0.0,
+          "2025": 0.0,
+          "2026": 0.0
+        },
+        "median_threshold_edge_spread_m": 0.0,
+        "p90_threshold_edge_spread_m": 240.0,
+        "median_single_scene_edge_range_m": 10.0,
+        "p90_single_scene_edge_range_m": 248.0
+      },
+      "project_minus_control_change_2023_2026_m": 0.0,
+      "project_minus_control_slope_change_m_per_year": -1.572
+    },
+    "0.32": {
+      "project_frontage": {
+        "transect_count": 23,
+        "transect_ids": [
+          "T015",
+          "T016",
+          "T017",
+          "T018",
+          "T019",
+          "T020",
+          "T021",
+          "T022",
+          "T023",
+          "T024",
+          "T025",
+          "T026",
+          "T027",
+          "T028",
+          "T029",
+          "T030",
+          "T031",
+          "T032",
+          "T033",
+          "T034",
+          "T035",
+          "T036",
+          "T038"
+        ],
+        "observation_completeness": 0.983,
+        "median_pre_2017_2023_slope_m_per_year": -1.429,
+        "median_post_2024_2026_slope_m_per_year": 0.0,
+        "median_slope_change_post_minus_pre_m_per_year": 1.429,
+        "median_change_2023_to_2026_m": 0.0,
+        "yearly_median_edge_change_relative_to_2023_m": {
+          "2017": 0.0,
+          "2018": 20.0,
+          "2019": 20.0,
+          "2020": 20.0,
+          "2021": 20.0,
+          "2022": 0.0,
+          "2023": 0.0,
+          "2024": 0.0,
+          "2025": 0.0,
+          "2026": 0.0
+        },
+        "median_threshold_edge_spread_m": 0.0,
+        "p90_threshold_edge_spread_m": 30.0,
+        "median_single_scene_edge_range_m": 10.0,
+        "p90_single_scene_edge_range_m": 95.0
+      },
+      "pooled_controls": {
+        "transect_count": 15,
+        "transect_ids": [
+          "T043",
+          "T044",
+          "T045",
+          "T046",
+          "T047",
+          "T054",
+          "T055",
+          "T056",
+          "T057",
+          "T058",
+          "T049",
+          "T050",
+          "T051",
+          "T052",
+          "T053"
+        ],
+        "observation_completeness": 0.927,
+        "median_pre_2017_2023_slope_m_per_year": -2.286,
+        "median_post_2024_2026_slope_m_per_year": 0.0,
+        "median_slope_change_post_minus_pre_m_per_year": 2.286,
+        "median_change_2023_to_2026_m": 0.0,
+        "yearly_median_edge_change_relative_to_2023_m": {
+          "2017": -455.0,
+          "2018": 10.0,
+          "2019": 10.0,
+          "2020": 10.0,
+          "2021": 10.0,
+          "2022": 0.0,
+          "2023": 0.0,
+          "2024": 0.0,
+          "2025": 0.0,
+          "2026": 0.0
+        },
+        "median_threshold_edge_spread_m": 0.0,
+        "p90_threshold_edge_spread_m": 240.0,
+        "median_single_scene_edge_range_m": 10.0,
+        "p90_single_scene_edge_range_m": 248.0
+      },
+      "project_minus_control_change_2023_2026_m": 0.0,
+      "project_minus_control_slope_change_m_per_year": -0.857
+    },
+    "0.36": {
+      "project_frontage": {
+        "transect_count": 23,
+        "transect_ids": [
+          "T015",
+          "T016",
+          "T017",
+          "T018",
+          "T019",
+          "T020",
+          "T021",
+          "T022",
+          "T023",
+          "T024",
+          "T025",
+          "T026",
+          "T027",
+          "T028",
+          "T029",
+          "T030",
+          "T031",
+          "T032",
+          "T033",
+          "T034",
+          "T035",
+          "T036",
+          "T038"
+        ],
+        "observation_completeness": 0.983,
+        "median_pre_2017_2023_slope_m_per_year": -3.214,
+        "median_post_2024_2026_slope_m_per_year": 0.0,
+        "median_slope_change_post_minus_pre_m_per_year": 3.214,
+        "median_change_2023_to_2026_m": 0.0,
+        "yearly_median_edge_change_relative_to_2023_m": {
+          "2017": 0.0,
+          "2018": 30.0,
+          "2019": 30.0,
+          "2020": 30.0,
+          "2021": 30.0,
+          "2022": 0.0,
+          "2023": 0.0,
+          "2024": 0.0,
+          "2025": 0.0,
+          "2026": 0.0
+        },
+        "median_threshold_edge_spread_m": 0.0,
+        "p90_threshold_edge_spread_m": 30.0,
+        "median_single_scene_edge_range_m": 10.0,
+        "p90_single_scene_edge_range_m": 95.0
+      },
+      "pooled_controls": {
+        "transect_count": 15,
+        "transect_ids": [
+          "T043",
+          "T044",
+          "T045",
+          "T046",
+          "T047",
+          "T054",
+          "T055",
+          "T056",
+          "T057",
+          "T058",
+          "T049",
+          "T050",
+          "T051",
+          "T052",
+          "T053"
+        ],
+        "observation_completeness": 0.92,
+        "median_pre_2017_2023_slope_m_per_year": -3.714,
+        "median_post_2024_2026_slope_m_per_year": 5.0,
+        "median_slope_change_post_minus_pre_m_per_year": 8.714,
+        "median_change_2023_to_2026_m": 0.0,
+        "yearly_median_edge_change_relative_to_2023_m": {
+          "2017": -330.0,
+          "2018": 20.0,
+          "2019": 20.0,
+          "2020": 20.0,
+          "2021": 20.0,
+          "2022": 10.0,
+          "2023": 0.0,
+          "2024": 0.0,
+          "2025": 0.0,
+          "2026": 0.0
+        },
+        "median_threshold_edge_spread_m": 0.0,
+        "p90_threshold_edge_spread_m": 240.0,
+        "median_single_scene_edge_range_m": 10.0,
+        "p90_single_scene_edge_range_m": 248.0
+      },
+      "project_minus_control_change_2023_2026_m": 0.0,
+      "project_minus_control_slope_change_m_per_year": -5.5
+    }
+  },
+  "primary_result": {
+    "project_frontage": {
+      "transect_count": 23,
+      "transect_ids": [
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T021",
+        "T022",
+        "T023",
+        "T024",
+        "T025",
+        "T026",
+        "T027",
+        "T028",
+        "T029",
+        "T030",
+        "T031",
+        "T032",
+        "T033",
+        "T034",
+        "T035",
+        "T036",
+        "T038"
+      ],
+      "observation_completeness": 0.983,
+      "median_pre_2017_2023_slope_m_per_year": -1.429,
+      "median_post_2024_2026_slope_m_per_year": 0.0,
+      "median_slope_change_post_minus_pre_m_per_year": 1.429,
+      "median_change_2023_to_2026_m": 0.0,
+      "yearly_median_edge_change_relative_to_2023_m": {
+        "2017": 0.0,
+        "2018": 20.0,
+        "2019": 20.0,
+        "2020": 20.0,
+        "2021": 20.0,
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0,
+        "2026": 0.0
+      },
+      "median_threshold_edge_spread_m": 0.0,
+      "p90_threshold_edge_spread_m": 30.0,
+      "median_single_scene_edge_range_m": 10.0,
+      "p90_single_scene_edge_range_m": 95.0
+    },
+    "pooled_controls": {
+      "transect_count": 15,
+      "transect_ids": [
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047",
+        "T054",
+        "T055",
+        "T056",
+        "T057",
+        "T058",
+        "T049",
+        "T050",
+        "T051",
+        "T052",
+        "T053"
+      ],
+      "observation_completeness": 0.927,
+      "median_pre_2017_2023_slope_m_per_year": -2.286,
+      "median_post_2024_2026_slope_m_per_year": 0.0,
+      "median_slope_change_post_minus_pre_m_per_year": 2.286,
+      "median_change_2023_to_2026_m": 0.0,
+      "yearly_median_edge_change_relative_to_2023_m": {
+        "2017": -455.0,
+        "2018": 10.0,
+        "2019": 10.0,
+        "2020": 10.0,
+        "2021": 10.0,
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0,
+        "2025": 0.0,
+        "2026": 0.0
+      },
+      "median_threshold_edge_spread_m": 0.0,
+      "p90_threshold_edge_spread_m": 240.0,
+      "median_single_scene_edge_range_m": 10.0,
+      "p90_single_scene_edge_range_m": 248.0
+    },
+    "project_minus_control_change_2023_2026_m": 0.0,
+    "project_minus_control_slope_change_m_per_year": -0.857
+  },
+  "robustness": {
+    "net_contrast_sign_across_thresholds": "MIXED_OR_ZERO",
+    "net_contrast_values_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "slope_change_contrast_values_m_per_year": [
+      -1.572,
+      -0.857,
+      -5.5
+    ],
+    "net_contrast_range_m": [
+      0.0,
+      0.0
+    ],
+    "empirical_edge_instability_floor_m": 10.0,
+    "empirical_edge_instability_definition": "max of 10 m native pixel size, project median threshold edge spread, and project median single-scene edge range",
+    "note": "Project-minus-control sign changes or reaches zero across tested NDVI thresholds; interpretation is threshold-sensitive."
+  },
+  "evidence_status": {
+    "waterline_role": "SUPPORTING_SENSITIVITY_CONTEXT_ONLY",
+    "vegetation_edge_role": "PRIMARY_SATELLITE_SCREENING_INDICATOR",
+    "known_control_intervention_exclusion": "USER_CONFIRMED",
+    "control_physical_setting": "SATELLITE_SCREENED_NOT_FIELD_VERIFIED",
+    "field_or_uav_validation": "PENDING",
+    "species_classification": "NOT_AVAILABLE_FROM_THIS_10M_NDVI_METHOD",
+    "claim_status": "VEGETATION_EDGE_COMPARATIVE_SCREENING_ONLY_NOT_CAUSAL_IMPACT_CLAIM"
+  },
+  "interpretation_limits": [
+    "A positive seaward vegetation-edge signal can be consistent with vegetation establishment but does not by itself prove that planted mangroves caused erosion reduction.",
+    "Young or sparse seedlings may occupy less than a 10 m Sentinel-2 pixel and can be missed even when alive.",
+    "NDVI can respond to canopy density, phenology, wet background and mixed pixels; threshold and scene sensitivity are therefore reported.",
+    "Use UAV/field/orthophoto evidence to confirm that the detected edge is mangrove and to validate sub-pixel or sparse planting areas."
+  ]
+}
