@@ -1,144 +1,251 @@
-# Surat Thani 37-STC coastal-erosion pilot
+# Surat Thani 37-STC coastal-erosion / mangrove monitoring pilot
 
-This branch applies the tested Samut Songkhram free-data workflow to **37-STC**, Ban Lamet, Lamet Subdistrict, Chaiya District, Surat Thani.
+This branch applies the Samut Songkhram free-data workflow to **37-STC**, Ban Lamet, Lamet Subdistrict, Chaiya District, Surat Thani, and then extends it with a primary 10 m vegetation-edge analysis, in-plot establishment monitoring, tide sensitivity, controls, and a conservative Sentinel-1 corroboration layer.
 
 ## Grounded project inputs
-- **Primary/current PDD boundary: 157.55 rai** (`SHP PDD`); EPSG:32647 cross-check = **157.56 rai**. This is the smaller boundary and is used for primary analysis.
-- Historical/reference record: **200.05 rai** (`ยืนยันกรม`); supplied polygon computes to about **196.21 rai**. It is kept for boundary history/reference only.
+- **Primary/current PDD boundary: 157.55 rai** (`SHP PDD`), about **25.21 ha**; this smaller/current boundary is used for primary analysis.
+- Historical/reference record: **200.05 rai** (`ยืนยันกรม`); kept for boundary history/reference only.
 - **Representative intervention date: 2023-10-18**, using planting end as the before/after cutoff.
-- February-April 2023 imagery is therefore **pre-intervention**; post-intervention seasonal comparisons begin in 2024.
-- Species/counts: โกงกางใบใหญ่ 100,000; โกงกางใบเล็ก 40,000; ลำพู 2,232; total **142,232 seedlings**.
+- February-April 2023 imagery is **pre-intervention**; post-intervention seasonal comparisons begin in 2024.
+- Planting records: โกงกางใบใหญ่ 100,000; โกงกางใบเล็ก 40,000; ลำพู 2,232; total **142,232 seedlings**.
 
-## Geometry
-- `data/aoi/surat_thani_37_stc_current_aoi.geojson` — primary 157.55-rai project polygon.
+## Current evidence hierarchy
+1. **10 m coastal vegetation edge proxy — primary satellite screening indicator.**
+2. **In-plot Sentinel-2 NDVI / green fraction — planting-establishment monitoring signal.**
+3. **Bank or stable geomorphic edge — preferred where a high-resolution/UAV edge can be manually validated; not automated from the current free 10 m data.**
+4. **Waterline — supporting/context only.** It failed the current scene/tide robustness test.
+5. **Sentinel-1 GRD — independent relative corroboration only.** It is not used as calibrated biomass or absolute backscatter evidence.
+
+The evidence stack is deliberately separated so a positive vegetation signal cannot be misreported as proof of erosion reduction.
+
+## Geometry and analytical coast
+- `data/aoi/surat_thani_37_stc_current_aoi.geojson` — primary 157.55-rai PDD polygon.
 - `data/aoi/surat_thani_37_stc_boundaries.geojson` — current and historical/reference versions.
 - `data/aoi/surat_thani_37_stc_analysis_aoi.geojson` — derived 2-km surrounding-coast analysis envelope; **not** a project boundary.
 
+The full coastal MVP contains **58 transects**. Project-frontage screening uses transects intersecting/passing within 150 m of the current PDD. Three no-known-intervention control windows use:
+- rank 1: T043-T047, ~896 m from PDD;
+- rank 2: T054-T058, ~1,648 m;
+- rank 3: T049-T053, ~1,248 m.
+
+On **2026-08-31** the user confirmed that these control windows have no known mangrove planting during the intervention/post period, no new seawall/breakwater/bamboo fence or other coastal-protection structure, no dredging/embankment/channel intervention, and no other known materially different intervention. The record is `data/analysis/surat_thani/control_verification.json`.
+
+Physical coastal-setting equivalence is still satellite-screened rather than field-verified, so these are appropriate for comparative screening but not yet a causal counterfactual.
+
 ## Satellite catalogs
-The catalog workflow runs the common tested downloader against the Surat analytical AOI. The implementation currently uses **Microsoft Planetary Computer** for Sentinel-2 L2A, Landsat C2 L2, and Sentinel-1 GRD.
+The implementation currently uses **Microsoft Planetary Computer** for Sentinel-2 L2A, Landsat C2 L2, and Sentinel-1 GRD.
 
 Latest QA-passed catalogs:
 - Sentinel-2: **44 selected scenes / 44 selected dates**, 2016-01-13 to 2026-04-30.
 - Landsat: **235 selected scenes / 235 selected dates**, 1987-12-09 to 2026-05-26.
 - Sentinel-1: **262 selected scenes / 229 selected dates**, 2015-03-02 to 2026-08-27.
 
-Summary: `data/analysis/surat_thani/catalog_summary.json`
+Catalog summary: `data/analysis/surat_thani/catalog_summary.json`
 
-Run:
-```bash
-python scripts/download_satellite_data_surat_thani.py sentinel2 --dry-run
-python scripts/download_satellite_data_surat_thani.py landsat --dry-run
-python scripts/download_satellite_data_surat_thani.py sentinel1 --dry-run
-```
+---
 
-## Coastal-change MVP
-The bounded optical MVP has been built and QA-passed with:
-- **14 epochs**: long-term Landsat context plus annual/seasonal Sentinel-2 through 2026.
-- **58 transects** over the surrounding Chaiya coast.
-- automated MNDWI-derived water-land boundary proxies;
-- NDVI coastal-vegetation proxies;
-- browser-ready imagery, boundaries, transects and statistics under `web/public/data/surat_thani/`.
+# 1. Primary satellite result: 10 m coastal vegetation edge
 
-The full-coast output is intentionally broader than the project plot. To avoid presenting surrounding coastline as if it were 37-STC, a separate frontage screen selects transects that intersect or pass within 150 m of the current 157.55-rai PDD polygon.
+Outputs:
+- `data/analysis/surat_thani/mangrove_edge_proxy_screening.json`
+- `web/public/data/surat_thani/mangrove_edge_proxy_screening.json`
+- `web/public/data/surat_thani/coastal_vegetation_edge_transects.geojson`
+- `web/public/data/surat_thani/coastal_vegetation_edge_points.geojson`
 
-### 37-STC frontage screen — baseline three-scene composites
-`web/public/data/surat_thani/project_frontage_summary.json`
+Method:
+- Sentinel-2 B4/B8 at **native 10 m**;
+- three cloud/SCL-masked February-April scenes per year, 2017-2026;
+- annual median NDVI surface;
+- no MNDWI water mask and no waterline in edge detection;
+- fixed inland-to-seaward coastal transects;
+- edge = seaward-most persistent high-NDVI run of at least 30 m;
+- primary NDVI threshold **0.32**;
+- sensitivity thresholds **0.28 / 0.32 / 0.36**;
+- single-scene edge range is retained as an instability diagnostic.
 
-Baseline first-pass results:
-- **23 / 58 transects** selected near the current PDD polygon.
-- median image-derived boundary position fell from **+3.16 m (2023)** to **-2.68 m (2026)** relative to the 2026 reference geometry.
-- median apparent 2023→2026 change across selected transects: **-4.45 m** (positive direction = seaward).
-- median per-transect pre-intervention slope, 2017-2023: **-2.10 m/year**.
-- median per-transect post-period slope, 2024-2026: approximately **0.00 m/year**.
-- selected-transect long-term classes from the MVP: 12 apparent erosion, 9 stable, 2 apparent accretion.
+The term **coastal vegetation edge proxy** is intentional. Sentinel-2 10 m cannot by itself confirm that every detected high-NDVI pixel is planted mangrove.
 
-The apparent slowing after 2023 was a screening signal only. Annual median positions were not monotonic (2024 -1.15 m, 2025 +3.84 m, 2026 -2.68 m), motivating the tide-stage sensitivity test below.
+### Primary threshold 0.32
+Project frontage (23 transects):
+- observation completeness: **98.3%**;
+- median pre-2017→2023 edge slope: **-1.429 m/year**;
+- median post-2024→2026 slope: **0.000 m/year**;
+- median 2023→2026 edge change: **0.0 m**.
 
-## Control/reference comparison
-The satellite pretrend screen selected three spatially separated reference windows outside the current PDD neighbourhood:
-- rank 1: T043-T047, median distance about 896 m from the PDD;
-- rank 2: T054-T058, median distance about 1,648 m;
-- rank 3: T049-T053, median distance about 1,248 m.
+Pooled controls (15 transects):
+- observation completeness: **92.7%**;
+- median pre slope: **-2.286 m/year**;
+- median post slope: **0.000 m/year**;
+- median 2023→2026 edge change: **0.0 m**.
 
-On **2026-08-31**, the project user confirmed for these selected control windows that there was **no mangrove planting during the intervention/post period, no new seawall/breakwater/bamboo fence or other coastal-protection structure, no dredging/embankment/channel intervention, and no other known materially different intervention**. This confirmation is recorded in `data/analysis/surat_thani/control_verification.json`.
+Project minus control:
+- 2023→2026 net edge-change contrast: **0.0 m**;
+- slope-change contrast: **-0.857 m/year**.
 
-The baseline treatment-control comparative screening is in `data/analysis/surat_thani/comparative_screening.json` and `web/public/data/surat_thani/comparative_screening.json`.
+Across all three NDVI thresholds, the 2023→2026 project-minus-control net contrast is **0.0 m / 0.0 m / 0.0 m**. The empirical edge-instability floor is at least **10 m**, and the project single-scene edge range has median ~10 m with p90 ~95 m.
 
-Baseline descriptive results:
-- 37-STC frontage median pre slope: **-2.102 m/year**; post slope: **~0.000 m/year**; post-minus-pre change: **+2.102 m/year**.
-- pooled 15 control transects median pre slope: **-1.263 m/year**; post slope: **+1.625 m/year**; post-minus-pre change: **+2.888 m/year**.
-- project-minus-control slope-change contrast: **-0.786 m/year**.
-- 2023→2026 apparent boundary change: project **-4.45 m**, pooled controls **0.00 m**; project-minus-control contrast **-4.45 m**.
+### Interpretation
+**No project-relative seaward advance of the persistent coastal-vegetation edge is detectable at the 10 m Sentinel-2 scale from 2023 to 2026.**
 
-In the baseline three-scene composite, the apparent post-2023 slowing was therefore **not stronger at the project frontage than in the selected no-known-intervention controls**.
+This does **not** mean the planting failed. Young/sparse seedlings can be alive and growing while occupying too little of a 10×10 m pixel to create a stable high-NDVI edge shift.
 
-## Ko Prap tide reference and 2024-2025 URL recovery
-Use **Ko Prap / เกาะปราบ, station 466**, coordinates **09°15′54″N, 99°26′04″E** (WGS84), about **23.96 km** from the current project-boundary centroid, as a supporting tide-screening reference. It is not an in-plot water-level gauge.
+---
 
-Two official 2026 Royal Thai Navy Hydrographic Department tables establish the datum treatment:
-- `KP2026.pdf` — hourly predictions above **Lowest Low Water / chart datum**.
-- `KP2026msl.pdf` — hourly predictions above **Mean Sea Level (MSL)**.
-- official comparison table gives Ko Prap Lowest Low Water as **1.43 m below MSL**.
+# 2. Planting-establishment screening inside the 157.55-rai PDD
 
-The live reproducible 2026 MSL source is:
-`https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf`
+Outputs:
+- `data/analysis/surat_thani/planting_establishment_screening.json`
+- `data/analysis/surat_thani/vegetation_control_windows.geojson`
+- `web/public/data/surat_thani/planting_establishment_screening.json`
+- `web/public/data/surat_thani/vegetation_control_windows.geojson`
 
-The user-supplied ThailandTideTables URL pattern was expanded by changing year/month directly:
-`https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php`
+This analysis asks a different question from shoreline change: **did greenness / green-pixel occupancy inside the planted PDD increase relative to no-known-intervention controls?**
 
-The public pages label their heights as **Chart Datum** and cite World Tides / Royal Thai Navy Hydrographic Department. The website has returned HTTP 403 from GitHub Actions, so CI does not scrape it. Instead, the sourced scene-level values and URLs are committed in:
+Control pseudo-project windows use the median cross-shore span of the PDD where project transects intersect it:
+- median interval ~1497.1 to 1620.7 m along the fixed transects;
+- median cross-shore span **123.6 m**;
+- 20 PDD-crossing transects used;
+- control-window areas: **6.11, 6.10, 6.31 ha**; pooled **18.46 ha**.
+
+Project NDVI metrics:
+- median NDVI 2023: **-0.1065**;
+- 2024: **-0.1237**;
+- 2025: **-0.1080**;
+- 2026: **-0.1072**.
+
+Project green-pixel fraction at NDVI ≥ 0.32:
+- 2023: **1.43%**;
+- 2024: **1.55%**;
+- 2025: **2.18%**;
+- 2026: **2.30%**.
+
+Project-vs-control 2026 minus 2023:
+- median-NDVI DID-like descriptive contrast: **+0.0061**;
+- NDVI ≥ 0.32 green-fraction contrast: **+0.0071 = +0.71 percentage points**;
+- sign is **positive at all three tested thresholds 0.28 / 0.32 / 0.36**.
+
+### Interpretation
+There is a **small positive project-relative optical vegetation signal** after 2023. However, its magnitude is within the single-scene variability observed in the project (for example median-NDVI scene ranges ~0.0956 in 2023 and ~0.1142 in 2026).
+
+Correct wording: **small positive monitoring signal**.
+
+Do not convert it into:
+- survival percentage;
+- tree count;
+- species-confirmed mangrove canopy area;
+- proof of erosion reduction.
+
+---
+
+# 3. Waterline baseline and why it was downgraded
+
+The first MNDWI/water-land-boundary MVP used three-scene annual composites. Near the PDD:
+- project median apparent 2023→2026 change: **-4.45 m**;
+- pre-2017→2023 slope: **-2.10 m/year**;
+- post-2024→2026: ~**0.00 m/year**.
+
+Baseline treatment-vs-control:
+- project 2023→2026: **-4.45 m**;
+- pooled controls: **0.00 m**;
+- project minus control: **-4.45 m**.
+
+These are image-derived wet/dry boundaries, not surveyed shorelines.
+
+## Ko Prap tide context
+Use **Ko Prap / เกาะปราบ, station 466**, coordinates **09°15′54″N, 99°26′04″E**, about **23.96 km** from the project centroid, only as a supporting tide reference.
+
+Key datum/source handling:
+- official 2026 RTN hourly MSL: **8,760 hourly values**;
+- official 2026 comparison gives Lowest Low Water **1.43 m below MSL**;
+- user-supplied ThailandTideTables URL pattern is preserved for year/month lookup;
+- public ThailandTideTables heights are treated as **Chart Datum**, not silently converted to MSL;
+- every selected 2023-2026 Sentinel-2 MVP scene now has at least tide stage/direction context;
+- 2024 has scene-level indexed RTN MSL values;
+- 2025 has public extrema phase context but no directly sourced comparable MSL series.
+
+Products:
 - `data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026.csv`
 - `data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026_manifest.json`
+- `web/public/data/surat_thani/tide_context.json`
 
-Scene-level context now covers all selected 2023-2026 Sentinel-2 MVP scenes:
-- **2023:** all three scenes are rising; relative phases 0.5354, 0.3558, 0.7138 from preserved RTN extrema context.
-- **2024:** official indexed RTN MSL content gives approximately **+0.825 m MSL** on 25 Feb (rising), **+0.641 m MSL** on 21 Mar (near high/early falling), and **+0.300 m MSL** on 20 Apr (falling). The historical 2024 PDF URL is no longer live, so provenance is explicitly marked indexed/non-live.
-- **2025:** ThailandTideTables extrema give 14 Feb rising phase **0.8502**, 16 Mar rising phase **0.6042**, and 7 Apr falling phase **0.4189**. Heights remain Chart Datum and are **not** silently converted to MSL.
-- **2026:** the official hourly RTN MSL catalog contains 8,760 values. The three selected scenes match approximately **+1.038**, **-0.441**, and **-0.100 m MSL**; public extrema also provide stage/phase context.
+## Tide-stage sensitivity test
+A secondary single-scene analysis selected approximately comparable rising-stage scenes:
+- 2023-02-10: rising, phase 0.5354;
+- 2024-02-25: rising, ~+0.825 m MSL, relative phase unresolved;
+- 2025-03-16: rising, phase 0.6042;
+- 2026-04-05: rising, phase 0.3776, ~-0.441 m MSL.
 
-The web tide gate is now **SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL**: every selected 2023-2026 scene has at least stage/direction context, while 2025 still lacks a directly sourced comparable MSL series. This is better than the previous missing-2024/2025 state but is still not a fully MSL-normalized shoreline series.
-
-## Tide-stage constrained sensitivity test
-To test whether mixed tide states were driving the baseline waterline result, a **secondary single-scene sensitivity run** was added without overwriting the baseline. The selection target is the pre-intervention 2023 rising-tide median phase (**0.5354**).
-
-Selected scenes:
-- 2023-02-10 — rising, phase **0.5354**;
-- 2024-02-25 — rising, official RTN scene level about **+0.825 m MSL**; relative extrema phase unresolved;
-- 2025-03-16 — rising, phase **0.6042**;
-- 2026-04-05 — rising, phase **0.3776**, official scene level about **-0.441 m MSL**.
-
-Selection and outputs:
-- `data/analysis/surat_thani/tide_matched_scene_selection.json`
-- `data/processed/surat_thani_tide_matched/`
-- `web/public/data/surat_thani/tide_matched/`
-- `data/analysis/surat_thani/tide_matched_sensitivity_summary.json`
-- `web/public/data/surat_thani/tide_matched_sensitivity_summary.json`
-
-### Sensitivity result — waterline is not robust
-The single-scene tide-stage-constrained run gives:
-- project frontage: **+23.43 m** apparent 2023→2026 movement;
+Result:
+- project 2023→2026: **+23.43 m**;
 - pooled controls: **-3.15 m**;
-- project-minus-control contrast: **+26.58 m**;
-- post-2024→2026 median slope: project **+16.18 m/year**, pooled controls **+5.315 m/year**.
+- project minus control: **+26.58 m**.
 
-This is the **opposite sign** of the baseline three-scene result, where project-minus-control 2023→2026 was **-4.45 m**. The sensitivity shift in that contrast is **+31.03 m**.
+The baseline project-minus-control was **-4.45 m**, so the result shifted by **+31.03 m and reversed sign**.
 
-This sign reversal is more important than either individual number. It demonstrates that the automated spectral wet/dry boundary is **highly sensitive to scene/tide/spectral selection** at this muddy intertidal coast. Therefore the waterline indicator fails the robustness test for an impact claim. Neither the baseline negative contrast nor the tide-stage positive contrast should be presented as evidence that planting increased or reduced erosion.
+### Interpretation
+This sign reversal demonstrates that the automated wet/dry boundary is too sensitive to scene/tide/spectral selection to support a planting-impact claim on this muddy intertidal coast.
 
-The correct use of waterline from this pipeline is now **supporting/contextual screening only**. The next primary analytical effort should move to **mangrove edge** and **bank edge where visible**, followed by UAV/field validation.
+**Waterline is therefore permanently downgraded in this pilot to supporting/contextual evidence unless a future method passes a much stronger robustness test.**
 
-## Interpretation hierarchy
-1. Prefer **mangrove edge** as the primary image indicator.
-2. Use **bank edge** as primary where clearly visible.
-3. Use **waterline** only as supporting/contextual evidence; it has failed the current scene-selection robustness test.
-4. Keep automated spectral boundaries labelled **image-derived**, never surveyed shoreline.
-5. The selected controls have user-confirmed absence of known intervention, but do not make a planting-impact claim until physical-setting review, uncertainty checks and UAV/field validation are complete.
+---
 
-## What remains before an impact claim
-- manually/orthophoto extract and validate **mangrove edge** or **bank edge** using repeated comparable imagery;
-- verify physical coastal-setting comparability of the three selected control windows;
-- add UAV or field validation at 37-STC and preferably controls;
-- estimate positional uncertainty for mangrove/bank edge and test threshold/manual-digitizing sensitivity;
-- use tide-matched waterline only as a secondary consistency check, not the main endpoint.
+# 4. Bank / stable geomorphic edge
 
-Until those gates are passed, the correct claim is: **the automated waterline result is not robust to scene/tide selection and cannot support a planting-impact conclusion. The project should be evaluated primarily with mangrove-edge/bank-edge change plus control and field/UAV evidence.**
+A separate automated 10 m bank-edge product is **not** being created from the current free Sentinel-2 imagery. The soft muddy/intertidal frontage does not show a consistently separable bank edge at that resolution, and automating it would produce a precise-looking but unvalidated line.
+
+Preferred sources:
+- UAV orthomosaic;
+- high-resolution orthophoto;
+- manually reviewed repeat high-resolution imagery.
+
+This is an explicit methodological decision, not a missing software feature.
+
+---
+
+# 5. Sentinel-1 corroboration
+
+The project includes a conservative Sentinel-1 GRD relative diagnostic:
+- same repeated orbit family;
+- project and controls compared **within the same scene**;
+- VV, VH and VH/VV relative metrics;
+- absolute backscatter/biomass interpretation is prohibited because the current data path is Level-1 GRD rather than a publication-grade calibrated RTC workflow.
+
+A first run exposed a seasonal-filter QA issue and was **not used**. The workflow was corrected so final QA requires every selected scene to fall in February-April. Use only the latest same-season QA-passed output:
+- `data/analysis/surat_thani/s1_relative_corroboration.json`
+
+Regardless of its direction, Sentinel-1 remains **corroboration only**, not a replacement for UAV/field validation.
+
+---
+
+# Current integrated conclusion
+
+The evidence now separates four questions:
+
+1. **Did the project show a 10 m-scale coastal vegetation-edge advance?** — No detectable project-relative 2023→2026 advance.
+2. **Did the planted PDD show a vegetation-establishment signal relative to controls?** — Yes, a small positive optical signal, but within single-scene variability.
+3. **Does the waterline prove reduced erosion?** — No. It fails the robustness test and reverses sign with scene/tide selection.
+4. **Can the current evidence support a causal erosion-reduction claim?** — **No.** UAV/high-resolution edge validation and field evidence are still required.
+
+Recommended current language:
+
+> ข้อมูลดาวเทียมพบสัญญาณการเพิ่มขึ้นของความเขียวภายในแปลง 37-STC เล็กน้อยเมื่อเทียบกับพื้นที่อ้างอิง แต่ยังไม่พบการขยายตัวของขอบพืชในระดับความละเอียด 10 เมตร และผล waterline มีความไวต่อระดับน้ำ/การเลือกภาพสูง จึงยังไม่สามารถสรุปว่าการปลูกช่วยลดการกัดเซาะชายฝั่งได้โดยตรง จำเป็นต้องยืนยันด้วย UAV/ภาพความละเอียดสูงและข้อมูลภาคสนาม
+
+## Next evidence ranked by value
+1. **UAV / orthophoto**: validate mangrove canopy, sparse seedlings, and actual mangrove edge inside/front of the PDD.
+2. **Field survival / height / canopy observations**: turn the small optical establishment signal into biological evidence.
+3. **Manual bank/stable geomorphic edge** from high-resolution repeat imagery: provide an erosion endpoint less tide-sensitive than wet/dry waterline.
+4. **Repeat the same Sentinel-2 February-April protocol annually**: young planting may require additional years before a 10 m canopy/edge signal becomes detectable.
+5. **If SAR is needed for publication**, rerun with calibrated RTC/incidence-angle-consistent processing.
+
+## Browser-ready report
+A standalone Surat report is scaffolded at:
+- `web/public/surat-thani-37-stc.html`
+
+It reads the committed JSON evidence stack rather than hard-coding analytical results into the page.
+
+The final machine-readable synthesis is generated as:
+- `data/analysis/surat_thani/executive_summary.json`
+- `web/public/data/surat_thani/executive_summary.json`
+- `regions/surat_thani/EXECUTIVE_SUMMARY_TH.md`
+
+Until the remaining UAV/field/high-resolution validation gates are passed, the correct project status is: **monitoring evidence is improving, but current evidence does not support a causal claim that planting has reduced coastal erosion.**
