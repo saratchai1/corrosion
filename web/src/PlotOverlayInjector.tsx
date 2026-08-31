@@ -84,7 +84,8 @@ export default function PlotOverlayInjector({ scenes }: Props) {
     const zoomReset = document.createElement('button')
     zoomReset.type = 'button'
     zoomReset.className = 'spectral-zoom-reset'
-    zoomReset.setAttribute('aria-label', 'รีเซ็ตการซูมเป็น 100 เปอร์เซ็นต์')
+    zoomReset.setAttribute('aria-label', 'รีเซ็ตการซูมและตำแหน่งภาพ')
+    zoomReset.title = 'กลับ 100% และกึ่งกลางภาพ'
 
     const zoomIn = document.createElement('button')
     zoomIn.type = 'button'
@@ -95,8 +96,21 @@ export default function PlotOverlayInjector({ scenes }: Props) {
     zoomControls.append(zoomOut, zoomReset, zoomIn)
     stage.append(zoomControls)
 
+    const panHint = document.createElement('div')
+    panHint.className = 'spectral-pan-hint'
+    panHint.setAttribute('aria-live', 'polite')
+    stage.append(panHint)
+
     let visible = true
     let zoom = 1
+    let panX = 0
+    let panY = 0
+    let panning = false
+    let panPointerId: number | null = null
+    let panStartClientX = 0
+    let panStartClientY = 0
+    let panStartX = 0
+    let panStartY = 0
 
     const getView = (): 'focus' | 'full' => {
       const buttons = Array.from(compare.querySelectorAll<HTMLButtonElement>('.spectral-view-tabs > button:not(.spectral-overlay-toggle)'))
@@ -126,10 +140,33 @@ export default function PlotOverlayInjector({ scenes }: Props) {
       updateClip()
     }
 
-    const renderZoom = () => {
-      const transform = `scale(${zoom.toFixed(2)})`
+    const clampPan = (nextX: number, nextY: number) => {
+      if (zoom <= MIN_ZOOM + 0.001) return { x: 0, y: 0 }
+      const bounds = stage.getBoundingClientRect()
+      const maxX = Math.max(0, (bounds.width * (zoom - 1)) / 2)
+      const maxY = Math.max(0, (bounds.height * (zoom - 1)) / 2)
+      return {
+        x: Math.max(-maxX, Math.min(maxX, nextX)),
+        y: Math.max(-maxY, Math.min(maxY, nextY)),
+      }
+    }
+
+    const renderTransform = () => {
+      const clamped = clampPan(panX, panY)
+      panX = clamped.x
+      panY = clamped.y
+      const transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0) scale(${zoom.toFixed(2)})`
       beforeLayer.style.transform = transform
       afterLayer.style.transform = transform
+      stage.classList.toggle('spectral-can-pan', zoom > MIN_ZOOM + 0.001)
+      stage.classList.toggle('spectral-is-panning', panning)
+      panHint.textContent = zoom > MIN_ZOOM + 0.001
+        ? 'ลากพื้นภาพเพื่อเลื่อน ซ้าย–ขวา–บน–ล่าง · ลากเส้น ↔ เพื่อเทียบ Before/After'
+        : 'กด + เพื่อซูม แล้วลากพื้นภาพเพื่อเลื่อนตำแหน่ง'
+    }
+
+    const renderZoom = () => {
+      renderTransform()
       zoomReset.textContent = `${Math.round(zoom * 100)}%`
       zoomOut.disabled = zoom <= MIN_ZOOM + 0.001
       zoomIn.disabled = zoom >= MAX_ZOOM - 0.001
@@ -137,6 +174,17 @@ export default function PlotOverlayInjector({ scenes }: Props) {
 
     const setZoom = (next: number) => {
       zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, Math.round(next * 4) / 4))
+      if (zoom <= MIN_ZOOM + 0.001) {
+        panX = 0
+        panY = 0
+      }
+      renderZoom()
+    }
+
+    const resetView = () => {
+      zoom = 1
+      panX = 0
+      panY = 0
       renderZoom()
     }
 
@@ -174,8 +222,62 @@ export default function PlotOverlayInjector({ scenes }: Props) {
     })
     zoomReset.addEventListener('click', (event) => {
       event.preventDefault()
-      setZoom(1)
+      resetView()
     })
+
+    const isInteractiveTarget = (target: EventTarget | null) => {
+      if (!(target instanceof Element)) return false
+      return Boolean(target.closest(
+        '.spectral-divider, .spectral-zoom-controls, .spectral-year-label, .spectral-location-note, .spectral-pan-hint',
+      ))
+    }
+
+    const onPanPointerDown = (event: PointerEvent) => {
+      if (zoom <= MIN_ZOOM + 0.001 || isInteractiveTarget(event.target)) return
+      if (event.button !== 0 && event.pointerType === 'mouse') return
+
+      panning = true
+      panPointerId = event.pointerId
+      panStartClientX = event.clientX
+      panStartClientY = event.clientY
+      panStartX = panX
+      panStartY = panY
+      stage.setPointerCapture(event.pointerId)
+      renderTransform()
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    const onPanPointerMove = (event: PointerEvent) => {
+      if (!panning || event.pointerId !== panPointerId) return
+      const next = clampPan(
+        panStartX + (event.clientX - panStartClientX),
+        panStartY + (event.clientY - panStartClientY),
+      )
+      panX = next.x
+      panY = next.y
+      renderTransform()
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    const endPan = (event: PointerEvent) => {
+      if (!panning || event.pointerId !== panPointerId) return
+      panning = false
+      panPointerId = null
+      if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId)
+      renderTransform()
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    stage.addEventListener('pointerdown', onPanPointerDown, true)
+    stage.addEventListener('pointermove', onPanPointerMove, true)
+    stage.addEventListener('pointerup', endPan, true)
+    stage.addEventListener('pointercancel', endPan, true)
+
+    const onResize = () => renderTransform()
+    window.addEventListener('resize', onResize)
 
     const scheduleUpdate = () => window.setTimeout(updateSources, 0)
     compare.addEventListener('change', scheduleUpdate)
@@ -192,6 +294,12 @@ export default function PlotOverlayInjector({ scenes }: Props) {
       observer.disconnect()
       compare.removeEventListener('change', scheduleUpdate)
       compare.removeEventListener('click', scheduleUpdate)
+      window.removeEventListener('resize', onResize)
+      stage.removeEventListener('pointerdown', onPanPointerDown, true)
+      stage.removeEventListener('pointermove', onPanPointerMove, true)
+      stage.removeEventListener('pointerup', endPan, true)
+      stage.removeEventListener('pointercancel', endPan, true)
+      stage.classList.remove('spectral-can-pan', 'spectral-is-panning')
       for (const type of ['pointerdown', 'pointermove', 'pointerup', 'click'] as const) {
         zoomControls.removeEventListener(type, stopSliderEvent)
       }
@@ -202,6 +310,7 @@ export default function PlotOverlayInjector({ scenes }: Props) {
       beforeClip.remove()
       toggle.remove()
       zoomControls.remove()
+      panHint.remove()
     }
   }, [scenes])
 
