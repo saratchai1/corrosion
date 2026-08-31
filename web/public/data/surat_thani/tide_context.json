@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-31T14:06:40.533581+00:00",
+  "generated_at_utc": "2026-08-31T14:58:46.445139+00:00",
   "plot_code": "37-STC",
   "station": {
     "name": "Ko Prap",
@@ -14,27 +14,41 @@
   "datum_relationship": {
     "lowest_low_water_below_mean_sea_level_m": 1.43,
     "source": "Royal Thai Navy 2026 Tide Tables",
-    "warning": "Do not mix LLW and MSL heights without an explicit datum treatment."
+    "warning": "Do not mix Chart Datum/LLW and MSL heights without an explicit datum treatment. The 2025 public extrema are kept as stage context and are not converted to MSL."
+  },
+  "public_monthly_url_templates": {
+    "english": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-{year}-{month:02d}-466.php",
+    "thai_user_supplied_pattern": "https://www.thailandtidetables.com/ไทย/ตารางน้ำขึ้นน้ำลง-เกาะปราบ-สุราษฎร์ธานี-ปี-{year}-{month:02d}-466.php"
   },
   "coverage": {
     "2023": {
       "status": "OFFICIAL_EXTREMA_PHASE_FOR_SELECTED_SCENES",
-      "datum": "LOWEST_LOW_WATER",
       "selected_scene_count": 3,
+      "phase_resolved_count": 3,
       "numeric_height_use": "NO_CROSS_YEAR_MSL_COMPARISON",
       "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf"
     },
     "2024": {
-      "status": "HOURLY_MSL_NOT_YET_REPRODUCIBLY_AVAILABLE"
+      "status": "SCENE_LEVEL_OFFICIAL_RTN_MSL_WITH_PARTIAL_EXTREMA_PHASE",
+      "selected_scene_count": 3,
+      "msl_resolved_count": 3,
+      "phase_resolved_count": 1,
+      "datum": "MSL for official hourly scene values; Chart Datum only where public extrema are cited",
+      "archive_status": "official historical PDF URL is non-live; indexed RTN content retained with explicit provenance"
     },
     "2025": {
-      "status": "HOURLY_MSL_NOT_YET_REPRODUCIBLY_AVAILABLE"
+      "status": "PUBLIC_EXTREMA_STAGE_PHASE_FOR_SELECTED_SCENES",
+      "selected_scene_count": 3,
+      "phase_resolved_count": 3,
+      "extrema_datum": "CHART_DATUM",
+      "numeric_height_use": "STAGE_CONTEXT_ONLY_NO_MSL_CONVERSION"
     },
     "2026": {
-      "status": "OFFICIAL_HOURLY_MSL_MATCHED",
-      "datum": "MSL",
+      "status": "OFFICIAL_HOURLY_MSL_PLUS_PUBLIC_EXTREMA_PHASE",
+      "datum": "MSL for official hourly scene values; Chart Datum for public extrema timing",
       "hourly_rows": 8760,
       "matched_selected_sentinel2_scenes": 3,
+      "phase_resolved_count": 3,
       "source_url": "https://hydro.navy.mi.th/storage/frontend/article/23019/file/th/KP2026msl.pdf"
     }
   },
@@ -45,58 +59,208 @@
         "acquisition_datetime_bangkok": "2023-02-10T10:38:59.024000+07:00",
         "stage": "RISING",
         "phase_0_1": 0.5354,
+        "phase_status": "OFFICIAL_EXTREMA_PHASE",
         "previous_extrema_datetime_bangkok": "2023-02-10T06:37:00+07:00",
         "next_extrema_datetime_bangkok": "2023-02-10T14:09:00+07:00",
-        "datum": "LOWEST_LOW_WATER"
+        "extrema_datum": "LOWEST_LOW_WATER",
+        "tide_m_msl": null,
+        "msl_method": null,
+        "source_type": "RTN_HISTORICAL_EXTREMA",
+        "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
+        "source_status": "INDEXED_ARCHIVE_NOT_LIVE",
+        "note": "Phase retained from official RTN historical extrema; numeric LLW height is not mixed with MSL."
       },
       {
         "scene_id": "S2B_MSIL2A_20230312T033539_R061_T47PNL_20230312T103608",
         "acquisition_datetime_bangkok": "2023-03-12T10:35:39.025000+07:00",
         "stage": "RISING",
         "phase_0_1": 0.3558,
+        "phase_status": "OFFICIAL_EXTREMA_PHASE",
         "previous_extrema_datetime_bangkok": "2023-03-12T08:29:00+07:00",
         "next_extrema_datetime_bangkok": "2023-03-12T14:25:00+07:00",
-        "datum": "LOWEST_LOW_WATER"
+        "extrema_datum": "LOWEST_LOW_WATER",
+        "tide_m_msl": null,
+        "msl_method": null,
+        "source_type": "RTN_HISTORICAL_EXTREMA",
+        "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
+        "source_status": "INDEXED_ARCHIVE_NOT_LIVE",
+        "note": "Phase retained from official RTN historical extrema; numeric LLW height is not mixed with MSL."
       },
       {
         "scene_id": "S2A_MSIL2A_20230406T033541_R061_T47PNL_20230406T112615",
         "acquisition_datetime_bangkok": "2023-04-06T10:35:41.024000+07:00",
         "stage": "RISING",
         "phase_0_1": 0.7138,
+        "phase_status": "OFFICIAL_EXTREMA_PHASE",
         "previous_extrema_datetime_bangkok": "2023-04-06T06:13:00+07:00",
         "next_extrema_datetime_bangkok": "2023-04-06T12:21:00+07:00",
-        "datum": "LOWEST_LOW_WATER"
+        "extrema_datum": "LOWEST_LOW_WATER",
+        "tide_m_msl": null,
+        "msl_method": null,
+        "source_type": "RTN_HISTORICAL_EXTREMA",
+        "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
+        "source_status": "INDEXED_ARCHIVE_NOT_LIVE",
+        "note": "Phase retained from official RTN historical extrema; numeric LLW height is not mixed with MSL."
+      }
+    ],
+    "2024": [
+      {
+        "scene_id": "S2B_MSIL2A_20240225T033729_R061_T47PNL_20240225T081626",
+        "acquisition_datetime_bangkok": "2024-02-25T10:37:29.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": null,
+        "phase_status": "OFFICIAL_HOURLY_DIRECTION_PHASE_UNRESOLVED",
+        "previous_extrema_datetime_bangkok": null,
+        "next_extrema_datetime_bangkok": null,
+        "extrema_datum": "MSL",
+        "tide_m_msl": 0.82497,
+        "msl_method": "LINEAR_INTERPOLATION_10_TO_11_ICT",
+        "source_type": "RTN_2024_MSL_INDEXED_PDF",
+        "source_url": "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
+        "source_status": "SEARCH_INDEX_CONTENT_ORIGINAL_URL_NOT_LIVE",
+        "note": "Official indexed RTN hourly MSL values for 25 Feb: 10:00=+0.7 m, 11:00=+0.9 m; rising at scene time."
+      },
+      {
+        "scene_id": "S2A_MSIL2A_20240321T033541_R061_T47PNL_20240321T091105",
+        "acquisition_datetime_bangkok": "2024-03-21T10:35:41.024000+07:00",
+        "stage": "FALLING",
+        "phase_0_1": null,
+        "phase_status": "OFFICIAL_HOURLY_DIRECTION_PHASE_UNRESOLVED",
+        "previous_extrema_datetime_bangkok": null,
+        "next_extrema_datetime_bangkok": null,
+        "extrema_datum": "MSL",
+        "tide_m_msl": 0.64053,
+        "msl_method": "LINEAR_INTERPOLATION_10_TO_11_ICT",
+        "source_type": "RTN_2024_MSL_INDEXED_PDF",
+        "source_url": "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
+        "source_status": "SEARCH_INDEX_CONTENT_ORIGINAL_URL_NOT_LIVE",
+        "note": "Official indexed RTN hourly MSL values for 21 Mar: 10:00=+0.7 m, 11:00=+0.6 m; near high/early falling at scene time."
+      },
+      {
+        "scene_id": "S2A_MSIL2A_20240420T033541_R061_T47PNL_20240420T101326",
+        "acquisition_datetime_bangkok": "2024-04-20T10:35:41.024000+07:00",
+        "stage": "FALLING",
+        "phase_0_1": 0.180968,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2024-04-20T09:09:00+07:00",
+        "next_extrema_datetime_bangkok": "2024-04-20T17:08:00+07:00",
+        "extrema_datum": "CHART_DATUM",
+        "tide_m_msl": 0.3,
+        "msl_method": "OFFICIAL_RTN_HOURLY_MSL_10_TO_11_ICT_FLAT",
+        "source_type": "THAILAND_TIDE_TABLES_PLUS_RTN_2024_MSL",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2024-04-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Public extrema establish falling phase; official indexed RTN MSL table gives approximately +0.3 m MSL at 10:35."
+      }
+    ],
+    "2025": [
+      {
+        "scene_id": "S2C_MSIL2A_20250214T033901_R061_T47PNL_20250214T090512",
+        "acquisition_datetime_bangkok": "2025-02-14T10:39:01.025000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.850234,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2025-02-13T21:30:00+07:00",
+        "next_extrema_datetime_bangkok": "2025-02-14T12:58:00+07:00",
+        "extrema_datum": "CHART_DATUM",
+        "tide_m_msl": null,
+        "msl_method": null,
+        "source_type": "THAILAND_TIDE_TABLES",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2025-02-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Scene is on the long rising limb from the previous evening low to the 14 Feb high."
+      },
+      {
+        "scene_id": "S2C_MSIL2A_20250316T033601_R061_T47PNL_20250316T090315",
+        "acquisition_datetime_bangkok": "2025-03-16T10:36:01.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.604211,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2025-03-16T06:44:00+07:00",
+        "next_extrema_datetime_bangkok": "2025-03-16T13:08:00+07:00",
+        "extrema_datum": "CHART_DATUM",
+        "tide_m_msl": null,
+        "msl_method": null,
+        "source_type": "THAILAND_TIDE_TABLES",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2025-03-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Rising phase; closest 2025 scene to the 2023 reference median phase."
+      },
+      {
+        "scene_id": "S2A_MSIL2A_20250407T034201_R061_T47PNL_20250407T083514",
+        "acquisition_datetime_bangkok": "2025-04-07T10:42:01.024000+07:00",
+        "stage": "FALLING",
+        "phase_0_1": 0.418906,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2025-04-07T05:27:00+07:00",
+        "next_extrema_datetime_bangkok": "2025-04-07T17:59:00+07:00",
+        "extrema_datum": "CHART_DATUM",
+        "tide_m_msl": null,
+        "msl_method": null,
+        "source_type": "THAILAND_TIDE_TABLES",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2025-04-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Falling phase; retained as context but not preferred when a rising same-season scene is available."
       }
     ],
     "2026": [
       {
         "scene_id": "S2C_MSIL2A_20260301T033701_R061_T47PNL_20260301T091613",
         "acquisition_datetime_bangkok": "2026-03-01T10:37:01.025000+07:00",
+        "stage": "FALLING",
+        "phase_0_1": 0.07491,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2026-03-01T09:49:00+07:00",
+        "next_extrema_datetime_bangkok": "2026-03-01T20:30:00+07:00",
+        "extrema_datum": "CHART_DATUM",
         "tide_m_msl": 1.038,
-        "match_method": "linear_between_predictions",
-        "datum": "MSL"
+        "msl_method": "OFFICIAL_RTN_HOURLY_MSL_INTERPOLATION",
+        "source_type": "THAILAND_TIDE_TABLES_PLUS_RTN_2026_MSL",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2026-03-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Very early falling limb; exact MSL comes from official 2026 hourly RTN table."
       },
       {
         "scene_id": "S2B_MSIL2A_20260405T033539_R061_T47PNL_20260405T072236",
         "acquisition_datetime_bangkok": "2026-04-05T10:35:39.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.377576,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2026-04-05T08:42:00+07:00",
+        "next_extrema_datetime_bangkok": "2026-04-05T13:43:00+07:00",
+        "extrema_datum": "CHART_DATUM",
         "tide_m_msl": -0.441,
-        "match_method": "linear_between_predictions",
-        "datum": "MSL"
+        "msl_method": "OFFICIAL_RTN_HOURLY_MSL_INTERPOLATION",
+        "source_type": "THAILAND_TIDE_TABLES_PLUS_RTN_2026_MSL",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2026-04-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Rising phase and closest 2026 rising scene to the 2023 reference phase among current MVP scenes."
       },
       {
         "scene_id": "S2C_MSIL2A_20260430T033541_R061_T47PNL_20260430T081812",
         "acquisition_datetime_bangkok": "2026-04-30T10:35:41.025000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.916725,
+        "phase_status": "EXTREMA_PHASE_PUBLIC_TABLE",
+        "previous_extrema_datetime_bangkok": "2026-04-30T06:08:00+07:00",
+        "next_extrema_datetime_bangkok": "2026-04-30T11:00:00+07:00",
+        "extrema_datum": "CHART_DATUM",
         "tide_m_msl": -0.1,
-        "match_method": "linear_between_predictions",
-        "datum": "MSL"
+        "msl_method": "OFFICIAL_RTN_HOURLY_MSL_INTERPOLATION",
+        "source_type": "THAILAND_TIDE_TABLES_PLUS_RTN_2026_MSL",
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2026-04-466.php",
+        "source_status": "PUBLIC_PAGE_ACCESSIBLE",
+        "note": "Late rising limb close to high water; exact MSL comes from official 2026 hourly RTN table."
       }
     ]
   },
   "waterline_gate": {
-    "status": "PARTIAL_TIDE_CONTEXT_ONLY",
-    "reason": "2023 selected scenes have official LLW tide phase and 2026 selected scenes have official hourly MSL; reproducible hourly MSL is still missing for 2024-2025.",
-    "allowed_claim": "Use tide context to screen image-derived waterline observations.",
+    "status": "SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL",
+    "reason": "All selected 2023-2026 Sentinel-2 scenes now have at least tide-stage/direction context. 2024 and 2026 have scene-level official MSL values; 2025 has sourced Chart-Datum extrema phase only, so the series is still not fully MSL-normalized.",
+    "allowed_claim": "Use scene-level tide stage to screen/reselect image-derived waterline observations and run a tide-stage sensitivity analysis.",
     "not_allowed_claim": "Do not call the 2023-2026 waterline series fully tide-normalized or attribute shoreline change to planting from tide metadata alone."
   },
-  "primary_indicator_note": "Mangrove edge and bank edge remain primary where visible; waterline is supporting only."
+  "primary_indicator_note": "Mangrove edge and bank edge remain primary where visible; waterline is supporting only.",
+  "provenance_note": "ThailandTideTables station 466 pages label heights as Chart Datum and cite World Tides / Royal Thai Navy Hydrographic Department. CI does not scrape the site; sourced scene-level values are committed with provenance.",
+  "legacy_2023_phase_row_count": 3
 }

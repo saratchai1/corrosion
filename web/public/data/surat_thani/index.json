@@ -2,7 +2,7 @@
   "title": "Surat Thani 37-STC Coastal Change MVP",
   "aoi": "37-STC and surrounding Chaiya coast (derived analytical AOI)",
   "analysis_crs": "EPSG:32647",
-  "tide_status": "unverified",
+  "tide_status": "scene_level_tide_context_partial_msl",
   "disclaimer_th": "เส้นที่แสดงเป็นขอบเขตน้ำ–แผ่นดินจากภาพดาวเทียม ไม่ใช่เส้นชายฝั่งจริงหรือผลสำรวจ และยังไม่ได้ปรับแก้ระดับน้ำขึ้นน้ำลง",
   "disclaimer_en": "Displayed lines are image-derived water-land boundaries, not surveyed shorelines, and are not tide-normalized.",
   "epochs": [
@@ -553,13 +553,14 @@
     }
   ],
   "tide_context_file": "tide_context.json",
-  "tide_context_status": "PARTIAL_TIDE_CONTEXT_ONLY",
-  "tide_context_note": "2023 selected scenes have official LLW tide phase and 2026 selected scenes have official hourly MSL; reproducible hourly MSL is still missing for 2024-2025.",
+  "tide_context_status": "SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL",
+  "tide_context_note": "All selected 2023-2026 Sentinel-2 scenes now have at least tide-stage/direction context. 2024 and 2026 have scene-level official MSL values; 2025 has sourced Chart-Datum extrema phase only, so the series is still not fully MSL-normalized.",
   "project_frontage_summary_file": "project_frontage_summary.json",
   "project_frontage_transects_file": "project_frontage_transects.geojson",
   "project_frontage_scope": "37-STC current PDD boundary, 157.55 rai, transects within 150 m",
   "control_candidates_file": "control_candidates.json",
   "control_candidates_status": "PROVISIONAL_UNVERIFIED",
   "comparative_screening_file": "comparative_screening.json",
-  "comparative_screening_status": "TREATMENT_CONTROL_SCREENING_WITH_USER_CONFIRMED_NO_KNOWN_CONTROL_INTERVENTIONS"
+  "comparative_screening_status": "TREATMENT_CONTROL_SCREENING_WITH_USER_CONFIRMED_NO_KNOWN_CONTROL_INTERVENTIONS",
+  "tide_disclaimer": "Scene-level tide stage is available for 2023-2026, but the water-land boundary series is not fully MSL-normalized; waterline remains supporting evidence."
 }
