@@ -1,0 +1,117 @@
+name: Surat Thani tide-stage matched sensitivity
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026.csv
+      - data/tide/surat_thani/ko_prap_selected_scene_stage_2023_2026_manifest.json
+      - scripts/build_surat_thani_tide_matched_scene_selection.py
+      - scripts/build_surat_thani_tide_matched_coastal_change.py
+      - scripts/build_surat_thani_tide_matched_sensitivity_summary.py
+      - data/analysis/surat_thani/control_candidates.json
+      - data/analysis/surat_thani/control_verification.json
+      - data/aoi/surat_thani_37_stc_*.geojson
+      - .github/workflows/surat-thani-tide-matched-sensitivity.yml
+
+permissions:
+  contents: write
+
+jobs:
+  tide-matched:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install geospatial dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download the bounded 2023-2026 MVP source scenes
+        run: python -u scripts/download_surat_thani_mvp_epochs.py --epochs 2023,2024,2025,2026
+
+      - name: Select tide-stage constrained scenes
+        run: python -u scripts/build_surat_thani_tide_matched_scene_selection.py
+
+      - name: QA scene selection
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/tide_matched_scene_selection.json').read_text(encoding='utf-8'))
+          rows = list(csv.DictReader(Path('data/catalog/surat_thani_tide_matched_optical_scenes.csv').open(encoding='utf-8')))
+          assert [r['year'] for r in p['selected_scenes']] == [2023, 2024, 2025, 2026], p
+          assert len(rows) == 4, len(rows)
+          assert all(r['stage'] == 'RISING' for r in p['selected_scenes']), p['selected_scenes']
+          assert p['selected_scenes'][1]['match_strength'] == 'DIRECTION_ONLY_PHASE_UNRESOLVED', p['selected_scenes'][1]
+          assert all(r.get('local_path') for r in rows), rows
+          print({'target_phase': p['reference']['target_phase_0_1'], 'selected': [(r['year'], r['scene_id'], r['phase_0_1']) for r in p['selected_scenes']]})
+          PY
+
+      - name: Build single-scene tide-stage coastal boundaries
+        run: python -u scripts/build_surat_thani_tide_matched_coastal_change.py
+
+      - name: QA tide-stage coastal products
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('data/processed/surat_thani_tide_matched')
+          summary = json.loads((root/'statistics/summary.json').read_text(encoding='utf-8'))
+          assert summary['epoch_count'] == 4, summary
+          assert summary['target_years'] == [2023, 2024, 2025, 2026], summary
+          assert summary['transect_count'] > 0, summary
+          assert Path('web/public/data/surat_thani/tide_matched/index.json').exists()
+          print({'epochs': summary['epoch_count'], 'transects': summary['transect_count'], 'classes': summary['class_counts']})
+          PY
+
+      - name: Build treatment-control tide sensitivity summary
+        run: python -u scripts/build_surat_thani_tide_matched_sensitivity_summary.py
+
+      - name: QA sensitivity summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/analysis/surat_thani/tide_matched_sensitivity_summary.json').read_text(encoding='utf-8'))
+          assert p['plot_code'] == '37-STC', p
+          assert p['analysis_role'] == 'SECONDARY_TIDE_STAGE_SENSITIVITY_ANALYSIS', p
+          assert p['tide_matched_project_frontage']['transect_count'] > 0, p
+          assert p['tide_matched_controls']['pooled']['transect_count'] > 0, p
+          assert p['claim_status'] == 'TIDE_STAGE_SENSITIVITY_SCREENING_ONLY_NOT_CAUSAL_IMPACT_CLAIM', p
+          assert Path('web/public/data/surat_thani/tide_matched_sensitivity_summary.json').exists()
+          print({
+            'project_net': p['tide_matched_project_frontage']['median_apparent_change_2023_to_2026_m'],
+            'control_net': p['tide_matched_controls']['pooled']['median_apparent_change_2023_to_2026_m'],
+            'matched_contrast': p['tide_matched_contrasts']['project_minus_control_apparent_change_2023_2026_m'],
+            'baseline_contrast': p['baseline_three_scene_composite']['project_minus_control_apparent_change_2023_2026_m'],
+            'delta': p['sensitivity_delta']['net_contrast_matched_minus_baseline_m'],
+          })
+          PY
+
+      - name: Commit tide-stage sensitivity products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git restore data/catalog/surat_thani_mvp_optical_scenes.csv data/catalog/surat_thani_mvp_epochs.json || true
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/catalog/surat_thani_tide_matched_optical_scenes.csv \
+            data/catalog/surat_thani_tide_matched_epochs.json \
+            data/analysis/surat_thani/tide_matched_scene_selection.json \
+            data/analysis/surat_thani/tide_matched_sensitivity_summary.json \
+            data/processed/surat_thani_tide_matched \
+            web/public/data/surat_thani/tide_matched \
+            web/public/data/surat_thani/tide_matched_sensitivity_summary.json
+          if git diff --cached --quiet; then
+            echo 'No tide-stage sensitivity changes'
+          else
+            git commit -m 'data: add 37-STC tide-stage sensitivity [skip ci]'
+            git push
+          fi
