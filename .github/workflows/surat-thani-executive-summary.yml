@@ -1,0 +1,106 @@
+name: Surat Thani executive evidence synthesis
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - data/surat-thani-satellite-v1
+    paths:
+      - scripts/build_surat_thani_executive_summary.py
+      - .github/workflows/surat-thani-executive-summary.yml
+      - config/surat_thani_erosion_free_data_v1.json
+      - data/analysis/surat_thani/mangrove_edge_proxy_screening.json
+      - data/analysis/surat_thani/planting_establishment_screening.json
+      - data/analysis/surat_thani/s1_relative_corroboration.json
+      - data/analysis/surat_thani/tide_matched_sensitivity_summary.json
+      - data/analysis/surat_thani/comparative_screening.json
+      - data/analysis/surat_thani/control_verification.json
+      - web/public/data/surat_thani/tide_context.json
+      - web/public/data/surat_thani/project_frontage_summary.json
+
+permissions:
+  contents: write
+
+jobs:
+  executive-summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build integrated executive evidence summary
+        run: python -u scripts/build_surat_thani_executive_summary.py
+
+      - name: QA scientific interpretation gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = json.loads(Path('data/analysis/surat_thani/executive_summary.json').read_text(encoding='utf-8'))
+          config = json.loads(Path('config/surat_thani_erosion_free_data_v1.json').read_text(encoding='utf-8'))
+          s1 = json.loads(Path('data/analysis/surat_thani/s1_relative_corroboration.json').read_text(encoding='utf-8'))
+          index = json.loads(Path('web/public/data/surat_thani/index.json').read_text(encoding='utf-8'))
+
+          d = p['executive_decision']
+          assert p['project']['plot_code'] == '37-STC', p['project']
+          assert d['causal_erosion_reduction_claim'] == 'CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM', d
+          assert d['vegetation_establishment'] == 'SMALL_POSITIVE_RELATIVE_OPTICAL_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY', d
+          assert d['coastal_vegetation_edge_expansion'] == 'NO_DETECTABLE_10M_SCALE_RELATIVE_EDGE_ADVANCE', d
+          assert d['waterline_erosion_indicator'] == 'FAILED_SCENE_TIDE_ROBUSTNESS_SIGN_REVERSAL', d
+          assert d['field_uav_validation'] == 'REQUIRED_BEFORE_IMPACT_LANGUAGE', d
+
+          k = p['key_numbers']
+          assert k['optical_establishment']['median_ndvi_project_minus_control_change_2026_vs_2023'] > 0, k
+          assert k['optical_establishment']['green_fraction_ndvi_ge_0_32_project_minus_control_change_2026_vs_2023'] > 0, k
+          assert k['optical_establishment']['threshold_sign_0_28_0_32_0_36'] == 'CONSISTENT_POSITIVE', k
+          assert abs(k['coastal_vegetation_edge']['project_minus_control_change_m']) < k['coastal_vegetation_edge']['empirical_edge_instability_floor_m'], k
+          assert k['waterline_sensitivity']['sign_reversal'] is True, k
+
+          assert config['indicator_hierarchy'][0]['type'] == 'COASTAL_VEGETATION_EDGE_PROXY', config['indicator_hierarchy']
+          assert config['waterline_sensitivity']['status'] == 'FAILED_SCENE_SELECTION_ROBUSTNESS_SIGN_REVERSAL', config['waterline_sensitivity']
+          assert config['evidence_gates']['current_causal_erosion_reduction_claim'] == 'NOT_SUPPORTED', config['evidence_gates']
+
+          assert s1['method']['absolute_backscatter_interpretation'] == 'NOT_ALLOWED', s1['method']
+          assert s1['evidence_status']['claim_status'] == 'CORROBORATION_DIAGNOSTIC_ONLY_NOT_CAUSAL_OR_BIOMASS_CLAIM', s1['evidence_status']
+          assert all(int(scene['acquisition_datetime_utc'][5:7]) in {2,3,4} for scene in s1['selected_scenes']), s1['selected_scenes']
+
+          assert index['primary_satellite_indicator'] == 'coastal_vegetation_edge_proxy', index
+          assert index['waterline_role'] == 'SUPPORTING_CONTEXT_ONLY_FAILED_ROBUSTNESS_TEST', index
+          assert Path('web/public/data/surat_thani/executive_summary.json').exists()
+          assert Path('regions/surat_thani/EXECUTIVE_SUMMARY_TH.md').exists()
+          assert Path('web/public/surat-thani-37-stc.html').exists()
+
+          print(json.dumps({
+            'causal_claim': d['causal_erosion_reduction_claim'],
+            'establishment': d['vegetation_establishment'],
+            'vegetation_edge': d['coastal_vegetation_edge_expansion'],
+            'waterline': d['waterline_erosion_indicator'],
+            'ndvi_did': k['optical_establishment']['median_ndvi_project_minus_control_change_2026_vs_2023'],
+            'green_fraction_pp': k['optical_establishment']['green_fraction_change_percentage_points'],
+            's1_track': s1['method']['selected_track_key'],
+            's1_scene_counts': {y: v['scene_count'] for y, v in s1['annual'].items()},
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit integrated report products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash origin data/surat-thani-satellite-v1
+          git add \
+            data/analysis/surat_thani/executive_summary.json \
+            data/processed/surat_thani/web/executive_summary.json \
+            data/processed/surat_thani/web/index.json \
+            web/public/data/surat_thani/executive_summary.json \
+            web/public/data/surat_thani/index.json \
+            regions/surat_thani/EXECUTIVE_SUMMARY_TH.md
+          if git diff --cached --quiet; then
+            echo 'No executive summary changes'
+          else
+            git commit -m 'data: publish integrated 37-STC evidence summary [skip ci]'
+            git push
+          fi
