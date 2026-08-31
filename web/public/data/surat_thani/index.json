@@ -559,5 +559,7 @@
   "project_frontage_transects_file": "project_frontage_transects.geojson",
   "project_frontage_scope": "37-STC current PDD boundary, 157.55 rai, transects within 150 m",
   "control_candidates_file": "control_candidates.json",
-  "control_candidates_status": "PROVISIONAL_UNVERIFIED"
+  "control_candidates_status": "PROVISIONAL_UNVERIFIED",
+  "comparative_screening_file": "comparative_screening.json",
+  "comparative_screening_status": "TREATMENT_CONTROL_SCREENING_WITH_USER_CONFIRMED_NO_KNOWN_CONTROL_INTERVENTIONS"
 }
