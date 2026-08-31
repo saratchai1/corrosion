@@ -84,9 +84,10 @@ function formatThaiDate(value: string): string {
   }).format(new Date(Date.UTC(year, month - 1, day)))
 }
 
-function signed(value: number | null): string {
+function signed(value: number | null, digits = 1): string {
   if (value == null || !Number.isFinite(value)) return '—'
-  return `${value >= 0 ? '+' : ''}${value.toFixed(1)} ม.`
+  const rounded = Number(value.toFixed(digits))
+  return `${rounded > 0 ? '+' : ''}${rounded.toFixed(digits)} ม.`
 }
 
 function reading(metrics: ChangeMetrics): string {
@@ -97,9 +98,33 @@ function reading(metrics: ChangeMetrics): string {
   return 'กึ่งกลางอยู่ภายในช่วง ±20 ม.'
 }
 
+function LatestFindingCard({ plot, emphasis = false }: { plot?: PlotEvidence; emphasis?: boolean }) {
+  if (!plot) return null
+  const metrics = plot.indicators.waterline.confirmed_post_completion_change
+  return (
+    <article className={emphasis ? 'latest-finding-plot emphasis' : 'latest-finding-plot'}>
+      <header>
+        <span>{plot.plot_id}</span>
+        {emphasis && <b>สัญญาณเด่นที่สุด</b>}
+      </header>
+      <strong>{signed(metrics.median_nsm_m, 2)}</strong>
+      <small>Median WATERLINE NSM · 2025 → 2026</small>
+      <div>
+        <span><b>{metrics.class_counts.APPARENT_LANDWARD}</b>เข้าฝั่ง &gt;20 ม.</span>
+        <span><b>{metrics.class_counts.WITHIN_20M}</b>ภายใน ±20 ม.</span>
+        <span><b>{metrics.class_counts.APPARENT_SEAWARD}</b>ออกทะเล &gt;20 ม.</span>
+      </div>
+      <p>{reading(metrics)} · {metrics.paired_transect_count} transects</p>
+    </article>
+  )
+}
+
 function PlantingEvidencePanel({ summary }: Props) {
   const [plotId, setPlotId] = useState(summary.verified_plot_ids[0] ?? '')
   const plot = summary.plots.find((item) => item.plot_id === plotId) ?? summary.plots[0]
+  const plot91 = summary.plots.find((item) => item.plot_id === '91-STC')
+  const plot97 = summary.plots.find((item) => item.plot_id === '97-STC')
+  const plot98 = summary.plots.find((item) => item.plot_id === '98-STC')
 
   if (!plot) return null
   const postWaterline = plot.indicators.waterline.confirmed_post_completion_change
@@ -107,6 +132,46 @@ function PlantingEvidencePanel({ summary }: Props) {
 
   return (
     <section className="planting-evidence-panel" id="planting-evidence">
+      <div className="latest-finding-highlight">
+        <div className="latest-finding-kicker">
+          <span>LATEST FINDING · UPDATED 31 AUG 2026</span>
+          <strong>สรุปล่าสุดหลังใส่ “วันปลูกจริง” เข้าการวิเคราะห์</strong>
+        </div>
+        <div className="latest-finding-headline">
+          <div>
+            <h2>หลังปลูกเสร็จ ก.ย. 2024 → ภาพปี 2025–2026<br /><em>ยังไม่พบการถอยเข้าฝั่งเป็นวงกว้าง</em></h2>
+            <p>
+              ยืนยันวันปลูกเสร็จแล้ว {summary.verified_plot_count} แปลง รวม {summary.verified_area_rai.toFixed(2)} ไร่:
+              91-STC, 97-STC และ 98-STC โดยภาพ 2025 และ 2026 เป็น <b>confirmed post-completion</b> ของทั้งสามแปลง
+            </p>
+          </div>
+          <div className="latest-finding-badge">
+            <span>POST-COMPLETION</span>
+            <strong>2025 → 2026</strong>
+            <small>ยืนยันจากวันปลูกเสร็จจริง</small>
+          </div>
+        </div>
+
+        <div className="latest-finding-plots">
+          <LatestFindingCard plot={plot91} emphasis />
+          <LatestFindingCard plot={plot97} />
+          <LatestFindingCard plot={plot98} />
+        </div>
+
+        <div className="latest-finding-interpretation">
+          <div>
+            <span>อ่านผลได้ตอนนี้</span>
+            <strong>91-STC มีสัญญาณออกทะเลเด่นที่สุด ขณะที่ 97-STC และ 98-STC ค่ากึ่งกลางอยู่ใกล้ 0 ม.</strong>
+            <p>จึงรายงานได้ว่า “หลังปลูกเสร็จยังไม่พบการถอยร่นขนาดใหญ่เป็นภาพรวม” ในสามแปลงที่มีวันปลูกยืนยัน</p>
+          </div>
+          <div className="caution">
+            <span>ข้อจำกัดสำคัญ</span>
+            <strong>ยังห้ามสรุปว่า “การปลูกทำให้การกัดเซาะหยุดลง”</strong>
+            <p>มีข้อมูลหลังปลูกเสร็จเพียง 2 annual observations, ความเชื่อมั่น LOW และ candidate controls ยังไม่ยืนยันปัจจัยรบกวน</p>
+          </div>
+        </div>
+      </div>
+
       <header className="planting-evidence-heading">
         <div>
           <span>PROJECT PLANTING EVIDENCE · VERIFIED COMPLETION DATES</span>
