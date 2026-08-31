@@ -1,0 +1,214 @@
+.planting-evidence-portal {
+  width: calc(100% - clamp(40px, 10vw, 152px));
+  max-width: 1500px;
+  margin: 22px auto 0;
+}
+
+.planting-evidence-panel {
+  padding: clamp(22px, 3vw, 38px);
+  border: 1px solid rgba(181, 214, 205, .18);
+  color: #f5f2e9;
+  background:
+    linear-gradient(135deg, rgba(232, 185, 95, .08), transparent 42%),
+    rgba(9, 33, 35, .9);
+  font-family: 'IBM Plex Sans Thai', 'Noto Sans Thai', system-ui, sans-serif;
+}
+
+.planting-evidence-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, .45fr);
+  gap: 28px;
+  align-items: end;
+}
+
+.planting-evidence-heading > div:first-child > span {
+  color: #e8b95f;
+  font-size: 9px;
+  letter-spacing: .13em;
+}
+
+.planting-evidence-heading h2 {
+  margin: 6px 0 8px;
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.planting-evidence-heading p {
+  max-width: 900px;
+  margin: 0;
+  color: #a8bbb6;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.planting-evidence-status {
+  display: grid;
+  justify-items: end;
+  padding: 18px;
+  border: 1px solid rgba(232, 185, 95, .28);
+  background: rgba(232, 185, 95, .045);
+  text-align: right;
+}
+
+.planting-evidence-status strong {
+  color: #f0cf83;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.planting-evidence-status span,
+.planting-evidence-status small {
+  color: #98aba6;
+  font-size: 9px;
+}
+
+.planting-evidence-status small { margin-top: 4px; color: #d2c39b; }
+
+.planting-evidence-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.planting-evidence-cards button {
+  display: grid;
+  gap: 3px;
+  padding: 14px 16px;
+  border: 1px solid rgba(181, 214, 205, .15);
+  color: #adbfba;
+  background: rgba(255, 255, 255, .018);
+  text-align: left;
+  cursor: pointer;
+}
+
+.planting-evidence-cards button:hover,
+.planting-evidence-cards button.active {
+  border-color: rgba(232, 185, 95, .58);
+  color: #f5f2e9;
+  background: rgba(232, 185, 95, .075);
+}
+
+.planting-evidence-cards span { color: #e8b95f; font-size: 10px; font-weight: 600; }
+.planting-evidence-cards strong { font-size: 16px; font-weight: 500; }
+.planting-evidence-cards small { color: #7e9791; font-size: 8px; }
+
+.planting-evidence-detail {
+  margin-top: 9px;
+  padding: 18px;
+  border: 1px solid rgba(181, 214, 205, .15);
+  background: #071b1d;
+}
+
+.planting-evidence-timeline {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr;
+  gap: 7px;
+  align-items: stretch;
+}
+
+.planting-evidence-timeline article {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid rgba(181, 214, 205, .13);
+  background: rgba(255, 255, 255, .016);
+}
+
+.planting-evidence-timeline article.before-completion { border-left: 3px solid #83938f; }
+.planting-evidence-timeline article.completion { border-left: 3px solid #e8b95f; background: rgba(232, 185, 95, .045); }
+.planting-evidence-timeline article.post-completion { border-left: 3px solid #8fcbad; background: rgba(143, 203, 173, .035); }
+
+.planting-evidence-timeline > i {
+  display: grid;
+  place-items: center;
+  color: #8fcbad;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.planting-evidence-timeline article > span { color: #78928c; font-size: 8px; }
+.planting-evidence-timeline article > strong { font-size: 13px; font-weight: 500; }
+.planting-evidence-timeline article > small { color: #94aaa5; font-size: 8px; }
+.planting-evidence-timeline article > em { margin-top: 3px; color: #c6b47c; font-size: 7px; font-style: normal; line-height: 1.45; }
+
+.planting-evidence-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.05fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.planting-evidence-metrics > article {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 15px;
+  border: 1px solid rgba(181, 214, 205, .13);
+  background: rgba(255, 255, 255, .016);
+}
+
+.planting-evidence-metrics > article.post { border-color: rgba(143, 203, 173, .28); background: rgba(143, 203, 173, .035); }
+.planting-evidence-metrics > article > span { color: #8aa39d; font-size: 8px; }
+.planting-evidence-metrics > article > strong { color: #f2efe7; font-family: Newsreader, Georgia, serif; font-size: 34px; font-weight: 400; }
+.planting-evidence-metrics > article.post > strong { color: #8fcbad; }
+.planting-evidence-metrics > article > small { color: #738d87; font-size: 7px; }
+.planting-evidence-metrics > article > p { margin: 4px 0 0; color: #bdccc8; font-size: 9px; }
+.planting-evidence-metrics > article > em { margin-top: 5px; color: #d3b970; font-size: 7px; font-style: normal; }
+
+.planting-evidence-metrics .classes {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.planting-evidence-metrics .classes > span { grid-column: 1 / -1; }
+.planting-evidence-metrics .classes > div { display: grid; gap: 1px; padding: 8px; border-top: 1px solid rgba(181, 214, 205, .13); }
+.planting-evidence-metrics .classes b { font-size: 20px; font-weight: 500; }
+.planting-evidence-metrics .classes small { color: #7d9690; font-size: 7px; }
+
+.planting-evidence-guard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.planting-evidence-guard > div {
+  padding: 13px 15px;
+  border-left: 3px solid #8fcbad;
+  background: rgba(143, 203, 173, .035);
+}
+
+.planting-evidence-guard > div:last-child {
+  border-left-color: #ff8069;
+  background: rgba(255, 128, 105, .035);
+}
+
+.planting-evidence-guard strong { color: #dce9e4; font-size: 10px; }
+.planting-evidence-guard p { margin: 4px 0 0; color: #91a7a1; font-size: 9px; line-height: 1.7; }
+
+.planting-evidence-missing {
+  margin: 12px 0 0;
+  color: #839b95;
+  font-size: 8px;
+}
+
+@media (max-width: 900px) {
+  .planting-evidence-heading { grid-template-columns: 1fr; }
+  .planting-evidence-status { justify-items: start; text-align: left; }
+  .planting-evidence-timeline { grid-template-columns: 1fr; }
+  .planting-evidence-timeline > i { transform: rotate(90deg); }
+  .planting-evidence-metrics { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .planting-evidence-portal { width: calc(100% - 34px); }
+  .planting-evidence-panel { padding: 17px; }
+  .planting-evidence-cards { grid-template-columns: 1fr; }
+  .planting-evidence-guard { grid-template-columns: 1fr; }
+}
