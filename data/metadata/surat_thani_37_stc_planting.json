@@ -1,13 +1,38 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "plot_code": "37-STC",
   "status": "Active",
   "tver": "MOC 1-STC premium",
   "company_code": "STC",
   "location": {"moo": 7, "village_th": "บ้านเลม็ด", "tambon_th": "เลม็ด", "amphoe_th": "ไชยา", "province_th": "สุราษฎร์ธานี", "province_en": "Surat Thani", "site_type_th": "พื้นที่เลนงอก"},
-  "area": {"approved_or_original_rai": 200.05, "current_pdd_rai": 157.55, "change_rai": -42.50, "change_label_th": "เนื้อที่ลดลง", "current_geometry_computed_rai_epsg32647": 157.56},
-  "planting": {"start_date": null, "end_date": "2023-10-18", "species": [{"species_th": "โกงกางใบใหญ่", "seedlings": 100000}, {"species_th": "โกงกางใบเล็ก", "seedlings": 40000}, {"species_th": "ลำพู", "seedlings": 2232}], "total_seedlings": 142232, "nominal_density_seedlings_per_current_rai": 902.72},
-  "boundaries": [{"role": "reference_confirmed_department", "source_label": "ยืนยันกรม", "reported_rai": 200.05, "computed_rai_epsg32647": 196.21}, {"role": "current_pdd", "source_label": "SHP PDD", "reported_rai": 157.55, "computed_rai_epsg32647": 157.56}],
+  "area": {
+    "approved_or_original_rai": 200.05,
+    "current_pdd_rai": 157.55,
+    "primary_analysis_rai": 157.55,
+    "primary_boundary_role": "current_pdd",
+    "primary_boundary_rule": "USE_SMALLER_CURRENT_PDD_BOUNDARY_FOR_ALL_PRIMARY_ANALYSIS",
+    "historical_boundary_role": "REFERENCE_HISTORY_ONLY_NOT_PRIMARY_AOI",
+    "change_rai": -42.50,
+    "change_label_th": "เนื้อที่ลดลง",
+    "current_geometry_computed_rai_epsg32647": 157.56
+  },
+  "planting": {
+    "start_date": null,
+    "end_date": "2023-10-18",
+    "representative_intervention_date": "2023-10-18",
+    "representative_date_rule": "USE_PLANTING_END_DATE_AS_INTERVENTION_DATE_FOR_BEFORE_AFTER_ANALYSIS",
+    "seasonal_2023_classification": "PRE_INTERVENTION_BECAUSE_FEB_APR_2023_PRECEDES_2023_10_18",
+    "post_intervention_start_year": 2024,
+    "species": [{"species_th": "โกงกางใบใหญ่", "seedlings": 100000}, {"species_th": "โกงกางใบเล็ก", "seedlings": 40000}, {"species_th": "ลำพู", "seedlings": 2232}],
+    "total_seedlings": 142232,
+    "nominal_density_seedlings_per_current_rai": 902.72
+  },
+  "boundaries": [{"role": "reference_confirmed_department", "source_label": "ยืนยันกรม", "reported_rai": 200.05, "computed_rai_epsg32647": 196.21, "analysis_use": "REFERENCE_HISTORY_ONLY"}, {"role": "current_pdd", "source_label": "SHP PDD", "reported_rai": 157.55, "computed_rai_epsg32647": 157.56, "analysis_use": "PRIMARY"}],
   "source_files": ["STC_VSD_EVR.kmz", "ข้อมูลเรื่องกล้าไม้ ปี 2565 31.08.2569.xlsx"],
-  "qa_notes": ["Use current_pdd geometry for present-day project statistics.", "Keep the 200.05-rai record as historical/reference evidence; its supplied polygon computes to about 196.21 rai.", "Planting start date is not populated in the supplied register; only planting end date is treated as verified."]
+  "qa_notes": [
+    "Use current_pdd geometry (157.55 rai reported) for all primary analysis.",
+    "Keep the 200.05-rai record as historical/reference evidence; its supplied polygon computes to about 196.21 rai.",
+    "Planting start date is not required for the current before/after cutoff because the user accepted planting end 2023-10-18 as the representative intervention date.",
+    "February-April 2023 satellite observations are pre-intervention; post-intervention annual comparisons begin in 2024."
+  ]
 }
