@@ -1,0 +1,171 @@
+name: Build Samut Songkhram contextual multispectral slider
+
+on:
+  push:
+    branches:
+      - fix/samut-songkhram-internal-scroll-links
+    paths:
+      - '.github/workflows/samut-songkhram-spectral-context.yml'
+      - 'scripts/build_preplanting_visual_context.py'
+      - 'scripts/download_catalog_assets.py'
+      - 'scripts/download_satellite_data.py'
+      - 'scripts/build_coastal_change_mvp.py'
+      - 'web/src/PreplantingHistoryDashboardV2.tsx'
+      - 'web/src/preplantingSpectral.css'
+      - 'web/src/TideAwareDashboard.tsx'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-spectral-context-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Build exact selected-scene download catalog
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          source = Path('data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv')
+          summary = json.loads(Path(
+              'data/processed/project_preplanting_history/summary.json'
+          ).read_text(encoding='utf-8'))
+          selected = {
+              item['scene_id']
+              for item in summary['scene_selection']['display_scenes']
+          }
+          with source.open(newline='', encoding='utf-8-sig') as handle:
+              reader = csv.DictReader(handle)
+              fields = list(reader.fieldnames or [])
+              rows = [row for row in reader if row.get('scene_id') in selected]
+          assert len(rows) == 10, (len(rows), sorted(selected))
+          target = Path('/tmp/project_samut_songkhram_visual_scenes.csv')
+          with target.open('w', newline='', encoding='utf-8') as handle:
+              writer = csv.DictWriter(handle, fieldnames=fields)
+              writer.writeheader()
+              writer.writerows(rows)
+          print(target)
+          PY
+
+      - name: Download selected Sentinel-2 bands clipped to the project AOI
+        run: |
+          python -m scripts.download_catalog_assets \
+            --catalog /tmp/project_samut_songkhram_visual_scenes.csv \
+            --aoi data/aoi/samut_songkhram_project_analysis_aoi.geojson \
+            --manifest /tmp/spectral-context-download-manifest.json
+
+      - name: Build contextual RGB and spectral views
+        run: python -m scripts.build_preplanting_visual_context
+
+      - name: Validate generated visual evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary_path = Path('web/public/data/project_preplanting_history/summary.json')
+          summary = json.loads(summary_path.read_text(encoding='utf-8'))
+          visual = summary['visualization']
+          assert visual['default_view'] == 'focus'
+          assert visual['default_mode'] == 'rgb'
+          assert set(visual['modes']) == {
+              'rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir'
+          }
+          assert set(visual['views']) == {'focus', 'full'}
+          assert visual['image_count'] == 100
+          assert summary['erosion_effect_conclusion'] == 'NOT_DEMONSTRATED'
+          assert len(summary['scene_selection']['display_scenes']) == 10
+          for scene in summary['scene_selection']['display_scenes']:
+              assert set(scene['visuals']) == {'focus', 'full'}
+              for view in ('focus', 'full'):
+                  assert set(scene['visuals'][view]) == {
+                      'rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir'
+                  }
+                  for path in scene['visuals'][view].values():
+                      assert Path('web/public') / path.removeprefix('data/')
+              for view in ('focus', 'full'):
+                  for mode in ('rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir'):
+                      path = Path(
+                          f'web/public/data/project_preplanting_history/visuals/'
+                          f'{view}/{mode}/{scene["year"]}.webp'
+                      )
+                      assert path.exists() and path.stat().st_size > 10_000, path
+          assert Path(
+              'web/public/data/project_preplanting_history/visuals/manifest.json'
+          ).exists()
+          print(json.dumps(visual, ensure_ascii=False, indent=2))
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Type-check and build production web
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Validate production bundle contains spectral assets
+        run: |
+          test -f web/dist/client/index.html
+          test -f web/dist/client/data/project_preplanting_history/visuals/focus/mndwi/2020.webp
+          test -f web/dist/client/data/project_preplanting_history/visuals/focus/ndvi/2026.webp
+          test -f web/dist/client/data/project_preplanting_history/visuals/full/swir/2026.webp
+          grep -q 'ยังไม่พิสูจน์ว่าแนวโน้มดีขึ้นเพราะการปลูก' web/src/PreplantingHistoryDashboardV2.tsx
+          grep -q 'พื้นหลังเป็นภาพบริบทเต็มพื้นที่' web/src/PreplantingHistoryDashboardV2.tsx
+          grep -q 'MNDWI' web/src/PreplantingHistoryDashboardV2.tsx
+
+      - name: Commit contextual visual assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/processed/project_preplanting_history/summary.json \
+            data/processed/project_preplanting_history/visuals \
+            web/public/data/project_preplanting_history/summary.json \
+            web/public/data/project_preplanting_history/visuals
+          if git diff --cached --quiet; then
+            echo 'No generated visual changes to commit.'
+          else
+            git commit -m 'data: add contextual multispectral history visuals'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload visual preview bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-contextual-spectral-slider
+          path: |
+            /tmp/spectral-context-download-manifest.json
+            data/processed/project_preplanting_history/visuals/**
+            web/public/data/project_preplanting_history/summary.json
+            web/public/data/project_preplanting_history/visuals/**
+            web/dist/client/**
+          if-no-files-found: warn
+          retention-days: 7
