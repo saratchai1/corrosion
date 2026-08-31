@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import PreplantingHistoryDashboard, {
-  type PreplantingHistorySummary,
-} from './PreplantingHistoryDashboard'
+import PreplantingHistoryDashboardV2, {
+  type PreplantingHistorySummaryV2,
+} from './PreplantingHistoryDashboardV2'
 import TideAwareOverview from './TideAwareOverview'
 import type { TideAwareSummary } from './types'
 
@@ -13,7 +13,7 @@ type Props = {
 
 export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast }: Props) {
   const [view, setView] = useState<'history' | 'current'>('history')
-  const [history, setHistory] = useState<PreplantingHistorySummary | null>(null)
+  const [history, setHistory] = useState<PreplantingHistorySummaryV2 | null>(null)
   const [historyError, setHistoryError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
         return response.json()
       })
       .then((value: unknown) => {
-        if (active) setHistory(value as PreplantingHistorySummary)
+        if (active) setHistory(value as PreplantingHistorySummaryV2)
       })
       .catch((reason: unknown) => {
         if (active) {
@@ -80,7 +80,7 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
   }
 
   return (
-    <PreplantingHistoryDashboard
+    <PreplantingHistoryDashboardV2
       history={history}
       onOpenCurrent={() => setView('current')}
       onOpenProject={onOpenProject}
