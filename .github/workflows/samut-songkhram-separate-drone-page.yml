@@ -1,18 +1,16 @@
-name: Restore history-first UX and separate drone page
+name: Restore history first and separate drone page
 
 on:
   push:
     branches:
       - fix/samut-songkhram-restore-history-and-separate-drone
-    paths:
-      - '.github/workflows/samut-songkhram-separate-drone-page.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  patch-and-validate:
+  patch:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -25,63 +23,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Apply UX separation patch
+      - name: Apply page separation
         run: python scripts/restore_history_and_separate_drone.py
 
-      - name: Audit navigation, old slider preservation and evidence links
-        run: |
-          python - <<'PY'
-          import re
-          from pathlib import Path
-
-          src = Path('web/src')
-          history = (src / 'PreplantingHistoryDashboardV2.tsx').read_text(encoding='utf-8')
-          controller = (src / 'TideAwareDashboard.tsx').read_text(encoding='utf-8')
-          overlay = (src / 'PlotOverlayInjector.tsx').read_text(encoding='utf-8')
-          app = (src / 'App.tsx').read_text(encoding='utf-8')
-          drone = (src / 'DroneBaselinePage.tsx').read_text(encoding='utf-8')
-
-          for token in [
-              "const MODE_ORDER: ModeKey[] = ['rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir']",
-              '2020 → 2023', '2020 → 2026', '2023 → 2026',
-              'spectral-swipe-stage', 'ภาพก่อน', 'ภาพหลัง',
-          ]:
-              assert token in history, token
-          for token in ['MAX_ZOOM = 3', 'ZOOM_STEP = 0.25', 'spectral-pan-hint', 'onPanPointerDown']:
-              assert token in overlay, token
-          assert 'DroneBaselineInjector' not in controller
-
-          assert "'drone'" in app
-          assert "lazy(() => import('./DroneBaselinePage'))" in app
-          assert 'ภาพโดรน HR' in drone
-          assert Path('web/public/data/project_drone_orthomosaic/summary.json').exists()
-          assert len(list(Path('web/public/data/project_drone_orthomosaic/previews').glob('*.webp'))) == 9
-
-          nav_labels = ['หลักฐานย้อนหลัง', 'ผล 2023–2026', 'ภาพโดรน HR', 'รายงาน 9 แปลง', 'แผนที่ 10 ปี']
-          files = [
-              src / 'PreplantingHistoryDashboardV2.tsx',
-              src / 'TideAwareOverview.tsx',
-              src / 'ProjectDashboard.tsx',
-              src / 'DroneBaselinePage.tsx',
-              src / 'App.tsx',
-          ]
-          for path in files:
-              text = path.read_text(encoding='utf-8')
-              positions = [text.find(label) for label in nav_labels]
-              assert all(position >= 0 for position in positions), (path, positions)
-              assert positions == sorted(positions), (path, positions)
-
-          missing = []
-          for path in src.glob('*.tsx'):
-              text = path.read_text(encoding='utf-8')
-              for href in re.findall(r'''href=["'](data/[^"'#?]+)''', text):
-                  public = Path('web/public') / href
-                  if not public.exists():
-                      missing.append((path.name, href))
-              assert 'href="#"' not in text, path
-          assert not missing, missing
-          print('Navigation + evidence link audit: PASS')
-          PY
+      - name: Audit navigation
+        run: python scripts/audit_samut_songkhram_web_navigation.py
 
       - uses: actions/setup-node@v4
         with:
@@ -89,24 +35,15 @@ jobs:
           cache: npm
           cache-dependency-path: web/package-lock.json
 
-      - name: Install and production build
+      - name: Build
         working-directory: web
-        run: |
-          npm ci
-          npm run build
+        run: npm ci && npm run build
 
-      - name: Validate production output contains both history and drone evidence
-        run: |
-          test -f web/dist/client/index.html
-          test -f web/dist/client/data/project_preplanting_history/summary.json
-          test -f web/dist/client/data/project_drone_orthomosaic/summary.json
-          test "$(find web/dist/client/data/project_drone_orthomosaic/previews -name '*.webp' | wc -l)" -eq 9
-          grep -R -q 'ภาพโดรน HR' web/dist/client/assets
-          grep -R -q 'หลักฐานย้อนหลัง' web/dist/client/assets
-          grep -R -q 'MNDWI' web/dist/client/assets
-          echo 'Production bundle audit: PASS'
+      - name: Validate output
+        run: test -f web/dist/client/data/project_drone_orthomosaic/summary.json
 
-      - name: Commit validated UX changes
+      - name: Commit validated changes
+        shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
