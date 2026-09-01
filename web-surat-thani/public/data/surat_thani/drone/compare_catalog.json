@@ -24,7 +24,21 @@
       ],
       "resolutionM": 30,
       "asset": "data/surat_thani/drone/multiyear/satellite_1985_same_extent.webp",
-      "period": "historical_context"
+      "period": "historical_context",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_1985_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_1985_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_1985_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_1985_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_1985_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "1987-12-25"
+      ],
+      "spectralItemIds": [
+        "LT05_L2SP_129054_19871225_02_T1"
+      ]
     },
     {
       "id": "satellite-1990",
@@ -39,7 +53,25 @@
       ],
       "resolutionM": 30,
       "asset": "data/surat_thani/drone/multiyear/satellite_1990_same_extent.webp",
-      "period": "historical_context"
+      "period": "historical_context",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_1990_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_1990_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_1990_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_1990_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_1990_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "1990-03-04",
+        "1990-04-05",
+        "1990-12-17"
+      ],
+      "spectralItemIds": [
+        "LT05_L2SP_129054_19900304_02_T1",
+        "LT05_L2SP_129054_19900405_02_T1",
+        "LT05_L2SP_129054_19901217_02_T1"
+      ]
     },
     {
       "id": "satellite-2000",
@@ -54,7 +86,25 @@
       ],
       "resolutionM": 30,
       "asset": "data/surat_thani/drone/multiyear/satellite_2000_same_extent.webp",
-      "period": "historical_context"
+      "period": "historical_context",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2000_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2000_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2000_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2000_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2000_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2000-02-12",
+        "2000-12-04",
+        "2000-12-12"
+      ],
+      "spectralItemIds": [
+        "LT05_L2SP_129054_20000212_02_T1",
+        "LE07_L2SP_129054_20001204_02_T1",
+        "LT05_L2SP_129054_20001212_02_T1"
+      ]
     },
     {
       "id": "satellite-2010",
@@ -69,7 +119,25 @@
       ],
       "resolutionM": 30,
       "asset": "data/surat_thani/drone/multiyear/satellite_2010_same_extent.webp",
-      "period": "historical_context"
+      "period": "historical_context",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2010_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2010_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2010_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2010_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2010_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2009-01-19",
+        "2009-02-20",
+        "2009-12-05"
+      ],
+      "spectralItemIds": [
+        "LT05_L2SP_129054_20090119_02_T1",
+        "LT05_L2SP_129054_20090220_02_T1",
+        "LT05_L2SP_129054_20091205_02_T1"
+      ]
     },
     {
       "id": "satellite-2017",
@@ -84,7 +152,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2017_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2017_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2017_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2017_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2017_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2017_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2017-02-26",
+        "2017-03-18",
+        "2017-04-27"
+      ],
+      "spectralItemIds": [
+        "S2A_MSIL2A_20170226T033711_R061_T47PNL_20210208T171543",
+        "S2A_MSIL2A_20170318T033531_R061_T47PNL_20210208T232716",
+        "S2A_MSIL2A_20170427T033541_R061_T47PNL_20210209T105916"
+      ]
     },
     {
       "id": "satellite-2018",
@@ -99,7 +185,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2018_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2018_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2018_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2018_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2018_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2018_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2018-02-01",
+        "2018-02-26",
+        "2018-03-28"
+      ],
+      "spectralItemIds": [
+        "S2A_MSIL2A_20180201T033951_R061_T47PNL_20201013T174450",
+        "S2B_MSIL2A_20180226T033709_R061_T47PNL_20201104T151958",
+        "S2B_MSIL2A_20180328T033739_R061_T47PNL_20201013T153849"
+      ]
     },
     {
       "id": "satellite-2019",
@@ -114,7 +218,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2019_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2019_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2019_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2019_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2019_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2019_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2019-02-11",
+        "2019-03-23",
+        "2019-04-17"
+      ],
+      "spectralItemIds": [
+        "S2B_MSIL2A_20190211T033859_R061_T47PNL_20201007T155504",
+        "S2B_MSIL2A_20190323T033719_R061_T47PNL_20201007T094740",
+        "S2A_MSIL2A_20190417T033541_R061_T47PNL_20201007T030425"
+      ]
     },
     {
       "id": "satellite-2020",
@@ -129,7 +251,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2020_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2020_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2020_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2020_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2020_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2020_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2020-02-26",
+        "2020-03-22",
+        "2020-04-11"
+      ],
+      "spectralItemIds": [
+        "S2B_MSIL2A_20200226T033719_R061_T47PNL_20200928T132439",
+        "S2A_MSIL2A_20200322T033531_R061_T47PNL_20201014T231526",
+        "S2A_MSIL2A_20200411T033531_R061_T47PNL_20200923T010425"
+      ]
     },
     {
       "id": "satellite-2021",
@@ -144,7 +284,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2021_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2021_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2021_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2021_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2021_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2021_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2021-02-20",
+        "2021-03-12",
+        "2021-04-26"
+      ],
+      "spectralItemIds": [
+        "S2B_MSIL2A_20210220T033759_R061_T47PNL_20210220T151603",
+        "S2B_MSIL2A_20210312T033539_R061_T47PNL_20210312T160153",
+        "S2A_MSIL2A_20210426T033531_R061_T47PNL_20210426T132640"
+      ]
     },
     {
       "id": "satellite-2022",
@@ -159,7 +317,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2022_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2022_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2022_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2022_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2022_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2022_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2022-02-05",
+        "2022-03-12",
+        "2022-04-21"
+      ],
+      "spectralItemIds": [
+        "S2B_MSIL2A_20220205T033929_R061_T47PNL_20240519T071431",
+        "S2A_MSIL2A_20220312T033541_R061_T47PNL_20220312T201539",
+        "S2A_MSIL2A_20220421T033541_R061_T47PNL_20220421T215159"
+      ]
     },
     {
       "id": "satellite-2023",
@@ -174,7 +350,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2023_same_extent.webp",
-      "period": "pre_planting"
+      "period": "pre_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2023_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2023_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2023_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2023_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2023_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2023-02-10",
+        "2023-03-12",
+        "2023-04-06"
+      ],
+      "spectralItemIds": [
+        "S2B_MSIL2A_20230210T033859_R061_T47PNL_20240813T212039",
+        "S2B_MSIL2A_20230312T033539_R061_T47PNL_20240818T073352",
+        "S2A_MSIL2A_20230406T033541_R061_T47PNL_20240827T040344"
+      ]
     },
     {
       "id": "satellite-2024",
@@ -189,7 +383,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2024_same_extent.webp",
-      "period": "post_planting"
+      "period": "post_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2024_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2024_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2024_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2024_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2024_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2024-02-25",
+        "2024-03-21",
+        "2024-04-20"
+      ],
+      "spectralItemIds": [
+        "S2B_MSIL2A_20240225T033729_R061_T47PNL_20240225T081626",
+        "S2A_MSIL2A_20240321T033541_R061_T47PNL_20240321T091105",
+        "S2A_MSIL2A_20240420T033541_R061_T47PNL_20240420T101326"
+      ]
     },
     {
       "id": "satellite-2025",
@@ -204,7 +416,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2025_same_extent.webp",
-      "period": "post_planting"
+      "period": "post_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2025_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2025_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2025_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2025_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2025_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2025-02-14",
+        "2025-03-16",
+        "2025-04-07"
+      ],
+      "spectralItemIds": [
+        "S2C_MSIL2A_20250214T033901_R061_T47PNL_20250214T090512",
+        "S2C_MSIL2A_20250316T033601_R061_T47PNL_20250316T090315",
+        "S2A_MSIL2A_20250407T034201_R061_T47PNL_20250407T083514"
+      ]
     },
     {
       "id": "satellite-2026",
@@ -219,7 +449,25 @@
       ],
       "resolutionM": 20,
       "asset": "data/surat_thani/drone/multiyear/satellite_2026_same_extent.webp",
-      "period": "post_planting"
+      "period": "post_planting",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2026_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2026_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2026_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2026_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2026_swir_same_extent.webp"
+      },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
+      "spectralDatesUsed": [
+        "2026-03-01",
+        "2026-04-05",
+        "2026-04-30"
+      ],
+      "spectralItemIds": [
+        "S2C_MSIL2A_20260301T033701_R061_T47PNL_20260301T091613",
+        "S2B_MSIL2A_20260405T033539_R061_T47PNL_20260405T072236",
+        "S2C_MSIL2A_20260430T033541_R061_T47PNL_20260430T081812"
+      ]
     }
   ],
   "rightChoices": [
@@ -227,19 +475,91 @@
       "id": "drone",
       "label": "Drone HR",
       "asset": "data/surat_thani/drone/orthor_37_stc_same_extent.webp",
-      "note": "Orthomosaic · 2.257 cm/px"
+      "note": "Orthomosaic · 2.257 cm/px",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/orthor_37_stc_same_extent.webp"
+      },
+      "supportedModes": [
+        "rgb"
+      ],
+      "spectralStatus": "RGB_ONLY_NO_NIR_SWIR"
     },
     {
       "id": "satellite-2026",
       "label": "Sentinel-2 2026",
       "asset": "data/surat_thani/drone/multiyear/satellite_2026_same_extent.webp",
-      "note": "ดาวเทียมปีปัจจุบัน · same extent"
+      "note": "ดาวเทียมปีปัจจุบัน · same extent",
+      "visuals": {
+        "rgb": "data/surat_thani/drone/multiyear/satellite_2026_rgb_same_extent.webp",
+        "false_vegetation": "data/surat_thani/drone/multiyear/satellite_2026_false_vegetation_same_extent.webp",
+        "ndvi": "data/surat_thani/drone/multiyear/satellite_2026_ndvi_same_extent.webp",
+        "mndwi": "data/surat_thani/drone/multiyear/satellite_2026_mndwi_same_extent.webp",
+        "swir": "data/surat_thani/drone/multiyear/satellite_2026_swir_same_extent.webp"
+      },
+      "supportedModes": [
+        "rgb",
+        "false_vegetation",
+        "ndvi",
+        "mndwi",
+        "swir"
+      ],
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS"
     }
   ],
-  "visual_mode_guard": "Natural/Vivid/B&W/Cool are display filters only; they are not NDVI or false-color spectral products.",
+  "visual_mode_guard": "RGB/False Color/NDVI/MNDWI/SWIR are rendered from actual multispectral satellite bands. Drone HR remains RGB-only because its orthomosaic has no NIR/SWIR bands.",
   "generation": {
     "script": "scripts/publish_surat_thani_multiyear_compare.py",
     "source": "web-surat-thani/public/data/surat_thani/imagery_index.json",
     "method": "crop/resample each existing georeferenced web image to the verified raw-drone WGS84 envelope and common pixel dimensions"
+  },
+  "spectralModes": [
+    {
+      "id": "rgb",
+      "label": "RGB",
+      "description": "สีจริง Red–Green–Blue"
+    },
+    {
+      "id": "false_vegetation",
+      "label": "False Color",
+      "description": "NIR–Red–Green; พืชเด่นเป็นสีแดง"
+    },
+    {
+      "id": "ndvi",
+      "label": "NDVI",
+      "description": "(NIR − Red) / (NIR + Red); ความเขียวของพืช"
+    },
+    {
+      "id": "mndwi",
+      "label": "MNDWI",
+      "description": "(Green − SWIR1) / (Green + SWIR1); น้ำ–แผ่นดิน"
+    },
+    {
+      "id": "swir",
+      "label": "SWIR",
+      "description": "SWIR1–NIR–Red; ความชื้น/ดินเปิด/น้ำ"
+    }
+  ],
+  "spectral_generation": {
+    "script": "scripts/publish_surat_thani_spectral_compare.py",
+    "provider": "Microsoft Planetary Computer STAC",
+    "sentinel_collection": "sentinel-2-l2a",
+    "landsat_collection": "landsat-c2-l2",
+    "sentinel_bands": {
+      "blue": "B02",
+      "green": "B03",
+      "red": "B04",
+      "nir": "B08",
+      "swir1": "B11"
+    },
+    "landsat_common_assets": {
+      "blue": "blue",
+      "green": "green",
+      "red": "red",
+      "nir": "nir08",
+      "swir1": "swir16"
+    },
+    "cloud_mask": "Sentinel SCL / Landsat QA_PIXEL",
+    "composite": "median across the selected annual scene dates after QA masking",
+    "same_extent": "verified raw-drone WGS84 envelope; 1800 × 1015 web pixels"
   }
 }
