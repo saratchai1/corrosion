@@ -1,7 +1,7 @@
 {
   "province_key": "surat_thani",
   "plot_id": "37-STC",
-  "status": "HIGH_RESOLUTION_BASELINE_SOURCE_FOUND_METADATA_QA_PENDING",
+  "status": "HIGH_RESOLUTION_BASELINE_SOURCE_FOUND_RAW_QA_BLOCKED_BY_CONNECTED_DRIVE_LIMIT",
   "drive": {
     "province_folder_id": "1bS2dan8yZ1Nl6P5SZJUneSHKtXxGw5h7",
     "date_folder_id": "1yE-Zblb1_FYFoqBtVR3bRC_ve07qRIwr",
@@ -9,19 +9,44 @@
     "raw_geotiff_file_id": "1WdHWRu-JXFM4xayCbg6KA2-DTZFldBij",
     "raw_geotiff_title": "orthor 37 stc.tif",
     "raw_geotiff_size_bytes": 3333103914,
+    "raw_geotiff_created_time_utc": "2026-05-20T08:52:30.171Z",
+    "raw_geotiff_modified_time_utc": "2026-05-20T08:33:26.000Z",
     "preview_png_file_id": "1pacx2VFcZXZDEtyB8OfED3JWNiFJ1-Td",
     "preview_png_title": "orthor 37 stc.png",
+    "preview_png_status": "CONFIRMED_VISUAL_ORTHOMOSAIC_PREVIEW",
     "folder_label": "20-05-2569",
     "folder_date_status": "FOLDER_LABEL_UNVERIFIED_AS_FLIGHT_DATE"
   },
+  "project_geometry_reference": {
+    "crs": "EPSG:32647",
+    "role": "KNOWN_PROJECT_BOUNDARY_CRS_ONLY",
+    "raw_tiff_crs_assumed_from_project_geometry": false,
+    "primary_area_rai": 157.55
+  },
+  "legacy_alignment_audit": {
+    "drive_folder_id": "1VsVXLB1mBknTvMNPvqTJM_dpeAn4vlqW",
+    "status": "REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY",
+    "placeholder_asset_title": "drone_mosaic.webp",
+    "html_labels_found": [
+      "Drone boundary (placeholder)",
+      "Drone Placeholder"
+    ],
+    "reason": "The existing legacy comparison app uses a boundary-only placeholder for the drone side and cannot be used as georeference or same-extent alignment evidence."
+  },
   "qa": {
-    "raw_download_status": "BLOCKED_BY_CONNECTED_DRIVE_256_MB_DOWNLOAD_LIMIT",
-    "georeference_qa": "PENDING_RAW_METADATA_INSPECTION",
+    "raw_download_status": "HTTP_413_FILE_TOO_LARGE_FOR_CONNECTED_DRIVE_DOWNLOAD",
+    "connected_drive_download_limit_bytes": 268435456,
+    "georeference_qa": "BLOCKED_RAW_GEOTIFF_EXCEEDS_CONNECTED_DOWNLOAD_LIMIT",
+    "coverage_qa": "BLOCKED_RAW_GEOTIFF_EXCEEDS_CONNECTED_DOWNLOAD_LIMIT",
+    "cross_sensor_alignment": "LOCKED_UNTIL_RAW_GEOREFERENCE_QA",
     "crs": null,
     "gsd_cm": null,
     "band_count": null,
     "coverage_fraction": null,
-    "drone_ndvi_supported": null
+    "nir_band_present": null,
+    "drone_ndvi_supported": null,
+    "inspection_script": "scripts/inspect_surat_thani_37_stc_geotiff.py",
+    "missing_source_sidecars": true
   },
-  "claim_guard": "One orthomosaic epoch is a high-resolution spatial baseline, not before-after change evidence or a causal erosion metric."
+  "claim_guard": "One orthomosaic epoch is a high-resolution spatial baseline, not before-after change evidence or a causal erosion metric. Project-boundary EPSG:32647 is not silently assigned to the raw TIFF, and the legacy placeholder comparison is rejected."
 }
