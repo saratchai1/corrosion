@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-08-31T15:43:56.804092+00:00",
+  "generated_at_utc": "2026-09-01",
   "plot_code": "37-STC",
-  "branch": "data/surat-thani-satellite-v1",
-  "overall_status": "EVIDENCE_STACK_QA_PASSED_SMALL_POSITIVE_ESTABLISHMENT_NO_10M_EDGE_ADVANCE_WATERLINE_FAILED_S1_WEAK_VARIABLE_FIELD_VALIDATION_PENDING",
+  "branch": "main",
+  "overall_status": "EVIDENCE_STACK_QA_PASSED_SATELLITE_SCREENING_WITH_HIGH_RESOLUTION_VISUAL_BASELINE_RAW_DRONE_GEOREFERENCE_QA_BLOCKED_FIELD_VALIDATION_PENDING",
   "causal_erosion_reduction_claim": "CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM",
   "evidence_layers": {
     "coastal_vegetation_edge_10m": {
@@ -63,6 +63,25 @@
       "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
       "qa": "USER_CONFIRMED"
     },
+    "drone_high_resolution_baseline": {
+      "role": "HIGH_RESOLUTION_VISUAL_SPATIAL_CONTEXT_AND_VALIDATION_TARGET",
+      "status": "CONFIRMED_VISUAL_ORTHOMOSAIC_PREVIEW_RAW_GEOREFERENCE_QA_BLOCKED",
+      "epoch_count": 1,
+      "raw_geotiff_title": "orthor 37 stc.tif",
+      "raw_geotiff_size_bytes": 3333103914,
+      "raw_geotiff_drive_file_id": "1WdHWRu-JXFM4xayCbg6KA2-DTZFldBij",
+      "project_geometry_crs": "EPSG:32647",
+      "raw_tiff_crs": null,
+      "gsd_cm": null,
+      "band_count": null,
+      "valid_imagery_fraction": null,
+      "flight_date_status": "FOLDER_LABEL_UNVERIFIED_AS_FLIGHT_DATE",
+      "raw_access_status": "HTTP_413_FILE_TOO_LARGE_FOR_CONNECTED_DRIVE_DOWNLOAD",
+      "legacy_alignment_status": "REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY",
+      "cross_sensor_alignment_status": "LOCKED_UNTIL_RAW_GEOREFERENCE_QA",
+      "inspection_script": "scripts/inspect_surat_thani_37_stc_geotiff.py",
+      "qa": "VISUAL_BASELINE_ACCEPTED_RAW_SPATIAL_METADATA_HARD_GATE_OPEN"
+    },
     "bank_or_geomorphic_edge": {
       "role": "HIGH_RESOLUTION_VALIDATION_TARGET",
       "status": "NOT_AUTOMATED_FROM_CURRENT_FREE_10M_DATA",
@@ -70,15 +89,17 @@
     }
   },
   "remaining_hard_gates": [
-    "UAV/orthophoto validation of actual mangrove canopy and seaward vegetation edge",
+    "Direct raw GeoTIFF inspection for CRS, transform, GSD, band count and valid imagery fraction before Drone-to-Sentinel same-extent alignment",
+    "UAV/orthophoto validation of actual mangrove canopy and seaward vegetation edge after raw georeference QA",
     "field survival/height/canopy observations",
     "manual or high-resolution stable bank/geomorphic edge if erosion-effect evidence is required"
   ],
   "final_products": {
     "executive_summary": "data/analysis/surat_thani/executive_summary.json",
     "executive_summary_th": "regions/surat_thani/EXECUTIVE_SUMMARY_TH.md",
-    "evidence_manifest": "data/analysis/surat_thani/evidence_manifest.json",
-    "standalone_web_report": "web/public/surat-thani-37-stc.html",
-    "web_data_root": "web/public/data/surat_thani/"
+    "evidence_manifest": "web-surat-thani/public/data/surat_thani/evidence_manifest.json",
+    "drone_manifest": "web-surat-thani/public/data/surat_thani/drone/drone_manifest.json",
+    "drone_qa_script": "scripts/inspect_surat_thani_37_stc_geotiff.py",
+    "production_web_app": "https://surat-thani-37-stc-coastal-change.vercel.app"
   }
 }
