@@ -479,10 +479,10 @@
       "visuals": {
         "rgb": "data/surat_thani/drone/orthor_37_stc_same_extent.webp"
       },
+      "spectralStatus": "RGB_ONLY_NO_NIR_SWIR",
       "supportedModes": [
         "rgb"
-      ],
-      "spectralStatus": "RGB_ONLY_NO_NIR_SWIR"
+      ]
     },
     {
       "id": "satellite-2026",
@@ -496,14 +496,14 @@
         "mndwi": "data/surat_thani/drone/multiyear/satellite_2026_mndwi_same_extent.webp",
         "swir": "data/surat_thani/drone/multiyear/satellite_2026_swir_same_extent.webp"
       },
+      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS",
       "supportedModes": [
         "rgb",
         "false_vegetation",
         "ndvi",
         "mndwi",
         "swir"
-      ],
-      "spectralStatus": "ACTUAL_MULTISPECTRAL_BANDS"
+      ]
     }
   ],
   "visual_mode_guard": "RGB/False Color/NDVI/MNDWI/SWIR are rendered from actual multispectral satellite bands. Drone HR remains RGB-only because its orthomosaic has no NIR/SWIR bands.",
