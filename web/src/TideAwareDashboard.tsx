@@ -26,7 +26,6 @@ export default function TideAwareDashboard({
 }: Props) {
   const [view, setView] = useState<'history' | 'current'>(initialView)
   const [history, setHistory] = useState<PreplantingHistorySummaryV2 | null>(null)
-  const [historyError, setHistoryError] = useState<string | null>(null)
   const [planting, setPlanting] = useState<PlantingAwareSummary | null>(null)
 
   useEffect(() => {
@@ -63,11 +62,8 @@ export default function TideAwareDashboard({
       .then((value: unknown) => {
         if (active) setHistory(value as PreplantingHistorySummaryV2)
       })
-      .catch((reason: unknown) => {
-        if (active) {
-          setHistoryError(reason instanceof Error ? reason.message : String(reason))
-          setView('current')
-        }
+      .catch(() => {
+        if (active) setView('current')
       })
     return () => {
       active = false
@@ -94,21 +90,15 @@ export default function TideAwareDashboard({
 
   if (view === 'current') {
     return (
-      <>
-        <div className="history-current-return">
-          <button type="button" onClick={() => setView('history')} disabled={!history}>
-            ← กลับไปดูว่า ก่อนปี 2023 เคยมีสัญญาณกัดเซาะหรือไม่
-          </button>
-          {historyError && <span className="history-load-note">โหลดข้อมูลย้อนหลังไม่ได้: {historyError}</span>}
-        </div>
-        <TideAwareOverview
-          summary={summary}
-          onOpenHistory={() => setView('history')}
-          onOpenDrone={onOpenDrone}
-          onOpenProject={onOpenProject}
-          onOpenCoast={onOpenCoast}
-        />
-      </>
+      <TideAwareOverview
+        summary={summary}
+        onOpenHistory={() => {
+          if (history) setView('history')
+        }}
+        onOpenDrone={onOpenDrone}
+        onOpenProject={onOpenProject}
+        onOpenCoast={onOpenCoast}
+      />
     )
   }
 
