@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/surat-thani-drone-raw-qa.yml'
       - 'scripts/inspect_surat_thani_37_stc_geotiff.py'
+      - 'scripts/publish_surat_thani_37_stc_drone_compare.py'
       - 'web-surat-thani/public/data/surat_thani/project_boundary.geojson'
   workflow_dispatch:
 
@@ -30,8 +31,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install lightweight QA dependencies
-        run: python -m pip install --disable-pip-version-check 'gdown==5.2.0' 'rasterio>=1.4,<2' 'numpy>=2,<3'
+      - name: Install lightweight QA and publishing dependencies
+        run: python -m pip install --disable-pip-version-check 'gdown==5.2.0' 'rasterio>=1.4,<2' 'numpy>=2,<3' 'Pillow>=10,<12'
 
       - name: Download raw 37-STC GeoTIFF to ephemeral runner storage
         shell: bash
@@ -61,20 +62,35 @@ jobs:
             --footprint-geojson data/analysis/surat_thani/drone_37_stc_footprint.geojson
           python -m json.tool data/analysis/surat_thani/drone_37_stc_geotiff_qa.json >/dev/null
           python -m json.tool data/analysis/surat_thani/drone_37_stc_footprint.geojson >/dev/null
-          cat data/analysis/surat_thani/drone_37_stc_geotiff_qa.json
 
-      - name: Commit metadata only, never the raw TIFF
+      - name: Publish same-extent Drone and Sentinel-2 web assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/publish_surat_thani_37_stc_drone_compare.py "$RUNNER_TEMP/orthor_37_stc.tif"
+          python -m json.tool web-surat-thani/public/data/surat_thani/drone/drone_manifest.json >/dev/null
+          test -s web-surat-thani/public/data/surat_thani/drone/orthor_37_stc_same_extent.webp
+          test -s web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp
+          du -h web-surat-thani/public/data/surat_thani/drone/*same_extent.webp
+          cat web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+
+      - name: Commit QA metadata and web-safe compare assets, never the raw TIFF
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/analysis/surat_thani/drone_37_stc_geotiff_qa.json data/analysis/surat_thani/drone_37_stc_footprint.geojson
+          git add \
+            data/analysis/surat_thani/drone_37_stc_geotiff_qa.json \
+            data/analysis/surat_thani/drone_37_stc_footprint.geojson \
+            web-surat-thani/public/data/surat_thani/drone/drone_manifest.json \
+            web-surat-thani/public/data/surat_thani/drone/orthor_37_stc_same_extent.webp \
+            web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp
           if git diff --cached --quiet; then
-            echo 'No metadata changes to commit.'
+            echo 'No QA or compare asset changes to commit.'
             exit 0
           fi
-          git commit -m 'data: refresh 37-STC raw drone GeoTIFF QA [skip ci]'
+          git commit -m 'data: publish georeferenced 37-STC drone compare'
           git pull --rebase --autostash origin main
           git push origin HEAD:main
 
