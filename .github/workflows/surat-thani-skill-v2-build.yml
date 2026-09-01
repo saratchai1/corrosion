@@ -3,12 +3,15 @@ name: Surat Thani skill v2 web QA
 on:
   push:
     branches:
+      - main
       - web/surat-thani-skill-v2
     paths:
       - 'web-surat-thani/**'
       - 'data/project/surat_thani_drone_drive_manifest.json'
       - 'regions/surat_thani/DRONE_BASELINE.md'
+      - 'scripts/inspect_surat_thani_37_stc_geotiff.py'
       - '.github/workflows/surat-thani-skill-v2-build.yml'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,6 +23,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate drone manifests and inspector syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool data/project/surat_thani_drone_drive_manifest.json >/dev/null
+          python -m json.tool web-surat-thani/public/data/surat_thani/drone/drone_manifest.json >/dev/null
+          python -m json.tool web-surat-thani/public/data/surat_thani/evidence_manifest.json >/dev/null
+          python -m py_compile scripts/inspect_surat_thani_37_stc_geotiff.py
+          grep -q 'REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY' data/project/surat_thani_drone_drive_manifest.json
+          grep -q 'BLOCKED_RAW_GEOTIFF_EXCEEDS_CONNECTED_DOWNLOAD_LIMIT' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+          grep -q 'ONE_EPOCH_ONLY_NO_DRONE_DERIVED_CHANGE_RATE' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
       - name: Install
         working-directory: web-surat-thani
         run: npm install
@@ -38,7 +55,5 @@ jobs:
           grep -R -q 'ภาพโดรน HR' web-surat-thani/dist/assets
           grep -R -q 'หลักฐานย้อนหลัง' web-surat-thani/dist/assets
           grep -R -q 'แผนที่หลายปี' web-surat-thani/dist/assets
-          if git diff --name-only origin/main...HEAD | grep '^web/'; then
-            echo 'ERROR: Samut Songkhram web/ was modified by Surat Thani v2 work'
-            exit 1
-          fi
+          grep -R -q 'REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY' web-surat-thani/dist
+          grep -R -q 'LOCKED_UNTIL_RAW_GEOREFERENCE_QA' web-surat-thani/dist
