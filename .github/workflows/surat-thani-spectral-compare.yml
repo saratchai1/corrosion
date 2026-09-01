@@ -1,0 +1,97 @@
+name: Surat Thani real spectral compare
+
+on:
+  push:
+    branches:
+      - feature/surat-thani-spectral-modes
+      - main
+    paths:
+      - 'scripts/publish_surat_thani_spectral_compare.py'
+      - 'web-surat-thani/src/DroneMultiYearPage.tsx'
+      - 'web-surat-thani/src/drone-multiyear.css'
+      - 'web-surat-thani/public/data/surat_thani/imagery_index.json'
+      - '.github/workflows/surat-thani-spectral-compare.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: surat-thani-spectral-compare-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-spectral-products:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GDAL_DISABLE_READDIR_ON_OPEN: EMPTY_DIR
+      GDAL_HTTP_MULTIRANGE: YES
+      GDAL_HTTP_MERGE_CONSECUTIVE_RANGES: YES
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install multispectral dependencies
+        run: |
+          python -m pip install --disable-pip-version-check \
+            'numpy>=2,<3' \
+            'Pillow>=10,<12' \
+            'rasterio>=1.4,<2' \
+            'pystac-client>=0.8,<1' \
+            'planetary-computer>=1,<2'
+
+      - name: Generate RGB False Color NDVI MNDWI SWIR from real bands
+        run: |
+          set -euo pipefail
+          python scripts/publish_surat_thani_spectral_compare.py
+          python -m json.tool web-surat-thani/public/data/surat_thani/drone/compare_catalog.json >/dev/null
+          grep -q 'ACTUAL_MULTISPECTRAL_BANDS' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          grep -q 'false_vegetation' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          grep -q 'mndwi' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          for year in 1985 1990 2000 2010 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+            for mode in rgb false_vegetation ndvi mndwi swir; do
+              test -s "web-surat-thani/public/data/surat_thani/drone/multiyear/satellite_${year}_${mode}_same_extent.webp"
+            done
+          done
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build standalone Surat web
+        working-directory: web-surat-thani
+        run: |
+          npm install
+          npm run build
+
+      - name: Scientific and isolation guards
+        run: |
+          set -euo pipefail
+          ! grep -R "Vivid\|visual only ไม่ใช่ NDVI" web-surat-thani/src/DroneMultiYearPage.tsx
+          grep -q "False Color" web-surat-thani/src/DroneMultiYearPage.tsx
+          grep -q "NDVI" web-surat-thani/src/DroneMultiYearPage.tsx
+          grep -q "MNDWI" web-surat-thani/src/DroneMultiYearPage.tsx
+          grep -q "SWIR" web-surat-thani/src/DroneMultiYearPage.tsx
+          ! find web-surat-thani -type f | grep -Ei '\.(tif|tiff)$'
+          ! git diff origin/main...HEAD --name-only | grep '^web/'
+
+      - name: Commit web-safe spectral assets
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          git add web-surat-thani/public/data/surat_thani/drone/multiyear
+          if git diff --cached --quiet; then
+            echo 'No spectral asset changes.'
+            exit 0
+          fi
+          git commit -m 'data: publish 37-STC real spectral compare products'
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
