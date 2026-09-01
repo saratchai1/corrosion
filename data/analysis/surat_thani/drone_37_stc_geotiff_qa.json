@@ -1,0 +1,88 @@
+{
+  "plot_id": "37-STC",
+  "source_file": "/home/runner/work/_temp/orthor_37_stc.tif",
+  "source_file_size_bytes": 3333103914,
+  "flight_date_status": "UNVERIFIED_NOT_INFERRED_FROM_FOLDER_LABEL",
+  "raster": {
+    "driver": "GTiff",
+    "width_px": 80276,
+    "height_px": 44940,
+    "band_count": 4,
+    "dtypes": [
+      "uint8",
+      "uint8",
+      "uint8",
+      "uint8"
+    ],
+    "nodata": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "colorinterp": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "band_descriptions": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "georeference": {
+    "crs": "EPSG:32647",
+    "epsg": 32647,
+    "project_geometry_crs_reference": "EPSG:32647",
+    "project_geometry_crs_is_not_assumed_for_raw_tiff": true,
+    "expected_crs_match": true,
+    "transform": [
+      0.02256870000000038,
+      0.0,
+      524308.8828264854,
+      0.0,
+      -0.02256870000000109,
+      1033292.0318173745
+    ],
+    "bounds_source_crs": {
+      "left": 524308.8828264854,
+      "bottom": 1032277.7944393745,
+      "right": 526120.6077876855,
+      "top": 1033292.0318173745
+    },
+    "bounds_wgs84": {
+      "left": 99.22137184918678,
+      "bottom": 9.338435374657791,
+      "right": 99.23787667757145,
+      "top": 9.347619657518594
+    },
+    "pixel_size_x_source_units": 0.02256870000000038,
+    "pixel_size_y_source_units": 0.02256870000000109,
+    "mean_gsd_m": 0.022568700000000733,
+    "mean_gsd_cm": 2.2568700000000734,
+    "qa_status": "PASS_EXPECTED_PROJECT_CRS"
+  },
+  "coverage": {
+    "valid_imagery_fraction": 0.27611379425893884,
+    "calculation": "rasterio.dataset_mask block-by-block",
+    "qa_status": "INSUFFICIENT_LT_90PCT",
+    "thresholds": {
+      "PASS_GE_95PCT": 0.95,
+      "PARTIAL_USABLE_GE_90PCT": 0.9
+    }
+  },
+  "spectral": {
+    "nir_band_present": null,
+    "nir_detection_basis": "NOT_DETERMINABLE_FROM_RASTER_TAGS",
+    "drone_ndvi_supported": false,
+    "guard": "Do not compute drone NDVI unless a NIR band is explicitly confirmed."
+  },
+  "claim_guard": [
+    "ONE_EPOCH_ONLY_NO_DRONE_DERIVED_CHANGE_RATE",
+    "DO_NOT_INFER_FLIGHT_DATE_FROM_FOLDER_LABEL",
+    "DO_NOT_PROMOTE_CROSS_SENSOR_ALIGNMENT_UNTIL_GEOREFERENCE_QA_PASSES"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "name": "surat_thani_37_stc_drone_footprint",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "37-STC",
+        "source": "orthor_37_stc.tif",
+        "source_crs": "EPSG:32647",
+        "qa_role": "RAW_GEOTIFF_FOOTPRINT"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.22137184918678,
+              9.347619657518594
+            ],
+            [
+              99.23787667757145,
+              9.347619657518594
+            ],
+            [
+              99.23787667757145,
+              9.338435374657791
+            ],
+            [
+              99.22137184918678,
+              9.338435374657791
+            ],
+            [
+              99.22137184918678,
+              9.347619657518594
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
