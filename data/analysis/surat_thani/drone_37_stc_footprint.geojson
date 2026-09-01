@@ -8,7 +8,8 @@
         "plot_id": "37-STC",
         "source": "orthor_37_stc.tif",
         "source_crs": "EPSG:32647",
-        "qa_role": "RAW_GEOTIFF_FOOTPRINT"
+        "qa_role": "RAW_GEOTIFF_FOOTPRINT",
+        "project_polygon_valid_fraction": 0.9999994403016031
       },
       "geometry": {
         "type": "Polygon",

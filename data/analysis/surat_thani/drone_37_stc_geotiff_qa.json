@@ -3,6 +3,7 @@
   "source_file": "/home/runner/work/_temp/orthor_37_stc.tif",
   "source_file_size_bytes": 3333103914,
   "flight_date_status": "UNVERIFIED_NOT_INFERRED_FROM_FOLDER_LABEL",
+  "raw_timestamp_tags": {},
   "raster": {
     "driver": "GTiff",
     "width_px": 80276,
@@ -21,17 +22,21 @@
       null
     ],
     "colorinterp": [
-      "3",
-      "4",
-      "5",
-      "6"
+      "red",
+      "green",
+      "blue",
+      "alpha"
     ],
     "band_descriptions": [
       null,
       null,
       null,
       null
-    ]
+    ],
+    "image_structure_tags": {
+      "COMPRESSION": "LZW",
+      "INTERLEAVE": "PIXEL"
+    }
   },
   "georeference": {
     "crs": "EPSG:32647",
@@ -66,17 +71,29 @@
     "qa_status": "PASS_EXPECTED_PROJECT_CRS"
   },
   "coverage": {
-    "valid_imagery_fraction": 0.27611379425893884,
-    "calculation": "rasterio.dataset_mask block-by-block",
-    "qa_status": "INSUFFICIENT_LT_90PCT",
+    "project_boundary_source": "web-surat-thani/public/data/surat_thani/project_boundary.geojson",
+    "project_boundary_source_crs": "EPSG:4326",
+    "project_polygon_valid_fraction": 0.9999994403016031,
+    "raster_rectangle_valid_fraction": 0.27611379425893884,
+    "metrics": {
+      "raster_rectangle_valid_pixels": 996109074,
+      "raster_rectangle_total_pixels": 3607603440,
+      "raster_rectangle_valid_fraction": 0.27611379425893884,
+      "project_polygon_valid_pixels": 494909127,
+      "project_polygon_total_pixels": 494909404,
+      "project_polygon_valid_fraction": 0.9999994403016031
+    },
+    "calculation": "rasterio dataset mask intersected with rasterized project polygon, block-by-block",
+    "qa_status": "PASS_GE_95PCT",
+    "interpretation_guard": "QA status is based on valid imagery inside the 37-STC project polygon; raster-rectangle validity is context only because the orthomosaic has large transparent/NoData margins.",
     "thresholds": {
       "PASS_GE_95PCT": 0.95,
       "PARTIAL_USABLE_GE_90PCT": 0.9
     }
   },
   "spectral": {
-    "nir_band_present": null,
-    "nir_detection_basis": "NOT_DETERMINABLE_FROM_RASTER_TAGS",
+    "nir_band_present": false,
+    "nir_detection_basis": "RGB_PLUS_ALPHA_COLORINTERP",
     "drone_ndvi_supported": false,
     "guard": "Do not compute drone NDVI unless a NIR band is explicitly confirmed."
   },
