@@ -108,18 +108,22 @@ def main() -> int:
         candidate["candidate_zone"]["drone_coverage_status"] = (
             "INSIDE_VERIFIED_RAW_DRONE_FOOTPRINT" if inside else "OUTSIDE_VERIFIED_RAW_DRONE_FOOTPRINT"
         )
+        drone_crop_path = AUDIT.parent / f"{transect}_drone_crop.webp"
         if inside:
             with Image.open(drone_source) as img:
                 pixel = lonlat_to_bounds_pixel(lon, lat, drone_bounds, img.size)
-            out = AUDIT.parent / f"{transect}_drone_crop.webp"
-            marker = crop(drone_source, pixel, out)
+            marker = crop(drone_source, pixel, drone_crop_path)
             candidate["web_crops"]["drone"] = {
-                "asset": rel(out),
+                "asset": rel(drone_crop_path),
                 "marker": marker,
                 "coverage_status": "INSIDE_VERIFIED_RAW_DRONE_FOOTPRINT",
             }
         else:
             candidate["web_crops"]["drone"] = None
+            # Delete any stale crop produced before footprint QA. Keeping such a
+            # file would make it possible to mistake an image-edge crop for
+            # actual coverage of an outside-footprint candidate such as T038.
+            drone_crop_path.unlink(missing_ok=True)
 
     audit["crop_method"] = (
         "Sentinel candidate crops are centered on the candidate WGS84 point in the full yearly image; "
