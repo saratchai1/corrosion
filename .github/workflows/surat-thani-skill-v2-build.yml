@@ -35,17 +35,23 @@ jobs:
           python -m json.tool data/project/surat_thani_drone_drive_manifest.json >/dev/null
           python -m json.tool web-surat-thani/public/data/surat_thani/drone/drone_manifest.json >/dev/null
           python -m json.tool web-surat-thani/public/data/surat_thani/evidence_manifest.json >/dev/null
+          python -m json.tool web-surat-thani/public/data/surat_thani/drone/compare_catalog.json >/dev/null
           python -m py_compile scripts/inspect_surat_thani_37_stc_geotiff.py
           python -m py_compile scripts/audit_surat_thani_land_accretion_candidates.py
           grep -q 'REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
           grep -q 'GEOREFERENCE_QA_PASSED_SAME_EXTENT_COMPARE_AVAILABLE' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
           grep -q 'PASS_EXPECTED_PROJECT_CRS' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
           grep -q 'ONE_EPOCH_ONLY_NO_DRONE_DERIVED_CHANGE_RATE' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+          grep -q 'ACTUAL_MULTISPECTRAL_BANDS' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          grep -q '"id": "ndvi"' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          grep -q '"id": "mndwi"' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
+          grep -q '"id": "swir"' web-surat-thani/public/data/surat_thani/drone/compare_catalog.json
           if test -f web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json; then
             python -m json.tool web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json >/dev/null
             grep -q 'NO_POST_2023_LAND_ACCRETION_CONFIRMED_FROM_THE_TWO_LONG_TERM_CANDIDATES' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
             grep -q '"transect_id": "T028"' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
             grep -q '"transect_id": "T038"' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
+            grep -q 'OUTSIDE_VERIFIED_RAW_DRONE_FOOTPRINT' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
           fi
       - name: Install
         working-directory: web-surat-thani
@@ -53,19 +59,28 @@ jobs:
       - name: Build
         working-directory: web-surat-thani
         run: npm run build
-      - name: QA information architecture, drone guard and land-accretion audit
+      - name: QA information architecture, spectral stack, drone guard and land-accretion audit
         shell: bash
         run: |
           set -euo pipefail
           test -f web-surat-thani/dist/index.html
           test -f web-surat-thani/dist/data/surat_thani/drone/drone_manifest.json
+          test -f web-surat-thani/dist/data/surat_thani/drone/compare_catalog.json
           test -f web-surat-thani/dist/data/surat_thani/drone/orthor_37_stc_same_extent.webp
           test -f web-surat-thani/dist/data/surat_thani/drone/sentinel2_2026_same_extent.webp
+          for MODE in rgb false_vegetation ndvi mndwi swir; do
+            test -f "web-surat-thani/dist/data/surat_thani/drone/multiyear/satellite_2023_${MODE}_same_extent.webp"
+            test -f "web-surat-thani/dist/data/surat_thani/drone/multiyear/satellite_2026_${MODE}_same_extent.webp"
+          done
           ! find web-surat-thani/dist -type f \( -iname '*.tif' -o -iname '*.tiff' \) | grep -q .
           grep -R -q 'GEOREFERENCED_HIGH_RESOLUTION_BASELINE' web-surat-thani/dist
           grep -R -q 'ภาพโดรน HR' web-surat-thani/dist/assets
           grep -R -q 'หลักฐานย้อนหลัง' web-surat-thani/dist/assets
           grep -R -q 'แผนที่หลายปี' web-surat-thani/dist/assets
+          grep -R -q 'False Color' web-surat-thani/dist/assets
+          grep -R -q 'NDVI' web-surat-thani/dist/assets
+          grep -R -q 'MNDWI' web-surat-thani/dist/assets
+          grep -R -q 'SWIR' web-surat-thani/dist/assets
           grep -R -q 'ไม่รองรับดินงอกหลัง 2023' web-surat-thani/dist/assets
           if test -f web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json; then
             test -f web-surat-thani/dist/data/surat_thani/drone/land_accretion_candidate_audit.json
@@ -73,6 +88,7 @@ jobs:
             for ID in t028 t038; do
               test -f "web-surat-thani/dist/data/surat_thani/drone/${ID}_sentinel2_2023_crop.webp"
               test -f "web-surat-thani/dist/data/surat_thani/drone/${ID}_sentinel2_2026_crop.webp"
-              test -f "web-surat-thani/dist/data/surat_thani/drone/${ID}_drone_crop.webp"
             done
+            test -f web-surat-thani/dist/data/surat_thani/drone/t028_drone_crop.webp
+            test ! -e web-surat-thani/dist/data/surat_thani/drone/t038_drone_crop.webp
           fi
