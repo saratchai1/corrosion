@@ -26,18 +26,24 @@ assert Path('web/public/data/project_drone_orthomosaic/summary.json').exists()
 assert len(list(Path('web/public/data/project_drone_orthomosaic/previews').glob('*.webp'))) == 9
 
 nav_labels = ['หลักฐานย้อนหลัง', 'ผล 2023–2026', 'ภาพโดรน HR', 'รายงาน 9 แปลง', 'แผนที่ 10 ปี']
-files = [
+for path in [
     src / 'PreplantingHistoryDashboardV2.tsx',
     src / 'TideAwareOverview.tsx',
     src / 'ProjectDashboard.tsx',
     src / 'DroneBaselinePage.tsx',
-    src / 'App.tsx',
-]
-for path in files:
+]:
     text = path.read_text(encoding='utf-8')
     positions = [text.find(label) for label in nav_labels]
     assert all(position >= 0 for position in positions), (path, positions)
     assert positions == sorted(positions), (path, positions)
+
+# App contains labels elsewhere too, so inspect the coast navigation block itself.
+start = app.index('<div className="coast-view-tabs view-tabs"')
+end = app.index('</div>', start)
+coast_nav = app[start:end]
+positions = [coast_nav.find(label) for label in nav_labels]
+assert all(position >= 0 for position in positions), positions
+assert positions == sorted(positions), positions
 
 missing = []
 pattern = re.compile(r'''href=["'](data/[^"'#?]+)''')
