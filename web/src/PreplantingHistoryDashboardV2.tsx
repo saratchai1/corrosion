@@ -139,6 +139,7 @@ export type PreplantingHistorySummaryV2 = {
 type Props = {
   history: PreplantingHistorySummaryV2
   onOpenCurrent: () => void
+  onOpenDrone: () => void
   onOpenProject: () => void
   onOpenCoast: () => void
 }
@@ -454,7 +455,7 @@ function PlotExplorer({ plots }: { plots: PlotHistory[] }) {
   )
 }
 
-export default function PreplantingHistoryDashboardV2({ history, onOpenCurrent, onOpenProject, onOpenCoast }: Props) {
+export default function PreplantingHistoryDashboardV2({ history, onOpenCurrent, onOpenDrone, onOpenProject, onOpenCoast }: Props) {
   const waterline = history.indicators.waterline
   const mangrove = history.indicators.mangrove_edge_proxy
   const before = periodCounts(waterline.historical)
@@ -468,7 +469,7 @@ export default function PreplantingHistoryDashboardV2({ history, onOpenCurrent, 
     <main className="spectral-shell">
       <nav className="spectral-nav">
         <div><span>สมุทรสงคราม</span><strong>Coastal History Evidence</strong></div>
-        <div><button className="active">ก่อนปลูกเคยถอยไหม</button><button onClick={onOpenCurrent}>ผล 2023–2026</button><button onClick={onOpenProject}>รายงาน 9 แปลง</button><button onClick={onOpenCoast}>แผนที่ 10 ปี</button></div>
+        <div><button className="active">หลักฐานย้อนหลัง</button><button onClick={onOpenCurrent}>ผล 2023–2026</button><button onClick={onOpenDrone}>ภาพโดรน HR</button><button onClick={onOpenProject}>รายงาน 9 แปลง</button><button onClick={onOpenCoast}>แผนที่ 10 ปี</button></div>
       </nav>
 
       <header className="spectral-hero">

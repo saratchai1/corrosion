@@ -17,6 +17,7 @@ import type {
 } from './types'
 
 const MapPane = lazy(() => import('./MapPane'))
+const DroneBaselinePage = lazy(() => import('./DroneBaselinePage'))
 const ProjectDashboard = lazy(() => import('./ProjectDashboard'))
 const SwipeCompare = lazy(() => import('./SwipeCompare'))
 const TransectChart = lazy(() => import('./TransectChart'))
@@ -28,7 +29,8 @@ function ViewLoading({ label }: { label: string }) {
 }
 
 export default function App() {
-  const [page, setPage] = useState<'project' | 'tide' | 'coast'>('tide')
+  const [page, setPage] = useState<'project' | 'tide' | 'drone' | 'coast'>('tide')
+  const [tideView, setTideView] = useState<'history' | 'current'>('history')
   const [index, setIndex] = useState<DataIndex | null>(null)
   const [summary, setSummary] = useState<Summary | null>(null)
   const [projectSummary, setProjectSummary] = useState<ProjectImpactSummary | null>(null)
@@ -72,6 +74,12 @@ export default function App() {
     ['plots', 'แปลงปลูกปี 2024', '9 verified project plots'],
   ] as const, [])
 
+  const openHistory = () => { setTideView('history'); setPage('tide') }
+  const openCurrent = () => { setTideView('current'); setPage('tide') }
+  const openDrone = () => setPage('drone')
+  const openProject = () => setPage('project')
+  const openCoast = () => setPage('coast')
+
   if (error) return <main className="loading">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>
   if (!index || !summary || !projectSummary || !tideSummary || !epoch || !compareEpoch) {
     return <main className="loading">กำลังเปิดชุดข้อมูลชายฝั่ง…</main>
@@ -80,7 +88,13 @@ export default function App() {
   if (page === 'project') {
     return (
       <Suspense fallback={<ViewLoading label="กำลังเปิดรายงาน 9 แปลง…" />}>
-        <ProjectDashboard summary={projectSummary} onOpenCoast={() => setPage('coast')} />
+        <ProjectDashboard
+          summary={projectSummary}
+          onOpenHistory={openHistory}
+          onOpenCurrent={openCurrent}
+          onOpenDrone={openDrone}
+          onOpenCoast={openCoast}
+        />
       </Suspense>
     )
   }
@@ -89,9 +103,24 @@ export default function App() {
     return (
       <TideAwareDashboard
         summary={tideSummary}
-        onOpenProject={() => setPage('project')}
-        onOpenCoast={() => setPage('coast')}
+        initialView={tideView}
+        onOpenDrone={openDrone}
+        onOpenProject={openProject}
+        onOpenCoast={openCoast}
       />
+    )
+  }
+
+  if (page === 'drone') {
+    return (
+      <Suspense fallback={<ViewLoading label="กำลังเปิดภาพโดรนความละเอียดสูง…" />}>
+        <DroneBaselinePage
+          onOpenHistory={openHistory}
+          onOpenCurrent={openCurrent}
+          onOpenProject={openProject}
+          onOpenCoast={openCoast}
+        />
+      </Suspense>
     )
   }
 
@@ -100,9 +129,11 @@ export default function App() {
       <main className="app-shell">
         <aside className="sidebar">
           <div className="coast-view-tabs view-tabs" role="tablist" aria-label="เลือกมุมมอง">
-            <button role="tab" aria-selected="false" onClick={() => setPage('project')}>รายงานผล 9 แปลง</button>
-            <button role="tab" aria-selected="false" onClick={() => setPage('tide')}>คุมระดับน้ำ</button>
-            <button className="active" role="tab" aria-selected="true">แผนที่ดาวเทียม 10 ปี</button>
+            <button role="tab" aria-selected="false" onClick={openHistory}>หลักฐานย้อนหลัง</button>
+            <button role="tab" aria-selected="false" onClick={openCurrent}>ผล 2023–2026</button>
+            <button role="tab" aria-selected="false" onClick={openDrone}>ภาพโดรน HR</button>
+            <button role="tab" aria-selected="false" onClick={openProject}>รายงาน 9 แปลง</button>
+            <button className="active" role="tab" aria-selected="true">แผนที่ 10 ปี</button>
           </div>
           <header>
             <span className="project-tag">ANNUAL SATELLITE IMAGERY · 2017–2026</span>
@@ -156,7 +187,7 @@ export default function App() {
               <div><dt>Waterline ±20 ม.</dt><dd>{tideSummary.indicators.waterline.class_counts.WITHIN_20M ?? 0}/{tideSummary.indicators.waterline.transect_count}</dd></div>
               <div><dt>Controls</dt><dd>{tideSummary.controls.selected_count} candidate</dd></div>
             </dl>
-            <button type="button" onClick={() => setPage('tide')}>เปิดรายงาน tide-aware</button>
+            <button type="button" onClick={openCurrent}>เปิดผล 2023–2026 แบบคุมระดับน้ำ</button>
           </section>
 
           {selection

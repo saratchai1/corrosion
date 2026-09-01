@@ -340,3 +340,42 @@
   .drone-compare-controls { right: 8px; bottom: 8px; }
   .drone-pan-hint { bottom: 52px; }
 }
+
+
+/* Standalone high-resolution page: keep drone evidence separate from the history slider. */
+.drone-page-context {
+  max-width: 1500px;
+  margin: 24px auto 0;
+  padding: 24px 28px;
+  border: 1px solid rgba(121, 178, 167, 0.28);
+  background: rgba(8, 36, 36, 0.72);
+}
+.drone-page-context > span {
+  color: #8dcbbb;
+  font-size: 11px;
+  letter-spacing: .12em;
+}
+.drone-page-context h1 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 3vw, 46px);
+}
+.drone-page-context p {
+  margin: 0;
+  max-width: 980px;
+  color: #aac0bc;
+  line-height: 1.7;
+}
+.drone-standalone-content {
+  max-width: 1500px;
+  margin: 16px auto 48px;
+}
+.drone-portal-marker {
+  display: none !important;
+}
+.drone-page-status {
+  max-width: 1500px;
+  margin: 16px auto;
+  padding: 28px;
+  border: 1px solid rgba(121, 178, 167, 0.22);
+  color: #b8cfca;
+}
