@@ -80,15 +80,98 @@ type DroneManifest = {
   scientific_guard: string[]
 }
 
+type CandidateCrop = {
+  asset: string
+  marker: { x_percent: number; y_percent: number }
+}
+
+type AccretionCandidate = {
+  transect_id: string
+  historical_classification_1985_2026: string
+  historical_net_change_m_1985_2026: number
+  historical_rate_m_per_year_1985_2026: number
+  historical_confidence: string
+  baseline_waterline_2023_2026: {
+    position_2023_m: number
+    position_2026_m: number
+    change_m: number
+    direction: string
+  }
+  tide_matched_waterline_2023_2026: {
+    position_2023_m: number
+    position_2026_m: number
+    change_m: number
+    classification: string
+    direction: string
+  }
+  candidate_zone: {
+    center_lon: number
+    center_lat: number
+    waterline_point_2023_lon_lat: [number, number]
+    waterline_point_2026_lon_lat: [number, number]
+    inside_drone_extent: boolean
+    marker_on_full_same_extent: { x_percent: number; y_percent: number }
+  }
+  web_crops: {
+    sentinel2_2023: CandidateCrop
+    sentinel2_2026: CandidateCrop
+    drone: CandidateCrop
+  }
+  post_2023_accretion_supported: boolean
+  post_2023_verdict: string
+  interpretation_th: string
+}
+
+type AccretionAudit = {
+  plot_id: string
+  question: string
+  candidate_origin: string
+  audit_period: string
+  candidate_count: number
+  post_2023_supported_candidate_count: number
+  overall_verdict: string
+  overall_interpretation_th: string
+  coastal_vegetation_edge_project_median_change_2023_2026_m: number | null
+  scientific_guard: string[]
+  same_extent: {
+    bounds_wgs84: Bounds
+    width_px: number
+    height_px: number
+    sentinel2_2023_asset: string
+    sentinel2_2023_dates: string[]
+    sentinel2_2026_asset: string
+    drone_asset: string
+  }
+  candidates: AccretionCandidate[]
+}
+
 type Pan = { x: number; y: number }
 type Drag = { pointerId: number; startX: number; startY: number; startPan: Pan } | null
 
 function formatGiB(bytes: number) { return `${(bytes / 1024 ** 3).toFixed(2)} GiB` }
 function formatPercent(value: number | null) { return value == null ? '—' : `${(value * 100).toFixed(2)}%` }
 function formatGsd(value: number | null) { return value == null ? '—' : `${value.toFixed(3)} cm/px` }
+function formatSignedMeters(value: number) { return `${value > 0 ? '+' : ''}${value.toFixed(2)} m` }
+
+function CandidateImage({ crop, label, detail }: { crop: CandidateCrop; label: string; detail: string }) {
+  return (
+    <figure className="candidate-image">
+      <div className="candidate-image-frame">
+        <img src={crop.asset} alt={`${label} บริเวณ candidate ดินงอก 37-STC`} />
+        <span
+          className="candidate-ring"
+          style={{ left: `${crop.marker.x_percent}%`, top: `${crop.marker.y_percent}%` }}
+          aria-hidden="true"
+        />
+      </div>
+      <figcaption><strong>{label}</strong><small>{detail}</small></figcaption>
+    </figure>
+  )
+}
 
 export default function DroneBaselinePage() {
   const [manifest, setManifest] = useState<DroneManifest | null>(null)
+  const [audit, setAudit] = useState<AccretionAudit | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState<Pan>({ x: 0, y: 0 })
@@ -97,12 +180,20 @@ export default function DroneBaselinePage() {
   const stageRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    fetch('data/surat_thani/drone/drone_manifest.json')
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    Promise.all([
+      fetch('data/surat_thani/drone/drone_manifest.json').then((response) => {
+        if (!response.ok) throw new Error(`drone_manifest HTTP ${response.status}`)
         return response.json()
+      }),
+      fetch('data/surat_thani/drone/land_accretion_candidate_audit.json').then((response) => {
+        if (!response.ok) throw new Error(`land_accretion_candidate_audit HTTP ${response.status}`)
+        return response.json()
+      }),
+    ])
+      .then(([manifestValue, auditValue]) => {
+        setManifest(manifestValue as DroneManifest)
+        setAudit(auditValue as AccretionAudit)
       })
-      .then((value: unknown) => setManifest(value as DroneManifest))
       .catch((reason: unknown) => setError(reason instanceof Error ? reason.message : String(reason)))
   }, [])
 
@@ -137,8 +228,8 @@ export default function DroneBaselinePage() {
     }
   }
 
-  if (error) return <main className="document-page"><section className="document-hero"><h1>ภาพโดรน HR</h1><p>โหลด manifest ไม่สำเร็จ: {error}</p></section></main>
-  if (!manifest) return <main className="document-page"><section className="document-hero"><h1>ภาพโดรน HR</h1><p>กำลังเปิด high-resolution baseline…</p></section></main>
+  if (error) return <main className="document-page"><section className="document-hero"><h1>ภาพโดรน HR</h1><p>โหลด evidence ไม่สำเร็จ: {error}</p></section></main>
+  if (!manifest || !audit) return <main className="document-page"><section className="document-hero"><h1>ภาพโดรน HR</h1><p>กำลังเปิด high-resolution baseline และตรวจ candidate ดินงอก…</p></section></main>
 
   const compare = manifest.same_extent_compare?.status === 'AVAILABLE' ? manifest.same_extent_compare : null
   const qaPassed = manifest.qa.georeference_status === 'PASS_EXPECTED_PROJECT_CRS' && manifest.qa.imagery_coverage_status === 'PASS_GE_95PCT'
@@ -184,6 +275,66 @@ export default function DroneBaselinePage() {
           <article><span>Cross-sensor compare</span><strong>{manifest.qa.cross_sensor_alignment_status}</strong><small>{compare ? 'same WGS84 extent / same pixel dimensions' : 'ยังไม่มี asset'}</small></article>
           <a className="drive-button" href={manifest.source.raw_geotiff.drive_url} target="_blank" rel="noreferrer">เปิด raw GeoTIFF บน Google Drive</a>
         </aside>
+      </section>
+
+      <section className="accretion-audit">
+        <div className="accretion-audit-head">
+          <div>
+            <span>LAND ACCRETION AUDIT · 2023 → 2026</span>
+            <h2>2 จุดที่เคยดูเหมือน “ดินงอก” งอกหลังปลูกจริงไหม?</h2>
+            <p>{audit.overall_interpretation_th}</p>
+          </div>
+          <div className="accretion-score">
+            <strong>{audit.post_2023_supported_candidate_count}/{audit.candidate_count}</strong>
+            <span>จุดที่ยังรองรับว่าเป็น candidate หลังปี 2023</span>
+          </div>
+        </div>
+
+        <div className="audit-drone-overview" style={{ aspectRatio: `${audit.same_extent.width_px}/${audit.same_extent.height_px}` }}>
+          <img src={audit.same_extent.drone_asset} alt="ภาพโดรน 37-STC พร้อมตำแหน่ง candidate ดินงอก T028 และ T038" />
+          {audit.candidates.map((candidate) => (
+            <span
+              key={candidate.transect_id}
+              className="audit-marker"
+              style={{ left: `${candidate.candidate_zone.marker_on_full_same_extent.x_percent}%`, top: `${candidate.candidate_zone.marker_on_full_same_extent.y_percent}%` }}
+            >
+              <i />
+              <b>{candidate.transect_id}</b>
+            </span>
+          ))}
+          <div className="audit-overview-note">วงตำแหน่งจากจุดตัด water-land boundary ใกล้แปลงบน extent ของ GeoTIFF ที่ยืนยันพิกัดแล้ว</div>
+        </div>
+
+        <div className="accretion-candidate-grid">
+          {audit.candidates.map((candidate) => (
+            <article className={`accretion-candidate ${candidate.post_2023_accretion_supported ? 'retained' : 'rejected'}`} key={candidate.transect_id}>
+              <header>
+                <div><span>TRANSECT</span><strong>{candidate.transect_id}</strong></div>
+                <b>{candidate.post_2023_accretion_supported ? 'ยังเป็น candidate' : 'ไม่รองรับดินงอกหลัง 2023'}</b>
+              </header>
+
+              <div className="candidate-metrics">
+                <div><span>ระยะยาว 1985→2026</span><strong className="positive">{formatSignedMeters(candidate.historical_net_change_m_1985_2026)}</strong><small>{candidate.historical_classification_1985_2026} · confidence {candidate.historical_confidence}</small></div>
+                <div><span>Baseline 2023→2026</span><strong>{formatSignedMeters(candidate.baseline_waterline_2023_2026.change_m)}</strong><small>{candidate.baseline_waterline_2023_2026.direction}</small></div>
+                <div><span>Tide-matched 2023→2026</span><strong>{formatSignedMeters(candidate.tide_matched_waterline_2023_2026.change_m)}</strong><small>{candidate.tide_matched_waterline_2023_2026.classification}</small></div>
+              </div>
+
+              <div className="candidate-image-grid">
+                <CandidateImage crop={candidate.web_crops.sentinel2_2023} label="Sentinel-2 · 2023" detail={audit.same_extent.sentinel2_2023_dates.join(', ')} />
+                <CandidateImage crop={candidate.web_crops.sentinel2_2026} label="Sentinel-2 · 2026" detail="same extent / same crop" />
+                <CandidateImage crop={candidate.web_crops.drone} label="Drone HR" detail={`${formatGsd(manifest.qa.mean_gsd_cm)} · current high-resolution context`} />
+              </div>
+
+              <p className="candidate-verdict">{candidate.interpretation_th}</p>
+              <small className="candidate-coordinate">candidate center: {candidate.candidate_zone.center_lat.toFixed(6)}, {candidate.candidate_zone.center_lon.toFixed(6)}</small>
+            </article>
+          ))}
+        </div>
+
+        <div className="audit-guard">
+          <strong>ข้อสรุปสำหรับคำถาม “ดินงอกหลังปลูกไหม”</strong>
+          <p>สองจุดนี้เคยถูกติดธงจากแนวโน้มยาว 1985–2026 แต่เมื่อจำกัดช่วงเป็น 2023–2026 ไม่มีจุดใดให้สัญญาณ seaward พร้อมกันทั้ง baseline และ tide-matched. จึงไม่ควรเรียกสองบริเวณนี้ว่า “ดินงอกหลังปลูก”. ขอบพืชชายฝั่งระดับ Sentinel-2 ของโครงการก็มี median change {audit.coastal_vegetation_edge_project_median_change_2023_2026_m ?? 0} m ในช่วงเดียวกัน.</p>
+        </div>
       </section>
 
       {compare ? (
