@@ -1,0 +1,31 @@
+/* Shared navigation refinements for the five evidence views. */
+.report-nav .view-tabs {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.coast-view-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.coast-view-tabs button {
+  min-width: 0;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+.coast-view-tabs button:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .report-nav .view-tabs {
+    flex-wrap: wrap;
+  }
+
+  .report-nav .view-tabs button {
+    flex: 1 1 30%;
+  }
+}
