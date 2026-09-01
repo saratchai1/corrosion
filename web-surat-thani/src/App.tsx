@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import CurrentEvidencePage from './CurrentEvidencePage'
-import DroneBaselinePage from './DroneBaselinePage'
+import DroneMultiYearPage from './DroneMultiYearPage'
 import HistoryPage from './HistoryPage'
 import MapExplorerPage from './MapExplorerPage'
 import PrimaryNav, { type SiteRoute } from './PrimaryNav'
@@ -70,7 +70,7 @@ export default function App() {
       <div className="site-content">
         {route === 'history' && <HistoryPage index={index} exec={exec} manifest={manifest} />}
         {route === 'current' && <CurrentEvidencePage index={index} exec={exec} manifest={manifest} />}
-        {route === 'drone' && <DroneBaselinePage />}
+        {route === 'drone' && <DroneMultiYearPage />}
         {route === 'report' && <ReportPage index={index} exec={exec} manifest={manifest} />}
         {route === 'map' && <MapExplorerPage index={index} />}
       </div>
