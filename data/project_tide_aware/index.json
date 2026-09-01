@@ -1,0 +1,28 @@
+{
+  "years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "selected_imagery": {
+    "2023": "imagery/2023_selected.webp",
+    "2024": "imagery/2024_selected.webp",
+    "2025": "imagery/2025_selected.webp",
+    "2026": "imagery/2026_selected.webp"
+  },
+  "waterlines": {
+    "2023": "waterline/2023.geojson",
+    "2024": "waterline/2024.geojson",
+    "2025": "waterline/2025.geojson",
+    "2026": "waterline/2026.geojson"
+  },
+  "mangrove_proxy": {
+    "2023": "mangrove_proxy/2023_polygon.geojson",
+    "2024": "mangrove_proxy/2024_polygon.geojson",
+    "2025": "mangrove_proxy/2025_polygon.geojson",
+    "2026": "mangrove_proxy/2026_polygon.geojson"
+  },
+  "transects": "transects.geojson",
+  "plot_coastal_eligibility": "plot_coastal_eligibility.csv"
+}

@@ -1,0 +1,391 @@
+{
+  "title": "Samut Songkhram 2024 mangrove planting exploratory impact indicators",
+  "generated_at_utc": "2026-08-29T01:24:07.338451Z",
+  "plot_count": 9,
+  "plot_ids": [
+    "91-STC",
+    "92-STC",
+    "93-STC",
+    "94-STC",
+    "95-STC",
+    "96-STC",
+    "97-STC",
+    "98-STC",
+    "87-VSD"
+  ],
+  "official_participating_area_rai": 628.585314,
+  "years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "design": {
+    "pre": [
+      2023
+    ],
+    "intervention_ambiguous": [
+      2024
+    ],
+    "post": [
+      2025,
+      2026
+    ],
+    "season_window": "January-April",
+    "matched_control": "200-1200 m context ring filtered to the central 90% of project baseline NDVI and MNDWI"
+  },
+  "project_yearly_metrics": [
+    {
+      "total_pixel_count": 2547,
+      "valid_pixel_count": 2547,
+      "valid_fraction": 1.0,
+      "mean_ndvi": 0.40349,
+      "median_ndvi": 0.4102,
+      "ndvi_p25": 0.38863,
+      "ndvi_p75": 0.42964,
+      "vegetation_fraction_ndvi_gte_0_35": 0.91127,
+      "strong_vegetation_fraction_ndvi_gte_0_50": 0.00196,
+      "mean_mndwi": -0.12096,
+      "median_mndwi": -0.12722,
+      "water_fraction_mndwi_gt_0": 0.00785,
+      "pixel_confidence": "LOW",
+      "year": 2023,
+      "period_role": "pre",
+      "scene_dates": "2023-01-16;2023-03-07;2023-04-21",
+      "scene_count": 3,
+      "sensor": "Sentinel-2A;Sentinel-2B"
+    },
+    {
+      "total_pixel_count": 2547,
+      "valid_pixel_count": 2547,
+      "valid_fraction": 1.0,
+      "mean_ndvi": 0.44898,
+      "median_ndvi": 0.45708,
+      "ndvi_p25": 0.43004,
+      "ndvi_p75": 0.48556,
+      "vegetation_fraction_ndvi_gte_0_35": 0.95289,
+      "strong_vegetation_fraction_ndvi_gte_0_50": 0.12014,
+      "mean_mndwi": -0.16044,
+      "median_mndwi": -0.16592,
+      "water_fraction_mndwi_gt_0": 0.00275,
+      "pixel_confidence": "LOW",
+      "year": 2024,
+      "period_role": "intervention_ambiguous",
+      "scene_dates": "2024-02-15;2024-03-31;2024-04-30",
+      "scene_count": 3,
+      "sensor": "Sentinel-2A;Sentinel-2B"
+    },
+    {
+      "total_pixel_count": 2547,
+      "valid_pixel_count": 2547,
+      "valid_fraction": 1.0,
+      "mean_ndvi": 0.46378,
+      "median_ndvi": 0.47419,
+      "ndvi_p25": 0.45168,
+      "ndvi_p75": 0.49239,
+      "vegetation_fraction_ndvi_gte_0_35": 0.9576,
+      "strong_vegetation_fraction_ndvi_gte_0_50": 0.16451,
+      "mean_mndwi": -0.14917,
+      "median_mndwi": -0.15331,
+      "water_fraction_mndwi_gt_0": 0.00628,
+      "pixel_confidence": "LOW",
+      "year": 2025,
+      "period_role": "post",
+      "scene_dates": "2025-01-15;2025-02-14;2025-03-26",
+      "scene_count": 3,
+      "sensor": "Sentinel-2A;Sentinel-2C"
+    },
+    {
+      "total_pixel_count": 2547,
+      "valid_pixel_count": 2547,
+      "valid_fraction": 1.0,
+      "mean_ndvi": 0.4723,
+      "median_ndvi": 0.48239,
+      "ndvi_p25": 0.46333,
+      "ndvi_p75": 0.49781,
+      "vegetation_fraction_ndvi_gte_0_35": 0.97252,
+      "strong_vegetation_fraction_ndvi_gte_0_50": 0.22144,
+      "mean_mndwi": -0.15309,
+      "median_mndwi": -0.15734,
+      "water_fraction_mndwi_gt_0": 0.00432,
+      "pixel_confidence": "LOW",
+      "year": 2026,
+      "period_role": "post",
+      "scene_dates": "2026-01-30;2026-03-01;2026-04-05",
+      "scene_count": 3,
+      "sensor": "Sentinel-2B;Sentinel-2C"
+    }
+  ],
+  "matched_control_comparison": [
+    {
+      "year": 2023,
+      "period_role": "pre",
+      "impact_mean_ndvi": 0.40349,
+      "control_mean_ndvi": 0.39297,
+      "impact_vegetation_fraction": 0.91127,
+      "control_vegetation_fraction": 0.85177,
+      "impact_water_fraction": 0.00785,
+      "control_water_fraction": 0.0,
+      "impact_pixel_count": 2547,
+      "matched_control_pixel_count": 5876
+    },
+    {
+      "year": 2024,
+      "period_role": "intervention_ambiguous",
+      "impact_mean_ndvi": 0.44898,
+      "control_mean_ndvi": 0.43419,
+      "impact_vegetation_fraction": 0.95289,
+      "control_vegetation_fraction": 0.93499,
+      "impact_water_fraction": 0.00275,
+      "control_water_fraction": 0.0,
+      "impact_pixel_count": 2547,
+      "matched_control_pixel_count": 5876
+    },
+    {
+      "year": 2025,
+      "period_role": "post",
+      "impact_mean_ndvi": 0.46378,
+      "control_mean_ndvi": 0.45824,
+      "impact_vegetation_fraction": 0.9576,
+      "control_vegetation_fraction": 0.95728,
+      "impact_water_fraction": 0.00628,
+      "control_water_fraction": 0.00102,
+      "impact_pixel_count": 2547,
+      "matched_control_pixel_count": 5876
+    },
+    {
+      "year": 2026,
+      "period_role": "post",
+      "impact_mean_ndvi": 0.4723,
+      "control_mean_ndvi": 0.45644,
+      "impact_vegetation_fraction": 0.97252,
+      "control_vegetation_fraction": 0.95609,
+      "impact_water_fraction": 0.00432,
+      "control_water_fraction": 0.00153,
+      "impact_pixel_count": 2547,
+      "matched_control_pixel_count": 5876
+    }
+  ],
+  "difference_in_differences": [
+    {
+      "post_year": 2025,
+      "ndvi_difference_in_differences": -0.00498,
+      "vegetation_fraction_difference_in_differences": -0.05918,
+      "water_fraction_difference_in_differences": -0.00259
+    },
+    {
+      "post_year": 2026,
+      "ndvi_difference_in_differences": 0.00534,
+      "vegetation_fraction_difference_in_differences": -0.04307,
+      "water_fraction_difference_in_differences": -0.00506
+    }
+  ],
+  "plot_change_summary": [
+    {
+      "plot_id": "91-STC",
+      "valid_pixels_2023": 1117,
+      "ndvi_change_2023_2025": 0.06749,
+      "ndvi_change_2023_2026": 0.06487,
+      "vegetation_fraction_change_2023_2025": 0.04208,
+      "vegetation_fraction_change_2023_2026": 0.04835,
+      "water_fraction_change_2023_2025": 0.0,
+      "water_fraction_change_2023_2026": 0.0,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "92-STC",
+      "valid_pixels_2023": 400,
+      "ndvi_change_2023_2025": 0.07269,
+      "ndvi_change_2023_2026": 0.08324,
+      "vegetation_fraction_change_2023_2025": 0.0525,
+      "vegetation_fraction_change_2023_2026": 0.065,
+      "water_fraction_change_2023_2025": 0.0,
+      "water_fraction_change_2023_2026": -0.005,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "93-STC",
+      "valid_pixels_2023": 314,
+      "ndvi_change_2023_2025": 0.06353,
+      "ndvi_change_2023_2026": 0.0838,
+      "vegetation_fraction_change_2023_2025": 0.05095,
+      "vegetation_fraction_change_2023_2026": 0.05095,
+      "water_fraction_change_2023_2025": -0.00955,
+      "water_fraction_change_2023_2026": -0.01274,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "94-STC",
+      "valid_pixels_2023": 120,
+      "ndvi_change_2023_2025": 0.06018,
+      "ndvi_change_2023_2026": 0.08202,
+      "vegetation_fraction_change_2023_2025": 0.08333,
+      "vegetation_fraction_change_2023_2026": 0.09166,
+      "water_fraction_change_2023_2025": 0.0,
+      "water_fraction_change_2023_2026": 0.0,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "95-STC",
+      "valid_pixels_2023": 93,
+      "ndvi_change_2023_2025": 0.06997,
+      "ndvi_change_2023_2026": 0.09153,
+      "vegetation_fraction_change_2023_2025": 0.13979,
+      "vegetation_fraction_change_2023_2026": 0.13979,
+      "water_fraction_change_2023_2025": -0.03226,
+      "water_fraction_change_2023_2026": -0.03226,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "96-STC",
+      "valid_pixels_2023": 21,
+      "ndvi_change_2023_2025": 0.06284,
+      "ndvi_change_2023_2026": 0.0823,
+      "vegetation_fraction_change_2023_2025": 0.09524,
+      "vegetation_fraction_change_2023_2026": 0.14286,
+      "water_fraction_change_2023_2025": 0.0,
+      "water_fraction_change_2023_2026": 0.0,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "97-STC",
+      "valid_pixels_2023": 65,
+      "ndvi_change_2023_2025": 0.0578,
+      "ndvi_change_2023_2026": 0.07765,
+      "vegetation_fraction_change_2023_2025": 0.01538,
+      "vegetation_fraction_change_2023_2026": 0.03077,
+      "water_fraction_change_2023_2025": 0.0,
+      "water_fraction_change_2023_2026": 0.0,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "98-STC",
+      "valid_pixels_2023": 13,
+      "ndvi_change_2023_2025": 0.06434,
+      "ndvi_change_2023_2026": 0.08807,
+      "vegetation_fraction_change_2023_2025": 0.15384,
+      "vegetation_fraction_change_2023_2026": 0.23077,
+      "water_fraction_change_2023_2025": 0.0,
+      "water_fraction_change_2023_2026": 0.0,
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "87-VSD",
+      "valid_pixels_2023": 404,
+      "ndvi_change_2023_2025": 0.02352,
+      "ndvi_change_2023_2026": 0.04187,
+      "vegetation_fraction_change_2023_2025": 0.01486,
+      "vegetation_fraction_change_2023_2026": 0.06931,
+      "water_fraction_change_2023_2025": 0.00495,
+      "water_fraction_change_2023_2026": 0.0,
+      "confidence": "LOW"
+    }
+  ],
+  "post_boundary_evidence": {
+    "status": "available_for_91_to_98_STC_only",
+    "feature": "image-derived water-land boundary; not a surveyed or tide-normalized shoreline",
+    "period": "2025-2026",
+    "transect_count": 43,
+    "median_movement_m": -0.68,
+    "mean_movement_m": -4.11,
+    "apparent_inland_count": 5,
+    "within_20m_count": 34,
+    "apparent_seaward_count": 4,
+    "per_plot": [
+      {
+        "plot_id": "91-STC",
+        "transect_count": 12,
+        "median_movement_m": -3.26,
+        "mean_movement_m": -3.79,
+        "apparent_inland_count": 0,
+        "within_20m_count": 12,
+        "apparent_seaward_count": 0
+      },
+      {
+        "plot_id": "92-STC",
+        "transect_count": 10,
+        "median_movement_m": 1.54,
+        "mean_movement_m": -0.31,
+        "apparent_inland_count": 0,
+        "within_20m_count": 10,
+        "apparent_seaward_count": 0
+      },
+      {
+        "plot_id": "93-STC",
+        "transect_count": 8,
+        "median_movement_m": -1.66,
+        "mean_movement_m": -7.45,
+        "apparent_inland_count": 2,
+        "within_20m_count": 6,
+        "apparent_seaward_count": 0
+      },
+      {
+        "plot_id": "94-STC",
+        "transect_count": 1,
+        "median_movement_m": 25.27,
+        "mean_movement_m": 25.27,
+        "apparent_inland_count": 0,
+        "within_20m_count": 0,
+        "apparent_seaward_count": 1
+      },
+      {
+        "plot_id": "95-STC",
+        "transect_count": 4,
+        "median_movement_m": 0.0,
+        "mean_movement_m": 17.62,
+        "apparent_inland_count": 0,
+        "within_20m_count": 3,
+        "apparent_seaward_count": 1
+      },
+      {
+        "plot_id": "96-STC",
+        "transect_count": 2,
+        "median_movement_m": 0.0,
+        "mean_movement_m": 0.0,
+        "apparent_inland_count": 0,
+        "within_20m_count": 2,
+        "apparent_seaward_count": 0
+      },
+      {
+        "plot_id": "97-STC",
+        "transect_count": 4,
+        "median_movement_m": -10.31,
+        "mean_movement_m": -18.81,
+        "apparent_inland_count": 2,
+        "within_20m_count": 0,
+        "apparent_seaward_count": 2
+      },
+      {
+        "plot_id": "98-STC",
+        "transect_count": 2,
+        "median_movement_m": -44.64,
+        "mean_movement_m": -44.64,
+        "apparent_inland_count": 1,
+        "within_20m_count": 1,
+        "apparent_seaward_count": 0
+      }
+    ],
+    "unavailable_plot_ids": [
+      "87-VSD"
+    ],
+    "unavailable_reason": "87-VSD lies outside the provisional province-wide transect AOI; plot spectral metrics are available",
+    "tide_status": "unverified",
+    "confidence": "LOW"
+  },
+  "erosion_effect_conclusion": "NOT_DEMONSTRATED",
+  "conclusion_th": "ข้อมูลนี้ยังไม่พิสูจน์ว่าการปลูกปี 2024 ลดการกัดเซาะชายฝั่ง; เป็นเพียงสัญญาณพืชพรรณและสัดส่วนผิวน้ำภายในแปลงจาก Sentinel-2",
+  "confidence": "LOW",
+  "limitations": [
+    "ไม่มีวันปลูกที่ยืนยัน จึงถือปี 2024 เป็นช่วงดำเนินการที่กำกวม",
+    "tide_status=unverified; สัดส่วนผิวน้ำและขอบเขตน้ำ–แผ่นดินอาจเปลี่ยนตามน้ำขึ้นลง",
+    "ไม่มีการวัดคลื่น ตะกอน ระดับพื้นดิน หรืออัตรารอดตายภาคสนาม",
+    "Sentinel-2 วิเคราะห์ที่ 20 เมตร; กล้าไม้เล็กและแปลงแคบอาจเล็กกว่าพิกเซล",
+    "พื้นที่เปรียบเทียบเป็น observational matched context ไม่ใช่พื้นที่ควบคุมที่สุ่มหรือยืนยันภาคสนาม",
+    "NDVI proxy ไม่ใช่การจำแนกป่าชายเลนที่ผ่าน confusion-matrix validation"
+  ],
+  "source_data": {
+    "plots": "data/aoi/samut_songkhram_project_plots.geojson",
+    "catalog": "data/catalog/project_samut_songkhram_sentinel2_scenes.csv",
+    "tide_status": "unverified"
+  }
+}

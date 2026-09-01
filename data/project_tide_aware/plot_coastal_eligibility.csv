@@ -1,0 +1,10 @@
+plot_id,official_participating_area_rai,treatment_transect_count,distance_to_2026_waterline_m,maximum_frontage_distance_m,eligibility_status,coastal_erosion_scope,required_follow_up,reference_indicator,confidence
+87-VSD,92.92,0,8165.85,3500.0,NO_COASTAL_WATERLINE_WITHIN_ANALYSIS_RANGE,EXCLUDED_FROM_COASTAL_SCREENING,treat as a possible canal/bank or inland setting; use UAV/field BANK_EDGE evidence before making any erosion claim,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+91-STC,279.433438,109,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+92-STC,98.94,59,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+93-STC,79.018438,48,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+94-STC,30.660625,20,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+95-STC,22.914375,22,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+96-STC,5.149375,6,2.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+97-STC,15.959063,19,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW
+98-STC,3.59,11,0.0,3500.0,COASTAL_FRONTAGE_SCREENABLE,INCLUDED_IN_COASTAL_SCREENING,verify candidate controls and validate edge with repeated UAV/field data,2026_TIDE_SCREENED_IMAGE_DERIVED_WATERLINE,LOW

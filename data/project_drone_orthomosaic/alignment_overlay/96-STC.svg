@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1717" preserveAspectRatio="none">
+  <g fill="none">
+    <path d="M 1108.82 498.04 L 1360.49 1038.26 L 1065.84 1314.48 L 611.54 817.23 L 1108.82 498.04 Z" stroke="#ffe35a" stroke-width="3" fill="#ffe35a" fill-opacity="0.05" vector-effect="non-scaling-stroke"/>
+    <path d="" stroke="#5ee7ff" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+    <path d="" stroke="#ff74d4" stroke-width="2.5" stroke-dasharray="8 5" vector-effect="non-scaling-stroke"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+    <text x="1020.68" y="903.72" fill="#071b1d" stroke="#fff3a0" stroke-width="5" paint-order="stroke">96-STC</text>
+    <text x="1020.68" y="903.72" fill="#fff3a0">96-STC</text>
+  </g>
+</svg>

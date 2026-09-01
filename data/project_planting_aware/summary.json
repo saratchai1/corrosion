@@ -1,0 +1,582 @@
+{
+  "title": "Samut Songkhram planting-aware coastal evidence",
+  "generated_at_utc": "2026-08-31T07:24:33.436226+00:00",
+  "evidence_level": "PARTIAL_PLANTING_COMPLETION_DATES_VERIFIED",
+  "erosion_effect_conclusion": "NOT_DEMONSTRATED",
+  "verified_plot_count": 3,
+  "verified_area_rai": 298.98,
+  "verified_plot_ids": [
+    "91-STC",
+    "97-STC",
+    "98-STC"
+  ],
+  "plots_without_verified_timing": [
+    "92-STC",
+    "93-STC",
+    "94-STC",
+    "95-STC",
+    "96-STC"
+  ],
+  "timing_interpretation": {
+    "confirmed_post_completion_scene_years": [
+      2025,
+      2026
+    ],
+    "2024_scene_date": "2024-02-15",
+    "2024_status": "BEFORE_COMPLETION_START_UNKNOWN",
+    "2024_guard_th": "ภาพ 15 ก.พ. 2024 อยู่ก่อนวันปลูกเสร็จของทั้ง 3 แปลง แต่ยังเรียกว่าก่อนปลูกไม่ได้ เพราะหลักฐานที่ได้รับยังไม่ยืนยันวันเริ่มปลูก",
+    "post_completion_guard_th": "ภาพปี 2025 และ 2026 เป็นหลังวันปลูกเสร็จที่ยืนยันแล้วสำหรับ 91-STC, 97-STC และ 98-STC"
+  },
+  "plots": [
+    {
+      "plot_id": "91-STC",
+      "province": "สมุทรสงคราม",
+      "area_rai": 279.43,
+      "pdd_area_rai": 279.43,
+      "planting_start_date": null,
+      "planting_completion_date": "2024-09-24",
+      "source_type": "PROJECT_SPREADSHEET_SCREENSHOT",
+      "source_note": "User-supplied project spreadsheet screenshot received 2026-08-31; visible row shows planting completion date. Planting start cell is not supported by the supplied crop.",
+      "evidence_status": "COMPLETION_DATE_VERIFIED_START_UNKNOWN",
+      "scene_phases": [
+        {
+          "year": 2017,
+          "scene_date": "2017-01-27",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2797,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2018,
+          "scene_date": "2018-02-06",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2422,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2019,
+          "scene_date": "2019-03-23",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2012,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2020,
+          "scene_date": "2020-01-27",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -1702,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2021,
+          "scene_date": "2021-01-31",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -1332,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2022,
+          "scene_date": "2022-01-06",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -992,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2023,
+          "scene_date": "2023-01-16",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -617,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2024,
+          "scene_date": "2024-02-15",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -222,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2025,
+          "scene_date": "2025-02-14",
+          "phase": "CONFIRMED_POST_COMPLETION",
+          "days_from_completion": 143,
+          "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+        },
+        {
+          "year": 2026,
+          "scene_date": "2026-01-30",
+          "phase": "CONFIRMED_POST_COMPLETION",
+          "days_from_completion": 493,
+          "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+        }
+      ],
+      "last_before_completion_observation": {
+        "year": 2024,
+        "scene_date": "2024-02-15",
+        "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+        "days_from_completion": -222,
+        "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+      },
+      "first_confirmed_post_completion_observation": {
+        "year": 2025,
+        "scene_date": "2025-02-14",
+        "phase": "CONFIRMED_POST_COMPLETION",
+        "days_from_completion": 143,
+        "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+      },
+      "latest_confirmed_post_completion_observation": {
+        "year": 2026,
+        "scene_date": "2026-01-30",
+        "phase": "CONFIRMED_POST_COMPLETION",
+        "days_from_completion": 493,
+        "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+      },
+      "indicators": {
+        "waterline": {
+          "transition_before_completion_to_first_post": {
+            "start_year": 2024,
+            "end_year": 2025,
+            "start_scene_date": "2024-02-15",
+            "end_scene_date": "2025-02-14",
+            "elapsed_days": 365,
+            "paired_transect_count": 106,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 15,
+              "WITHIN_20M": 84,
+              "APPARENT_SEAWARD": 7
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "confirmed_post_completion_change": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "start_scene_date": "2025-02-14",
+            "end_scene_date": "2026-01-30",
+            "elapsed_days": 350,
+            "paired_transect_count": 106,
+            "median_nsm_m": 20.05,
+            "median_rate_m_per_year": 20.92,
+            "class_counts": {
+              "APPARENT_LANDWARD": 1,
+              "WITHIN_20M": 50,
+              "APPARENT_SEAWARD": 55
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "scientific_guard_th": "ช่วงเปลี่ยนผ่านไม่ใช่ before-after planting effect เพราะไม่ทราบวันเริ่มปลูก; ช่วงหลังปลูกเสร็จมีเพียง 2 annual observations จึงเป็นแนวโน้ม LOW confidence"
+        },
+        "mangrove_edge_proxy": {
+          "transition_before_completion_to_first_post": {
+            "start_year": 2024,
+            "end_year": 2025,
+            "start_scene_date": "2024-02-15",
+            "end_scene_date": "2025-02-14",
+            "elapsed_days": 365,
+            "paired_transect_count": 109,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 6,
+              "WITHIN_20M": 96,
+              "APPARENT_SEAWARD": 7
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "confirmed_post_completion_change": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "start_scene_date": "2025-02-14",
+            "end_scene_date": "2026-01-30",
+            "elapsed_days": 350,
+            "paired_transect_count": 109,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 3,
+              "WITHIN_20M": 95,
+              "APPARENT_SEAWARD": 11
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "scientific_guard_th": "ช่วงเปลี่ยนผ่านไม่ใช่ before-after planting effect เพราะไม่ทราบวันเริ่มปลูก; ช่วงหลังปลูกเสร็จมีเพียง 2 annual observations จึงเป็นแนวโน้ม LOW confidence"
+        }
+      }
+    },
+    {
+      "plot_id": "97-STC",
+      "province": "สมุทรสงคราม",
+      "area_rai": 15.96,
+      "pdd_area_rai": 15.96,
+      "planting_start_date": null,
+      "planting_completion_date": "2024-09-20",
+      "source_type": "PROJECT_SPREADSHEET_SCREENSHOT",
+      "source_note": "User-supplied project spreadsheet screenshot received 2026-08-31; visible row shows planting completion date. Planting start cell is not supported by the supplied crop.",
+      "evidence_status": "COMPLETION_DATE_VERIFIED_START_UNKNOWN",
+      "scene_phases": [
+        {
+          "year": 2017,
+          "scene_date": "2017-01-27",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2793,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2018,
+          "scene_date": "2018-02-06",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2418,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2019,
+          "scene_date": "2019-03-23",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2008,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2020,
+          "scene_date": "2020-01-27",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -1698,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2021,
+          "scene_date": "2021-01-31",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -1328,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2022,
+          "scene_date": "2022-01-06",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -988,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2023,
+          "scene_date": "2023-01-16",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -613,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2024,
+          "scene_date": "2024-02-15",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -218,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2025,
+          "scene_date": "2025-02-14",
+          "phase": "CONFIRMED_POST_COMPLETION",
+          "days_from_completion": 147,
+          "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+        },
+        {
+          "year": 2026,
+          "scene_date": "2026-01-30",
+          "phase": "CONFIRMED_POST_COMPLETION",
+          "days_from_completion": 497,
+          "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+        }
+      ],
+      "last_before_completion_observation": {
+        "year": 2024,
+        "scene_date": "2024-02-15",
+        "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+        "days_from_completion": -218,
+        "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+      },
+      "first_confirmed_post_completion_observation": {
+        "year": 2025,
+        "scene_date": "2025-02-14",
+        "phase": "CONFIRMED_POST_COMPLETION",
+        "days_from_completion": 147,
+        "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+      },
+      "latest_confirmed_post_completion_observation": {
+        "year": 2026,
+        "scene_date": "2026-01-30",
+        "phase": "CONFIRMED_POST_COMPLETION",
+        "days_from_completion": 497,
+        "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+      },
+      "indicators": {
+        "waterline": {
+          "transition_before_completion_to_first_post": {
+            "start_year": 2024,
+            "end_year": 2025,
+            "start_scene_date": "2024-02-15",
+            "end_scene_date": "2025-02-14",
+            "elapsed_days": 365,
+            "paired_transect_count": 19,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 4,
+              "WITHIN_20M": 12,
+              "APPARENT_SEAWARD": 3
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "confirmed_post_completion_change": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "start_scene_date": "2025-02-14",
+            "end_scene_date": "2026-01-30",
+            "elapsed_days": 350,
+            "paired_transect_count": 19,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 2,
+              "WITHIN_20M": 13,
+              "APPARENT_SEAWARD": 4
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "scientific_guard_th": "ช่วงเปลี่ยนผ่านไม่ใช่ before-after planting effect เพราะไม่ทราบวันเริ่มปลูก; ช่วงหลังปลูกเสร็จมีเพียง 2 annual observations จึงเป็นแนวโน้ม LOW confidence"
+        },
+        "mangrove_edge_proxy": {
+          "transition_before_completion_to_first_post": {
+            "start_year": 2024,
+            "end_year": 2025,
+            "start_scene_date": "2024-02-15",
+            "end_scene_date": "2025-02-14",
+            "elapsed_days": 365,
+            "paired_transect_count": 19,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 3,
+              "WITHIN_20M": 14,
+              "APPARENT_SEAWARD": 2
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "confirmed_post_completion_change": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "start_scene_date": "2025-02-14",
+            "end_scene_date": "2026-01-30",
+            "elapsed_days": 350,
+            "paired_transect_count": 19,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 2,
+              "WITHIN_20M": 17,
+              "APPARENT_SEAWARD": 0
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "scientific_guard_th": "ช่วงเปลี่ยนผ่านไม่ใช่ before-after planting effect เพราะไม่ทราบวันเริ่มปลูก; ช่วงหลังปลูกเสร็จมีเพียง 2 annual observations จึงเป็นแนวโน้ม LOW confidence"
+        }
+      }
+    },
+    {
+      "plot_id": "98-STC",
+      "province": "สมุทรสงคราม",
+      "area_rai": 3.59,
+      "pdd_area_rai": 3.59,
+      "planting_start_date": null,
+      "planting_completion_date": "2024-09-15",
+      "source_type": "PROJECT_SPREADSHEET_SCREENSHOT",
+      "source_note": "User-supplied project spreadsheet screenshot received 2026-08-31; visible row shows planting completion date. Planting start cell is not supported by the supplied crop.",
+      "evidence_status": "COMPLETION_DATE_VERIFIED_START_UNKNOWN",
+      "scene_phases": [
+        {
+          "year": 2017,
+          "scene_date": "2017-01-27",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2788,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2018,
+          "scene_date": "2018-02-06",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2413,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2019,
+          "scene_date": "2019-03-23",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -2003,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2020,
+          "scene_date": "2020-01-27",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -1693,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2021,
+          "scene_date": "2021-01-31",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -1323,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2022,
+          "scene_date": "2022-01-06",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -983,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2023,
+          "scene_date": "2023-01-16",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -608,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2024,
+          "scene_date": "2024-02-15",
+          "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+          "days_from_completion": -213,
+          "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+        },
+        {
+          "year": 2025,
+          "scene_date": "2025-02-14",
+          "phase": "CONFIRMED_POST_COMPLETION",
+          "days_from_completion": 152,
+          "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+        },
+        {
+          "year": 2026,
+          "scene_date": "2026-01-30",
+          "phase": "CONFIRMED_POST_COMPLETION",
+          "days_from_completion": 502,
+          "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+        }
+      ],
+      "last_before_completion_observation": {
+        "year": 2024,
+        "scene_date": "2024-02-15",
+        "phase": "BEFORE_COMPLETION_START_UNKNOWN",
+        "days_from_completion": -213,
+        "interpretation_th": "ก่อนวันปลูกเสร็จ แต่ยังไม่ทราบว่าเริ่มปลูกแล้วหรือยัง"
+      },
+      "first_confirmed_post_completion_observation": {
+        "year": 2025,
+        "scene_date": "2025-02-14",
+        "phase": "CONFIRMED_POST_COMPLETION",
+        "days_from_completion": 152,
+        "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+      },
+      "latest_confirmed_post_completion_observation": {
+        "year": 2026,
+        "scene_date": "2026-01-30",
+        "phase": "CONFIRMED_POST_COMPLETION",
+        "days_from_completion": 502,
+        "interpretation_th": "หลังปลูกเสร็จที่ยืนยันแล้ว"
+      },
+      "indicators": {
+        "waterline": {
+          "transition_before_completion_to_first_post": {
+            "start_year": 2024,
+            "end_year": 2025,
+            "start_scene_date": "2024-02-15",
+            "end_scene_date": "2025-02-14",
+            "elapsed_days": 365,
+            "paired_transect_count": 11,
+            "median_nsm_m": -20.0,
+            "median_rate_m_per_year": -20.01,
+            "class_counts": {
+              "APPARENT_LANDWARD": 5,
+              "WITHIN_20M": 4,
+              "APPARENT_SEAWARD": 2
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "confirmed_post_completion_change": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "start_scene_date": "2025-02-14",
+            "end_scene_date": "2026-01-30",
+            "elapsed_days": 350,
+            "paired_transect_count": 11,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 2,
+              "WITHIN_20M": 6,
+              "APPARENT_SEAWARD": 3
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "scientific_guard_th": "ช่วงเปลี่ยนผ่านไม่ใช่ before-after planting effect เพราะไม่ทราบวันเริ่มปลูก; ช่วงหลังปลูกเสร็จมีเพียง 2 annual observations จึงเป็นแนวโน้ม LOW confidence"
+        },
+        "mangrove_edge_proxy": {
+          "transition_before_completion_to_first_post": {
+            "start_year": 2024,
+            "end_year": 2025,
+            "start_scene_date": "2024-02-15",
+            "end_scene_date": "2025-02-14",
+            "elapsed_days": 365,
+            "paired_transect_count": 11,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 1,
+              "WITHIN_20M": 10,
+              "APPARENT_SEAWARD": 0
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "confirmed_post_completion_change": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "start_scene_date": "2025-02-14",
+            "end_scene_date": "2026-01-30",
+            "elapsed_days": 350,
+            "paired_transect_count": 11,
+            "median_nsm_m": 0.0,
+            "median_rate_m_per_year": 0.0,
+            "class_counts": {
+              "APPARENT_LANDWARD": 0,
+              "WITHIN_20M": 9,
+              "APPARENT_SEAWARD": 2
+            },
+            "screening_threshold_m": 20.0,
+            "confidence": "LOW"
+          },
+          "scientific_guard_th": "ช่วงเปลี่ยนผ่านไม่ใช่ before-after planting effect เพราะไม่ทราบวันเริ่มปลูก; ช่วงหลังปลูกเสร็จมีเพียง 2 annual observations จึงเป็นแนวโน้ม LOW confidence"
+        }
+      }
+    }
+  ],
+  "allowed_claim_th": "สำหรับ 91-STC, 97-STC และ 98-STC สามารถยืนยันได้ว่าภาพ 2025 และ 2026 เป็นข้อมูลหลังปลูกเสร็จ และสามารถรายงานแนวโน้มที่พบในช่วงหลังปลูกเสร็จได้ แต่ยังไม่สามารถระบุว่าแนวโน้มดังกล่าวเกิดจากการปลูก",
+  "not_allowed_claim_th": "ยังห้ามเรียกภาพ 2024 ว่า pre-plant และห้ามกล่าวว่าการปลูกทำให้การกัดเซาะหยุดลง จนกว่าจะมีวันเริ่มปลูกและตรวจ candidate controls/ปัจจัยรบกวน",
+  "limitations": [
+    "วันเริ่มปลูกของ 91-STC, 97-STC และ 98-STC ยังไม่ยืนยันจากหลักฐานที่ได้รับ",
+    "วันเริ่มและวันปลูกเสร็จของ 92-STC ถึง 96-STC ยังไม่ยืนยัน",
+    "หลังปลูกเสร็จมีภาพ annual ที่ยืนยันได้เพียง 2025 และ 2026 จึงมีเพียงสองจุดเวลา",
+    "WATERLINE และ MANGROVE_EDGE_PROXY ยังเป็น satellite screening และมีข้อจำกัดด้านความละเอียด/ระดับน้ำ",
+    "candidate controls ยังไม่ได้ยืนยันปัจจัยรบกวน จึงไม่ใช่ causal attribution"
+  ],
+  "source": "data/project/samut_songkhram_planting_completion_evidence.csv"
+}
