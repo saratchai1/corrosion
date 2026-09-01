@@ -1,0 +1,380 @@
+name: Restore history-first UX and separate drone page
+
+on:
+  push:
+    branches:
+      - fix/samut-songkhram-restore-history-and-separate-drone
+    paths:
+      - '.github/workflows/samut-songkhram-separate-drone-page.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/samut-songkhram-restore-history-and-separate-drone
+          fetch-depth: 0
+
+      - name: Separate drone evidence into its own page and standardize navigation
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path: str, old: str, new: str) -> None:
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected one match, found {count}: {old[:100]!r}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          # App: add a real standalone drone page and explicit navigation targets.
+          replace_once(
+              'web/src/App.tsx',
+              "const MapPane = lazy(() => import('./MapPane'))\nconst ProjectDashboard = lazy(() => import('./ProjectDashboard'))",
+              "const MapPane = lazy(() => import('./MapPane'))\nconst DroneBaselinePage = lazy(() => import('./DroneBaselinePage'))\nconst ProjectDashboard = lazy(() => import('./ProjectDashboard'))",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "const [page, setPage] = useState<'project' | 'tide' | 'coast'>('tide')",
+              "const [page, setPage] = useState<'project' | 'tide' | 'drone' | 'coast'>('tide')\n  const [tideView, setTideView] = useState<'history' | 'current'>('history')",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "  if (error) return <main className=\"loading\">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>",
+              "  const openHistory = () => { setTideView('history'); setPage('tide') }\n  const openCurrent = () => { setTideView('current'); setPage('tide') }\n  const openDrone = () => setPage('drone')\n  const openProject = () => setPage('project')\n  const openCoast = () => setPage('coast')\n\n  if (error) return <main className=\"loading\">โหลดข้อมูลไม่สำเร็จ / Failed to load: {error}</main>",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "        <ProjectDashboard summary={projectSummary} onOpenCoast={() => setPage('coast')} />",
+              "        <ProjectDashboard\n          summary={projectSummary}\n          onOpenHistory={openHistory}\n          onOpenCurrent={openCurrent}\n          onOpenDrone={openDrone}\n          onOpenCoast={openCoast}\n        />",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "      <TideAwareDashboard\n        summary={tideSummary}\n        onOpenProject={() => setPage('project')}\n        onOpenCoast={() => setPage('coast')}\n      />",
+              "      <TideAwareDashboard\n        summary={tideSummary}\n        initialView={tideView}\n        onOpenDrone={openDrone}\n        onOpenProject={openProject}\n        onOpenCoast={openCoast}\n      />",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "  return (\n    <Suspense fallback={<ViewLoading label=\"กำลังเปิดแผนที่ดาวเทียม…\" />}>",
+              "  if (page === 'drone') {\n    return (\n      <Suspense fallback={<ViewLoading label=\"กำลังเปิดภาพโดรนความละเอียดสูง…\" />}>\n        <DroneBaselinePage\n          onOpenHistory={openHistory}\n          onOpenCurrent={openCurrent}\n          onOpenProject={openProject}\n          onOpenCoast={openCoast}\n        />\n      </Suspense>\n    )\n  }\n\n  return (\n    <Suspense fallback={<ViewLoading label=\"กำลังเปิดแผนที่ดาวเทียม…\" />}>",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "          <div className=\"coast-view-tabs view-tabs\" role=\"tablist\" aria-label=\"เลือกมุมมอง\">\n            <button role=\"tab\" aria-selected=\"false\" onClick={() => setPage('project')}>รายงานผล 9 แปลง</button>\n            <button role=\"tab\" aria-selected=\"false\" onClick={() => setPage('tide')}>คุมระดับน้ำ</button>\n            <button className=\"active\" role=\"tab\" aria-selected=\"true\">แผนที่ดาวเทียม 10 ปี</button>\n          </div>",
+              "          <div className=\"coast-view-tabs view-tabs\" role=\"tablist\" aria-label=\"เลือกมุมมอง\">\n            <button role=\"tab\" aria-selected=\"false\" onClick={openHistory}>หลักฐานย้อนหลัง</button>\n            <button role=\"tab\" aria-selected=\"false\" onClick={openCurrent}>ผล 2023–2026</button>\n            <button role=\"tab\" aria-selected=\"false\" onClick={openDrone}>ภาพโดรน HR</button>\n            <button role=\"tab\" aria-selected=\"false\" onClick={openProject}>รายงาน 9 แปลง</button>\n            <button className=\"active\" role=\"tab\" aria-selected=\"true\">แผนที่ 10 ปี</button>\n          </div>",
+          )
+          replace_once(
+              'web/src/App.tsx',
+              "<button type=\"button\" onClick={() => setPage('tide')}>เปิดรายงาน tide-aware</button>",
+              "<button type=\"button\" onClick={openCurrent}>เปิดผล 2023–2026 แบบคุมระดับน้ำ</button>",
+          )
+
+          # History/current controller: restore old history-first page; do not inject drone into it.
+          replace_once(
+              'web/src/TideAwareDashboard.tsx',
+              "import DroneBaselineInjector, {\n  type DroneBaselineSummary,\n} from './DroneBaselineInjector'\n",
+              "",
+          )
+          replace_once(
+              'web/src/TideAwareDashboard.tsx',
+              "type Props = {\n  summary: TideAwareSummary\n  onOpenProject: () => void\n  onOpenCoast: () => void\n}\n\nexport default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast }: Props) {\n  const [view, setView] = useState<'history' | 'current'>('history')",
+              "type Props = {\n  summary: TideAwareSummary\n  initialView?: 'history' | 'current'\n  onOpenDrone: () => void\n  onOpenProject: () => void\n  onOpenCoast: () => void\n}\n\nexport default function TideAwareDashboard({\n  summary,\n  initialView = 'history',\n  onOpenDrone,\n  onOpenProject,\n  onOpenCoast,\n}: Props) {\n  const [view, setView] = useState<'history' | 'current'>(initialView)",
+          )
+          replace_once(
+              'web/src/TideAwareDashboard.tsx',
+              "  const [planting, setPlanting] = useState<PlantingAwareSummary | null>(null)\n  const [drone, setDrone] = useState<DroneBaselineSummary | null>(null)",
+              "  const [planting, setPlanting] = useState<PlantingAwareSummary | null>(null)\n\n  useEffect(() => {\n    setView(initialView)\n  }, [initialView])",
+          )
+          old_drone_effect = """  useEffect(() => {\n    let active = true\n    fetch('data/project_drone_orthomosaic/summary.json')\n      .then((response) => {\n        if (!response.ok) throw new Error(`HTTP ${response.status}`)\n        return response.json()\n      })\n      .then((value: unknown) => {\n        if (active) setDrone(value as DroneBaselineSummary)\n      })\n      .catch(() => {\n        if (active) setDrone(null)\n      })\n    return () => {\n      active = false\n    }\n  }, [])\n\n"""
+          replace_once('web/src/TideAwareDashboard.tsx', old_drone_effect, '')
+          replace_once(
+              'web/src/TideAwareDashboard.tsx',
+              "        <TideAwareOverview\n          summary={summary}\n          onOpenProject={onOpenProject}\n          onOpenCoast={onOpenCoast}\n        />",
+              "        <TideAwareOverview\n          summary={summary}\n          onOpenHistory={() => setView('history')}\n          onOpenDrone={onOpenDrone}\n          onOpenProject={onOpenProject}\n          onOpenCoast={onOpenCoast}\n        />",
+          )
+          replace_once(
+              'web/src/TideAwareDashboard.tsx',
+              "        onOpenCurrent={() => setView('current')}\n        onOpenProject={onOpenProject}",
+              "        onOpenCurrent={() => setView('current')}\n        onOpenDrone={onOpenDrone}\n        onOpenProject={onOpenProject}",
+          )
+          replace_once(
+              'web/src/TideAwareDashboard.tsx',
+              "      {planting && <PlantingEvidenceInjector summary={planting} />}\n      {drone && <DroneBaselineInjector summary={drone} />}\n      <PlotOverlayInjector",
+              "      {planting && <PlantingEvidenceInjector summary={planting} />}\n      <PlotOverlayInjector",
+          )
+
+          # Old multispectral history page remains the primary page; only add the new destination to its nav.
+          replace_once(
+              'web/src/PreplantingHistoryDashboardV2.tsx',
+              "  onOpenCurrent: () => void\n  onOpenProject: () => void",
+              "  onOpenCurrent: () => void\n  onOpenDrone: () => void\n  onOpenProject: () => void",
+          )
+          replace_once(
+              'web/src/PreplantingHistoryDashboardV2.tsx',
+              "export default function PreplantingHistoryDashboardV2({ history, onOpenCurrent, onOpenProject, onOpenCoast }: Props)",
+              "export default function PreplantingHistoryDashboardV2({ history, onOpenCurrent, onOpenDrone, onOpenProject, onOpenCoast }: Props)",
+          )
+          replace_once(
+              'web/src/PreplantingHistoryDashboardV2.tsx',
+              "<div><button className=\"active\">ก่อนปลูกเคยถอยไหม</button><button onClick={onOpenCurrent}>ผล 2023–2026</button><button onClick={onOpenProject}>รายงาน 9 แปลง</button><button onClick={onOpenCoast}>แผนที่ 10 ปี</button></div>",
+              "<div><button className=\"active\">หลักฐานย้อนหลัง</button><button onClick={onOpenCurrent}>ผล 2023–2026</button><button onClick={onOpenDrone}>ภาพโดรน HR</button><button onClick={onOpenProject}>รายงาน 9 แปลง</button><button onClick={onOpenCoast}>แผนที่ 10 ปี</button></div>",
+          )
+
+          # Current tide-aware page: same five destinations, same order.
+          replace_once(
+              'web/src/TideAwareOverview.tsx',
+              "type Props = {\n  summary: TideAwareSummary\n  onOpenProject: () => void\n  onOpenCoast: () => void\n}",
+              "type Props = {\n  summary: TideAwareSummary\n  onOpenHistory: () => void\n  onOpenDrone: () => void\n  onOpenProject: () => void\n  onOpenCoast: () => void\n}",
+          )
+          replace_once(
+              'web/src/TideAwareOverview.tsx',
+              "export default function TideAwareOverview({ summary, onOpenProject, onOpenCoast }: Props)",
+              "export default function TideAwareOverview({ summary, onOpenHistory, onOpenDrone, onOpenProject, onOpenCoast }: Props)",
+          )
+          replace_once(
+              'web/src/TideAwareOverview.tsx',
+              "          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenProject}>รายงาน 9 แปลง</button>\n          <button className=\"active\" role=\"tab\" aria-selected=\"true\">ภาพก่อน–หลัง</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenCoast}>แผนที่ 10 ปี</button>",
+              "          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenHistory}>หลักฐานย้อนหลัง</button>\n          <button className=\"active\" role=\"tab\" aria-selected=\"true\">ผล 2023–2026</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenDrone}>ภาพโดรน HR</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenProject}>รายงาน 9 แปลง</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenCoast}>แผนที่ 10 ปี</button>",
+          )
+
+          # Project page: make navigation no longer a dead-end with only two choices.
+          replace_once(
+              'web/src/ProjectDashboard.tsx',
+              "type Props = {\n  summary: ProjectImpactSummary\n  onOpenCoast: () => void\n}",
+              "type Props = {\n  summary: ProjectImpactSummary\n  onOpenHistory: () => void\n  onOpenCurrent: () => void\n  onOpenDrone: () => void\n  onOpenCoast: () => void\n}",
+          )
+          replace_once(
+              'web/src/ProjectDashboard.tsx',
+              "export default function ProjectDashboard({ summary, onOpenCoast }: Props)",
+              "export default function ProjectDashboard({ summary, onOpenHistory, onOpenCurrent, onOpenDrone, onOpenCoast }: Props)",
+          )
+          replace_once(
+              'web/src/ProjectDashboard.tsx',
+              "          <button className=\"active\" role=\"tab\" aria-selected=\"true\">รายงาน 9 แปลง</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenCoast}>แผนที่ดาวเทียม 10 ปี</button>",
+              "          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenHistory}>หลักฐานย้อนหลัง</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenCurrent}>ผล 2023–2026</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenDrone}>ภาพโดรน HR</button>\n          <button className=\"active\" role=\"tab\" aria-selected=\"true\">รายงาน 9 แปลง</button>\n          <button role=\"tab\" aria-selected=\"false\" onClick={onOpenCoast}>แผนที่ 10 ปี</button>",
+          )
+
+          Path('web/src/DroneBaselinePage.tsx').write_text(r'''import { useEffect, useState } from 'react'
+import DroneBaselineInjector, {
+  type DroneBaselineSummary,
+} from './DroneBaselineInjector'
+import './preplantingSpectral.css'
+
+type Props = {
+  onOpenHistory: () => void
+  onOpenCurrent: () => void
+  onOpenProject: () => void
+  onOpenCoast: () => void
+}
+
+export default function DroneBaselinePage({
+  onOpenHistory,
+  onOpenCurrent,
+  onOpenProject,
+  onOpenCoast,
+}: Props) {
+  const [summary, setSummary] = useState<DroneBaselineSummary | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    let active = true
+    fetch('data/project_drone_orthomosaic/summary.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        return response.json()
+      })
+      .then((value: unknown) => {
+        if (active) setSummary(value as DroneBaselineSummary)
+      })
+      .catch((reason: unknown) => {
+        if (active) setError(reason instanceof Error ? reason.message : String(reason))
+      })
+    return () => {
+      active = false
+    }
+  }, [])
+
+  return (
+    <main className="spectral-shell drone-standalone-page">
+      <nav className="spectral-nav">
+        <div><span>สมุทรสงคราม</span><strong>Coastal Evidence</strong></div>
+        <div>
+          <button onClick={onOpenHistory}>หลักฐานย้อนหลัง</button>
+          <button onClick={onOpenCurrent}>ผล 2023–2026</button>
+          <button className="active">ภาพโดรน HR</button>
+          <button onClick={onOpenProject}>รายงาน 9 แปลง</button>
+          <button onClick={onOpenCoast}>แผนที่ 10 ปี</button>
+        </div>
+      </nav>
+
+      <section className="drone-page-context">
+        <span>HIGH-RESOLUTION REVIEW · SEPARATE EVIDENCE PAGE</span>
+        <h1>ภาพโดรนความละเอียดสูง</h1>
+        <p>หน้านี้แยกจากสไลเดอร์ดาวเทียมย้อนหลังโดยตั้งใจ เพื่อไม่ให้ baseline โดรน 1 epoch ถูกอ่านปนกับการเปรียบเทียบหลายปีของ Sentinel-2</p>
+      </section>
+
+      {error && <section className="drone-page-status">โหลดข้อมูลโดรนไม่สำเร็จ: {error}</section>}
+      {!summary && !error && <section className="drone-page-status">กำลังเปิดภาพโดรนทั้ง 9 แปลง…</section>}
+      {summary && (
+        <section className="drone-standalone-content">
+          <DroneBaselineInjector summary={summary} />
+          <div className="spectral-compare drone-portal-marker" aria-hidden="true" />
+        </section>
+      )}
+    </main>
+  )
+}
+''', encoding='utf-8')
+
+          # Small standalone-page styling only; the actual drone comparison keeps its existing CSS.
+          css_path = Path('web/src/droneBaseline.css')
+          css = css_path.read_text(encoding='utf-8')
+          addition = r'''
+
+/* Standalone high-resolution page: keep drone evidence separate from the history slider. */
+.drone-page-context {
+  max-width: 1500px;
+  margin: 24px auto 0;
+  padding: 24px 28px;
+  border: 1px solid rgba(121, 178, 167, 0.28);
+  background: rgba(8, 36, 36, 0.72);
+}
+.drone-page-context > span {
+  color: #8dcbbb;
+  font-size: 11px;
+  letter-spacing: .12em;
+}
+.drone-page-context h1 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 3vw, 46px);
+}
+.drone-page-context p {
+  margin: 0;
+  max-width: 980px;
+  color: #aac0bc;
+  line-height: 1.7;
+}
+.drone-standalone-content {
+  max-width: 1500px;
+  margin: 16px auto 48px;
+}
+.drone-portal-marker {
+  display: none !important;
+}
+.drone-page-status {
+  max-width: 1500px;
+  margin: 16px auto;
+  padding: 28px;
+  border: 1px solid rgba(121, 178, 167, 0.22);
+  color: #b8cfca;
+}
+'''
+          if 'Standalone high-resolution page' not in css:
+              css_path.write_text(css + addition, encoding='utf-8')
+          PY
+
+      - name: Audit navigation, old slider preservation and evidence links
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          src = Path('web/src')
+          history = (src / 'PreplantingHistoryDashboardV2.tsx').read_text(encoding='utf-8')
+          controller = (src / 'TideAwareDashboard.tsx').read_text(encoding='utf-8')
+          overlay = (src / 'PlotOverlayInjector.tsx').read_text(encoding='utf-8')
+          app = (src / 'App.tsx').read_text(encoding='utf-8')
+          drone = (src / 'DroneBaselinePage.tsx').read_text(encoding='utf-8')
+
+          # Requirement 1: old multi-year, multi-colour slider remains primary and unchanged in capability.
+          for token in [
+              "const MODE_ORDER: ModeKey[] = ['rgb', 'false_vegetation', 'ndvi', 'mndwi', 'swir']",
+              '2020 → 2023', '2020 → 2026', '2023 → 2026',
+              'spectral-swipe-stage', 'ภาพก่อน', 'ภาพหลัง',
+          ]:
+              assert token in history, token
+          for token in ['MAX_ZOOM = 3', 'ZOOM_STEP = 0.25', 'spectral-pan-hint', 'onPanPointerDown']:
+              assert token in overlay, token
+          assert 'DroneBaselineInjector' not in controller
+
+          # Requirement 2: drone is a separate top-level page.
+          assert "'drone'" in app
+          assert "lazy(() => import('./DroneBaselinePage'))" in app
+          assert 'ภาพโดรน HR' in drone
+          assert Path('web/public/data/project_drone_orthomosaic/summary.json').exists()
+          assert len(list(Path('web/public/data/project_drone_orthomosaic/previews').glob('*.webp'))) == 9
+
+          # Requirement 3: five destinations use the same labels/order on all main views.
+          nav_labels = ['หลักฐานย้อนหลัง', 'ผล 2023–2026', 'ภาพโดรน HR', 'รายงาน 9 แปลง', 'แผนที่ 10 ปี']
+          files = [
+              src / 'PreplantingHistoryDashboardV2.tsx',
+              src / 'TideAwareOverview.tsx',
+              src / 'ProjectDashboard.tsx',
+              src / 'DroneBaselinePage.tsx',
+              src / 'App.tsx',
+          ]
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              positions = [text.find(label) for label in nav_labels]
+              assert all(position >= 0 for position in positions), (path, positions)
+              assert positions == sorted(positions), (path, positions)
+
+          # Static data links in TSX must point at an existing public file.
+          missing = []
+          for path in src.glob('*.tsx'):
+              text = path.read_text(encoding='utf-8')
+              for href in re.findall(r'href=["\'](data/[^"\'#?]+)', text):
+                  public = Path('web/public') / href
+                  if not public.exists():
+                      missing.append((path.name, href))
+              assert 'href="#"' not in text, path
+          assert not missing, missing
+
+          print('Navigation + evidence link audit: PASS')
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install and production build
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Validate production output contains both history and drone evidence
+        shell: bash
+        run: |
+          test -f web/dist/client/index.html
+          test -f web/dist/client/data/project_preplanting_history/summary.json
+          test -f web/dist/client/data/project_drone_orthomosaic/summary.json
+          test "$(find web/dist/client/data/project_drone_orthomosaic/previews -name '*.webp' | wc -l)" -eq 9
+          grep -R -q 'ภาพโดรน HR' web/dist/client/assets
+          grep -R -q 'หลักฐานย้อนหลัง' web/dist/client/assets
+          grep -R -q 'MNDWI' web/dist/client/assets
+          echo 'Production bundle audit: PASS'
+
+      - name: Commit UX separation and navigation audit fixes
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add web/src
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+          else
+            git commit -m 'fix: restore history slider and separate drone evidence page'
+            git push origin HEAD:fix/samut-songkhram-restore-history-and-separate-drone
+          fi
