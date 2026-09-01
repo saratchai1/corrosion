@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import DroneBaselineInjector, {
+  type DroneBaselineSummary,
+} from './DroneBaselineInjector'
 import PlantingEvidenceInjector, {
   type PlantingAwareSummary,
 } from './PlantingEvidenceInjector'
@@ -20,6 +23,7 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
   const [history, setHistory] = useState<PreplantingHistorySummaryV2 | null>(null)
   const [historyError, setHistoryError] = useState<string | null>(null)
   const [planting, setPlanting] = useState<PlantingAwareSummary | null>(null)
+  const [drone, setDrone] = useState<DroneBaselineSummary | null>(null)
 
   useEffect(() => {
     const handleInternalAnchorClick = (event: MouseEvent) => {
@@ -80,6 +84,24 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
     }
   }, [])
 
+  useEffect(() => {
+    let active = true
+    fetch('data/project_drone_orthomosaic/summary.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        return response.json()
+      })
+      .then((value: unknown) => {
+        if (active) setDrone(value as DroneBaselineSummary)
+      })
+      .catch(() => {
+        if (active) setDrone(null)
+      })
+    return () => {
+      active = false
+    }
+  }, [])
+
   if (view === 'current') {
     return (
       <>
@@ -111,6 +133,7 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
         onOpenCoast={onOpenCoast}
       />
       {planting && <PlantingEvidenceInjector summary={planting} />}
+      {drone && <DroneBaselineInjector summary={drone} />}
       <PlotOverlayInjector scenes={history.scene_selection.display_scenes} />
     </>
   )

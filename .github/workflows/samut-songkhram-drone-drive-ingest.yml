@@ -1,0 +1,245 @@
+name: Inspect Samut Songkhram drone orthomosaics
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-drone-drive-ingest-v1
+    paths:
+      - '.github/workflows/samut-songkhram-drone-drive-ingest.yml'
+      - 'requirements.txt'
+      - 'data/project/samut_songkhram_drone_drive_manifest.csv'
+      - 'data/aoi/samut_songkhram_project_plots.geojson'
+      - 'data/aoi/samut_songkhram_project_analysis_aoi.geojson'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv'
+      - 'data/processed/project_tide_aware/summary.json'
+      - 'data/processed/project_preplanting_history/**'
+      - 'data/processed/project_planting_aware/summary.json'
+      - 'scripts/inspect_samut_songkhram_drone_orthomosaic.py'
+      - 'scripts/normalize_samut_songkhram_drone_qa.py'
+      - 'scripts/aggregate_samut_songkhram_drone_inventory.py'
+      - 'scripts/enrich_samut_songkhram_drone_summary.py'
+      - 'scripts/build_drone_sentinel_alignment_v2.py'
+      - 'scripts/download_catalog_assets.py'
+      - 'scripts/download_satellite_data.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-drone-drive-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install geospatial and Google Drive download dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python -m pip install --disable-pip-version-check 'gdown>=5.2,<6'
+
+      - name: Check runner storage
+        run: df -h /
+
+      - name: Download, inspect and delete each orthomosaic sequentially
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/samut-drone
+          rm -rf data/processed/samut_songkhram_drone/raw
+          mkdir -p data/processed/samut_songkhram_drone/raw
+          rm -rf web/public/data/project_drone_orthomosaic
+          mkdir -p web/public/data/project_drone_orthomosaic/previews
+
+          python - <<'PY' > /tmp/drone_manifest.tsv
+          import csv
+          from pathlib import Path
+          path = Path('data/project/samut_songkhram_drone_drive_manifest.csv')
+          with path.open(newline='', encoding='utf-8-sig') as handle:
+              for row in csv.DictReader(handle):
+                  print('\t'.join([
+                      row['plot_id'], row['drive_file_id'], row['drive_title'],
+                      row['drive_size_bytes'], row['source_folder'],
+                      row['folder_date_iso'], row['folder_date_status'],
+                  ]))
+          PY
+
+          while IFS=$'\t' read -r plot_id file_id title expected_size source_folder folder_date folder_status; do
+            echo "::group::${plot_id} — ${title}"
+            target="/tmp/samut-drone/${plot_id}.tif"
+            rm -f "$target"
+
+            # Read the shared Drive source in place. No copy is made into My Drive
+            # and raw GeoTIFFs are never committed to GitHub.
+            gdown "$file_id" --output "$target" --quiet
+
+            actual_size="$(stat -c %s "$target")"
+            echo "Downloaded ${actual_size} bytes (Drive manifest ${expected_size})"
+            if [ "$actual_size" != "$expected_size" ]; then
+              echo "Size mismatch for ${plot_id}" >&2
+              exit 1
+            fi
+
+            python -m scripts.inspect_samut_songkhram_drone_orthomosaic \
+              --input "$target" \
+              --plot-id "$plot_id" \
+              --drive-file-id "$file_id" \
+              --drive-title "$title" \
+              --drive-size-bytes "$expected_size" \
+              --source-folder "$source_folder" \
+              --folder-date-iso "$folder_date" \
+              --folder-date-status "$folder_status"
+
+            rm -f "$target"
+            df -h /
+            echo "::endgroup::"
+          done < /tmp/drone_manifest.tsv
+
+      - name: Separate georeference and imagery-coverage QA
+        run: python -m scripts.normalize_samut_songkhram_drone_qa
+
+      - name: Aggregate orthomosaic inventory and satellite alignment
+        run: python -m scripts.aggregate_samut_songkhram_drone_inventory
+
+      - name: Enrich coverage classes and RGB-only scientific scope
+        run: python -m scripts.enrich_samut_songkhram_drone_summary
+
+      - name: Prepare exact selected 2025 Sentinel-2 row
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path(
+              'data/processed/project_tide_aware/summary.json'
+          ).read_text(encoding='utf-8'))
+          scene_id = next(
+              row['scene_id']
+              for row in summary['waterline_scene_selection']['selected_scenes']
+              if int(row['year']) == 2025
+          )
+          source = Path('data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv')
+          with source.open(newline='', encoding='utf-8-sig') as handle:
+              reader = csv.DictReader(handle)
+              fields = reader.fieldnames
+              rows = [row for row in reader if row['scene_id'] == scene_id]
+          assert fields is not None and len(rows) == 1, (scene_id, len(rows))
+          target = Path('/tmp/drone_sentinel_2025.csv')
+          with target.open('w', newline='', encoding='utf-8') as handle:
+              writer = csv.DictWriter(handle, fieldnames=fields)
+              writer.writeheader()
+              writer.writerows(rows)
+          print(scene_id)
+          PY
+
+      - name: Download exact selected Sentinel-2 RGB bands
+        run: |
+          python -m scripts.download_catalog_assets \
+            --catalog /tmp/drone_sentinel_2025.csv \
+            --aoi data/aoi/samut_songkhram_project_analysis_aoi.geojson \
+            --bands B2,B3,B4 \
+            --manifest /tmp/drone-sentinel-2025-download.json
+
+      - name: Build drone and Sentinel-2 aligned review canvases
+        run: python -m scripts.build_drone_sentinel_alignment_v2
+
+      - name: Validate complete nine-plot inventory and alignment
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path(
+              'data/processed/samut_songkhram_drone/summary.json'
+          ).read_text(encoding='utf-8'))
+          assert summary['orthomosaic_count'] == 9, summary
+          assert summary['plot_ids'] == [
+              '87-VSD', '91-STC', '92-STC', '93-STC', '94-STC',
+              '95-STC', '96-STC', '97-STC', '98-STC'
+          ], summary['plot_ids']
+          assert summary['qa']['all_georeference_pass'] is True, summary['qa']
+          assert summary['qa']['georeference_pass_count'] == 9, summary['qa']
+          assert summary['qa']['all_plot_bbox_coverage_ge_98pct'] is True, summary['qa']
+          assert summary['qa']['all_plot_valid_imagery_ge_90pct'] is True, summary['qa']
+          assert summary['qa']['coverage_complete_count'] == 8, summary['qa']
+          assert summary['qa']['coverage_partial_usable_count'] == 1, summary['qa']
+          assert summary['qa']['coverage_partial_usable_plot_ids'] == ['91-STC'], summary['qa']
+          assert summary['qa']['coverage_insufficient_count'] == 0, summary['qa']
+          assert summary['qa']['usable_plot_count'] == 9, summary['qa']
+          assert summary['date_evidence']['status'] == 'UNVERIFIED_AS_FLIGHT_DATE'
+          assert summary['common_crs'] == ['EPSG:32647']
+          assert summary['raster_band_scope']['nir_band_present'] is False
+          assert summary['raster_band_scope']['drone_ndvi_supported'] is False
+          assert summary['baseline_readiness']['status'] == (
+              'READY_FOR_HIGH_RESOLUTION_BASELINE_WITH_91_STC_PARTIAL_COVERAGE'
+          )
+          alignment = summary['sentinel2_alignment']
+          assert alignment['plot_count'] == 9
+          assert alignment['sentinel2_scene_date'] == '2025-02-14'
+          assert alignment['provisional_day_gap'] == 51
+          assert Path('web/public/data/project_drone_orthomosaic/footprints.geojson').exists()
+          for plot_id in summary['plot_ids']:
+              assert Path(f'web/public/data/project_drone_orthomosaic/previews/{plot_id}.webp').exists(), plot_id
+              assert Path(f'web/public/data/project_drone_orthomosaic/sentinel2_2025_aligned/{plot_id}.webp').exists(), plot_id
+              assert Path(f'web/public/data/project_drone_orthomosaic/alignment_overlay/{plot_id}.svg').exists(), plot_id
+
+          with Path(
+              'data/processed/samut_songkhram_drone/orthomosaic_catalog.csv'
+          ).open(newline='', encoding='utf-8') as handle:
+              rows = list(csv.DictReader(handle))
+          assert len(rows) == 9
+          row91 = next(row for row in rows if row['plot_id'] == '91-STC')
+          assert row91['georeference_status'] == 'PASS'
+          assert row91['imagery_coverage_status'] == 'PARTIAL_USABLE_90_TO_95PCT'
+          assert abs(float(row91['plot_valid_image_fraction']) - 0.926846) < 1e-6
+          print(json.dumps({
+              'orthomosaic_count': summary['orthomosaic_count'],
+              'source_size_gib': summary['total_source_size_gib'],
+              'common_crs': summary['common_crs'],
+              'gsd_cm_range': summary['gsd_cm_range'],
+              'qa': summary['qa'],
+              'band_scope': summary['raster_band_scope'],
+              'alignment_scene': alignment['sentinel2_scene_id'],
+              'alignment_day_gap_provisional': alignment['provisional_day_gap'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit generated drone inventory and lightweight review products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/processed/samut_songkhram_drone \
+            web/public/data/project_drone_orthomosaic
+          if git diff --cached --quiet; then
+            echo 'No generated drone inventory changes to commit.'
+          else
+            git commit -m 'data: add Samut Songkhram drone orthomosaic baseline'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload drone inventory evidence package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-drone-orthomosaic-inventory
+          path: |
+            data/project/samut_songkhram_drone_drive_manifest.csv
+            data/processed/samut_songkhram_drone/**
+            web/public/data/project_drone_orthomosaic/**
+            /tmp/drone-sentinel-2025-download.json
+          if-no-files-found: warn
+          retention-days: 14
