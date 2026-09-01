@@ -3,6 +3,9 @@ import type { ProjectImpactSummary } from './types'
 
 type Props = {
   summary: ProjectImpactSummary
+  onOpenHistory: () => void
+  onOpenCurrent: () => void
+  onOpenDrone: () => void
   onOpenCoast: () => void
 }
 
@@ -73,7 +76,7 @@ function plotBoundaryStatus(boundary: ProjectImpactSummary['post_boundary_eviden
   return 'อยู่ใน ±20 ม.'
 }
 
-export default function ProjectDashboard({ summary, onOpenCoast }: Props) {
+export default function ProjectDashboard({ summary, onOpenHistory, onOpenCurrent, onOpenDrone, onOpenCoast }: Props) {
   const baseline = summary.project_yearly_metrics.find((item) => item.year === 2023)!
   const latest = summary.project_yearly_metrics.find((item) => item.year === 2026)!
   const did2026 = summary.difference_in_differences.find((item) => item.post_year === 2026)!
@@ -89,8 +92,11 @@ export default function ProjectDashboard({ summary, onOpenCoast }: Props) {
       <nav className="report-nav">
         <div><span>สมุทรสงคราม</span><strong>Mangrove Impact Monitor</strong></div>
         <div className="view-tabs" role="tablist" aria-label="เลือกมุมมอง">
+          <button role="tab" aria-selected="false" onClick={onOpenHistory}>หลักฐานย้อนหลัง</button>
+          <button role="tab" aria-selected="false" onClick={onOpenCurrent}>ผล 2023–2026</button>
+          <button role="tab" aria-selected="false" onClick={onOpenDrone}>ภาพโดรน HR</button>
           <button className="active" role="tab" aria-selected="true">รายงาน 9 แปลง</button>
-          <button role="tab" aria-selected="false" onClick={onOpenCoast}>แผนที่ดาวเทียม 10 ปี</button>
+          <button role="tab" aria-selected="false" onClick={onOpenCoast}>แผนที่ 10 ปี</button>
         </div>
       </nav>
 

@@ -1,11 +1,21 @@
 name: Validate Samut Songkhram drone baseline web
 
 on:
+  pull_request:
+    branches:
+      - feature/coastal-change-webapp
+    paths:
+      - 'web/src/**'
+      - 'web/public/data/project_drone_orthomosaic/**'
+      - '.github/workflows/samut-songkhram-drone-web.yml'
   push:
     branches:
+      - feature/coastal-change-webapp
       - feature/samut-songkhram-drone-drive-ingest-v1
     paths:
+      - 'web/src/**'
       - 'web/public/data/project_drone_orthomosaic/**'
+      - '.github/workflows/samut-songkhram-drone-web.yml'
   workflow_dispatch:
 
 permissions:
@@ -17,8 +27,6 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-node@v4
         with:
@@ -49,7 +57,10 @@ jobs:
           PY
           grep -q 'ตอนนี้มี orthomosaic เพียง 1 epoch' web/src/DroneBaselineInjector.tsx
           grep -q 'ทำ drone NDVI ไม่ได้' web/src/DroneBaselineInjector.tsx
-          grep -q 'data/project_drone_orthomosaic/summary.json' web/src/TideAwareDashboard.tsx
+          grep -q 'data/project_drone_orthomosaic/summary.json' web/src/DroneBaselinePage.tsx
+          ! grep -q 'DroneBaselineInjector' web/src/TideAwareDashboard.tsx
+          grep -q 'MNDWI' web/src/PreplantingHistoryDashboardV2.tsx
+          grep -q 'onPanPointerDown' web/src/PlotOverlayInjector.tsx
 
       - name: Install dependencies and build production web
         working-directory: web
@@ -57,8 +68,9 @@ jobs:
           npm ci
           npm run build
 
-      - name: Validate built bundle carries drone products
+      - name: Validate built bundle carries both history and drone products
         run: |
+          test -f web/dist/client/data/project_preplanting_history/summary.json
           test -f web/dist/client/data/project_drone_orthomosaic/summary.json
           test -f web/dist/client/data/project_drone_orthomosaic/previews/91-STC.webp
           test -f web/dist/client/data/project_drone_orthomosaic/sentinel2_2025_aligned/91-STC.webp

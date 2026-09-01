@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react'
-import DroneBaselineInjector, {
-  type DroneBaselineSummary,
-} from './DroneBaselineInjector'
 import PlantingEvidenceInjector, {
   type PlantingAwareSummary,
 } from './PlantingEvidenceInjector'
@@ -14,16 +11,26 @@ import type { TideAwareSummary } from './types'
 
 type Props = {
   summary: TideAwareSummary
+  initialView?: 'history' | 'current'
+  onOpenDrone: () => void
   onOpenProject: () => void
   onOpenCoast: () => void
 }
 
-export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast }: Props) {
-  const [view, setView] = useState<'history' | 'current'>('history')
+export default function TideAwareDashboard({
+  summary,
+  initialView = 'history',
+  onOpenDrone,
+  onOpenProject,
+  onOpenCoast,
+}: Props) {
+  const [view, setView] = useState<'history' | 'current'>(initialView)
   const [history, setHistory] = useState<PreplantingHistorySummaryV2 | null>(null)
-  const [historyError, setHistoryError] = useState<string | null>(null)
   const [planting, setPlanting] = useState<PlantingAwareSummary | null>(null)
-  const [drone, setDrone] = useState<DroneBaselineSummary | null>(null)
+
+  useEffect(() => {
+    setView(initialView)
+  }, [initialView])
 
   useEffect(() => {
     const handleInternalAnchorClick = (event: MouseEvent) => {
@@ -55,11 +62,8 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
       .then((value: unknown) => {
         if (active) setHistory(value as PreplantingHistorySummaryV2)
       })
-      .catch((reason: unknown) => {
-        if (active) {
-          setHistoryError(reason instanceof Error ? reason.message : String(reason))
-          setView('current')
-        }
+      .catch(() => {
+        if (active) setView('current')
       })
     return () => {
       active = false
@@ -84,39 +88,17 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
     }
   }, [])
 
-  useEffect(() => {
-    let active = true
-    fetch('data/project_drone_orthomosaic/summary.json')
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`)
-        return response.json()
-      })
-      .then((value: unknown) => {
-        if (active) setDrone(value as DroneBaselineSummary)
-      })
-      .catch(() => {
-        if (active) setDrone(null)
-      })
-    return () => {
-      active = false
-    }
-  }, [])
-
   if (view === 'current') {
     return (
-      <>
-        <div className="history-current-return">
-          <button type="button" onClick={() => setView('history')} disabled={!history}>
-            ← กลับไปดูว่า ก่อนปี 2023 เคยมีสัญญาณกัดเซาะหรือไม่
-          </button>
-          {historyError && <span className="history-load-note">โหลดข้อมูลย้อนหลังไม่ได้: {historyError}</span>}
-        </div>
-        <TideAwareOverview
-          summary={summary}
-          onOpenProject={onOpenProject}
-          onOpenCoast={onOpenCoast}
-        />
-      </>
+      <TideAwareOverview
+        summary={summary}
+        onOpenHistory={() => {
+          if (history) setView('history')
+        }}
+        onOpenDrone={onOpenDrone}
+        onOpenProject={onOpenProject}
+        onOpenCoast={onOpenCoast}
+      />
     )
   }
 
@@ -129,11 +111,11 @@ export default function TideAwareDashboard({ summary, onOpenProject, onOpenCoast
       <PreplantingHistoryDashboardV2
         history={history}
         onOpenCurrent={() => setView('current')}
+        onOpenDrone={onOpenDrone}
         onOpenProject={onOpenProject}
         onOpenCoast={onOpenCoast}
       />
       {planting && <PlantingEvidenceInjector summary={planting} />}
-      {drone && <DroneBaselineInjector summary={drone} />}
       <PlotOverlayInjector scenes={history.scene_selection.display_scenes} />
     </>
   )

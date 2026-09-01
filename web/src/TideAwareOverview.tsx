@@ -9,6 +9,8 @@ import './tideAwareOverview.css'
 
 type Props = {
   summary: TideAwareSummary
+  onOpenHistory: () => void
+  onOpenDrone: () => void
   onOpenProject: () => void
   onOpenCoast: () => void
 }
@@ -461,7 +463,7 @@ function SceneGallery({ scenes }: { scenes: TideScene[] }) {
   )
 }
 
-export default function TideAwareOverview({ summary, onOpenProject, onOpenCoast }: Props) {
+export default function TideAwareOverview({ summary, onOpenHistory, onOpenDrone, onOpenProject, onOpenCoast }: Props) {
   const waterline = summary.indicators.waterline
   const mangrove = summary.indicators.mangrove_edge_proxy
   const waterlineCounts = indicatorCounts(waterline)
@@ -475,8 +477,10 @@ export default function TideAwareOverview({ summary, onOpenProject, onOpenCoast 
       <nav className="report-nav evidence-nav">
         <div><span>สมุทรสงคราม</span><strong>Coastal Evidence</strong></div>
         <div className="view-tabs" role="tablist" aria-label="เลือกมุมมอง">
+          <button role="tab" aria-selected="false" onClick={onOpenHistory}>หลักฐานย้อนหลัง</button>
+          <button className="active" role="tab" aria-selected="true">ผล 2023–2026</button>
+          <button role="tab" aria-selected="false" onClick={onOpenDrone}>ภาพโดรน HR</button>
           <button role="tab" aria-selected="false" onClick={onOpenProject}>รายงาน 9 แปลง</button>
-          <button className="active" role="tab" aria-selected="true">ภาพก่อน–หลัง</button>
           <button role="tab" aria-selected="false" onClick={onOpenCoast}>แผนที่ 10 ปี</button>
         </div>
       </nav>
