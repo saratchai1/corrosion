@@ -1,8 +1,8 @@
 {
   "title": "Surat Thani 37-STC high-resolution drone baseline",
   "plot_id": "37-STC",
-  "status": "VISUAL_BASELINE_AVAILABLE_RAW_GEOREFERENCE_QA_BLOCKED_BY_CONNECTED_DRIVE_LIMIT",
-  "evidence_level": "HIGH_RESOLUTION_BASELINE",
+  "status": "GEOREFERENCE_QA_PASSED_SAME_EXTENT_COMPARE_AVAILABLE",
+  "evidence_level": "GEOREFERENCED_HIGH_RESOLUTION_BASELINE",
   "one_epoch_guard": "ONE_EPOCH_ONLY_NO_DRONE_DERIVED_CHANGE_RATE",
   "source": {
     "province_folder_id": "1bS2dan8yZ1Nl6P5SZJUneSHKtXxGw5h7",
@@ -32,13 +32,13 @@
     "role": "KNOWN_PROJECT_BOUNDARY_CRS_ONLY",
     "raw_tiff_crs_assumed_from_project_geometry": false,
     "primary_area_rai": 157.55,
-    "guard": "EPSG:32647 is known for project geometry but is not assigned to the raw GeoTIFF until the TIFF georeference is read."
+    "guard": "Project geometry and raw GeoTIFF independently resolve to EPSG:32647; the raw TIFF CRS was read directly, not assumed."
   },
   "web_preview": {
-    "asset": "data/surat_thani/drone/orthor_37_stc_preview.webp",
-    "width_px": 800,
-    "height_px": 443,
-    "derivation": "Downsampled web preview derived from the confirmed Drive PNG source; raw GeoTIFF is not served by Vercel."
+    "asset": "data/surat_thani/drone/orthor_37_stc_same_extent.webp",
+    "width_px": 1800,
+    "height_px": 1015,
+    "derivation": "Generated directly from the raw GeoTIFF after CRS/transform QA; reprojected to EPSG:4326 and downsampled for web display."
   },
   "legacy_alignment_audit": {
     "drive_folder_id": "1VsVXLB1mBknTvMNPvqTJM_dpeAn4vlqW",
@@ -51,28 +51,51 @@
     "reason": "The legacy comparison app contains a boundary-only placeholder on the drone side, not orthomosaic pixels, so it is not accepted as georeferenced Drone-to-Sentinel evidence."
   },
   "qa": {
-    "raw_download_status": "HTTP_413_FILE_TOO_LARGE_FOR_CONNECTED_DRIVE_DOWNLOAD",
+    "raw_download_status": "DOWNLOADED_EPHEMERALLY_BY_GITHUB_ACTIONS",
     "connected_drive_download_limit_bytes": 268435456,
     "raw_geotiff_size_bytes": 3333103914,
-    "georeference_status": "BLOCKED_RAW_GEOTIFF_EXCEEDS_CONNECTED_DOWNLOAD_LIMIT",
-    "imagery_coverage_status": "BLOCKED_RAW_GEOTIFF_EXCEEDS_CONNECTED_DOWNLOAD_LIMIT",
-    "cross_sensor_alignment_status": "LOCKED_UNTIL_RAW_GEOREFERENCE_QA",
-    "crs": null,
-    "mean_gsd_cm": null,
-    "band_count": null,
-    "valid_imagery_fraction": null,
-    "nir_band_present": null,
-    "drone_ndvi_supported": null,
+    "georeference_status": "PASS_EXPECTED_PROJECT_CRS",
+    "imagery_coverage_status": "PASS_GE_95PCT",
+    "cross_sensor_alignment_status": "PASS_GEOREFERENCE_QA_SAME_EXTENT_VISUAL_COMPARE",
+    "crs": "EPSG:32647",
+    "mean_gsd_cm": 2.2568700000000734,
+    "band_count": 4,
+    "valid_imagery_fraction": 0.9999994403016031,
+    "nir_band_present": false,
+    "drone_ndvi_supported": false,
     "inspection_script": "scripts/inspect_surat_thani_37_stc_geotiff.py",
-    "raw_metadata_reason": "The connected Drive API confirms the 3.33 GB TIFF exists but the raw-content action rejects files above 256 MB. No sidecar, flight log, GCP/RTK file, or photogrammetry metadata is present in the source folder. CRS, GSD, transform, band count, valid coverage and flight date therefore remain unverified rather than inferred."
+    "publish_script": "scripts/publish_surat_thani_37_stc_drone_compare.py",
+    "raw_metadata_reason": "The raw 3.33 GB GeoTIFF was downloaded to ephemeral GitHub Actions storage and inspected directly. CRS, transform, GSD, RGB+alpha band configuration and project-polygon imagery coverage are now verified. The raw TIFF itself is not committed or served."
   },
   "scientific_guard": [
     "Do not derive an erosion/accretion rate from one drone epoch.",
     "Do not call folder label 20-05-2569 a verified flight date until acquisition metadata confirms it.",
-    "Do not assign EPSG:32647 to the raw TIFF solely because the project boundary uses EPSG:32647.",
-    "Do not align the preview to Sentinel-2 or project geometry until GeoTIFF CRS/transform QA is complete.",
-    "Do not compute drone NDVI until the raw band configuration confirms a NIR band.",
-    "Do not use the rejected legacy placeholder as Drone-to-Sentinel alignment evidence.",
-    "Use the confirmed PNG preview as visual high-resolution spatial context only."
-  ]
+    "The raw GeoTIFF CRS is confirmed directly as EPSG:32647; it was not inferred from the project boundary.",
+    "The raw raster is RGB+alpha, not multispectral NIR, so drone NDVI is not supported.",
+    "Use Drone ↔ Sentinel-2 same-extent imagery as visual cross-sensor context; do not interpret pixel-level differences as a quantitative change rate.",
+    "Do not use the rejected legacy placeholder as Drone-to-Sentinel alignment evidence."
+  ],
+  "same_extent_compare": {
+    "status": "AVAILABLE",
+    "role": "GEOREFERENCED_VISUAL_CROSS_SENSOR_COMPARISON",
+    "bounds_wgs84": {
+      "left": 99.22137184918678,
+      "bottom": 9.338435374657791,
+      "right": 99.23787667757145,
+      "top": 9.347619657518594
+    },
+    "width_px": 1800,
+    "height_px": 1015,
+    "drone_asset": "data/surat_thani/drone/orthor_37_stc_same_extent.webp",
+    "sentinel2_asset": "data/surat_thani/drone/sentinel2_2026_same_extent.webp",
+    "sentinel2_target_year": 2026,
+    "sentinel2_actual_year": 2026,
+    "sentinel2_dates": [
+      "2026-03-01",
+      "2026-04-05",
+      "2026-04-30"
+    ],
+    "sentinel2_resolution_m": 20,
+    "registration_note": "Both web images are rendered to the same WGS84 envelope and pixel dimensions. The Sentinel-2 side is derived from the existing georeferenced 2026 web image; use for visual context, not sub-pixel quantitative registration."
+  }
 }
