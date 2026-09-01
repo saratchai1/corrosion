@@ -83,6 +83,7 @@ type DroneManifest = {
 type CandidateCrop = {
   asset: string
   marker: { x_percent: number; y_percent: number }
+  coverage_status?: string
 }
 
 type AccretionCandidate = {
@@ -110,12 +111,13 @@ type AccretionCandidate = {
     waterline_point_2023_lon_lat: [number, number]
     waterline_point_2026_lon_lat: [number, number]
     inside_drone_extent: boolean
+    drone_coverage_status?: string
     marker_on_full_same_extent: { x_percent: number; y_percent: number }
   }
   web_crops: {
     sentinel2_2023: CandidateCrop
     sentinel2_2026: CandidateCrop
-    drone: CandidateCrop
+    drone: CandidateCrop | null
   }
   post_2023_accretion_supported: boolean
   post_2023_verdict: string
@@ -133,6 +135,7 @@ type AccretionAudit = {
   overall_interpretation_th: string
   coastal_vegetation_edge_project_median_change_2023_2026_m: number | null
   scientific_guard: string[]
+  crop_method?: string
   same_extent: {
     bounds_wgs84: Bounds
     width_px: number
@@ -165,6 +168,15 @@ function CandidateImage({ crop, label, detail }: { crop: CandidateCrop; label: s
         />
       </div>
       <figcaption><strong>{label}</strong><small>{detail}</small></figcaption>
+    </figure>
+  )
+}
+
+function DroneOutsideFootprint() {
+  return (
+    <figure className="candidate-image candidate-image-unavailable">
+      <div className="candidate-unavailable"><strong>OUTSIDE DRONE FOOTPRINT</strong><span>ตำแหน่ง candidate อยู่นอกขอบภาพ GeoTIFF ที่ยืนยันแล้ว จึงไม่ใช้ภาพขอบ orthomosaic แทนตำแหน่งจริง</span></div>
+      <figcaption><strong>Drone HR</strong><small>ไม่มี coverage ที่ candidate center</small></figcaption>
     </figure>
   )
 }
@@ -233,6 +245,7 @@ export default function DroneBaselinePage() {
 
   const compare = manifest.same_extent_compare?.status === 'AVAILABLE' ? manifest.same_extent_compare : null
   const qaPassed = manifest.qa.georeference_status === 'PASS_EXPECTED_PROJECT_CRS' && manifest.qa.imagery_coverage_status === 'PASS_GE_95PCT'
+  const outsideDrone = audit.candidates.filter((candidate) => !candidate.candidate_zone.inside_drone_extent)
 
   return (
     <main className="document-page drone-page">
@@ -291,8 +304,8 @@ export default function DroneBaselinePage() {
         </div>
 
         <div className="audit-drone-overview" style={{ aspectRatio: `${audit.same_extent.width_px}/${audit.same_extent.height_px}` }}>
-          <img src={audit.same_extent.drone_asset} alt="ภาพโดรน 37-STC พร้อมตำแหน่ง candidate ดินงอก T028 และ T038" />
-          {audit.candidates.map((candidate) => (
+          <img src={audit.same_extent.drone_asset} alt="ภาพโดรน 37-STC พร้อมตำแหน่ง candidate ที่อยู่ภายใน footprint" />
+          {audit.candidates.filter((candidate) => candidate.candidate_zone.inside_drone_extent).map((candidate) => (
             <span
               key={candidate.transect_id}
               className="audit-marker"
@@ -302,7 +315,7 @@ export default function DroneBaselinePage() {
               <b>{candidate.transect_id}</b>
             </span>
           ))}
-          <div className="audit-overview-note">วงตำแหน่งจากจุดตัด water-land boundary ใกล้แปลงบน extent ของ GeoTIFF ที่ยืนยันพิกัดแล้ว</div>
+          <div className="audit-overview-note">วงเฉพาะ candidate ที่อยู่ภายใน GeoTIFF ที่ยืนยันพิกัดแล้ว{outsideDrone.length ? ` · ${outsideDrone.map((item) => item.transect_id).join(', ')} อยู่นอก drone footprint` : ''}</div>
         </div>
 
         <div className="accretion-candidate-grid">
@@ -321,12 +334,12 @@ export default function DroneBaselinePage() {
 
               <div className="candidate-image-grid">
                 <CandidateImage crop={candidate.web_crops.sentinel2_2023} label="Sentinel-2 · 2023" detail={audit.same_extent.sentinel2_2023_dates.join(', ')} />
-                <CandidateImage crop={candidate.web_crops.sentinel2_2026} label="Sentinel-2 · 2026" detail="same extent / same crop" />
-                <CandidateImage crop={candidate.web_crops.drone} label="Drone HR" detail={`${formatGsd(manifest.qa.mean_gsd_cm)} · current high-resolution context`} />
+                <CandidateImage crop={candidate.web_crops.sentinel2_2026} label="Sentinel-2 · 2026" detail="crop รอบตำแหน่ง candidate จริง" />
+                {candidate.web_crops.drone ? <CandidateImage crop={candidate.web_crops.drone} label="Drone HR" detail={`${formatGsd(manifest.qa.mean_gsd_cm)} · verified footprint`} /> : <DroneOutsideFootprint />}
               </div>
 
               <p className="candidate-verdict">{candidate.interpretation_th}</p>
-              <small className="candidate-coordinate">candidate center: {candidate.candidate_zone.center_lat.toFixed(6)}, {candidate.candidate_zone.center_lon.toFixed(6)}</small>
+              <small className="candidate-coordinate">candidate center: {candidate.candidate_zone.center_lat.toFixed(6)}, {candidate.candidate_zone.center_lon.toFixed(6)} · {candidate.candidate_zone.drone_coverage_status ?? (candidate.candidate_zone.inside_drone_extent ? 'INSIDE_DRONE' : 'OUTSIDE_DRONE')}</small>
             </article>
           ))}
         </div>
