@@ -1,0 +1,83 @@
+name: Surat Thani 37-STC raw drone GeoTIFF QA
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/surat-thani-drone-raw-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: surat-thani-37-stc-drone-raw-qa
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install lightweight QA dependencies
+        run: python -m pip install --disable-pip-version-check 'gdown==5.2.0' 'rasterio>=1.4,<2' 'numpy>=2,<3'
+
+      - name: Download raw 37-STC GeoTIFF to ephemeral runner storage
+        shell: bash
+        env:
+          DRIVE_FILE_ID: 1WdHWRu-JXFM4xayCbg6KA2-DTZFldBij
+        run: |
+          set -euo pipefail
+          RAW="$RUNNER_TEMP/orthor_37_stc.tif"
+          df -h "$RUNNER_TEMP"
+          gdown "https://drive.google.com/uc?id=${DRIVE_FILE_ID}" -O "$RAW"
+          test -s "$RAW"
+          BYTES=$(stat -c '%s' "$RAW")
+          echo "downloaded_bytes=$BYTES"
+          if [ "$BYTES" -lt 3000000000 ]; then
+            echo "Downloaded object is unexpectedly small; refusing to inspect as the 3.33 GB source TIFF." >&2
+            exit 2
+          fi
+
+      - name: Inspect CRS, transform, GSD, bands and valid imagery coverage
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/inspect_surat_thani_37_stc_geotiff.py \
+            "$RUNNER_TEMP/orthor_37_stc.tif" \
+            --output-json data/analysis/surat_thani/drone_37_stc_geotiff_qa.json \
+            --footprint-geojson data/analysis/surat_thani/drone_37_stc_footprint.geojson
+          python -m json.tool data/analysis/surat_thani/drone_37_stc_geotiff_qa.json >/dev/null
+          python -m json.tool data/analysis/surat_thani/drone_37_stc_footprint.geojson >/dev/null
+          cat data/analysis/surat_thani/drone_37_stc_geotiff_qa.json
+
+      - name: Commit metadata only, never the raw TIFF
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/analysis/surat_thani/drone_37_stc_geotiff_qa.json data/analysis/surat_thani/drone_37_stc_footprint.geojson
+          if git diff --cached --quiet; then
+            echo 'No metadata changes to commit.'
+            exit 0
+          fi
+          git commit -m 'data: add 37-STC raw drone GeoTIFF QA [skip ci]'
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
+
+      - name: Confirm raw TIFF is not tracked
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! git ls-files | grep -Ei '\.(tif|tiff)$'
