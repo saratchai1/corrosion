@@ -41,19 +41,14 @@ jobs:
           test -s web-surat-thani/public/data/surat_thani/drone/t028_drone_crop.webp
           test -s web-surat-thani/public/data/surat_thani/drone/t038_sentinel2_2023_crop.webp
           test -s web-surat-thani/public/data/surat_thani/drone/t038_sentinel2_2026_crop.webp
+          test ! -e web-surat-thani/public/data/surat_thani/drone/t038_drone_crop.webp
       - name: Commit refined audit assets
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add \
-            web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json \
-            web-surat-thani/public/data/surat_thani/drone/t028_sentinel2_2023_crop.webp \
-            web-surat-thani/public/data/surat_thani/drone/t028_sentinel2_2026_crop.webp \
-            web-surat-thani/public/data/surat_thani/drone/t028_drone_crop.webp \
-            web-surat-thani/public/data/surat_thani/drone/t038_sentinel2_2023_crop.webp \
-            web-surat-thani/public/data/surat_thani/drone/t038_sentinel2_2026_crop.webp
+          git add -A web-surat-thani/public/data/surat_thani/drone
           if git diff --cached --quiet; then
             echo 'No refined candidate crop changes.'
             exit 0
