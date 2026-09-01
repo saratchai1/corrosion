@@ -1,0 +1,66 @@
+name: Validate Samut Songkhram drone baseline web
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-drone-drive-ingest-v1
+    paths:
+      - 'web/public/data/project_drone_orthomosaic/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Validate drone evidence files and claim guards
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('web/public/data/project_drone_orthomosaic')
+          summary = json.loads((root / 'summary.json').read_text(encoding='utf-8'))
+          assert summary['orthomosaic_count'] == 9
+          assert summary['qa']['georeference_pass_count'] == 9
+          assert summary['qa']['coverage_complete_count'] == 8
+          assert summary['qa']['coverage_partial_usable_plot_ids'] == ['91-STC']
+          assert summary['raster_band_scope']['drone_ndvi_supported'] is False
+          assert summary['sentinel2_alignment']['plot_count'] == 9
+          assert summary['sentinel2_alignment']['sentinel2_scene_date'] == '2025-02-14'
+          assert summary['sentinel2_alignment']['provisional_day_gap'] == 51
+          for plot_id in summary['plot_ids']:
+              assert (root / 'previews' / f'{plot_id}.webp').exists(), plot_id
+              assert (root / 'sentinel2_2025_aligned' / f'{plot_id}.webp').exists(), plot_id
+              assert (root / 'alignment_overlay' / f'{plot_id}.svg').exists(), plot_id
+          PY
+          grep -q 'ตอนนี้มี orthomosaic เพียง 1 epoch' web/src/DroneBaselineInjector.tsx
+          grep -q 'ทำ drone NDVI ไม่ได้' web/src/DroneBaselineInjector.tsx
+          grep -q 'data/project_drone_orthomosaic/summary.json' web/src/TideAwareDashboard.tsx
+
+      - name: Install dependencies and build production web
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Validate built bundle carries drone products
+        run: |
+          test -f web/dist/client/data/project_drone_orthomosaic/summary.json
+          test -f web/dist/client/data/project_drone_orthomosaic/previews/91-STC.webp
+          test -f web/dist/client/data/project_drone_orthomosaic/sentinel2_2025_aligned/91-STC.webp
+          test -f web/dist/client/data/project_drone_orthomosaic/alignment_overlay/91-STC.svg
+          du -sh web/dist/client
