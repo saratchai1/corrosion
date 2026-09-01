@@ -1,0 +1,163 @@
+{
+  "plot_id": "37-STC",
+  "question": "มีดินงอกตรงไหนหลังการปลูกปี 2023 หรือไม่",
+  "candidate_origin": "T028 and T038 were the two project-frontage transects classified as apparent_accretion in the 1985-2026 automated water-land-boundary MVP.",
+  "audit_period": "2023_to_2026",
+  "candidate_count": 2,
+  "post_2023_supported_candidate_count": 0,
+  "overall_verdict": "NO_POST_2023_LAND_ACCRETION_CONFIRMED_FROM_THE_TWO_LONG_TERM_CANDIDATES",
+  "overall_interpretation_th": "จาก 2 จุดที่เคยดูเหมือนดินงอกในแนวโน้มระยะยาว ยังไม่มีจุดใดผ่านเกณฑ์ว่าเป็นดินงอกหลังปลูกปี 2023. T028 ถอยเข้าฝั่งทั้งสองวิธี ส่วน T038 ไม่ขยับใน baseline แต่ถอยเข้าฝั่งเมื่อใช้ tide-matched. ภาพโดรนใช้ยืนยันสภาพปัจจุบันและตำแหน่ง แต่มีเพียง 1 epoch จึงไม่สามารถพิสูจน์การเกิดพื้นที่ใหม่ด้วยโดรนเพียงชุดเดียวได้.",
+  "coastal_vegetation_edge_project_median_change_2023_2026_m": 0.0,
+  "scientific_guard": [
+    "Water-land boundaries are image-derived and remain sensitive to tide and intertidal mudflat exposure.",
+    "One drone epoch can verify current morphology/coverage but cannot establish a temporal land-gain rate.",
+    "Do not relabel the long-term apparent-accretion classification as post-planting land accretion.",
+    "A positive post-2023 claim would require repeat UAV/orthophoto or a stable manually digitized bank/geomorphic edge at comparable tide stage."
+  ],
+  "same_extent": {
+    "bounds_wgs84": {
+      "left": 99.22137184918678,
+      "bottom": 9.338435374657791,
+      "right": 99.23787667757145,
+      "top": 9.347619657518594
+    },
+    "width_px": 1800,
+    "height_px": 1015,
+    "sentinel2_2023_asset": "data/surat_thani/drone/sentinel2_2023_same_extent.webp",
+    "sentinel2_2023_dates": [
+      "2023-02-10",
+      "2023-03-12",
+      "2023-04-06"
+    ],
+    "sentinel2_2026_asset": "data/surat_thani/drone/sentinel2_2026_same_extent.webp",
+    "drone_asset": "data/surat_thani/drone/orthor_37_stc_same_extent.webp"
+  },
+  "candidates": [
+    {
+      "transect_id": "T028",
+      "historical_classification_1985_2026": "apparent_accretion",
+      "historical_net_change_m_1985_2026": 43.99,
+      "historical_rate_m_per_year_1985_2026": 1.13,
+      "historical_confidence": "LOW",
+      "baseline_waterline_2023_2026": {
+        "position_2023_m": 13.49,
+        "position_2026_m": 8.38,
+        "change_m": -5.11,
+        "direction": "landward"
+      },
+      "tide_matched_waterline_2023_2026": {
+        "position_2023_m": 3.41,
+        "position_2026_m": -0.23,
+        "change_m": -3.64,
+        "classification": "stable",
+        "direction": "landward"
+      },
+      "candidate_zone": {
+        "center_lon": 99.23173666766297,
+        "center_lat": 9.34380963203833,
+        "waterline_point_2023_lon_lat": [
+          99.23174816699559,
+          9.343789575892485
+        ],
+        "waterline_point_2026_lon_lat": [
+          99.23172516833034,
+          9.343829688184172
+        ],
+        "inside_drone_extent": true,
+        "marker_on_full_same_extent": {
+          "x_percent": 62.798704928181564,
+          "y_percent": 41.484191395338705
+        }
+      },
+      "web_crops": {
+        "sentinel2_2023": {
+          "asset": "data/surat_thani/drone/t028_sentinel2_2023_crop.webp",
+          "marker": {
+            "x_percent": 50.078476814014195,
+            "y_percent": 50.017928517413296
+          }
+        },
+        "sentinel2_2026": {
+          "asset": "data/surat_thani/drone/t028_sentinel2_2026_crop.webp",
+          "marker": {
+            "x_percent": 50.078476814014195,
+            "y_percent": 50.017928517413296
+          }
+        },
+        "drone": {
+          "asset": "data/surat_thani/drone/t028_drone_crop.webp",
+          "marker": {
+            "x_percent": 50.078476814014195,
+            "y_percent": 50.017928517413296
+          }
+        }
+      },
+      "post_2023_accretion_supported": false,
+      "post_2023_verdict": "NOT_SUPPORTED_AS_POST_2023_ACCRETION",
+      "interpretation_th": "แม้ระยะยาว 1985-2026 เคยถูกจัดเป็น apparent accretion (+43.99 m) แต่ช่วง 2023-2026 baseline = -5.11 m และ tide-matched = -3.64 m; จึงไม่รองรับข้อสรุปว่าดินงอกหลังปลูก."
+    },
+    {
+      "transect_id": "T038",
+      "historical_classification_1985_2026": "apparent_accretion",
+      "historical_net_change_m_1985_2026": 47.69,
+      "historical_rate_m_per_year_1985_2026": 1.22,
+      "historical_confidence": "LOW",
+      "baseline_waterline_2023_2026": {
+        "position_2023_m": 3.16,
+        "position_2026_m": 3.16,
+        "change_m": 0.0,
+        "direction": "stable"
+      },
+      "tide_matched_waterline_2023_2026": {
+        "position_2023_m": 26.14,
+        "position_2026_m": 0.15,
+        "change_m": -25.99,
+        "classification": "apparent_erosion",
+        "direction": "landward"
+      },
+      "candidate_zone": {
+        "center_lon": 99.23914665156401,
+        "center_lat": 9.348423247718964,
+        "waterline_point_2023_lon_lat": [
+          99.23914665156401,
+          9.348423247718964
+        ],
+        "waterline_point_2026_lon_lat": [
+          99.23914665156401,
+          9.348423247718964
+        ],
+        "inside_drone_extent": false,
+        "marker_on_full_same_extent": {
+          "x_percent": 107.69456042174515,
+          "y_percent": -8.749623814390763
+        }
+      },
+      "web_crops": {
+        "sentinel2_2023": {
+          "asset": "data/surat_thani/drone/t038_sentinel2_2023_crop.webp",
+          "marker": {
+            "x_percent": 100.0,
+            "y_percent": 0.0
+          }
+        },
+        "sentinel2_2026": {
+          "asset": "data/surat_thani/drone/t038_sentinel2_2026_crop.webp",
+          "marker": {
+            "x_percent": 100.0,
+            "y_percent": 0.0
+          }
+        },
+        "drone": {
+          "asset": "data/surat_thani/drone/t038_drone_crop.webp",
+          "marker": {
+            "x_percent": 100.0,
+            "y_percent": 0.0
+          }
+        }
+      },
+      "post_2023_accretion_supported": false,
+      "post_2023_verdict": "NOT_SUPPORTED_AS_POST_2023_ACCRETION",
+      "interpretation_th": "แม้ระยะยาว 1985-2026 เคยถูกจัดเป็น apparent accretion (+47.69 m) แต่ช่วง 2023-2026 baseline = +0.00 m และ tide-matched = -25.99 m; จึงไม่รองรับข้อสรุปว่าดินงอกหลังปลูก."
+    }
+  ]
+}
