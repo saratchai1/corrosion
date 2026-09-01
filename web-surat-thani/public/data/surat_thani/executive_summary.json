@@ -1,0 +1,189 @@
+{
+  "generated_at_utc": "2026-08-31T15:42:24.682097+00:00",
+  "project": {
+    "province": "Surat Thani",
+    "plot_code": "37-STC",
+    "location": "Ban Lamet, Lamet Subdistrict, Chaiya District, Surat Thani",
+    "primary_boundary_area_rai": 157.55,
+    "representative_intervention_date": "2023-10-18",
+    "seedlings_total": 142232
+  },
+  "executive_decision": {
+    "causal_erosion_reduction_claim": "CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM",
+    "vegetation_establishment": "SMALL_POSITIVE_RELATIVE_OPTICAL_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY",
+    "coastal_vegetation_edge_expansion": "NO_DETECTABLE_10M_SCALE_RELATIVE_EDGE_ADVANCE",
+    "waterline_erosion_indicator": "FAILED_SCENE_TIDE_ROBUSTNESS_SIGN_REVERSAL",
+    "control_intervention_exclusion": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
+    "field_uav_validation": "REQUIRED_BEFORE_IMPACT_LANGUAGE",
+    "overall_monitoring_status": "CONTINUE_MONITORING_SMALL_POSITIVE_VEGETATION_SIGNAL_BUT_NO_DETECTABLE_10M_EDGE_ADVANCE"
+  },
+  "key_numbers": {
+    "optical_establishment": {
+      "median_ndvi_project_minus_control_change_2026_vs_2023": 0.0061,
+      "green_fraction_ndvi_ge_0_32_project_minus_control_change_2026_vs_2023": 0.0071,
+      "green_fraction_change_percentage_points": 0.71,
+      "threshold_sign_0_28_0_32_0_36": "CONSISTENT_POSITIVE",
+      "project_single_scene_ndvi_range_2023_2026_max": 0.1142,
+      "project_single_scene_green_fraction_range_2023_2026_max": 0.0095
+    },
+    "coastal_vegetation_edge": {
+      "project_median_change_2023_2026_m": 0.0,
+      "control_median_change_2023_2026_m": 0.0,
+      "project_minus_control_change_m": 0.0,
+      "project_pre_slope_m_per_year": -1.429,
+      "project_post_slope_m_per_year": 0.0,
+      "empirical_edge_instability_floor_m": 10.0,
+      "threshold_net_contrasts_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "waterline_sensitivity": {
+      "baseline_three_scene_project_minus_control_2023_2026_m": -4.45,
+      "tide_stage_single_scene_project_minus_control_2023_2026_m": 26.58,
+      "sensitivity_shift_m": 31.03,
+      "sign_reversal": true
+    },
+    "first_pass_waterline_frontage": {
+      "yearly_median_positions_m": {
+        "2017": {
+          "median_position_m": 18.54,
+          "transect_count": 23
+        },
+        "2018": {
+          "median_position_m": 19.15,
+          "transect_count": 23
+        },
+        "2019": {
+          "median_position_m": 17.94,
+          "transect_count": 23
+        },
+        "2020": {
+          "median_position_m": 12.8,
+          "transect_count": 23
+        },
+        "2021": {
+          "median_position_m": 10.3,
+          "transect_count": 23
+        },
+        "2022": {
+          "median_position_m": 9.26,
+          "transect_count": 23
+        },
+        "2023": {
+          "median_position_m": 3.16,
+          "transect_count": 23
+        },
+        "2024": {
+          "median_position_m": -1.15,
+          "transect_count": 23
+        },
+        "2025": {
+          "median_position_m": 3.84,
+          "transect_count": 23
+        },
+        "2026": {
+          "median_position_m": -2.68,
+          "transect_count": 23
+        }
+      },
+      "median_apparent_change_2023_to_2026_m": -4.45,
+      "median_pre_2017_2023_slope_m_per_year": -2.1,
+      "median_post_2024_2026_slope_m_per_year": -0.0,
+      "classification_counts_from_full_mvp": {
+        "apparent_erosion": 12,
+        "stable": 9,
+        "apparent_accretion": 2
+      },
+      "positive_direction": "seaward"
+    }
+  },
+  "evidence_stack": {
+    "sentinel2_coastal_vegetation_edge": {
+      "role": "PRIMARY_SATELLITE_SCREENING_INDICATOR",
+      "status": "NO_DETECTABLE_10M_SCALE_RELATIVE_EDGE_ADVANCE",
+      "source": "data/analysis/surat_thani/mangrove_edge_proxy_screening.json"
+    },
+    "sentinel2_in_plot_establishment": {
+      "role": "PLANTING_ESTABLISHMENT_SCREENING",
+      "status": "SMALL_POSITIVE_RELATIVE_OPTICAL_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY",
+      "source": "data/analysis/surat_thani/planting_establishment_screening.json"
+    },
+    "waterline": {
+      "role": "SUPPORTING_CONTEXT_ONLY",
+      "status": "FAILED_SCENE_TIDE_ROBUSTNESS_SIGN_REVERSAL",
+      "source": "data/analysis/surat_thani/tide_matched_sensitivity_summary.json"
+    },
+    "tide": {
+      "role": "SCENE_SCREENING_CONTEXT",
+      "status": "SCENE_LEVEL_TIDE_CONTEXT_2023_2026_PARTIAL_MSL",
+      "ko_prap_distance_km": 23.96
+    },
+    "controls": {
+      "role": "NO_KNOWN_INTERVENTION_REFERENCE",
+      "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
+      "candidate_count": 3
+    },
+    "sentinel1": {
+      "status": "CORROBORATION_DIAGNOSTIC_ONLY_NOT_CAUSAL_OR_BIOMASS_CLAIM",
+      "selected_track": "descending:62",
+      "change_2026_vs_2023_in_within_scene_project_minus_control": {
+        "project_minus_control_median_log10_vv": -0.01688,
+        "project_minus_control_median_log10_vh": 0.01336,
+        "project_minus_control_median_vh_vv_log_ratio": 0.1415
+      },
+      "interpretation": "Independent relative GRD diagnostic only; absolute SAR biomass/backscatter interpretation is not allowed because RTC/calibrated publication-grade processing was not used."
+    }
+  },
+  "what_the_data_supports": [
+    "A small positive 2023-to-2026 optical greenness/green-pixel change is present inside 37-STC relative to the selected no-known-intervention controls, and the sign is positive across the tested NDVI thresholds.",
+    "The size of that optical establishment signal is small and within the range of single-scene variability observed in the project, so it is a monitoring signal rather than confirmation of survival or canopy gain.",
+    "No 10 m-scale relative seaward expansion of the persistent coastal-vegetation edge is detected from 2023 to 2026 at the primary threshold; the project and pooled controls both have median net change of about zero.",
+    "The automated water-land boundary is not robust enough for an erosion-effect conclusion because the project-minus-control result reverses sign under tide-stage/scene selection."
+  ],
+  "what_the_data_do_not_support": [
+    "Do not state that planting has reduced coastal erosion based on the current satellite waterline analysis.",
+    "Do not translate the small positive NDVI signal into a survival percentage or planted-tree count.",
+    "Do not describe the 10 m NDVI vegetation edge as a species-confirmed mangrove boundary without UAV/field/orthophoto validation.",
+    "Do not use the relative Sentinel-1 GRD diagnostic as calibrated biomass or absolute backscatter evidence."
+  ],
+  "next_actions_ranked": [
+    {
+      "rank": 1,
+      "action": "UAV/orthophoto validation of mangrove canopy/edge and sparse planting inside the PDD",
+      "why": "resolves the main 10 m Sentinel-2 sub-pixel limitation and validates whether the detected greenness belongs to planted mangrove"
+    },
+    {
+      "rank": 2,
+      "action": "Field survival/height/canopy observations on representative 37-STC transects",
+      "why": "converts the small optical establishment signal into biological evidence"
+    },
+    {
+      "rank": 3,
+      "action": "Manual bank-edge or stable geomorphic-edge digitization from higher-resolution imagery",
+      "why": "provides an erosion indicator less tide-sensitive than the wet/dry waterline"
+    },
+    {
+      "rank": 4,
+      "action": "Repeat annual Sentinel-2 establishment and vegetation-edge metrics with the same February-April protocol",
+      "why": "young planting may require more time before a 10 m-scale canopy/edge signal becomes detectable"
+    },
+    {
+      "rank": 5,
+      "action": "If SAR is needed for publication, rerun with calibrated RTC / incidence-angle-consistent processing",
+      "why": "the current GRD analysis is intentionally only a relative diagnostic"
+    }
+  ],
+  "source_files": {
+    "config": "config/surat_thani_erosion_free_data_v1.json",
+    "tide_context": "web/public/data/surat_thani/tide_context.json",
+    "frontage": "web/public/data/surat_thani/project_frontage_summary.json",
+    "waterline_comparative": "data/analysis/surat_thani/comparative_screening.json",
+    "waterline_tide_sensitivity": "data/analysis/surat_thani/tide_matched_sensitivity_summary.json",
+    "vegetation_edge": "data/analysis/surat_thani/mangrove_edge_proxy_screening.json",
+    "planting_establishment": "data/analysis/surat_thani/planting_establishment_screening.json",
+    "sentinel1_relative": "data/analysis/surat_thani/s1_relative_corroboration.json",
+    "control_verification": "data/analysis/surat_thani/control_verification.json"
+  }
+}

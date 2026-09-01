@@ -1,0 +1,89 @@
+{
+  "generated_at_utc": "2026-08-31T14:09:04.017294+00:00",
+  "plot_code": "37-STC",
+  "scope": {
+    "primary_boundary_area_rai": 157.55,
+    "primary_boundary": "current PDD / SHP PDD",
+    "selection_rule": "full 3-km transect intersects or passes within 150 m of current PDD polygon",
+    "selected_transect_count": 23,
+    "all_coast_transect_count": 58
+  },
+  "period": {
+    "representative_intervention_date": "2023-10-18",
+    "2023_feb_apr_role": "PRE_INTERVENTION",
+    "post_years": [
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "image_derived_water_land_boundary_screening": {
+    "yearly_median_positions_m": {
+      "2017": {
+        "median_position_m": 18.54,
+        "transect_count": 23
+      },
+      "2018": {
+        "median_position_m": 19.15,
+        "transect_count": 23
+      },
+      "2019": {
+        "median_position_m": 17.94,
+        "transect_count": 23
+      },
+      "2020": {
+        "median_position_m": 12.8,
+        "transect_count": 23
+      },
+      "2021": {
+        "median_position_m": 10.3,
+        "transect_count": 23
+      },
+      "2022": {
+        "median_position_m": 9.26,
+        "transect_count": 23
+      },
+      "2023": {
+        "median_position_m": 3.16,
+        "transect_count": 23
+      },
+      "2024": {
+        "median_position_m": -1.15,
+        "transect_count": 23
+      },
+      "2025": {
+        "median_position_m": 3.84,
+        "transect_count": 23
+      },
+      "2026": {
+        "median_position_m": -2.68,
+        "transect_count": 23
+      }
+    },
+    "median_apparent_change_2023_to_2026_m": -4.45,
+    "median_pre_2017_2023_slope_m_per_year": -2.1,
+    "median_post_2024_2026_slope_m_per_year": -0.0,
+    "classification_counts_from_full_mvp": {
+      "apparent_erosion": 12,
+      "stable": 9,
+      "apparent_accretion": 2
+    },
+    "positive_direction": "seaward"
+  },
+  "tide_context": {
+    "2023": "selected Sentinel-2 scenes have official LLW extrema stage/phase context",
+    "2024": "reproducible hourly MSL not yet available",
+    "2025": "reproducible hourly MSL not yet available",
+    "2026": "selected Sentinel-2 scenes matched to official Ko Prap hourly MSL",
+    "status": "PARTIAL_TIDE_CONTEXT_ONLY"
+  },
+  "confidence": "LOW",
+  "claim_status": "SCREENING_ONLY_NOT_FOR_CAUSAL_IMPACT_CLAIMS",
+  "interpretation": "Metrics describe apparent movement of automated image-derived water-land boundaries near the current 37-STC polygon. They are not surveyed shoreline positions and cannot yet establish that planting changed erosion rate.",
+  "next_evidence_needed": [
+    "reproducible tide context for 2024-2025 or same-stage image selection",
+    "manual/orthophoto validation of mangrove edge or bank edge",
+    "verified unplanted control segments with comparable pretrend",
+    "field or UAV validation"
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "generated_at_utc": "2026-08-31T14:58:37.271771+00:00",
+  "plot_code": "37-STC",
+  "analysis_role": "SECONDARY_TIDE_STAGE_SENSITIVITY_ANALYSIS",
+  "scene_selection": {
+    "generated_at_utc": "2026-08-31T14:58:35.047931+00:00",
+    "plot_code": "37-STC",
+    "role": "SECONDARY_TIDE_STAGE_SENSITIVITY_ANALYSIS",
+    "reference": {
+      "year": 2023,
+      "representative_intervention_date": "2023-10-18",
+      "2023_scene_role": "PRE_INTERVENTION",
+      "target_stage": "RISING",
+      "target_phase_0_1": 0.5354,
+      "phase_definition": "elapsed fraction between adjacent extrema; timing descriptor only"
+    },
+    "selected_scenes": [
+      {
+        "year": 2023,
+        "scene_id": "S2B_MSIL2A_20230210T033859_R061_T47PNL_20230211T035717",
+        "acquisition_datetime_bangkok": "2023-02-10T10:38:59.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.5354,
+        "tide_m_msl": null,
+        "match_strength": "DIRECTION_AND_PHASE",
+        "target_stage": "RISING",
+        "target_phase_0_1": 0.5354,
+        "selection_score_lower_is_better": 0.00082,
+        "aoi_bad_quality_percent": 0.82,
+        "source_url": "https://www.hydro.navy.mi.th/tide66/KP2023.pdf",
+        "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+      },
+      {
+        "year": 2024,
+        "scene_id": "S2B_MSIL2A_20240225T033729_R061_T47PNL_20240225T081626",
+        "acquisition_datetime_bangkok": "2024-02-25T10:37:29.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": null,
+        "tide_m_msl": 0.82497,
+        "match_strength": "DIRECTION_ONLY_PHASE_UNRESOLVED",
+        "target_stage": "RISING",
+        "target_phase_0_1": 0.5354,
+        "selection_score_lower_is_better": 0.35,
+        "aoi_bad_quality_percent": 0.0,
+        "source_url": "https://www.hydro.navy.mi.th/download/Water_lever67/MSL/KP2024%20msl.pdf",
+        "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+      },
+      {
+        "year": 2025,
+        "scene_id": "S2C_MSIL2A_20250316T033601_R061_T47PNL_20250316T090315",
+        "acquisition_datetime_bangkok": "2025-03-16T10:36:01.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.604211,
+        "tide_m_msl": null,
+        "match_strength": "DIRECTION_AND_PHASE",
+        "target_stage": "RISING",
+        "target_phase_0_1": 0.5354,
+        "selection_score_lower_is_better": 0.068811,
+        "aoi_bad_quality_percent": 0.0,
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2025-03-466.php",
+        "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+      },
+      {
+        "year": 2026,
+        "scene_id": "S2B_MSIL2A_20260405T033539_R061_T47PNL_20260405T072236",
+        "acquisition_datetime_bangkok": "2026-04-05T10:35:39.024000+07:00",
+        "stage": "RISING",
+        "phase_0_1": 0.377576,
+        "tide_m_msl": -0.441,
+        "match_strength": "DIRECTION_AND_PHASE",
+        "target_stage": "RISING",
+        "target_phase_0_1": 0.5354,
+        "selection_score_lower_is_better": 0.157824,
+        "aoi_bad_quality_percent": 0.0,
+        "source_url": "https://www.thailandtidetables.com/tide-tables-koh-prap-surat-thani-year-2026-04-466.php",
+        "selection_reason": "Prefer rising stage; then minimize absolute relative-phase difference from median 2023 rising phase; use a small AOI quality penalty. An unresolved phase receives a conservative 0.35 phase penalty."
+      }
+    ],
+    "limitations": [
+      "2024-02 is selected from official hourly RTN MSL direction because its extrema phase is not resolved in the currently retrievable public archive.",
+      "A single-scene sensitivity analysis is more tide-stage-specific but less robust to scene-specific spectral noise than the three-scene median baseline.",
+      "This is not a surveyed or fully tide-normalized shoreline product."
+    ]
+  },
+  "tide_matched_project_frontage": {
+    "transect_count": 22,
+    "transect_ids": [
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021",
+      "T022",
+      "T023",
+      "T024",
+      "T025",
+      "T026",
+      "T027",
+      "T028",
+      "T029",
+      "T030",
+      "T031",
+      "T032",
+      "T033",
+      "T034",
+      "T035",
+      "T036",
+      "T037"
+    ],
+    "yearly_median_positions_m": {
+      "2023": {
+        "median_position_m": -27.68,
+        "transect_count": 22
+      },
+      "2024": {
+        "median_position_m": -39.14,
+        "transect_count": 22
+      },
+      "2025": {
+        "median_position_m": -33.2,
+        "transect_count": 22
+      },
+      "2026": {
+        "median_position_m": -0.23,
+        "transect_count": 22
+      }
+    },
+    "median_apparent_change_2023_to_2026_m": 23.43,
+    "median_post_2024_2026_slope_m_per_year": 16.18
+  },
+  "tide_matched_controls": {
+    "windows": [
+      {
+        "transect_count": 5,
+        "transect_ids": [
+          "T043",
+          "T044",
+          "T045",
+          "T046",
+          "T047"
+        ],
+        "yearly_median_positions_m": {
+          "2023": {
+            "median_position_m": -2.17,
+            "transect_count": 5
+          },
+          "2024": {
+            "median_position_m": -23.78,
+            "transect_count": 5
+          },
+          "2025": {
+            "median_position_m": 0.0,
+            "transect_count": 5
+          },
+          "2026": {
+            "median_position_m": 0.0,
+            "transect_count": 5
+          }
+        },
+        "median_apparent_change_2023_to_2026_m": 1.57,
+        "median_post_2024_2026_slope_m_per_year": 8.605,
+        "rank": 1,
+        "baseline_chainage_start_m": 4200.0,
+        "baseline_chainage_end_m": 4600.0,
+        "midpoint_lon_lat": [
+          99.242015,
+          9.353836
+        ]
+      },
+      {
+        "transect_count": 5,
+        "transect_ids": [
+          "T054",
+          "T055",
+          "T056",
+          "T057",
+          "T058"
+        ],
+        "yearly_median_positions_m": {
+          "2023": {
+            "median_position_m": -4.57,
+            "transect_count": 5
+          },
+          "2024": {
+            "median_position_m": -15.24,
+            "transect_count": 5
+          },
+          "2025": {
+            "median_position_m": -14.26,
+            "transect_count": 5
+          },
+          "2026": {
+            "median_position_m": -4.57,
+            "transect_count": 5
+          }
+        },
+        "median_apparent_change_2023_to_2026_m": -3.15,
+        "median_post_2024_2026_slope_m_per_year": 5.335,
+        "rank": 2,
+        "baseline_chainage_start_m": 5300.0,
+        "baseline_chainage_end_m": 5700.0,
+        "midpoint_lon_lat": [
+          99.25126,
+          9.357297
+        ]
+      },
+      {
+        "transect_count": 5,
+        "transect_ids": [
+          "T049",
+          "T050",
+          "T051",
+          "T052",
+          "T053"
+        ],
+        "yearly_median_positions_m": {
+          "2023": {
+            "median_position_m": 7.3,
+            "transect_count": 5
+          },
+          "2024": {
+            "median_position_m": -4.44,
+            "transect_count": 5
+          },
+          "2025": {
+            "median_position_m": -8.77,
+            "transect_count": 5
+          },
+          "2026": {
+            "median_position_m": -1.76,
+            "transect_count": 5
+          }
+        },
+        "median_apparent_change_2023_to_2026_m": -9.94,
+        "median_post_2024_2026_slope_m_per_year": 0.805,
+        "rank": 3,
+        "baseline_chainage_start_m": 4800.0,
+        "baseline_chainage_end_m": 5200.0,
+        "midpoint_lon_lat": [
+          99.246906,
+          9.356033
+        ]
+      }
+    ],
+    "pooled": {
+      "transect_count": 15,
+      "transect_ids": [
+        "T043",
+        "T044",
+        "T045",
+        "T046",
+        "T047",
+        "T054",
+        "T055",
+        "T056",
+        "T057",
+        "T058",
+        "T049",
+        "T050",
+        "T051",
+        "T052",
+        "T053"
+      ],
+      "yearly_median_positions_m": {
+        "2023": {
+          "median_position_m": -1.57,
+          "transect_count": 15
+        },
+        "2024": {
+          "median_position_m": -14.26,
+          "transect_count": 15
+        },
+        "2025": {
+          "median_position_m": -8.77,
+          "transect_count": 15
+        },
+        "2026": {
+          "median_position_m": -1.76,
+          "transect_count": 15
+        }
+      },
+      "median_apparent_change_2023_to_2026_m": -3.15,
+      "median_post_2024_2026_slope_m_per_year": 5.315
+    }
+  },
+  "tide_matched_contrasts": {
+    "project_minus_control_apparent_change_2023_2026_m": 26.58,
+    "project_minus_control_post_2024_2026_slope_m_per_year": 10.865
+  },
+  "baseline_three_scene_composite": {
+    "project_apparent_change_2023_2026_m": -4.45,
+    "control_apparent_change_2023_2026_m": 0.0,
+    "project_minus_control_apparent_change_2023_2026_m": -4.45
+  },
+  "sensitivity_delta": {
+    "project_net_change_matched_minus_baseline_m": 27.88,
+    "control_net_change_matched_minus_baseline_m": -3.15,
+    "net_contrast_matched_minus_baseline_m": 31.03
+  },
+  "interpretation_rule": {
+    "positive_project_minus_control": "project frontage is more seaward/less landward than controls over 2023-2026",
+    "negative_project_minus_control": "project frontage is more landward/less seaward than controls over 2023-2026"
+  },
+  "claim_status": "TIDE_STAGE_SENSITIVITY_SCREENING_ONLY_NOT_CAUSAL_IMPACT_CLAIM",
+  "limitations": [
+    "Single-scene annual boundaries reduce mixed tide-stage averaging but increase sensitivity to one acquisition and spectral threshold.",
+    "2024 selected scene has direction and official MSL context but unresolved relative extrema phase.",
+    "Control physical-setting equivalence and field/UAV validation are still not complete.",
+    "Water-land boundary is supporting evidence; mangrove edge and bank edge remain preferred indicators."
+  ]
+}

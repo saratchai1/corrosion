@@ -1,0 +1,84 @@
+{
+  "generated_at_utc": "2026-08-31T15:43:56.804092+00:00",
+  "plot_code": "37-STC",
+  "branch": "data/surat-thani-satellite-v1",
+  "overall_status": "EVIDENCE_STACK_QA_PASSED_SMALL_POSITIVE_ESTABLISHMENT_NO_10M_EDGE_ADVANCE_WATERLINE_FAILED_S1_WEAK_VARIABLE_FIELD_VALIDATION_PENDING",
+  "causal_erosion_reduction_claim": "CURRENT_EVIDENCE_DOES_NOT_SUPPORT_CAUSAL_EROSION_REDUCTION_CLAIM",
+  "evidence_layers": {
+    "coastal_vegetation_edge_10m": {
+      "role": "PRIMARY_SATELLITE_SCREENING_INDICATOR",
+      "status": "NO_DETECTABLE_10M_SCALE_RELATIVE_EDGE_ADVANCE",
+      "project_minus_control_2023_2026_m": 0.0,
+      "empirical_instability_floor_m": 10.0,
+      "qa": "PASSED"
+    },
+    "in_plot_optical_establishment": {
+      "role": "BIOLOGICAL_MONITORING_SIGNAL",
+      "status": "SMALL_POSITIVE_RELATIVE_OPTICAL_SIGNAL_WITHIN_SINGLE_SCENE_VARIABILITY",
+      "median_ndvi_did_2026_vs_2023": 0.0061,
+      "green_fraction_ndvi_0_32_did_2026_vs_2023": 0.0071,
+      "threshold_sign": "CONSISTENT_POSITIVE",
+      "qa": "PASSED"
+    },
+    "waterline": {
+      "role": "SUPPORTING_CONTEXT_ONLY",
+      "status": "FAILED_SCENE_TIDE_ROBUSTNESS_SIGN_REVERSAL",
+      "baseline_project_minus_control_m": -4.45,
+      "tide_stage_project_minus_control_m": 26.58,
+      "sensitivity_shift_m": 31.03,
+      "qa": "FAILED_ROBUSTNESS_AS_EXPECTED_AND_DOWNGRADED"
+    },
+    "sentinel1_relative_grd": {
+      "role": "INDEPENDENT_CORROBORATION_ONLY",
+      "status": "SAME_SEASON_QA_PASSED_WEAK_VARIABLE_RELATIVE_GRD_DIAGNOSTIC",
+      "track": "descending:62",
+      "scene_counts": {
+        "2023": 3,
+        "2024": 2,
+        "2025": 3,
+        "2026": 3
+      },
+      "all_selected_months_feb_apr": true,
+      "change_2026_vs_2023": {
+        "project_minus_control_median_log10_vv": -0.01688,
+        "project_minus_control_median_log10_vh": 0.01336,
+        "project_minus_control_median_vh_vv_log_ratio": 0.1415
+      },
+      "annual_vh_vv_project_minus_control": {
+        "2023": 0.0976,
+        "2024": -0.3981,
+        "2025": 0.3554,
+        "2026": 0.2391
+      },
+      "single_scene_vh_vv_ranges": {
+        "2023": 0.2543,
+        "2024": 0.197,
+        "2025": 0.3235,
+        "2026": 0.475
+      },
+      "qa": "PASSED"
+    },
+    "controls": {
+      "role": "NO_KNOWN_INTERVENTION_REFERENCE",
+      "status": "USER_CONFIRMED_NO_KNOWN_INTERVENTIONS_READY_FOR_COMPARATIVE_SCREENING",
+      "qa": "USER_CONFIRMED"
+    },
+    "bank_or_geomorphic_edge": {
+      "role": "HIGH_RESOLUTION_VALIDATION_TARGET",
+      "status": "NOT_AUTOMATED_FROM_CURRENT_FREE_10M_DATA",
+      "qa": "METHOD_WITHHELD_TO_AVOID_FALSE_PRECISION"
+    }
+  },
+  "remaining_hard_gates": [
+    "UAV/orthophoto validation of actual mangrove canopy and seaward vegetation edge",
+    "field survival/height/canopy observations",
+    "manual or high-resolution stable bank/geomorphic edge if erosion-effect evidence is required"
+  ],
+  "final_products": {
+    "executive_summary": "data/analysis/surat_thani/executive_summary.json",
+    "executive_summary_th": "regions/surat_thani/EXECUTIVE_SUMMARY_TH.md",
+    "evidence_manifest": "data/analysis/surat_thani/evidence_manifest.json",
+    "standalone_web_report": "web/public/surat-thani-37-stc.html",
+    "web_data_root": "web/public/data/surat_thani/"
+  }
+}
