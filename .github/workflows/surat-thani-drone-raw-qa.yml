@@ -4,18 +4,24 @@ on:
   push:
     branches:
       - main
+      - analysis/surat-thani-land-accretion-audit
     paths:
       - '.github/workflows/surat-thani-drone-raw-qa.yml'
       - 'scripts/inspect_surat_thani_37_stc_geotiff.py'
       - 'scripts/publish_surat_thani_37_stc_drone_compare.py'
+      - 'scripts/audit_surat_thani_land_accretion_candidates.py'
       - 'web-surat-thani/public/data/surat_thani/project_boundary.geojson'
+      - 'web-surat-thani/public/data/surat_thani/transect_summary.geojson'
+      - 'web-surat-thani/public/data/surat_thani/tide_matched/transect_summary.geojson'
+      - 'web-surat-thani/public/data/surat_thani/boundaries/2023_water_land_boundary.geojson'
+      - 'web-surat-thani/public/data/surat_thani/boundaries/2026_water_land_boundary.geojson'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: surat-thani-37-stc-drone-raw-qa
+  group: surat-thani-37-stc-drone-raw-qa-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -32,7 +38,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install lightweight QA and publishing dependencies
-        run: python -m pip install --disable-pip-version-check 'gdown==5.2.0' 'rasterio>=1.4,<2' 'numpy>=2,<3' 'Pillow>=10,<12'
+        run: python -m pip install --disable-pip-version-check 'gdown==5.2.0' 'rasterio>=1.4,<2' 'numpy>=2,<3' 'Pillow>=10,<12' 'shapely>=2,<3'
 
       - name: Download raw 37-STC GeoTIFF to ephemeral runner storage
         shell: bash
@@ -71,8 +77,20 @@ jobs:
           python -m json.tool web-surat-thani/public/data/surat_thani/drone/drone_manifest.json >/dev/null
           test -s web-surat-thani/public/data/surat_thani/drone/orthor_37_stc_same_extent.webp
           test -s web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp
-          du -h web-surat-thani/public/data/surat_thani/drone/*same_extent.webp
-          cat web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+
+      - name: Audit the two long-term apparent-accretion candidates for 2023-2026
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/audit_surat_thani_land_accretion_candidates.py
+          python -m json.tool web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json >/dev/null
+          test -s web-surat-thani/public/data/surat_thani/drone/sentinel2_2023_same_extent.webp
+          for ID in t028 t038; do
+            test -s "web-surat-thani/public/data/surat_thani/drone/${ID}_sentinel2_2023_crop.webp"
+            test -s "web-surat-thani/public/data/surat_thani/drone/${ID}_sentinel2_2026_crop.webp"
+            test -s "web-surat-thani/public/data/surat_thani/drone/${ID}_drone_crop.webp"
+          done
+          cat web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
 
       - name: Commit QA metadata and web-safe compare assets, never the raw TIFF
         shell: bash
@@ -85,14 +103,18 @@ jobs:
             data/analysis/surat_thani/drone_37_stc_footprint.geojson \
             web-surat-thani/public/data/surat_thani/drone/drone_manifest.json \
             web-surat-thani/public/data/surat_thani/drone/orthor_37_stc_same_extent.webp \
-            web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp
+            web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp \
+            web-surat-thani/public/data/surat_thani/drone/sentinel2_2023_same_extent.webp \
+            web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json \
+            web-surat-thani/public/data/surat_thani/drone/t028_*_crop.webp \
+            web-surat-thani/public/data/surat_thani/drone/t038_*_crop.webp
           if git diff --cached --quiet; then
             echo 'No QA or compare asset changes to commit.'
             exit 0
           fi
-          git commit -m 'data: publish georeferenced 37-STC drone compare'
-          git pull --rebase --autostash origin main
-          git push origin HEAD:main
+          git commit -m 'data: publish 37-STC land accretion candidate audit'
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
 
       - name: Confirm raw TIFF is not tracked
         if: always()
