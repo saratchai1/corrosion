@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Generate same-extent historical satellite assets for the 37-STC Drone page.
+"""Generate same-extent historical satellite RGB assets for the 37-STC Drone page.
 
 Uses the already-published georeferenced web imagery and the verified Drone
-WGS84 envelope. No raw TIFF is read or committed by this script.
+WGS84 envelope. No raw TIFF is read or committed by this script. If real
+multispectral products have already been published, their catalog metadata is
+preserved so an RGB rebuild cannot downgrade the page back to display filters.
 """
 
 from __future__ import annotations
@@ -18,6 +20,7 @@ INDEX = ROOT / 'imagery_index.json'
 MANIFEST = ROOT / 'drone/drone_manifest.json'
 OUT_DIR = ROOT / 'drone/multiyear'
 CATALOG = ROOT / 'drone/compare_catalog.json'
+SPECTRAL_KEYS = ('visuals', 'spectralStatus', 'spectralDatesUsed', 'spectralItemIds', 'supportedModes')
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -73,9 +76,32 @@ def period(year: int) -> str:
     return 'post_planting'
 
 
+def preserve_spectral(new_catalog: dict[str, Any], previous: dict[str, Any] | None) -> None:
+    if not previous:
+        return
+    old_left = {item.get('id'): item for item in previous.get('leftChoices', [])}
+    old_right = {item.get('id'): item for item in previous.get('rightChoices', [])}
+    for item in new_catalog.get('leftChoices', []):
+        old = old_left.get(item.get('id')) or {}
+        for key in SPECTRAL_KEYS:
+            if key in old:
+                item[key] = old[key]
+    for item in new_catalog.get('rightChoices', []):
+        old = old_right.get(item.get('id')) or {}
+        for key in SPECTRAL_KEYS:
+            if key in old:
+                item[key] = old[key]
+    for key in ('spectralModes', 'spectral_generation'):
+        if key in previous:
+            new_catalog[key] = previous[key]
+    if previous.get('spectralModes'):
+        new_catalog['visual_mode_guard'] = previous.get('visual_mode_guard', new_catalog['visual_mode_guard'])
+
+
 def main() -> int:
     index = load(INDEX)
     manifest = load(MANIFEST)
+    previous = load(CATALOG) if CATALOG.is_file() else None
     bounds, width, height = bounds_from_manifest(manifest)
     choices: list[dict[str, Any]] = []
 
@@ -132,15 +158,16 @@ def main() -> int:
                 'note': 'ดาวเทียมปีปัจจุบัน · same extent',
             },
         ],
-        'visual_mode_guard': 'Natural/Vivid/B&W/Cool are display filters only; they are not NDVI or false-color spectral products.',
+        'visual_mode_guard': 'RGB same-extent assets are generated from the published annual imagery.',
         'generation': {
             'script': 'scripts/publish_surat_thani_multiyear_compare.py',
             'source': 'web-surat-thani/public/data/surat_thani/imagery_index.json',
             'method': 'crop/resample each existing georeferenced web image to the verified raw-drone WGS84 envelope and common pixel dimensions',
         },
     }
+    preserve_spectral(catalog, previous)
     CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(json.dumps({'status': 'PASS', 'epochs': [item['targetYear'] for item in choices], 'catalog': str(CATALOG)}, ensure_ascii=False))
+    print(json.dumps({'status': 'PASS', 'epochs': [item['targetYear'] for item in choices], 'catalog': str(CATALOG), 'preserved_spectral': bool(catalog.get('spectralModes'))}, ensure_ascii=False))
     return 0
 
 
