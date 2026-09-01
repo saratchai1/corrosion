@@ -1,0 +1,365 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "87-VSD",
+        "drive_file_id": "1UcIeBZLBPNqOrDtdhjBRkmLny_Uyxxmo",
+        "drive_title": "87-VSD Image.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 1.3856,
+        "preview": "data/project_drone_orthomosaic/previews/87-VSD.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 0.999975
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.86820030997444,
+              13.261327267644258
+            ],
+            [
+              99.86821353178853,
+              13.265052380627557
+            ],
+            [
+              99.86023660845147,
+              13.265079425966212
+            ],
+            [
+              99.86022350807934,
+              13.261354305120289
+            ],
+            [
+              99.86820030997444,
+              13.261327267644258
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "91-STC",
+        "drive_file_id": "1WCTYAshsByl92BSsei3Qie1h95Uqqn1g",
+        "drive_title": "91-STC.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 5.0,
+        "preview": "data/project_drone_orthomosaic/previews/91-STC.webp",
+        "imagery_coverage_status": "PARTIAL_USABLE_90_TO_95PCT",
+        "plot_valid_image_fraction": 0.926846
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.96812433197422,
+              13.3028966401831
+            ],
+            [
+              99.96816551272713,
+              13.313264638237726
+            ],
+            [
+              99.95700266226187,
+              13.313306935480643
+            ],
+            [
+              99.95696195614123,
+              13.30293890331724
+            ],
+            [
+              99.96812433197422,
+              13.3028966401831
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "92-STC",
+        "drive_file_id": "1tAzulbMfQewiB6ukuh3kDfpKIF_llams",
+        "drive_title": "92-STC Image.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 1.8972,
+        "preview": "data/project_drone_orthomosaic/previews/92-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 0.980152
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.97542357081987,
+              13.312244786922708
+            ],
+            [
+              99.97543949782764,
+              13.316222829770947
+            ],
+            [
+              99.96571947921065,
+              13.316259973582538
+            ],
+            [
+              99.96570371085123,
+              13.31228191924386
+            ],
+            [
+              99.97542357081987,
+              13.312244786922708
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "93-STC",
+        "drive_file_id": "1CoekWHruzqvRtWYHtNlF5ZCXPsh4HgkA",
+        "drive_title": "93-STC.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 5.0,
+        "preview": "data/project_drone_orthomosaic/previews/93-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 0.98812
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.98108843158954,
+              13.31408844873933
+            ],
+            [
+              99.98111229367551,
+              13.320012669055489
+            ],
+            [
+              99.97437232946116,
+              13.320038621913028
+            ],
+            [
+              99.97434863123756,
+              13.314114389643823
+            ],
+            [
+              99.98108843158954,
+              13.31408844873933
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "94-STC",
+        "drive_file_id": "1ZCK1iApfILDGU0EqViOXqeSYdgMMEl24",
+        "drive_title": "94 stc 2.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 1.8154,
+        "preview": "data/project_drone_orthomosaic/previews/94-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 1.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.98334624459793,
+              13.320947390388541
+            ],
+            [
+              99.98335954212813,
+              13.32423977135135
+            ],
+            [
+              99.97862886661298,
+              13.324258053219806
+            ],
+            [
+              99.97861563302864,
+              13.320965667578896
+            ],
+            [
+              99.98334624459793,
+              13.320947390388541
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "95-STC",
+        "drive_file_id": "1p0XV4l8dldKWeLa1rWefPbYqvgZApp2O",
+        "drive_title": "95 stc.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 7.8259,
+        "preview": "data/project_drone_orthomosaic/previews/95-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 1.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.98579736064369,
+              13.32072666850792
+            ],
+            [
+              99.98581070187826,
+              13.324021711849134
+            ],
+            [
+              99.98176537775616,
+              13.324037389445001
+            ],
+            [
+              99.98175209124655,
+              13.320742342088785
+            ],
+            [
+              99.98579736064369,
+              13.32072666850792
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "96-STC",
+        "drive_file_id": "1boyGxi0ykVf9ac9tRoZsCYJhvarqNVPN",
+        "drive_title": "96 stc.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 1.8585,
+        "preview": "data/project_drone_orthomosaic/previews/96-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 1.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.98669526145432,
+              13.32223917447174
+            ],
+            [
+              99.98670551049345,
+              13.324767979071371
+            ],
+            [
+              99.98399831283541,
+              13.324778488001844
+            ],
+            [
+              99.9839880919052,
+              13.322249681336842
+            ],
+            [
+              99.98669526145432,
+              13.32223917447174
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "97-STC",
+        "drive_file_id": "1EX80BASMRr31KRt1ceh6vUT7-XkzDpM6",
+        "drive_title": "97 stc.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 7.7922,
+        "preview": "data/project_drone_orthomosaic/previews/97-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 1.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.98931238937558,
+              13.322661664457128
+            ],
+            [
+              99.98932576550565,
+              13.325953090484218
+            ],
+            [
+              99.98529350709434,
+              13.325968775499446
+            ],
+            [
+              99.98528018546068,
+              13.322677345460406
+            ],
+            [
+              99.98931238937558,
+              13.322661664457128
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "plot_id": "98-STC",
+        "drive_file_id": "1paHQM-DskSoX9RMcQdaBcOIOEH-TCMG9",
+        "drive_title": "98-STC.tif",
+        "georeference_status": "PASS",
+        "mean_gsd_cm": 1.5132,
+        "preview": "data/project_drone_orthomosaic/previews/98-STC.webp",
+        "imagery_coverage_status": "COMPLETE_GE_95PCT",
+        "plot_valid_image_fraction": 1.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              99.990092598952,
+              13.324209483363672
+            ],
+            [
+              99.9901030248247,
+              13.326772693507353
+            ],
+            [
+              99.98701993340194,
+              13.326784702265295
+            ],
+            [
+              99.98700953998161,
+              13.324221489729698
+            ],
+            [
+              99.990092598952,
+              13.324209483363672
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
