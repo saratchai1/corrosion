@@ -1,23 +1,46 @@
 ---
 name: thailand-mangrove-coastal-erosion-province
-description: Reusable workflow for building a free-data, tide-aware mangrove coastal-erosion evidence pipeline and production web dashboard for any Thai province, based on the Samut Songkhram implementation.
+description: Reusable workflow for building a free-data, tide-aware mangrove coastal-erosion evidence pipeline, multispectral history dashboard, and optional high-resolution drone evidence page for any Thai province, based on the validated Samut Songkhram implementation.
 ---
 
 # Thailand Mangrove Coastal-Erosion Province Skill
 
 ## Purpose
 
-ใช้ skill นี้เมื่อผู้ใช้สั่งให้ทำจังหวัดใหม่ในลักษณะเดียวกับงานสมุทรสงคราม เช่น ระยอง กระบี่ พังงา ภูเก็ต ระนอง สตูล หรือจังหวัดชายฝั่งอื่น ๆ โดยเป้าหมายคือสร้างหลักฐานจาก **ข้อมูลฟรีบนอินเทอร์เน็ต + ข้อมูลโครงการที่มีอยู่แล้ว + โดรน/ภาคสนามที่ต้องทำตามปกติ** เพื่อประเมินว่าแนวชายฝั่งก่อนและหลังการปลูกป่าชายเลนเปลี่ยนอย่างไร และหลักฐานไปได้ไกลแค่ไหนในการสนับสนุนคำกล่าวเรื่องการลดการกัดเซาะ
+ใช้ skill นี้เมื่อผู้ใช้สั่งให้ทำจังหวัดใหม่ในลักษณะเดียวกับงานสมุทรสงคราม เช่น ระยอง กระบี่ พังงา ภูเก็ต ระนอง สตูล สุราษฎร์ธานี หรือจังหวัดชายฝั่งอื่น ๆ โดยเป้าหมายคือสร้างหลักฐานจาก **ข้อมูลฟรีบนอินเทอร์เน็ต + ข้อมูลโครงการที่มีอยู่แล้ว + โดรน/ภาคสนามที่ต้องทำตามปกติ** เพื่อประเมินว่าแนวชายฝั่งก่อนและหลังการปลูกป่าชายเลนเปลี่ยนอย่างไร และหลักฐานไปได้ไกลแค่ไหนในการสนับสนุนคำกล่าวเรื่องการลดการกัดเซาะ
 
 งานต้องจบเป็น pipeline ที่ทำซ้ำได้, มี QA/claim guard, มีผลลัพธ์ machine-readable และมีเว็บ production ที่คนทั่วไปอ่านเข้าใจได้
 
-## Golden rule
+## Golden rules
 
-**อย่าเริ่มใหม่จากศูนย์**
+### 1. อย่าเริ่มใหม่จากศูนย์
 
-ให้ใช้โครงสร้างและ pattern จาก Samut Songkhram ใน repo `saratchai1/corrosion` เป็น template แล้ว parameterize จังหวัดใหม่ เช่น province key, AOI, plot IDs, tide station, datum, planting dates, time range, output path และ production project name
+ใช้โครงสร้างและ pattern จาก Samut Songkhram ใน repo `saratchai1/corrosion` เป็น template แล้ว parameterize จังหวัดใหม่ เช่น province key, AOI, plot IDs, tide station, datum, planting dates, time range, output path, drone source และ production project name
 
-ห้าม copy ตัวเลขเฉพาะสมุทรสงครามไปใช้กับจังหวัดอื่นโดยไม่ตรวจใหม่ โดยเฉพาะ:
+### 2. อย่าทับของเดิมที่ดีอยู่แล้ว
+
+การเพิ่ม evidence ใหม่ต้องเป็น **additive change** ก่อนเป็น default
+
+- หน้า multispectral history ที่ใช้งานดีแล้วต้องคงอยู่เป็นหน้าหลัก
+- ถ้าเพิ่ม Drone / LiDAR / field evidence ให้เพิ่มเป็นหน้าใหม่หรือ evidence layer ใหม่
+- ห้ามแทรก panel ใหม่ขนาดใหญ่ก่อน slider เดิมจน UX หลักถูกกลบ
+- ก่อน merge ให้เทียบกับ production ก่อนหน้าและตรวจว่า feature เดิมยังอยู่ครบ
+- ถ้าผู้ใช้บอกว่า “เวอร์ชันก่อนหน้าดีแล้ว” ให้รักษา structure/interaction เดิมก่อนเพิ่มของใหม่
+
+### 3. แยกหลักฐานคนละระดับให้ชัด
+
+- Sentinel-2 history = multi-year temporal screening
+- tide-aware scene = waterline supporting evidence
+- planting dates = intervention timing evidence
+- drone orthomosaic 1 epoch = high-resolution spatial baseline
+- repeat drone = high-resolution change evidence
+- verified control = comparative evidence
+
+อย่าเอาหลักฐานคนละระดับมารวมจนผู้ใช้ตีความว่าความละเอียดสูง = causal proof
+
+### 4. ห้าม copy ค่าจังหวัดก่อนหน้าโดยไม่ตรวจใหม่
+
+โดยเฉพาะ:
 
 - tide station
 - datum offset ระหว่าง Chart Datum / LLW / MSL
@@ -29,6 +52,8 @@ description: Reusable workflow for building a free-data, tide-aware mangrove coa
 - control areas
 - scene dates
 - shoreline orientation
+- drone flight date
+- GSD / coverage threshold interpretation
 
 ## Required user inputs
 
@@ -39,10 +64,31 @@ description: Reusable workflow for building a free-data, tide-aware mangrove coa
 3. วันเริ่มปลูก / วันปลูกเสร็จ / วันปลูกซ่อม อย่างน้อยเดือน-ปี
 4. พื้นที่ปลูกจริง (rai) และพื้นที่ตาม PDD ถ้ามี
 5. รูป/orthomosaic/flight log จากโดรน ถ้ามี
-6. ข้อมูลโครงสร้างชายฝั่ง: ไม้ไผ่ เขื่อนหิน geotube seawall ฯลฯ
-7. พื้นที่ใกล้เคียงที่รู้ว่าไม่ได้ปลูก ถ้ามี
+6. GCP / RTK / photogrammetry project metadata ถ้ามี
+7. ข้อมูลโครงสร้างชายฝั่ง: ไม้ไผ่ เขื่อนหิน geotube seawall ฯลฯ
+8. พื้นที่ใกล้เคียงที่รู้ว่าไม่ได้ปลูก ถ้ามี
 
 ถ้าผู้ใช้ส่ง screenshot ตารางวันปลูก ให้เก็บเป็น evidence record แยกจากข้อมูลที่อนุมาน ห้ามเดาวันเริ่มปลูกจากวันปลูกเสร็จ
+
+## Large drone / GeoTIFF input rule
+
+ถ้า orthomosaic รวมหลาย GB:
+
+- เก็บ raw GeoTIFF ไว้ใน Google Drive / Shared Drive ได้
+- **Shared with me ใช้ได้ ไม่จำเป็นต้องย้ายเข้า My Drive** ถ้าสิทธิ์อ่านไฟล์ทำงานจริง
+- ถ้าต้องการหาไฟล์ง่าย ให้ใช้ Drive shortcut แทนการ copy 10+ GB ซ้ำ
+- อย่า commit raw `.tif` หลาย GB เข้า GitHub
+- อย่า serve raw GeoTIFF ใหญ่จาก Vercel
+- เก็บใน GitHub เฉพาะ manifest, metadata, QA, footprint, vector และ lightweight preview/derived web assets
+
+ชื่อ folder/date จาก Drive เป็นเพียง evidence label จนกว่าจะยืนยันว่าเป็น acquisition date จาก flight log, EXIF, Pix4D/Metashape project, RTK/GCP record หรือ project document
+
+ตัวอย่างสถานะ:
+
+- `FOLDER_LABEL_UNVERIFIED_AS_FLIGHT_DATE`
+- `FLIGHT_DATE_VERIFIED`
+
+ห้ามเปลี่ยน folder label เป็น verified flight date โดยอัตโนมัติ
 
 ## Free-data sources
 
@@ -68,7 +114,7 @@ Sentinel-1 ใช้เป็น supplementary context เมื่อ optical �
 2. ThailandTideTables หรือแหล่ง secondary ที่ระบุ station/source ชัดเจน
 3. แหล่งอื่นใช้ได้เฉพาะเมื่อ provenance ชัดและมี QA
 
-สำหรับ ThailandTideTables ให้ไล่ URL pattern รายปี/เดือนเหมือนงานปากน้ำแม่กลอง แล้ว cache raw page + source URL + retrieval URL + checksum + QA
+สำหรับ ThailandTideTables ให้ไล่ URL pattern รายปี/เดือน แล้ว cache raw page + source URL + retrieval URL + checksum + QA
 
 **ห้ามใช้ datum offset ของปากน้ำแม่กลอง 2.14 m กับจังหวัดอื่นโดยอัตโนมัติ** ต้องหา station-specific relation ระหว่าง chart datum/LLW กับ MSL ใหม่ทุกครั้ง
 
@@ -106,6 +152,11 @@ tide_station:
 history_start_year: 2017
 latest_year: 2026
 planting_dates_source: data/project/krabi_planting_evidence.csv
+drone:
+  enabled: false
+  drive_folder_id: null
+  date_status: UNVERIFIED
+  source_manifest: data/project/krabi_drone_drive_manifest.csv
 production_project: krabi-coastal-change
 ```
 
@@ -266,81 +317,210 @@ screening threshold ควรสอดคล้องกับ effective resolut
 
 ถ้ามี post-completion annual observations เพียง 2 ปี ให้ confidence = LOW และห้ามสร้าง causal conclusion
 
-### Phase 11 — UAV / field validation
+### Phase 11 — Drone orthomosaic ingest and QA
 
-ถ้ามีโดรน ใช้เพื่อยกระดับหลักฐาน ไม่ใช่ requirement สำหรับเริ่มงาน
+ถ้ามี orthomosaic ให้ตรวจ metadata ก่อนเอาไปตีความ
 
-เป้าหมาย:
+ขั้นต่ำต่อไฟล์:
+
+- plot_id
+- Drive file id / source title
+- source size
+- CRS
+- width / height
+- band count
+- transform / bounds
+- GSD
+- nodata / alpha / valid mask
+- bbox overlap กับ plot polygon
+- valid imagery fraction ภายใน plot
+- folder/date evidence status
+
+แยก QA ออกเป็นสองเรื่อง:
+
+1. **Georeference QA** — CRS, transform, spatial overlap ถูกหรือไม่
+2. **Imagery coverage QA** — ใน polygon มี valid pixels มากเท่าไร
+
+ห้ามตีความ NoData ที่ขอบภาพว่า georeference fail ถ้าพิกัดถูกต้อง
+
+default classification ที่ใช้ได้เป็น starting point:
+
+- `COMPLETE_GE_95PCT` = valid imagery ≥95%
+- `PARTIAL_USABLE_90_TO_95PCT` = 90–<95%
+- `INSUFFICIENT_LT_90PCT` = <90%
+
+threshold ปรับได้ตามชนิดข้อมูล แต่ต้องบันทึกไว้ใน config/QA
+
+ถ้าไฟล์ใหญ่มาก ให้ workflow ดาวน์โหลดทีละไฟล์ → inspect/build preview → ลบ raw local copy → ทำไฟล์ถัดไป เพื่อลด runner storage
+
+ถ้า raster เป็น `RGB + Alpha` 4 bands และไม่มี NIR:
+
+- ใช้ดูขอบแปลง/ขอบพืช/ขอบตลิ่งได้
+- **ห้ามคำนวณ drone NDVI**
+- ระบุ `nir_band_present: false` และ `drone_ndvi_supported: false`
+
+ถ้ามี orthomosaic เพียง 1 epoch:
+
+- เรียก `HIGH_RESOLUTION_BASELINE`
+- ใช้ cross-check Sentinel-2 edge / hotspot / structures
+- ห้ามคำนวณ drone-derived erosion rate
+- ห้ามอ้าง before-after จากโดรนจนกว่าจะมี repeat epoch
+
+### Phase 12 — UAV / field validation
+
+เมื่อมี repeat drone หรือภาคสนาม ให้ยกระดับหลักฐาน:
 
 - validate mangrove seaward edge
 - derive `BANK_EDGE` / surveyed edge
 - inspect hotspots flagged by satellite
 - verify structures and controls
 - compare same-season / similar-tide acquisitions if possible
+- preserve flight metadata and uncertainty
 
-## Web dashboard requirements
+## Web information architecture
 
-เว็บ production ต้องเป็น evidence dashboard ไม่ใช่แค่ gallery
+### Primary navigation — ใช้ 5 ปลายทางนี้เป็นมาตรฐาน
 
-### Required sections
+ลำดับและชื่อเมนูควรเหมือนกันทุกหน้าหลัก:
 
-1. **Latest Finding / Executive highlight**
-   - ข้อสรุปล่าสุดใหญ่และเห็นทันที
-   - ระบุ plot ที่มี planting date verified
-   - ระบุสิ่งที่พูดได้ / ยังพูดไม่ได้
+1. `หลักฐานย้อนหลัง`
+2. `ผล 2023–2026` หรือช่วงปีล่าสุดของจังหวัดนั้น
+3. `ภาพโดรน HR` — แสดงเมื่อมีข้อมูลโดรน
+4. `รายงาน 9 แปลง` — เปลี่ยนจำนวนตามจังหวัด
+5. `แผนที่ 10 ปี`
 
-2. **Before/After multispectral slider**
-   - select year before/after
-   - RGB
-   - False vegetation
-   - NDVI
-   - MNDWI
-   - SWIR
-   - tide metadata
-   - scene role (`WATERLINE` vs visual-only)
+ถ้าจังหวัดไม่มีโดรน ให้ซ่อนหน้า Drone แต่ **อย่าเปลี่ยนความหมายของหน้าอื่นเพื่อชดเชย**
 
-3. **SVG plot overlays rendered by web**
-   - plot boundaries
-   - plot labels
-   - analysis extent if useful
-   - toggle on/off
-   - **ห้าม bake labels/boundaries ลง raster**
+### หน้าที่ของแต่ละหน้า
 
-4. **Zoom + pan**
-   - zoom 100–300% หรือมากกว่าถ้าจำเป็น
-   - zoom in / zoom out / reset
-   - pan left/right/up/down by dragging image when zoom >100%
-   - Before/After raster และ SVG overlay ต้อง zoom/pan ด้วย transform เดียวกัน
-   - divider handle ต้องลากแยกจาก pan gesture
-   - reset ต้องคืนทั้ง zoom และ pan
+#### A. หลักฐานย้อนหลัง — default landing page
 
-5. **Planting evidence timeline**
-   - selected scene before completion
-   - planting completion date
-   - first post-completion scene
-   - latest scene
-   - days after completion
+นี่คือหน้าหลักและต้องรักษา UX ที่พิสูจน์แล้วว่าดี:
 
-6. **Per-plot result**
-   - WATERLINE
-   - MANGROVE_EDGE_PROXY
-   - transect counts
-   - controls status
+- history 2017–latest หรือช่วงที่ข้อมูลรองรับ
+- multispectral before/after slider
+- เลือก Before / After ได้หลายปี
+- quick pairs จาก config
+- RGB / False vegetation / NDVI / MNDWI / SWIR
+- focus/full view
+- web SVG plot overlay
+- zoom + pan
+- planting-aware highlight / latest finding
 
-7. **Evidence ladder / limitations**
-   - satellite history
-   - tide-aware screening
-   - planting timing
-   - UAV/field validation
-   - verified controls
+**ห้ามเอา Drone HR panel ขนาดใหญ่ไปแทรกก่อน slider หน้านี้**
 
-### Internal link rule
+#### B. ผลช่วงล่าสุด
+
+เน้น executive interpretation:
+
+- latest finding
+- tide-aware results
+- what is known / unknown
+- evidence ladder
+- per-plot result
+- scene/tide QA
+
+#### C. ภาพโดรน HR
+
+เป็น standalone page แยกจาก history:
+
+- plot selector
+- orthomosaic preview
+- compare Drone ↔ selected Sentinel-2 on same geographic extent
+- project boundary SVG
+- WATERLINE / MANGROVE_EDGE_PROXY overlay
+- zoom + pan
+- coverage/GSD/CRS QA
+- flight-date status
+- explicit one-epoch guard
+
+#### D. รายงานรายแปลง
+
+สรุป project-level + per-plot metrics, map, controls, planting timing, limitations
+
+#### E. แผนที่หลายปี
+
+interactive spatial explorer สำหรับ annual/historical imagery และ transects ไม่ควรแทน multispectral evidence page
+
+## Multispectral slider requirements
+
+1. select year before/after จาก scene list จริง
+2. quick pair presets ควร derive จาก config / meaningful periods
+3. RGB
+4. False vegetation
+5. NDVI
+6. MNDWI
+7. SWIR
+8. tide metadata
+9. scene role (`WATERLINE` vs visual-only)
+10. focus/full view
+
+### SVG plot overlays rendered by web
+
+- plot boundaries
+- plot labels
+- analysis extent ถ้ามีประโยชน์
+- toggle on/off
+- **ห้าม bake labels/boundaries ลง raster**
+
+### Zoom + pan
+
+- zoom 100–300% หรือมากกว่าถ้าจำเป็น
+- zoom in / zoom out / reset
+- pan left/right/up/down by dragging image when zoom >100%
+- Before/After raster และ SVG overlay ต้อง zoom/pan ด้วย transform เดียวกัน
+- divider handle ต้องลากแยกจาก pan gesture
+- reset ต้องคืนทั้ง zoom และ pan
+
+## Planting evidence timeline
+
+แสดงอย่างน้อย:
+
+- selected scene before completion
+- planting completion date
+- first post-completion scene
+- latest scene
+- days after completion
+- source/status ของวันปลูก
+
+## Evidence ladder / limitations
+
+อย่างน้อย:
+
+1. satellite history
+2. tide-aware screening
+3. planting timing
+4. UAV/field validation
+5. verified controls
+
+## Link and navigation rules
+
+### Internal anchor rule
 
 ถ้า production HTML ใช้ `<base href>` ชี้ CDN ห้ามปล่อย anchor link `#section` ให้ browser resolve ไป CDN directory
 
 ให้ intercept internal anchors หรือใช้ JS `scrollIntoView()` เพื่อให้ลิงก์ภายในยังอยู่บน Vercel production domain
 
-### Font rule
+### Evidence-file link audit
+
+ก่อน deploy:
+
+- ตรวจ `href="data/..."` ทุกตัวว่าปลายทางมีจริงใน `web/public`
+- ตรวจไฟล์ JSON/CSV/GeoJSON/SVG ที่ UI อ้างถึง
+- ห้ามมี raw `href="#"` ที่ไม่มี target
+- เมนูหลักทุกหน้าต้องใช้ชื่อ/ลำดับเดียวกัน
+- active state ต้องตรงกับหน้าปัจจุบัน
+- ห้ามมีปุ่มย้อนกลับซ้ำกับ navigation โดยไม่จำเป็น
+
+### Narrow sidebar rule
+
+ถ้า page ใช้ sidebar แคบ เช่น map explorer:
+
+- เมนู 5 รายการควร wrap/grid ได้
+- ห้ามบีบปุ่มจนอ่านข้อความไม่ได้
+- mobile/tablet ต้องไม่ overflow
+
+## Font rule
 
 ข้อความไทยต้องเป็น HTML/SVG web text ไม่ใช่ข้อความ rasterized ลงภาพ
 
@@ -357,11 +537,13 @@ screening threshold ควรสอดคล้องกับ effective resolut
 
 1. run scientific/data validation
 2. run TypeScript/build
-3. publish immutable production bundle branch
-4. deploy to Vercel production project
-5. verify deployment = `READY`
-6. verify production alias returns HTTP 200
-7. verify title/meta/base commit point to latest immutable bundle
+3. publish immutable production bundle branch เช่น `production-<province>`
+4. pin production HTML `<base href>` ไปที่ immutable bundle commit
+5. deploy to Vercel production project
+6. verify deployment = `READY`
+7. verify canonical production alias returns HTTP 200
+8. verify title/meta/base commit point to latest immutable bundle
+9. verify key data assets return HTTP 200
 
 เมื่อผู้ใช้สั่ง “อะไรที่แก้แล้ว deploy เลย” ให้ทำ deployment ต่อเนื่องหลัง validation ผ่าน ไม่ต้องรอถามซ้ำ
 
@@ -377,6 +559,10 @@ screening threshold ควรสอดคล้องกับ effective resolut
 
 > หลังวันปลูกเสร็จที่ยืนยันแล้ว ภาพที่ติดตามในช่วงถัดมาไม่พบการถอยร่นเป็นวงกว้าง / พบสัญญาณเฉพาะตำแหน่ง ตามข้อมูลที่วิเคราะห์ได้
 
+ถ้ามี drone 1 epoch:
+
+> ภาพโดรนความละเอียดสูงใช้เป็น baseline เชิงพื้นที่และใช้ตรวจตำแหน่งขอบแปลง/ขอบพืช/ขอบตลิ่งได้ละเอียดขึ้น แต่ยังไม่ใช่หลักฐานการเปลี่ยนแปลงตามเวลาเพราะยังไม่มีภาพโดรนซ้ำ
+
 ### Not allowed without stronger evidence
 
 ห้ามเขียนว่า:
@@ -387,6 +573,7 @@ screening threshold ควรสอดคล้องกับ effective resolut
 - ป่าดักตะกอนได้ X
 - ป่าลดคลื่น / ป้องกันพายุได้ X
 - treatment-control difference = causal effect
+- drone orthomosaic 1 epoch แสดงอัตรากัดเซาะ
 
 เว้นแต่มีข้อมูลและวิธีที่รองรับข้อกล่าวนั้นจริง
 
@@ -398,7 +585,9 @@ screening threshold ควรสอดคล้องกับ effective resolut
 - `TIDE_AWARE_SCREENING`
 - `TIDE_AWARE_PREPLANTING_CONTEXT`
 - `PARTIAL_PLANTING_COMPLETION_DATES_VERIFIED`
+- `HIGH_RESOLUTION_BASELINE`
 - `UAV_VALIDATED_EDGE`
+- `REPEAT_UAV_CHANGE_EVIDENCE`
 - `VERIFIED_CONTROL_COMPARISON`
 
 `EROSION EFFECT: NOT_DEMONSTRATED` ต้องคงอยู่จนกว่าหลักฐานเชิงสาเหตุเพียงพอ
@@ -406,6 +595,8 @@ screening threshold ควรสอดคล้องกับ effective resolut
 ## QA gates
 
 ก่อน merge/deploy ตรวจอย่างน้อย:
+
+### Science/data
 
 - AOI/plots geometry valid
 - no forced marine analysis for non-coastal plots
@@ -418,6 +609,35 @@ screening threshold ควรสอดคล้องกับ effective resolut
 - all metric rows carry confidence
 - planting dates never inferred beyond source evidence
 - claim status not accidentally promoted
+
+### Drone
+
+- raw source is referenced but not committed to normal Git history
+- all advertised plots have metadata records
+- georeference QA and coverage QA are separate
+- CRS is plausible for province and agrees with plot geometry
+- GSD is recorded
+- valid imagery fraction is recorded
+- band count is recorded
+- RGB-only data cannot silently produce NDVI
+- folder date cannot silently become verified flight date
+- one epoch cannot silently become change-rate evidence
+- all lightweight preview/alignment/overlay assets exist
+
+### Web / regression
+
+- original multispectral history slider still exists
+- all intended years remain selectable
+- all 5 spectral modes remain selectable
+- SVG plot overlay toggle works
+- zoom works
+- pan works when zoomed
+- divider still works independently from pan
+- Drone HR is a separate page, not injected before history slider
+- main navigation labels/order are consistent
+- no duplicate navigation bars
+- evidence/data links resolve
+- Thai font renders correctly
 - TypeScript build passes
 - production bundle contains JSON/GeoJSON/assets referenced by UI
 - Vercel production status `READY`
@@ -437,20 +657,27 @@ data/
       <station>_validation.json
   project/
     <province>_planting_evidence.csv
+    <province>_drone_drive_manifest.csv
   processed/
     <province>_tide_aware/
     <province>_preplanting_history/
     <province>_planting_aware/
+    <province>_drone/
 web/public/data/
   <province>_history/
     summary.json
     visuals/
     overlay/
+  <province>_drone/
+    summary.json
+    previews/
+    sentinel_alignment/
+    alignment_overlay/
 ```
 
 ## Expected user-facing summary for each province
 
-เมื่อทำเสร็จ ให้สรุป 5 เรื่องเท่านั้นก่อน แล้วค่อยลงรายละเอียดถ้าผู้ใช้ถาม:
+เมื่อทำเสร็จ ให้สรุป 5 เรื่องก่อน แล้วค่อยลงรายละเอียดถ้าผู้ใช้ถาม:
 
 1. ย้อนหลังได้ถึงปีไหน
 2. ปีไหนมี tide-aware WATERLINE จริง
@@ -458,14 +685,23 @@ web/public/data/
 4. หลังปลูกเสร็จที่ยืนยันแล้วเป็นอย่างไร
 5. ตอนนี้เคลมได้ไกลแค่ไหน / ยังขาดอะไร
 
+ถ้ามี Drone HR เพิ่มบรรทัดสั้น ๆ ว่า:
+
+- มี high-resolution baseline กี่แปลง, GSD range เท่าไร, coverage มี caveat ที่แปลงใด และเป็น 1 epoch หรือ repeat epoch
+
 ## Samut Songkhram reference implementation
 
 ใช้ไฟล์/แนวคิดเหล่านี้เป็น reference แต่ parameterize ใหม่:
+
+### Core science
 
 - `scripts/build_preplanting_coastal_history.py`
 - `scripts/build_tide_aware_project_edges.py`
 - `scripts/build_secondary_mae_klong_tide_catalog.py`
 - `scripts/apply_samut_songkhram_planting_evidence.py`
+
+### History web
+
 - `web/src/PreplantingHistoryDashboardV2.tsx`
 - `web/src/PlotOverlayInjector.tsx`
 - `web/src/PlantingEvidenceInjector.tsx`
@@ -473,7 +709,36 @@ web/public/data/
 - `web/src/plotOverlay.css`
 - `web/src/plantingEvidence.css`
 
-อย่า hardcode `samut_songkhram`, `Pak Nam Mae Klong`, plot IDs, 2.14 m datum offset หรือ production domain ลง implementation จังหวัดใหม่ ให้ย้ายไป config / province-specific data
+### Drone baseline
+
+- `scripts/inspect_samut_songkhram_drone_orthomosaic.py`
+- `scripts/normalize_samut_songkhram_drone_qa.py`
+- `scripts/aggregate_samut_songkhram_drone_inventory.py`
+- `scripts/build_drone_sentinel_alignment_v2.py`
+- `web/src/DroneBaselinePage.tsx`
+- `web/src/DroneBaselineInjector.tsx`
+- `web/src/droneBaseline.css`
+- `.github/workflows/samut-songkhram-drone-drive-ingest.yml`
+- `.github/workflows/samut-songkhram-drone-web.yml`
+
+### Navigation / deployment
+
+- `web/src/App.tsx`
+- `web/src/navigation.css`
+- `.github/workflows/build-production-web-artifact.yml`
+
+อย่า hardcode `samut_songkhram`, `Pak Nam Mae Klong`, plot IDs, 2.14 m datum offset, 2023–2026, 9 plots หรือ production domain ลง implementation จังหวัดใหม่ ให้ย้ายไป config / province-specific data
+
+## Recommended branch strategy for a new province
+
+1. เริ่มจาก branch/template ที่มี web components และ workflow ที่ validate แล้ว
+2. สร้าง `data/<province>-...` หรือ `feature/<province>-...` สำหรับ data pipeline
+3. parameterize province config ก่อนแก้ component
+4. reuse generic component ให้มากที่สุด
+5. province-specific string/plot/tide/date อยู่ใน data/config ไม่ใช่ hardcode ใน React
+6. merge scientific outputs ก่อนหรือพร้อม web assets
+7. สร้าง production bundle branch แยกจังหวัด
+8. deploy Vercel project แยกจังหวัด
 
 ## Definition of done
 
@@ -484,10 +749,16 @@ web/public/data/
 - WATERLINE + MANGROVE_EDGE_PROXY + transects + period metrics ถูกสร้าง
 - planting date evidence ที่มีถูกนำเข้าจริง
 - control status แสดงตรงตามระดับ validation
-- เว็บมี multispectral slider + plot SVG overlay + zoom + pan
+- หน้า `หลักฐานย้อนหลัง` เป็น default และ multispectral slider เดิมยังอยู่ครบ
+- เว็บมี plot SVG overlay + zoom + pan
 - latest finding ถูก highlight ชัด
+- ถ้ามี Drone HR: raw GeoTIFF ผ่าน metadata/georeference/coverage QA และถูกแยกเป็นหน้า standalone
+- ถ้ามี Drone HR 1 epoch: เว็บระบุชัดว่าเป็น baseline ไม่ใช่ erosion-rate time series
+- navigation ทั้งเว็บสม่ำเสมอและไม่งง
+- evidence/data links ผ่าน audit
 - scientific limitations แสดงบนเว็บ
 - production deployment พร้อม URL ใช้งานจริง
 - claim guard ยังป้องกัน overclaim
+- ไม่มี regression ที่ทำให้ feature ที่ดีอยู่แล้วหายไป
 
-เมื่อผู้ใช้สั่งจังหวัดใหม่ เช่น “ทำกระบี่แบบสมุทรสงคราม” ให้เปิดไฟล์นี้ก่อน แล้วเดิน workflow ต่อจาก template โดยไม่เริ่มโครงสร้างใหม่
+เมื่อผู้ใช้สั่งจังหวัดใหม่ เช่น “ทำกระบี่แบบสมุทรสงคราม” หรือ “ทำสุราษฎร์ธานีแบบสมุทรสงคราม” ให้เปิดไฟล์นี้ก่อน แล้วเดิน workflow ต่อจาก template โดยไม่เริ่มโครงสร้างใหม่ และถ้ามี evidence ใหม่ให้เพิ่มแบบ additive ไม่ทับหน้าเดิม
