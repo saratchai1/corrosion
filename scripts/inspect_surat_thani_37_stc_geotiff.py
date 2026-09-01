@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Inspect the Surat Thani 37-STC raw drone GeoTIFF conservatively.
 
-The script reads GeoTIFF metadata directly and computes valid imagery coverage
-block-by-block so the 3.33 GB raster does not need to be loaded into RAM.
-It deliberately does not infer acquisition date from the Google Drive folder
-label.
+The script reads GeoTIFF metadata directly and computes both raster-rectangle
+validity and project-boundary imagery coverage block-by-block, so the 3.33 GB
+raster is never loaded into RAM. The project polygon is used only as a QA mask;
+its CRS is not assigned to the raw TIFF.
 
 Outputs:
 - machine-readable GeoTIFF metadata / QA JSON
@@ -25,11 +25,18 @@ from typing import Any
 
 import numpy as np
 import rasterio
-from rasterio.warp import transform_bounds
+from rasterio.features import bounds as geometry_bounds
+from rasterio.features import rasterize
+from rasterio.warp import transform_bounds, transform_geom
+from rasterio.windows import bounds as window_bounds
 
 
 EXPECTED_PROJECT_CRS = "EPSG:32647"
+PROJECT_GEOJSON_CRS = "EPSG:4326"
 PLOT_ID = "37-STC"
+DEFAULT_PROJECT_GEOJSON = Path(
+    "web-surat-thani/public/data/surat_thani/project_boundary.geojson"
+)
 
 
 def _json_scalar(value: Any) -> Any:
@@ -41,19 +48,102 @@ def _json_scalar(value: Any) -> Any:
     return value
 
 
-def _valid_fraction(src: rasterio.io.DatasetReader) -> float:
-    """Calculate valid coverage using raster masks without loading the full raster."""
-    valid = 0
-    total = 0
+def _colorinterp_name(item: Any) -> str:
+    name = getattr(item, "name", None)
+    return str(name if name is not None else item).lower()
+
+
+def _load_project_geometries(project_geojson: Path, dst_crs: Any) -> list[dict[str, Any]]:
+    if not project_geojson.is_file() or dst_crs is None:
+        return []
+    payload = json.loads(project_geojson.read_text(encoding="utf-8"))
+    features = payload.get("features", []) if isinstance(payload, dict) else []
+    out: list[dict[str, Any]] = []
+    for feature in features:
+        geometry = feature.get("geometry") if isinstance(feature, dict) else None
+        if geometry:
+            out.append(
+                transform_geom(
+                    PROJECT_GEOJSON_CRS,
+                    dst_crs,
+                    geometry,
+                    antimeridian_cutting=False,
+                    precision=-1,
+                )
+            )
+    return out
+
+
+def _merged_bounds(geometries: list[dict[str, Any]]) -> tuple[float, float, float, float] | None:
+    if not geometries:
+        return None
+    values = [geometry_bounds(geometry) for geometry in geometries]
+    return (
+        min(value[0] for value in values),
+        min(value[1] for value in values),
+        max(value[2] for value in values),
+        max(value[3] for value in values),
+    )
+
+
+def _bbox_intersects(
+    a: tuple[float, float, float, float],
+    b: tuple[float, float, float, float],
+) -> bool:
+    return not (a[2] <= b[0] or a[0] >= b[2] or a[3] <= b[1] or a[1] >= b[3])
+
+
+def _coverage_metrics(
+    src: rasterio.io.DatasetReader,
+    project_geometries: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Compute raster and project-polygon validity block-by-block."""
+    raster_valid = 0
+    raster_total = 0
+    project_valid = 0
+    project_total = 0
+    project_bbox = _merged_bounds(project_geometries)
+
     for _, window in src.block_windows(1):
-        mask = src.dataset_mask(window=window)
-        valid += int(np.count_nonzero(mask))
-        total += int(mask.size)
-    return valid / total if total else float("nan")
+        data_mask = src.dataset_mask(window=window)
+        raster_valid += int(np.count_nonzero(data_mask))
+        raster_total += int(data_mask.size)
+
+        if not project_geometries or project_bbox is None:
+            continue
+        wb = window_bounds(window, src.transform)
+        if not _bbox_intersects(wb, project_bbox):
+            continue
+
+        plot_mask = rasterize(
+            [(geometry, 1) for geometry in project_geometries],
+            out_shape=(int(window.height), int(window.width)),
+            transform=src.window_transform(window),
+            fill=0,
+            default_value=1,
+            dtype="uint8",
+            all_touched=False,
+        ).astype(bool)
+        plot_pixels = int(np.count_nonzero(plot_mask))
+        if not plot_pixels:
+            continue
+        project_total += plot_pixels
+        project_valid += int(np.count_nonzero(data_mask[plot_mask]))
+
+    raster_fraction = raster_valid / raster_total if raster_total else float("nan")
+    project_fraction = project_valid / project_total if project_total else float("nan")
+    return {
+        "raster_rectangle_valid_pixels": raster_valid,
+        "raster_rectangle_total_pixels": raster_total,
+        "raster_rectangle_valid_fraction": raster_fraction,
+        "project_polygon_valid_pixels": project_valid,
+        "project_polygon_total_pixels": project_total,
+        "project_polygon_valid_fraction": project_fraction,
+    }
 
 
 def _nir_status(src: rasterio.io.DatasetReader) -> tuple[bool | None, str]:
-    color = [str(item).split(".")[-1].lower() for item in src.colorinterp]
+    color = [_colorinterp_name(item) for item in src.colorinterp]
     descriptions = [(item or "").strip().lower() for item in src.descriptions]
 
     explicit_nir = any(
@@ -83,7 +173,21 @@ def _nir_status(src: rasterio.io.DatasetReader) -> tuple[bool | None, str]:
     return None, "NOT_DETERMINABLE_FROM_RASTER_TAGS"
 
 
-def inspect(path: Path, skip_coverage: bool) -> tuple[dict[str, Any], dict[str, Any] | None]:
+def _coverage_status(value: float | None) -> str:
+    if value is None or not math.isfinite(value):
+        return "UNAVAILABLE"
+    if value >= 0.95:
+        return "PASS_GE_95PCT"
+    if value >= 0.90:
+        return "PARTIAL_USABLE_90_TO_95PCT"
+    return "INSUFFICIENT_LT_90PCT"
+
+
+def inspect(
+    path: Path,
+    skip_coverage: bool,
+    project_geojson: Path,
+) -> tuple[dict[str, Any], dict[str, Any] | None]:
     with rasterio.open(path) as src:
         crs_text = src.crs.to_string() if src.crs else None
         epsg = src.crs.to_epsg() if src.crs else None
@@ -94,11 +198,41 @@ def inspect(path: Path, skip_coverage: bool) -> tuple[dict[str, Any], dict[str, 
         mean_gsd_m = (xres + yres) / 2 if projected else None
         mean_gsd_cm = mean_gsd_m * 100 if mean_gsd_m is not None else None
 
-        valid_fraction = None if skip_coverage else _valid_fraction(src)
-        if valid_fraction is not None and not math.isfinite(valid_fraction):
-            valid_fraction = None
+        project_geometries = _load_project_geometries(project_geojson, src.crs)
+        coverage_metrics: dict[str, Any] | None = None
+        if not skip_coverage:
+            coverage_metrics = _coverage_metrics(src, project_geometries)
+            for key, value in list(coverage_metrics.items()):
+                if isinstance(value, float) and not math.isfinite(value):
+                    coverage_metrics[key] = None
+
+        project_fraction = (
+            coverage_metrics.get("project_polygon_valid_fraction")
+            if coverage_metrics is not None
+            else None
+        )
+        raster_fraction = (
+            coverage_metrics.get("raster_rectangle_valid_fraction")
+            if coverage_metrics is not None
+            else None
+        )
 
         nir_present, nir_basis = _nir_status(src)
+        colorinterp = [_colorinterp_name(item) for item in src.colorinterp]
+        base_tags = {str(k): str(v) for k, v in src.tags().items()}
+        image_structure_tags = {
+            str(k): str(v) for k, v in src.tags(ns="IMAGE_STRUCTURE").items()
+        }
+        timestamp_tags = {
+            key: value
+            for key, value in base_tags.items()
+            if any(token in key.upper() for token in ("DATE", "TIME", "ACQUIS"))
+        }
+        flight_date_status = (
+            "RAW_TIMESTAMP_TAGS_PRESENT_NOT_ASSUMED_FLIGHT_DATE"
+            if timestamp_tags
+            else "UNVERIFIED_NOT_INFERRED_FROM_FOLDER_LABEL"
+        )
 
         bounds = {
             "left": float(src.bounds.left),
@@ -130,6 +264,7 @@ def inspect(path: Path, skip_coverage: bool) -> tuple[dict[str, Any], dict[str, 
                             "source": path.name,
                             "source_crs": crs_text,
                             "qa_role": "RAW_GEOTIFF_FOOTPRINT",
+                            "project_polygon_valid_fraction": project_fraction,
                         },
                         "geometry": {
                             "type": "Polygon",
@@ -156,22 +291,14 @@ def inspect(path: Path, skip_coverage: bool) -> tuple[dict[str, Any], dict[str, 
             )
         )
 
-        if skip_coverage:
-            coverage_status = "NOT_RUN"
-        elif valid_fraction is None:
-            coverage_status = "UNAVAILABLE"
-        elif valid_fraction >= 0.95:
-            coverage_status = "PASS_GE_95PCT"
-        elif valid_fraction >= 0.90:
-            coverage_status = "PARTIAL_USABLE_90_TO_95PCT"
-        else:
-            coverage_status = "INSUFFICIENT_LT_90PCT"
+        project_coverage_status = "NOT_RUN" if skip_coverage else _coverage_status(project_fraction)
 
         result = {
             "plot_id": PLOT_ID,
             "source_file": str(path),
             "source_file_size_bytes": path.stat().st_size,
-            "flight_date_status": "UNVERIFIED_NOT_INFERRED_FROM_FOLDER_LABEL",
+            "flight_date_status": flight_date_status,
+            "raw_timestamp_tags": timestamp_tags,
             "raster": {
                 "driver": src.driver,
                 "width_px": src.width,
@@ -179,8 +306,9 @@ def inspect(path: Path, skip_coverage: bool) -> tuple[dict[str, Any], dict[str, 
                 "band_count": src.count,
                 "dtypes": list(src.dtypes),
                 "nodata": [_json_scalar(item) for item in src.nodatavals],
-                "colorinterp": [str(item).split(".")[-1] for item in src.colorinterp],
+                "colorinterp": colorinterp,
                 "band_descriptions": list(src.descriptions),
+                "image_structure_tags": image_structure_tags,
             },
             "georeference": {
                 "crs": crs_text,
@@ -205,13 +333,18 @@ def inspect(path: Path, skip_coverage: bool) -> tuple[dict[str, Any], dict[str, 
                 "qa_status": georef_status,
             },
             "coverage": {
-                "valid_imagery_fraction": valid_fraction,
+                "project_boundary_source": str(project_geojson),
+                "project_boundary_source_crs": PROJECT_GEOJSON_CRS,
+                "project_polygon_valid_fraction": project_fraction,
+                "raster_rectangle_valid_fraction": raster_fraction,
+                "metrics": coverage_metrics,
                 "calculation": (
-                    "rasterio.dataset_mask block-by-block"
+                    "rasterio dataset mask intersected with rasterized project polygon, block-by-block"
                     if not skip_coverage
                     else "SKIPPED"
                 ),
-                "qa_status": coverage_status,
+                "qa_status": project_coverage_status,
+                "interpretation_guard": "QA status is based on valid imagery inside the 37-STC project polygon; raster-rectangle validity is context only because the orthomosaic has large transparent/NoData margins.",
                 "thresholds": {
                     "PASS_GE_95PCT": 0.95,
                     "PARTIAL_USABLE_GE_90PCT": 0.90,
@@ -246,16 +379,24 @@ def main() -> int:
         default=Path("data/analysis/surat_thani/drone_37_stc_footprint.geojson"),
     )
     parser.add_argument(
+        "--project-geojson",
+        type=Path,
+        default=DEFAULT_PROJECT_GEOJSON,
+        help="WGS84 GeoJSON used only to measure valid imagery coverage inside 37-STC.",
+    )
+    parser.add_argument(
         "--skip-coverage",
         action="store_true",
-        help="Inspect metadata only; definition-of-done still requires a later full coverage scan.",
+        help="Inspect metadata only; definition-of-done still requires a later project coverage scan.",
     )
     args = parser.parse_args()
 
     if not args.geotiff.is_file():
         parser.error(f"GeoTIFF not found: {args.geotiff}")
+    if not args.skip_coverage and not args.project_geojson.is_file():
+        parser.error(f"Project GeoJSON not found: {args.project_geojson}")
 
-    result, footprint = inspect(args.geotiff, args.skip_coverage)
+    result, footprint = inspect(args.geotiff, args.skip_coverage, args.project_geojson)
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n",
@@ -277,7 +418,10 @@ def main() -> int:
         "crs": result["georeference"]["crs"],
         "mean_gsd_cm": result["georeference"]["mean_gsd_cm"],
         "band_count": result["raster"]["band_count"],
-        "valid_imagery_fraction": result["coverage"]["valid_imagery_fraction"],
+        "colorinterp": result["raster"]["colorinterp"],
+        "project_polygon_valid_fraction": result["coverage"]["project_polygon_valid_fraction"],
+        "raster_rectangle_valid_fraction": result["coverage"]["raster_rectangle_valid_fraction"],
+        "nir_band_present": result["spectral"]["nir_band_present"],
     }, ensure_ascii=False))
     return 0
 
