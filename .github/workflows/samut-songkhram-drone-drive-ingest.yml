@@ -1,0 +1,165 @@
+name: Inspect Samut Songkhram drone orthomosaics
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-drone-drive-ingest-v1
+    paths:
+      - '.github/workflows/samut-songkhram-drone-drive-ingest.yml'
+      - 'requirements.txt'
+      - 'data/project/samut_songkhram_drone_drive_manifest.csv'
+      - 'data/aoi/samut_songkhram_project_plots.geojson'
+      - 'data/processed/project_preplanting_history/summary.json'
+      - 'data/processed/project_planting_aware/summary.json'
+      - 'scripts/inspect_samut_songkhram_drone_orthomosaic.py'
+      - 'scripts/aggregate_samut_songkhram_drone_inventory.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-drone-drive-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install geospatial and Google Drive download dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python -m pip install --disable-pip-version-check 'gdown>=5.2,<6'
+
+      - name: Check runner storage
+        run: df -h /
+
+      - name: Download, inspect and delete each orthomosaic sequentially
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/samut-drone
+          rm -rf data/processed/samut_songkhram_drone/raw
+          mkdir -p data/processed/samut_songkhram_drone/raw
+          mkdir -p web/public/data/project_drone_orthomosaic/previews
+
+          python - <<'PY' > /tmp/drone_manifest.tsv
+          import csv
+          from pathlib import Path
+          path = Path('data/project/samut_songkhram_drone_drive_manifest.csv')
+          with path.open(newline='', encoding='utf-8-sig') as handle:
+              for row in csv.DictReader(handle):
+                  print('\t'.join([
+                      row['plot_id'], row['drive_file_id'], row['drive_title'],
+                      row['drive_size_bytes'], row['source_folder'],
+                      row['folder_date_iso'], row['folder_date_status'],
+                  ]))
+          PY
+
+          while IFS=$'\t' read -r plot_id file_id title expected_size source_folder folder_date folder_status; do
+            echo "::group::${plot_id} — ${title}"
+            target="/tmp/samut-drone/${plot_id}.tif"
+            rm -f "$target"
+
+            # gdown works only if the shared-drive file can be downloaded without an
+            # interactive browser session. This is tested rather than assumed.
+            gdown --id "$file_id" --output "$target" --quiet
+
+            actual_size="$(stat -c %s "$target")"
+            echo "Downloaded ${actual_size} bytes (Drive manifest ${expected_size})"
+            if [ "$actual_size" != "$expected_size" ]; then
+              echo "Size mismatch for ${plot_id}" >&2
+              exit 1
+            fi
+
+            python -m scripts.inspect_samut_songkhram_drone_orthomosaic \
+              --input "$target" \
+              --plot-id "$plot_id" \
+              --drive-file-id "$file_id" \
+              --drive-title "$title" \
+              --drive-size-bytes "$expected_size" \
+              --source-folder "$source_folder" \
+              --folder-date-iso "$folder_date" \
+              --folder-date-status "$folder_status"
+
+            rm -f "$target"
+            df -h /
+            echo "::endgroup::"
+          done < /tmp/drone_manifest.tsv
+
+      - name: Aggregate orthomosaic inventory and satellite alignment
+        run: python -m scripts.aggregate_samut_songkhram_drone_inventory
+
+      - name: Validate complete nine-plot inventory
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path(
+              'data/processed/samut_songkhram_drone/summary.json'
+          ).read_text(encoding='utf-8'))
+          assert summary['orthomosaic_count'] == 9, summary
+          assert summary['plot_ids'] == [
+              '87-VSD', '91-STC', '92-STC', '93-STC', '94-STC',
+              '95-STC', '96-STC', '97-STC', '98-STC'
+          ], summary['plot_ids']
+          assert summary['qa']['all_georeference_pass'] is True, summary['qa']
+          assert summary['qa']['all_plot_bbox_coverage_ge_98pct'] is True, summary['qa']
+          assert summary['qa']['all_plot_valid_imagery_ge_95pct'] is True, summary['qa']
+          assert summary['date_evidence']['status'] == 'UNVERIFIED_AS_FLIGHT_DATE'
+          assert len(summary['common_crs']) >= 1
+          assert Path('web/public/data/project_drone_orthomosaic/footprints.geojson').exists()
+          for plot_id in summary['plot_ids']:
+              assert Path(f'web/public/data/project_drone_orthomosaic/previews/{plot_id}.webp').exists(), plot_id
+
+          with Path(
+              'data/processed/samut_songkhram_drone/orthomosaic_catalog.csv'
+          ).open(newline='', encoding='utf-8') as handle:
+              rows = list(csv.DictReader(handle))
+          assert len(rows) == 9
+          print(json.dumps({
+              'orthomosaic_count': summary['orthomosaic_count'],
+              'source_size_gib': summary['total_source_size_gib'],
+              'common_crs': summary['common_crs'],
+              'gsd_cm_range': summary['gsd_cm_range'],
+              'qa': summary['qa'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit generated drone inventory and lightweight previews
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/processed/samut_songkhram_drone \
+            web/public/data/project_drone_orthomosaic
+          if git diff --cached --quiet; then
+            echo 'No generated drone inventory changes to commit.'
+          else
+            git commit -m 'data: add Samut Songkhram drone orthomosaic inventory'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload drone inventory evidence package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-drone-orthomosaic-inventory
+          path: |
+            data/project/samut_songkhram_drone_drive_manifest.csv
+            data/processed/samut_songkhram_drone/**
+            web/public/data/project_drone_orthomosaic/**
+          if-no-files-found: warn
+          retention-days: 14
