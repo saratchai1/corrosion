@@ -12,7 +12,9 @@ on:
       - 'data/processed/project_preplanting_history/summary.json'
       - 'data/processed/project_planting_aware/summary.json'
       - 'scripts/inspect_samut_songkhram_drone_orthomosaic.py'
+      - 'scripts/normalize_samut_songkhram_drone_qa.py'
       - 'scripts/aggregate_samut_songkhram_drone_inventory.py'
+      - 'scripts/enrich_samut_songkhram_drone_summary.py'
   workflow_dispatch:
 
 permissions:
@@ -71,9 +73,9 @@ jobs:
             target="/tmp/samut-drone/${plot_id}.tif"
             rm -f "$target"
 
-            # gdown works only if the shared-drive file can be downloaded without an
-            # interactive browser session. This is tested rather than assumed.
-            gdown --id "$file_id" --output "$target" --quiet
+            # The shared-drive files are intentionally read in place. No copy into
+            # My Drive or repository is made; only lightweight derived products are kept.
+            gdown "$file_id" --output "$target" --quiet
 
             actual_size="$(stat -c %s "$target")"
             echo "Downloaded ${actual_size} bytes (Drive manifest ${expected_size})"
@@ -97,8 +99,14 @@ jobs:
             echo "::endgroup::"
           done < /tmp/drone_manifest.tsv
 
+      - name: Separate georeference and imagery-coverage QA
+        run: python -m scripts.normalize_samut_songkhram_drone_qa
+
       - name: Aggregate orthomosaic inventory and satellite alignment
         run: python -m scripts.aggregate_samut_songkhram_drone_inventory
+
+      - name: Enrich coverage classes and RGB-only scientific scope
+        run: python -m scripts.enrich_samut_songkhram_drone_summary
 
       - name: Validate complete nine-plot inventory
         run: |
@@ -116,10 +124,21 @@ jobs:
               '95-STC', '96-STC', '97-STC', '98-STC'
           ], summary['plot_ids']
           assert summary['qa']['all_georeference_pass'] is True, summary['qa']
+          assert summary['qa']['georeference_pass_count'] == 9, summary['qa']
           assert summary['qa']['all_plot_bbox_coverage_ge_98pct'] is True, summary['qa']
-          assert summary['qa']['all_plot_valid_imagery_ge_95pct'] is True, summary['qa']
+          assert summary['qa']['all_plot_valid_imagery_ge_90pct'] is True, summary['qa']
+          assert summary['qa']['coverage_complete_count'] == 8, summary['qa']
+          assert summary['qa']['coverage_partial_usable_count'] == 1, summary['qa']
+          assert summary['qa']['coverage_partial_usable_plot_ids'] == ['91-STC'], summary['qa']
+          assert summary['qa']['coverage_insufficient_count'] == 0, summary['qa']
+          assert summary['qa']['usable_plot_count'] == 9, summary['qa']
           assert summary['date_evidence']['status'] == 'UNVERIFIED_AS_FLIGHT_DATE'
-          assert len(summary['common_crs']) >= 1
+          assert summary['common_crs'] == ['EPSG:32647']
+          assert summary['raster_band_scope']['nir_band_present'] is False
+          assert summary['raster_band_scope']['drone_ndvi_supported'] is False
+          assert summary['baseline_readiness']['status'] == (
+              'READY_FOR_HIGH_RESOLUTION_BASELINE_WITH_91_STC_PARTIAL_COVERAGE'
+          )
           assert Path('web/public/data/project_drone_orthomosaic/footprints.geojson').exists()
           for plot_id in summary['plot_ids']:
               assert Path(f'web/public/data/project_drone_orthomosaic/previews/{plot_id}.webp').exists(), plot_id
@@ -129,12 +148,17 @@ jobs:
           ).open(newline='', encoding='utf-8') as handle:
               rows = list(csv.DictReader(handle))
           assert len(rows) == 9
+          row91 = next(row for row in rows if row['plot_id'] == '91-STC')
+          assert row91['georeference_status'] == 'PASS'
+          assert row91['imagery_coverage_status'] == 'PARTIAL_USABLE_90_TO_95PCT'
+          assert abs(float(row91['plot_valid_image_fraction']) - 0.926846) < 1e-6
           print(json.dumps({
               'orthomosaic_count': summary['orthomosaic_count'],
               'source_size_gib': summary['total_source_size_gib'],
               'common_crs': summary['common_crs'],
               'gsd_cm_range': summary['gsd_cm_range'],
               'qa': summary['qa'],
+              'band_scope': summary['raster_band_scope'],
           }, ensure_ascii=False, indent=2))
           PY
 
