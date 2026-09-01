@@ -1,0 +1,245 @@
+{
+  "title": "Historical Satellite ↔ Current Reference",
+  "status": "AVAILABLE_MULTIPLE_EPOCHS_SAME_EXTENT",
+  "bounds_wgs84": {
+    "left": 99.22137184918678,
+    "bottom": 9.338435374657791,
+    "right": 99.23787667757145,
+    "top": 9.347619657518594
+  },
+  "width_px": 1800,
+  "height_px": 1015,
+  "defaultLeftId": "satellite-2023",
+  "defaultRightId": "drone",
+  "leftChoices": [
+    {
+      "id": "satellite-1985",
+      "targetYear": 1985,
+      "actualYear": 1987,
+      "label": "Landsat 1985 · ภาพจริง 1987",
+      "sensor": "landsat-5",
+      "dates": [
+        "1987-12-09",
+        "1987-12-25"
+      ],
+      "resolutionM": 30,
+      "asset": "data/surat_thani/drone/multiyear/satellite_1985_same_extent.webp",
+      "period": "historical_context"
+    },
+    {
+      "id": "satellite-1990",
+      "targetYear": 1990,
+      "actualYear": 1990,
+      "label": "Landsat 1990",
+      "sensor": "landsat-5",
+      "dates": [
+        "1990-03-04",
+        "1990-04-05",
+        "1990-12-17"
+      ],
+      "resolutionM": 30,
+      "asset": "data/surat_thani/drone/multiyear/satellite_1990_same_extent.webp",
+      "period": "historical_context"
+    },
+    {
+      "id": "satellite-2000",
+      "targetYear": 2000,
+      "actualYear": 2000,
+      "label": "Landsat 2000",
+      "sensor": "landsat-5, landsat-7",
+      "dates": [
+        "2000-02-12",
+        "2000-12-04",
+        "2000-12-12"
+      ],
+      "resolutionM": 30,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2000_same_extent.webp",
+      "period": "historical_context"
+    },
+    {
+      "id": "satellite-2010",
+      "targetYear": 2010,
+      "actualYear": 2009,
+      "label": "Landsat 2010 · ภาพจริง 2009",
+      "sensor": "landsat-5",
+      "dates": [
+        "2009-01-19",
+        "2009-02-20",
+        "2009-12-05"
+      ],
+      "resolutionM": 30,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2010_same_extent.webp",
+      "period": "historical_context"
+    },
+    {
+      "id": "satellite-2017",
+      "targetYear": 2017,
+      "actualYear": 2017,
+      "label": "Sentinel-2 2017",
+      "sensor": "Sentinel-2A",
+      "dates": [
+        "2017-02-26",
+        "2017-03-18",
+        "2017-04-27"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2017_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2018",
+      "targetYear": 2018,
+      "actualYear": 2018,
+      "label": "Sentinel-2 2018",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2018-02-01",
+        "2018-02-26",
+        "2018-03-28"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2018_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2019",
+      "targetYear": 2019,
+      "actualYear": 2019,
+      "label": "Sentinel-2 2019",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2019-02-11",
+        "2019-03-23",
+        "2019-04-17"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2019_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2020",
+      "targetYear": 2020,
+      "actualYear": 2020,
+      "label": "Sentinel-2 2020",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2020-02-26",
+        "2020-03-22",
+        "2020-04-11"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2020_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2021",
+      "targetYear": 2021,
+      "actualYear": 2021,
+      "label": "Sentinel-2 2021",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2021-02-20",
+        "2021-03-12",
+        "2021-04-26"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2021_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2022",
+      "targetYear": 2022,
+      "actualYear": 2022,
+      "label": "Sentinel-2 2022",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2022-02-05",
+        "2022-03-12",
+        "2022-04-21"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2022_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2023",
+      "targetYear": 2023,
+      "actualYear": 2023,
+      "label": "Sentinel-2 2023",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2023-02-10",
+        "2023-03-12",
+        "2023-04-06"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2023_same_extent.webp",
+      "period": "pre_planting"
+    },
+    {
+      "id": "satellite-2024",
+      "targetYear": 2024,
+      "actualYear": 2024,
+      "label": "Sentinel-2 2024",
+      "sensor": "Sentinel-2A, Sentinel-2B",
+      "dates": [
+        "2024-02-25",
+        "2024-03-21",
+        "2024-04-20"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2024_same_extent.webp",
+      "period": "post_planting"
+    },
+    {
+      "id": "satellite-2025",
+      "targetYear": 2025,
+      "actualYear": 2025,
+      "label": "Sentinel-2 2025",
+      "sensor": "Sentinel-2A, Sentinel-2C",
+      "dates": [
+        "2025-02-14",
+        "2025-03-16",
+        "2025-04-07"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2025_same_extent.webp",
+      "period": "post_planting"
+    },
+    {
+      "id": "satellite-2026",
+      "targetYear": 2026,
+      "actualYear": 2026,
+      "label": "Sentinel-2 2026",
+      "sensor": "Sentinel-2B, Sentinel-2C",
+      "dates": [
+        "2026-03-01",
+        "2026-04-05",
+        "2026-04-30"
+      ],
+      "resolutionM": 20,
+      "asset": "data/surat_thani/drone/multiyear/satellite_2026_same_extent.webp",
+      "period": "post_planting"
+    }
+  ],
+  "rightChoices": [
+    {
+      "id": "drone",
+      "label": "Drone HR",
+      "asset": "data/surat_thani/drone/orthor_37_stc_same_extent.webp",
+      "note": "Orthomosaic · 2.257 cm/px"
+    },
+    {
+      "id": "satellite-2026",
+      "label": "Sentinel-2 2026",
+      "asset": "data/surat_thani/drone/multiyear/satellite_2026_same_extent.webp",
+      "note": "ดาวเทียมปีปัจจุบัน · same extent"
+    }
+  ],
+  "visual_mode_guard": "Natural/Vivid/B&W/Cool are display filters only; they are not NDVI or false-color spectral products.",
+  "generation": {
+    "script": "scripts/publish_surat_thani_multiyear_compare.py",
+    "source": "web-surat-thani/public/data/surat_thani/imagery_index.json",
+    "method": "crop/resample each existing georeferenced web image to the verified raw-drone WGS84 envelope and common pixel dimensions"
+  }
+}
