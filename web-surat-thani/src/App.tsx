@@ -71,6 +71,7 @@ export default function App() {
   const water = exec.key_numbers.waterline_sensitivity
   const post = epoch.targetYear >= 2024
   const pre = epoch.targetYear <= 2023 && epoch.targetYear >= 2017
+  const timelineDenominator = Math.max(1, index.epochs.length - 1)
 
   return <main className="app-shell">
     <aside className="sidebar">
@@ -91,8 +92,20 @@ export default function App() {
       <section className="panel timeline-panel">
         <div className="section-heading"><span>01</span><div><h2>Timeline slider</h2><small>ภาพย้อนหลังและช่วงก่อน–หลังปลูก</small></div></div>
         <div className="year-readout"><strong>{epoch.targetYear}</strong><div><span className={`period-badge ${post ? 'post' : pre ? 'pre' : 'historic'}`}>{post ? 'หลังปลูก' : pre ? 'ก่อนปลูก' : 'บริบทประวัติศาสตร์'}</span><small>ภาพจริง {epoch.actualYear}<br/>{epoch.sensor} · {epoch.dates.length} dates</small></div></div>
-        <input aria-label="เลือกปี" type="range" min="0" max={index.epochs.length - 1} value={yearIndex} onChange={e => setYearIndex(Number(e.target.value))}/>
-        <div className="year-pills">{index.epochs.map((item, i) => <button key={item.targetYear} className={`${i === yearIndex ? 'active' : ''} ${item.targetYear === 2023 ? 'intervention' : ''}`} onClick={() => setYearIndex(i)}>{item.targetYear}</button>)}</div>
+        <div className="timeline-slider-shell">
+          <input className="timeline-slider" aria-label="เลือกปี" type="range" min="0" max={index.epochs.length - 1} step="1" value={yearIndex} onChange={e => setYearIndex(Number(e.target.value))}/>
+          <div className="timeline-scale" aria-label="ปีข้อมูล">
+            {index.epochs.map((item, i) => <button
+              key={item.targetYear}
+              type="button"
+              className={`${i === yearIndex ? 'active' : ''} ${item.targetYear === 2023 ? 'intervention' : ''}`}
+              style={{ left: `${(i / timelineDenominator) * 100}%` }}
+              onClick={() => setYearIndex(i)}
+              aria-label={`เลือกปี ${item.targetYear}`}
+              aria-current={i === yearIndex ? 'true' : undefined}
+            ><i/><span>{item.targetYear}</span></button>)}
+          </div>
+        </div>
         <label className="switch-row"><span><strong>Swipe ก่อน–หลัง</strong><small>ลากเส้นกลางแผนที่เพื่อเปรียบเทียบ</small></span><input type="checkbox" checked={compare} onChange={e => setCompare(e.target.checked)}/><i/></label>
         {compare && <div className="compare-readout"><span>ก่อน <b>{before.targetYear}</b></span><span>หลัง <b>{epoch.targetYear}</b></span></div>}
       </section>
