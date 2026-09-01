@@ -10,6 +10,7 @@ on:
       - 'scripts/inspect_surat_thani_37_stc_geotiff.py'
       - 'scripts/publish_surat_thani_37_stc_drone_compare.py'
       - 'scripts/audit_surat_thani_land_accretion_candidates.py'
+      - 'scripts/refine_surat_thani_land_accretion_crops.py'
       - 'web-surat-thani/public/data/surat_thani/project_boundary.geojson'
       - 'web-surat-thani/public/data/surat_thani/transect_summary.geojson'
       - 'web-surat-thani/public/data/surat_thani/tide_matched/transect_summary.geojson'
@@ -78,18 +79,22 @@ jobs:
           test -s web-surat-thani/public/data/surat_thani/drone/orthor_37_stc_same_extent.webp
           test -s web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp
 
-      - name: Audit the two long-term apparent-accretion candidates for 2023-2026
+      - name: Audit and refine the two long-term apparent-accretion candidates for 2023-2026
         shell: bash
         run: |
           set -euo pipefail
           python scripts/audit_surat_thani_land_accretion_candidates.py
+          python scripts/refine_surat_thani_land_accretion_crops.py
           python -m json.tool web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json >/dev/null
+          grep -q 'NO_POST_2023_LAND_ACCRETION_CONFIRMED_FROM_THE_TWO_LONG_TERM_CANDIDATES' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
+          grep -q 'OUTSIDE_VERIFIED_RAW_DRONE_FOOTPRINT' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
           test -s web-surat-thani/public/data/surat_thani/drone/sentinel2_2023_same_extent.webp
-          for ID in t028 t038; do
-            test -s "web-surat-thani/public/data/surat_thani/drone/${ID}_sentinel2_2023_crop.webp"
-            test -s "web-surat-thani/public/data/surat_thani/drone/${ID}_sentinel2_2026_crop.webp"
-            test -s "web-surat-thani/public/data/surat_thani/drone/${ID}_drone_crop.webp"
-          done
+          test -s web-surat-thani/public/data/surat_thani/drone/t028_sentinel2_2023_crop.webp
+          test -s web-surat-thani/public/data/surat_thani/drone/t028_sentinel2_2026_crop.webp
+          test -s web-surat-thani/public/data/surat_thani/drone/t028_drone_crop.webp
+          test -s web-surat-thani/public/data/surat_thani/drone/t038_sentinel2_2023_crop.webp
+          test -s web-surat-thani/public/data/surat_thani/drone/t038_sentinel2_2026_crop.webp
+          test ! -e web-surat-thani/public/data/surat_thani/drone/t038_drone_crop.webp
           cat web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
 
       - name: Commit QA metadata and web-safe compare assets, never the raw TIFF
@@ -100,14 +105,8 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
             data/analysis/surat_thani/drone_37_stc_geotiff_qa.json \
-            data/analysis/surat_thani/drone_37_stc_footprint.geojson \
-            web-surat-thani/public/data/surat_thani/drone/drone_manifest.json \
-            web-surat-thani/public/data/surat_thani/drone/orthor_37_stc_same_extent.webp \
-            web-surat-thani/public/data/surat_thani/drone/sentinel2_2026_same_extent.webp \
-            web-surat-thani/public/data/surat_thani/drone/sentinel2_2023_same_extent.webp \
-            web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json \
-            web-surat-thani/public/data/surat_thani/drone/t028_*_crop.webp \
-            web-surat-thani/public/data/surat_thani/drone/t038_*_crop.webp
+            data/analysis/surat_thani/drone_37_stc_footprint.geojson
+          git add -A web-surat-thani/public/data/surat_thani/drone
           if git diff --cached --quiet; then
             echo 'No QA or compare asset changes to commit.'
             exit 0
