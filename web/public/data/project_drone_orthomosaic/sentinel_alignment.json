@@ -1,0 +1,190 @@
+{
+  "title": "Drone orthomosaic vs Sentinel-2 spatial alignment",
+  "purpose": "HIGH_RESOLUTION_BASELINE_CROSS_CHECK",
+  "plot_count": 9,
+  "drone_source_date": "2024-12-25",
+  "drone_source_date_status": "UNVERIFIED_AS_FLIGHT_DATE",
+  "sentinel2_scene_id": "S2C_MSIL2A_20250214T033901_R061_T47PNQ_20250214T090512",
+  "sentinel2_scene_date": "2025-02-14",
+  "sentinel2_tide_level_m_msl": 0.8849,
+  "provisional_day_gap": 51,
+  "overlay_layers": {
+    "plot_boundary": "yellow solid",
+    "sentinel2_2025_waterline": "cyan solid",
+    "sentinel2_2025_mangrove_edge_proxy": "magenta dashed"
+  },
+  "scientific_guard": "The drone folder date is not verified as acquisition time. Sentinel-2 is 51 days after that provisional date. This alignment is for spatial/geometric validation only, not a same-day before/after comparison or a drone-derived erosion-rate estimate.",
+  "plots": [
+    {
+      "plot_id": "87-VSD",
+      "drone_preview": "data/project_drone_orthomosaic/previews/87-VSD.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/87-VSD.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/87-VSD.svg",
+      "drone_gsd_cm": 1.3856,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 721.7,
+      "drone_extent_epsg32647": [
+        593188.3846583819,
+        1466198.6841208807,
+        594052.584760182,
+        1466610.6863338808
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 858,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "91-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/91-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/91-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/91-STC.svg",
+      "drone_gsd_cm": 5.0,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 200.0,
+      "drone_extent_epsg32647": [
+        603651.285471382,
+        1470836.1750233925,
+        604860.435471382,
+        1471982.9250233925
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1707,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "PARTIAL_USABLE_90_TO_95PCT"
+    },
+    {
+      "plot_id": "92-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/92-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/92-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/92-STC.svg",
+      "drone_gsd_cm": 1.8972,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 527.1,
+      "drone_extent_epsg32647": [
+        604594.2008330972,
+        1471873.1969233647,
+        605647.0542962973,
+        1472313.1885897648
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 752,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "93-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/93-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/93-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/93-STC.svg",
+      "drone_gsd_cm": 5.0,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 200.0,
+      "drone_extent_epsg32647": [
+        605529.8088311297,
+        1472079.524968518,
+        606259.8588311297,
+        1472734.774968518
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1616,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "94-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/94-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/94-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/94-STC.svg",
+      "drone_gsd_cm": 1.8154,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 550.8,
+      "drone_extent_epsg32647": [
+        605989.0182223828,
+        1472839.1143391358,
+        606501.4205173828,
+        1473203.269436936
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1279,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "95-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/95-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/95-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/95-STC.svg",
+      "drone_gsd_cm": 7.8259,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 127.8,
+      "drone_extent_epsg32647": [
+        606328.8398930379,
+        1472815.7529430524,
+        606767.009234538,
+        1473180.2027775524
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1497,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "96-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/96-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/96-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/96-STC.svg",
+      "drone_gsd_cm": 1.8585,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 538.1,
+      "drone_extent_epsg32647": [
+        606570.3719716779,
+        1472983.4275351742,
+        606863.6013682779,
+        1473263.1272701742
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1717,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "97-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/97-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/97-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/97-STC.svg",
+      "drone_gsd_cm": 7.7922,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 128.3,
+      "drone_extent_epsg32647": [
+        606710.1365137974,
+        1473031.283033533,
+        607146.8876422974,
+        1473395.333215933
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1500,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    },
+    {
+      "plot_id": "98-STC",
+      "drone_preview": "data/project_drone_orthomosaic/previews/98-STC.webp",
+      "sentinel2_preview": "data/project_drone_orthomosaic/sentinel2_2025_aligned/98-STC.webp",
+      "overlay_svg": "data/project_drone_orthomosaic/alignment_overlay/98-STC.svg",
+      "drone_gsd_cm": 1.5132,
+      "sentinel2_native_resolution_m": 10,
+      "linear_resolution_ratio_sentinel_to_drone": 660.8,
+      "drone_extent_epsg32647": [
+        606896.7717324754,
+        1473202.8142112894,
+        607230.7135356754,
+        1473486.3197252895
+      ],
+      "canvas_width": 1800,
+      "canvas_height": 1528,
+      "sentinel2_valid_fraction_on_drone_extent": 1.0,
+      "imagery_coverage_status": "COMPLETE_GE_95PCT"
+    }
+  ]
+}

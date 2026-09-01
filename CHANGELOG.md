@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-29
+- Expanded the province map from eight sparse epochs to 14 epochs, including annual Sentinel-2 composites for every year from 2017–2026.
+- Kept the four historical Landsat snapshots and the nine-plot 2024 planting impact dashboard.
+- Made the 10-year imagery map the default WebApp view and added explicit 2017, 2024, and 2026 timeline shortcuts.
+- Replaced the split-screen comparison with a draggable, touch-friendly before–after swipe slider and made satellite imagery fully opaque by default.
+
 ## 2026-08-28
 - Initialized repository and created `data/samut-songkhram-satellite-v1`.
 - Added provisional Samut Songkhram AOI.

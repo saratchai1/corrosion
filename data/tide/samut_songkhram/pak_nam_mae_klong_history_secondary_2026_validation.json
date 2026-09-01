@@ -1,0 +1,204 @@
+{
+  "generated_at_utc": "2026-08-30T14:08:39.136773+00:00",
+  "validation_year": 2026,
+  "secondary_event_count": 1188,
+  "official_hourly_source": "data/tide/samut_songkhram/pak_nam_mae_klong_hourly_msl.csv",
+  "chart_datum_to_msl_offset_m": 2.14,
+  "method": "subtract 2.14 m from secondary chart-datum extrema and compare with linear interpolation of the official 2026 hourly MSL table",
+  "metrics_m": {
+    "mean_absolute_error": 0.02215,
+    "root_mean_square_error": 0.02723,
+    "mean_bias": -0.0004,
+    "p95_absolute_error": 0.05,
+    "maximum_absolute_error": 0.07
+  },
+  "acceptance": {
+    "mae_max_m": 0.2,
+    "p95_absolute_error_max_m": 0.35,
+    "status": "PASSED"
+  },
+  "scientific_limit": "Agreement with rounded hourly predictions supports datum consistency for screening; it does not turn the secondary extrema into observed local water levels or official hourly predictions.",
+  "samples": [
+    {
+      "datetime_bangkok": "2026-01-01T05:59:00+07:00",
+      "secondary_msl_candidate_m": 1.21,
+      "official_hourly_linear_msl_m": 1.2,
+      "difference_m": 0.01,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-01T22:27:00+07:00",
+      "secondary_msl_candidate_m": -0.93,
+      "official_hourly_linear_msl_m": -0.9,
+      "difference_m": -0.03,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-02T06:45:00+07:00",
+      "secondary_msl_candidate_m": 1.5,
+      "official_hourly_linear_msl_m": 1.5,
+      "difference_m": 0.0,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-02T23:46:00+07:00",
+      "secondary_msl_candidate_m": -1.07,
+      "official_hourly_linear_msl_m": -1.0767,
+      "difference_m": 0.0067,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-03T07:30:00+07:00",
+      "secondary_msl_candidate_m": 1.66,
+      "official_hourly_linear_msl_m": 1.6,
+      "difference_m": 0.06,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-04T00:50:00+07:00",
+      "secondary_msl_candidate_m": -1.2,
+      "official_hourly_linear_msl_m": -1.1833,
+      "difference_m": -0.0167,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-04T08:11:00+07:00",
+      "secondary_msl_candidate_m": 1.71,
+      "official_hourly_linear_msl_m": 1.7,
+      "difference_m": 0.01,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-05T01:38:00+07:00",
+      "secondary_msl_candidate_m": -1.28,
+      "official_hourly_linear_msl_m": -1.2633,
+      "difference_m": -0.0167,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-05T08:44:00+07:00",
+      "secondary_msl_candidate_m": 1.69,
+      "official_hourly_linear_msl_m": 1.7,
+      "difference_m": -0.01,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-06T02:15:00+07:00",
+      "secondary_msl_candidate_m": -1.28,
+      "official_hourly_linear_msl_m": -1.275,
+      "difference_m": -0.005,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-06T09:04:00+07:00",
+      "secondary_msl_candidate_m": 1.64,
+      "official_hourly_linear_msl_m": 1.6,
+      "difference_m": 0.04,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-06T15:03:00+07:00",
+      "secondary_msl_candidate_m": 1.02,
+      "official_hourly_linear_msl_m": 1.005,
+      "difference_m": 0.015,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-06T17:23:00+07:00",
+      "secondary_msl_candidate_m": 1.11,
+      "official_hourly_linear_msl_m": 1.1,
+      "difference_m": 0.01,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-07T02:39:00+07:00",
+      "secondary_msl_candidate_m": -1.19,
+      "official_hourly_linear_msl_m": -1.165,
+      "difference_m": -0.025,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-07T09:13:00+07:00",
+      "secondary_msl_candidate_m": 1.59,
+      "official_hourly_linear_msl_m": 1.6,
+      "difference_m": -0.01,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-07T15:13:00+07:00",
+      "secondary_msl_candidate_m": 0.83,
+      "official_hourly_linear_msl_m": 0.8217,
+      "difference_m": 0.0083,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-07T18:29:00+07:00",
+      "secondary_msl_candidate_m": 1.08,
+      "official_hourly_linear_msl_m": 1.1,
+      "difference_m": -0.02,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-08T02:48:00+07:00",
+      "secondary_msl_candidate_m": -1.02,
+      "official_hourly_linear_msl_m": -1.0,
+      "difference_m": -0.02,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-08T09:21:00+07:00",
+      "secondary_msl_candidate_m": 1.56,
+      "official_hourly_linear_msl_m": 1.5,
+      "difference_m": 0.06,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-08T15:33:00+07:00",
+      "secondary_msl_candidate_m": 0.57,
+      "official_hourly_linear_msl_m": 0.6,
+      "difference_m": -0.03,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-08T19:23:00+07:00",
+      "secondary_msl_candidate_m": 0.98,
+      "official_hourly_linear_msl_m": 1.0,
+      "difference_m": -0.02,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-09T02:52:00+07:00",
+      "secondary_msl_candidate_m": -0.82,
+      "official_hourly_linear_msl_m": -0.8,
+      "difference_m": -0.02,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-09T09:31:00+07:00",
+      "secondary_msl_candidate_m": 1.53,
+      "official_hourly_linear_msl_m": 1.5,
+      "difference_m": 0.03,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    },
+    {
+      "datetime_bangkok": "2026-01-09T16:06:00+07:00",
+      "secondary_msl_candidate_m": 0.27,
+      "official_hourly_linear_msl_m": 0.3,
+      "difference_m": -0.03,
+      "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2026-01-474.php"
+    }
+  ],
+  "cache_continuity": [
+    {
+      "year": 2026,
+      "event_count": 1188,
+      "first_event_bangkok": "2026-01-01T05:59:00+07:00",
+      "last_event_bangkok": "2026-12-31T22:04:00+07:00",
+      "start_edge_gap_hours": 5.98333,
+      "end_edge_gap_hours": 1.93333,
+      "maximum_consecutive_event_gap_hours": 24.08333,
+      "median_consecutive_event_gap_hours": 6.65
+    }
+  ],
+  "page_count": 12
+}

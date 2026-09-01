@@ -1,0 +1,180 @@
+name: Collect secondary Mae Klong tide extrema
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-secondary-tides-2023-2025
+    paths:
+      - '.github/workflows/samut-songkhram-secondary-tides.yml'
+      - 'requirements.txt'
+      - 'scripts/cache_thailandtidetables_via_jina.py'
+      - 'scripts/build_secondary_mae_klong_tide_catalog.py'
+      - 'scripts/scrape_thailandtidetables_mae_klong.py'
+      - 'scripts/audit_samut_songkhram_erosion_readiness.py'
+      - 'tests/test_scrape_thailandtidetables_mae_klong.py'
+      - 'tests/test_audit_samut_songkhram_erosion_readiness.py'
+      - 'config/samut_songkhram_erosion_free_data_v1.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-secondary-tides-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  collect-validate-and-match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install scraper dependencies
+        run: |
+          python -m pip install --disable-pip-version-check \
+            'requests>=2.32,<3' \
+            'beautifulsoup4>=4.12,<5'
+
+      - name: Run parser and readiness unit tests
+        run: |
+          python -m unittest tests.test_scrape_thailandtidetables_mae_klong -v
+          python -m unittest tests.test_audit_samut_songkhram_erosion_readiness -v
+
+      - name: Cache 2023-2026 monthly pages through Jina Reader
+        run: |
+          python scripts/cache_thailandtidetables_via_jina.py \
+            --years 2023 2024 2025 2026 \
+            --refresh \
+            --sleep-seconds 0.10
+
+      - name: Build 2023-2025 extrema and validate datum with official 2026
+        run: |
+          python -m scripts.build_secondary_mae_klong_tide_catalog \
+            --years 2023 2024 2025 \
+            --validation-year 2026 \
+            --require-validation
+
+      - name: Rebuild evidence-readiness audit with completed tide catalog
+        run: |
+          python scripts/audit_samut_songkhram_erosion_readiness.py \
+            --scene-catalog data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
+            --output data/processed/project_impact/erosion_readiness.json
+
+      - name: Validate extracted data and scene coverage
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from collections import Counter, defaultdict
+          from pathlib import Path
+
+          events_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema.csv')
+          manifest_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema_manifest.json')
+          validation_path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_secondary_extrema_2026_validation.json')
+          scenes_path = Path('data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv')
+          readiness_path = Path('data/processed/project_impact/erosion_readiness.json')
+
+          with events_path.open(newline='', encoding='utf-8') as handle:
+              events = list(csv.DictReader(handle))
+          assert len(events) > 2000, len(events)
+          assert {int(row['year']) for row in events} == {2023, 2024, 2025}
+          by_month = defaultdict(list)
+          for row in events:
+              by_month[(int(row['year']), int(row['month']))].append(row)
+          assert len(by_month) == 36, len(by_month)
+          for rows in by_month.values():
+              assert len(rows) >= 28, len(rows)
+              assert all(row['source_tier'] == 'secondary_published_extrema' for row in rows)
+              assert all(row['source_url'].startswith('https://www.thailandtidetables.com/') for row in rows)
+              assert all(row['msl_conversion_status'].endswith('_PASSED') for row in rows)
+
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          assert manifest['years'] == [2023, 2024, 2025]
+          assert manifest['month_count'] == 36
+          assert manifest['event_count'] == len(events)
+          assert len(manifest['pages']) == 36
+          assert len(manifest['year_continuity_qa']) == 3
+          assert all(
+              row['maximum_consecutive_event_gap_hours'] <= 72.0
+              for row in manifest['year_continuity_qa']
+          )
+          assert all(
+              page['coverage_qa']['day_coverage_fraction'] >= 0.70
+              for page in manifest['pages']
+          )
+
+          validation = json.loads(validation_path.read_text(encoding='utf-8'))
+          assert validation['acceptance']['status'] == 'PASSED', validation
+          assert validation['secondary_event_count'] > 600
+          assert validation['metrics_m']['mean_absolute_error'] <= 0.20
+          assert validation['metrics_m']['p95_absolute_error'] <= 0.35
+
+          with scenes_path.open(newline='', encoding='utf-8') as handle:
+              scenes = list(csv.DictReader(handle))
+          assert len(scenes) == 12
+          statuses = Counter(row['tide_status'] for row in scenes)
+          assert statuses['predicted_interpolated'] == 3, statuses
+          assert statuses['modelled_secondary_extrema_cosine'] == 9, statuses
+          assert all(row['tide_level'] != '' for row in scenes)
+          assert all(row['tide_datum'] == 'MSL' for row in scenes)
+          secondary_spans = [
+              float(row['tide_bracket_span_minutes']) / 60
+              for row in scenes
+              if row['tide_status'] == 'modelled_secondary_extrema_cosine'
+          ]
+          assert max(secondary_spans) <= 36.0, secondary_spans
+
+          readiness = json.loads(readiness_path.read_text(encoding='utf-8'))
+          assert readiness['evidence_level'] == 'TIDE_AWARE_SCREENING', readiness
+          assert readiness['satellite']['tide_matched_scene_count'] == 12
+          assert readiness['satellite']['tide_matched_scene_fraction'] == 1.0
+          assert readiness['erosion_effect_demonstrated'] is False
+
+          print(json.dumps({
+              'events': len(events),
+              'months': len(by_month),
+              'validation_metrics_m': validation['metrics_m'],
+              'scene_status_counts': dict(statuses),
+              'maximum_secondary_scene_bracket_hours': max(secondary_spans),
+              'evidence_level': readiness['evidence_level'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit generated secondary tide evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema.csv \
+            data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema_manifest.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_secondary_extrema_2026_validation.json \
+            data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv \
+            data/processed/project_impact/erosion_readiness.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'data: add 2023-2025 secondary Mae Klong tide extrema'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload extraction evidence and cached pages
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-secondary-tides-2023-2025
+          path: |
+            data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema.csv
+            data/tide/samut_songkhram/pak_nam_mae_klong_2023_2025_secondary_extrema_manifest.json
+            data/tide/samut_songkhram/pak_nam_mae_klong_secondary_extrema_2026_validation.json
+            data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv
+            data/processed/project_impact/erosion_readiness.json
+            .cache/thailandtidetables/pak_nam_mae_klong/**
+          if-no-files-found: warn
+          retention-days: 30

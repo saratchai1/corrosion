@@ -1,0 +1,717 @@
+{
+  "title": "Samut Songkhram tide-aware waterline and mangrove-edge screening",
+  "generated_at_utc": "2026-08-30T11:10:41.986733+00:00",
+  "evidence_level": "TIDE_AWARE_SCREENING",
+  "erosion_effect_conclusion": "NOT_DEMONSTRATED",
+  "allowed_claim_th": "ผลดาวเทียมที่คัดตามระดับน้ำสนับสนุนการติดตามแนวโน้ม แต่ยังต้องตรวจด้วยโดรนหรือภาคสนาม",
+  "plot_count": 9,
+  "plot_ids": [
+    "91-STC",
+    "92-STC",
+    "93-STC",
+    "94-STC",
+    "95-STC",
+    "96-STC",
+    "97-STC",
+    "98-STC",
+    "87-VSD"
+  ],
+  "official_participating_area_rai": 628.585314,
+  "years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "waterline_scene_selection": {
+    "status": "ACCEPTABLE_FOR_TIDE_AWARE_SCREENING",
+    "criterion": "one acquisition per year; minimum cross-year predicted-tide spread after requiring secondary interpolation brackets <=12 h",
+    "target_tide_m_msl": 1.0879,
+    "tide_spread_m": 0.345,
+    "maximum_delta_from_target_m": 0.203,
+    "maximum_secondary_bracket_minutes": 472.0,
+    "source_tier_counts": {
+      "official_hourly_prediction": 1,
+      "secondary_published_extrema": 3
+    },
+    "selected_scenes": [
+      {
+        "year": 2023,
+        "date": "2023-01-16",
+        "scene_id": "S2A_MSIL2A_20230116T034101_R061_T47PNQ_20230116T121416",
+        "tide_level_m_msl": 1.2299,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "secondary_bracket_span_minutes": 472.0
+      },
+      {
+        "year": 2024,
+        "date": "2024-02-15",
+        "scene_id": "S2B_MSIL2A_20240215T033839_R061_T47PNQ_20240215T081344",
+        "tide_level_m_msl": 1.1037,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "secondary_bracket_span_minutes": 442.0
+      },
+      {
+        "year": 2025,
+        "date": "2025-02-14",
+        "scene_id": "S2C_MSIL2A_20250214T033901_R061_T47PNQ_20250214T090512",
+        "tide_level_m_msl": 0.8849,
+        "tide_status": "modelled_secondary_extrema_cosine",
+        "tide_source_tier": "secondary_published_extrema",
+        "secondary_bracket_span_minutes": 380.0
+      },
+      {
+        "year": 2026,
+        "date": "2026-01-30",
+        "scene_id": "S2C_MSIL2A_20260130T034001_R061_T47PNQ_20260130T081910",
+        "tide_level_m_msl": 1.133,
+        "tide_status": "predicted_interpolated",
+        "tide_source_tier": "official_hourly_prediction",
+        "secondary_bracket_span_minutes": null
+      }
+    ],
+    "scientific_limit": "Predicted station tide is matched, but the residual 0.345 m spread is not converted to horizontal distance because local intertidal slope and water-level observations are unavailable."
+  },
+  "indicators": {
+    "waterline": {
+      "role": "SUPPORTING_ONLY",
+      "definition": "MNDWI image-derived waterline from one comparable-tide Sentinel-2 acquisition per year",
+      "transect_count": 294,
+      "classified_transect_count": 294,
+      "median_nsm_2023_2026_m": 0.0,
+      "median_epr_2023_2026_m_per_year": 0.0,
+      "median_lrr_m_per_year": 0.0,
+      "class_counts": {
+        "APPARENT_LANDWARD": 16,
+        "APPARENT_SEAWARD": 65,
+        "WITHIN_20M": 213
+      }
+    },
+    "mangrove_edge_proxy": {
+      "role": "PRIMARY_SCREENING",
+      "definition": "seaward edge of fixed NDVI >=0.35 vegetation proxy from January-April median Sentinel-2 composites",
+      "area_ha_by_year": {
+        "2023": 814.98,
+        "2024": 979.17,
+        "2025": 984.17,
+        "2026": 1059.05
+      },
+      "transect_count": 294,
+      "classified_transect_count": 294,
+      "median_nsm_2023_2026_m": 20.0,
+      "median_epr_2023_2026_m_per_year": 6.67,
+      "median_lrr_m_per_year": 6.0,
+      "class_counts": {
+        "APPARENT_LANDWARD": 16,
+        "APPARENT_SEAWARD": 140,
+        "WITHIN_20M": 138
+      }
+    }
+  },
+  "transects": {
+    "spacing_m": 50.0,
+    "half_length_m": 1500.0,
+    "total_count": 1386,
+    "treatment_count": 294,
+    "candidate_pool_count": 1092,
+    "treatment_count_by_plot": {
+      "91-STC": 109,
+      "92-STC": 59,
+      "93-STC": 48,
+      "94-STC": 20,
+      "95-STC": 22,
+      "96-STC": 6,
+      "97-STC": 19,
+      "98-STC": 11
+    },
+    "plots_without_treatment_transects": [
+      "87-VSD"
+    ],
+    "position_convention": "metres relative to the 2026 selected-scene waterline; positive is seaward",
+    "screening_threshold_m": 20.0,
+    "plots_without_treatment_transects_explained_by_eligibility": [
+      "87-VSD"
+    ],
+    "unresolved_missing_treatment_plot_ids": []
+  },
+  "controls": {
+    "status": "CANDIDATE_UNVERIFIED",
+    "target_count_per_plot": 3,
+    "selected_count": 24,
+    "selected_count_by_plot": {
+      "91-STC": 3,
+      "92-STC": 3,
+      "93-STC": 3,
+      "94-STC": 3,
+      "95-STC": 3,
+      "96-STC": 3,
+      "97-STC": 3,
+      "98-STC": 3
+    },
+    "selection_basis": "nearby transects outside a 150 m project exclusion buffer, matched on distance and 2023-2024 indicator movement",
+    "unverified_factors": [
+      "coastal structures",
+      "dredging or reclamation",
+      "other planting history",
+      "field geomorphology"
+    ],
+    "screenable_plot_ids": [
+      "91-STC",
+      "92-STC",
+      "93-STC",
+      "94-STC",
+      "95-STC",
+      "96-STC",
+      "97-STC",
+      "98-STC"
+    ],
+    "screenable_plots_without_candidate_controls": []
+  },
+  "per_plot": [
+    {
+      "plot_id": "91-STC",
+      "official_participating_area_rai": 279.433438,
+      "waterline": {
+        "treatment_transect_count": 109,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "WITHIN_20M": 82,
+          "APPARENT_SEAWARD": 24,
+          "APPARENT_LANDWARD": 3
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 109,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 20.0,
+        "candidate_control_median_nsm_2023_2026_m": 20.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "APPARENT_SEAWARD": 51,
+          "APPARENT_LANDWARD": 7,
+          "WITHIN_20M": 51
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 109,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "92-STC",
+      "official_participating_area_rai": 98.94,
+      "waterline": {
+        "treatment_transect_count": 59,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "WITHIN_20M": 47,
+          "APPARENT_SEAWARD": 8,
+          "APPARENT_LANDWARD": 4
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 59,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 24.69,
+        "candidate_control_median_nsm_2023_2026_m": 20.0,
+        "screening_difference_m": 4.69,
+        "class_counts": {
+          "WITHIN_20M": 20,
+          "APPARENT_SEAWARD": 35,
+          "APPARENT_LANDWARD": 4
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 59,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "93-STC",
+      "official_participating_area_rai": 79.018438,
+      "waterline": {
+        "treatment_transect_count": 48,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "WITHIN_20M": 36,
+          "APPARENT_SEAWARD": 11,
+          "APPARENT_LANDWARD": 1
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 48,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 20.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 20.0,
+        "class_counts": {
+          "WITHIN_20M": 25,
+          "APPARENT_SEAWARD": 22,
+          "APPARENT_LANDWARD": 1
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 48,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "94-STC",
+      "official_participating_area_rai": 30.660625,
+      "waterline": {
+        "treatment_transect_count": 20,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "APPARENT_SEAWARD": 3,
+          "WITHIN_20M": 13,
+          "APPARENT_LANDWARD": 4
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 20,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 20.0,
+        "candidate_control_median_nsm_2023_2026_m": 20.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "APPARENT_SEAWARD": 6,
+          "WITHIN_20M": 12,
+          "APPARENT_LANDWARD": 2
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 20,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "95-STC",
+      "official_participating_area_rai": 22.914375,
+      "waterline": {
+        "treatment_transect_count": 22,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "WITHIN_20M": 15,
+          "APPARENT_LANDWARD": 3,
+          "APPARENT_SEAWARD": 4
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 22,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 20.0,
+        "candidate_control_median_nsm_2023_2026_m": 20.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "APPARENT_SEAWARD": 10,
+          "WITHIN_20M": 12
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 22,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "96-STC",
+      "official_participating_area_rai": 5.149375,
+      "waterline": {
+        "treatment_transect_count": 6,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 7.08,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 7.08,
+        "class_counts": {
+          "WITHIN_20M": 4,
+          "APPARENT_SEAWARD": 2
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 6,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "APPARENT_SEAWARD": 2,
+          "WITHIN_20M": 4
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 6,
+        "distance_to_2026_waterline_m": 2.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "97-STC",
+      "official_participating_area_rai": 15.959063,
+      "waterline": {
+        "treatment_transect_count": 19,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 20.05,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 20.05,
+        "class_counts": {
+          "WITHIN_20M": 9,
+          "APPARENT_SEAWARD": 10
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 19,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 20.0,
+        "candidate_control_median_nsm_2023_2026_m": 20.05,
+        "screening_difference_m": -0.05,
+        "class_counts": {
+          "WITHIN_20M": 8,
+          "APPARENT_SEAWARD": 9,
+          "APPARENT_LANDWARD": 2
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 19,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "98-STC",
+      "official_participating_area_rai": 3.59,
+      "waterline": {
+        "treatment_transect_count": 11,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 0.0,
+        "candidate_control_median_nsm_2023_2026_m": 0.0,
+        "screening_difference_m": 0.0,
+        "class_counts": {
+          "WITHIN_20M": 7,
+          "APPARENT_SEAWARD": 3,
+          "APPARENT_LANDWARD": 1
+        }
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 11,
+        "candidate_control_count": 3,
+        "median_nsm_2023_2026_m": 12.87,
+        "candidate_control_median_nsm_2023_2026_m": 20.04,
+        "screening_difference_m": -7.17,
+        "class_counts": {
+          "WITHIN_20M": 6,
+          "APPARENT_SEAWARD": 5
+        }
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "COASTAL_FRONTAGE_SCREENABLE",
+        "coastal_erosion_scope": "INCLUDED_IN_COASTAL_SCREENING",
+        "treatment_transect_count": 11,
+        "distance_to_2026_waterline_m": 0.0,
+        "required_follow_up": "verify candidate controls and validate edge with repeated UAV/field data"
+      }
+    },
+    {
+      "plot_id": "87-VSD",
+      "official_participating_area_rai": 92.92,
+      "waterline": {
+        "treatment_transect_count": 0,
+        "candidate_control_count": 0,
+        "median_nsm_2023_2026_m": null,
+        "candidate_control_median_nsm_2023_2026_m": null,
+        "screening_difference_m": null,
+        "class_counts": {}
+      },
+      "mangrove_edge_proxy": {
+        "treatment_transect_count": 0,
+        "candidate_control_count": 0,
+        "median_nsm_2023_2026_m": null,
+        "candidate_control_median_nsm_2023_2026_m": null,
+        "screening_difference_m": null,
+        "class_counts": {}
+      },
+      "coastal_eligibility": {
+        "eligibility_status": "NO_COASTAL_WATERLINE_WITHIN_ANALYSIS_RANGE",
+        "coastal_erosion_scope": "EXCLUDED_FROM_COASTAL_SCREENING",
+        "treatment_transect_count": 0,
+        "distance_to_2026_waterline_m": 8165.85,
+        "required_follow_up": "treat as a possible canal/bank or inland setting; use UAV/field BANK_EDGE evidence before making any erosion claim"
+      }
+    }
+  ],
+  "screening_control_comparison": [
+    {
+      "plot_id": "91-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 109,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "91-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 109,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 20.0,
+      "control_median_nsm_2023_2026_m": 20.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "92-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 59,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "92-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 59,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 24.69,
+      "control_median_nsm_2023_2026_m": 20.0,
+      "screening_difference_m": 4.69,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "93-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 48,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "93-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 48,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 20.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 20.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "94-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 20,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "94-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 20,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 20.0,
+      "control_median_nsm_2023_2026_m": 20.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "95-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 22,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "95-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 22,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 20.0,
+      "control_median_nsm_2023_2026_m": 20.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "96-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 6,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 7.08,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 7.08,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "96-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 6,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "97-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 19,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 20.05,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 20.05,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "97-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 19,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 20.0,
+      "control_median_nsm_2023_2026_m": 20.05,
+      "screening_difference_m": -0.05,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "98-STC",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 11,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 0.0,
+      "control_median_nsm_2023_2026_m": 0.0,
+      "screening_difference_m": 0.0,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "98-STC",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 11,
+      "candidate_control_count": 3,
+      "treatment_median_nsm_2023_2026_m": 12.87,
+      "control_median_nsm_2023_2026_m": 20.04,
+      "screening_difference_m": -7.17,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "87-VSD",
+      "indicator": "WATERLINE",
+      "treatment_transect_count": 0,
+      "candidate_control_count": 0,
+      "treatment_median_nsm_2023_2026_m": null,
+      "control_median_nsm_2023_2026_m": null,
+      "screening_difference_m": null,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    },
+    {
+      "plot_id": "87-VSD",
+      "indicator": "MANGROVE_EDGE_PROXY",
+      "treatment_transect_count": 0,
+      "candidate_control_count": 0,
+      "treatment_median_nsm_2023_2026_m": null,
+      "control_median_nsm_2023_2026_m": null,
+      "screening_difference_m": null,
+      "interpretation": "positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate",
+      "confidence": "LOW"
+    }
+  ],
+  "limitations": [
+    "วันปลูกและวันปลูกซ่อมรายแปลงยังไม่ได้รับการยืนยัน",
+    "ระดับน้ำปี 2023-2025 เป็นค่าประมาณระหว่างจุดน้ำขึ้นลงจากแหล่ง ทุติยภูมิที่ตรวจเทียบกับข้อมูลทางการปี 2026 แล้ว",
+    "WATERLINE เป็นการคัดภาพที่ระดับน้ำใกล้กัน ไม่ใช่การปรับแนวน้ำ ให้เป็นระดับอ้างอิงเดียวกัน",
+    "Sentinel-2 วิเคราะห์บนกริด 20 เมตร; การเปลี่ยนแปลงภายใน ±20 เมตรไม่ควรตีความทิศทาง",
+    "MANGROVE_EDGE_PROXY เป็นขอบพืชจาก NDVI ไม่ใช่การจำแนก ป่าชายเลนที่ผ่าน confusion-matrix validation",
+    "candidate controls ยังไม่ได้ตรวจภาคสนามเรื่องโครงสร้าง การขุดลอก การถม และประวัติปลูก",
+    "ไม่มีระดับน้ำที่วัด ณ แปลง ไม่มี DEM ความลาดหาด และไม่มี แนวชายฝั่งจาก RTK/UAV สำหรับตรวจสอบความคลาดเคลื่อน",
+    "แปลงที่ไม่มีแนวน้ำชายฝั่งภายในระยะวิเคราะห์จะไม่ถูกนำไปรวมในผลการกัดเซาะชายฝั่ง และต้องประเมินขอบตลิ่งหรือขอบคลองแยกด้วยโดรน/ภาคสนาม"
+  ],
+  "source_data": {
+    "plots": "data/aoi/samut_songkhram_project_plots.geojson",
+    "analysis_aoi": "data/aoi/samut_songkhram_project_analysis_aoi.geojson",
+    "tide_matched_catalog": "data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv",
+    "scene_selection_audit": "data/processed/project_tide_aware/scene_selection_audit.csv"
+  },
+  "coastal_eligibility": {
+    "method": "plot has at least one transect intersecting the project geometry; otherwise distance to the 2026 tide-screened image-derived waterline is compared with the analysis range",
+    "reference_year": 2026,
+    "reference_indicator": "WATERLINE",
+    "maximum_frontage_distance_m": 3500.0,
+    "screenable_plot_count": 8,
+    "screenable_plot_ids": [
+      "91-STC",
+      "92-STC",
+      "93-STC",
+      "94-STC",
+      "95-STC",
+      "96-STC",
+      "97-STC",
+      "98-STC"
+    ],
+    "excluded_plot_count": 1,
+    "excluded_plot_ids": [
+      "87-VSD"
+    ],
+    "manual_review_plot_count": 0,
+    "manual_review_plot_ids": [],
+    "output_csv": "data/processed/project_tide_aware/plot_coastal_eligibility.csv",
+    "scientific_limit": "This is an applicability gate, not evidence that planting reduced erosion. Excluded plots may require a separate BANK_EDGE analysis using UAV or field data."
+  }
+}

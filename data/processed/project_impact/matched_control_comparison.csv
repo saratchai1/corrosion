@@ -1,0 +1,5 @@
+year,period_role,impact_mean_ndvi,control_mean_ndvi,impact_vegetation_fraction,control_vegetation_fraction,impact_water_fraction,control_water_fraction,impact_pixel_count,matched_control_pixel_count
+2023,pre,0.40349,0.39297,0.91127,0.85177,0.00785,0.0,2547,5876
+2024,intervention_ambiguous,0.44898,0.43419,0.95289,0.93499,0.00275,0.0,2547,5876
+2025,post,0.46378,0.45824,0.9576,0.95728,0.00628,0.00102,2547,5876
+2026,post,0.4723,0.45644,0.97252,0.95609,0.00432,0.00153,2547,5876

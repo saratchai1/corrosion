@@ -1,0 +1,19 @@
+plot_id,indicator,treatment_transect_count,candidate_control_count,treatment_median_nsm_2023_2026_m,control_median_nsm_2023_2026_m,screening_difference_m,interpretation,confidence
+91-STC,WATERLINE,109,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+91-STC,MANGROVE_EDGE_PROXY,109,3,20.0,20.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+92-STC,WATERLINE,59,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+92-STC,MANGROVE_EDGE_PROXY,59,3,24.69,20.0,4.69,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+93-STC,WATERLINE,48,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+93-STC,MANGROVE_EDGE_PROXY,48,3,20.0,0.0,20.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+94-STC,WATERLINE,20,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+94-STC,MANGROVE_EDGE_PROXY,20,3,20.0,20.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+95-STC,WATERLINE,22,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+95-STC,MANGROVE_EDGE_PROXY,22,3,20.0,20.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+96-STC,WATERLINE,6,3,7.08,0.0,7.08,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+96-STC,MANGROVE_EDGE_PROXY,6,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+97-STC,WATERLINE,19,3,20.05,0.0,20.05,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+97-STC,MANGROVE_EDGE_PROXY,19,3,20.0,20.05,-0.05,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+98-STC,WATERLINE,11,3,0.0,0.0,0.0,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+98-STC,MANGROVE_EDGE_PROXY,11,3,12.87,20.04,-7.17,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+87-VSD,WATERLINE,0,0,,,,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW
+87-VSD,MANGROVE_EDGE_PROXY,0,0,,,,positive means project edge moved more seaward (or less landward) than unverified nearby candidate controls; not a causal estimate,LOW

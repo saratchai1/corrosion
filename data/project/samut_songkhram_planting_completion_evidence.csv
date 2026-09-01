@@ -1,0 +1,4 @@
+plot_id,province,area_rai,pdd_area_rai,planting_start_date,planting_completion_date,source_type,source_note,evidence_status
+91-STC,สมุทรสงคราม,279.43,279.43,,2024-09-24,PROJECT_SPREADSHEET_SCREENSHOT,"User-supplied project spreadsheet screenshot received 2026-08-31; visible row shows planting completion date. Planting start cell is not supported by the supplied crop.",COMPLETION_DATE_VERIFIED_START_UNKNOWN
+97-STC,สมุทรสงคราม,15.96,15.96,,2024-09-20,PROJECT_SPREADSHEET_SCREENSHOT,"User-supplied project spreadsheet screenshot received 2026-08-31; visible row shows planting completion date. Planting start cell is not supported by the supplied crop.",COMPLETION_DATE_VERIFIED_START_UNKNOWN
+98-STC,สมุทรสงคราม,3.59,3.59,,2024-09-15,PROJECT_SPREADSHEET_SCREENSHOT,"User-supplied project spreadsheet screenshot received 2026-08-31; visible row shows planting completion date. Planting start cell is not supported by the supplied crop.",COMPLETION_DATE_VERIFIED_START_UNKNOWN

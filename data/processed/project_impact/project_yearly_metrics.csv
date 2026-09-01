@@ -1,0 +1,5 @@
+total_pixel_count,valid_pixel_count,valid_fraction,mean_ndvi,median_ndvi,ndvi_p25,ndvi_p75,vegetation_fraction_ndvi_gte_0_35,strong_vegetation_fraction_ndvi_gte_0_50,mean_mndwi,median_mndwi,water_fraction_mndwi_gt_0,pixel_confidence,year,period_role,scene_dates,scene_count,sensor
+2547,2547,1.0,0.40349,0.4102,0.38863,0.42964,0.91127,0.00196,-0.12096,-0.12722,0.00785,LOW,2023,pre,2023-01-16;2023-03-07;2023-04-21,3,Sentinel-2A;Sentinel-2B
+2547,2547,1.0,0.44898,0.45708,0.43004,0.48556,0.95289,0.12014,-0.16044,-0.16592,0.00275,LOW,2024,intervention_ambiguous,2024-02-15;2024-03-31;2024-04-30,3,Sentinel-2A;Sentinel-2B
+2547,2547,1.0,0.46378,0.47419,0.45168,0.49239,0.9576,0.16451,-0.14917,-0.15331,0.00628,LOW,2025,post,2025-01-15;2025-02-14;2025-03-26,3,Sentinel-2A;Sentinel-2C
+2547,2547,1.0,0.4723,0.48239,0.46333,0.49781,0.97252,0.22144,-0.15309,-0.15734,0.00432,LOW,2026,post,2026-01-30;2026-03-01;2026-04-05,3,Sentinel-2B;Sentinel-2C

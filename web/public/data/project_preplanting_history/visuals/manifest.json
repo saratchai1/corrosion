@@ -1,0 +1,53 @@
+{
+  "default_view": "focus",
+  "default_mode": "rgb",
+  "views": {
+    "focus": {
+      "label_th": "โฟกัส 91–98 STC",
+      "description_th": "ขยายแนวชายฝั่งด้านหน้าแปลงที่ใช้คำนวณ 294 transects"
+    },
+    "full": {
+      "label_th": "เต็มพื้นที่ 9 แปลง",
+      "description_th": "แสดงตำแหน่ง 87-VSD เทียบกับกลุ่มแปลงชายฝั่ง 91–98 STC"
+    }
+  },
+  "modes": {
+    "rgb": {
+      "label_th": "สีจริง RGB",
+      "short_th": "สีจริง",
+      "description_th": "สีใกล้เคียงที่ตาเห็น ใช้ดูตำแหน่ง เมือง คลอง และรูปทรงชายฝั่ง",
+      "evidence_role": "ORIENTATION"
+    },
+    "false_vegetation": {
+      "label_th": "สีเทียมพืช NIR–R–G",
+      "short_th": "พืชสีแดง",
+      "description_th": "พืชแข็งแรงสะท้อน NIR สูงและปรากฏเป็นสีแดง เหมาะกับการดูขอบพืชชายฝั่ง",
+      "evidence_role": "MANGROVE_EDGE_SUPPORT"
+    },
+    "ndvi": {
+      "label_th": "NDVI ความเขียว",
+      "short_th": "NDVI",
+      "description_th": "น้ำและพื้นเปลือยเป็นสีน้ำเงิน–น้ำตาล พืชหนาแน่นเป็นสีเขียวเข้ม",
+      "evidence_role": "MANGROVE_EDGE_PRIMARY_SCREENING"
+    },
+    "mndwi": {
+      "label_th": "MNDWI น้ำ–แผ่นดิน",
+      "short_th": "MNDWI",
+      "description_th": "น้ำที่ตอบสนองสูงเป็นสีน้ำเงิน ใช้สนับสนุนการสกัดขอบน้ำจาก Green และ SWIR1",
+      "evidence_role": "WATERLINE_PRIMARY_SPECTRAL_VIEW"
+    },
+    "swir": {
+      "label_th": "SWIR–NIR–Red ความชื้น",
+      "short_th": "SWIR",
+      "description_th": "ช่วยแยกน้ำ พื้นชื้น ดินเปิด และพืช โดยไม่ตีความเป็นปริมาณตะกอน",
+      "evidence_role": "MOISTURE_AND_WET_SOIL_SUPPORT"
+    }
+  },
+  "image_count": 100,
+  "overlay_count": 20,
+  "raster_presentation": "CLEAN_NO_BAKED_LABELS_OR_BOUNDARIES",
+  "map_overlay_model": "WEB_SVG_LAYER",
+  "background_source": "Annual January-April Sentinel-2 context composite used only for geographic orientation.",
+  "analysis_overlay_source": "Exact selected Sentinel-2 scene used by the pre-planting evidence catalog; transparent outside valid project-AOI pixels.",
+  "scientific_guard_th": "สี RGB/False colour/NDVI/MNDWI/SWIR ช่วยอ่านรูปแบบเชิงสเปกตรัม แต่ไม่เพิ่มระดับข้อสรุปเชิงเหตุ–ผล และไม่ใช่ข้อมูลตะกอนหรือคลื่น"
+}

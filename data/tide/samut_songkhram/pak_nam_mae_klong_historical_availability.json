@@ -1,0 +1,1029 @@
+{
+  "generated_at_utc": "2026-08-30T14:03:51.946760+00:00",
+  "station": "Pak Nam Mae Klong",
+  "requested_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "complete_years": [
+    2020,
+    2021,
+    2022
+  ],
+  "incomplete_years": [
+    2017,
+    2018,
+    2019
+  ],
+  "year_results": [
+    {
+      "year": 2017,
+      "status": "INCOMPLETE",
+      "available_month_count": 0,
+      "missing_or_invalid_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "event_count": 0,
+      "sentinel_months": [
+        1,
+        7
+      ],
+      "sentinel_short_circuit_used": true,
+      "months": [
+        {
+          "month": 1,
+          "status": "UNAVAILABLE_OR_INVALID",
+          "error_type": "ValueError",
+          "error": "no extrema found for 2017-01"
+        },
+        {
+          "month": 2,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 3,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 4,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 5,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 6,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 7,
+          "status": "UNAVAILABLE_OR_INVALID",
+          "error_type": "ValueError",
+          "error": "no extrema found for 2017-07"
+        },
+        {
+          "month": 8,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 9,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 10,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 11,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 12,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        }
+      ]
+    },
+    {
+      "year": 2018,
+      "status": "INCOMPLETE",
+      "available_month_count": 0,
+      "missing_or_invalid_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "event_count": 0,
+      "sentinel_months": [
+        1,
+        7
+      ],
+      "sentinel_short_circuit_used": true,
+      "months": [
+        {
+          "month": 1,
+          "status": "UNAVAILABLE_OR_INVALID",
+          "error_type": "ValueError",
+          "error": "no extrema found for 2018-01"
+        },
+        {
+          "month": 2,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 3,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 4,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 5,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 6,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 7,
+          "status": "UNAVAILABLE_OR_INVALID",
+          "error_type": "ValueError",
+          "error": "no extrema found for 2018-07"
+        },
+        {
+          "month": 8,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 9,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 10,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 11,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 12,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "status": "INCOMPLETE",
+      "available_month_count": 0,
+      "missing_or_invalid_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "event_count": 0,
+      "sentinel_months": [
+        1,
+        7
+      ],
+      "sentinel_short_circuit_used": true,
+      "months": [
+        {
+          "month": 1,
+          "status": "UNAVAILABLE_OR_INVALID",
+          "error_type": "ValueError",
+          "error": "no extrema found for 2019-01"
+        },
+        {
+          "month": 2,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 3,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 4,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 5,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 6,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 7,
+          "status": "UNAVAILABLE_OR_INVALID",
+          "error_type": "ValueError",
+          "error": "no extrema found for 2019-07"
+        },
+        {
+          "month": 8,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 9,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 10,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 11,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        },
+        {
+          "month": 12,
+          "status": "NOT_PROBED_AFTER_SENTINEL_FAILURE",
+          "reason": "A complete year requires all 12 months; January or July was unavailable or invalid."
+        }
+      ]
+    },
+    {
+      "year": 2020,
+      "status": "COMPLETE",
+      "available_month_count": 12,
+      "missing_or_invalid_months": [],
+      "event_count": 1272,
+      "sentinel_months": [
+        1,
+        7
+      ],
+      "sentinel_short_circuit_used": false,
+      "months": [
+        {
+          "month": 1,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 104,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-01-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-01-474.php",
+          "sha256": "bc645f9e55f8af23c364015c2f8cf16cf513fc9a7b5d584b89694bc0fdacd46e",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.41667
+          }
+        },
+        {
+          "month": 2,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 94,
+          "day_count": 29,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-02-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-02-474.php",
+          "sha256": "99182b47cb00d60cee5ef57e83abc898580765dc92ffea9f6539508448e40990",
+          "coverage_qa": {
+            "days_in_month": 29,
+            "reported_day_count": 29,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 29,
+            "maximum_intra_month_event_gap_hours": 17.48333
+          }
+        },
+        {
+          "month": 3,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 110,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-03-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-03-474.php",
+          "sha256": "224794b4e966a97a27a6a9907881decd0e23a27c0894aa2ae9bd0750592ff733",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.16667
+          }
+        },
+        {
+          "month": 4,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 107,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-04-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-04-474.php",
+          "sha256": "0ec5e374327cac07b1b23692bc7d9d476d7477e83471022e829fa2e2cfd50680",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.1
+          }
+        },
+        {
+          "month": 5,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 112,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-05-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-05-474.php",
+          "sha256": "63f3f55646654e159350016c54eef5fce4eb81c90929586b0ce9a2f0cf4e044c",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.35
+          }
+        },
+        {
+          "month": 6,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 116,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-06-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-06-474.php",
+          "sha256": "94edcfef5173fbd3db18b494fe1b04c8fba4cbf22eeb1173c0ed9f2ed692b211",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 9.66667
+          }
+        },
+        {
+          "month": 7,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 99,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-07-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-07-474.php",
+          "sha256": "4b7afb8b42cf5f22aa8ea3aa0c7754c482917cb205d5687f37259e4fc7945fb6",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.76667
+          }
+        },
+        {
+          "month": 8,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 96,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-08-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-08-474.php",
+          "sha256": "fcf0501467be3c5389a891915c232f6e47209875fe7110673eda7cb90ce0d6ca",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.11667
+          }
+        },
+        {
+          "month": 9,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 102,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-09-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-09-474.php",
+          "sha256": "418019a5976fde717245e7f2fd7d27220a3a12a9c7f56b14b7abe9b42f103650",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 16.73333
+          }
+        },
+        {
+          "month": 10,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 110,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-10-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-10-474.php",
+          "sha256": "1b12bffc9ed769fc881678adb51e73a7e7554c39af8dfe7726076329f132ae8c",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.38333
+          }
+        },
+        {
+          "month": 11,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 108,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-11-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-11-474.php",
+          "sha256": "970102e30541541bbabb13e246e478c8584616b9e2a2f8f20f5c554eb619ef8f",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.13333
+          }
+        },
+        {
+          "month": 12,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 114,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-12-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2020-12-474.php",
+          "sha256": "2b62d4daf51571c09d7676aed42d5ab1500404465fc7889cee732d20c86789ee",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 16.55
+          }
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "status": "COMPLETE",
+      "available_month_count": 12,
+      "missing_or_invalid_months": [],
+      "event_count": 1217,
+      "sentinel_months": [
+        1,
+        7
+      ],
+      "sentinel_short_circuit_used": false,
+      "months": [
+        {
+          "month": 1,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 98,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-01-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-01-474.php",
+          "sha256": "78af524400317d0b27534c25fb7af762a528b26baa6e34cf4b10b298f2664cc9",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.65
+          }
+        },
+        {
+          "month": 2,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 88,
+          "day_count": 28,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-02-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-02-474.php",
+          "sha256": "e7c4f0b2b236659b6f5f8d3c44b15627f37f0b270ef3f1d71d9c7389eb3c0fba",
+          "coverage_qa": {
+            "days_in_month": 28,
+            "reported_day_count": 28,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 28,
+            "maximum_intra_month_event_gap_hours": 17.41667
+          }
+        },
+        {
+          "month": 3,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 106,
+          "day_count": 29,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-03-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-03-474.php",
+          "sha256": "729d4278eb249eb2c807e034f3e0232dde040d1eb2ea13b7e7839514e8dff9bc",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 29,
+            "day_coverage_fraction": 0.93548,
+            "missing_days": [
+              14,
+              15
+            ],
+            "longest_missing_day_run": 2,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 54.75
+          }
+        },
+        {
+          "month": 4,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 104,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-04-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-04-474.php",
+          "sha256": "aebcd617720b40fe703dac9e308a30eb0d74c698dcd4d253f27133d803c4650b",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.18333
+          }
+        },
+        {
+          "month": 5,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 110,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-05-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-05-474.php",
+          "sha256": "60f7d6a3ad36a8c4528613d362ca57f13540577ad2f3499efb12cdd7fb9f0749",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.03333
+          }
+        },
+        {
+          "month": 6,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 106,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-06-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-06-474.php",
+          "sha256": "cfa647ea284fe450c3ead68f2e60e97b60bdd1c4b407c8268e840e50f4f32f9b",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.81667
+          }
+        },
+        {
+          "month": 7,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 98,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-07-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-07-474.php",
+          "sha256": "ae84a4e7128a405ed4c0c550040fc97bcd922053f0582eda00d003b476641b01",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.71667
+          }
+        },
+        {
+          "month": 8,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 94,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-08-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-08-474.php",
+          "sha256": "dfad4260515e3c22f12dffdebb20333d37b75750627ee51d5850975152e0a922",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.55
+          }
+        },
+        {
+          "month": 9,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 100,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-09-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-09-474.php",
+          "sha256": "f278b2a197e1c19e838fbe40181fdd6cd8878d665c48c46074a8bc26c3c09928",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 16.71667
+          }
+        },
+        {
+          "month": 10,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 99,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-10-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-10-474.php",
+          "sha256": "a5f9000562d898f7d8d66e549fec2a7dfa65513798f3ea3b4f762c49d0c122f0",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.23333
+          }
+        },
+        {
+          "month": 11,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 104,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-11-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-11-474.php",
+          "sha256": "8bb7f6a49bfe18af8aadb9f91dbc5e50248728c59fa1db882062bc209f768912",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.46667
+          }
+        },
+        {
+          "month": 12,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 110,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-12-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2021-12-474.php",
+          "sha256": "af38921499b8548fa2b6c5228c0454689b87e1e59c9d56cbb65f10f0888b68bc",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.95
+          }
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "status": "COMPLETE",
+      "available_month_count": 12,
+      "missing_or_invalid_months": [],
+      "event_count": 1211,
+      "sentinel_months": [
+        1,
+        7
+      ],
+      "sentinel_short_circuit_used": false,
+      "months": [
+        {
+          "month": 1,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 91,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-01-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-01-474.php",
+          "sha256": "f0eaf29a8de26e55668886acb28cde6154bc6a3254e1713f7c2431c80d4515df",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.66667
+          }
+        },
+        {
+          "month": 2,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 91,
+          "day_count": 28,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-02-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-02-474.php",
+          "sha256": "11b156a2321706085d232624374f27bebf8f85eff1580f205183ef22de1290da",
+          "coverage_qa": {
+            "days_in_month": 28,
+            "reported_day_count": 28,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 28,
+            "maximum_intra_month_event_gap_hours": 17.31667
+          }
+        },
+        {
+          "month": 3,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 104,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-03-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-03-474.php",
+          "sha256": "3122bbfd64c1cd7c7a2e7729909ddfcb7db01214c3b214dc75d889814c4b7854",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.18333
+          }
+        },
+        {
+          "month": 4,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 102,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-04-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-04-474.php",
+          "sha256": "fa17f93cdb2d94043d7c46f43566ba58d3b4f4cc0e00fc4dd7a44e1519cf9187",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.46667
+          }
+        },
+        {
+          "month": 5,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 105,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-05-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-05-474.php",
+          "sha256": "8f46da7d30040f1b124fbdfce0619b7725cb4738750e5633a810341dd41101c6",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 0.96774,
+            "missing_days": [
+              31
+            ],
+            "longest_missing_day_run": 1,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.65
+          }
+        },
+        {
+          "month": 6,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 106,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-06-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-06-474.php",
+          "sha256": "98bd4c8846964e598fdac8415c0c723d411c0385c8b89f6e7050617549730169",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.83333
+          }
+        },
+        {
+          "month": 7,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 100,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-07-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-07-474.php",
+          "sha256": "ab337a524af7ee4f7608d4f174b33e81a2cf17cdfde183707a6699d9dfbf5a32",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.56667
+          }
+        },
+        {
+          "month": 8,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 102,
+          "day_count": 31,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-08-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-08-474.php",
+          "sha256": "6376afef497e2c49142b1451a0d0e8ac71347286132004f08c56ab9cb3df9555",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 31,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 31,
+            "maximum_intra_month_event_gap_hours": 17.3
+          }
+        },
+        {
+          "month": 9,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 102,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-09-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-09-474.php",
+          "sha256": "a7e010221447bac828d47c7f98f001016bbd45a364a2356a73e9f6280ee515a8",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.03333
+          }
+        },
+        {
+          "month": 10,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 108,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-10-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-10-474.php",
+          "sha256": "b14eea3915deffaf9d1fb4e7cdd98ace63d3119b451fadf127cd4a322a934756",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 0.96774,
+            "missing_days": [
+              31
+            ],
+            "longest_missing_day_run": 1,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 16.9
+          }
+        },
+        {
+          "month": 11,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 98,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-11-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-11-474.php",
+          "sha256": "1d1bc56c4727c3f1b13e81335a2a0432204881a997c84c333e528790d904fb75",
+          "coverage_qa": {
+            "days_in_month": 30,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 1.0,
+            "missing_days": [],
+            "longest_missing_day_run": 0,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.61667
+          }
+        },
+        {
+          "month": 12,
+          "status": "AVAILABLE_VALIDATED",
+          "event_count": 102,
+          "day_count": 30,
+          "source_url": "https://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-12-474.php",
+          "retrieval_url": "https://r.jina.ai/http://www.thailandtidetables.com/tide-tables-pak-nam-mae-klong-samut-songkhram-year-2022-12-474.php",
+          "sha256": "2920697c53f62606baf2ec7736e9478e039a4a43b941671398c9ff96361ddd44",
+          "coverage_qa": {
+            "days_in_month": 31,
+            "reported_day_count": 30,
+            "day_coverage_fraction": 0.96774,
+            "missing_days": [
+              31
+            ],
+            "longest_missing_day_run": 1,
+            "first_reported_day": 1,
+            "last_reported_day": 30,
+            "maximum_intra_month_event_gap_hours": 17.86667
+          }
+        }
+      ]
+    }
+  ],
+  "acceptance_rule": "A year is usable only when all 12 monthly pages pass station/month identity, event coverage and continuity checks.",
+  "probe_strategy": "January and July are probed first; a failure short-circuits the remaining months because the year cannot meet the all-month rule.",
+  "scientific_limit": "Availability of published extrema does not make them observed water levels. Scene-time values remain screening estimates interpolated between secondary published extrema."
+}

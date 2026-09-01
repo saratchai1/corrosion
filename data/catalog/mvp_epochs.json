@@ -1,0 +1,122 @@
+{
+  "description": "Historical optical epochs for the coastal-change MVP",
+  "tide_status": "unverified",
+  "epochs": [
+    {
+      "target_year": 1985,
+      "actual_year": 1987,
+      "dataset": "landsat",
+      "count": 2
+    },
+    {
+      "target_year": 1990,
+      "actual_year": 1990,
+      "dataset": "landsat",
+      "count": 3
+    },
+    {
+      "target_year": 2000,
+      "actual_year": 2000,
+      "dataset": "landsat",
+      "count": 3
+    },
+    {
+      "target_year": 2010,
+      "actual_year": 2009,
+      "dataset": "landsat",
+      "count": 3,
+      "platforms": "landsat-5",
+      "quality_pool_multiplier": 4
+    },
+    {
+      "target_year": 2017,
+      "actual_year": 2017,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2017-01-01",
+      "end": "2017-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2018,
+      "actual_year": 2018,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2018-01-01",
+      "end": "2018-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2019,
+      "actual_year": 2019,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2019-01-01",
+      "end": "2019-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2020,
+      "actual_year": 2020,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2020-01-01",
+      "end": "2020-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2021,
+      "actual_year": 2021,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2021-01-01",
+      "end": "2021-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2022,
+      "actual_year": 2022,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2022-01-01",
+      "end": "2022-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2023,
+      "actual_year": 2023,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2023-01-01",
+      "end": "2023-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2024,
+      "actual_year": 2024,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2024-01-01",
+      "end": "2024-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2025,
+      "actual_year": 2025,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2025-01-01",
+      "end": "2025-04-30",
+      "quality_pool_multiplier": 3
+    },
+    {
+      "target_year": 2026,
+      "actual_year": 2026,
+      "dataset": "sentinel2",
+      "count": 3,
+      "start": "2026-01-01",
+      "end": "2026-04-30",
+      "quality_pool_multiplier": 3
+    }
+  ]
+}

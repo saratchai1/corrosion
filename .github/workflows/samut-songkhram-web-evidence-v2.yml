@@ -1,0 +1,70 @@
+name: Validate Samut Songkhram evidence web v2
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-web-evidence-v2
+    paths:
+      - 'web/src/App.tsx'
+      - 'web/src/TideAwareOverview.tsx'
+      - 'web/src/TideAwareDashboard.tsx'
+      - 'web/src/tideAwareOverview.css'
+      - 'web/src/types.ts'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+      - '.github/workflows/samut-songkhram-web-evidence-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/samut-songkhram-web-evidence-v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Validate evidence wording and source assets
+        run: |
+          grep -q 'ยังไม่พิสูจน์ว่า' web/src/TideAwareOverview.tsx
+          grep -q 'EROSION EFFECT' web/src/TideAwareOverview.tsx
+          grep -q 'TideMatchChart' web/src/TideAwareOverview.tsx
+          grep -q 'PlotExplorer' web/src/TideAwareOverview.tsx
+          grep -q 'lazy(() => import' web/src/App.tsx
+          test -f web/public/data/project_tide_aware/imagery/2023_selected.webp
+          test -f web/public/data/project_tide_aware/imagery/2026_selected.webp
+          test -f web/public/data/project_tide_aware/summary.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Type-check and build production site
+        working-directory: web
+        run: npm run build
+
+      - name: Inspect production output
+        run: |
+          test -f web/dist/client/index.html
+          test -f web/dist/client/data/project_tide_aware/summary.json
+          test -f web/dist/client/data/project_tide_aware/imagery/2023_selected.webp
+          test -f web/dist/client/data/project_tide_aware/imagery/2026_selected.webp
+          du -sh web/dist/client
+          find web/dist/client -type f | wc -l
+
+      - name: Upload preview bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-evidence-web-v2
+          path: web/dist/client/**
+          if-no-files-found: error
+          retention-days: 3

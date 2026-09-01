@@ -220,16 +220,16 @@ def update_catalogs(rows: list[dict]) -> None:
         scene_id = tags.get("scene_id")
         if dataset and scene_id:
             by_scene.setdefault((dataset, scene_id), []).append(row["qa_status"])
-    for dataset in ("sentinel2", "landsat", "sentinel1"):
-        path = Path(f"data/catalog/{dataset}_scenes.csv")
-        if not path.exists():
-            continue
+    for path in sorted(Path("data/catalog").glob("*_scenes.csv")):
         with path.open(newline="", encoding="utf-8") as handle:
             catalog = list(csv.DictReader(handle))
-            fields = handle.readline if False else None
+        if not catalog or "dataset" not in catalog[0]:
+            continue
         changed = False
         for item in catalog:
-            statuses = by_scene.get((dataset, item.get("scene_id", "")))
+            statuses = by_scene.get(
+                (item.get("dataset", ""), item.get("scene_id", ""))
+            )
             if statuses:
                 item["qa_status"] = (
                     "fail"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 875" preserveAspectRatio="none" aria-hidden="true">
+<g fill="none" stroke-linejoin="round" stroke-linecap="round">
+<rect x="-2107.65" y="-278.93" width="3626.23" height="2330.79" stroke="#74ead6" stroke-width="2" stroke-dasharray="10 7" vector-effect="non-scaling-stroke" opacity="0.9"/>
+<polyline points="364.53,653.00 558.09,481.06 587.73,507.23 535.14,608.30 468.77,659.12 457.30,658.35 411.97,676.50 364.53,653.00" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="486.30" y="589.44" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">91-STC</text>
+<polyline points="660.45,429.52 660.45,429.52 662.71,428.65 662.71,428.65 717.98,407.51 738.44,440.56 714.53,454.69 714.35,458.13 676.86,472.46 671.12,463.67 665.84,465.18 665.84,465.18 613.36,480.10 597.49,482.78 590.41,476.86 582.57,482.59 560.19,467.88 660.45,429.52" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="660.13" y="449.74" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">92-STC</text>
+<polyline points="730.41,420.88 855.49,339.49 859.89,363.57 803.47,423.74 771.72,435.02 750.87,437.50 730.41,420.88" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="799.32" y="396.07" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">93-STC</text>
+<polyline points="823.93,274.54 895.66,258.30 904.84,270.52 893.36,284.09 883.22,289.63 879.40,295.74 873.28,294.98 864.10,296.12 848.42,290.01 835.79,289.44 823.93,274.54" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="867.49" y="277.79" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">94-STC</text>
+<polyline points="909.81,267.47 947.68,258.87 955.71,276.26 943.85,285.04 936.58,287.72 933.52,292.30 914.02,295.55 896.04,289.44 909.81,267.47" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="926.64" y="277.90" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">95-STC</text>
+<polyline points="946.72,254.09 962.21,244.16 970.06,260.97 960.87,269.57 946.72,254.09" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="959.47" y="256.79" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">96-STC</text>
+<polyline points="963.55,243.59 1000.66,219.51 1006.58,224.67 1011.56,232.51 1006.58,242.44 992.62,250.85 974.26,257.72 963.55,243.59" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="989.03" y="239.44" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">97-STC</text>
+<polyline points="1014.81,230.02 999.86,216.67 1001.06,214.72 1010.87,225.12 1037.34,201.23 1037.41,204.00 1027.81,218.56 1014.81,230.02" stroke="#ffe45e" stroke-width="3" vector-effect="non-scaling-stroke" opacity="0.98"/>
+<text x="1021.54" y="217.73" fill="#fff4ad" stroke="#061719" stroke-width="5" paint-order="stroke fill" text-anchor="middle" dominant-baseline="central" font-family="Noto Sans Thai, IBM Plex Sans Thai, Arial, sans-serif" font-size="18" font-weight="700">98-STC</text>
+</g>
+</svg>

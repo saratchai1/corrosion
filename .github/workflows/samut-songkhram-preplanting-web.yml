@@ -1,0 +1,81 @@
+name: Validate Samut Songkhram pre-planting history web
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-preplanting-web-v1
+    paths:
+      - '.github/workflows/samut-songkhram-preplanting-web.yml'
+      - 'web/src/PreplantingHistoryDashboard.tsx'
+      - 'web/src/preplantingHistory.css'
+      - 'web/src/TideAwareDashboard.tsx'
+      - 'web/src/TideAwareOverview.tsx'
+      - 'web/src/App.tsx'
+      - 'web/package.json'
+      - 'web/package-lock.json'
+      - 'web/public/data/project_preplanting_history/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/samut-songkhram-preplanting-web-v1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Validate historical evidence and claim guard
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('web/public/data/project_preplanting_history/summary.json')
+          summary = json.loads(path.read_text(encoding='utf-8'))
+          assert summary['evidence_level'] == 'TIDE_AWARE_PREPLANTING_CONTEXT'
+          assert summary['erosion_effect_conclusion'] == 'NOT_DEMONSTRATED'
+          assert summary['scene_selection']['accepted_waterline_years'] == [2020, 2021, 2023, 2024, 2025, 2026]
+          assert summary['scene_selection']['visual_context_only_years'] == [2017, 2018, 2019, 2022]
+          assert summary['indicators']['waterline']['historical']['class_counts']['APPARENT_LANDWARD'] == 33
+          assert summary['indicators']['waterline']['recent']['class_counts']['APPARENT_LANDWARD'] == 16
+          for year in range(2017, 2027):
+              assert Path(f'web/public/data/project_preplanting_history/imagery/{year}_selected.webp').exists()
+          PY
+          grep -q 'ยังไม่พิสูจน์ว่าแนวโน้มดีขึ้นเพราะการปลูก' web/src/PreplantingHistoryDashboard.tsx
+          grep -q 'EROSION EFFECT' web/src/PreplantingHistoryDashboard.tsx
+          grep -q 'ใช้เป็นบริบทภาพ/ขอบพืชเท่านั้น' web/src/PreplantingHistoryDashboard.tsx
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Type-check and build production site
+        working-directory: web
+        run: npm run build
+
+      - name: Inspect production output
+        run: |
+          test -f web/dist/client/index.html
+          test -f web/dist/client/data/project_preplanting_history/summary.json
+          test -f web/dist/client/data/project_preplanting_history/imagery/2020_selected.webp
+          test -f web/dist/client/data/project_preplanting_history/imagery/2026_selected.webp
+          du -sh web/dist/client
+          find web/dist/client -type f | wc -l
+
+      - name: Upload preview bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-preplanting-web
+          path: web/dist/client/**
+          if-no-files-found: error
+          retention-days: 3

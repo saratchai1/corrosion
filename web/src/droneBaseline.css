@@ -1,0 +1,381 @@
+.drone-baseline-portal {
+  width: calc(100% - clamp(40px, 10vw, 152px));
+  max-width: 1500px;
+  margin: 22px auto 0;
+}
+
+.drone-baseline-panel {
+  padding: clamp(22px, 3vw, 38px);
+  border: 1px solid rgba(116, 204, 226, .28);
+  color: #f4f2e9;
+  background:
+    radial-gradient(circle at 92% 2%, rgba(70, 176, 208, .12), transparent 28rem),
+    linear-gradient(135deg, rgba(71, 160, 181, .055), transparent 48%),
+    #081e20;
+  font-family: 'IBM Plex Sans Thai', 'Noto Sans Thai', system-ui, sans-serif;
+}
+
+.drone-baseline-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, .4fr);
+  gap: 28px;
+  align-items: end;
+}
+
+.drone-baseline-header > div:first-child > span {
+  color: #72d5e8;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+.drone-baseline-header h2 {
+  margin: 7px 0 10px;
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(33px, 3.8vw, 54px);
+  font-weight: 400;
+  line-height: 1.03;
+}
+
+.drone-baseline-header p {
+  max-width: 920px;
+  margin: 0;
+  color: #a7bbb6;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.drone-baseline-badge {
+  display: grid;
+  justify-items: end;
+  padding: 18px;
+  border: 1px solid rgba(114, 213, 232, .35);
+  background: rgba(114, 213, 232, .045);
+  text-align: right;
+}
+
+.drone-baseline-badge strong {
+  color: #91e2d4;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.drone-baseline-badge span {
+  margin-top: 4px;
+  color: #c3d7d2;
+  font-size: 10px;
+}
+
+.drone-baseline-badge small {
+  max-width: 230px;
+  margin-top: 6px;
+  color: #6f9999;
+  font-size: 7px;
+  line-height: 1.4;
+}
+
+.drone-baseline-kpis {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 22px;
+  border-top: 1px solid rgba(181, 214, 205, .14);
+  border-bottom: 1px solid rgba(181, 214, 205, .14);
+}
+
+.drone-baseline-kpis article {
+  min-width: 0;
+  padding: 16px 13px;
+  border-left: 1px solid rgba(181, 214, 205, .14);
+}
+.drone-baseline-kpis article:last-child { border-right: 1px solid rgba(181, 214, 205, .14); }
+.drone-baseline-kpis span { display: block; min-height: 28px; color: #7e9c97; font-size: 8px; }
+.drone-baseline-kpis strong { display: block; color: #f0eee5; font-family: Newsreader, Georgia, serif; font-size: 31px; font-weight: 400; line-height: 1; }
+.drone-baseline-kpis small { color: #78938e; font-size: 7px; }
+.drone-baseline-kpis article.good strong { color: #91d7b8; }
+.drone-baseline-kpis article.caution strong { color: #e7bd69; }
+
+.drone-baseline-callouts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.drone-baseline-callouts article {
+  padding: 15px 17px;
+  border-left: 3px solid #8fd0b2;
+  background: rgba(143, 208, 178, .035);
+}
+.drone-baseline-callouts article.guard { border-left-color: #e8b95f; background: rgba(232, 185, 95, .035); }
+.drone-baseline-callouts span { color: #7ca29a; font-size: 8px; }
+.drone-baseline-callouts strong { display: block; margin: 4px 0; color: #dbe9e5; font-size: 12px; }
+.drone-baseline-callouts p { margin: 0; color: #8fa6a1; font-size: 9px; line-height: 1.65; }
+
+.drone-plot-tabs {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 5px;
+  margin-top: 16px;
+}
+
+.drone-plot-tabs button {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  padding: 9px 8px;
+  border: 1px solid rgba(181, 214, 205, .14);
+  color: #9ab0ab;
+  background: rgba(255, 255, 255, .012);
+  text-align: left;
+  cursor: pointer;
+}
+.drone-plot-tabs button:hover,
+.drone-plot-tabs button.active {
+  border-color: rgba(114, 213, 232, .52);
+  color: #eef4f0;
+  background: rgba(114, 213, 232, .075);
+}
+.drone-plot-tabs strong { font-size: 10px; }
+.drone-plot-tabs span { color: #79b8c3; font-size: 7px; }
+.drone-plot-tabs small { overflow: hidden; color: #6e8883; font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
+
+.drone-compare-wrap {
+  margin-top: 9px;
+  border: 1px solid rgba(181, 214, 205, .16);
+  background: #051617;
+}
+
+.drone-compare-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(181, 214, 205, .14);
+}
+.drone-compare-toolbar > div:first-child { display: grid; }
+.drone-compare-toolbar strong { font-size: 12px; }
+.drone-compare-toolbar span { color: #78928d; font-size: 8px; }
+.drone-layer-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 11px; }
+.drone-layer-legend span { display: flex; gap: 5px; align-items: center; color: #879d98; font-size: 7px; }
+.drone-layer-legend i { width: 18px; height: 2px; }
+.drone-layer-legend i.plot { background: #ffe35a; }
+.drone-layer-legend i.water { background: #5ee7ff; }
+.drone-layer-legend i.mangrove { border-top: 2px dashed #ff74d4; }
+
+.drone-compare-stage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 360px;
+  background:
+    linear-gradient(45deg, rgba(255,255,255,.025) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.025) 75%),
+    linear-gradient(45deg, rgba(255,255,255,.025) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.025) 75%),
+    #031011;
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
+  touch-action: none;
+  cursor: ew-resize;
+  user-select: none;
+}
+.drone-compare-stage.pannable { cursor: grab; }
+.drone-compare-stage.panning { cursor: grabbing; }
+
+.drone-compare-layer,
+.drone-vector-layer,
+.drone-before-clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.drone-compare-layer,
+.drone-vector-layer {
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.drone-compare-layer.after { z-index: 1; }
+.drone-before-clip { z-index: 2; overflow: hidden; pointer-events: none; }
+.drone-compare-layer.before { z-index: 2; }
+.drone-vector-layer { z-index: 5; pointer-events: none; }
+.drone-compare-layer img,
+.drone-vector-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.drone-divider {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #f8fbf9;
+  box-shadow: 0 0 15px rgba(255, 255, 255, .4);
+  transform: translateX(-1px);
+  cursor: ew-resize;
+  touch-action: none;
+}
+.drone-divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.75);
+  border-radius: 50%;
+  color: white;
+  background: rgba(4, 22, 23, .92);
+  transform: translate(-50%, -50%);
+}
+
+.drone-side-label {
+  position: absolute;
+  z-index: 12;
+  top: 14px;
+  display: grid;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  color: white;
+  background: rgba(3, 17, 18, .77);
+  backdrop-filter: blur(7px);
+  pointer-events: none;
+}
+.drone-side-label.left { left: 14px; }
+.drone-side-label.right { right: 14px; text-align: right; }
+.drone-side-label span { color: #87cbd6; font-size: 7px; letter-spacing: .08em; }
+.drone-side-label strong { font-size: 11px; font-weight: 500; }
+
+.drone-compare-controls {
+  position: absolute;
+  z-index: 14;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid rgba(232, 243, 239, .45);
+  border-radius: 6px;
+  background: rgba(4, 22, 23, .92);
+  backdrop-filter: blur(9px);
+}
+.drone-compare-controls button {
+  min-width: 40px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-right: 1px solid rgba(232, 243, 239, .18);
+  color: #edf3ef;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+.drone-compare-controls button:last-child { border-right: 0; font-size: 8px; }
+.drone-compare-controls button:hover:not(:disabled),
+.drone-compare-controls button.active { color: #062022; background: #a8dfcc; }
+.drone-compare-controls button:disabled { opacity: .3; cursor: default; }
+.drone-compare-controls .zoom-readout { min-width: 64px; font-size: 9px; }
+
+.drone-pan-hint {
+  position: absolute;
+  z-index: 13;
+  bottom: 16px;
+  left: 14px;
+  padding: 6px 8px;
+  color: #b9cac6;
+  background: rgba(4, 22, 23, .78);
+  font-size: 7px;
+  pointer-events: none;
+}
+
+.drone-compare-caption {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border-top: 1px solid rgba(181, 214, 205, .14);
+}
+.drone-compare-caption div { display: grid; gap: 2px; padding: 11px 13px; border-right: 1px solid rgba(181, 214, 205, .12); }
+.drone-compare-caption div:last-child { border-right: 0; }
+.drone-compare-caption strong { color: #9db2ad; font-size: 8px; }
+.drone-compare-caption span { color: #748e89; font-size: 8px; }
+
+.drone-evidence-note {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.drone-evidence-note > div { padding: 13px 14px; border: 1px solid rgba(181, 214, 205, .12); background: rgba(255,255,255,.012); }
+.drone-evidence-note strong { color: #c9d8d4; font-size: 9px; }
+.drone-evidence-note p { margin: 4px 0 0; color: #7f9993; font-size: 8px; line-height: 1.65; }
+.drone-evidence-note em { display: block; margin-top: 6px; color: #d5b96c; font-size: 7px; font-style: normal; line-height: 1.6; }
+
+@media (max-width: 1100px) {
+  .drone-baseline-kpis { grid-template-columns: repeat(3, 1fr); }
+  .drone-plot-tabs { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (max-width: 800px) {
+  .drone-baseline-header { grid-template-columns: 1fr; }
+  .drone-baseline-badge { justify-items: start; text-align: left; }
+  .drone-baseline-callouts { grid-template-columns: 1fr; }
+  .drone-evidence-note { grid-template-columns: 1fr; }
+  .drone-compare-toolbar { display: grid; }
+  .drone-layer-legend { justify-content: flex-start; }
+  .drone-compare-caption { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .drone-baseline-portal { width: calc(100% - 34px); }
+  .drone-baseline-panel { padding: 17px; }
+  .drone-baseline-kpis { grid-template-columns: 1fr 1fr; }
+  .drone-plot-tabs { display: flex; overflow-x: auto; }
+  .drone-plot-tabs button { min-width: 90px; }
+  .drone-compare-stage { min-height: 300px; }
+  .drone-compare-controls { right: 8px; bottom: 8px; }
+  .drone-pan-hint { bottom: 52px; }
+}
+
+
+/* Standalone high-resolution page: keep drone evidence separate from the history slider. */
+.drone-page-context {
+  max-width: 1500px;
+  margin: 24px auto 0;
+  padding: 24px 28px;
+  border: 1px solid rgba(121, 178, 167, 0.28);
+  background: rgba(8, 36, 36, 0.72);
+}
+.drone-page-context > span {
+  color: #8dcbbb;
+  font-size: 11px;
+  letter-spacing: .12em;
+}
+.drone-page-context h1 {
+  margin: 8px 0 6px;
+  font-size: clamp(28px, 3vw, 46px);
+}
+.drone-page-context p {
+  margin: 0;
+  max-width: 980px;
+  color: #aac0bc;
+  line-height: 1.7;
+}
+.drone-standalone-content {
+  max-width: 1500px;
+  margin: 16px auto 48px;
+}
+.drone-portal-marker {
+  display: none !important;
+}
+.drone-page-status {
+  max-width: 1500px;
+  margin: 16px auto;
+  padding: 28px;
+  border: 1px solid rgba(121, 178, 167, 0.22);
+  color: #b8cfca;
+}

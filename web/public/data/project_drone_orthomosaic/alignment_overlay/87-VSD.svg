@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 858" preserveAspectRatio="none">
+  <g fill="none">
+    <path d="M 43.36 769.71 L 45.04 759.45 L 45.04 759.45 L 46.59 750.02 L 46.58 750.02 L 51.91 717.60 L 196.98 710.70 L 260.14 724.30 L 362.89 602.63 L 429.87 525.40 L 453.47 511.20 L 510.89 535.88 L 537.53 434.95 L 479.38 303.01 L 441.01 319.01 L 423.22 259.55 L 637.04 75.01 L 907.26 138.62 L 1098.48 167.09 L 1394.98 307.26 L 1467.97 97.08 L 1652.40 112.45 L 1656.30 175.54 L 1753.87 174.51 L 1749.96 238.97 L 1749.96 238.97 L 1725.65 640.06 L 1565.43 733.58 L 1565.42 733.57 L 1546.19 744.79 L 1541.62 747.46 L 1541.62 747.46 L 1509.42 766.25 L 941.90 628.54 L 455.79 713.40 L 273.03 775.92 L 43.36 769.71 Z" stroke="#ffe35a" stroke-width="3" fill="#ffe35a" fill-opacity="0.05" vector-effect="non-scaling-stroke"/>
+    <path d="" stroke="#5ee7ff" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+    <path d="" stroke="#ff74d4" stroke-width="2.5" stroke-dasharray="8 5" vector-effect="non-scaling-stroke"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+    <text x="1063.54" y="435.41" fill="#071b1d" stroke="#fff3a0" stroke-width="5" paint-order="stroke">87-VSD</text>
+    <text x="1063.54" y="435.41" fill="#fff3a0">87-VSD</text>
+  </g>
+</svg>

@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "project_id": "TH-SSK-MANGROVE-2024",
+  "title": "Samut Songkhram mangrove coastal-erosion assessment using free data and routine field surveys",
+  "status": "IMPLEMENTATION_STARTED",
+  "scope": {
+    "province": "Samut Songkhram",
+    "plot_ids": [
+      "91-STC",
+      "92-STC",
+      "93-STC",
+      "94-STC",
+      "95-STC",
+      "96-STC",
+      "97-STC",
+      "98-STC",
+      "87-VSD"
+    ],
+    "primary_question": "Did the seaward mangrove edge or bank edge in front of planting plots retreat less after planting than before planting and than comparable unplanted coastal segments?",
+    "primary_outcomes": [
+      "mangrove_edge_position_m",
+      "bank_edge_position_m",
+      "tide_screened_waterline_position_m"
+    ]
+  },
+  "intervention": {
+    "nominal_year": 2024,
+    "exact_date_status": "UNVERIFIED",
+    "required_fields": [
+      "planting_start_date",
+      "planting_end_date",
+      "as_built_geometry",
+      "species",
+      "seedling_count",
+      "spacing",
+      "replanting_dates",
+      "other_coastal_structures"
+    ]
+  },
+  "analysis_period": {
+    "long_term_context_years": [1987, 1990, 2000, 2009, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+    "pre_years": [2017, 2018, 2019, 2020, 2021, 2022, 2023],
+    "intervention_year": 2024,
+    "post_years": [2025, 2026],
+    "season_months": [1, 2, 3, 4],
+    "season_rule": "Use the same January-April window for optical comparison and retain every rejected scene with a reason."
+  },
+  "boundary_indicators": [
+    {
+      "type": "MANGROVE_EDGE",
+      "role": "PRIMARY",
+      "sources": ["Sentinel-2 seasonal composite", "UAV orthomosaic"],
+      "interpretation": "Persistent seaward vegetation edge; validate with UAV where available.",
+      "requires_tide_metadata": false
+    },
+    {
+      "type": "BANK_EDGE",
+      "role": "PRIMARY_WHERE_VISIBLE",
+      "sources": ["UAV orthomosaic", "fixed-point field photos", "distance from fixed marker"],
+      "interpretation": "Top of eroding bank or stable soil edge; digitize consistently.",
+      "requires_tide_metadata": false
+    },
+    {
+      "type": "WATERLINE",
+      "role": "SUPPORTING_ONLY",
+      "sources": ["Landsat", "Sentinel-2"],
+      "interpretation": "Image-derived instantaneous water-land boundary; do not call a surveyed shoreline.",
+      "requires_tide_metadata": true
+    }
+  ],
+  "satellite": {
+    "landsat": {
+      "role": "LONG_TERM_CONTEXT",
+      "analysis_resolution_m": 30,
+      "minimum_mapping_change_m": 30
+    },
+    "sentinel2": {
+      "role": "ANNUAL_PROJECT_MONITORING",
+      "analysis_resolution_m": 20,
+      "target_usable_scenes_per_year": 3,
+      "minimum_valid_aoi_fraction": 0.95
+    },
+    "sentinel1": {
+      "role": "SUPPORTING_WETNESS_AND_CLOUD_SEASON_CONTEXT",
+      "use_as_primary_boundary": false
+    }
+  },
+  "tide": {
+    "station_name": "Pak Nam Mae Klong",
+    "station_name_th": "ปากน้ำแม่กลอง",
+    "timezone": "Asia/Bangkok",
+    "datum": "MSL",
+    "source_type": "PREDICTED_HOURLY",
+    "source_landing_page": "https://hydro.navy.mi.th/waterlaveltable",
+    "match_method": "linear_interpolation_between_hourly_predictions",
+    "max_bracketing_gap_minutes": 90,
+    "status": "DATA_NOT_INGESTED",
+    "interpretation_limit": "Predicted station tide is suitable for screening and scene matching, not proof of the observed water level at each plot."
+  },
+  "controls": {
+    "status": "DESIGN_REQUIRED",
+    "target_count_per_treatment_segment": 3,
+    "selection_rules": [
+      "same coastal process setting or littoral sub-cell where possible",
+      "no planting during the intervention period",
+      "no new seawall, breakwater, bamboo fence, reclamation or dredging difference",
+      "similar pre-2024 boundary trend",
+      "similar exposure, mudflat character and distance from river mouth",
+      "outside the likely direct influence of the project plot"
+    ],
+    "comparison_method": "before_after_control_impact"
+  },
+  "transects": {
+    "project_frontage_spacing_m": 50,
+    "adjacent_and_control_spacing_m": 100,
+    "orientation": "approximately perpendicular to the selected reference edge",
+    "positive_direction": "seaward",
+    "minimum_project_frontage_buffer_m": 500,
+    "metrics": ["NSM", "EPR", "LRR", "SCE"]
+  },
+  "drone": {
+    "coverage_requirements": [
+      "seaward mangrove edge",
+      "bank edge where present",
+      "fronting mudflat context",
+      "channel connections and plot corners"
+    ],
+    "repeat_rules": [
+      "same season where practical",
+      "similar tide window",
+      "same flight plan, altitude and overlap",
+      "RTK or GCP preferred; otherwise report co-registration residual"
+    ],
+    "minimum_repeat_surveys_per_plot_for_observed_stabilization": 2
+  },
+  "field": {
+    "minimum_observations": [
+      "fixed photo point and direction",
+      "date and local time",
+      "GPS position",
+      "distance from fixed marker to bank or vegetation edge where measurable",
+      "root exposure, fallen trees and new channels",
+      "photo path and observer"
+    ],
+    "sediment_sampling_required": false
+  },
+  "uncertainty": {
+    "rule": "Do not classify movement as erosion or accretion when absolute movement does not exceed the estimated horizontal uncertainty for that indicator and epoch.",
+    "components": [
+      "sensor pixel size",
+      "geolocation and co-registration",
+      "classification threshold sensitivity",
+      "tide mismatch for waterline",
+      "manual digitizing",
+      "UAV horizontal RMSE"
+    ]
+  },
+  "evidence_gates": {
+    "minimum_tide_matched_scene_fraction": 0.8,
+    "minimum_post_years_for_comparative_effect": 3,
+    "require_all_plots_have_boundary_transects_for_program_claim": true,
+    "require_verified_controls_for_comparative_effect": true,
+    "require_drone_or_field_validation": true
+  },
+  "claim_language": {
+    "insufficient_data": "ข้อมูลยังไม่เพียงพอสำหรับประเมินการเปลี่ยนแปลงแนวชายฝั่งหน้าแปลง",
+    "satellite_screening": "ผลดาวเทียมเป็นการคัดกรองเบื้องต้นและยังไม่ยืนยันผลของการปลูกต่อการกัดเซาะชายฝั่ง",
+    "tide_aware_screening": "ผลดาวเทียมที่คัดตามระดับน้ำสนับสนุนการติดตามแนวโน้ม แต่ยังต้องตรวจด้วยโดรนหรือภาคสนาม",
+    "observed_stabilization": "ขอบป่าหรือขอบตลิ่งหน้าแปลงมีอัตราถอยร่นลดลงหลังปลูกตามข้อมูลที่ตรวจวัดได้ แต่ยังไม่แยกผลจากพื้นที่ควบคุมอย่างสมบูรณ์",
+    "comparative_effect": "ข้อมูลดาวเทียม โดรน และพื้นที่อ้างอิงสนับสนุนว่าโครงการมีส่วนช่วยลดอัตราการถอยร่นของแนวชายฝั่งในพื้นที่ศึกษา",
+    "prohibited": [
+      "พิสูจน์แล้วว่าป่าดักตะกอนกี่ตัน",
+      "พิสูจน์แล้วว่าป่าลดคลื่นกี่เปอร์เซ็นต์",
+      "ป้องกันพายุได้ทุกระดับ",
+      "ป้องกันการกัดเซาะได้ทุกพื้นที่ในประเทศไทย"
+    ]
+  }
+}

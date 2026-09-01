@@ -1,0 +1,24 @@
+{
+  "name": "samut-songkhram-coastal-change-mvp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && mkdir -p dist/server && cp site-worker.js dist/server/index.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "maplibre-gl": "6.6.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@openai/sites-vite-plugin": "^0.2.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  }
+}

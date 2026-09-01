@@ -1,0 +1,237 @@
+name: Build Samut Songkhram pre-planting coastal history
+
+on:
+  push:
+    branches:
+      - feature/samut-songkhram-preplanting-history-v1
+    paths:
+      - '.github/workflows/samut-songkhram-preplanting-history.yml'
+      - 'requirements.txt'
+      - 'scripts/probe_thailandtidetables_history.py'
+      - 'scripts/build_samut_songkhram_history_catalog.py'
+      - 'scripts/build_preplanting_coastal_history.py'
+      - 'scripts/cache_thailandtidetables_via_jina.py'
+      - 'scripts/build_secondary_mae_klong_tide_catalog.py'
+      - 'scripts/scrape_thailandtidetables_mae_klong.py'
+      - 'scripts/download_catalog_assets.py'
+      - 'scripts/download_satellite_data.py'
+      - 'scripts/build_tide_aware_project_edges.py'
+      - 'scripts/build_coastal_change_mvp.py'
+      - 'data/catalog/mvp_optical_scenes.csv'
+      - 'data/catalog/project_samut_songkhram_sentinel2_scenes_tide_matched.csv'
+      - 'data/aoi/samut_songkhram_project_plots.geojson'
+      - 'data/aoi/samut_songkhram_project_analysis_aoi.geojson'
+      - 'data/processed/project_tide_aware/**'
+      - 'web/src/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: samut-songkhram-preplanting-history-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Build versioned 2017-2026 project scene catalog
+        run: |
+          python -m scripts.build_samut_songkhram_history_catalog
+
+      - name: Probe public historical tide-table coverage
+        run: |
+          python -m scripts.probe_thailandtidetables_history \
+            --years 2017 2018 2019 2020 2021 2022 \
+            --refresh \
+            --sleep-seconds 0.05 \
+            --require-at-least 2
+
+      - name: Cache current-period pages required for datum validation and matching
+        run: |
+          python scripts/cache_thailandtidetables_via_jina.py \
+            --years 2023 2024 2025 2026 \
+            --refresh \
+            --sleep-seconds 0.05
+
+      - name: Build historical secondary tide series and fill scene catalog
+        run: |
+          HISTORICAL_YEARS="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('data/tide/samut_songkhram/pak_nam_mae_klong_historical_availability.json')
+          value = json.loads(path.read_text(encoding='utf-8'))
+          print(' '.join(str(year) for year in value['complete_years']))
+          PY
+          )"
+          echo "Complete historical tide years: ${HISTORICAL_YEARS}"
+          python -m scripts.build_secondary_mae_klong_tide_catalog \
+            --years ${HISTORICAL_YEARS} 2023 2024 2025 \
+            --validation-year 2026 \
+            --output data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_extrema.csv \
+            --manifest data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_extrema_manifest.json \
+            --validation-output data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_2026_validation.json \
+            --scene-catalog data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv \
+            --scene-output data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv \
+            --require-validation
+
+      - name: Validate historical tide and scene metadata before raster work
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          availability = json.loads(Path(
+              'data/tide/samut_songkhram/pak_nam_mae_klong_historical_availability.json'
+          ).read_text(encoding='utf-8'))
+          complete = set(availability['complete_years'])
+          assert len(complete) >= 2, availability
+
+          with Path(
+              'data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv'
+          ).open(newline='', encoding='utf-8') as handle:
+              rows = list(csv.DictReader(handle))
+          by_year = Counter(int(row['acquisition_datetime_utc'][:4]) for row in rows)
+          assert set(by_year) == set(range(2017, 2027)), by_year
+          assert min(by_year.values()) >= 2, by_year
+
+          expected_matched = complete | {2023, 2024, 2025, 2026}
+          for row in rows:
+              year = int(row['acquisition_datetime_utc'][:4])
+              if year in expected_matched:
+                  assert row['tide_datum'] == 'MSL', (year, row['scene_id'])
+                  assert row['tide_level'] != '', (year, row['scene_id'])
+                  assert row['tide_status'] in {
+                      'modelled_secondary_extrema_cosine',
+                      'predicted_interpolated',
+                  }, (year, row['scene_id'], row['tide_status'])
+
+          validation = json.loads(Path(
+              'data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_2026_validation.json'
+          ).read_text(encoding='utf-8'))
+          assert validation['acceptance']['status'] == 'PASSED', validation
+          print(json.dumps({
+              'complete_historical_tide_years': sorted(complete),
+              'scene_count_by_year': dict(sorted(by_year.items())),
+              'validation_metrics_m': validation['metrics_m'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Download exact Sentinel-2 inputs clipped to the project AOI
+        run: |
+          python -m scripts.download_catalog_assets \
+            --catalog data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv \
+            --aoi data/aoi/samut_songkhram_project_analysis_aoi.geojson \
+            --manifest /tmp/preplanting-history-download-manifest.json
+
+      - name: Build historical and recent period comparison
+        run: |
+          python -m scripts.build_preplanting_coastal_history
+
+      - name: Validate pre-planting scientific gates and outputs
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          root = Path('data/processed/project_preplanting_history')
+          summary = json.loads((root / 'summary.json').read_text(encoding='utf-8'))
+          assert summary['evidence_level'] == 'TIDE_AWARE_PREPLANTING_CONTEXT', summary
+          assert summary['erosion_effect_conclusion'] == 'NOT_DEMONSTRATED', summary
+          accepted = set(summary['scene_selection']['accepted_waterline_years'])
+          assert {2023, 2024, 2025, 2026}.issubset(accepted), accepted
+          assert len(summary['periods']['historical_preplanting']['waterline_years']) >= 3
+          assert summary['transects']['treatment_count'] == 294
+          assert summary['indicators']['waterline']['recent']['classified_transect_count'] > 0
+          assert summary['indicators']['waterline']['historical']['classified_transect_count'] > 0
+          assert len(summary['scene_selection']['display_scenes']) == 10
+          assert (root / 'period_transect_metrics.csv').exists()
+          assert (root / 'treatment_transects_periods.geojson').exists()
+          assert Path('web/public/data/project_preplanting_history/summary.json').exists()
+          for year in range(2017, 2027):
+              assert Path(
+                  f'web/public/data/project_preplanting_history/imagery/{year}_selected.webp'
+              ).exists(), year
+
+          with (root / 'period_transect_metrics.csv').open(
+              newline='', encoding='utf-8'
+          ) as handle:
+              metrics = list(csv.DictReader(handle))
+          assert len(metrics) == 294 * 2, len(metrics)
+          assert all(row['confidence'] == 'LOW' for row in metrics)
+          print(json.dumps({
+              'answer': summary['answer_to_preplanting_question'],
+              'accepted_waterline_years': sorted(accepted),
+              'visual_context_only_years': summary['scene_selection']['visual_context_only_years'],
+              'waterline_historical': summary['indicators']['waterline']['historical'],
+              'waterline_recent': summary['indicators']['waterline']['recent'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build web application
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit historical evidence products
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv \
+            data/catalog/project_samut_songkhram_sentinel2_history_2017_2026_manifest.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_historical_availability.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_extrema.csv \
+            data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_extrema_manifest.json \
+            data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_2026_validation.json \
+            data/processed/project_preplanting_history \
+            web/public/data/project_preplanting_history
+          if git diff --cached --quiet; then
+            echo 'No generated historical changes to commit.'
+          else
+            git commit -m 'data: add pre-planting tide-aware coastal history'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload historical evidence package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-preplanting-history
+          path: |
+            /tmp/preplanting-history-download-manifest.json
+            data/catalog/project_samut_songkhram_sentinel2_history_2017_2026*.json
+            data/catalog/project_samut_songkhram_sentinel2_history_2017_2026.csv
+            data/tide/samut_songkhram/pak_nam_mae_klong_historical_availability.json
+            data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_*.json
+            data/tide/samut_songkhram/pak_nam_mae_klong_history_secondary_extrema.csv
+            data/processed/project_preplanting_history/**
+            web/public/data/project_preplanting_history/**
+            web/dist/**
+          if-no-files-found: warn
+          retention-days: 30

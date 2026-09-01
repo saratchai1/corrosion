@@ -1,17 +1,99 @@
-# corrosion
+# Samut Songkhram Coastal Change
 
-Reproducible geospatial data workflow for coastal erosion and mangrove analysis in Samut Songkhram, Thailand.
+Reproducible geospatial workflow and static WebApp for exploring apparent coastal change in Samut Songkhram, Thailand. The province-wide MVP covers 14 target epochs: four historical Landsat snapshots and annual Sentinel-2 imagery for every year from 2017–2026. A project-focused assessment additionally covers the nine verified planting plots `91–98-STC` and `87-VSD` before, during, and after the reported 2024 planting year.
 
-## Active data branch
-`data/samut-songkhram-satellite-v1`
+The displayed line is an **image-derived water-land boundary**, not a surveyed or tide-normalized shoreline. Every current epoch has `tide_status=unverified`; rates and classes therefore have `LOW` confidence and must not be described as definitive erosion rates.
 
-## Scope
-- Sentinel-2 Level-2A Surface Reflectance, 2016-present
-- Landsat Collection 2 Level-2 Surface Reflectance, 1984-present
-- Sentinel-1 GRD VV/VH, 2015-present
-- Acquisition time stored in UTC and Asia/Bangkok
-- Tide metadata kept explicit; unknown tide remains `unverified`
-- AOI files in EPSG:4326; analysis rasters/distances in EPSG:32647
+## MVP outputs
 
-## Important status
-The repository initially contained no verified SEG030/project AOI, so `data/aoi/samut_songkhram_aoi.geojson` is **provisional**. The live STAC workflow, catalogs, previews and QA have been tested; local raster COGs are intentionally not committed because authenticated Git LFS upload/quota could not be confirmed. See `docs/DOWNLOAD_AND_REPRODUCE.md` and `docs/DATA_LIMITATIONS.md`.
+- Quality-masked median surface-reflectance composites in EPSG:32647 COG format (local only)
+- MNDWI water-land boundary for 14 epochs, including a continuous annual 2017–2026 sequence
+- Coastal vegetation spectral proxy and area statistics
+- 100 m transects, yearly positions, endpoint and regression rates, and resolution-aware classes
+- React + TypeScript + Vite + MapLibre static WebApp with a default 10-year satellite map, historical timeline, draggable before–after swipe comparison, project-impact report, layer controls, transect graph, and responsive layout
+- Verified 9-plot overlay and January–April Sentinel-2 indicators for 2023–2026, including local observational controls
+
+## 2024 planting assessment
+
+The project-focused result is **not demonstrated** for reduced coastal erosion, with `LOW` confidence. Plot greenness increased from mean NDVI **0.403** in 2023 to **0.472** in 2026, but nearby matched context increased by almost the same amount; the 2026 NDVI difference-in-differences is only **+0.005**. For the 43 existing province-wide transects crossing `91–98-STC`, 34 stayed within ±20 m in 2025–2026, 5 moved inland by more than 20 m, and 4 moved seaward by more than 20 m. This suggests mostly stable recent image-derived water–land positions, but does not establish that planting caused the stability. `87-VSD` has plot spectral metrics but lies outside the existing province-wide transect coverage.
+
+See [project impact methodology and results](docs/PROJECT_IMPACT_ANALYSIS.md).
+
+## Free-data erosion upgrade
+
+The free-data implementation separates `MANGROVE_EDGE`, `BANK_EDGE` and `WATERLINE`, matches satellite acquisition times to cited hourly tide predictions, standardizes routine UAV/field metadata, and audits the strongest claim supported by the available evidence.
+
+```bash
+python scripts/match_scene_tides.py
+python scripts/audit_samut_songkhram_erosion_readiness.py
+```
+
+The first command requires a reviewed hourly MSL CSV for Pak Nam Mae Klong under `data/tide/samut_songkhram/`. The second command currently should remain at `SATELLITE_SCREENING` until tide coverage, planting dates, repeat UAV/field boundaries and coastal controls are verified.
+
+See [free-data erosion implementation v1](docs/SAMUT_SONGKHRAM_EROSION_FREE_DATA_V1.md) and [machine-readable analysis configuration](config/samut_songkhram_erosion_free_data_v1.json).
+
+The active implementation branch is `feature/coastal-change-webapp`, based on `data/samut-songkhram-satellite-v1`.
+
+## Reproduce the MVP
+
+### 1. Environment and data selection
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python scripts/download_mvp_epochs.py
+```
+
+The bounded download selects 2–3 full-AOI optical acquisitions per epoch and stores AOI-only source COGs under `data/satellite/`. The current local working set remains below 1 GB and well below the 15 GB ceiling. Source and processed TIFFs remain local because Git LFS quota is not verified.
+
+For the nine planting plots, build/refresh the verified AOI, download the 2023–2026 same-season subset, and calculate indicators with:
+
+```bash
+python scripts/build_samut_songkhram_project_aoi.py
+python scripts/download_project_impact_epochs.py
+python scripts/build_project_impact_analysis.py
+```
+
+The additional source COGs use about 62 MB and remain local under `data/satellite/project_samut_songkhram/`.
+
+### 2. Build composites, boundaries, vegetation, transects, statistics, and web assets
+
+```bash
+python scripts/build_coastal_change_mvp.py
+```
+
+This one reproducible command performs steps 2–5 of the analytical workflow:
+
+1. builds per-epoch optical median composites using Landsat `QA_PIXEL` or Sentinel-2 `SCL` masks;
+2. compares Otsu, fixed-zero, and percentile MNDWI thresholds, applies conservative cleanup, and extracts a continuous water-land trace;
+3. calculates a coastal NDVI vegetation proxy;
+4. creates perpendicular transects and change statistics; and
+5. prepares WebP/GeoJSON/CSV/JSON assets under `data/processed/web/` and `web/public/data/`.
+
+### 3. Run and build the WebApp
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`. Create the production bundle with:
+
+```bash
+npm run build
+```
+
+The deployable static bundle is written to `web/dist/`.
+
+## Data and documentation
+
+- [MVP methodology and results](docs/COASTAL_CHANGE_MVP.md)
+- [Project impact methodology and results](docs/PROJECT_IMPACT_ANALYSIS.md)
+- [Free-data erosion implementation](docs/SAMUT_SONGKHRAM_EROSION_FREE_DATA_V1.md)
+- [Download and full data workflow](docs/DOWNLOAD_AND_REPRODUCE.md)
+- [Scientific and operational limitations](docs/DATA_LIMITATIONS.md)
+- [Data sources](docs/DATA_SOURCES.md)
+
+The province-wide AOI in `data/aoi/samut_songkhram_aoi.geojson` remains provisional. The nine project polygons in `data/aoi/samut_songkhram_project_plots.geojson` are selected from the pinned dashboard source, while the surrounding 2.5 km analytical buffer is explicitly not an official project boundary.

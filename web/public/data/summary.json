@@ -1,0 +1,143 @@
+{
+  "title": "Samut Songkhram image-derived coastal change MVP",
+  "generated_at_utc": "2026-08-29T06:31:15.327685+00:00",
+  "epoch_count": 14,
+  "target_years": [
+    1985,
+    1990,
+    2000,
+    2010,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "actual_years": [
+    1987,
+    1990,
+    2000,
+    2009,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "reference_epoch": 2026,
+  "transect_spacing_m": 100.0,
+  "transect_count": 144,
+  "classified_transect_count": 144,
+  "class_counts": {
+    "apparent_erosion": 53,
+    "apparent_accretion": 60,
+    "stable": 31,
+    "insufficient_data": 0
+  },
+  "apparent_erosion_length_km": 5.3,
+  "apparent_accretion_length_km": 6.0,
+  "stable_length_km": 3.1,
+  "median_net_change_m": -3.38,
+  "mean_net_change_m": 0.55,
+  "tide_status": "unverified",
+  "overall_confidence": "LOW",
+  "interpretation": "Results describe apparent movement of image-derived water-land boundaries, not true or surveyed shorelines.",
+  "vegetation_proxy": [
+    {
+      "target_year": 1985,
+      "actual_year": 1987,
+      "area_ha": 2293.05,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 1990,
+      "actual_year": 1990,
+      "area_ha": 1613.28,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2000,
+      "actual_year": 2000,
+      "area_ha": 2288.81,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2010,
+      "actual_year": 2009,
+      "area_ha": 2474.74,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2017,
+      "actual_year": 2017,
+      "area_ha": 2340.28,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2018,
+      "actual_year": 2018,
+      "area_ha": 2412.02,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2019,
+      "actual_year": 2019,
+      "area_ha": 2422.04,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2020,
+      "actual_year": 2020,
+      "area_ha": 2740.65,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2021,
+      "actual_year": 2021,
+      "area_ha": 2135.38,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2022,
+      "actual_year": 2022,
+      "area_ha": 1823.03,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2023,
+      "actual_year": 2023,
+      "area_ha": 1831.63,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2024,
+      "actual_year": 2024,
+      "area_ha": 1772.88,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2025,
+      "actual_year": 2025,
+      "area_ha": 1723.91,
+      "ndvi_threshold": 0.32
+    },
+    {
+      "target_year": 2026,
+      "actual_year": 2026,
+      "area_ha": 1890.17,
+      "ndvi_threshold": 0.32
+    }
+  ],
+  "vegetation_proxy_change_ha": -402.88,
+  "vegetation_proxy_change_percent": -17.57
+}
