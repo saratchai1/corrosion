@@ -1,0 +1,47 @@
+{
+  "title": "Surat Thani 37-STC high-resolution drone baseline",
+  "plot_id": "37-STC",
+  "evidence_level": "HIGH_RESOLUTION_BASELINE",
+  "one_epoch_guard": "ONE_EPOCH_ONLY_NO_DRONE_DERIVED_CHANGE_RATE",
+  "source": {
+    "province_folder_id": "1bS2dan8yZ1Nl6P5SZJUneSHKtXxGw5h7",
+    "date_folder_id": "1yE-Zblb1_FYFoqBtVR3bRC_ve07qRIwr",
+    "plot_folder_id": "1kH7SKTY54D_tYpb-Ceyc8MzTofreeaTi",
+    "folder_label": "20-05-2569 / 37 STC",
+    "folder_date_status": "FOLDER_LABEL_UNVERIFIED_AS_FLIGHT_DATE",
+    "raw_geotiff": {
+      "drive_file_id": "1WdHWRu-JXFM4xayCbg6KA2-DTZFldBij",
+      "title": "orthor 37 stc.tif",
+      "size_bytes": 3333103914,
+      "mime_type": "image/tiff",
+      "drive_url": "https://drive.google.com/file/d/1WdHWRu-JXFM4xayCbg6KA2-DTZFldBij/view"
+    },
+    "drive_preview": {
+      "drive_file_id": "1pacx2VFcZXZDEtyB8OfED3JWNiFJ1-Td",
+      "title": "orthor 37 stc.png",
+      "size_bytes": 512355,
+      "drive_url": "https://drive.google.com/file/d/1pacx2VFcZXZDEtyB8OfED3JWNiFJ1-Td/view"
+    }
+  },
+  "web_preview": {
+    "asset": "data/surat_thani/drone/orthor_37_stc_preview.webp",
+    "width_px": 800,
+    "height_px": 443,
+    "derivation": "Downsampled web preview derived from the Drive PNG source; raw GeoTIFF is not served by Vercel."
+  },
+  "qa": {
+    "georeference_status": "PENDING_RAW_METADATA_INSPECTION",
+    "imagery_coverage_status": "PENDING_RAW_METADATA_INSPECTION",
+    "crs": null,
+    "mean_gsd_cm": null,
+    "band_count": null,
+    "raw_metadata_reason": "Connected Drive download is limited to 256 MB while the GeoTIFF is 3.33 GB; do not infer CRS, GSD, band count, transform or flight date from the preview or folder name."
+  },
+  "scientific_guard": [
+    "Do not derive an erosion/accretion rate from one drone epoch.",
+    "Do not call folder label 20-05-2569 a verified flight date until acquisition metadata confirms it.",
+    "Do not align the preview to Sentinel-2 or project geometry until GeoTIFF CRS/transform QA is complete.",
+    "Do not compute drone NDVI until the raw band configuration confirms a NIR band.",
+    "Use the preview as visual high-resolution spatial context only."
+  ]
+}

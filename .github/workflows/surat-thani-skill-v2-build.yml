@@ -1,0 +1,44 @@
+name: Surat Thani skill v2 web QA
+
+on:
+  push:
+    branches:
+      - web/surat-thani-skill-v2
+    paths:
+      - 'web-surat-thani/**'
+      - 'data/project/surat_thani_drone_drive_manifest.json'
+      - 'regions/surat_thani/DRONE_BASELINE.md'
+      - '.github/workflows/surat-thani-skill-v2-build.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        working-directory: web-surat-thani
+        run: npm install
+      - name: Build
+        working-directory: web-surat-thani
+        run: npm run build
+      - name: QA information architecture and drone guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f web-surat-thani/dist/index.html
+          test -f web-surat-thani/dist/data/surat_thani/drone/drone_manifest.json
+          test -f web-surat-thani/dist/data/surat_thani/drone/orthor_37_stc_preview.webp
+          ! find web-surat-thani/dist -type f \( -iname '*.tif' -o -iname '*.tiff' \) | grep -q .
+          grep -R -q 'HIGH_RESOLUTION_BASELINE' web-surat-thani/dist
+          grep -R -q 'ภาพโดรน HR' web-surat-thani/dist/assets
+          grep -R -q 'หลักฐานย้อนหลัง' web-surat-thani/dist/assets
+          grep -R -q 'แผนที่หลายปี' web-surat-thani/dist/assets
+          if git diff --name-only origin/main...HEAD | grep '^web/'; then
+            echo 'ERROR: Samut Songkhram web/ was modified by Surat Thani v2 work'
+            exit 1
+          fi

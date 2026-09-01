@@ -1,0 +1,27 @@
+{
+  "province_key": "surat_thani",
+  "plot_id": "37-STC",
+  "status": "HIGH_RESOLUTION_BASELINE_SOURCE_FOUND_METADATA_QA_PENDING",
+  "drive": {
+    "province_folder_id": "1bS2dan8yZ1Nl6P5SZJUneSHKtXxGw5h7",
+    "date_folder_id": "1yE-Zblb1_FYFoqBtVR3bRC_ve07qRIwr",
+    "plot_folder_id": "1kH7SKTY54D_tYpb-Ceyc8MzTofreeaTi",
+    "raw_geotiff_file_id": "1WdHWRu-JXFM4xayCbg6KA2-DTZFldBij",
+    "raw_geotiff_title": "orthor 37 stc.tif",
+    "raw_geotiff_size_bytes": 3333103914,
+    "preview_png_file_id": "1pacx2VFcZXZDEtyB8OfED3JWNiFJ1-Td",
+    "preview_png_title": "orthor 37 stc.png",
+    "folder_label": "20-05-2569",
+    "folder_date_status": "FOLDER_LABEL_UNVERIFIED_AS_FLIGHT_DATE"
+  },
+  "qa": {
+    "raw_download_status": "BLOCKED_BY_CONNECTED_DRIVE_256_MB_DOWNLOAD_LIMIT",
+    "georeference_qa": "PENDING_RAW_METADATA_INSPECTION",
+    "crs": null,
+    "gsd_cm": null,
+    "band_count": null,
+    "coverage_fraction": null,
+    "drone_ndvi_supported": null
+  },
+  "claim_guard": "One orthomosaic epoch is a high-resolution spatial baseline, not before-after change evidence or a causal erosion metric."
+}
