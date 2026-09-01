@@ -5,11 +5,13 @@ on:
     branches:
       - main
       - web/surat-thani-skill-v2
+      - analysis/surat-thani-land-accretion-audit
     paths:
       - 'web-surat-thani/**'
       - 'data/project/surat_thani_drone_drive_manifest.json'
       - 'regions/surat_thani/DRONE_BASELINE.md'
       - 'scripts/inspect_surat_thani_37_stc_geotiff.py'
+      - 'scripts/audit_surat_thani_land_accretion_candidates.py'
       - '.github/workflows/surat-thani-skill-v2-build.yml'
   workflow_dispatch:
 
@@ -26,7 +28,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate drone manifests and inspector syntax
+      - name: Validate drone manifests and analysis syntax
         shell: bash
         run: |
           set -euo pipefail
@@ -34,26 +36,43 @@ jobs:
           python -m json.tool web-surat-thani/public/data/surat_thani/drone/drone_manifest.json >/dev/null
           python -m json.tool web-surat-thani/public/data/surat_thani/evidence_manifest.json >/dev/null
           python -m py_compile scripts/inspect_surat_thani_37_stc_geotiff.py
-          grep -q 'REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY' data/project/surat_thani_drone_drive_manifest.json
-          grep -q 'BLOCKED_RAW_GEOTIFF_EXCEEDS_CONNECTED_DOWNLOAD_LIMIT' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+          python -m py_compile scripts/audit_surat_thani_land_accretion_candidates.py
+          grep -q 'REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+          grep -q 'GEOREFERENCE_QA_PASSED_SAME_EXTENT_COMPARE_AVAILABLE' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+          grep -q 'PASS_EXPECTED_PROJECT_CRS' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
           grep -q 'ONE_EPOCH_ONLY_NO_DRONE_DERIVED_CHANGE_RATE' web-surat-thani/public/data/surat_thani/drone/drone_manifest.json
+          if test -f web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json; then
+            python -m json.tool web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json >/dev/null
+            grep -q 'NO_POST_2023_LAND_ACCRETION_CONFIRMED_FROM_THE_TWO_LONG_TERM_CANDIDATES' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
+            grep -q '"transect_id": "T028"' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
+            grep -q '"transect_id": "T038"' web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json
+          fi
       - name: Install
         working-directory: web-surat-thani
         run: npm install
       - name: Build
         working-directory: web-surat-thani
         run: npm run build
-      - name: QA information architecture and drone guard
+      - name: QA information architecture, drone guard and land-accretion audit
         shell: bash
         run: |
           set -euo pipefail
           test -f web-surat-thani/dist/index.html
           test -f web-surat-thani/dist/data/surat_thani/drone/drone_manifest.json
-          test -f web-surat-thani/dist/data/surat_thani/drone/orthor_37_stc_preview.webp
+          test -f web-surat-thani/dist/data/surat_thani/drone/orthor_37_stc_same_extent.webp
+          test -f web-surat-thani/dist/data/surat_thani/drone/sentinel2_2026_same_extent.webp
           ! find web-surat-thani/dist -type f \( -iname '*.tif' -o -iname '*.tiff' \) | grep -q .
-          grep -R -q 'HIGH_RESOLUTION_BASELINE' web-surat-thani/dist
+          grep -R -q 'GEOREFERENCED_HIGH_RESOLUTION_BASELINE' web-surat-thani/dist
           grep -R -q 'ภาพโดรน HR' web-surat-thani/dist/assets
           grep -R -q 'หลักฐานย้อนหลัง' web-surat-thani/dist/assets
           grep -R -q 'แผนที่หลายปี' web-surat-thani/dist/assets
-          grep -R -q 'REJECTED_PLACEHOLDER_NOT_DRONE_IMAGERY' web-surat-thani/dist
-          grep -R -q 'LOCKED_UNTIL_RAW_GEOREFERENCE_QA' web-surat-thani/dist
+          grep -R -q 'ไม่รองรับดินงอกหลัง 2023' web-surat-thani/dist/assets
+          if test -f web-surat-thani/public/data/surat_thani/drone/land_accretion_candidate_audit.json; then
+            test -f web-surat-thani/dist/data/surat_thani/drone/land_accretion_candidate_audit.json
+            test -f web-surat-thani/dist/data/surat_thani/drone/sentinel2_2023_same_extent.webp
+            for ID in t028 t038; do
+              test -f "web-surat-thani/dist/data/surat_thani/drone/${ID}_sentinel2_2023_crop.webp"
+              test -f "web-surat-thani/dist/data/surat_thani/drone/${ID}_sentinel2_2026_crop.webp"
+              test -f "web-surat-thani/dist/data/surat_thani/drone/${ID}_drone_crop.webp"
+            done
+          fi
