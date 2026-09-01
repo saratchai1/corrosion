@@ -67,29 +67,33 @@
         "marker_on_full_same_extent": {
           "x_percent": 62.798704928181564,
           "y_percent": 41.484191395338705
-        }
+        },
+        "drone_coverage_status": "INSIDE_VERIFIED_RAW_DRONE_FOOTPRINT"
       },
       "web_crops": {
         "sentinel2_2023": {
           "asset": "data/surat_thani/drone/t028_sentinel2_2023_crop.webp",
           "marker": {
-            "x_percent": 50.078476814014195,
-            "y_percent": 50.017928517413296
-          }
+            "x_percent": 53.07386079621332,
+            "y_percent": 48.15637248263247
+          },
+          "coverage_status": "CANDIDATE_CENTER_INSIDE_SENTINEL_SOURCE"
         },
         "sentinel2_2026": {
           "asset": "data/surat_thani/drone/t028_sentinel2_2026_crop.webp",
           "marker": {
-            "x_percent": 50.078476814014195,
-            "y_percent": 50.017928517413296
-          }
+            "x_percent": 53.07386079621332,
+            "y_percent": 48.15637248263247
+          },
+          "coverage_status": "CANDIDATE_CENTER_INSIDE_SENTINEL_SOURCE"
         },
         "drone": {
           "asset": "data/surat_thani/drone/t028_drone_crop.webp",
           "marker": {
             "x_percent": 50.078476814014195,
             "y_percent": 50.017928517413296
-          }
+          },
+          "coverage_status": "INSIDE_VERIFIED_RAW_DRONE_FOOTPRINT"
         }
       },
       "post_2023_accretion_supported": false,
@@ -130,34 +134,32 @@
         "marker_on_full_same_extent": {
           "x_percent": 107.69456042174515,
           "y_percent": -8.749623814390763
-        }
+        },
+        "drone_coverage_status": "OUTSIDE_VERIFIED_RAW_DRONE_FOOTPRINT"
       },
       "web_crops": {
         "sentinel2_2023": {
           "asset": "data/surat_thani/drone/t038_sentinel2_2023_crop.webp",
           "marker": {
-            "x_percent": 100.0,
-            "y_percent": 0.0
-          }
+            "x_percent": 67.24158851861486,
+            "y_percent": 37.88020878844762
+          },
+          "coverage_status": "CANDIDATE_CENTER_INSIDE_SENTINEL_SOURCE"
         },
         "sentinel2_2026": {
           "asset": "data/surat_thani/drone/t038_sentinel2_2026_crop.webp",
           "marker": {
-            "x_percent": 100.0,
-            "y_percent": 0.0
-          }
+            "x_percent": 67.24158851861486,
+            "y_percent": 37.88020878844762
+          },
+          "coverage_status": "CANDIDATE_CENTER_INSIDE_SENTINEL_SOURCE"
         },
-        "drone": {
-          "asset": "data/surat_thani/drone/t038_drone_crop.webp",
-          "marker": {
-            "x_percent": 100.0,
-            "y_percent": 0.0
-          }
-        }
+        "drone": null
       },
       "post_2023_accretion_supported": false,
       "post_2023_verdict": "NOT_SUPPORTED_AS_POST_2023_ACCRETION",
       "interpretation_th": "แม้ระยะยาว 1985-2026 เคยถูกจัดเป็น apparent accretion (+47.69 m) แต่ช่วง 2023-2026 baseline = +0.00 m และ tide-matched = -25.99 m; จึงไม่รองรับข้อสรุปว่าดินงอกหลังปลูก."
     }
-  ]
+  ],
+  "crop_method": "Sentinel candidate crops are centered on the candidate WGS84 point in the full yearly image; drone crops are only published when the point falls inside the verified raw-drone footprint."
 }
