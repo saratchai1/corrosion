@@ -1,0 +1,71 @@
+name: Samut Songkhram 2.5m web imagery
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/samut-songkhram-superres-2p5-web-v1
+    paths:
+      - 'scripts/build_samut_songkhram_superres_web.py'
+      - '.github/workflows/samut-songkhram-superres-2p5-web.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-superres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install super-resolution dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U "geoai-py[sr]" rasterio pyproj pillow numpy requests
+
+      - name: Build 2.5m web imagery
+        run: python scripts/build_samut_songkhram_superres_web.py
+
+      - name: Validate web imagery
+        run: |
+          test -s web/public/data/superres25/91-stc-10m.webp
+          test -s web/public/data/superres25/91-stc-2p5m.webp
+          test -s web/public/data/superres25/summary.json
+          python - <<'PY'
+          from PIL import Image
+          for path in [
+              'web/public/data/superres25/91-stc-10m.webp',
+              'web/public/data/superres25/91-stc-2p5m.webp',
+          ]:
+              im = Image.open(path)
+              assert im.size == (512, 512), (path, im.size)
+              print(path, im.size)
+          PY
+
+      - name: Commit generated web assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add web/public/data/superres25
+          if git diff --cached --quiet; then
+            echo 'No generated asset changes'
+            exit 0
+          fi
+          git commit -m 'data: add Samut Songkhram 2.5m web imagery'
+          git push origin HEAD:feature/samut-songkhram-superres-2p5-web-v1
+
+      - name: Upload generated imagery
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-superres-2p5-web
+          path: web/public/data/superres25/**
+          if-no-files-found: error
+          retention-days: 7
