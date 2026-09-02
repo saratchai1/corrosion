@@ -42,6 +42,13 @@ function preload(url) {
   image.src = url
 }
 
+function displayDate(value) {
+  const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.']
+  const parts = String(value || '').split('-').map(Number)
+  if (parts.length !== 3 || !parts.every(Number.isFinite)) return String(value || '')
+  return `${parts[2]} ${months[parts[1] - 1] || ''} ${parts[0]}`
+}
+
 function selectLocation(location) {
   if (!location) return
   activeId = location.id
@@ -51,7 +58,7 @@ function selectLocation(location) {
   preload(refined)
   baseImage.src = original
   detailImage.src = refined
-  currentMeta.textContent = `${location.label} · 15 ม.ค. 2025`
+  currentMeta.textContent = `${location.label} · ${displayDate(location.date)}`
   for (const button of plotPicker.querySelectorAll('button')) {
     const active = button.dataset.id === activeId
     button.classList.toggle('active', active)
