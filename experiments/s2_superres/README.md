@@ -38,6 +38,8 @@ python experiments/s2_superres/trial.py \
   --n-variations 5
 ```
 
+The branch also contains a GitHub Actions smoke test that runs the small patch automatically and uploads the generated trial outputs as an artifact.
+
 ## Acceptance rule for this project
 
 Do not use LDSR-S2 alone to claim 2.5 m positional accuracy, count small objects, or measure sub-10 m shoreline/mangrove geometry. Use it first as a visualization/feature-enhancement candidate. Promote it to quantitative analysis only after comparison with independent higher-resolution truth (drone orthomosaic, surveyed boundary, or other suitable high-resolution imagery) and after checking uncertainty and downsample-back spectral consistency.
