@@ -1,0 +1,40 @@
+name: Samut Songkhram S2 Super-Resolution Smoke Test
+
+on:
+  push:
+    branches:
+      - experiment/samut-songkhram-s2-superres-v1
+    paths:
+      - "experiments/s2_superres/**"
+      - ".github/workflows/s2-superres-smoke.yml"
+  workflow_dispatch:
+
+jobs:
+  superres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -U "geoai-py[sr]" requests rasterio pyproj matplotlib numpy
+
+      - name: Run small LDSR-S2 trial
+        run: |
+          python experiments/s2_superres/trial.py \
+            --sampling-steps 10 \
+            --out-dir outputs/s2_superres_trial
+
+      - name: Upload trial outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: samut-songkhram-s2-superres-trial
+          path: outputs/s2_superres_trial
+          if-no-files-found: warn
