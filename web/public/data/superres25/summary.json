@@ -1,0 +1,38 @@
+{
+  "scene_id": "S2A_47PPQ_20250115_0_L2A",
+  "date": "2025-01-15",
+  "locations": [
+    {
+      "id": "91-stc",
+      "label": "91-STC",
+      "lon": 99.9622,
+      "lat": 13.3082,
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/91-stc-10m.webp",
+      "superres": "data/superres25/91-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 1.0,
+        "native_rgb_percentiles": [
+          [
+            128.0,
+            250.0,
+            662.0
+          ],
+          [
+            280.0,
+            446.0,
+            764.0
+          ],
+          [
+            27.0,
+            147.0,
+            532.0
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.4803999960422516
+      }
+    }
+  ]
+}
