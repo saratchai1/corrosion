@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d0f0e" />
+    <title>สมุทรสงคราม</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <strong>สมุทรสงคราม</strong>
+        <span>91-STC · 15 ม.ค. 2025</span>
+      </header>
+
+      <section class="stage-wrap">
+        <div class="frame" id="frame" aria-label="เลื่อนเพื่อเปรียบเทียบภาพ">
+          <div class="plane" id="plane">
+            <img class="image" src="/data/superres25/91-stc-10m.webp" alt="" draggable="false" />
+            <div class="clip" id="clip">
+              <img class="image" src="/data/superres25/91-stc-2p5m.webp" alt="" draggable="false" />
+            </div>
+          </div>
+          <div class="divider" id="divider"><span></span></div>
+        </div>
+      </section>
+
+      <footer class="controls">
+        <button id="reset" type="button">กึ่งกลาง</button>
+        <label>
+          <span id="zoomValue">1.0×</span>
+          <input id="zoom" type="range" min="1" max="4" step="0.1" value="1" aria-label="ซูม" />
+        </label>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
