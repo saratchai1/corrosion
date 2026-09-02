@@ -55,13 +55,13 @@ type ModeDefinition = {
 }
 
 const modeDefinitions: ModeDefinition[] = [
-  { id: 'rgb', label: 'RGB', short: 'RGB', note: 'สีจริง Red–Green–Blue' },
-  { id: 'false_vegetation', label: 'False Color', short: 'NIR–R–G', note: 'สีเทียม NIR–Red–Green · พืชเด่นเป็นสีแดง' },
+  { id: 'rgb', label: 'RGB', short: 'B4–B3–B2', note: 'สีจริง Sentinel-2 Band 4–3–2 (Red–Green–Blue)' },
+  { id: 'false_vegetation', label: 'ดูพืช', short: 'B8–B4–B3', note: 'Sentinel-2 Band 8–4–3 (NIR–Red–Green) · เน้นพืชให้เด่นและเห็นแนวพืชชัดขึ้น' },
   {
     id: 'ndvi',
     label: 'NDVI',
-    short: '(NIR−R)/(NIR+R)',
-    note: 'ความเขียวของพืชจาก NIR และ Red',
+    short: '(B8−B4)/(B8+B4)',
+    note: 'ความเขียวของพืชจาก Sentinel-2 Band 8 และ Band 4',
     legend: [
       { label: 'น้ำ / ต่ำ', color: '#1c3e73' },
       { label: 'ดิน / เบาบาง', color: '#daaF70' },
@@ -72,8 +72,8 @@ const modeDefinitions: ModeDefinition[] = [
   {
     id: 'mndwi',
     label: 'MNDWI',
-    short: '(G−SWIR1)/(G+SWIR1)',
-    note: 'เน้นน้ำ–แผ่นดินจาก Green และ SWIR1',
+    short: '(B3−B11)/(B3+B11)',
+    note: 'เน้นน้ำ–แผ่นดินจาก Sentinel-2 Band 3 และ Band 11',
     legend: [
       { label: 'ดิน / พืช', color: '#6c4427' },
       { label: 'รอยต่อ', color: '#cac7b1' },
@@ -81,7 +81,7 @@ const modeDefinitions: ModeDefinition[] = [
       { label: 'น้ำเด่น', color: '#082d68' },
     ],
   },
-  { id: 'swir', label: 'SWIR', short: 'SWIR1–NIR–R', note: 'สีเทียม SWIR1–NIR–Red · ช่วยดูความชื้น ดินเปิด และน้ำ' },
+  { id: 'swir', label: 'พรรณไม้ป่าชายเลน', short: 'B11–B8–B4', note: 'Sentinel-2 Band 11–8–4 (SWIR1–NIR–Red) · ช่วยแยกความแตกต่างของพรรณไม้ป่าชายเลน/ชนิดพรรณเชิง spectral' },
 ]
 
 const themes: Array<{ id: ThemeMode; label: string }> = [
@@ -266,7 +266,7 @@ export default function DroneMultiYearPage() {
           ))}
         </div>
 
-        <p className="spectral-science-guard">{catalog.visual_mode_guard ?? 'Spectral modes are produced from actual multispectral bands; Drone HR remains RGB-only.'}</p>
+        <p className="spectral-science-guard">Sentinel-2: RGB = B4–B3–B2 · ดูพืช = B8–B4–B3 · NDVI = (B8−B4)/(B8+B4) · MNDWI = (B3−B11)/(B3+B11) · พรรณไม้ป่าชายเลน = B11–B8–B4. ปี Landsat ใช้ band ที่มีช่วงคลื่นเทียบเท่ากัน. Drone HR ยังคงเป็น RGB-only เพราะไม่มี NIR/SWIR.</p>
       </section>
 
       <div className="legacy-drone-body">
