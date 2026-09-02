@@ -1,4 +1,4 @@
-name: Samut Songkhram 2.5m web imagery
+name: Samut Songkhram all-plot visual refinement
 
 on:
   workflow_dispatch:
@@ -13,13 +13,24 @@ permissions:
   contents: write
 
 jobs:
-  build-superres:
+  build-plot:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        plot:
+          - 92-STC
+          - 93-STC
+          - 94-STC
+          - 95-STC
+          - 96-STC
+          - 97-STC
+          - 98-STC
+          - 87-VSD
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -31,29 +42,119 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U "geoai-py[sr]" rasterio pyproj pillow numpy requests
 
-      - name: Build 2.5m web imagery
-        run: python scripts/build_samut_songkhram_superres_web.py
-
-      - name: Validate web imagery
+      - name: Build plot imagery
         run: |
-          test -s web/public/data/superres25/91-stc-10m.webp
-          test -s web/public/data/superres25/91-stc-2p5m.webp
-          test -s web/public/data/superres25/summary.json
+          mkdir -p "generated/${{ matrix.plot }}"
+          python scripts/build_samut_songkhram_superres_web.py \
+            --plot-id "${{ matrix.plot }}" \
+            --sampling-steps 20 \
+            --out-dir "generated/${{ matrix.plot }}" \
+            --work-dir "outputs/${{ matrix.plot }}"
+
+      - name: Validate plot imagery
+        env:
+          PLOT: ${{ matrix.plot }}
+        run: |
+          slug=$(printf '%s' "$PLOT" | tr '[:upper:]' '[:lower:]')
+          test -s "generated/$PLOT/${slug}-10m.webp"
+          test -s "generated/$PLOT/${slug}-2p5m.webp"
+          test -s "generated/$PLOT/${slug}.json"
           python - <<'PY'
+          from pathlib import Path
           from PIL import Image
-          for path in [
-              'web/public/data/superres25/91-stc-10m.webp',
-              'web/public/data/superres25/91-stc-2p5m.webp',
-          ]:
-              im = Image.open(path)
-              assert im.size == (512, 512), (path, im.size)
-              print(path, im.size)
+          import os
+          plot = os.environ['PLOT']
+          slug = plot.lower()
+          root = Path('generated') / plot
+          for name in [f'{slug}-10m.webp', f'{slug}-2p5m.webp']:
+              image = Image.open(root / name)
+              assert image.size == (512, 512), (name, image.size)
+              print(plot, name, image.size)
           PY
 
-      - name: Commit generated web assets
+      - name: Upload plot imagery
+        uses: actions/upload-artifact@v4
+        with:
+          name: superres-${{ matrix.plot }}
+          path: generated/${{ matrix.plot }}/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: build-plot
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/samut-songkhram-superres-2p5-web-v1
+
+      - name: Download all plot outputs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: superres-*
+          path: generated
+          merge-multiple: true
+
+      - name: Assemble web dataset
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import shutil
+
+          order = ['91-STC','92-STC','93-STC','94-STC','95-STC','96-STC','97-STC','98-STC','87-VSD']
+          target = Path('web/public/data/superres25')
+          generated = Path('generated')
+          target.mkdir(parents=True, exist_ok=True)
+
+          summary_path = target / 'summary.json'
+          by_label = {}
+          if summary_path.exists():
+              old = json.loads(summary_path.read_text(encoding='utf-8'))
+              for item in old.get('locations', []):
+                  by_label[item['label']] = item
+
+          for image in generated.glob('*.webp'):
+              shutil.copy2(image, target / image.name)
+          for meta in generated.glob('*.json'):
+              item = json.loads(meta.read_text(encoding='utf-8'))
+              by_label[item['label']] = item
+
+          missing = [label for label in order if label not in by_label]
+          if missing:
+              raise SystemExit(f'Missing plot outputs: {missing}')
+
+          summary = {
+              'scene_id': 'S2A_47PPQ_20250115_0_L2A',
+              'date': '2025-01-15',
+              'locations': [by_label[label] for label in order],
+          }
+          summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
+          print('assembled', len(summary['locations']), 'plots')
+          PY
+
+      - name: Validate complete set
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from PIL import Image
+
+          root = Path('web/public/data/superres25')
+          summary = json.loads((root / 'summary.json').read_text(encoding='utf-8'))
+          assert len(summary['locations']) == 9, len(summary['locations'])
+          for item in summary['locations']:
+              for suffix in ('10m', '2p5m'):
+                  image_path = root / f"{item['id']}-{suffix}.webp"
+                  image = Image.open(image_path)
+                  assert image.size == (512, 512), (image_path, image.size)
+          print([item['label'] for item in summary['locations']])
+          PY
+
+      - name: Commit complete imagery set
         env:
           GH_TOKEN: ${{ github.token }}
-          TARGET_BRANCH: feature/samut-songkhram-superres-2p5-web-v1
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -62,15 +163,5 @@ jobs:
             echo 'No generated asset changes'
             exit 0
           fi
-          git commit -m 'data: add Samut Songkhram 2.5m web imagery'
-          git fetch origin "$TARGET_BRANCH"
-          git rebase "origin/$TARGET_BRANCH"
-          git push origin HEAD:"$TARGET_BRANCH"
-
-      - name: Upload generated imagery
-        uses: actions/upload-artifact@v4
-        with:
-          name: samut-songkhram-superres-2p5-web
-          path: web/public/data/superres25/**
-          if-no-files-found: error
-          retention-days: 7
+          git commit -m 'data: add all Samut Songkhram visual comparison plots'
+          git push origin HEAD:feature/samut-songkhram-superres-2p5-web-v1

@@ -11,15 +11,17 @@
     <main class="shell">
       <header class="topbar">
         <strong>สมุทรสงคราม</strong>
-        <span>91-STC · 15 ม.ค. 2025</span>
+        <span id="currentMeta">91-STC · 15 ม.ค. 2025</span>
       </header>
+
+      <nav class="plot-picker" id="plotPicker" aria-label="เลือกแปลง"></nav>
 
       <section class="stage-wrap">
         <div class="frame" id="frame" aria-label="เลื่อนเพื่อเปรียบเทียบภาพ">
           <div class="plane" id="plane">
-            <img class="image" src="/data/superres25/91-stc-10m.webp" alt="" draggable="false" />
+            <img id="baseImage" class="image" src="/data/superres25/91-stc-10m.webp" alt="" draggable="false" />
             <div class="clip" id="clip">
-              <img class="image" src="/data/superres25/91-stc-2p5m.webp" alt="" draggable="false" />
+              <img id="detailImage" class="image" src="/data/superres25/91-stc-2p5m.webp" alt="" draggable="false" />
             </div>
           </div>
           <div class="divider" id="divider"><span></span></div>
