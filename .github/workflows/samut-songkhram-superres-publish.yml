@@ -1,0 +1,116 @@
+name: Publish complete Samut Songkhram visual preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/samut-songkhram-superres-2p5-web-v1
+    paths:
+      - 'scripts/build_87_vsd_superres.py'
+      - '.github/workflows/samut-songkhram-superres-publish.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/samut-songkhram-superres-2p5-web-v1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install image dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U "geoai-py[sr]" rasterio pyproj pillow numpy requests
+
+      - name: Generate valid imagery for 87-VSD
+        run: python scripts/build_87_vsd_superres.py
+
+      - name: Download completed STC plot artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf old-artifacts
+          mkdir -p old-artifacts
+          for name in 92-STC 93-STC 94-STC 95-STC 96-STC 97-STC 98-STC; do
+            gh run download 33610781371 --name "superres-${name}" --dir "old-artifacts/${name}"
+          done
+
+      - name: Assemble nine-plot dataset
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import shutil
+
+          order = ['91-STC','92-STC','93-STC','94-STC','95-STC','96-STC','97-STC','98-STC','87-VSD']
+          target = Path('web/public/data/superres25')
+          target.mkdir(parents=True, exist_ok=True)
+
+          old_summary = json.loads((target / 'summary.json').read_text(encoding='utf-8'))
+          by_label = {item['label']: item for item in old_summary.get('locations', [])}
+
+          for root in [Path('old-artifacts'), Path('generated/87-VSD')]:
+              for image in root.rglob('*.webp'):
+                  shutil.copy2(image, target / image.name)
+              for meta in root.rglob('*.json'):
+                  item = json.loads(meta.read_text(encoding='utf-8'))
+                  if item.get('label'):
+                      by_label[item['label']] = item
+
+          missing = [label for label in order if label not in by_label]
+          if missing:
+              raise SystemExit(f'Missing plot metadata: {missing}')
+
+          summary = {
+              'locations': [by_label[label] for label in order],
+          }
+          (target / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
+          print([f"{item['label']}:{item['date']}" for item in summary['locations']])
+          PY
+
+      - name: Validate nine visual pairs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from PIL import Image, ImageStat
+
+          root = Path('web/public/data/superres25')
+          summary = json.loads((root / 'summary.json').read_text(encoding='utf-8'))
+          assert len(summary['locations']) == 9, len(summary['locations'])
+          assert [x['label'] for x in summary['locations']] == ['91-STC','92-STC','93-STC','94-STC','95-STC','96-STC','97-STC','98-STC','87-VSD']
+          for item in summary['locations']:
+              assert float(item.get('stats', {}).get('native_rgb_nonzero_fraction', 1)) > 0.9, item
+              for key in ('original', 'superres'):
+                  path = Path('web/public') / item[key]
+                  assert path.stat().st_size > 5000, (path, path.stat().st_size)
+                  image = Image.open(path).convert('RGB')
+                  assert image.size == (512, 512), (path, image.size)
+                  extrema = ImageStat.Stat(image).extrema
+                  assert any(high - low > 10 for low, high in extrema), (path, extrema)
+          print('validated 9 plots')
+          PY
+
+      - name: Commit complete visual dataset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add web/public/data/superres25
+          if git diff --cached --quiet; then
+            echo 'No visual data changes'
+            exit 0
+          fi
+          git commit -m 'data: publish nine Samut Songkhram visual pairs'
+          git push origin HEAD:feature/samut-songkhram-superres-2p5-web-v1
