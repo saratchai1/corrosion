@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -51,6 +53,7 @@ jobs:
       - name: Commit generated web assets
         env:
           GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: feature/samut-songkhram-superres-2p5-web-v1
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -60,7 +63,9 @@ jobs:
             exit 0
           fi
           git commit -m 'data: add Samut Songkhram 2.5m web imagery'
-          git push origin HEAD:feature/samut-songkhram-superres-2p5-web-v1
+          git fetch origin "$TARGET_BRANCH"
+          git rebase "origin/$TARGET_BRANCH"
+          git push origin HEAD:"$TARGET_BRANCH"
 
       - name: Upload generated imagery
         uses: actions/upload-artifact@v4
