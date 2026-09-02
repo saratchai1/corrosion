@@ -1,6 +1,4 @@
 {
-  "scene_id": "S2A_47PPQ_20250115_0_L2A",
-  "date": "2025-01-15",
   "locations": [
     {
       "id": "91-stc",
@@ -32,6 +30,288 @@
         ],
         "sr_min": 0.0,
         "sr_max": 0.4803999960422516
+      }
+    },
+    {
+      "id": "92-stc",
+      "label": "92-STC",
+      "lon": 99.97051925,
+      "lat": 13.314583800000001,
+      "bbox": [
+        99.9662146,
+        13.3128138,
+        99.9748239,
+        13.3163538
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/92-stc-10m.webp",
+      "superres": "data/superres25/92-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999796549479166,
+        "native_rgb_percentiles": [
+          [
+            135.83,
+            234.0,
+            925.5100000000002
+          ],
+          [
+            272.0,
+            412.0,
+            897.1700000000001
+          ],
+          [
+            25.0,
+            141.0,
+            600.1800000000003
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.4603999853134155
+      }
+    },
+    {
+      "id": "93-stc",
+      "label": "93-STC",
+      "lon": 99.97757039999999,
+      "lat": 13.3172376,
+      "bbox": [
+        99.9744399,
+        13.3149283,
+        99.9807009,
+        13.3195469
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/93-stc-10m.webp",
+      "superres": "data/superres25/93-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999796549479166,
+        "native_rgb_percentiles": [
+          [
+            115.83000000000001,
+            222.0,
+            527.5100000000002
+          ],
+          [
+            254.0,
+            396.0,
+            678.0
+          ],
+          [
+            11.819999999999993,
+            148.0,
+            493.1800000000003
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.44920000433921814
+      }
+    },
+    {
+      "id": "94-stc",
+      "label": "94-STC",
+      "lon": 99.9809352,
+      "lat": 13.3224898,
+      "bbox": [
+        99.9789822,
+        13.3215977,
+        99.9828882,
+        13.3233819
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/94-stc-10m.webp",
+      "superres": "data/superres25/94-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999593098958334,
+        "native_rgb_percentiles": [
+          [
+            93.83000000000001,
+            220.0,
+            970.3400000000001
+          ],
+          [
+            226.0,
+            399.0,
+            934.3400000000001
+          ],
+          [
+            1.0,
+            119.0,
+            624.0
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.4564000070095062
+      }
+    },
+    {
+      "id": "95-stc",
+      "label": "95-STC",
+      "lon": 99.98390140000001,
+      "lat": 13.322480299999999,
+      "bbox": [
+        99.9824599,
+        13.3216155,
+        99.9853429,
+        13.3233451
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/95-stc-10m.webp",
+      "superres": "data/superres25/95-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999593098958334,
+        "native_rgb_percentiles": [
+          [
+            97.0,
+            211.0,
+            798.0
+          ],
+          [
+            232.0,
+            386.0,
+            898.0
+          ],
+          [
+            1.0,
+            139.0,
+            564.0
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.4564000070095062
+      }
+    },
+    {
+      "id": "96-stc",
+      "label": "96-STC",
+      "lon": 99.98547575,
+      "lat": 13.3234374,
+      "bbox": [
+        99.9849132,
+        13.3228363,
+        99.9860383,
+        13.3240385
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/96-stc-10m.webp",
+      "superres": "data/superres25/96-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999796549479166,
+        "native_rgb_percentiles": [
+          [
+            106.83000000000001,
+            218.0,
+            963.1700000000001
+          ],
+          [
+            242.0,
+            396.0,
+            932.1700000000001
+          ],
+          [
+            6.0,
+            157.0,
+            619.0
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.4564000070095062
+      }
+    },
+    {
+      "id": "97-stc",
+      "label": "97-STC",
+      "lon": 99.9868874,
+      "lat": 13.324296,
+      "bbox": [
+        99.9857277,
+        13.3233944,
+        99.9880471,
+        13.3251976
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/97-stc-10m.webp",
+      "superres": "data/superres25/97-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999796549479166,
+        "native_rgb_percentiles": [
+          [
+            109.0,
+            222.0,
+            948.1700000000001
+          ],
+          [
+            244.83,
+            406.0,
+            927.3400000000001
+          ],
+          [
+            8.0,
+            170.0,
+            606.0
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.44920000433921814
+      }
+    },
+    {
+      "id": "98-stc",
+      "label": "98-STC",
+      "lon": 99.98839315000001,
+      "lat": 13.3253768,
+      "bbox": [
+        99.9874855,
+        13.3246977,
+        99.9893008,
+        13.3260559
+      ],
+      "scene_id": "S2A_47PPQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/98-stc-10m.webp",
+      "superres": "data/superres25/98-stc-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 0.9999796549479166,
+        "native_rgb_percentiles": [
+          [
+            115.0,
+            226.0,
+            934.1700000000001
+          ],
+          [
+            254.0,
+            419.0,
+            916.0
+          ],
+          [
+            13.0,
+            188.0,
+            587.0
+          ]
+        ],
+        "sr_min": 0.0,
+        "sr_max": 0.44920000433921814
+      }
+    },
+    {
+      "id": "87-vsd",
+      "label": "87-VSD",
+      "lon": 99.8642117,
+      "lat": 13.2632254,
+      "scene_id": "S2A_47PNQ_20250115_0_L2A",
+      "date": "2025-01-15",
+      "original": "data/superres25/87-vsd-10m.webp",
+      "superres": "data/superres25/87-vsd-2p5m.webp",
+      "stats": {
+        "native_rgb_nonzero_fraction": 1.0,
+        "cloud_cover_scene": 0.002248,
+        "sr_min": 0.009200000204145908,
+        "sr_max": 0.446399986743927
       }
     }
   ]
